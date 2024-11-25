@@ -1,0 +1,28 @@
+{
+  "name": "openresume",
+  "version": "1.0.0",
+  "description": "A uniform standard for resume data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/missionmike/openresume.git"
+  },
+  "keywords": [
+    "resume"
+  ],
+  "author": "Michael R. Dinerstein",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/missionmike/openresume/issues"
+  },
+  "homepage": "https://github.com/missionmike/openresume#readme",
+  "devDependencies": {
+    "@types/node": "^22.9.3",
+    "prisma": "^5.22.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
