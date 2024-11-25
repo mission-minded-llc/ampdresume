@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+      - node_modules:/workspace/node_modules
+    command: sleep infinity
+    network_mode: service:db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/mydatabase
+      - NODE_ENV=development
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    volumes:
+      # Option 1: Using named Docker volume (default)
+      - postgres-data:/var/lib/postgresql/data
+      # Option 2: Using local directory (commented out)
+      # - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  # Define named volumes
+  postgres-data:
+    # Optional: specify a custom driver or driver options
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ${PWD}/postgres-data
+  node_modules:
