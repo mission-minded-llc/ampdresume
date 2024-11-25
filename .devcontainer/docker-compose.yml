@@ -10,13 +10,13 @@ services:
         USER_GID: 1000
     volumes:
       - ..:/workspace:cached
-      - node_modules:/workspace/node_modules
+      - frontend-modules:/workspace/frontend/node_modules
+      - backend-modules:/workspace/backend/node_modules
     command: sleep infinity
     network_mode: service:db
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/mydatabase
       - NODE_ENV=development
-    # Ensure the container runs as the non-root user
     user: node
 
   db:
@@ -30,13 +30,8 @@ services:
       POSTGRES_DB: mydatabase
     ports:
       - "5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
 
 volumes:
   postgres-data:
-  node_modules:
-    driver: local
+  frontend-modules:
+  backend-modules:

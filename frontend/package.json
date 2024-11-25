@@ -1,0 +1,15 @@
+{
+  "name": "openresume-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for the uniform standard for resume data.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.4",
+    "@types/react": "^18.3.12",
+    "prisma": "^5.22.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

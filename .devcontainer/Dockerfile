@@ -13,7 +13,10 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 # Create the user and set ownership/permissions
-RUN mkdir -p /workspace/node_modules && \
+RUN mkdir -p /workspace/backend/node_modules && \
+    chown -R $USERNAME:$USERNAME /workspace
+
+RUN mkdir -p /workspace/frontend/node_modules && \
     chown -R $USERNAME:$USERNAME /workspace
 
 # Switch to non-root user
