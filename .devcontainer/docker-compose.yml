@@ -14,9 +14,8 @@ services:
       - backend-modules:/workspace/backend/node_modules
     command: sleep infinity
     network_mode: service:db
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/mydatabase
-      - NODE_ENV=development
+    env_file:
+      - ../.env
     user: node
 
   db:
@@ -27,7 +26,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: openresume
     ports:
       - "5432:5432"
 

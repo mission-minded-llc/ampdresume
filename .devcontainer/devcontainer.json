@@ -39,5 +39,5 @@
 
   "forwardPorts": [3000, 4000, 5432],
 
-  "postCreateCommand": "npm install"
+  "postCreateCommand": "npm run install:all"
 }

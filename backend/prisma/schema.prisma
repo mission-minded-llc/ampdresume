@@ -12,3 +12,72 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+// Enum for user authentication methods
+enum AuthProvider {
+  EMAIL
+  GOOGLE
+  GITHUB
+  MICROSOFT
+}
+
+// Enum for user roles
+enum UserRole {
+  USER
+  ADMIN
+  MODERATOR
+}
+
+model User {
+  // Unique identifiers
+  id    String @id @default(cuid())
+  email String @unique
+
+  // Authentication fields
+  passwordHash String? // For email/password auth
+
+  // OAuth and provider-specific fields
+  authProvider      AuthProvider @default(EMAIL)
+  providerAccountId String?
+
+  // User profile information
+  name          String?
+  image         String?
+  emailVerified DateTime?
+
+  // Authorization and metadata
+  role     UserRole @default(USER)
+  isActive Boolean  @default(true)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Optional: Account verification
+  verificationToken  String?
+  resetPasswordToken String?
+
+  // Optional: Social account linking
+  accounts Account[]
+
+  @@unique([email, authProvider])
+}
+
+// Optional: For managing multiple social accounts
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}

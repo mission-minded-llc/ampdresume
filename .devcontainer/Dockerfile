@@ -7,6 +7,9 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
+COPY .env* /workspace/
+WORKDIR /workspace
+
 # Create a non-root user with the same UID/GID as your host machine user
 ARG USERNAME=node
 ARG USER_UID=1000
