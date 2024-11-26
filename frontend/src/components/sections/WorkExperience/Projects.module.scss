@@ -1,0 +1,66 @@
+@import "@/app/vars.scss";
+
+.accordion {
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+
+  &::before {
+    display: none;
+  }
+
+  &:global(.Mui-expanded) {
+    border-top: 2px solid #666;
+    border-bottom: 2px solid #666;
+  }
+
+  :global(div.MuiButtonBase-root) {
+    padding: 0;
+  }
+
+  :global(.MuiAccordionSummary-expandIconWrapper) {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.accordionDetails {
+  :global(img) {
+    margin: 0 0 1rem 0;
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(200, 200, 200, 0.5);
+  }
+
+  @media screen and (max-width: $breakpoint_mobile) {
+    padding: 1rem !important;
+  }
+}
+
+.projectOverview {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 50% 1fr;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 40px 10px 20px;
+
+  @media screen and (max-width: $breakpoint_mobile) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+}
+
+.projectTagContainer {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 4px;
+
+  @media screen and (max-width: $breakpoint_mobile) {
+    padding-bottom: 16px;
+    border-bottom: 1px solid lightgray;
+  }
+}

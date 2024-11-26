@@ -1,0 +1,19 @@
+@import "@/app/vars.scss";
+
+.main {
+  position: relative;
+  display: block;
+
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 16px 0 100px 0;
+
+  .workExperienceSkills {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: $breakpoint_mobile) {
+      flex-direction: column-reverse;
+    }
+  }
+}

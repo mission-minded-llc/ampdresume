@@ -1,15 +1,30 @@
 {
-  "name": "openresume-frontend",
-  "version": "1.0.0",
-  "description": "Frontend for the uniform standard for resume data.",
+  "name": "openresume",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "types:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.11.10",
+    "@iconify/react": "^5.0.2",
+    "@next/third-parties": "^15.0.3",
+    "classnames": "^2.5.1",
+    "next": "15.0.3",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "sass": "^1.81.0"
   },
   "devDependencies": {
-    "@types/node": "^22.9.4",
-    "@types/react": "^18.3.12",
-    "prisma": "^5.22.0",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.3",
+    "typescript": "^5"
   }
 }

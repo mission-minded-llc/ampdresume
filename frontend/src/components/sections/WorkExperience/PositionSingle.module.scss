@@ -1,0 +1,32 @@
+@import "@/app/vars.scss";
+
+.position {
+  position: sticky;
+  text-align: center;
+  top: 0;
+  padding: 1rem 0;
+  margin-top: 0;
+  margin-bottom: 10px;
+
+  border-bottom: 1px solid white;
+  z-index: 1;
+
+  @media screen and (max-width: $breakpoint_mobile) {
+    margin-top: 16px;
+    text-align: left;
+  }
+}
+
+.companyName {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8em;
+  margin-top: 10px;
+  transition: opacity 500ms ease;
+
+  @media screen and (max-width: $breakpoint_mobile) {
+    transition: none;
+    text-align: left;
+  }
+}
