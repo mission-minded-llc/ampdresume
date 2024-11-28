@@ -29,10 +29,13 @@ jobs:
         with:
           node-version-file: ".nvmrc"
 
+      - name: install shared dependencies
+        run: npm ci
+
       - name: cd frontend
         run: cd frontend
 
-      - name: install dependencies
+      - name: install frontend dependencies
         run: npm ci
 
       - name: check formatting
