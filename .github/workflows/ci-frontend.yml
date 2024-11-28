@@ -38,7 +38,7 @@ jobs:
 
       - name: check formatting
         working-directory: ./frontend
-        run: echo $(pwd) && npm run prettier
+        run: npm run prettier
 
       - name: check lint
         working-directory: ./frontend
