@@ -29,17 +29,14 @@ jobs:
         with:
           node-version-file: ".nvmrc"
 
-      - name: cd frontend
-        run: cd frontend
-
       - name: install dependencies
-        run: npm ci
+        run: cd frontend && npm ci
 
       - name: check formatting
-        run: npm run prettier
+        run: cd frontend && npm run prettier
 
       - name: check lint
-        run: npm run lint
+        run: cd frontend && npm run lint
 
       - name: check types
-        run: npm run types:check
+        run: cd frontend && npm run types:check
