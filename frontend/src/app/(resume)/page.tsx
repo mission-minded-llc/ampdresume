@@ -11,6 +11,7 @@ import { Skills } from "@/components/sections/Skills/Skills";
 import { WorkExperience } from "@/components/sections/WorkExperience/WorkExperience";
 import { getApolloClient } from "@/lib/apolloClient";
 import styles from "./page.module.scss";
+import { Company } from "../../../sanity.types";
 
 export default async function Page() {
   const client = getApolloClient();
@@ -30,7 +31,7 @@ export default async function Page() {
   const { data: allPositionData } = await client.query<AllPosition>({
     query: GET_POSITIONS,
     variables: {
-      companyIds: allCompanyData.allCompany.map((company) => company._id),
+      companyIds: allCompanyData.allCompany.map((company: Company) => company._id),
     },
   });
 

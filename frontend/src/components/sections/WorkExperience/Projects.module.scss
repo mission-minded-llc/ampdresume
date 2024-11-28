@@ -1,4 +1,4 @@
-@import "@/app/vars.scss";
+@use "@/app/vars.scss" as *;
 
 .accordion {
   border-top: 2px solid transparent;

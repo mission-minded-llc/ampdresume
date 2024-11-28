@@ -10,8 +10,6 @@ services:
         USER_GID: 1000
     volumes:
       - ..:/workspace:cached
-      - frontend-modules:/workspace/frontend/node_modules
-      - backend-modules:/workspace/backend/node_modules
     command: sleep infinity
     network_mode: service:db
     env_file:
@@ -32,5 +30,3 @@ services:
 
 volumes:
   postgres-data:
-  frontend-modules:
-  backend-modules:

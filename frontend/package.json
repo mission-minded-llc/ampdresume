@@ -11,18 +11,22 @@
   },
   "dependencies": {
     "@apollo/client": "^3.11.10",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
     "@iconify/react": "^5.0.2",
+    "@mui/material": "^6.1.9",
+    "@mui/material-nextjs": "^6.1.8",
     "@next/third-parties": "^15.0.3",
     "classnames": "^2.5.1",
     "next": "15.0.3",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "sass": "^1.81.0"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "typescript": "^5"

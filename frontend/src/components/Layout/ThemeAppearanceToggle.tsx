@@ -1,4 +1,4 @@
-import { MoonIcon, SunIcon } from "@sanity/icons";
+import { Icon } from "@iconify/react";
 
 import { Switch } from "@mui/material";
 import { ThemeAppearanceContext } from "@/context/ThemeContext";
@@ -14,7 +14,7 @@ export const ThemeAppearanceToggle = () => {
 
   return (
     <div className={styles.themeAppearanceToggle}>
-      <SunIcon />
+      <Icon icon="solar:sun-bold" />
       <Switch
         checked={themeAppearance === "dark"}
         onChange={toggleThemeAppearance}
@@ -22,7 +22,7 @@ export const ThemeAppearanceToggle = () => {
           backgroundColor: theme.palette.background.default,
         })}
       />
-      <MoonIcon />
+      <Icon icon="solar:moon-bold" />
     </div>
   );
 };
