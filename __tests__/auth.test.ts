@@ -1,6 +1,6 @@
 import { authOptions, sendVerificationRequest } from "../src/lib/auth";
 import { getServerSession } from "next-auth/next";
-import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "@prisma/client";
 import nodemailer from "nodemailer";
 
 // Mock dependencies

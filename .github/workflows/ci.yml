@@ -1,4 +1,4 @@
-name: Continuous Integration, Frontend
+name: Continuous Integration
 
 on:
   push:
@@ -9,18 +9,18 @@ on:
     branches:
       - "main"
     paths:
-      - "frontend/**.ts"
-      - "frontend/**.tsx"
-      - "frontend/**.scss"
-      - "frontend/**.js"
-      - "frontend/**.mjs"
-      - "frontend/**.css"
-      - "frontend/**.json"
+      - "**.ts"
+      - "**.tsx"
+      - "**.scss"
+      - "**.js"
+      - "**.mjs"
+      - "**.css"
+      - "**.json"
   workflow_dispatch:
 
 jobs:
   ci:
-    name: Continuous Integration Tests, Frontend
+    name: Continuous Integration Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -29,25 +29,17 @@ jobs:
         with:
           node-version-file: ".nvmrc"
 
-      - name: install shared dependencies
-        run: npm ci
-
-      - name: install frontend dependencies
-        working-directory: ./frontend
+      - name: install dependencies
         run: npm ci
 
       - name: check formatting
-        working-directory: ./frontend
         run: npm run prettier
 
       - name: check lint
-        working-directory: ./frontend
         run: npm run lint
 
       - name: check types
-        working-directory: ./frontend
         run: npm run types:check
 
       - name: run tests
-        working-directory: ./frontend
         run: npm run test:coverage

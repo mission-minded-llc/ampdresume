@@ -37,7 +37,7 @@
     }
   },
 
-  "forwardPorts": [3000, 4000, 5432],
+  "forwardPorts": [3000, 5432],
 
-  "postCreateCommand": "npm run install:all"
+  "postCreateCommand": "npm i"
 }
