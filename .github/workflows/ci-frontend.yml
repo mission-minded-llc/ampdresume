@@ -47,3 +47,7 @@ jobs:
       - name: check types
         working-directory: ./frontend
         run: npm run types:check
+
+      - name: run tests
+        working-directory: ./frontend
+        run: npm run test:coverage
