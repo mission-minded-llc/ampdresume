@@ -1,1 +1,1 @@
-# openresume
+# OpenResume

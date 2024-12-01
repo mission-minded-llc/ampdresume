@@ -23,10 +23,9 @@ export const normalizeEmail = (email: string) => {
 export const findUserByNormalizedEmail = async (email: string) => {
   const normalizedEmail = normalizeEmail(email);
 
-  console.log({ normalizedEmail });
+  const splitEmail = email.split("@");
+  const domain = splitEmail[1];
 
-  // Get all users with the same domain
-  const [localPart, domain] = email.split("@");
   const usersWithSameDomain = await prisma.user.findMany({
     where: { email: { endsWith: `@${domain}` } }, // Fetch users with the same domain
   });
@@ -38,8 +37,6 @@ export const findUserByNormalizedEmail = async (email: string) => {
     const normalizedDbEmail = normalizeEmail(user.email);
     return normalizedDbEmail === normalizedEmail;
   });
-
-  console.log({ matchedUser });
 
   return matchedUser;
 };
