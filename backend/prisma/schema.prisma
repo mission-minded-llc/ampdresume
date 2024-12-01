@@ -13,57 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Enum for user authentication methods
-enum AuthProvider {
-  EMAIL
-  GOOGLE
-  GITHUB
-  MICROSOFT
-}
-
-// Enum for user roles
-enum UserRole {
-  USER
-  ADMIN
-  MODERATOR
-}
-
-model User {
-  // Unique identifiers
-  id    String @id @default(cuid())
-  email String @unique
-
-  // Authentication fields
-  passwordHash String? // For email/password auth
-
-  // OAuth and provider-specific fields
-  authProvider      AuthProvider @default(EMAIL)
-  providerAccountId String?
-
-  // User profile information
-  name          String?
-  image         String?
-  emailVerified DateTime?
-
-  // Authorization and metadata
-  role     UserRole @default(USER)
-  isActive Boolean  @default(true)
-
-  // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Optional: Account verification
-  verificationToken  String?
-  resetPasswordToken String?
-
-  // Optional: Social account linking
-  accounts Account[]
-
-  @@unique([email, authProvider])
-}
-
-// Optional: For managing multiple social accounts
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -76,8 +25,35 @@ model Account {
   token_type        String?
   scope             String?
   id_token          String?
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
 }
