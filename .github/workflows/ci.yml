@@ -32,6 +32,9 @@ jobs:
       - name: install dependencies
         run: npm ci
 
+      - name: prisma generate
+        run: npm run prisma:generate
+
       - name: check formatting
         run: npm run prettier
 
