@@ -1,6 +1,5 @@
-import { authOptions, sendVerificationRequest } from "../src/lib/auth";
+import { authOptions, sendVerificationRequest } from "@/lib/auth";
 import { getServerSession } from "next-auth/next";
-// import { PrismaClient } from "@prisma/client";
 import nodemailer from "nodemailer";
 
 // Mock dependencies
@@ -9,6 +8,7 @@ jest.mock("@prisma/client", () => ({
     user: {
       create: jest.fn(),
       findUnique: jest.fn(),
+      findMany: jest.fn().mockResolvedValue([]), // Returns an empty array
     },
   })),
 }));
