@@ -15,7 +15,9 @@
         "mtxr.sqltools",
         "mtxr.sqltools-driver-pg",
         "Prisma.prisma",
-        "bradlc.vscode-tailwindcss"
+        "bradlc.vscode-tailwindcss",
+        "github.copilot",
+        "github.copilot-chat"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",

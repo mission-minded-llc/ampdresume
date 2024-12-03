@@ -11,7 +11,43 @@ import { Skills } from "@/components/sections/Skills/Skills";
 import { WorkExperience } from "@/components/sections/WorkExperience/WorkExperience";
 import { getApolloClient } from "@/lib/apolloClient";
 import styles from "./page.module.scss";
-import { Company } from "../../../sanity.types";
+import { Company } from "../../../../sanity.types";
+import { Metadata } from "next";
+
+const client = getApolloClient();
+
+const { data: allThemeOptions } = await client.query<AllThemeOptions>({
+  query: GET_THEME_OPTIONS,
+});
+
+const { userName, userTitle, siteTitle, siteDescription, siteImage } =
+  allThemeOptions.allThemeOptions[0];
+
+const siteTitleDefault =
+  userName && userTitle ? `Resume of ${userName}, ${userTitle}` : "Interactive Resume";
+
+export const metadata: Metadata = {
+  title: siteTitle ? siteTitle : siteTitleDefault,
+  description: siteDescription ? siteDescription : "",
+  authors: [
+    {
+      name: userName ? userName : "",
+    },
+  ],
+  openGraph: {
+    title: siteTitle ? siteTitle : siteTitleDefault,
+    description: siteDescription ? siteDescription : "",
+    images: siteImage?.asset?.url
+      ? [
+          {
+            url: siteImage.asset.url,
+            width: siteImage.asset.metadata.dimensions.width,
+            height: siteImage.asset.metadata.dimensions.height,
+          },
+        ]
+      : [],
+  },
+};
 
 export default async function Page() {
   const client = getApolloClient();

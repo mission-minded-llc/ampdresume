@@ -6,7 +6,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Footer } from "./Footer";
 import { ThemeAppearanceContext } from "@/context/ThemeContext";
-import { ThemeProvider } from "@mui/material";
+import { Container, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material";
 import { usePathname } from "next/navigation";
 
@@ -23,6 +23,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         main: themeAppearance === "dark" ? "#eee" : "#333",
         light: themeAppearance === "dark" ? "#333" : "#eee",
       },
+      background: {
+        default: themeAppearance === "dark" ? "#151515" : "#fff",
+        paper: themeAppearance === "dark" ? "#000" : "#eee",
+      },
       mode: themeAppearance,
     },
   });
@@ -30,9 +34,18 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <AppRouterCacheProvider>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-        <Footer />
+        <Container
+          sx={(theme) => {
+            return {
+              backgroundColor: theme.palette.background.default,
+              paddingBottom: "100px",
+            };
+          }}
+        >
+          <CssBaseline />
+          {children}
+          <Footer />
+        </Container>
       </ThemeProvider>
     </AppRouterCacheProvider>
   );

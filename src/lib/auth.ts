@@ -1,12 +1,21 @@
-import { NextAuthOptions } from "next-auth";
+import { getServerSession, NextAuthOptions } from "next-auth";
 import EmailProvider, { EmailConfig } from "next-auth/providers/email";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import { findUserByNormalizedEmail } from "@/util/email";
 import nodemailer from "nodemailer";
 
+// Initialize Prisma client here.
 const prisma = new PrismaClient();
 
+/**
+ * The custom email sending function for the email provider.
+ * This email template can be styled to match the app.
+ *
+ * @param {string} props.identifier The email address to send the verification request to.
+ * @param {string} props.url The URL to include in the email.
+ * @param {EmailConfig} props.provider The email provider configuration.
+ */
 export const sendVerificationRequest = async ({
   identifier,
   url,
@@ -44,8 +53,16 @@ export const sendVerificationRequest = async ({
   });
 };
 
+/**
+ * Configuration options for NextAuth.
+ * The options are passed to the NextAuth middleware,
+ * and exported here for use in tests as well.
+ */
 export const authOptions: NextAuthOptions = {
+  // Database adapter for Prisma, abstracts the database operations.
   adapter: PrismaAdapter(prisma),
+
+  // Providers to use for authentication.
   providers: [
     EmailProvider({
       server: {
@@ -60,6 +77,26 @@ export const authOptions: NextAuthOptions = {
       sendVerificationRequest, // Custom email sending function
     }),
   ],
+
+  // Secret and session configuration.
+  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "database",
+  },
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true, // Ensure cookie is only accessible via HTTP requests
+        secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+        sameSite: "lax", // or "strict" if needed
+        path: "/", // Path where the cookie is available, "/" makes it available site-wide
+        domain: process.env.NEXTAUTH_URL ? new URL(process.env.NEXTAUTH_URL).hostname : undefined, // Set domain to match your site
+      },
+    },
+  },
+
+  // Customized callbacks.
   callbacks: {
     async signIn(data) {
       const { user, account } = data;
@@ -78,28 +115,6 @@ export const authOptions: NextAuthOptions = {
 
       return true; // Proceed with the default sign-in flow.
     },
-    // Not sure if I need these.
-    //
-    // async session({ session, token, user }) {
-    //   // Ensure the session includes the correct email
-    //   if (token.email) {
-    //     session.user.email = token.email;
-    //   }
-
-    //   console.log({ token, session });
-
-    //   return session;
-    // },
-    // async jwt({ token, user }) {
-    //   // Add the correct email to the token if available
-    //   if (user?.email) {
-    //     token.email = user.email;
-    //   }
-
-    //   console.log({ token, user });
-
-    //   return token;
-    // },
   },
 
   // Customized pages.
@@ -110,3 +125,12 @@ export const authOptions: NextAuthOptions = {
     // verifyRequest: "/auth/verify-request",
   },
 };
+
+/**
+ * Helper function to get the current session. Reduces
+ * the need to import the `getServerSession` function
+ * in every file that needs it.
+ *
+ * @returns {Promise<Session | null>} The current session or null.
+ */
+export const getSession = async () => await getServerSession(authOptions);

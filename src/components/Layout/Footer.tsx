@@ -18,7 +18,7 @@ export const Footer = () => {
       className={styles.footer}
       component="footer"
       sx={(theme) => ({
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.palette.background.paper,
       })}
     >
       <div className={styles.footerContents}>
