@@ -6,12 +6,10 @@ export default withAuth({
   },
   callbacks: {
     authorized: ({ req }) => {
-      const session = req.cookies.get("next-auth.session-token"); // Look for the session cookie
-
+      const session = req.cookies.get("next-auth.session-token")?.value; // Look for the session cookie
       return Boolean(session); // Allow access if session exists
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
 });
 
 export const config = {
@@ -20,5 +18,7 @@ export const config = {
     "/account/:path*",
     // Resume editing pages.
     "/r/:slug/edit/:path*",
+    // Apply to all API routes.
+    "/api/:path*",
   ],
 };
