@@ -48,7 +48,8 @@ const AccountForm = () => {
         alert("Form submitted successfully!");
       })
       .catch((err) => {
-        // console.error(err);
+        // eslint-disable-next-line no-console
+        console.error(err);
         alert("Failed to submit the form!");
       });
   };
