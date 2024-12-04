@@ -1,5 +1,5 @@
 import { POST } from "@/app/api/account/route";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 
@@ -22,7 +22,7 @@ jest.mock("@/lib/auth", () => ({
 }));
 
 // Create a mock NextRequest
-const createMockNextRequest = (body: any): NextRequest => {
+const createMockNextRequest = (body: object): NextRequest => {
   const bodyString = JSON.stringify(body);
 
   return new Request("https://example.com", {
