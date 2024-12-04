@@ -9,6 +9,7 @@ import { ThemeAppearanceContext } from "@/context/ThemeContext";
 import { Container, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material";
 import { usePathname } from "next/navigation";
+import { Header } from "./Header";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { themeAppearance } = useContext(ThemeAppearanceContext);
@@ -34,13 +35,12 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <AppRouterCacheProvider>
       <ThemeProvider theme={theme}>
+        <Header />
         <Container
-          sx={(theme) => {
-            return {
-              backgroundColor: theme.palette.background.default,
-              paddingBottom: "100px",
-            };
-          }}
+          sx={(theme) => ({
+            backgroundColor: theme.palette.background.default,
+            paddingBottom: "100px",
+          })}
         >
           <CssBaseline />
           {children}
