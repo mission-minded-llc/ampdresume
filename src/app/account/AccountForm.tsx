@@ -1,10 +1,11 @@
 "use client";
 
+import { CodeInline } from "@/components/CodeInline";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 
-const AccountForm = () => {
-  const [formData, setFormData] = useState({ name: "", slug: "" });
+const AccountForm = ({ name, slug }: { name: string; slug: string }) => {
+  const [formData, setFormData] = useState({ name, slug });
   const [errors, setErrors] = useState<{ name?: string; slug?: string }>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,6 +16,19 @@ const AccountForm = () => {
       setErrors((prev) => ({ ...prev, [name]: `${name} is required` }));
     } else {
       setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+
+    // Ensure the slug is alphanumeric and lowercase, with hyphens for spaces.
+    if (name === "slug") {
+      const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+      if (!slugRegex.test(value)) {
+        setErrors((prev) => ({
+          ...prev,
+          slug: "Slug must be alphanumeric and lowercase. Hyphens allowed.",
+        }));
+      } else {
+        setErrors((prev) => ({ ...prev, slug: "" }));
+      }
     }
   };
 
@@ -62,35 +76,49 @@ const AccountForm = () => {
         display: "flex",
         flexDirection: "column",
         gap: 2,
-        maxWidth: 400,
-        margin: "auto",
         mt: 4,
       }}
     >
+      <Typography variant="body2" color="textSecondary">
+        Displayed on your public resume.
+      </Typography>
       <TextField
         label="Full Name"
         name="name"
         value={formData.name}
         onChange={handleChange}
         error={!!errors.name}
-        helperText={errors.name ? errors.name : "Your full name as shown on your resume"}
+        helperText={errors.name ? errors.name : " "}
         fullWidth
       />
+      <Typography variant="body2" color="textSecondary">
+        Used to generate your public resume URL, e.g.{" "}
+        <CodeInline>
+          https://openresume.org/r/<strong>your-custom-slug</strong>/
+        </CodeInline>
+        . If you change it, an automatic redirect will <strong>not</strong> be created, so please
+        update your shared links.
+      </Typography>
       <TextField
-        label="Slug (used in URL)"
+        label="Slug"
         name="slug"
         value={formData.slug}
         onChange={handleChange}
         error={!!errors.slug}
-        helperText={errors.slug ? errors.slug : "A unique identifier for your URL"}
+        helperText={errors.slug ? errors.slug : " "}
         fullWidth
       />
-      <Typography variant="body2" color="textSecondary">
-        The slug will be used to generate your public resume URL. If you change it, an automatic
-        redirect will <strong>not</strong> be created, so please update your links accordingly.
-      </Typography>
-      <Button type="submit" variant="contained" color="primary" fullWidth>
-        Submit
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        fullWidth
+        sx={{
+          mt: 2,
+          width: "200px",
+        }}
+      >
+        Save
       </Button>
     </Box>
   );

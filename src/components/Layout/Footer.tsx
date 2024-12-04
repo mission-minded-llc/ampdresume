@@ -2,7 +2,7 @@
 
 import React, { useContext } from "react";
 
-import { BottomNavigation, Box } from "@mui/material";
+import { BottomNavigation, Box, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { ThemeAppearanceContext } from "@/context/ThemeContext";
@@ -38,15 +38,10 @@ export const Footer = () => {
             gap: "0.35em",
           }}
         >
-          <Icon
-            icon="devicon:github"
-            fontSize={23}
-            color="light"
-            style={{ filter: themeAppearance === "dark" ? "invert(1)" : "" }}
-          />
-          <Link href="https://github.com/missionmike/interactive-resume" target="_blank">
-            <span>/missionmike/interactive-resume</span>
-          </Link>
+          Create your free resume at{" "}
+          <Typography component={Link} href="https://openresume.org">
+            openresume.org
+          </Typography>
         </Box>
         <ThemeAppearanceToggle />
       </Box>

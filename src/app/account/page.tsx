@@ -1,37 +1,46 @@
 import { Box, Container, Typography } from "@mui/material";
 import { AccountForm } from "./AccountForm";
+import { prisma } from "@/lib/prisma";
+import { getSession } from "@/lib/auth";
 
-const Page = async () => (
-  <Container
-    sx={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100%",
-    }}
-  >
-    <Box
-      sx={{
-        marginBottom: 4,
-        borderBottom: 1,
-      }}
-    >
-      <Typography component="h1" variant="h2">
-        OpenResume Account
-      </Typography>
-    </Box>
-    <Box
+const Page = async () => {
+  const session = await getSession();
+  if (!session?.user?.id) {
+    return <Typography component="p">You need to be signed in to access this page.</Typography>;
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: session.user.id,
+    },
+  });
+
+  return (
+    <Container
       sx={{
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         alignItems: "center",
+        justifyContent: "center",
+        height: "100%",
+        width: "100%",
       }}
     >
-      <Typography component="p">Update your account information here.</Typography>
-    </Box>
-    <AccountForm />
-  </Container>
-);
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "left",
+          width: "100%",
+        }}
+      >
+        <Typography component="h1" variant="h4">
+          Account Settings
+        </Typography>
+        <AccountForm name={user?.name || ""} slug={user?.slug || ""} />
+      </Box>
+    </Container>
+  );
+};
 
 export default Page;
