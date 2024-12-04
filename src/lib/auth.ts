@@ -1,4 +1,6 @@
-import { getServerSession, NextAuthOptions } from "next-auth";
+import { Session as NextAuthSession, getServerSession, NextAuthOptions } from "next-auth";
+import { JWT } from "next-auth/jwt";
+import { AdapterUser } from "next-auth/adapters";
 import EmailProvider, { EmailConfig } from "next-auth/providers/email";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
@@ -114,6 +116,21 @@ export const authOptions: NextAuthOptions = {
       }
 
       return true; // Proceed with the default sign-in flow.
+    },
+
+    async session({
+      session,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      token,
+      user,
+    }: {
+      session: NextAuthSession & { user: { id: string } };
+      token: JWT;
+      user: AdapterUser;
+    }) {
+      // Add the user ID to the session for easier database operations.
+      session.user = { ...session.user, id: user.id, email: user.email };
+      return session;
     },
   },
 

@@ -41,14 +41,12 @@ describe("Authentication Configuration", () => {
       expect(authOptions.adapter).toBeDefined();
     });
 
-    // it("should have custom pages configured", () => {
-    //   expect(authOptions.pages).toEqual({
-    //     signIn: "/auth/signin",
-    //     signOut: "/auth/signout",
-    //     error: "/auth/error",
-    //     verifyRequest: "/auth/verify-request",
-    //   });
-    // });
+    it("should have custom pages configured", () => {
+      expect(authOptions.pages).toEqual({
+        signIn: "/login",
+        signOut: "/logout",
+      });
+    });
   });
 
   describe("Email Verification", () => {

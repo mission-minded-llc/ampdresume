@@ -1,16 +1,12 @@
-// Accept POST request that contains the form data and save it to the database.
-// The data should have a name and slug field.
-
+import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server"; // Use NextResponse to send responses
+import { prisma } from "@/lib/prisma";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
-    // Get current user session from the request.
-    // If there's no user session, return an error.
     const session = await getServerSession(authOptions);
-    if (!session) {
+    if (!session || !session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -19,9 +15,35 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Name and slug are required" }, { status: 400 });
     }
 
-    // Save the form data to the database
-    // For now, just return the form data
-    return NextResponse.json({ name, slug }, { status: 200 });
+    // Ensure the slug is alphanumeric and lowercase, with hyphens for spaces.
+    const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+    if (!slugRegex.test(slug)) {
+      return NextResponse.json(
+        { error: "Slug must be alphanumeric and lowercase" },
+        { status: 400 },
+      );
+    }
+
+    const existingUser = await prisma.user.findUnique({
+      where: {
+        slug,
+      },
+    });
+    if (existingUser) {
+      return NextResponse.json({ error: "Slug is already taken" }, { status: 400 });
+    }
+
+    const data = await prisma.user.update({
+      where: {
+        id: session.user.id,
+      },
+      data: {
+        name,
+        slug,
+      },
+    });
+
+    return NextResponse.json({ data }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
