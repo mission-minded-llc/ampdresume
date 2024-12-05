@@ -2,8 +2,7 @@
 
 import React from "react";
 
-import { BottomNavigation, Box, Typography } from "@mui/material";
-import Link from "next/link";
+import { BottomNavigation, Box } from "@mui/material";
 import { getBaseUrl } from "@/util/url";
 import { usePathname } from "next/navigation";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
