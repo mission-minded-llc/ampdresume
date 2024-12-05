@@ -41,16 +41,23 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?        @unique
   emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @default(now()) @updatedAt
-  slug          String?   @unique
-  accounts      Account[]
-  sessions      Session[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @default(now()) @updatedAt
+  siteTitle     String? // Used for SEO and open graph tags.
+  siteImage     String? // Used for open graph tags. Should be a URL.
+  slug          String?        @unique // Used for profile URL.
+  title         String? // Used for profile title, e.g. "Senior Software Engineer"
+  displayEmail  String? // Used for contact email, displayed on profile.
+  location      String? // Used for location, displayed on profile. Should be a general value, e.g. City, State.
+  accounts      Account[] // Linked authentication providers.
+  sessions      Session[] // Active sessions.
+  SkillForUser  SkillForUser[] // One-to-many relationship with SkillForUser, customized skills per user.
+  Company       Company[] // One-to-many relationship with Company, work experience. Can be multiple companies.
+  Education     Education[] // One-to-many relationship with Education, education history. Can be multiple schools.
 }
 
 model VerificationToken {
@@ -59,4 +66,89 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+// Skill is a general skill that can be used by multiple users, e.g. "HTML", "CSS", "JavaScript"
+// Not limited to technical skills. Can be used for any skill, e.g. "Public Speaking", "Leadership"
+model Skill {
+  id           String         @id @default(cuid())
+  name         String
+  icon         String? // Optional icon, e.g., from Iconify.
+  SkillForUser SkillForUser[] // One-to-many relationship with SkillForUser
+}
+
+// SkillForUser is a specific skill that a user has, e.g. "HTML", "CSS", "JavaScript", with additional
+// customized information, e.g. description, icon, yearStarted, totalYears. The custom data is specific
+// to the user's resume. The skill itself is a general skill that can be used by multiple users.
+model SkillForUser {
+  id              String            @id @default(cuid())
+  skill           Skill             @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  skillId         String
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          String
+  description     String? // Optional meta about the skill for this user
+  icon            String? // Optional icon, e.g., from Iconify, overrides the icon in Skill if found.
+  yearStarted     Int? // Optional start year of using the skill
+  totalYears      Int? // Optional total years using the skill
+  SkillForProject SkillForProject[]
+}
+
+// SkillForProject is a specific skill that a user has for a specific project, e.g. "HTML", "CSS", "JavaScript",
+// with additional customized information, e.g. description. The custom data is specific to the user's resume, within
+// the context of the project. The skill itself is a general skill that can be used by multiple users.
+model SkillForProject {
+  id             String       @id @default(cuid())
+  skillForUser   SkillForUser @relation(fields: [skillForUserId], references: [id], onDelete: Cascade)
+  skillForUserId String
+  description    String? // Optional meta about the skill for this project. Overrides the description in SkillForUser if found.
+  project        Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId      String
+}
+
+// Project is a project that a user has worked on, e.g. "Personal Portfolio", "Company Website", and is specific
+// to the context within the Company. The project can have multiple skills associated with it, e.g. "HTML", "CSS", "JavaScript".
+model Project {
+  id               String            @id @default(cuid())
+  name             String
+  description      String?
+  skillsForProject SkillForProject[]
+  Position         Position?         @relation(fields: [positionId], references: [id])
+  positionId       String?
+}
+
+// Position is a position that a user has worked in, e.g. "Software Engineer", "Product Manager", and is specific
+// to the context within the Company. The position can have multiple projects associated with it, e.g. "Personal Portfolio",
+// "Company Website".
+model Position {
+  id        String    @id @default(cuid())
+  title     String
+  startDate DateTime
+  endDate   DateTime?
+  projects  Project[]
+  Company   Company?  @relation(fields: [companyId], references: [id])
+  companyId String?
+}
+
+// Company is a company that a user has worked at, e.g. "Google", "Facebook", and is specific to the context within
+// the user's resume. The company can have multiple positions associated with it, e.g. "Software Engineer", "Product Manager".
+model Company {
+  id        String     @id @default(cuid())
+  name      String
+  location  String
+  startDate DateTime
+  endDate   DateTime?
+  positions Position[]
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+}
+
+// Education is a school that a user has attended, e.g. "Harvard University", "Stanford University", and is specific
+// to the context within the user's resume. For multiple degrees from the same school, the user can add multiple education entries.
+model Education {
+  id          String    @id @default(cuid())
+  school      String
+  degree      String
+  dateAwarded DateTime?
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
 }

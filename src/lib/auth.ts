@@ -126,10 +126,16 @@ export const authOptions: NextAuthOptions = {
     }: {
       session: NextAuthSession & { user: { id: string } };
       token: JWT;
-      user: AdapterUser;
+      user: AdapterUser & { slug?: string };
     }) {
       // Add the user ID to the session for easier database operations.
       session.user = { ...session.user, id: user.id, email: user.email };
+
+      // Add the user slug to the session if it exists.
+      if (user.slug) {
+        session.user.slug = user.slug;
+      }
+
       return session;
     },
   },

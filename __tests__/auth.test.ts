@@ -45,6 +45,7 @@ describe("Authentication Configuration", () => {
       expect(authOptions.pages).toEqual({
         signIn: "/login",
         signOut: "/logout",
+        verifyRequest: "/login/verify",
       });
     });
   });
