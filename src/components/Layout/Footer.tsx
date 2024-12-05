@@ -4,9 +4,15 @@ import React from "react";
 
 import { BottomNavigation, Box, Typography } from "@mui/material";
 import Link from "next/link";
+import { getBaseUrl } from "@/util/url";
+import { usePathname } from "next/navigation";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
+import { MuiLink } from "../MuiLink";
 
 export const Footer = () => {
+  const baseUrl = getBaseUrl();
+  const pathname = usePathname();
+
   return (
     <BottomNavigation
       component="footer"
@@ -34,12 +40,9 @@ export const Footer = () => {
             gap: "0.35em",
           }}
         >
-          Create your free interactive resume at{" "}
-          <Typography component={Link} href="https://openresume.org">
-            openresume.org
-          </Typography>
+          Create your free interactive resume at <MuiLink href={baseUrl}>openresume.org</MuiLink>
         </Box>
-        <ThemeAppearanceToggle />
+        {pathname.startsWith("/r/") ? <ThemeAppearanceToggle /> : null}
       </Box>
     </BottomNavigation>
   );

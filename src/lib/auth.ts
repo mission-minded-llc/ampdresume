@@ -139,13 +139,13 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login",
     signOut: "/logout",
     // error: "/auth/error",
-    // verifyRequest: "/auth/verify-request",
+    verifyRequest: "/login/verify",
   },
 };
 
 /**
- * Helper function to get the current session. Reduces
- * the need to import the `getServerSession` function
+ * Helper function to get the current session server-side.
+ * Reduces the need to import the `getServerSession` function
  * in every file that needs it.
  *
  * @returns {Promise<Session | null>} The current session or null.

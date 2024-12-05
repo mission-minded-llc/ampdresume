@@ -1,9 +1,8 @@
 import { getSession } from "@/lib/auth";
 import { Container, Box, Typography } from "@mui/material";
-import Link from "@mui/material/Link";
-import NextLink from "next/link";
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { MuiLink } from "@/components/MuiLink";
+import { prisma } from "@/lib/prisma";
 
 const title = "OpenResume | Free Interactive Resume Builder";
 const description =
@@ -26,16 +25,25 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   const session = await getSession();
+  const userId = session?.user?.id;
 
-  const userEmail = session?.user?.email ?? "Not logged in.";
+  const user = userId
+    ? await prisma.user.findUnique({
+        where: {
+          id: session.user.id,
+        },
+      })
+    : null;
 
-  // if logged in, and user name is not set, redirect to /account to set it.
-  if (session && !session.user?.name) {
-    redirect("/account");
+  if (userId && !user) {
+    return {
+      redirect: {
+        destination: "/api/auth/signout",
+        permanent: false,
+      },
+    };
   }
 
-  // Using MUI, generate a basic homepage with a welcome message, logo
-  // nav and footer. If the user is signed in, the nav should have a link to lead to /edit
   return (
     <Container maxWidth="lg">
       <Box
@@ -50,12 +58,31 @@ export default async function HomePage() {
         <Typography variant="h1" component="h1" sx={{ mb: 2 }}>
           OpenResume
         </Typography>
-        <Typography variant="h2" component="h2" sx={{ mb: 2 }}>
+        <Typography variant="h2" component="h2" sx={{ mb: 4, pb: 4, borderBottom: "1px solid" }}>
           Free Interactive Resume Builder
         </Typography>
-        <Link href="/r/michael-dinerstein/edit" color="secondary" component={NextLink}>
-          Welcome, {userEmail}
-        </Link>
+        {user ? (
+          <>
+            <Typography variant="h4">Welcome back, {user.name}! </Typography>
+            <Typography
+              sx={{
+                mt: "1rem",
+              }}
+            >
+              <MuiLink href={`/r/${user.slug}/edit`}>Edit your resume</MuiLink> or{" "}
+              <MuiLink href="/account">update your account settings</MuiLink>.
+            </Typography>
+          </>
+        ) : (
+          <Typography
+            sx={{
+              fontSize: "1.25rem",
+              mt: "2rem",
+            }}
+          >
+            <MuiLink href="/api/auth/signin">Sign in</MuiLink> and start building your resume today!
+          </Typography>
+        )}
       </Box>
     </Container>
   );

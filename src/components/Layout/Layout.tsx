@@ -10,6 +10,7 @@ import { Container, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material";
 import { usePathname } from "next/navigation";
 import { Header } from "./Header";
+import { SessionProvider } from "next-auth/react";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { themeAppearance } = useContext(ThemeAppearanceContext);
@@ -30,23 +31,28 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       },
       mode: themeAppearance,
     },
+    typography: {
+      fontSize: 16,
+    },
   });
 
   return (
     <AppRouterCacheProvider>
-      <ThemeProvider theme={theme}>
-        <Header />
-        <Container
-          sx={(theme) => ({
-            backgroundColor: theme.palette.background.default,
-            paddingBottom: "100px",
-          })}
-        >
-          <CssBaseline />
-          {children}
-          <Footer />
-        </Container>
-      </ThemeProvider>
+      <SessionProvider>
+        <ThemeProvider theme={theme}>
+          <Header />
+          <Container
+            sx={(theme) => ({
+              backgroundColor: theme.palette.background.default,
+              paddingBottom: "100px",
+            })}
+          >
+            <CssBaseline />
+            {children}
+            <Footer />
+          </Container>
+        </ThemeProvider>
+      </SessionProvider>
     </AppRouterCacheProvider>
   );
 };

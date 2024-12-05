@@ -6,6 +6,7 @@ declare module "next-auth" {
       id: string; // Adds the `id` field
       email?: string | null;
       name?: string | null;
+      slug?: string | null;
       image?: string | null;
     } & DefaultSession["user"];
   }

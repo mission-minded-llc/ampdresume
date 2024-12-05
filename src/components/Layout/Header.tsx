@@ -5,14 +5,26 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
+import { getBaseUrl } from "@/util/url";
+import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+import { MuiLink } from "../MuiLink";
 
 export const Header = () => {
+  const baseUrl = getBaseUrl();
+  const pathname = usePathname();
+  const session = useSession();
+
+  // Hide this header on the resume page.
+  if (pathname.startsWith("/r/")) return null;
+
   return (
     <Box
       component="header"
       sx={(theme) => ({
         backgroundColor: theme.palette.background.paper,
         position: "sticky",
+        zIndex: 1,
         top: 0,
         left: 0,
         width: "100vw",
@@ -35,7 +47,7 @@ export const Header = () => {
             gap: "0.35em",
           }}
         >
-          <Typography component={Link} href="https://openresume.org">
+          <Typography component={Link} href={baseUrl}>
             OpenResume
           </Typography>
         </Box>
@@ -46,9 +58,21 @@ export const Header = () => {
               gap: "1em",
             }}
           >
-            <Typography component={Link} href="/account">
-              Account
-            </Typography>
+            {session?.data?.user ? (
+              <>
+                {session.data.user.slug ? (
+                  <>
+                    <MuiLink href={`/r/${session.data.user.slug}`}>Resume</MuiLink> |{" "}
+                  </>
+                ) : null}
+                <MuiLink href="/account">Account</MuiLink> |
+                <MuiLink href="/api/auth/signout">Logout</MuiLink>
+              </>
+            ) : pathname.includes("login") !== true ? (
+              <Typography component={Link} href="/login">
+                Login
+              </Typography>
+            ) : null}
           </Box>
         </Box>
         <ThemeAppearanceToggle />
