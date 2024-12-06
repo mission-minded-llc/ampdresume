@@ -86,7 +86,7 @@ model SkillForUser {
   skillId         String
   user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId          String
-  description     String? // Optional meta about the skill for this user
+  description     String? // Optional meta about the skill for this user.
   icon            String? // Optional icon, e.g., from Iconify, overrides the icon in Skill if found.
   yearStarted     Int? // Optional start year of using the skill
   totalYears      Int? // Optional total years using the skill

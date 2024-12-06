@@ -22,7 +22,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev"
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "ts-node prisma/seed/seedSkills.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.11.10",
@@ -35,6 +36,8 @@
     "@next/third-parties": "^15.0.3",
     "@prisma/client": "^6.0.1",
     "classnames": "^2.5.1",
+    "graphql": "^16.9.0",
+    "graphql-yoga": "^5.10.4",
     "next": "15.0.3",
     "next-auth": "^4.24.10",
     "nodemailer": "^6.9.16",
