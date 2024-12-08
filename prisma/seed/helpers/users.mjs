@@ -38,4 +38,6 @@ export const getTestUserIds = async () => {
       testUserIds.push(user.id);
     }
   }
+
+  return testUserIds;
 };
