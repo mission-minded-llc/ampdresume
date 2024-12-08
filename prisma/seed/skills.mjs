@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 
 const prisma = new PrismaClient();
 
-async function main() {
+export async function seedSkills() {
   const skills = fs
     .readFileSync(path.join(__dirname, "skills.csv"), "utf-8")
     .split("\n")
@@ -34,7 +34,7 @@ async function main() {
     });
 
     if (existingSkill) {
-      console.log(`Skill ${skill.name} already exists`);
+      console.log(`Skill already exists: ${skill.name}`);
       continue;
     }
 
@@ -45,7 +45,7 @@ async function main() {
   }
 }
 
-main()
+seedSkills()
   .catch((e) => {
     throw e;
   })

@@ -5,7 +5,7 @@ import { getTestUserIds } from "./helpers/users.mjs";
 
 const prisma = new PrismaClient();
 
-async function main() {
+export async function seedEducation() {
   const testUserIds = await getTestUserIds();
 
   for (const userId of testUserIds) {
@@ -32,7 +32,7 @@ async function main() {
   }
 }
 
-main()
+seedEducation()
   .catch((e) => {
     throw e;
   })

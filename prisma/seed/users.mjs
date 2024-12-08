@@ -5,7 +5,7 @@ import { testUsers } from "./helpers/users.mjs";
 
 const prisma = new PrismaClient();
 
-async function main() {
+export async function seedUsers() {
   for (const user of testUsers) {
     const existingUser = await prisma.user.findFirst({
       where: {
@@ -37,7 +37,7 @@ async function main() {
   }
 }
 
-main()
+seedUsers()
   .catch((e) => {
     throw e;
   })

@@ -5,7 +5,7 @@ import { getTestUserIds } from "./helpers/users.mjs";
 
 const prisma = new PrismaClient();
 
-async function main() {
+export async function seedSkillsForUser() {
   const testUserIds = await getTestUserIds();
 
   const skills = await prisma.skill.findMany({
@@ -43,7 +43,7 @@ async function main() {
   }
 }
 
-main()
+seedSkillsForUser()
   .catch((e) => {
     throw e;
   })

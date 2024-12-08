@@ -5,7 +5,7 @@ import { getTestUserIds } from "./helpers/users.mjs";
 
 const prisma = new PrismaClient();
 
-async function main() {
+export async function seedCompanies() {
   const testUserIds = await getTestUserIds();
 
   const companies = [
@@ -56,7 +56,7 @@ async function main() {
   }
 }
 
-main()
+seedCompanies()
   .catch((e) => {
     throw e;
   })
