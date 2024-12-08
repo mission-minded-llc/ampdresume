@@ -72,7 +72,7 @@ model VerificationToken {
 // Not limited to technical skills. Can be used for any skill, e.g. "Public Speaking", "Leadership"
 model Skill {
   id           String         @id @default(cuid())
-  name         String
+  name         String         @unique // Ensures skill names are unique
   icon         String? // Optional icon, e.g., from Iconify.
   SkillForUser SkillForUser[] // One-to-many relationship with SkillForUser
 }
@@ -91,6 +91,8 @@ model SkillForUser {
   yearStarted     Int? // Optional start year of using the skill
   totalYears      Int? // Optional total years using the skill
   SkillForProject SkillForProject[]
+
+  @@unique([userId, skillId]) // Ensures that a user cannot repeat the same skill
 }
 
 // SkillForProject is a specific skill that a user has for a specific project, e.g. "HTML", "CSS", "JavaScript",
@@ -103,6 +105,8 @@ model SkillForProject {
   description    String? // Optional meta about the skill for this project. Overrides the description in SkillForUser if found.
   project        Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId      String
+
+  @@unique([skillForUserId, projectId]) // Ensures that a user cannot repeat the same skill for the same project
 }
 
 // Project is a project that a user has worked on, e.g. "Personal Portfolio", "Company Website", and is specific

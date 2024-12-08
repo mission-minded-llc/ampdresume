@@ -25,12 +25,14 @@ const typeDefs = `
 
   type SkillForUser {
     id: ID!
+    icon: String
     skill: Skill!
   }
 
   type Skill {
     id: ID!
     name: String!
+    icon: String
   }
 `;
 
