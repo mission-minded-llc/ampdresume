@@ -11,6 +11,7 @@ const typeDefs = gql`
     skillsForUser(userId: ID!): [SkillForUser!]!
     companies(userId: ID!, sort: [SortInput!]): [Company!]!
     positions(companyIds: [ID!], sort: [SortInput!]): [Position!]!
+    education(userId: ID!, sort: [SortInput!]): [Education!]!
   }
 
   type User {
@@ -71,6 +72,13 @@ const typeDefs = gql`
     id: ID!
     skillForUser: SkillForUser!
     description: String
+  }
+
+  type Education {
+    id: ID!
+    school: String!
+    degree: String
+    dateAwarded: String
   }
 
   input SortInput {
@@ -135,6 +143,24 @@ const resolvers = {
           company: true, // Include company details
           projects: { include: { skillsForProject: { include: { skillForUser: true } } } },
         }, // Include project and skill details
+      });
+    },
+    education: async (
+      _: string,
+      {
+        userId,
+        sort,
+      }: { userId: string; sort: Array<{ field: string; direction: "ASC" | "DESC" }> },
+    ) => {
+      // Map the sort array into Prisma-compatible orderBy
+      const orderBy =
+        sort?.map(({ field, direction }) => ({
+          [field]: direction.toLowerCase(), // Prisma expects lowercase for ASC/DESC
+        })) || [];
+
+      return await prisma.education.findMany({
+        where: { userId },
+        orderBy, // Apply sorting
       });
     },
   },
