@@ -1,13 +1,15 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { PrismaClient } from "@prisma/client";
+import gql from "graphql-tag";
 
 const prisma = new PrismaClient();
 
 // Define type definitions
-const typeDefs = `
+const typeDefs = gql`
   type Query {
-    users: [User!]!
+    user(slug: String!): User!
     skillsForUser(userId: ID!): [SkillForUser!]!
+    companies(userId: ID!, sort: [SortInput!]): [Company!]!
   }
 
   type User {
@@ -17,6 +19,8 @@ const typeDefs = `
     displayEmail: String
     location: String
     title: String
+    siteTitle: String
+    siteImage: String
   }
 
   type SkillsForUser {
@@ -25,8 +29,11 @@ const typeDefs = `
 
   type SkillForUser {
     id: ID!
-    icon: String
     skill: Skill!
+    icon: String
+    description: String
+    yearStarted: Int
+    totalYears: Int
   }
 
   type Skill {
@@ -34,13 +41,33 @@ const typeDefs = `
     name: String!
     icon: String
   }
+
+  type Company {
+    id: ID!
+    name: String!
+    location: String
+    startDate: String
+    endDate: String
+  }
+
+  input SortInput {
+    field: String!
+    direction: SortDirection!
+  }
+
+  enum SortDirection {
+    ASC
+    DESC
+  }
 `;
 
 // Define resolvers
 const resolvers = {
   Query: {
-    users: async () => {
-      return await prisma.user.findMany();
+    user: async (_: string, { slug }: { slug: string }) => {
+      return await prisma.user.findUnique({
+        where: { slug },
+      });
     },
     skillsForUser: async (_: string, { userId }: { userId: string }) => {
       return await prisma.skillForUser.findMany({
@@ -48,8 +75,25 @@ const resolvers = {
         include: { skill: true }, // Include skill details
       });
     },
+    companies: async (
+      _: string,
+      {
+        userId,
+        sort,
+      }: { userId: string; sort: Array<{ field: string; direction: "ASC" | "DESC" }> },
+    ) => {
+      // Map the sort array into Prisma-compatible orderBy
+      const orderBy =
+        sort?.map(({ field, direction }) => ({
+          [field]: direction.toLowerCase(), // Prisma expects lowercase for ASC/DESC
+        })) || [];
+
+      return await prisma.company.findMany({
+        where: { userId },
+        orderBy, // Apply sorting
+      });
+    },
   },
 };
 
-// Create the schema
 export const schema = makeExecutableSchema({ typeDefs, resolvers });
