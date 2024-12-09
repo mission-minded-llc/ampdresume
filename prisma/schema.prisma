@@ -55,9 +55,9 @@ model User {
   location      String? // Used for location, displayed on profile. Should be a general value, e.g. City, State.
   accounts      Account[] // Linked authentication providers.
   sessions      Session[] // Active sessions.
-  SkillForUser  SkillForUser[] // One-to-many relationship with SkillForUser, customized skills per user.
-  Company       Company[] // One-to-many relationship with Company, work experience. Can be multiple companies.
-  Education     Education[] // One-to-many relationship with Education, education history. Can be multiple schools.
+  skillForUser  SkillForUser[] // One-to-many relationship with SkillForUser, customized skills per user.
+  company       Company[] // One-to-many relationship with Company, work experience. Can be multiple companies.
+  education     Education[] // One-to-many relationship with Education, education history. Can be multiple schools.
 }
 
 model VerificationToken {
@@ -74,7 +74,7 @@ model Skill {
   id           String         @id @default(cuid())
   name         String         @unique // Ensures skill names are unique
   icon         String? // Optional icon, e.g., from Iconify.
-  SkillForUser SkillForUser[] // One-to-many relationship with SkillForUser
+  skillForUser SkillForUser[] // One-to-many relationship with SkillForUser
 }
 
 // SkillForUser is a specific skill that a user has, e.g. "HTML", "CSS", "JavaScript", with additional
@@ -90,7 +90,7 @@ model SkillForUser {
   icon            String? // Optional icon, e.g., from Iconify, overrides the icon in Skill if found.
   yearStarted     Int? // Optional start year of using the skill
   totalYears      Int? // Optional total years using the skill
-  SkillForProject SkillForProject[]
+  skillForProject SkillForProject[]
 
   @@unique([userId, skillId]) // Ensures that a user cannot repeat the same skill
 }
@@ -116,7 +116,7 @@ model Project {
   name             String
   description      String?
   skillsForProject SkillForProject[]
-  Position         Position?         @relation(fields: [positionId], references: [id])
+  position         Position?         @relation(fields: [positionId], references: [id])
   positionId       String?
 }
 
@@ -129,8 +129,8 @@ model Position {
   startDate DateTime
   endDate   DateTime?
   projects  Project[]
-  Company   Company?  @relation(fields: [companyId], references: [id])
-  companyId String?
+  company   Company?  @relation(fields: [companyId], references: [id])
+  companyId String
 }
 
 // Company is a company that a user has worked at, e.g. "Google", "Facebook", and is specific to the context within

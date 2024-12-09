@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 const typeDefs = `
   type Query {
     users: [User!]!
-    skillsForUserByUserId(userId: ID!): [SkillForUser!]!
+    skillsForUser(userId: ID!): [SkillForUser!]!
   }
 
   type User {
@@ -42,7 +42,7 @@ const resolvers = {
     users: async () => {
       return await prisma.user.findMany();
     },
-    skillsForUserByUserId: async (_: string, { userId }: { userId: string }) => {
+    skillsForUser: async (_: string, { userId }: { userId: string }) => {
       return await prisma.skillForUser.findMany({
         where: { userId },
         include: { skill: true }, // Include skill details

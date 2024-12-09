@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import { PrismaClient } from "@prisma/client";
-import { getTestUserIds } from "./helpers/users.mjs";
+import { getTestUserIds } from "./helpers/ids.mjs";
 
 const prisma = new PrismaClient();
 
@@ -28,14 +28,19 @@ export async function seedSkillsForUser() {
       });
 
       if (existingSkillForUser) {
-        console.log(`Skill ${skill.name} already exists for user ${userId}`);
-        continue;
+        console.log(`Skill ${skill.name} already exists for user ${userId}. Deleting.`);
+        await prisma.skillForUser.delete({
+          where: {
+            id: existingSkillForUser.id,
+          },
+        });
       }
 
       const createdSkill = await prisma.skillForUser.create({
         data: {
           skillId: skill.id,
           userId: userId,
+          description: "This is a skill for a USER",
         },
       });
       console.log(`Created skill ${skill.name} for user ${userId} with id: ${createdSkill.id}`);

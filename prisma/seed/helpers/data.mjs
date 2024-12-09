@@ -1,9 +1,3 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
-
-export const testUserEmails = ["john@openresume.org", "jane@openresume.org"];
-
 export const testUsers = [
   {
     email: "john@openresume.org",
@@ -25,19 +19,4 @@ export const testUsers = [
   },
 ];
 
-export const getTestUserIds = async () => {
-  const testUserIds = [];
-
-  for (const email of testUserEmails) {
-    const user = await prisma.user.findFirst({
-      where: {
-        email,
-      },
-    });
-    if (user) {
-      testUserIds.push(user.id);
-    }
-  }
-
-  return testUserIds;
-};
+export const testUserEmails = testUsers.map((user) => user.email);
