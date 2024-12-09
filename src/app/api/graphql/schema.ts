@@ -10,6 +10,7 @@ const typeDefs = gql`
     user(slug: String!): User!
     skillsForUser(userId: ID!): [SkillForUser!]!
     companies(userId: ID!, sort: [SortInput!]): [Company!]!
+    positions(companyIds: [ID!], sort: [SortInput!]): [Position!]!
   }
 
   type User {
@@ -50,6 +51,28 @@ const typeDefs = gql`
     endDate: String
   }
 
+  type Position {
+    id: ID!
+    title: String!
+    startDate: String
+    endDate: String
+    company: Company!
+    projects: [Project!]!
+  }
+
+  type Project {
+    id: ID!
+    name: String!
+    description: String
+    skillsForProject: [SkillForProject!]!
+  }
+
+  type SkillForProject {
+    id: ID!
+    skillForUser: SkillForUser!
+    description: String
+  }
+
   input SortInput {
     field: String!
     direction: SortDirection!
@@ -61,7 +84,6 @@ const typeDefs = gql`
   }
 `;
 
-// Define resolvers
 const resolvers = {
   Query: {
     user: async (_: string, { slug }: { slug: string }) => {
@@ -91,6 +113,28 @@ const resolvers = {
       return await prisma.company.findMany({
         where: { userId },
         orderBy, // Apply sorting
+      });
+    },
+    positions: async (
+      _: string,
+      {
+        companyIds,
+        sort,
+      }: { companyIds: string[]; sort: Array<{ field: string; direction: "ASC" | "DESC" }> },
+    ) => {
+      // Map the sort array into Prisma-compatible orderBy
+      const orderBy =
+        sort?.map(({ field, direction }) => ({
+          [field]: direction.toLowerCase(), // Prisma expects lowercase for ASC/DESC
+        })) || [];
+
+      return await prisma.position.findMany({
+        where: { companyId: { in: companyIds } },
+        orderBy, // Apply sorting
+        include: {
+          company: true, // Include company details
+          projects: { include: { skillsForProject: { include: { skillForUser: true } } } },
+        }, // Include project and skill details
       });
     },
   },
