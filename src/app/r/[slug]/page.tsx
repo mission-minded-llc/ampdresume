@@ -1,8 +1,8 @@
-import { AllCompany, GET_COMPANIES } from "@/graphql/getCompanies";
-import { AllEducation, GET_EDUCATION } from "@/graphql/getEducation";
-import { AllPosition, GET_POSITIONS } from "@/graphql/getPositions";
-import { AllSkill, GET_SKILLS } from "@/graphql/getSkills";
-import { AllThemeOptions, GET_THEME_OPTIONS } from "@/graphql/getThemeOptions";
+import { GET_COMPANIES } from "@/graphql/getCompanies";
+import { GET_EDUCATION } from "@/graphql/getEducation";
+import { GET_POSITIONS, PositionWithProjects } from "@/graphql/getPositions";
+import { GET_SKILLS, SkillForUserWithSkill } from "@/graphql/getSkills";
+import { GET_USER } from "@/graphql/getUser";
 
 import { DataProvider } from "@/context/DataContext";
 import { Education } from "@/components/sections/Education/Education";
@@ -11,79 +11,105 @@ import { Skills } from "@/components/sections/Skills/Skills";
 import { WorkExperience } from "@/components/sections/WorkExperience/WorkExperience";
 import { getApolloClient } from "@/lib/apolloClient";
 import styles from "./page.module.scss";
-import { Company } from "../../../../sanity.types";
+import { User, Company, Education as EducationType } from "@prisma/client";
 import { Metadata } from "next";
 
-const client = getApolloClient();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
 
-const { data: allThemeOptions } = await client.query<AllThemeOptions>({
-  query: GET_THEME_OPTIONS,
-});
-
-const { userName, userTitle, siteTitle, siteDescription, siteImage } =
-  allThemeOptions.allThemeOptions[0];
-
-const siteTitleDefault =
-  userName && userTitle ? `Resume of ${userName}, ${userTitle}` : "Interactive Resume";
-
-export const metadata: Metadata = {
-  title: siteTitle ? siteTitle : siteTitleDefault,
-  description: siteDescription ? siteDescription : "",
-  authors: [
-    {
-      name: userName ? userName : "",
-    },
-  ],
-  openGraph: {
-    title: siteTitle ? siteTitle : siteTitleDefault,
-    description: siteDescription ? siteDescription : "",
-    images: siteImage?.asset?.url
-      ? [
-          {
-            url: siteImage.asset.url,
-            width: siteImage.asset.metadata.dimensions.width,
-            height: siteImage.asset.metadata.dimensions.height,
-          },
-        ]
-      : [],
-  },
-};
-
-export default async function Page() {
   const client = getApolloClient();
 
-  const { data: allThemeOptionsData } = await client.query<AllThemeOptions>({
-    query: GET_THEME_OPTIONS,
+  const {
+    data: { user },
+  } = await client.query<{ user: User }>({
+    query: GET_USER,
+    variables: { slug },
   });
 
-  const { data: allSkillData } = await client.query<AllSkill>({
-    query: GET_SKILLS,
-  });
+  const { name, title, siteTitle, siteDescription, siteImage } = user;
 
-  const { data: allCompanyData } = await client.query<AllCompany>({
-    query: GET_COMPANIES,
-  });
+  const siteTitleDefault = name && title ? `Resume of ${name}, ${title}` : "OpenResume";
 
-  const { data: allPositionData } = await client.query<AllPosition>({
-    query: GET_POSITIONS,
+  return {
+    title: siteTitle ? siteTitle : siteTitleDefault,
+    description: siteDescription ? siteDescription : "",
+    authors: [
+      {
+        name: name ? name : "",
+      },
+    ],
+    openGraph: {
+      title: siteTitle ? siteTitle : siteTitleDefault,
+      description: siteDescription ? siteDescription : "",
+      images: siteImage
+        ? [
+            {
+              url: siteImage,
+            },
+          ]
+        : [],
+    },
+  };
+}
+
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+
+  const client = getApolloClient();
+
+  const {
+    data: { user },
+  } = await client.query<{ user: User }>({
+    query: GET_USER,
     variables: {
-      companyIds: allCompanyData.allCompany.map((company: Company) => company._id),
+      slug,
     },
   });
 
-  const { data: allEducationData } = await client.query<AllEducation>({
+  const {
+    data: { skills },
+  } = await client.query<{ skills: SkillForUserWithSkill[] }>({
+    query: GET_SKILLS,
+    variables: {
+      userId: user.id,
+    },
+  });
+
+  const {
+    data: { companies },
+  } = await client.query<{ companies: Company[] }>({
+    query: GET_COMPANIES,
+    variables: {
+      userId: user.id,
+    },
+  });
+
+  const {
+    data: { positions },
+  } = await client.query<{ positions: PositionWithProjects[] }>({
+    query: GET_POSITIONS,
+    variables: {
+      companyIds: companies.map((company) => company.id),
+    },
+  });
+
+  const {
+    data: { education },
+  } = await client.query<{ education: EducationType[] }>({
     query: GET_EDUCATION,
+    variables: {
+      userId: user.id,
+    },
   });
 
   return (
-    <DataProvider
-      skills={allSkillData.allSkill}
-      companies={allCompanyData.allCompany}
-      positions={allPositionData.allPosition}
-      education={allEducationData.allEducation}
-    >
+    <DataProvider skills={skills} companies={companies} positions={positions} education={education}>
       <main className={styles.main}>
-        <ResumeHeading themeOptions={allThemeOptionsData.allThemeOptions[0]} />
+        <ResumeHeading user={user} />
         <div className={styles.workExperienceSkills}>
           <Skills />
           <WorkExperience />

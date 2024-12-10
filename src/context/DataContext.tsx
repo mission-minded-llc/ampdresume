@@ -1,15 +1,14 @@
 "use client";
 
-import { Company, Education } from "../../sanity.types";
-
-import { PositionWithRefs } from "@/graphql/getPositions";
-import { SkillWithDescriptionRaw } from "@/graphql/getSkills";
+import { PositionWithProjects } from "@/graphql/getPositions";
+import { SkillForUserWithSkill } from "@/graphql/getSkills";
+import { Company, Education } from "@prisma/client";
 import { createContext } from "react";
 
 interface DataProviderProps {
-  skills: SkillWithDescriptionRaw[];
+  skills: SkillForUserWithSkill[];
   companies: Company[];
-  positions: PositionWithRefs[];
+  positions: PositionWithProjects[];
   education: Education[];
 }
 

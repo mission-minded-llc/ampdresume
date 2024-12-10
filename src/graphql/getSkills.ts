@@ -1,24 +1,23 @@
-import { BlockContent, Skill } from "../../sanity.types";
-
 import { gql } from "@apollo/client";
+import { Skill, SkillForUser } from "@prisma/client";
 
 export const GET_SKILLS = gql`
-  query getSkills {
-    allSkill {
-      _id
-      title
+  query getSkills($userId: ID!) {
+    skills(userId: $userId) {
+      id
+      skill {
+        id
+        name
+        icon
+      }
       icon
-      yearStart
+      description
+      yearStarted
       totalYears
-      descriptionRaw
     }
   }
 `;
 
-export type SkillWithDescriptionRaw = Skill & {
-  descriptionRaw: BlockContent;
-};
-
-export type AllSkill = {
-  allSkill: SkillWithDescriptionRaw[];
-};
+export interface SkillForUserWithSkill extends SkillForUser {
+  skill: Skill;
+}

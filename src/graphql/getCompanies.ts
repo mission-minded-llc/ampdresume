@@ -1,17 +1,12 @@
-import { Company } from "../../sanity.types";
 import { gql } from "@apollo/client";
 
 export const GET_COMPANIES = gql`
-  query getCompanies {
-    allCompany(sort: [{ dateEnd: DESC }]) {
-      _id
+  query getCompanies($userId: ID!) {
+    companies(userId: $userId, sort: [{ field: "endDate", direction: DESC }]) {
+      id
       name
-      dateStart
-      dateEnd
+      startDate
+      endDate
     }
   }
 `;
-
-export type AllCompany = {
-  allCompany: Company[];
-};

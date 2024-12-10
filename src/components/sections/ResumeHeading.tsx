@@ -1,17 +1,17 @@
-import { ThemeOptions } from "../../../sanity.types";
+import { User } from "@prisma/client";
 import styles from "./ResumeHeading.module.scss";
 
-export const ResumeHeading = ({ themeOptions }: { themeOptions: ThemeOptions }) => {
+export const ResumeHeading = ({ user }: { user: User }) => {
   return (
     <h1 className={styles.userTitleHeading}>
-      {themeOptions?.userName}
+      {user?.name}
       <br />
-      <span className={styles.userTitle}>{themeOptions?.userTitle}</span>
+      <span className={styles.userTitle}>{user?.title}</span>
       <br />
       <span className={styles.userMeta}>
-        {themeOptions?.userContact}
+        {user?.displayEmail}
         <span className={styles.separator}>|</span>
-        {themeOptions?.userLocation}
+        {user?.location}
       </span>
     </h1>
   );

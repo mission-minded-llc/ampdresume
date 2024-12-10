@@ -2,13 +2,13 @@
 
 import React from "react";
 import { SkillItem } from "./SkillItem";
-import { SkillWithDescriptionRaw } from "@/graphql/getSkills";
 import styles from "./SkillsCloud.module.scss";
+import { SkillForUserWithSkill } from "@/graphql/getSkills";
 
-export const SkillsCloud = ({ skills }: { skills: SkillWithDescriptionRaw[] }) => (
+export const SkillsCloud = ({ skills }: { skills: SkillForUserWithSkill[] }) => (
   <div className={styles.skillsCloudContainer}>
     {skills.map((skill) =>
-      skill?.title ? <SkillItem key={`skill-${skill.title}`} skill={skill} /> : null,
+      skill?.skill?.name ? <SkillItem key={`skill-${skill.skill.name}`} skill={skill} /> : null,
     )}
   </div>
 );

@@ -1,17 +1,12 @@
-import { Education } from "../../sanity.types";
 import { gql } from "@apollo/client";
 
 export const GET_EDUCATION = gql`
-  query getEducation {
-    allEducation(sort: [{ dateAwarded: DESC }]) {
-      _id
+  query getEducation($userId: ID!) {
+    education(userId: $userId, sort: [{ field: "dateAwarded", direction: DESC }]) {
+      id
       school
-      award
+      degree
       dateAwarded
     }
   }
 `;
-
-export type AllEducation = {
-  allEducation: Education[];
-};

@@ -3,16 +3,16 @@ import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
 import { Icon } from "@iconify/react";
-import { SkillWithDescriptionRaw } from "@/graphql/getSkills";
 import styles from "./SkillItem.module.scss";
+import { SkillForUserWithSkill } from "@/graphql/getSkills";
 
-export const SkillItem = ({ skill }: { skill: SkillWithDescriptionRaw }) => {
+export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <React.Fragment>
       <Button
-        disabled={!skill?.descriptionRaw}
+        disabled={!skill?.description}
         variant="outlined"
         color="primary"
         className={styles.item}
@@ -25,15 +25,19 @@ export const SkillItem = ({ skill }: { skill: SkillWithDescriptionRaw }) => {
           },
         })}
       >
-        {skill?.icon ? <Icon icon={skill.icon} className={styles.icon} /> : null}
-        {skill.title}
+        {skill?.icon ? (
+          <Icon icon={skill.icon} className={styles.icon} />
+        ) : skill?.skill?.icon ? (
+          <Icon icon={skill.skill.icon} className={styles.icon} />
+        ) : null}
+        {skill.skill.name}
       </Button>
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle
           sx={{ display: "flex", alignItems: "center", gap: "1em", padding: "16px 48px" }}
         >
           {skill?.icon ? <Icon icon={skill.icon} className={styles.icon} /> : null}
-          {skill.title}
+          {skill.skill.name}
         </DialogTitle>
         <IconButton
           aria-label="close"

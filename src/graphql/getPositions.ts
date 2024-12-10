@@ -1,47 +1,41 @@
-import { BlockContent, Company, Position, Project } from "../../sanity.types";
-
-import { SkillWithDescriptionRaw } from "./getSkills";
 import { gql } from "@apollo/client";
+import { Company, Position, Project, Skill, SkillForProject } from "@prisma/client";
 
 export const GET_POSITIONS = gql`
   query getPositions($companyIds: [ID!]) {
-    allPosition(where: { company: { _id: { in: $companyIds } } }, sort: [{ dateEnd: DESC }]) {
-      _id
+    positions(companyIds: $companyIds, sort: [{ field: "endDate", direction: DESC }]) {
+      id
       title
-      dateStart
-      dateEnd
+      startDate
+      endDate
       company {
-        _id
+        id
         name
       }
       projects {
-        _id
-        title
-        bodyRaw
-        skills {
-          skill {
-            _id
+        id
+        name
+        description
+        skillsForProject {
+          skillForUser {
+            id
           }
-          projectSkillDescriptionRaw
+          description
         }
       }
     }
   }
 `;
 
-export type ProjectWithRefs = Omit<Project, "skills" | "bodyRaw"> & {
-  skills: {
-    skill: SkillWithDescriptionRaw;
-    projectSkillDescriptionRaw: BlockContent;
-  }[];
-  bodyRaw: BlockContent;
-};
+interface SkillForProjectWithSkill extends SkillForProject {
+  skill: Skill;
+}
 
-export type PositionWithRefs = Omit<Position, "company" | "projects"> & {
+export interface ProjectWithSkills extends Project {
+  skillsForProject: SkillForProjectWithSkill[];
+}
+
+export interface PositionWithProjects extends Position {
   company: Company;
-  projects: ProjectWithRefs[];
-};
-
-export type AllPosition = {
-  allPosition: PositionWithRefs[];
-};
+  projects: ProjectWithSkills[];
+}

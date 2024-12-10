@@ -3,7 +3,7 @@
 import React, { useContext } from "react";
 
 import { DataContext } from "@/context/DataContext";
-import type { Education as EducationType } from "../../../../sanity.types";
+import type { Education as EducationType } from "@prisma/client";
 import { formatDate } from "@/lib/format";
 import styles from "./Education.module.scss";
 
@@ -29,10 +29,10 @@ export const Education = () => {
         <React.Fragment key={`education-${school}`}>
           <h3>{school}</h3>
           {educationGroupedBySchool[school].map((edu) => (
-            <div key={`education-${edu._id}`}>
+            <div key={`education-${edu.id}`}>
               <h4>
-                {edu.award}
-                <span> &mdash; {formatDate(edu?.dateAwarded)}</span>
+                {edu.degree}
+                <span> &mdash; {formatDate(edu?.dateAwarded?.toString())}</span>
               </h4>
             </div>
           ))}

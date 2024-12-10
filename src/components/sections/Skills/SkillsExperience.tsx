@@ -2,12 +2,12 @@
 
 import React from "react";
 import { SkillItem } from "./SkillItem";
-import { SkillWithDescriptionRaw } from "@/graphql/getSkills";
 import styles from "./SkillsExperience.module.scss";
+import { SkillForUserWithSkill } from "@/graphql/getSkills";
 
-export const SkillsExperience = ({ skills }: { skills: SkillWithDescriptionRaw[] }) => {
+export const SkillsExperience = ({ skills }: { skills: SkillForUserWithSkill[] }) => {
   const skillsByYear: {
-    [year: string]: SkillWithDescriptionRaw[];
+    [year: string]: SkillForUserWithSkill[];
   } = {};
 
   /**
@@ -40,7 +40,7 @@ export const SkillsExperience = ({ skills }: { skills: SkillWithDescriptionRaw[]
     // If yearStart isn't defined, use "0" as the object key to indicate
     // that there's no year. We can filter on this value later to conditionally
     // display a label.
-    const year = skill?.yearStart ? skill.yearStart.substring(0, 4) : null;
+    const year = skill?.yearStarted;
 
     // The totalYears field allows users to override the value of how many years'
     // experience per skill. For example, if it's currently 2024, and the yearStart
@@ -50,11 +50,14 @@ export const SkillsExperience = ({ skills }: { skills: SkillWithDescriptionRaw[]
     const totalYears = skill?.totalYears
       ? skill.totalYears.toString()
       : year
-        ? new Date().getFullYear() - parseInt(year, 10)
+        ? new Date().getFullYear() - year
         : "1"; // Minimum 1 year.
 
     const skillWithoutYear = { ...skill };
-    delete skillWithoutYear.yearStart;
+
+    // TODO: make yearStarted optional in the schema.
+    // @ts-expect-error yearStarted is optional.
+    delete skillWithoutYear.yearStarted;
 
     skillsByYear[totalYears] = skillsByYear?.[totalYears]
       ? [skillWithoutYear, ...skillsByYear[totalYears]]
@@ -63,7 +66,7 @@ export const SkillsExperience = ({ skills }: { skills: SkillWithDescriptionRaw[]
 
   // Alter the structure of the data so that we can manipulate
   // the order of the render.
-  const skillsExperienceList: [string, SkillWithDescriptionRaw[]][] = [];
+  const skillsExperienceList: [string, SkillForUserWithSkill[]][] = [];
 
   Object.keys(skillsByYear).map((totalYears) => {
     skillsExperienceList.push([totalYears, skillsByYear[totalYears]]);
@@ -84,11 +87,9 @@ export const SkillsExperience = ({ skills }: { skills: SkillWithDescriptionRaw[]
               {totalYears ? `${totalYears} year${parseInt(totalYears, 10) > 1 ? "s" : ""}:` : ""}
             </div>
             <div className={styles.skillTagsContainer}>
-              {skillsList.map((skill) => {
-                return skill?.title ? (
-                  <SkillItem key={`skill-${skill.title}`} skill={skill} />
-                ) : null;
-              })}
+              {skillsList.map((skill) => (
+                <SkillItem key={`skill-${skill.skill.name}`} skill={skill} />
+              ))}
             </div>
           </React.Fragment>
         );

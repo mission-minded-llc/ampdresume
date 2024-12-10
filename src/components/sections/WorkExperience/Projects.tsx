@@ -2,10 +2,10 @@ import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { SyntheticEvent, useContext, useState } from "react";
 
 import { DataContext } from "@/context/DataContext";
-import { ProjectWithRefs } from "@/graphql/getPositions";
 import { SkillItem } from "@/components/sections/Skills/SkillItem";
-import { SkillWithDescriptionRaw } from "@/graphql/getSkills";
 import styles from "./Projects.module.scss";
+import { ProjectWithSkills } from "@/graphql/getPositions";
+import { SkillForUserWithSkill } from "@/graphql/getSkills";
 
 /**
  * This contains the top-level project description and skill tags. It can
@@ -15,15 +15,15 @@ const ProjectItem = ({
   project,
   projectSkills,
 }: {
-  project: ProjectWithRefs;
-  projectSkills: SkillWithDescriptionRaw[];
+  project: ProjectWithSkills;
+  projectSkills: SkillForUserWithSkill[];
 }) => (
   <div className={styles.projectOverview}>
-    <div>{project.title}</div>
+    <div>{project.name}</div>
     <div className={styles.projectTagContainer}>
-      {projectSkills.map((skill) =>
-        skill?.title ? <SkillItem key={`skill-${skill.title}`} skill={skill} /> : null,
-      )}
+      {projectSkills.map((skill) => (
+        <SkillItem key={`skill-${skill.skill.name}`} skill={skill} />
+      ))}
     </div>
   </div>
 );
@@ -32,8 +32,8 @@ const ProjectAccordion = ({
   project,
   projectSkills,
 }: {
-  project: ProjectWithRefs;
-  projectSkills: SkillWithDescriptionRaw[];
+  project: ProjectWithSkills;
+  projectSkills: SkillForUserWithSkill[];
 }) => {
   const [expanded, setExpanded] = useState(false);
 
@@ -81,23 +81,24 @@ const ProjectAccordion = ({
  * This is the primary Projects component, which renders as list of all projects.
  * These can be contained in an Accordion component, or as a standalone list item.
  */
-export const Projects = ({ projects }: { projects: ProjectWithRefs[] }) => {
+export const Projects = ({ projects }: { projects: ProjectWithSkills[] }) => {
   const { skills } = useContext(DataContext);
 
   return projects.map((project) => {
-    const projectSkills = project?.skills?.length
-      ? skills.reduce<SkillWithDescriptionRaw[]>((acc, skill) => {
+    const projectSkills = project?.skillsForProject?.length
+      ? skills.reduce<SkillForUserWithSkill[]>((acc, skill) => {
           const skillClone = { ...skill }; // Ensure we're not affecting the original properties.
 
-          const skillIsInProject =
-            skillClone?.title && project.skills.map((s) => s.skill._id).includes(skillClone._id);
+          const skillIsInProject = project.skillsForProject
+            .map((s) => s.skill.id)
+            .includes(skillClone.id);
 
           if (!skillIsInProject) return acc;
 
           // It's linked! Ensure we include the project-specific description.
-          const matchedSkill = project.skills.find((s) => s.skill._id === skillClone._id);
-          if (matchedSkill && matchedSkill?.projectSkillDescriptionRaw) {
-            skillClone.descriptionRaw = matchedSkill.projectSkillDescriptionRaw;
+          const matchedSkill = project.skillsForProject.find((s) => s.skill.id === skillClone.id);
+          if (matchedSkill && matchedSkill?.description) {
+            skillClone.description = matchedSkill.description;
           }
 
           acc.push(skillClone);
@@ -108,10 +109,10 @@ export const Projects = ({ projects }: { projects: ProjectWithRefs[] }) => {
 
     // If the project contains a block description, we'll
     // use an Accordion component to render it.
-    if (project?.bodyRaw)
+    if (project?.description)
       return (
         <ProjectAccordion
-          key={`project-${project._id}`}
+          key={`project-${project.id}`}
           project={project}
           projectSkills={projectSkills}
         />
@@ -119,7 +120,7 @@ export const Projects = ({ projects }: { projects: ProjectWithRefs[] }) => {
 
     // Otherwise, show the project overview and skills only.
     return (
-      <ProjectItem key={`project-${project._id}`} project={project} projectSkills={projectSkills} />
+      <ProjectItem key={`project-${project.id}`} project={project} projectSkills={projectSkills} />
     );
   });
 };

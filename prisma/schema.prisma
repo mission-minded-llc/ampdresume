@@ -41,23 +41,24 @@ model Session {
 }
 
 model User {
-  id            String         @id @default(cuid())
-  name          String?
-  email         String?        @unique
-  emailVerified DateTime?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @default(now()) @updatedAt
-  siteTitle     String? // Used for SEO and open graph tags.
-  siteImage     String? // Used for open graph tags. Should be a URL.
-  slug          String?        @unique // Used for profile URL.
-  title         String? // Used for profile title, e.g. "Senior Software Engineer"
-  displayEmail  String? // Used for contact email, displayed on profile.
-  location      String? // Used for location, displayed on profile. Should be a general value, e.g. City, State.
-  accounts      Account[] // Linked authentication providers.
-  sessions      Session[] // Active sessions.
-  skillForUser  SkillForUser[] // One-to-many relationship with SkillForUser, customized skills per user.
-  company       Company[] // One-to-many relationship with Company, work experience. Can be multiple companies.
-  education     Education[] // One-to-many relationship with Education, education history. Can be multiple schools.
+  id              String         @id @default(cuid())
+  name            String?
+  email           String?        @unique
+  emailVerified   DateTime?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @default(now()) @updatedAt
+  siteTitle       String? // Used for SEO and open graph tags.
+  siteDescription String? // Used for SEO and open graph tags.
+  siteImage       String? // Used for open graph tags. Should be a URL.
+  slug            String?        @unique // Used for profile URL.
+  title           String? // Used for profile title, e.g. "Senior Software Engineer"
+  displayEmail    String? // Used for contact email, displayed on profile.
+  location        String? // Used for location, displayed on profile. Should be a general value, e.g. City, State.
+  accounts        Account[] // Linked authentication providers.
+  sessions        Session[] // Active sessions.
+  skillForUser    SkillForUser[] // One-to-many relationship with SkillForUser, customized skills per user.
+  company         Company[] // One-to-many relationship with Company, work experience. Can be multiple companies.
+  education       Education[] // One-to-many relationship with Education, education history. Can be multiple schools.
 }
 
 model VerificationToken {

@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 const typeDefs = gql`
   type Query {
     user(slug: String!): User!
-    skillsForUser(userId: ID!): [SkillForUser!]!
+    skills(userId: ID!): [SkillForUser!]!
     companies(userId: ID!, sort: [SortInput!]): [Company!]!
     positions(companyIds: [ID!], sort: [SortInput!]): [Position!]!
     education(userId: ID!, sort: [SortInput!]): [Education!]!
@@ -99,7 +99,7 @@ const resolvers = {
         where: { slug },
       });
     },
-    skillsForUser: async (_: string, { userId }: { userId: string }) => {
+    skills: async (_: string, { userId }: { userId: string }) => {
       return await prisma.skillForUser.findMany({
         where: { userId },
         include: { skill: true }, // Include skill details

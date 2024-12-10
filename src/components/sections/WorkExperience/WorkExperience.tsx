@@ -14,16 +14,19 @@ export const WorkExperience = () => {
       <h2 className="resumeHeading">Work Experience</h2>
       {companies.map((company) => {
         const positionsInCompany = positions.filter(
-          (position) => position?.company?._id === company._id,
+          (position) => position.companyId === company.id,
         );
 
+        const startDate = formatDate(company?.startDate?.toString());
+        const endDate = formatDate(company?.endDate?.toString());
+
         return (
-          <div key={`company-${company._id}`} className={styles.companySection}>
+          <div key={`company-${company.id}`} className={styles.companySection}>
             <h3>
               {company.name}
               <span>
                 {" "}
-                &mdash; {formatDate(company?.dateStart)} to {formatDate(company?.dateEnd)}
+                &mdash; {startDate} to {endDate.length ? endDate : "Present"}
               </span>
             </h3>
             <PositionsList positions={positionsInCompany} />

@@ -1,14 +1,14 @@
 "use client";
 
+import { PositionWithProjects } from "@/graphql/getPositions";
 import { PositionSingle } from "./PositionSingle";
-import { PositionWithRefs } from "@/graphql/getPositions";
 
-export const PositionsList = ({ positions }: { positions: PositionWithRefs[] }) => {
+export const PositionsList = ({ positions }: { positions: PositionWithProjects[] }) => {
   return (
     <div>
       {positions.map((position) => (
         <PositionSingle
-          key={`position-single-${position._id}`}
+          key={`position-single-${position.id}`}
           position={position}
           showDates={positions.length > 1}
         />

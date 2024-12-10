@@ -2,18 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { PositionWithRefs } from "@/graphql/getPositions";
 import { Projects } from "./Projects";
 import Typography from "@mui/material/Typography";
 import cx from "classnames";
 import { formatDate } from "@/lib/format";
 import styles from "./PositionSingle.module.scss";
+import { PositionWithProjects } from "@/graphql/getPositions";
 
 export const PositionSingle = ({
   position,
   showDates,
 }: {
-  position: PositionWithRefs;
+  position: PositionWithProjects;
   showDates: boolean;
 }) => {
   const [isSticky, setIsSticky] = useState(false);
@@ -33,9 +33,12 @@ export const PositionSingle = ({
     };
   }, []);
 
+  const startDate = formatDate(position?.startDate?.toString());
+  const endDate = formatDate(position?.endDate?.toString());
+
   return (
     <div className={styles.container}>
-      <div key={`position-${position._id}`}>
+      <div key={`position-${position.id}`}>
         <Typography
           component="h4"
           variant="h6"
@@ -48,7 +51,7 @@ export const PositionSingle = ({
           {position.title}{" "}
           {showDates ? (
             <span className="dates">
-              &mdash; {formatDate(position?.dateStart)} to {formatDate(position?.dateEnd)}
+              &mdash; {startDate} to {endDate.length ? endDate : "Present"}
             </span>
           ) : null}
           <Typography

@@ -6,6 +6,9 @@ export default withAuth({
   },
   callbacks: {
     authorized: ({ req }) => {
+      // If the requested path is /api/graphql, skip.
+      if (req.url.includes("/api/graphql")) return true;
+
       // Look for the session cookie
       const session = req.cookies.get("next-auth.session-token")?.value;
 
