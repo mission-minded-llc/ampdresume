@@ -1,14 +1,22 @@
-import { prisma } from "./prisma.mjs";
-import { testUserEmails } from "./data.mjs";
+import { prisma } from "./prisma";
+import { testUserEmails } from "./data";
+import { PrismaClient } from "@prisma/client";
 
-const getIds = async (model, filter, selectField = "id") => {
-  const results = await prisma[model].findMany({
+const getIds = async (
+  model: keyof Omit<PrismaClient, "$connect" | "$disconnect" | "$on" | "$transaction" | "$use">,
+  filter: object,
+  selectField = "id",
+) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const results = await (prisma[model] as any).findMany({
     where: filter,
     select: {
       [selectField]: true,
     },
   });
-  return results.map((result) => result[selectField]);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return results.map((result: any) => result[selectField]);
 };
 
 export const getTestUserIds = async () => {

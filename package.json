@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Uniform standard for resume data.",
   "private": true,
+  "type": "module",
   "keywords": [
     "resume"
   ],
@@ -24,7 +25,7 @@
     "test:coverage": "jest --coverage",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:seed": "ts-node prisma/seed/seedSkills.ts"
+    "prisma:seed": "tsx prisma/seed/all.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.11.10",
@@ -66,6 +67,7 @@
     "prisma": "^6.0.1",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }

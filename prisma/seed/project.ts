@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import { PrismaClient } from "@prisma/client";
-import { getTestPositionIds } from "./helpers/ids.mjs";
+import { getTestPositionIds } from "./helpers/ids";
 
 const prisma = new PrismaClient();
 

@@ -21,8 +21,8 @@ export async function seedSkills() {
     .map((line) => {
       const data = line.split(",");
       return {
-        name: data[1],
-        icon: data[2],
+        name: data[0],
+        icon: data[1],
       };
     });
 
@@ -34,7 +34,14 @@ export async function seedSkills() {
     });
 
     if (existingSkill) {
-      console.log(`Skill already exists: ${skill.name}`);
+      console.log(`Skill already exists: ${skill.name}, updating.`);
+      const updatedSkill = await prisma.skill.update({
+        where: {
+          id: existingSkill.id,
+        },
+        data: skill,
+      });
+      console.log(`Updated skill ${skill.name} with id: ${updatedSkill.id}`);
       continue;
     }
 
