@@ -77,7 +77,15 @@ describe("User Profile Update Endpoint", () => {
     });
     expect(prisma.user.update).toHaveBeenCalledWith({
       where: { id: "user123" },
-      data: { name: "New Name", slug: "new-slug" },
+      data: {
+        name: "New Name",
+        slug: "new-slug",
+        displayEmail: null,
+        title: null,
+        location: null,
+        siteTitle: null,
+        siteDescription: null,
+      },
     });
   });
 

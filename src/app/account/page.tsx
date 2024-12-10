@@ -37,7 +37,15 @@ const Page = async () => {
         <Typography component="h1" variant="h4">
           Account Settings
         </Typography>
-        <AccountForm name={user?.name || ""} slug={user?.slug || ""} />
+        <AccountForm
+          name={user?.name || ""}
+          slug={user?.slug || ""}
+          displayEmail={user?.displayEmail || ""}
+          title={user?.title || ""}
+          location={user?.location || ""}
+          siteTitle={user?.siteTitle || ""}
+          siteDescription={user?.siteDescription || ""}
+        />
       </Box>
     </Container>
   );
