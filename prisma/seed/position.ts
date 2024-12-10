@@ -39,15 +39,14 @@ export async function seedPositions() {
       };
 
       if (existingPosition) {
-        console.log(`Position already exists for user ${userId}, updating...`);
+        console.log(`Updating position for user ${userId}, company ${company.id}`);
 
-        const updatedPosition = await prisma.position.update({
+        await prisma.position.update({
           where: {
             id: existingPosition.id,
           },
           data: { ...positionData },
         });
-        console.log(`Updated position for user ${userId} with id: ${updatedPosition.id}`);
 
         continue;
       }

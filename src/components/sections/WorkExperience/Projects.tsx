@@ -55,6 +55,7 @@ const ProjectAccordion = ({
       sx={{
         boxShadow: "none",
         padding: "0",
+        backgroundColor: "transparent",
       }}
       slotProps={{ heading: { component: "h5" } }}
       className={styles.accordion}
@@ -71,7 +72,7 @@ const ProjectAccordion = ({
         })}
         className={styles.accordionDetails}
       >
-        Project Description
+        {project.description}
       </AccordionDetails>
     </Accordion>
   );
@@ -90,13 +91,15 @@ export const Projects = ({ projects }: { projects: ProjectWithSkills[] }) => {
           const skillClone = { ...skill }; // Ensure we're not affecting the original properties.
 
           const skillIsInProject = project.skillsForProject
-            .map((s) => s.skill.id)
+            .map((skillForProject) => skillForProject.skillForUser.id)
             .includes(skillClone.id);
 
           if (!skillIsInProject) return acc;
 
           // It's linked! Ensure we include the project-specific description.
-          const matchedSkill = project.skillsForProject.find((s) => s.skill.id === skillClone.id);
+          const matchedSkill = project.skillsForProject.find(
+            (s) => s.skillForUser.id === skillClone.id,
+          );
           if (matchedSkill && matchedSkill?.description) {
             skillClone.description = matchedSkill.description;
           }

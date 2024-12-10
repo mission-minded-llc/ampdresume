@@ -2,6 +2,7 @@
 
 import { PrismaClient } from "@prisma/client";
 import { getTestPositionIds } from "./helpers/ids";
+import { randomLoremIpsumDescriptions } from "./helpers/data";
 
 const prisma = new PrismaClient();
 
@@ -10,43 +11,27 @@ export async function seedProjects() {
 
   const projects = [
     {
-      name: "Project 1",
-      description: "This is the first project",
+      name: "I contributed to project 1 significantly by doing X, Y, and Z.",
+      description: "This is the first project description. " + randomLoremIpsumDescriptions[0],
     },
     {
-      name: "Project 2",
-      description: "This is the second project",
+      name: "Expanded the project 2 by adding A, B, and C.",
+      description: "This is the second project description. " + randomLoremIpsumDescriptions[1],
     },
     {
-      name: "Project 3",
-      description: "This is the third project",
+      name: "Increased annual sign-ups by 20% in project 3.",
+      description: "This is the third project description. " + randomLoremIpsumDescriptions[2],
     },
   ];
 
   for (const positionId of testPositionIds) {
+    await prisma.project.deleteMany({
+      where: {
+        positionId,
+      },
+    });
+
     for (const project of projects) {
-      const existingProject = await prisma.project.findFirst({
-        where: {
-          positionId,
-          name: project.name,
-        },
-      });
-
-      if (existingProject) {
-        console.log(`Project ${project.name} already exists for position ${positionId}`);
-
-        const updatedProject = await prisma.project.update({
-          where: {
-            id: existingProject.id,
-          },
-          data: { ...project },
-        });
-        console.log(
-          `Updated project ${project.name} for position ${positionId} with id: ${updatedProject.id}`,
-        );
-        continue;
-      }
-
       const createdProject = await prisma.project.create({
         data: {
           positionId,

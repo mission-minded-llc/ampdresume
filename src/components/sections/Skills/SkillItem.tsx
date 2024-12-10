@@ -51,7 +51,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
         >
           X
         </IconButton>
-        <DialogContent>Skill Description</DialogContent>
+        <DialogContent>{skill.description}</DialogContent>
       </Dialog>
     </React.Fragment>
   );

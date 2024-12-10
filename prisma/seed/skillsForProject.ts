@@ -56,29 +56,16 @@ export async function seedSkillsForProject() {
       },
     });
 
+    // Delete all skills in project if found.
+    await prisma.skillForProject.deleteMany({
+      where: {
+        projectId,
+      },
+    });
+
     const randomSkillsForUser = skillsForUser.sort(() => 0.5 - Math.random()).slice(0, 2);
 
     for (const skillForUser of randomSkillsForUser) {
-      const existingSkillsForProject = await prisma.skillForProject.findMany({
-        where: {
-          projectId,
-          skillForUserId: skillForUser.id,
-        },
-      });
-
-      if (existingSkillsForProject) {
-        for (const existingSkillForProject of existingSkillsForProject) {
-          console.log(
-            `Skill ${skillForUser.id} already exists for project ${projectId}. Deleting.`,
-          );
-          await prisma.skillForProject.delete({
-            where: {
-              id: existingSkillForProject.id,
-            },
-          });
-        }
-      }
-
       try {
         const createdSkill = await prisma.skillForProject.create({
           data: {

@@ -14,7 +14,7 @@ export const WorkExperience = () => {
       <h2 className="resumeHeading">Work Experience</h2>
       {companies.map((company) => {
         const positionsInCompany = positions.filter(
-          (position) => position.companyId === company.id,
+          (position) => position.company.id === company.id,
         );
 
         const startDate = formatDate(company?.startDate?.toString());

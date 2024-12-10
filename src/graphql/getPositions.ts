@@ -27,8 +27,8 @@ export const GET_POSITIONS = gql`
   }
 `;
 
-interface SkillForProjectWithSkill extends SkillForProject {
-  skill: Skill;
+export interface SkillForProjectWithSkill extends SkillForProject {
+  skillForUser: Skill;
 }
 
 export interface ProjectWithSkills extends Project {
