@@ -15,23 +15,18 @@ export const Footer = () => {
   const pathname = usePathname();
   const isDesktop = useIsDesktop();
   const isLoggedIn = useIsLoggedIn();
-
   const isResumePage = pathname.startsWith("/r/");
-  const isHomePage = pathname === "/";
-  const isLoginPage = pathname === "/login";
-
-  if (isHomePage || isLoginPage) return null;
 
   return (
     <BottomNavigation
       component="footer"
       sx={(theme) => ({
         backgroundColor: theme.palette.background.paper,
-        position: isResumePage ? "fixed" : "relative",
+        position: isResumePage ? "fixed" : "absolute",
         zIndex: 2,
         bottom: 0,
         left: 0,
-        width: isResumePage ? "100vw" : "auto",
+        width: "100%",
         boxShadow: "0 0 35px rgba(0, 0, 0, 0.1)",
       })}
     >
