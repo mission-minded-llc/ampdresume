@@ -1,10 +1,85 @@
 "use client";
 
-import { CodeInline } from "@/components/CodeInline";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MessageDialog } from "@/components/MessageDialog";
-import { Box, Button, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { Box, Button, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
+import React, { useState } from "react";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import LinkIcon from "@mui/icons-material/Link";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import BadgeIcon from "@mui/icons-material/Badge";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import TocIcon from "@mui/icons-material/Toc";
+import LanguageIcon from "@mui/icons-material/Language";
+
+const InputSection = ({ children }: { children: React.ReactNode[] }) => (
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      gap: 2,
+      height: "100%",
+    }}
+  >
+    {children}
+  </Box>
+);
+
+const GridSection = ({
+  children,
+  isDesktop,
+}: {
+  children: React.ReactNode;
+  isDesktop: boolean;
+}) => (
+  <Box
+    sx={{
+      display: "grid",
+      gridTemplateColumns: isDesktop ? "1fr 1fr" : "1fr",
+      gap: isDesktop ? 4 : 2,
+      mt: 4,
+    }}
+  >
+    {children}
+  </Box>
+);
+
+const SectionTitle = ({ children }: { children: React.ReactNode }) => (
+  <Typography
+    variant="h5"
+    component="h2"
+    color="textPrimary"
+    sx={{
+      gridColumn: "1 / -1",
+      borderTop: "1px solid",
+      paddingTop: 2,
+      marginTop: 2,
+    }}
+  >
+    {children}
+  </Typography>
+);
+
+const FieldTitle = ({ children }: { children: React.ReactNode }) => (
+  <Typography
+    variant="h6"
+    component="p"
+    color="textPrimary"
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      gap: "0.5em",
+    }}
+  >
+    {children}
+  </Typography>
+);
+
+const FieldDescription = ({ children }: { children: React.ReactNode }) => (
+  <Typography variant="body2" color="textSecondary">
+    {children}
+  </Typography>
+);
 
 const AccountForm = ({
   name,
@@ -32,6 +107,9 @@ const AccountForm = ({
     siteTitle,
     siteDescription,
   });
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
   const [errors, setErrors] = useState<{ name?: string; slug?: string; displayEmail?: string }>({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -106,7 +184,12 @@ const AccountForm = ({
   };
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <LoadingOverlay open={loading} message="Submitting form..." />
       <MessageDialog
         open={message?.length > 0}
@@ -114,126 +197,169 @@ const AccountForm = ({
         onClose={() => setMessage("")}
         onConfirm={() => setMessage("")}
       />
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-          mt: 4,
-        }}
-      >
-        <Typography variant="body2" color="textSecondary">
-          Displayed on your public resume.
-        </Typography>
-        <TextField
-          label="Full Name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          error={!!errors.name}
-          helperText={errors.name ? errors.name : " "}
-          fullWidth
-        />
-        <Typography variant="body2" color="textSecondary">
-          Used to generate your public resume URL, e.g.{" "}
-          <CodeInline>
-            https://openresume.org/r/
-            <strong>
-              {formData?.slug ? formData.slug : "your-custom-slug"}
-            </strong>/
-          </CodeInline>
-          . If you change it, an automatic redirect will <strong>not</strong> be created, so please
-          update your shared links.
-        </Typography>
-        <TextField
-          label="Slug"
-          name="slug"
-          value={formData.slug}
-          onChange={handleChange}
-          error={!!errors.slug}
-          helperText={errors.slug ? errors.slug : " "}
-          fullWidth
-        />
-        <Typography variant="body2" color="textSecondary">
-          Your display email is publicly visible on your resume!
-        </Typography>
-        <TextField
-          label="Display Email"
-          name="displayEmail"
-          value={formData.displayEmail}
-          onChange={handleChange}
-          error={!!errors.displayEmail}
-          helperText={errors.displayEmail ? errors.displayEmail : " "}
-          fullWidth
-        />
-        <Typography variant="body2" color="textSecondary">
-          Your Title is the job title you&apos;re looking for, or identify as. Example:{" "}
-          <strong>Software Engineer</strong>
-        </Typography>
-        <TextField
-          label="Title"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          fullWidth
-        />
-        <Typography variant="body2" color="textSecondary">
-          Your Location is where you are currently located. General is advised. Example:{" "}
-          <strong>Los Angeles, CA</strong>
-        </Typography>
-        <TextField
-          label="Location"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-          fullWidth
-        />
-        <Typography variant="body2" color="textSecondary">
-          Your Site Title is the title of your personal website. Example:{" "}
-          <strong>{formData?.name ? formData.name : "John Doe"} | OpenResume</strong>{" "}
-          <em>
-            This is used in the title tag of your website as well as for social media sharing.
-          </em>
-        </Typography>
-        <TextField
-          label="Site Title"
-          name="siteTitle"
-          value={formData.siteTitle}
-          onChange={handleChange}
-          fullWidth
-        />
-        <Typography variant="body2" color="textSecondary">
-          Your Site Description is a short description of your personal website. Example:{" "}
-          <strong>
-            {formData?.name ? formData.name : "John Doe"} is a seasoned professional with 10 years
-            experience.
-          </strong>{" "}
-          <em>
-            This is used in the meta description tag of your website as well as for social media
-            sharing.
-          </em>
-        </Typography>
-        <TextField
-          label="Site Description"
-          name="siteDescription"
-          value={formData.siteDescription}
-          onChange={handleChange}
-          fullWidth
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          fullWidth
+      <Box component="form" onSubmit={handleSubmit}>
+        <GridSection isDesktop={isDesktop}>
+          <SectionTitle>General Information</SectionTitle>
+          <InputSection>
+            <FieldTitle>
+              <AccountBoxIcon /> Full Name
+            </FieldTitle>
+            <FieldDescription>Displayed on your public resume.</FieldDescription>
+            <TextField
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              error={!!errors.name}
+              helperText={errors.name ? errors.name : " "}
+              fullWidth
+              sx={{ marginTop: "auto" }}
+            />
+          </InputSection>
+          <InputSection>
+            <FieldTitle>
+              <LinkIcon /> URL Slug
+            </FieldTitle>
+            <FieldDescription>
+              Used in your URL. Example:{" "}
+              <Typography
+                component="em"
+                sx={(theme) => ({
+                  display: "inline",
+                  color: theme.palette.primary.main,
+                })}
+              >
+                openresume.org/r/
+                <strong>
+                  {formData?.slug ? formData.slug : "your-custom-slug"}
+                </strong>/
+              </Typography>
+              <br />
+              <strong>Important:</strong> If you change this, an automatic redirect will{" "}
+              <strong>not</strong> be created, so please update your shared links.
+            </FieldDescription>
+            <TextField
+              label="Slug"
+              name="slug"
+              value={formData.slug}
+              onChange={handleChange}
+              error={!!errors.slug}
+              helperText={errors.slug ? errors.slug : " "}
+              fullWidth
+              sx={{ marginTop: "auto" }}
+            />
+          </InputSection>
+          <InputSection>
+            <FieldTitle>
+              <MailOutlineIcon /> Display Email
+            </FieldTitle>
+            <FieldDescription>
+              Your display email is publicly visible on your resume!
+            </FieldDescription>
+            <TextField
+              label="Display Email"
+              name="displayEmail"
+              value={formData.displayEmail}
+              onChange={handleChange}
+              error={!!errors.displayEmail}
+              helperText={errors.displayEmail ? errors.displayEmail : " "}
+              fullWidth
+              sx={{ marginTop: "auto" }}
+            />
+          </InputSection>
+          <InputSection>
+            <FieldTitle>
+              <BadgeIcon /> Position Title
+            </FieldTitle>
+            <FieldDescription>Your current job title or what you are looking for.</FieldDescription>
+            <TextField
+              label="Title"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              helperText=" "
+              fullWidth
+              sx={{ marginTop: "auto" }}
+            />
+          </InputSection>
+          <InputSection>
+            <FieldTitle>
+              <LocationOnIcon /> Location
+            </FieldTitle>
+            <FieldDescription>
+              Your Location is where you are currently located.
+              <br />
+              Example: <strong>Los Angeles, CA</strong>
+            </FieldDescription>
+            <TextField
+              label="Location"
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              fullWidth
+              helperText="Recommendation: do not use your full address."
+              sx={{ marginTop: "auto" }}
+            />
+          </InputSection>
+        </GridSection>
+        <GridSection isDesktop={isDesktop}>
+          <SectionTitle>Resume Site Information</SectionTitle>
+          <InputSection>
+            <FieldTitle>
+              <LanguageIcon /> Resume Site Title
+            </FieldTitle>
+            <FieldDescription>
+              Your Site Title is the title of your resume page, shown in the browser tab and social
+              media.
+            </FieldDescription>
+            <TextField
+              label="Site Title"
+              name="siteTitle"
+              value={formData.siteTitle}
+              onChange={handleChange}
+              fullWidth
+              sx={{ marginTop: "auto" }}
+            />
+          </InputSection>
+          <InputSection>
+            <FieldTitle>
+              <TocIcon /> Resume Site Description
+            </FieldTitle>
+            <FieldDescription>
+              Your Site Description is a short description of your resume page. This is used in the
+              meta description tag of your website as well as for social media sharing.
+            </FieldDescription>
+            <TextField
+              label="Site Description"
+              name="siteDescription"
+              value={formData.siteDescription}
+              onChange={handleChange}
+              fullWidth
+              sx={{ marginTop: "auto" }}
+            />
+          </InputSection>
+        </GridSection>
+        <Box
           sx={{
-            mt: 2,
-            width: "200px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "row",
           }}
         >
-          Save
-        </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{
+              mt: 6,
+              mb: 10,
+              maxWidth: "400px",
+            }}
+          >
+            Save
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
