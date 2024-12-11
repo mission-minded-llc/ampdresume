@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { MuiLink } from "../MuiLink";
 import { useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
 import { getBaseUrl } from "@/util/url";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -24,8 +22,6 @@ import ExitIcon from "@mui/icons-material/ExitToApp";
 
 export const NavPrimary = () => {
   const session = useSession();
-  const pathname = usePathname();
-  const isDesktop = useIsDesktop();
   const isLoggedIn = useIsLoggedIn();
 
   const [isOpen, setIsOpen] = useState(false);
