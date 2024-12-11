@@ -53,17 +53,20 @@ export default async function HomePage() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          textAlign: "center",
         }}
       >
         <Typography variant="h1" component="h1" sx={{ mb: 2 }}>
           OpenResume
         </Typography>
-        <Typography variant="h2" component="h2" sx={{ mb: 4, pb: 4, borderBottom: "1px solid" }}>
+        <Typography variant="h3" component="h2" sx={{ mb: 4, pb: 4, borderBottom: "1px solid" }}>
           Free Interactive Resume Builder
         </Typography>
         {user ? (
           <>
-            <Typography variant="h4">Welcome back, {user.name}! </Typography>
+            <Typography variant="h5" component="h3">
+              Welcome back, {user.name}!{" "}
+            </Typography>
             <Typography
               sx={{
                 mt: "1rem",

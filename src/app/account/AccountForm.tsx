@@ -3,8 +3,9 @@
 import React, { useState } from "react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MessageDialog } from "@/components/MessageDialog";
-import { Box, Button, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { InputSection, GridSection, SectionTitle, FieldTitle, FieldDescription } from "./sections";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LinkIcon from "@mui/icons-material/Link";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -42,10 +43,7 @@ const AccountForm = ({
   const [errors, setErrors] = useState<{ name?: string; slug?: string; displayEmail?: string }>({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-
-  // Used for styling.
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const isDesktop = useIsDesktop();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

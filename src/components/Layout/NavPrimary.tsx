@@ -1,0 +1,143 @@
+import React, { useState } from "react";
+import { MuiLink } from "../MuiLink";
+import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+import { getBaseUrl } from "@/util/url";
+import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import PersonIcon from "@mui/icons-material/Person";
+import SettingsIcon from "@mui/icons-material/Settings";
+import HomeIcon from "@mui/icons-material/Home";
+import ExitIcon from "@mui/icons-material/ExitToApp";
+
+export const NavPrimary = () => {
+  const session = useSession();
+  const pathname = usePathname();
+  const isDesktop = useIsDesktop();
+  const isLoggedIn = useIsLoggedIn();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const baseUrl = getBaseUrl();
+
+  const toggleDrawer = (open: boolean) => (event: object) => {
+    if (
+      ((event as React.KeyboardEvent).type === "keydown" &&
+        (event as React.KeyboardEvent).key === "Tab") ||
+      (event as React.KeyboardEvent).key === "Shift"
+    ) {
+      return;
+    }
+    setIsOpen(open);
+  };
+
+  const NavItem = ({ text, icon, href }: { text: string; icon: React.ReactNode; href: string }) => (
+    <MuiLink href={href}>
+      <ListItem
+        component="div"
+        onClick={() => {
+          setIsOpen(false);
+        }}
+      >
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={text} />
+      </ListItem>
+    </MuiLink>
+  );
+
+  return (
+    <Box>
+      <IconButton
+        edge="start"
+        color="inherit"
+        aria-label="menu"
+        onClick={toggleDrawer(true)}
+        sx={(theme) => ({
+          marginLeft: 1,
+          marginTop: 1,
+          backgroundColor: theme.palette.background.paper,
+        })}
+      >
+        <MenuIcon fontSize="large" />
+      </IconButton>
+
+      <Drawer anchor="left" open={isOpen} onClose={toggleDrawer(false)}>
+        <Box
+          sx={{
+            width: 250,
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: 2,
+              borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+            }}
+          >
+            <Typography variant="h6">Menu</Typography>
+            <IconButton edge="end" color="inherit" aria-label="close" onClick={toggleDrawer(false)}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+
+          <List
+            sx={{
+              flex: 1,
+              paddingTop: 2,
+            }}
+          >
+            {isLoggedIn ? (
+              <>
+                {session?.data?.user?.slug ? (
+                  <NavItem
+                    text="Resume"
+                    icon={<PersonIcon />}
+                    href={`/r/${session.data.user.slug}`}
+                  />
+                ) : null}
+                <NavItem text="Account" icon={<SettingsIcon />} href="/account" />
+                <NavItem text="Logout" icon={<ExitIcon />} href="/api/auth/signout" />
+              </>
+            ) : (
+              <NavItem text="Login" icon={<PersonIcon />} href="/login" />
+            )}
+            <Divider
+              sx={{
+                marginTop: 2,
+                marginBottom: 2,
+              }}
+            />
+            <NavItem text="Home" icon={<HomeIcon />} href={baseUrl} />
+          </List>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              paddingBottom: 10,
+            }}
+          >
+            <ThemeAppearanceToggle />
+          </Box>
+        </Box>
+      </Drawer>
+    </Box>
+  );
+};

@@ -21,13 +21,7 @@ export const ThemeAppearanceToggle = () => {
       }}
     >
       <Icon icon="solar:sun-bold" />
-      <Switch
-        checked={themeAppearance === "dark"}
-        onChange={toggleThemeAppearance}
-        sx={(theme) => ({
-          backgroundColor: theme.palette.background.paper,
-        })}
-      />
+      <Switch checked={themeAppearance === "dark"} onChange={toggleThemeAppearance} />
       <Icon icon="solar:moon-bold" />
     </Box>
   );
