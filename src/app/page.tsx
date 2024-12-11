@@ -56,15 +56,18 @@ export default async function HomePage() {
           textAlign: "center",
         }}
       >
-        <Typography variant="h1" component="h1" sx={{ mb: 2 }}>
+        <Typography component="h1" sx={{ mb: 2, typography: { sm: "h1", xs: "h4" } }}>
           OpenResume
         </Typography>
-        <Typography variant="h3" component="h2" sx={{ mb: 4, pb: 4, borderBottom: "1px solid" }}>
+        <Typography
+          component="h2"
+          sx={{ mb: 4, pb: 4, borderBottom: "1px solid", typography: { sm: "h3", xs: "h5" } }}
+        >
           Free Interactive Resume Builder
         </Typography>
         {user ? (
           <>
-            <Typography variant="h5" component="h3">
+            <Typography component="h3" sx={{ typography: { sm: "h5", xs: "h6" } }}>
               Welcome back, {user.name}!{" "}
             </Typography>
             <Typography
