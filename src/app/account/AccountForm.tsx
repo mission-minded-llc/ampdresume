@@ -1,9 +1,10 @@
 "use client";
 
+import React, { useState } from "react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MessageDialog } from "@/components/MessageDialog";
 import { Box, Button, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
-import React, { useState } from "react";
+import { InputSection, GridSection, SectionTitle, FieldTitle, FieldDescription } from "./sections";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LinkIcon from "@mui/icons-material/Link";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -11,75 +12,6 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import TocIcon from "@mui/icons-material/Toc";
 import LanguageIcon from "@mui/icons-material/Language";
-
-const InputSection = ({ children }: { children: React.ReactNode[] }) => (
-  <Box
-    sx={{
-      display: "flex",
-      flexDirection: "column",
-      gap: 2,
-      height: "100%",
-    }}
-  >
-    {children}
-  </Box>
-);
-
-const GridSection = ({
-  children,
-  isDesktop,
-}: {
-  children: React.ReactNode;
-  isDesktop: boolean;
-}) => (
-  <Box
-    sx={{
-      display: "grid",
-      gridTemplateColumns: isDesktop ? "1fr 1fr" : "1fr",
-      gap: isDesktop ? 4 : 2,
-      mt: 4,
-    }}
-  >
-    {children}
-  </Box>
-);
-
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Typography
-    variant="h5"
-    component="h2"
-    color="textPrimary"
-    sx={{
-      gridColumn: "1 / -1",
-      borderTop: "1px solid",
-      paddingTop: 2,
-      marginTop: 2,
-    }}
-  >
-    {children}
-  </Typography>
-);
-
-const FieldTitle = ({ children }: { children: React.ReactNode }) => (
-  <Typography
-    variant="h6"
-    component="p"
-    color="textPrimary"
-    sx={{
-      display: "flex",
-      alignItems: "center",
-      gap: "0.5em",
-    }}
-  >
-    {children}
-  </Typography>
-);
-
-const FieldDescription = ({ children }: { children: React.ReactNode }) => (
-  <Typography variant="body2" color="textSecondary">
-    {children}
-  </Typography>
-);
 
 const AccountForm = ({
   name,
@@ -107,12 +39,13 @@ const AccountForm = ({
     siteTitle,
     siteDescription,
   });
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-
   const [errors, setErrors] = useState<{ name?: string; slug?: string; displayEmail?: string }>({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  // Used for styling.
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
