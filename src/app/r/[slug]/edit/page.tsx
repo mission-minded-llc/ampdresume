@@ -4,7 +4,7 @@ import { Box, Container } from "@mui/material";
 import { SidebarLeft } from "./components/SidebarLeft";
 import { EditSection } from "./components/EditSection";
 import { EditPageProvider } from "./components/EditContext";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { getSkillsForUser } from "@/server/skills";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
@@ -12,7 +12,6 @@ import { ResumeProvider } from "../components/ResumeContext";
 
 const EditPage = () => {
   const { data: session, status } = useSession();
-  const queryClient = useQueryClient();
 
   const { isPending, error, data } = useQuery({
     // Only enable the query when the session is loaded and has a user ID
