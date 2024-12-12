@@ -192,6 +192,17 @@ const resolvers = {
         totalYears,
       }: { userId: string; skillId: string; yearStarted: number; totalYears: number },
     ) => {
+      // Check if this skill already exists for this user.
+      const existingSkill = await prisma.skillForUser.findFirst({
+        where: { userId, skillId },
+      });
+
+      if (existingSkill) {
+        return {
+          id: existingSkill.id,
+        };
+      }
+
       return await prisma.skillForUser.create({
         data: {
           userId,

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import {
   Box,
   TextField,
@@ -12,7 +12,11 @@ import {
   DialogContent,
   DialogActions,
   Button,
+  Typography,
+  Tooltip,
+  IconButton,
 } from "@mui/material";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Icon } from "@iconify/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { addSkillForUser, getSkills } from "@/server/skills";
@@ -27,6 +31,24 @@ export const SkillSearch = () => {
   const [selectedSkillId, setSelectedSkillId] = useState<string | null>(null);
   const [yearValue, setYearValue] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+
+  // When the search term is at least this length, the search will trigger
+  // and show the list of skills. Pressing "Esc" will clear the search term.
+  const searchTermSearchTriggerLength = 3;
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && searchTerm.length >= searchTermSearchTriggerLength) {
+        setSearchTerm("");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [searchTerm]);
 
   // Load all available skills for search/selector
   const { isPending, error, data } = useQuery({
@@ -87,6 +109,7 @@ export const SkillSearch = () => {
       setOpenDialog(false);
       setSelectedSkillId(null);
       setYearValue("");
+      setSearchTerm("");
     }
   };
 
@@ -101,7 +124,7 @@ export const SkillSearch = () => {
         sx={{ mb: 2 }}
         placeholder="Type at least 3 characters to search"
       />
-      {searchTerm.length >= 3 && (
+      {searchTerm.length >= searchTermSearchTriggerLength && (
         <Paper elevation={3}>
           <List>
             {filteredSkills.length > 0 ? (
@@ -132,13 +155,24 @@ export const SkillSearch = () => {
       )}
 
       {/* Proficiency Level Dialog */}
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-        <DialogTitle>Enter Proficiency Level</DialogTitle>
+      <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="md" fullWidth>
+        <DialogTitle>
+          Enter Proficiency Level
+          <Tooltip
+            title="Enter the year you started using this skill or the total years of experience. If you enter the year started, the total years will be calculated for you automatically."
+            placement="right"
+          >
+            <IconButton size="small" sx={{ ml: 1 }}>
+              <InfoOutlinedIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        </DialogTitle>
+
         <DialogContent>
+          <Typography>Enter year started, or total years experience below.</Typography>
           <TextField
             autoFocus
             margin="dense"
-            label="Year Started, or Total Years Experience"
             type="number"
             fullWidth
             variant="outlined"

@@ -30,7 +30,7 @@ export const getSkillsForUser = async ({ userId }: { userId: string | undefined 
 
   const client = getApolloClient();
 
-  const { data: skillsForUser } = await client.query<{ skills: SkillForUserWithSkill[] }>({
+  const { data: skillsForUser } = await client.query<{ skillsForUser: SkillForUserWithSkill[] }>({
     query: GET_SKILLS_FOR_USER,
     variables: {
       userId,
@@ -57,8 +57,8 @@ export const addSkillForUser = async ({
 }) => {
   const client = getApolloClient();
 
-  const yearStarted = yearValue > 100 ? yearValue : null;
-  const totalYears = yearValue > 100 ? null : yearValue;
+  const yearStarted = yearValue > 1920 ? yearValue : null;
+  const totalYears = yearValue > 1920 ? null : yearValue;
 
   await client.mutate({
     mutation: ADD_SKILL_FOR_USER,

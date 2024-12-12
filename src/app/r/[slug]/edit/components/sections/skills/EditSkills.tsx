@@ -2,7 +2,7 @@
 
 import { getSkillsForUser } from "@/server/skills";
 import { useQuery } from "@tanstack/react-query";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
@@ -43,12 +43,12 @@ export const EditSkills = () => {
         <h1>Edit Skills</h1>
       </Box>
       <Box>
-        <p>Search for a skill to add to your profile:</p>
+        <Typography>Search for a skill to add to your profile:</Typography>
         <SkillSearch />
       </Box>
       <Box>
-        {data?.skills?.map((skill: SkillForUserWithSkill) => (
-          <Box key={skill.id}>{skill.skill.name}</Box>
+        {data?.skillsForUser?.map((skillForUser: SkillForUserWithSkill) => (
+          <Box key={skillForUser.id}>{skillForUser.skill.name}</Box>
         ))}
       </Box>
     </Container>
