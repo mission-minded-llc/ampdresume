@@ -2,17 +2,17 @@
 
 import React from "react";
 import { Box } from "@mui/material";
-import { usePathname } from "next/navigation";
 import { NavPrimary } from "./NavPrimary";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useIsResumePage } from "@/hooks/useIsResumePage";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 
 export const Header = () => {
-  const pathname = usePathname();
   const isDesktop = useIsDesktop();
+  const isResumePage = useIsResumePage();
 
   // Hide this header on the resume page.
-  if (pathname.startsWith("/r/")) return null;
+  if (isResumePage) return null;
 
   return (
     <Box

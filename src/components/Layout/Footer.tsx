@@ -4,18 +4,17 @@ import React from "react";
 
 import { BottomNavigation, Box } from "@mui/material";
 import { getBaseUrl } from "@/util/url";
-import { usePathname } from "next/navigation";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 import { MuiLink } from "../MuiLink";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useIsResumePage } from "@/hooks/useIsResumePage";
 import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 
 export const Footer = () => {
   const baseUrl = getBaseUrl();
-  const pathname = usePathname();
   const isDesktop = useIsDesktop();
   const isLoggedIn = useIsLoggedIn();
-  const isResumePage = pathname.startsWith("/r/");
+  const isResumePage = useIsResumePage();
 
   return (
     <BottomNavigation
