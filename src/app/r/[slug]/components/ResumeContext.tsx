@@ -1,7 +1,7 @@
 "use client";
 
 import { PositionWithProjects } from "@/graphql/getPositions";
-import { SkillForUserWithSkill } from "@/graphql/getSkills";
+import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { Company, Education } from "@prisma/client";
 import { createContext } from "react";
 

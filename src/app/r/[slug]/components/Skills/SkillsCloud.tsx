@@ -3,7 +3,7 @@
 import React from "react";
 import { SkillItem } from "./SkillItem";
 import styles from "./SkillsCloud.module.scss";
-import { SkillForUserWithSkill } from "@/graphql/getSkills";
+import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 
 export const SkillsCloud = ({ skills }: { skills: SkillForUserWithSkill[] }) => (
   <div className={styles.skillsCloudContainer}>

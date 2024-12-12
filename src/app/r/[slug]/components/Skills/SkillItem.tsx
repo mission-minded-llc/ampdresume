@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { Icon } from "@iconify/react";
 import styles from "./SkillItem.module.scss";
-import { SkillForUserWithSkill } from "@/graphql/getSkills";
+import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 
 export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
   const [open, setOpen] = useState(false);

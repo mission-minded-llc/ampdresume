@@ -1,11 +1,11 @@
 "use client";
 
-import { getSkills } from "@/server/skills";
+import { getSkillsForUser } from "@/server/skills";
 import { useQuery } from "@tanstack/react-query";
 import { Box, Container } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { SkillForUserWithSkill } from "@/graphql/getSkills";
+import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 
 export const EditSkills = () => {
   const { data: session, status } = useSession();
@@ -18,7 +18,7 @@ export const EditSkills = () => {
       if (!session?.user?.id) {
         throw new Error("No user ID available");
       }
-      return await getSkills({ userId: session.user.id });
+      return await getSkillsForUser({ userId: session.user.id });
     },
   });
 

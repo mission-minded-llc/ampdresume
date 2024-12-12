@@ -1,9 +1,9 @@
 import { gql } from "@apollo/client";
 import { Skill, SkillForUser } from "@prisma/client";
 
-export const GET_SKILLS = gql`
-  query getSkills($userId: ID!) {
-    skills(userId: $userId) {
+export const GET_SKILLS_FOR_USER = gql`
+  query getSkillsForUser($userId: ID!) {
+    skillsForUser(userId: $userId) {
       id
       skill {
         id

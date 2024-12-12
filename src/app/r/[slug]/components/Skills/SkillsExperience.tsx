@@ -3,7 +3,7 @@
 import React from "react";
 import { SkillItem } from "./SkillItem";
 import styles from "./SkillsExperience.module.scss";
-import { SkillForUserWithSkill } from "@/graphql/getSkills";
+import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 
 export const SkillsExperience = ({ skills }: { skills: SkillForUserWithSkill[] }) => {
   const skillsByYear: {

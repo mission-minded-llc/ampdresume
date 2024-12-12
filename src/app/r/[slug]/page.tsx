@@ -1,7 +1,7 @@
 import { GET_COMPANIES } from "@/graphql/getCompanies";
 import { GET_EDUCATION } from "@/graphql/getEducation";
 import { GET_POSITIONS, PositionWithProjects } from "@/graphql/getPositions";
-import { GET_SKILLS, SkillForUserWithSkill } from "@/graphql/getSkills";
+import { GET_SKILLS_FOR_USER, SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { GET_USER } from "@/graphql/getUser";
 
 import { ResumeProvider } from "./components/ResumeContext";
@@ -71,9 +71,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   });
 
   const {
-    data: { skills },
-  } = await client.query<{ skills: SkillForUserWithSkill[] }>({
-    query: GET_SKILLS,
+    data: { skillsForUser },
+  } = await client.query<{ skillsForUser: SkillForUserWithSkill[] }>({
+    query: GET_SKILLS_FOR_USER,
     variables: {
       userId: user.id,
     },
@@ -108,7 +108,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <ResumeProvider
-      skills={skills}
+      skills={skillsForUser}
       companies={companies}
       positions={positions}
       education={education}

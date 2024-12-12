@@ -5,7 +5,7 @@ import { ResumeContext } from "../ResumeContext";
 import { SkillItem } from "../Skills/SkillItem";
 import styles from "./Projects.module.scss";
 import { ProjectWithSkills } from "@/graphql/getPositions";
-import { SkillForUserWithSkill } from "@/graphql/getSkills";
+import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 
 /**
  * This contains the top-level project description and skill tags. It can
