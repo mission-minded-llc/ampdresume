@@ -3,31 +3,24 @@
 import { Container } from "@mui/material";
 import { SidebarLeft } from "./components/SidebarLeft";
 import { EditSection } from "./components/EditSection";
+import { EditPageProvider } from "./components/EditContext";
 
 const EditPage = () => {
-  const sections = [
-    {
-      title: "Skills",
-    },
-    {
-      title: "Work Experience",
-    },
-    {
-      title: "Education",
-    },
-  ];
+  const sidebarWidth = 200;
 
   return (
-    <Container
-      sx={{
-        display: "grid",
-        height: "100%",
-        gridTemplateColumns: "200px 1fr",
-      }}
-    >
-      <SidebarLeft sections={sections} />
-      <EditSection />
-    </Container>
+    <EditPageProvider>
+      <Container
+        sx={{
+          display: "grid",
+          height: "100%",
+          gridTemplateColumns: `${sidebarWidth}px 1fr`,
+        }}
+      >
+        <SidebarLeft width={sidebarWidth} />
+        <EditSection />
+      </Container>
+    </EditPageProvider>
   );
 };
 
