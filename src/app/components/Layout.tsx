@@ -11,6 +11,7 @@ import { createTheme } from "@mui/material";
 import { usePathname } from "next/navigation";
 import { Header } from "./Header";
 import { SessionProvider } from "next-auth/react";
+import { TanstackQueryProvider } from "./TanstackContext";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { themeAppearance } = useContext(ThemeAppearanceContext);
@@ -43,18 +44,20 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <AppRouterCacheProvider>
       <SessionProvider>
-        <ThemeProvider theme={theme}>
-          <Header />
-          <Container
-            sx={(theme) => ({
-              backgroundColor: theme.palette.background.default,
-            })}
-          >
-            <CssBaseline />
-            {children}
-            <Footer />
-          </Container>
-        </ThemeProvider>
+        <TanstackQueryProvider>
+          <ThemeProvider theme={theme}>
+            <Header />
+            <Container
+              sx={(theme) => ({
+                backgroundColor: theme.palette.background.default,
+              })}
+            >
+              <CssBaseline />
+              {children}
+              <Footer />
+            </Container>
+          </ThemeProvider>
+        </TanstackQueryProvider>
       </SessionProvider>
     </AppRouterCacheProvider>
   );
