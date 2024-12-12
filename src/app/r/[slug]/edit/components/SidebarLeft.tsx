@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-export const SidebarLeft = ({ sections }: { sections: object }) => (
+export const SidebarLeft = ({ sections }: { sections: object[] }) => (
   <Box
     sx={{
       borderRight: "1px solid #aaa",
