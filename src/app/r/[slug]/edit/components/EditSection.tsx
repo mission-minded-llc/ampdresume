@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useContext } from "react";
 import { EditPageContext } from "./EditContext";
-import { EditSkills } from "./sections/EditSkills";
+import { EditSkills } from "./sections/skills/EditSkills";
 
 export const EditSection = () => {
   const { activeSection } = useContext(EditPageContext);

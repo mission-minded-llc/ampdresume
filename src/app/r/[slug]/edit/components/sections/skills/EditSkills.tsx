@@ -6,6 +6,7 @@ import { Box, Container } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
+import { SkillSearch } from "./SkillSearch";
 
 export const EditSkills = () => {
   const { data: session, status } = useSession();
@@ -41,10 +42,15 @@ export const EditSkills = () => {
       <Box>
         <h1>Edit Skills</h1>
       </Box>
-      <Box>{/* This is a placeholder for a form to add new skills */}</Box>
-      {data?.skills?.map((skill: SkillForUserWithSkill) => (
-        <Box key={skill.id}>{skill.skill.name}</Box>
-      ))}
+      <Box>
+        <p>Search for a skill to add to your profile:</p>
+        <SkillSearch />
+      </Box>
+      <Box>
+        {data?.skills?.map((skill: SkillForUserWithSkill) => (
+          <Box key={skill.id}>{skill.skill.name}</Box>
+        ))}
+      </Box>
     </Container>
   );
 };

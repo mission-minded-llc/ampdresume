@@ -6,7 +6,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Footer } from "./Footer";
 import { ThemeAppearanceContext } from "./ThemeContext";
-import { Container, ThemeProvider } from "@mui/material";
+import { Box, Container, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material";
 import { usePathname } from "next/navigation";
 import { Header } from "./Header";
@@ -46,16 +46,18 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <SessionProvider>
         <TanstackQueryProvider>
           <ThemeProvider theme={theme}>
-            <Header />
-            <Container
-              sx={(theme) => ({
-                backgroundColor: theme.palette.background.default,
-              })}
-            >
-              <CssBaseline />
-              {children}
+            <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+              <Header />
+              <Container
+                sx={(theme) => ({
+                  backgroundColor: theme.palette.background.default,
+                })}
+              >
+                <CssBaseline />
+                {children}
+              </Container>
               <Footer />
-            </Container>
+            </Box>
           </ThemeProvider>
         </TanstackQueryProvider>
       </SessionProvider>

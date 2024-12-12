@@ -7,11 +7,20 @@ const prisma = new PrismaClient();
 // Define type definitions
 const typeDefs = gql`
   type Query {
+    # General queries.
+    skills: [Skill!]!
+
+    # User-specific queries.
     user(slug: String!): User!
     skillsForUser(userId: ID!): [SkillForUser!]!
     companies(userId: ID!, sort: [SortInput!]): [Company!]!
     positions(companyIds: [ID!], sort: [SortInput!]): [Position!]!
     education(userId: ID!, sort: [SortInput!]): [Education!]!
+  }
+
+  type Mutation {
+    # User-specific mutations.
+    addSkillForUser(userId: ID!, skillId: ID!, yearStarted: Int, totalYears: Int): SkillForUser!
   }
 
   type User {
@@ -94,6 +103,12 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
+    // General queries.
+    skills: async () => {
+      return await prisma.skill.findMany();
+    },
+
+    // User-specific queries.
     user: async (_: string, { slug }: { slug: string }) => {
       return await prisma.user.findUnique({
         where: { slug },
@@ -161,6 +176,30 @@ const resolvers = {
       return await prisma.education.findMany({
         where: { userId },
         orderBy, // Apply sorting
+      });
+    },
+  },
+
+  // Mutation resolvers.
+  Mutation: {
+    // User-specific mutations.
+    addSkillForUser: async (
+      _: string,
+      {
+        userId,
+        skillId,
+        yearStarted,
+        totalYears,
+      }: { userId: string; skillId: string; yearStarted: number; totalYears: number },
+    ) => {
+      return await prisma.skillForUser.create({
+        data: {
+          userId,
+          skillId,
+          yearStarted,
+          totalYears,
+        },
+        include: { skill: true }, // Include skill details
       });
     },
   },

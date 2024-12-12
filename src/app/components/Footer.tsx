@@ -21,7 +21,8 @@ export const Footer = () => {
       component="footer"
       sx={(theme) => ({
         backgroundColor: theme.palette.background.paper,
-        position: isResumePage ? "fixed" : "absolute",
+        position: isResumePage ? "fixed" : "relative",
+        marginTop: "auto",
         zIndex: 2,
         bottom: 0,
         left: 0,
