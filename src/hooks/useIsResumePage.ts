@@ -6,7 +6,7 @@ export const useIsResumePage = () => {
   // Resume page path is typically /r/[username]
   // but an edit or other page could be /r/[username]/edit
   const pathParts = pathname.split("/");
-  const isResumePage = pathParts[0] === "r" && pathParts.length === 2;
+  const isResumePage = pathParts[1] === "r" && pathParts.length === 3;
 
   return isResumePage;
 };

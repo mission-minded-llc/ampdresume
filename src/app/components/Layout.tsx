@@ -5,7 +5,7 @@ import React, { useContext } from "react";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Footer } from "./Footer";
-import { ThemeAppearanceContext } from "@/context/ThemeContext";
+import { ThemeAppearanceContext } from "./ThemeContext";
 import { Container, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material";
 import { usePathname } from "next/navigation";

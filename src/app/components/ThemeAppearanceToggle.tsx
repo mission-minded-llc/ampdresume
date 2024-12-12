@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 
 import { Box, Switch } from "@mui/material";
-import { ThemeAppearanceContext } from "@/context/ThemeContext";
+import { ThemeAppearanceContext } from "./ThemeContext";
 import { useContext } from "react";
 
 export const ThemeAppearanceToggle = () => {

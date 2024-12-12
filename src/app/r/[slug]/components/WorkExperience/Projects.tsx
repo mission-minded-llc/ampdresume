@@ -1,8 +1,8 @@
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { SyntheticEvent, useContext, useState } from "react";
 
-import { DataContext } from "@/context/DataContext";
-import { SkillItem } from "@/components/sections/Skills/SkillItem";
+import { ResumeContext } from "../ResumeContext";
+import { SkillItem } from "../Skills/SkillItem";
 import styles from "./Projects.module.scss";
 import { ProjectWithSkills } from "@/graphql/getPositions";
 import { SkillForUserWithSkill } from "@/graphql/getSkills";
@@ -83,7 +83,7 @@ const ProjectAccordion = ({
  * These can be contained in an Accordion component, or as a standalone list item.
  */
 export const Projects = ({ projects }: { projects: ProjectWithSkills[] }) => {
-  const { skills } = useContext(DataContext);
+  const { skills } = useContext(ResumeContext);
 
   return projects.map((project) => {
     const projectSkills = project?.skillsForProject?.length

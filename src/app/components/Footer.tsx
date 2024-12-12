@@ -5,7 +5,7 @@ import React from "react";
 import { BottomNavigation, Box } from "@mui/material";
 import { getBaseUrl } from "@/util/url";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
-import { MuiLink } from "../MuiLink";
+import { MuiLink } from "@/components/MuiLink";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useIsResumePage } from "@/hooks/useIsResumePage";
 import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";

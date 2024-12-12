@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { MuiLink } from "../MuiLink";
 import { useSession } from "next-auth/react";
 import { getBaseUrl } from "@/util/url";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
+import { MuiLink } from "@/components/MuiLink";
 import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";

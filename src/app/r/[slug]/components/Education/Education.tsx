@@ -2,13 +2,13 @@
 
 import React, { useContext } from "react";
 
-import { DataContext } from "@/context/DataContext";
+import { ResumeContext } from "../ResumeContext";
 import type { Education as EducationType } from "@prisma/client";
 import { formatDate } from "@/lib/format";
 import styles from "./Education.module.scss";
 
 export const Education = () => {
-  const { education } = useContext(DataContext);
+  const { education } = useContext(ResumeContext);
 
   // Group education by school name. This was a simpler
   // approach than to create a separate type speficially to group

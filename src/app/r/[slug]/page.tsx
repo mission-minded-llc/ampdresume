@@ -4,11 +4,11 @@ import { GET_POSITIONS, PositionWithProjects } from "@/graphql/getPositions";
 import { GET_SKILLS, SkillForUserWithSkill } from "@/graphql/getSkills";
 import { GET_USER } from "@/graphql/getUser";
 
-import { DataProvider } from "@/context/DataContext";
-import { Education } from "@/components/sections/Education/Education";
-import { ResumeHeading } from "@/components/sections/ResumeHeading";
-import { Skills } from "@/components/sections/Skills/Skills";
-import { WorkExperience } from "@/components/sections/WorkExperience/WorkExperience";
+import { ResumeProvider } from "./components/ResumeContext";
+import { Education } from "./components/Education/Education";
+import { ResumeHeading } from "./components/ResumeHeading";
+import { Skills } from "./components/Skills/Skills";
+import { WorkExperience } from "./components/WorkExperience/WorkExperience";
 import { getApolloClient } from "@/lib/apolloClient";
 import styles from "./page.module.scss";
 import { User, Company, Education as EducationType } from "@prisma/client";
@@ -107,7 +107,12 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   });
 
   return (
-    <DataProvider skills={skills} companies={companies} positions={positions} education={education}>
+    <ResumeProvider
+      skills={skills}
+      companies={companies}
+      positions={positions}
+      education={education}
+    >
       <main className={styles.main}>
         <ResumeHeading user={user} />
         <div className={styles.workExperienceSkills}>
@@ -116,6 +121,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         </div>
         <Education />
       </main>
-    </DataProvider>
+    </ResumeProvider>
   );
 }
