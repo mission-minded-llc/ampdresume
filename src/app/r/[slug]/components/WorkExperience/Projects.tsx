@@ -83,28 +83,28 @@ const ProjectAccordion = ({
  * These can be contained in an Accordion component, or as a standalone list item.
  */
 export const Projects = ({ projects }: { projects: ProjectWithSkills[] }) => {
-  const { skills } = useContext(ResumeContext);
+  const { skillsForUser } = useContext(ResumeContext);
 
   return projects.map((project) => {
     const projectSkills = project?.skillsForProject?.length
-      ? skills.reduce<SkillForUserWithSkill[]>((acc, skill) => {
-          const skillClone = { ...skill }; // Ensure we're not affecting the original properties.
+      ? skillsForUser.reduce<SkillForUserWithSkill[]>((acc, skillForUser) => {
+          const skillForUserClone = { ...skillForUser }; // Ensure we're not affecting the original properties.
 
           const skillIsInProject = project.skillsForProject
             .map((skillForProject) => skillForProject.skillForUser.id)
-            .includes(skillClone.id);
+            .includes(skillForUserClone.id);
 
           if (!skillIsInProject) return acc;
 
           // It's linked! Ensure we include the project-specific description.
           const matchedSkill = project.skillsForProject.find(
-            (s) => s.skillForUser.id === skillClone.id,
+            (s) => s.skillForUser.id === skillForUserClone.id,
           );
           if (matchedSkill && matchedSkill?.description) {
-            skillClone.description = matchedSkill.description;
+            skillForUserClone.description = matchedSkill.description;
           }
 
-          acc.push(skillClone);
+          acc.push(skillForUserClone);
 
           return acc;
         }, [])

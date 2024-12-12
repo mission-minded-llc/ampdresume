@@ -9,7 +9,7 @@ import { SkillsExperience } from "./SkillsExperience";
 import { useContext } from "react";
 
 export const Skills = () => {
-  const { skills } = useContext(ResumeContext);
+  const { skillsForUser } = useContext(ResumeContext);
 
   const [skillsLayout, setSkillsLayout] = useState<"experience" | "cloud">("experience");
 
@@ -49,9 +49,9 @@ export const Skills = () => {
         </Button>
       </Box>
       {skillsLayout === "experience" ? (
-        <SkillsExperience skills={skills} />
+        <SkillsExperience skills={skillsForUser} />
       ) : (
-        <SkillsCloud skills={skills} />
+        <SkillsCloud skills={skillsForUser} />
       )}
     </section>
   );

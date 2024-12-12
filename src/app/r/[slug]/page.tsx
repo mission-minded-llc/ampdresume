@@ -108,7 +108,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <ResumeProvider
-      skills={skillsForUser}
+      skillsForUser={skillsForUser}
       companies={companies}
       positions={positions}
       education={education}
