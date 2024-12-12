@@ -1,6 +1,8 @@
 "use client";
 
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
+import { SidebarLeft } from "./components/SidebarLeft";
+import { EditSection } from "./components/EditSection";
 
 const EditPage = () => {
   const sections = [
@@ -23,16 +25,8 @@ const EditPage = () => {
         gridTemplateColumns: "200px 1fr",
       }}
     >
-      <Box
-        sx={{
-          borderRight: "1px solid #aaa",
-        }}
-      >
-        {sections.map((section) => (
-          <Box key={section.title}>{section.title}</Box>
-        ))}
-      </Box>
-      <Box>Content</Box>
+      <SidebarLeft sections={sections} />
+      <EditSection />
     </Container>
   );
 };

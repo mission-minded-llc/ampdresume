@@ -33,6 +33,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     },
     typography: {
       fontSize: 16,
+      fontFamily: "var(--font-geist-sans), Arial, sans-serif",
+      h1: {
+        fontFamily: "var(--font-geist-mono), monospace",
+      },
     },
   });
 

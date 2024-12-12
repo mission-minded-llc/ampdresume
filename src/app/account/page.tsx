@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
-import { AccountForm } from "./AccountForm";
+import { AccountForm } from "./components/AccountForm";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 
