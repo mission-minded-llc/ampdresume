@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { Icon } from "@iconify/react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
+import { SkillItemEdit } from "./SkillItemEdit";
+import { SkillItemView } from "./SkillItemView";
 import { useSession } from "next-auth/react";
 
 export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
@@ -11,10 +13,8 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
 
   const [open, setOpen] = useState(false);
 
-  const buttonDisabled = !(
-    skill?.description ||
-    (status === "authenticated" && session?.user?.id === skill.userId)
-  );
+  const userCanEdit = status === "authenticated" && session?.user?.id === skill.userId;
+  const buttonDisabled = !(skill?.description || userCanEdit);
 
   return (
     <React.Fragment>
@@ -59,7 +59,9 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
         >
           X
         </IconButton>
-        <DialogContent>{skill.description}</DialogContent>
+        <DialogContent>
+          {userCanEdit ? <SkillItemEdit skill={skill} /> : <SkillItemView skill={skill} />}
+        </DialogContent>
       </Dialog>
     </React.Fragment>
   );

@@ -1,24 +1,25 @@
 import React, { useState } from "react";
-import { useSession } from "next-auth/react";
-import { getBaseUrl } from "@/util/url";
-import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
-import { MuiLink } from "@/components/MuiLink";
-import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
+
+import Box from "@mui/material/Box";
+import CloseIcon from "@mui/icons-material/Close";
+import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
+import ExitIcon from "@mui/icons-material/ExitToApp";
+import HomeIcon from "@mui/icons-material/Home";
+import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import IconButton from "@mui/material/IconButton";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
+import { MuiLink } from "@/components/MuiLink";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
-import HomeIcon from "@mui/icons-material/Home";
-import ExitIcon from "@mui/icons-material/ExitToApp";
+import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
+import Typography from "@mui/material/Typography";
+import { getBaseUrl } from "@/util/url";
+import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
+import { useSession } from "next-auth/react";
 
 export const NavPrimary = () => {
   const session = useSession();
@@ -39,8 +40,18 @@ export const NavPrimary = () => {
     setIsOpen(open);
   };
 
-  const NavItem = ({ text, icon, href }: { text: string; icon: React.ReactNode; href: string }) => (
-    <MuiLink href={href}>
+  const NavItem = ({
+    text,
+    icon,
+    href,
+    target = "_self",
+  }: {
+    text: string;
+    icon: React.ReactNode;
+    href: string;
+    target?: "_self" | "_blank";
+  }) => (
+    <MuiLink href={href} target={target}>
       <ListItem
         component="div"
         onClick={() => {
@@ -106,6 +117,7 @@ export const NavPrimary = () => {
                     text="Resume"
                     icon={<PersonIcon />}
                     href={`/r/${session.data.user.slug}`}
+                    target="_blank"
                   />
                 ) : null}
                 <NavItem text="Account" icon={<SettingsIcon />} href="/account" />
