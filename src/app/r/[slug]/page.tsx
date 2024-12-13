@@ -14,6 +14,7 @@ import { ResumeTitle } from "./components/ResumeTitle";
 import { Skills } from "./components/Skills/Skills";
 import { WorkExperience } from "./components/WorkExperience/WorkExperience";
 import { getApolloClient } from "@/lib/apolloClient";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -64,12 +65,16 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   const {
     data: { user },
-  } = await client.query<{ user: User }>({
-    query: GET_USER,
-    variables: {
-      slug,
-    },
-  });
+  } = await client
+    .query<{ user: User }>({
+      query: GET_USER,
+      variables: {
+        slug,
+      },
+    })
+    .catch(() => {
+      notFound();
+    });
 
   const {
     data: { skillsForUser },

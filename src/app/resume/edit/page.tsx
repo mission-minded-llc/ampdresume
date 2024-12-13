@@ -5,7 +5,7 @@ import { Box, Container } from "@mui/material";
 import { EditPageProvider } from "./components/EditContext";
 import { EditSection } from "./components/EditSection";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { ResumeProvider } from "../components/ResumeContext";
+import { ResumeProvider } from "../../r/[slug]/components/ResumeContext";
 import { SidebarLeft } from "./components/SidebarLeft";
 import { getSkillsForUser } from "@/server/skills";
 import { useQuery } from "@tanstack/react-query";

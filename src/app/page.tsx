@@ -1,7 +1,8 @@
-import { getSession } from "@/lib/auth";
-import { Container, Box, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
+
 import { Metadata } from "next";
 import { MuiLink } from "@/components/MuiLink";
+import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 const title = "OpenResume | Free Interactive Resume Builder";
@@ -75,7 +76,7 @@ export default async function HomePage() {
                 mt: "1rem",
               }}
             >
-              <MuiLink href={`/r/${user.slug}/edit`}>Edit your resume</MuiLink> or{" "}
+              <MuiLink href={`/resume/edit`}>Edit your resume</MuiLink> or{" "}
               <MuiLink href="/account">update your account settings</MuiLink>.
             </Typography>
           </>
