@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
 import { Icon } from "@iconify/react";
@@ -10,11 +10,11 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
   const { data: session, status } = useSession();
 
   const [open, setOpen] = useState(false);
-  const [buttonDisabled, setButtonDisabled] = useState(skill?.description ? false : true);
 
-  useEffect(() => {
-    if (status === "authenticated" && session?.user?.id === skill.userId) setButtonDisabled(false);
-  }, [session?.user?.id, skill.userId, status]);
+  const buttonDisabled = !(
+    skill?.description ||
+    (status === "authenticated" && session?.user?.id === skill.userId)
+  );
 
   return (
     <React.Fragment>
