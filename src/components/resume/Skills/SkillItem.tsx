@@ -1,17 +1,25 @@
 import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Button from "@mui/material/Button";
 import { Icon } from "@iconify/react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
+import { useSession } from "next-auth/react";
 
 export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
+  const { data: session, status } = useSession();
+
   const [open, setOpen] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(skill?.description ? false : true);
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user?.id === skill.userId) setButtonDisabled(false);
+  }, [session?.user?.id, skill.userId, status]);
 
   return (
     <React.Fragment>
       <Button
-        disabled={!skill?.description}
+        disabled={buttonDisabled}
         variant="outlined"
         color="primary"
         onClick={() => setOpen(true)}

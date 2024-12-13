@@ -40,6 +40,7 @@ const typeDefs = gql`
 
   type SkillForUser {
     id: ID!
+    userId: ID!
     skill: Skill!
     icon: String
     description: String

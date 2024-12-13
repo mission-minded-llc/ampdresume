@@ -35,17 +35,16 @@ export const SkillSearch = () => {
 
   // When the search term is at least this length, the search will trigger
   // and show the list of skills. Pressing "Esc" will clear the search term.
-  const searchTermSearchTriggerLength = 3;
+  const minCharsForSearch = 3;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && searchTerm.length >= searchTermSearchTriggerLength) {
+      if (e.key === "Escape" && searchTerm.length >= minCharsForSearch) {
         setSearchTerm("");
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -76,7 +75,7 @@ export const SkillSearch = () => {
 
   // Filter skills based on search term
   const filteredSkills = useMemo(() => {
-    if (!data?.skills || searchTerm.length < 3) return [];
+    if (!data?.skills || searchTerm.length < minCharsForSearch) return [];
 
     // Sort skills by closest match and limit to top 10
     return data.skills
@@ -125,7 +124,7 @@ export const SkillSearch = () => {
         sx={{ mb: 2 }}
         placeholder="Type at least 3 characters to search"
       />
-      {searchTerm.length >= searchTermSearchTriggerLength && (
+      {searchTerm.length >= minCharsForSearch && (
         <Paper elevation={3}>
           <List>
             {filteredSkills.length > 0 ? (
