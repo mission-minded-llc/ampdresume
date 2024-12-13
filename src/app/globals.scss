@@ -1,5 +1,3 @@
-@use "@/app/vars.scss" as *;
-
 html,
 body {
   max-width: 100vw;
@@ -19,17 +17,4 @@ a {
 
 ul {
   padding-inline-start: 0;
-}
-
-h3,
-h4 {
-  margin-bottom: 10px;
-}
-
-// Small tablet and mobile.
-@media screen and (max-width: $breakpoint_mobile) {
-  h2 {
-    margin: 20px 0;
-    padding: 20px 0;
-  }
 }
