@@ -4,7 +4,7 @@ import { Box, Container, Divider, IconButton, Tooltip, Typography } from "@mui/m
 
 import { InfoOutlined } from "@mui/icons-material";
 import { SkillSearch } from "./SkillSearch";
-import { Skills } from "@/app/r/[slug]/components/Skills/Skills";
+import { Skills } from "@/components/resume/Skills/Skills";
 
 export const EditSkills = () => {
   return (

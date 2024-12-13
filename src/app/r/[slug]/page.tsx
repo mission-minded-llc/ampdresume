@@ -3,16 +3,16 @@ import { GET_POSITIONS, PositionWithProjects } from "@/graphql/getPositions";
 import { GET_SKILLS_FOR_USER, SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 
 import { Box } from "@mui/material";
-import { Education } from "./components/Education";
+import { Education } from "@/components/resume/Education";
 import { GET_COMPANIES } from "@/graphql/getCompanies";
 import { GET_EDUCATION } from "@/graphql/getEducation";
 import { GET_USER } from "@/graphql/getUser";
 import { Metadata } from "next";
-import { ResumeHeading } from "./components/ResumeHeading";
-import { ResumeProvider } from "./components/ResumeContext";
-import { ResumeTitle } from "./components/ResumeTitle";
-import { Skills } from "./components/Skills/Skills";
-import { WorkExperience } from "./components/WorkExperience/WorkExperience";
+import { ResumeHeading } from "@/components/resume/ResumeHeading";
+import { ResumeProvider } from "@/components/resume/ResumeContext";
+import { ResumeTitle } from "@/components/resume/ResumeTitle";
+import { Skills } from "@/components/resume/Skills/Skills";
+import { WorkExperience } from "@/components/resume/WorkExperience/WorkExperience";
 import { getApolloClient } from "@/lib/apolloClient";
 import { notFound } from "next/navigation";
 

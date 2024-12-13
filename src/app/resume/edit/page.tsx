@@ -6,7 +6,7 @@ import { EditPageProvider } from "./components/EditContext";
 import { EditSection } from "./components/EditSection";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
-import { ResumeProvider } from "../../r/[slug]/components/ResumeContext";
+import { ResumeProvider } from "@/components/resume/ResumeContext";
 import { SidebarLeft } from "./components/SidebarLeft";
 import { getSkillsForUser } from "@/server/skills";
 import { useQuery } from "@tanstack/react-query";
