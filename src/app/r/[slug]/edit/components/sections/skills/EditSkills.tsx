@@ -1,6 +1,7 @@
 "use client";
 
 import { Box, Container, Divider, Typography } from "@mui/material";
+
 import { SkillSearch } from "./SkillSearch";
 import { Skills } from "@/app/r/[slug]/components/Skills/Skills";
 

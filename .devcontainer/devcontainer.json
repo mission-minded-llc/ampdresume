@@ -17,7 +17,8 @@
         "Prisma.prisma",
         "bradlc.vscode-tailwindcss",
         "github.copilot",
-        "github.copilot-chat"
+        "github.copilot-chat",
+        "amatiasq.sort-imports"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",

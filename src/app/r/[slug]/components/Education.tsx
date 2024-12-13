@@ -1,11 +1,11 @@
 "use client";
 
+import { Box, Typography } from "@mui/material";
 import React, { useContext } from "react";
 
-import { ResumeContext } from "../ResumeContext";
 import type { Education as EducationType } from "@prisma/client";
+import { ResumeContext } from "./ResumeContext";
 import { formatDate } from "@/lib/format";
-import styles from "./Education.module.scss";
 
 export const Education = () => {
   const { education } = useContext(ResumeContext);
@@ -23,21 +23,37 @@ export const Education = () => {
   });
 
   return (
-    <section className={styles.section}>
-      <h2 className="resumeHeading">Education</h2>
+    <Box
+      component="section"
+      sx={{
+        marginTop: "30px",
+        "@media screen and (max-width: 600px)": {
+          marginTop: "16px",
+          paddingTop: 0,
+        },
+      }}
+    >
       {Object.keys(educationGroupedBySchool).map((school) => (
         <React.Fragment key={`education-${school}`}>
-          <h3>{school}</h3>
+          <Typography component="h3" variant="h5">
+            {school}
+          </Typography>
           {educationGroupedBySchool[school].map((edu) => (
-            <div key={`education-${edu.id}`}>
-              <h4>
-                {edu.degree}
-                <span> &mdash; {formatDate(edu?.dateAwarded?.toString())}</span>
-              </h4>
-            </div>
+            <Typography
+              component="h4"
+              variant="h6"
+              key={`education-${edu.id}`}
+              sx={{ fontWeight: "bold", mt: 1 }}
+            >
+              {edu.degree}
+              <Typography component="span" variant="h6" sx={{ fontWeight: "normal" }}>
+                {" "}
+                &mdash; {formatDate(edu?.dateAwarded?.toString())}
+              </Typography>
+            </Typography>
           ))}
         </React.Fragment>
       ))}
-    </section>
+    </Box>
   );
 };

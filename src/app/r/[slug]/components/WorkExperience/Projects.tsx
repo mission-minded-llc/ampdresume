@@ -1,82 +1,9 @@
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import { SyntheticEvent, useContext, useState } from "react";
-
-import { ResumeContext } from "../ResumeContext";
-import { SkillItem } from "../Skills/SkillItem";
-import styles from "./Projects.module.scss";
+import { ProjectAccordion } from "./ProjectAccordion";
+import { ProjectItem } from "./ProjectItem";
 import { ProjectWithSkills } from "@/graphql/getPositions";
+import { ResumeContext } from "../ResumeContext";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
-
-/**
- * This contains the top-level project description and skill tags. It can
- * be used as standalone, or within the Accordion.
- */
-const ProjectItem = ({
-  project,
-  projectSkills,
-}: {
-  project: ProjectWithSkills;
-  projectSkills: SkillForUserWithSkill[];
-}) => (
-  <div className={styles.projectOverview}>
-    <div>{project.name}</div>
-    <div className={styles.projectTagContainer}>
-      {projectSkills.map((skill) => (
-        <SkillItem key={`skill-${skill.skill.name}`} skill={skill} />
-      ))}
-    </div>
-  </div>
-);
-
-const ProjectAccordion = ({
-  project,
-  projectSkills,
-}: {
-  project: ProjectWithSkills;
-  projectSkills: SkillForUserWithSkill[];
-}) => {
-  const [expanded, setExpanded] = useState(false);
-
-  const handleAccordionChange = (event: SyntheticEvent, isExpanded: boolean) => {
-    const target = event.target as HTMLElement;
-    const isButtonClick = target.closest(".MuiButton-root");
-    const isDialogClick = target.closest(".MuiDialog-root");
-
-    if (isButtonClick || isDialogClick) {
-      setExpanded(true); // Ensure the accordion remains open.
-      return;
-    }
-
-    setExpanded(isExpanded);
-  };
-
-  return (
-    <Accordion
-      sx={{
-        boxShadow: "none",
-        padding: "0",
-        backgroundColor: "transparent",
-      }}
-      slotProps={{ heading: { component: "h5" } }}
-      className={styles.accordion}
-      onChange={handleAccordionChange}
-      expanded={expanded}
-    >
-      <AccordionSummary expandIcon={<span className={styles.expandIcon}>&lt;</span>}>
-        <ProjectItem project={project} projectSkills={projectSkills} />
-      </AccordionSummary>
-      <AccordionDetails
-        sx={(theme) => ({
-          backgroundColor: theme.palette.primary.light,
-          padding: "2rem",
-        })}
-        className={styles.accordionDetails}
-      >
-        {project.description}
-      </AccordionDetails>
-    </Accordion>
-  );
-};
+import { useContext } from "react";
 
 /**
  * This is the primary Projects component, which renders as list of all projects.

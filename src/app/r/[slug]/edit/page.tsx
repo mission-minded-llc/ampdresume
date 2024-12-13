@@ -1,14 +1,15 @@
 "use client";
 
 import { Box, Container } from "@mui/material";
-import { SidebarLeft } from "./components/SidebarLeft";
-import { EditSection } from "./components/EditSection";
+
 import { EditPageProvider } from "./components/EditContext";
-import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import { getSkillsForUser } from "@/server/skills";
+import { EditSection } from "./components/EditSection";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { ResumeProvider } from "../components/ResumeContext";
+import { SidebarLeft } from "./components/SidebarLeft";
+import { getSkillsForUser } from "@/server/skills";
+import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 
 const EditPage = () => {
   const { data: session, status } = useSession();

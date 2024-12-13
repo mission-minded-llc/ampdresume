@@ -1,17 +1,17 @@
 "use client";
 
-import { ResumeContext } from "../ResumeContext";
+import { Box, Typography } from "@mui/material";
+
 import { PositionsList } from "./PositionsList";
+import { ResumeContext } from "../ResumeContext";
 import { formatDate } from "@/lib/format";
-import styles from "./WorkExperience.module.scss";
 import { useContext } from "react";
 
 export const WorkExperience = () => {
   const { companies, positions } = useContext(ResumeContext);
 
   return (
-    <section className={styles.section}>
-      <h2 className="resumeHeading">Work Experience</h2>
+    <Box component="section">
       {companies.map((company) => {
         const positionsInCompany = positions.filter(
           (position) => position.company.id === company.id,
@@ -21,18 +21,40 @@ export const WorkExperience = () => {
         const endDate = formatDate(company?.endDate?.toString());
 
         return (
-          <div key={`company-${company.id}`} className={styles.companySection}>
-            <h3>
+          <Box
+            key={`company-${company.id}`}
+            sx={{
+              marginTop: "30px",
+              "@media screen and (max-width: 600px)": {
+                marginTop: "16px",
+                paddingTop: 0,
+              },
+            }}
+          >
+            <Typography
+              component="h3"
+              variant="h5"
+              sx={(theme) => ({
+                textAlign: "center",
+                padding: "20px 0 0",
+                zIndex: 1,
+                lineHeight: "2rem",
+                fontWeight: "bold",
+                [theme.breakpoints.down("sm")]: {
+                  textAlign: "left",
+                },
+              })}
+            >
               {company.name}
-              <span>
+              <Typography component="span" variant="h5" sx={{ fontWeight: "normal" }}>
                 {" "}
                 &mdash; {startDate} to {endDate.length ? endDate : "Present"}
-              </span>
-            </h3>
+              </Typography>
+            </Typography>
             <PositionsList positions={positionsInCompany} />
-          </div>
+          </Box>
         );
       })}
-    </section>
+    </Box>
   );
 };

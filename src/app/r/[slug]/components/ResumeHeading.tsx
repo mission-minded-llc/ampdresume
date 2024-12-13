@@ -1,18 +1,51 @@
+"use client";
+
+import { Typography } from "@mui/material";
 import { User } from "@prisma/client";
-import styles from "./ResumeHeading.module.scss";
 
 export const ResumeHeading = ({ user }: { user: User }) => {
   return (
-    <h1 className={styles.userTitleHeading}>
+    <Typography
+      component="h1"
+      variant="h4"
+      sx={(theme) => ({
+        marginTop: "16px",
+        marginBottom: "0",
+        textAlign: "center",
+        lineHeight: "100%",
+        [theme.breakpoints.down("sm")]: {
+          textAlign: "left",
+        },
+      })}
+    >
       {user?.name}
-      <br />
-      <span className={styles.userTitle}>{user?.title}</span>
-      <br />
-      <span className={styles.userMeta}>
+      <Typography
+        component="span"
+        variant="h5"
+        sx={{
+          display: "block",
+          mt: 1,
+          pt: 1,
+        }}
+      >
+        {user?.title}
+      </Typography>
+      <Typography
+        component="span"
+        variant="body1"
+        sx={{
+          fontSize: "1rem",
+        }}
+      >
         {user?.displayEmail}
-        <span className={styles.separator}>|</span>
+        <Typography
+          component="span"
+          sx={{ margin: "0 1rem", fontSize: "2rem", fontWeight: "lighter", opacity: 0.5 }}
+        >
+          |
+        </Typography>
         {user?.location}
-      </span>
-    </h1>
+      </Typography>
+    </Typography>
   );
 };

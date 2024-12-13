@@ -1,6 +1,6 @@
-import { makeExecutableSchema } from "@graphql-tools/schema";
 import { PrismaClient } from "@prisma/client";
 import gql from "graphql-tag";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 
 const prisma = new PrismaClient();
 

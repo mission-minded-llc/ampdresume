@@ -1,8 +1,9 @@
 "use client";
 
+import { Company, Education } from "@prisma/client";
+
 import { PositionWithProjects } from "@/graphql/getPositions";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
-import { Company, Education } from "@prisma/client";
 import { createContext } from "react";
 
 interface ResumeProviderProps {

@@ -2,12 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { Box } from "@mui/material";
+import { PositionWithProjects } from "@/graphql/getPositions";
 import { Projects } from "./Projects";
 import Typography from "@mui/material/Typography";
-import cx from "classnames";
 import { formatDate } from "@/lib/format";
-import styles from "./PositionSingle.module.scss";
-import { PositionWithProjects } from "@/graphql/getPositions";
 
 export const PositionSingle = ({
   position,
@@ -37,33 +36,56 @@ export const PositionSingle = ({
   const endDate = formatDate(position?.endDate?.toString());
 
   return (
-    <div className={styles.container}>
-      <div key={`position-${position.id}`}>
+    <Box
+      sx={{
+        marginTop: "10px",
+        "@media screen and (max-width: 600px)": {
+          marginTop: "16px",
+          paddingTop: 0,
+        },
+        textAlign: "center",
+      }}
+    >
+      <Typography
+        component="h4"
+        variant="h6"
+        ref={stickyRef}
+        sx={(theme) => ({
+          backgroundColor: theme.palette.background.default,
+          boxShadow: isSticky ? "0 2px 4px rgba(0, 0, 0, 0.1)" : "none",
+          textAlign: "center",
+          padding: "1rem 0",
+          marginTop: 0,
+          marginBottom: "10px",
+          zIndex: 1,
+          borderBottom: "1px solid white",
+          [theme.breakpoints.down("sm")]: {
+            marginTop: "16px",
+            textAlign: "left",
+          },
+        })}
+      >
+        {position.title}{" "}
+        {showDates ? (
+          <Typography component="span">
+            &mdash; {startDate} to {endDate.length ? endDate : "Present"}
+          </Typography>
+        ) : null}
         <Typography
-          component="h4"
-          variant="h6"
-          className={cx(isSticky ? "stuck" : "", styles.position)}
-          ref={stickyRef}
+          component="span"
           sx={(theme) => ({
-            backgroundColor: theme.palette.background.default,
+            opacity: isSticky ? 1 : 0,
+            display: isSticky ? "block" : "none",
+            transition: "opacity 500ms ease",
+            [theme.breakpoints.down("sm")]: {
+              opacity: 1,
+            },
           })}
         >
-          {position.title}{" "}
-          {showDates ? (
-            <span className="dates">
-              &mdash; {startDate} to {endDate.length ? endDate : "Present"}
-            </span>
-          ) : null}
-          <Typography
-            component="span"
-            className={styles.companyName}
-            sx={{ opacity: isSticky ? 1 : 0 }}
-          >
-            {position.company.name}
-          </Typography>
+          {position.company.name}
         </Typography>
-        {position?.projects ? <Projects projects={position.projects} /> : null}
-      </div>
-    </div>
+      </Typography>
+      {position?.projects ? <Projects projects={position.projects} /> : null}
+    </Box>
   );
 };

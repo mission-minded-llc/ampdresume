@@ -1,18 +1,19 @@
-import { GET_COMPANIES } from "@/graphql/getCompanies";
-import { GET_EDUCATION } from "@/graphql/getEducation";
+import { Company, Education as EducationType, User } from "@prisma/client";
 import { GET_POSITIONS, PositionWithProjects } from "@/graphql/getPositions";
 import { GET_SKILLS_FOR_USER, SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
-import { GET_USER } from "@/graphql/getUser";
 
-import { ResumeProvider } from "./components/ResumeContext";
-import { Education } from "./components/Education/Education";
+import { Box } from "@mui/material";
+import { Education } from "./components/Education";
+import { GET_COMPANIES } from "@/graphql/getCompanies";
+import { GET_EDUCATION } from "@/graphql/getEducation";
+import { GET_USER } from "@/graphql/getUser";
+import { Metadata } from "next";
 import { ResumeHeading } from "./components/ResumeHeading";
+import { ResumeProvider } from "./components/ResumeContext";
+import { ResumeTitle } from "./components/ResumeTitle";
 import { Skills } from "./components/Skills/Skills";
 import { WorkExperience } from "./components/WorkExperience/WorkExperience";
 import { getApolloClient } from "@/lib/apolloClient";
-import styles from "./page.module.scss";
-import { User, Company, Education as EducationType } from "@prisma/client";
-import { Metadata } from "next";
 
 export async function generateMetadata({
   params,
@@ -113,14 +114,46 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       positions={positions}
       education={education}
     >
-      <main className={styles.main}>
+      <Box
+        component="main"
+        sx={{
+          position: "relative",
+          display: "block",
+          maxWidth: "1024px",
+          margin: "0 auto",
+          paddingBottom: "100px",
+        }}
+      >
         <ResumeHeading user={user} />
-        <div className={styles.workExperienceSkills}>
-          <Skills />
-          <WorkExperience />
-        </div>
-        <Education />
-      </main>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            "@media screen and (max-width: 600px)": {
+              flexDirection: "column-reverse",
+            },
+          }}
+        >
+          {skillsForUser?.length ? (
+            <>
+              <ResumeTitle>Skills</ResumeTitle>
+              <Skills />
+            </>
+          ) : null}
+          {companies?.length && positions?.length ? (
+            <>
+              <ResumeTitle>Work Experience</ResumeTitle>
+              <WorkExperience />
+            </>
+          ) : null}
+        </Box>
+        {education?.length ? (
+          <>
+            <ResumeTitle>Education</ResumeTitle>
+            <Education />
+          </>
+        ) : null}
+      </Box>
     </ResumeProvider>
   );
 }
