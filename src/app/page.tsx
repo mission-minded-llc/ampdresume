@@ -39,7 +39,7 @@ export default async function HomePage() {
   if (userId && !user) {
     return {
       redirect: {
-        destination: "/api/auth/signout",
+        destination: "/logout",
         permanent: false,
       },
     };

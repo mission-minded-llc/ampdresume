@@ -5,6 +5,7 @@ import { Box, Container } from "@mui/material";
 import { EditPageProvider } from "./components/EditContext";
 import { EditSection } from "./components/EditSection";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { MuiLink } from "@/components/MuiLink";
 import { ResumeProvider } from "../../r/[slug]/components/ResumeContext";
 import { SidebarLeft } from "./components/SidebarLeft";
 import { getSkillsForUser } from "@/server/skills";
@@ -27,7 +28,13 @@ const EditPage = () => {
   });
 
   if (status === "loading") return <LoadingOverlay message="Loading session..." />;
-  if (status === "unauthenticated") return <Box>Please log in.</Box>;
+  if (status === "unauthenticated")
+    return (
+      <Box>
+        Please <MuiLink href="/login">log in.</MuiLink>
+      </Box>
+    );
+
   if (isPending) return <LoadingOverlay message="Loading resume data..." />;
   if (error) return <Box>Error loading skills: {error.message}</Box>;
 
