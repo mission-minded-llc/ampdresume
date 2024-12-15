@@ -26,7 +26,7 @@ export const EditSkills = () => {
           </IconButton>
         </Tooltip>
       </Typography>
-      <Skills />
+      <Skills skillType="user" />
     </Container>
   );
 };

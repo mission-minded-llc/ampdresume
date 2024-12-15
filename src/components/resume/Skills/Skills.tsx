@@ -4,11 +4,12 @@ import { Box, Button } from "@mui/material";
 import React, { MouseEvent, useState } from "react";
 
 import { ResumeContext } from "../ResumeContext";
+import { SkillType } from "@/graphql/getSkills";
 import { SkillsCloud } from "./SkillsCloud";
 import { SkillsExperience } from "./SkillsExperience";
 import { useContext } from "react";
 
-export const Skills = () => {
+export const Skills = ({ skillType }: { skillType: SkillType }) => {
   const { skillsForUser } = useContext(ResumeContext);
 
   const [skillsLayout, setSkillsLayout] = useState<"experience" | "cloud">("experience");
@@ -48,9 +49,9 @@ export const Skills = () => {
         </Button>
       </Box>
       {skillsLayout === "experience" ? (
-        <SkillsExperience skills={skillsForUser} />
+        <SkillsExperience skills={skillsForUser} skillType={skillType} />
       ) : (
-        <SkillsCloud skills={skillsForUser} />
+        <SkillsCloud skills={skillsForUser} skillType={skillType} />
       )}
     </section>
   );

@@ -142,7 +142,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           {skillsForUser?.length ? (
             <>
               <ResumeTitle>Skills</ResumeTitle>
-              <Skills />
+              <Skills skillType="user" />
             </>
           ) : null}
           {companies?.length && positions?.length ? (

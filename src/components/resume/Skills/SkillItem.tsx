@@ -6,9 +6,16 @@ import { Icon } from "@iconify/react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItemEdit } from "./SkillItemEdit";
 import { SkillItemView } from "./SkillItemView";
+import { SkillType } from "@/graphql/getSkills";
 import { useSession } from "next-auth/react";
 
-export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
+export const SkillItem = ({
+  skill,
+  skillType,
+}: {
+  skill: SkillForUserWithSkill;
+  skillType: SkillType;
+}) => {
   const { data: session, status } = useSession();
 
   const [open, setOpen] = useState(false);
@@ -60,7 +67,11 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
           X
         </IconButton>
         <DialogContent>
-          {userCanEdit ? <SkillItemEdit skill={skill} /> : <SkillItemView skill={skill} />}
+          {userCanEdit ? (
+            <SkillItemEdit skill={skill} skillType={skillType} />
+          ) : (
+            <SkillItemView skill={skill} />
+          )}
         </DialogContent>
       </Dialog>
     </React.Fragment>

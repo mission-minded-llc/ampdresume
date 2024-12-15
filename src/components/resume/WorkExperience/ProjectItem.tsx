@@ -45,7 +45,7 @@ export const ProjectItem = ({
       }}
     >
       {projectSkills.map((skill) => (
-        <SkillItem key={`skill-${skill.skill.name}`} skill={skill} />
+        <SkillItem key={`skill-${skill.skill.name}`} skill={skill} skillType="project" />
       ))}
     </Box>
   </Box>

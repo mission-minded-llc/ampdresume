@@ -4,8 +4,15 @@ import { Box } from "@mui/material";
 import React from "react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItem } from "./SkillItem";
+import { SkillType } from "@/graphql/getSkills";
 
-export const SkillsExperience = ({ skills }: { skills: SkillForUserWithSkill[] }) => {
+export const SkillsExperience = ({
+  skills,
+  skillType,
+}: {
+  skills: SkillForUserWithSkill[];
+  skillType: SkillType;
+}) => {
   const skillsByYear: {
     [year: string]: SkillForUserWithSkill[];
   } = {};
@@ -110,7 +117,7 @@ export const SkillsExperience = ({ skills }: { skills: SkillForUserWithSkill[] }
               }}
             >
               {skillsList.map((skill) => (
-                <SkillItem key={`skill-${skill.skill.name}`} skill={skill} />
+                <SkillItem key={`skill-${skill.skill.name}`} skill={skill} skillType={skillType} />
               ))}
             </Box>
           </React.Fragment>

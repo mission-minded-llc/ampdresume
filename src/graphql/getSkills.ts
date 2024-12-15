@@ -9,3 +9,5 @@ export const GET_SKILLS = gql`
     }
   }
 `;
+
+export type SkillType = "user" | "project";
