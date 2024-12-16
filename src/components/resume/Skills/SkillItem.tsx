@@ -1,29 +1,23 @@
 import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Button from "@mui/material/Button";
-import { EditSkillMutation } from "@/app/resume/edit/components/sections/skills/EditSkills";
 import { Icon } from "@iconify/react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItemEdit } from "./SkillItemEdit";
 import { SkillItemView } from "./SkillItemView";
-import { SkillType } from "@/graphql/getSkills";
+import { SkillsContext } from "./Skills";
 import { useSession } from "next-auth/react";
 
-export const SkillItem = ({
-  skill,
-  skillType,
-  editMutation,
-}: {
-  skill: SkillForUserWithSkill;
-  skillType: SkillType;
-  editMutation?: EditSkillMutation;
-}) => {
+export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
   const { data: session, status } = useSession();
+  const { updateSkillForUserMutation } = useContext(SkillsContext);
 
   const [open, setOpen] = useState(false);
 
-  const userCanEdit = status === "authenticated" && session?.user?.id === skill.userId;
+  const userCanEdit =
+    updateSkillForUserMutation && status === "authenticated" && session?.user?.id === skill.userId;
+
   const buttonDisabled = !(skill?.description || userCanEdit);
 
   return (
@@ -71,12 +65,7 @@ export const SkillItem = ({
         </IconButton>
         <DialogContent>
           {userCanEdit ? (
-            <SkillItemEdit
-              skill={skill}
-              skillType={skillType}
-              editMutation={editMutation}
-              successCallback={() => setOpen(false)}
-            />
+            <SkillItemEdit skill={skill} successCallback={() => setOpen(false)} />
           ) : (
             <SkillItemView skill={skill} />
           )}

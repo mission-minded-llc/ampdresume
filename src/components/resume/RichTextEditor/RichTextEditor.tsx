@@ -50,7 +50,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
       onError: () => {},
       nodes: [HeadingNode, CodeNode, CodeHighlightNode],
     }),
-    [],
+    [name],
   );
 
   return (

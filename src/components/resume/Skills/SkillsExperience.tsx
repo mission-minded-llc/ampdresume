@@ -1,21 +1,11 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { EditSkillMutation } from "@/app/resume/edit/components/sections/skills/EditSkills";
 import React from "react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItem } from "./SkillItem";
-import { SkillType } from "@/graphql/getSkills";
 
-export const SkillsExperience = ({
-  skills,
-  skillType,
-  editMutation,
-}: {
-  skills: SkillForUserWithSkill[];
-  skillType: SkillType;
-  editMutation?: EditSkillMutation;
-}) => {
+export const SkillsExperience = ({ skills }: { skills: SkillForUserWithSkill[] }) => {
   const skillsByYear: {
     [year: string]: SkillForUserWithSkill[];
   } = {};
@@ -64,10 +54,6 @@ export const SkillsExperience = ({
         : "1"; // Minimum 1 year.
 
     const skillWithoutYear = { ...skill };
-
-    // TODO: make yearStarted optional in the schema.
-    // @ts-expect-error yearStarted is optional.
-    delete skillWithoutYear.yearStarted;
 
     skillsByYear[totalYears] = skillsByYear?.[totalYears]
       ? [skillWithoutYear, ...skillsByYear[totalYears]]
@@ -120,12 +106,7 @@ export const SkillsExperience = ({
               }}
             >
               {skillsList.map((skill) => (
-                <SkillItem
-                  key={`skill-${skill.skill.name}`}
-                  skill={skill}
-                  skillType={skillType}
-                  editMutation={editMutation}
-                />
+                <SkillItem key={`skill-${skill.skill.name}`} skill={skill} />
               ))}
             </Box>
           </React.Fragment>

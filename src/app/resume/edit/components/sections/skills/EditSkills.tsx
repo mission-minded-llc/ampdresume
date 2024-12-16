@@ -9,7 +9,7 @@ import { Skills } from "@/components/resume/Skills/Skills";
 import { updateSkillForUser } from "@/server/skills";
 import { useSession } from "next-auth/react";
 
-export type EditSkillMutation = UseMutationResult<
+export type UpdateSkillForUserMutation = UseMutationResult<
   void,
   Error,
   { id: string; description: string; yearStarted: number; totalYears: number },
@@ -33,6 +33,7 @@ export const EditSkills = () => {
       totalYears: number;
     }) => {
       if (!session?.user?.id) return;
+
       await updateSkillForUser({
         id,
         userId: session.user.id,
@@ -67,7 +68,7 @@ export const EditSkills = () => {
           </IconButton>
         </Tooltip>
       </Typography>
-      <Skills skillType="user" editMutation={mutation} />
+      <Skills skillType="user" updateSkillForUserMutation={mutation} />
     </Container>
   );
 };

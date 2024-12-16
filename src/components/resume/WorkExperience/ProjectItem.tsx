@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { ProjectWithSkills } from "@/graphql/getPositions";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItem } from "../Skills/SkillItem";
+import { SkillsContextProvider } from "../Skills/Skills";
 
 /**
  * This contains the top-level project description and skill tags. It can
@@ -44,9 +45,11 @@ export const ProjectItem = ({
         },
       }}
     >
-      {projectSkills.map((skill) => (
-        <SkillItem key={`skill-${skill.skill.name}`} skill={skill} skillType="project" />
-      ))}
+      <SkillsContextProvider skillType="project">
+        {projectSkills.map((skill) => (
+          <SkillItem key={`skill-${skill.skill.name}`} skill={skill} />
+        ))}
+      </SkillsContextProvider>
     </Box>
   </Box>
 );

@@ -3,19 +3,42 @@
 import { Box, Button } from "@mui/material";
 import React, { MouseEvent, useState } from "react";
 
-import { EditSkillMutation } from "@/app/resume/edit/components/sections/skills/EditSkills";
 import { ResumeContext } from "../ResumeContext";
 import { SkillType } from "@/graphql/getSkills";
 import { SkillsCloud } from "./SkillsCloud";
 import { SkillsExperience } from "./SkillsExperience";
+import { UpdateSkillForUserMutation } from "@/app/resume/edit/components/sections/skills/EditSkills";
 import { useContext } from "react";
+
+interface SkillsContext {
+  skillType: SkillType;
+  updateSkillForUserMutation?: UpdateSkillForUserMutation;
+}
+
+export const SkillsContext = React.createContext<SkillsContext>({
+  skillType: "user",
+});
+
+export const SkillsContextProvider = ({
+  skillType,
+  updateSkillForUserMutation,
+  children,
+}: {
+  skillType: SkillType;
+  updateSkillForUserMutation?: UpdateSkillForUserMutation;
+  children: React.ReactNode;
+}) => (
+  <SkillsContext.Provider value={{ skillType, updateSkillForUserMutation }}>
+    {children}
+  </SkillsContext.Provider>
+);
 
 export const Skills = ({
   skillType,
-  editMutation,
+  updateSkillForUserMutation,
 }: {
   skillType: SkillType;
-  editMutation?: EditSkillMutation;
+  updateSkillForUserMutation?: UpdateSkillForUserMutation;
 }) => {
   const { skillsForUser } = useContext(ResumeContext);
 
@@ -34,36 +57,37 @@ export const Skills = ({
   };
 
   return (
-    <section>
-      <Box>
-        Group by:{" "}
-        <Button
-          data-active={skillsLayout === "experience"}
-          data-layout="experience"
-          onClick={toggleSkillsLayout}
-          color={skillsLayout === "experience" ? "primary" : "secondary"}
-        >
-          Experience
-        </Button>{" "}
-        |{" "}
-        <Button
-          data-active={skillsLayout === "cloud"}
-          data-layout="cloud"
-          onClick={toggleSkillsLayout}
-          color={skillsLayout === "cloud" ? "primary" : "secondary"}
-        >
-          Cloud
-        </Button>
-      </Box>
-      {skillsLayout === "experience" ? (
-        <SkillsExperience
-          skills={skillsForUser}
-          skillType={skillType}
-          editMutation={editMutation}
-        />
-      ) : (
-        <SkillsCloud skills={skillsForUser} skillType={skillType} editMutation={editMutation} />
-      )}
-    </section>
+    <SkillsContextProvider
+      skillType={skillType}
+      updateSkillForUserMutation={updateSkillForUserMutation}
+    >
+      <section>
+        <Box>
+          Group by:{" "}
+          <Button
+            data-active={skillsLayout === "experience"}
+            data-layout="experience"
+            onClick={toggleSkillsLayout}
+            color={skillsLayout === "experience" ? "primary" : "secondary"}
+          >
+            Experience
+          </Button>{" "}
+          |{" "}
+          <Button
+            data-active={skillsLayout === "cloud"}
+            data-layout="cloud"
+            onClick={toggleSkillsLayout}
+            color={skillsLayout === "cloud" ? "primary" : "secondary"}
+          >
+            Cloud
+          </Button>
+        </Box>
+        {skillsLayout === "experience" ? (
+          <SkillsExperience skills={skillsForUser} />
+        ) : (
+          <SkillsCloud skills={skillsForUser} />
+        )}
+      </section>
+    </SkillsContextProvider>
   );
 };

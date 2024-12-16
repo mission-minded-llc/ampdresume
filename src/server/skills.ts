@@ -51,16 +51,15 @@ export const getSkillsForUser = async ({ userId }: { userId: string | undefined 
 export const addSkillForUser = async ({
   userId,
   skillId,
-  yearValue,
+  yearStarted,
+  totalYears,
 }: {
   userId: string;
   skillId: string;
-  yearValue: number;
+  yearStarted: number;
+  totalYears: number;
 }) => {
   const client = getApolloClient();
-
-  const yearStarted = yearValue > 1920 ? yearValue : null;
-  const totalYears = yearValue > 1920 ? null : yearValue;
 
   await client.mutate({
     mutation: ADD_SKILL_FOR_USER,

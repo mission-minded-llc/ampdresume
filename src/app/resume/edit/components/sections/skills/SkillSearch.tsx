@@ -5,14 +5,12 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  IconButton,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Paper,
   TextField,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
@@ -20,8 +18,8 @@ import { addSkillForUser, getSkills } from "@/server/skills";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { Icon } from "@iconify/react";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { Tooltip } from "@/components/Tooltip";
 import { useSession } from "next-auth/react";
 
 export const SkillSearch = () => {
@@ -30,7 +28,8 @@ export const SkillSearch = () => {
 
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedSkillId, setSelectedSkillId] = useState<string | null>(null);
-  const [yearValue, setYearValue] = useState("");
+  const [yearStarted, setYearStarted] = useState(new Date().getFullYear());
+  const [totalYears, setTotalYears] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
 
   // When the search term is at least this length, the search will trigger
@@ -60,9 +59,17 @@ export const SkillSearch = () => {
   });
 
   const mutation = useMutation({
-    mutationFn: async ({ skillId, yearValue }: { skillId: string; yearValue: number }) => {
+    mutationFn: async ({
+      skillId,
+      yearStarted,
+      totalYears,
+    }: {
+      skillId: string;
+      yearStarted: number;
+      totalYears: number;
+    }) => {
       if (!session?.user?.id) return;
-      await addSkillForUser({ userId: session.user.id, skillId, yearValue });
+      await addSkillForUser({ userId: session.user.id, skillId, yearStarted, totalYears });
     },
     onSuccess: () => {
       if (!session?.user?.id) return;
@@ -97,16 +104,18 @@ export const SkillSearch = () => {
   };
 
   const handleAddSkill = () => {
-    if (selectedSkillId && yearValue) {
+    if (selectedSkillId) {
       mutation.mutate({
         skillId: selectedSkillId,
-        yearValue: Number(yearValue),
+        yearStarted: yearStarted,
+        totalYears: totalYears,
       });
 
       // Close dialog and reset states
       setOpenDialog(false);
       setSelectedSkillId(null);
-      setYearValue("");
+      setYearStarted(new Date().getFullYear());
+      setTotalYears(1);
       setSearchTerm("");
     }
   };
@@ -157,26 +166,38 @@ export const SkillSearch = () => {
         <DialogTitle>
           Enter Proficiency Level
           <Tooltip
-            title="Enter the year you started using this skill or the total years of experience. If you enter the year started, the total years will be calculated for you automatically."
-            placement="right"
-          >
-            <IconButton size="small" sx={{ ml: 1 }}>
-              <InfoOutlinedIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
+            message="Enter the year you started using this skill 
+            or the total years of experience. If you enter the 
+            year started, the total years will be calculated 
+            for you automatically. If you enter a total years
+            value, it will override the calculated value. Leave 0
+            for none."
+          />
         </DialogTitle>
 
         <DialogContent>
-          <Typography>Enter year started, or total years experience below.</Typography>
-          <TextField
-            autoFocus
-            margin="dense"
-            type="number"
-            fullWidth
-            variant="outlined"
-            value={yearValue}
-            onChange={(e) => setYearValue(e.target.value)}
-          />
+          <Typography>Enter year started, and/or total years experience below.</Typography>
+          <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
+            <TextField
+              autoFocus
+              margin="dense"
+              type="number"
+              fullWidth
+              variant="outlined"
+              value={yearStarted}
+              label="Year Started"
+              onChange={(e) => setYearStarted(Number(e.target.value))}
+            />
+            <TextField
+              margin="dense"
+              type="number"
+              fullWidth
+              variant="outlined"
+              value={totalYears}
+              label="Total Years"
+              onChange={(e) => setTotalYears(Number(e.target.value))}
+            />
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDialog(false)}>Cancel</Button>

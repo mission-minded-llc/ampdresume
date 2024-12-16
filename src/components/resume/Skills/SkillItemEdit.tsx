@@ -1,30 +1,28 @@
 import { Box, Button, Divider, TextField } from "@mui/material";
+import { useContext, useState } from "react";
 
-import { EditSkillMutation } from "@/app/resume/edit/components/sections/skills/EditSkills";
 import { Icon } from "@iconify/react";
 import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
-import { SkillType } from "@/graphql/getSkills";
-import { useState } from "react";
+import { SkillsContext } from "./Skills";
+import { Tooltip } from "@/components/Tooltip";
 
 export const SkillItemEdit = ({
   skill,
-  skillType,
-  editMutation,
   successCallback,
 }: {
   skill: SkillForUserWithSkill;
-  skillType: SkillType;
-  editMutation?: EditSkillMutation;
   successCallback?: () => void;
 }) => {
+  const { skillType, updateSkillForUserMutation } = useContext(SkillsContext);
+
   const [value, setValue] = useState(skill?.description ?? "");
   const [yearStarted, setYearStarted] = useState(skill?.yearStarted ?? new Date().getFullYear());
   const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 1);
 
   const handleSave = () => {
-    if (editMutation) {
-      editMutation.mutate({
+    if (updateSkillForUserMutation) {
+      updateSkillForUserMutation.mutate({
         id: skill.id,
         description: value,
         yearStarted,
@@ -48,12 +46,22 @@ export const SkillItemEdit = ({
           value={yearStarted}
           onChange={(e) => setYearStarted(Number(e.target.value))}
         />
-        <TextField
-          type="number"
-          label="Total Years"
-          value={totalYears}
-          onChange={(e) => setTotalYears(Number(e.target.value))}
-        />
+        <>
+          <TextField
+            type="number"
+            label="Total Years"
+            value={totalYears}
+            onChange={(e) => setTotalYears(Number(e.target.value))}
+          />
+          <Tooltip
+            message="Enter the year you started using this skill 
+            or the total years of experience. If you enter the 
+            year started, the total years will be calculated 
+            for you automatically. If you enter a total years
+            value, it will override the calculated value. Leave 0
+            for none."
+          />
+        </>
       </Box>
       <Divider sx={{ my: 2 }} />
       <Box sx={{ mb: 2 }}>
