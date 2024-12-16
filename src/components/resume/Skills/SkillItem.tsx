@@ -2,6 +2,7 @@ import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
+import { EditSkillMutation } from "@/app/resume/edit/components/sections/skills/EditSkills";
 import { Icon } from "@iconify/react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItemEdit } from "./SkillItemEdit";
@@ -12,9 +13,11 @@ import { useSession } from "next-auth/react";
 export const SkillItem = ({
   skill,
   skillType,
+  editMutation,
 }: {
   skill: SkillForUserWithSkill;
   skillType: SkillType;
+  editMutation?: EditSkillMutation;
 }) => {
   const { data: session, status } = useSession();
 
@@ -68,7 +71,12 @@ export const SkillItem = ({
         </IconButton>
         <DialogContent>
           {userCanEdit ? (
-            <SkillItemEdit skill={skill} skillType={skillType} />
+            <SkillItemEdit
+              skill={skill}
+              skillType={skillType}
+              editMutation={editMutation}
+              successCallback={() => setOpen(false)}
+            />
           ) : (
             <SkillItemView skill={skill} />
           )}

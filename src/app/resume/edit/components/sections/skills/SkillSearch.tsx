@@ -39,9 +39,7 @@ export const SkillSearch = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && searchTerm.length >= minCharsForSearch) {
-        setSearchTerm("");
-      }
+      if (e.key === "Escape") setSearchTerm("");
     };
 
     window.addEventListener("keydown", handleKeyDown);

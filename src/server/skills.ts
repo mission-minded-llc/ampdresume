@@ -1,8 +1,10 @@
+import { GET_SKILLS_FOR_USER, SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
+
 import { ADD_SKILL_FOR_USER } from "@/graphql/addSkillForUser";
 import { GET_SKILLS } from "@/graphql/getSkills";
-import { GET_SKILLS_FOR_USER, SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
-import { getApolloClient } from "@/lib/apolloClient";
 import { Skill } from "@prisma/client";
+import { UPDATE_SKILL_FOR_USER } from "@/graphql/updateSkillForUser";
+import { getApolloClient } from "@/lib/apolloClient";
 
 /**
  * Used to fetch all skills as part of a search/selector.
@@ -67,6 +69,41 @@ export const addSkillForUser = async ({
       skillId,
       yearStarted,
       totalYears,
+    },
+  });
+};
+
+/**
+ * Used to update a skill for a user.
+ *
+ * @param id - the skill ID to update.
+ * @param userId - the user ID to update the skill for.
+ * @param skillId - the skill ID to update.
+ * @param yearValue - the year value to update.
+ */
+export const updateSkillForUser = async ({
+  id,
+  userId,
+  yearStarted,
+  totalYears,
+  description,
+}: {
+  id: string;
+  userId: string;
+  yearStarted: number;
+  totalYears: number;
+  description: string;
+}) => {
+  const client = getApolloClient();
+
+  await client.mutate({
+    mutation: UPDATE_SKILL_FOR_USER,
+    variables: {
+      id,
+      userId,
+      yearStarted,
+      totalYears,
+      description,
     },
   });
 };

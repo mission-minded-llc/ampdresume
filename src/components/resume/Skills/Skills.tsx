@@ -3,13 +3,20 @@
 import { Box, Button } from "@mui/material";
 import React, { MouseEvent, useState } from "react";
 
+import { EditSkillMutation } from "@/app/resume/edit/components/sections/skills/EditSkills";
 import { ResumeContext } from "../ResumeContext";
 import { SkillType } from "@/graphql/getSkills";
 import { SkillsCloud } from "./SkillsCloud";
 import { SkillsExperience } from "./SkillsExperience";
 import { useContext } from "react";
 
-export const Skills = ({ skillType }: { skillType: SkillType }) => {
+export const Skills = ({
+  skillType,
+  editMutation,
+}: {
+  skillType: SkillType;
+  editMutation?: EditSkillMutation;
+}) => {
   const { skillsForUser } = useContext(ResumeContext);
 
   const [skillsLayout, setSkillsLayout] = useState<"experience" | "cloud">("experience");
@@ -49,9 +56,13 @@ export const Skills = ({ skillType }: { skillType: SkillType }) => {
         </Button>
       </Box>
       {skillsLayout === "experience" ? (
-        <SkillsExperience skills={skillsForUser} skillType={skillType} />
+        <SkillsExperience
+          skills={skillsForUser}
+          skillType={skillType}
+          editMutation={editMutation}
+        />
       ) : (
-        <SkillsCloud skills={skillsForUser} skillType={skillType} />
+        <SkillsCloud skills={skillsForUser} skillType={skillType} editMutation={editMutation} />
       )}
     </section>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { Box } from "@mui/material";
+import { EditSkillMutation } from "@/app/resume/edit/components/sections/skills/EditSkills";
 import React from "react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItem } from "./SkillItem";
@@ -9,9 +10,11 @@ import { SkillType } from "@/graphql/getSkills";
 export const SkillsExperience = ({
   skills,
   skillType,
+  editMutation,
 }: {
   skills: SkillForUserWithSkill[];
   skillType: SkillType;
+  editMutation?: EditSkillMutation;
 }) => {
   const skillsByYear: {
     [year: string]: SkillForUserWithSkill[];
@@ -117,7 +120,12 @@ export const SkillsExperience = ({
               }}
             >
               {skillsList.map((skill) => (
-                <SkillItem key={`skill-${skill.skill.name}`} skill={skill} skillType={skillType} />
+                <SkillItem
+                  key={`skill-${skill.skill.name}`}
+                  skill={skill}
+                  skillType={skillType}
+                  editMutation={editMutation}
+                />
               ))}
             </Box>
           </React.Fragment>

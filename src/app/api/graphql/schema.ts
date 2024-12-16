@@ -21,6 +21,13 @@ const typeDefs = gql`
   type Mutation {
     # User-specific mutations.
     addSkillForUser(userId: ID!, skillId: ID!, yearStarted: Int, totalYears: Int): SkillForUser!
+    updateSkillForUser(
+      id: ID!
+      userId: ID!
+      yearStarted: Int
+      totalYears: Int
+      description: String
+    ): SkillForUser!
   }
 
   type User {
@@ -208,6 +215,36 @@ const resolvers = {
         data: {
           userId,
           skillId,
+          yearStarted,
+          totalYears,
+        },
+        include: { skill: true }, // Include skill details
+      });
+    },
+
+    updateSkillForUser: async (
+      _: string,
+      {
+        id,
+        userId,
+        yearStarted,
+        totalYears,
+        description,
+      }: {
+        id: string;
+        userId: string;
+        yearStarted: number;
+        totalYears: number;
+        description: string;
+      },
+    ) => {
+      /// TODO: verify that userId matches the current session user.
+
+      return await prisma.skillForUser.update({
+        where: { id },
+        data: {
+          userId,
+          description,
           yearStarted,
           totalYears,
         },
