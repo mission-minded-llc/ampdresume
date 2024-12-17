@@ -40,6 +40,9 @@ jobs:
       - name: Run tests
         run: npm run test:coverage
 
+      - name: Run build
+        run: npm run build
+
   infra-tests:
     name: Infrastructure Tests
     runs-on: ubuntu-latest
@@ -59,3 +62,20 @@ jobs:
       - name: Plan Terraform
         working-directory: terraform
         run: terraform plan
+
+  infra-deploy:
+    name: Infrastructure Deploy
+    runs-on: ubuntu-latest
+    needs: [code-tests, infra-tests]
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup-dependencies
+
+      - name: Initialize Terraform
+        working-directory: terraform
+        run: terraform init
+
+      - name: Apply Terraform
+        working-directory: terraform
+        run: terraform apply -auto-approve
