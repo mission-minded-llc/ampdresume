@@ -24,6 +24,8 @@ jobs:
     name: Code Tests
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
       - uses: ./.github/actions/setup-dependencies
 
       - name: Check formatting
@@ -42,6 +44,8 @@ jobs:
     name: Infrastructure Tests
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
       - uses: ./.github/actions/setup-dependencies
 
       - name: Initialize Terraform
