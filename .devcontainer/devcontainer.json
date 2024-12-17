@@ -4,6 +4,8 @@
   "service": "app",
   "workspaceFolder": "/workspace",
 
+  "mounts": ["source=${env:HOME}/.aws,target=/root/.aws,type=bind"],
+
   "customizations": {
     "vscode": {
       "extensions": [
@@ -20,7 +22,8 @@
         "github.copilot-chat",
         "amatiasq.sort-imports",
         "HashiCorp.terraform",
-        "ms-azuretools.vscode-azureterraform"
+        "ms-azuretools.vscode-azureterraform",
+        "AmazonWebServices.aws-toolkit-vscode"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
@@ -44,6 +47,9 @@
       "version": "latest",
       "tflint": "latest",
       "installTFsec": true
+    },
+    "ghcr.io/devcontainers/features/aws-cli:1": {
+      "version": "latest"
     }
   },
 
