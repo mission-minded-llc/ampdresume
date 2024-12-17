@@ -23,6 +23,7 @@
         "amatiasq.sort-imports",
         "HashiCorp.terraform",
         "ms-azuretools.vscode-azureterraform",
+        "matheusq94.TFS",
         "AmazonWebServices.aws-toolkit-vscode"
       ],
       "settings": {
