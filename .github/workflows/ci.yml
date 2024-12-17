@@ -2,8 +2,7 @@ name: Continuous Integration
 
 on:
   push:
-    branches:
-      - "main"
+    branches: [main]
   pull_request:
     types: [opened, synchronize]
     branches:
@@ -48,34 +47,11 @@ jobs:
       - name: Run build
         run: npm run build
 
-  infra-deploy:
-    name: Deploy Infrastructure
+  infra-test:
+    name: Test Infrastructure
     runs-on: ubuntu-latest
     needs: [code-tests]
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/actions/setup-dependencies
-
-      - name: Initialize Terraform
-        working-directory: terraform
-        run: terraform init
-
-      - name: Terraform Import Existing Buckets
-        working-directory: terraform
-        run: |
-          terraform import 'aws_s3_bucket.openresume_buckets["test"]' test.openresume.org
-          terraform import 'aws_s3_bucket.openresume_buckets["www"]' www.openresume.org
-          terraform import 'aws_s3_bucket.openresume_buckets["local"]' dev.openresume.org
-
-      - name: Validate Terraform
-        working-directory: terraform
-        run: terraform validate
-
-      - name: Plan Terraform
-        working-directory: terraform
-        run: terraform plan
-
-      - name: Apply Terraform
-        working-directory: terraform
-        run: terraform apply -auto-approve
+      - uses: ./.github/actions/terraform-plan
