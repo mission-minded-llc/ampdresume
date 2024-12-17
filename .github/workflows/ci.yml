@@ -61,6 +61,12 @@ jobs:
         working-directory: terraform
         run: terraform init
 
+      - name: Terraform Import Existing Buckets
+        run: |
+          terraform import 'aws_s3_bucket.openresume_buckets["test"]' test.openresume.org
+          terraform import 'aws_s3_bucket.openresume_buckets["www"]' www.openresume.org
+          terraform import 'aws_s3_bucket.openresume_buckets["dev"]' dev.openresume.org
+
       - name: Validate Terraform
         working-directory: terraform
         run: terraform validate
