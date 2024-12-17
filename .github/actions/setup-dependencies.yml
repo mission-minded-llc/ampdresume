@@ -1,0 +1,19 @@
+name: "Setup Node.js Dependencies"
+description: "Set up Node.js and install dependencies"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version-file: ".nvmrc"
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Prisma Generate
+      shell: bash
+      run: npm run prisma:generate
