@@ -56,16 +56,7 @@ resource "aws_s3_bucket_policy" "public_read_policy" {
 # Configure bucket for static website hosting
 resource "aws_s3_bucket_website_configuration" "website_config" {
   for_each = aws_s3_bucket.openresume_buckets
-
-  bucket = each.value.id
-
-  index_document {
-    suffix = "index.html"
-  }
-
-  error_document {
-    key = "error.html"
-  }
+  bucket   = each.value.id
 }
 
 # Remove public access block to allow public website hosting
@@ -100,11 +91,11 @@ output "bucket_names" {
   }
 }
 
-output "bucket_website_endpoints" {
-  value = { for env, bucket in aws_s3_bucket.openresume_buckets :
-    env => aws_s3_bucket_website_configuration[env].website_endpoint
-  }
-}
+# output "bucket_website_endpoints" {
+#   value = { for env, bucket in aws_s3_bucket.openresume_buckets :
+#     env => aws_s3_bucket_website_configuration[env].website_endpoint
+#   }
+# }
 
 output "bucket_arns" {
   value = { for env, bucket in aws_s3_bucket.openresume_buckets :
