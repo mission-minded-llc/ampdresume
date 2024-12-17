@@ -49,10 +49,13 @@ jobs:
       - uses: ./.github/actions/setup-dependencies
 
       - name: Initialize Terraform
+        working-directory: terraform
         run: terraform init
 
       - name: Validate Terraform
+        working-directory: terraform
         run: terraform validate
 
       - name: Plan Terraform
+        working-directory: terraform
         run: terraform plan
