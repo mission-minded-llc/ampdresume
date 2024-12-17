@@ -9,10 +9,12 @@ runs:
 
     - name: Initialize Terraform
       working-directory: terraform
+      shell: bash
       run: terraform init
 
     - name: Terraform Import Existing Buckets
       working-directory: terraform
+      shell: bash
       run: |
         terraform import 'aws_s3_bucket.openresume_buckets["test"]' test.openresume.org
         terraform import 'aws_s3_bucket.openresume_buckets["www"]' www.openresume.org
@@ -20,12 +22,15 @@ runs:
 
     - name: Validate Terraform
       working-directory: terraform
+      shell: bash
       run: terraform validate
 
     - name: Plan Terraform
       working-directory: terraform
+      shell: bash
       run: terraform plan
 
     - name: Apply Terraform
       working-directory: terraform
+      shell: bash
       run: terraform apply -auto-approve
