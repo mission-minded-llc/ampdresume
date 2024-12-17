@@ -81,6 +81,14 @@ jobs:
         working-directory: terraform
         run: terraform init
 
+      - name: Validate Terraform
+        working-directory: terraform
+        run: terraform validate
+
+      - name: Plan Terraform
+        working-directory: terraform
+        run: terraform plan
+
       - name: Apply Terraform
         working-directory: terraform
         run: terraform apply -auto-approve
