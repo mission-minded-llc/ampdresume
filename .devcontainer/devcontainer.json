@@ -18,7 +18,9 @@
         "bradlc.vscode-tailwindcss",
         "github.copilot",
         "github.copilot-chat",
-        "amatiasq.sort-imports"
+        "amatiasq.sort-imports",
+        "HashiCorp.terraform",
+        "ms-azuretools.vscode-azureterraform"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
@@ -37,6 +39,11 @@
     },
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/terraform:1": {
+      "version": "latest",
+      "tflint": "latest",
+      "installTFsec": true
     }
   },
 
