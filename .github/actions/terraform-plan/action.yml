@@ -12,13 +12,13 @@ runs:
       shell: bash
       run: terraform init
 
-    - name: Terraform Import Existing Buckets
-      working-directory: terraform
-      shell: bash
-      run: |
-        terraform import 'aws_s3_bucket.openresume_buckets["medialocal"]' medialocal.openresume.org
-        terraform import 'aws_s3_bucket.openresume_buckets["mediatest"]' mediatest.openresume.org
-        terraform import 'aws_s3_bucket.openresume_buckets["media"]' media.openresume.org
+    # - name: Terraform Import Existing Buckets
+    #   working-directory: terraform
+    #   shell: bash
+    #   run: |
+    #     terraform import 'aws_s3_bucket.openresume_buckets["medialocal"]' medialocal.openresume.org
+    #     terraform import 'aws_s3_bucket.openresume_buckets["mediatest"]' mediatest.openresume.org
+    #     terraform import 'aws_s3_bucket.openresume_buckets["media"]' media.openresume.org
 
     - name: Validate Terraform
       working-directory: terraform

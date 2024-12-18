@@ -9,7 +9,11 @@ data "aws_iam_policy_document" "env_policy" {
     condition {
       test     = "StringEquals"
       variable = "aws:Referer"
-      values   = ["http://${each.key}.${local.domain}/*", "https://${each.key}.${local.domain}/*"]
+      values = [
+        "http://*.${local.domain}/*",
+        "https://*.${local.domain}/*",
+        "http://localhost:3000/*"
+      ]
     }
 
     # Add the Principal field in the IAM policy document
