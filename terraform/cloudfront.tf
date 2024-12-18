@@ -1,8 +1,8 @@
 resource "aws_cloudfront_distribution" "env_distribution" {
-  for_each = toset(local.static_environments)
+  for_each = toset(local.s3_bucket_subdomains)
 
   origin {
-    domain_name = "${each.key}.${local.domain}.s3-website-us-west-2.amazonaws.com"
+    domain_name = "${each.key}.${local.domain}.s3-website-${local.region}.amazonaws.com"
     origin_id   = "S3-${each.key}-${local.domain}"
 
     custom_origin_config {
@@ -35,7 +35,7 @@ resource "aws_cloudfront_distribution" "env_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate.env_certificate.arn
+    acm_certificate_arn = aws_acm_certificate.env_certificate[each.key].arn
     ssl_support_method  = "sni-only"
   }
 

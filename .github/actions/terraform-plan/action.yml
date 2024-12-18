@@ -16,9 +16,9 @@ runs:
       working-directory: terraform
       shell: bash
       run: |
-        terraform import 'aws_s3_bucket.openresume_buckets["test"]' test.openresume.org
-        terraform import 'aws_s3_bucket.openresume_buckets["www"]' www.openresume.org
-        terraform import 'aws_s3_bucket.openresume_buckets["local"]' local.openresume.org
+        terraform import 'aws_s3_bucket.openresume_buckets["medialocal"]' medialocal.openresume.org
+        terraform import 'aws_s3_bucket.openresume_buckets["mediatest"]' mediatest.openresume.org
+        terraform import 'aws_s3_bucket.openresume_buckets["media"]' media.openresume.org
 
     - name: Validate Terraform
       working-directory: terraform

@@ -1,12 +1,12 @@
 # Configure AWS Provider
 provider "aws" {
-  region = "us-east-1" # Change this to your preferred region
+  region = "us-west-2" # Change this to your preferred region
 }
 
 # Define local variables for bucket names and environments
 locals {
-  domain = "openresume.org"
-
-  environments        = ["local", "test", "production"]
-  static_environments = ["staticlocal", "statictest", "static"]
+  region               = "us-west-2"
+  domain               = "openresume.org"
+  environments         = ["local", "test", "production"]
+  s3_bucket_subdomains = ["medialocal", "mediatest", "media"]
 }

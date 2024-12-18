@@ -1,5 +1,7 @@
 resource "aws_acm_certificate" "env_certificate" {
-  domain_name       = "*.openresume.org"
+  for_each = toset(local.s3_bucket_subdomains)
+
+  domain_name       = "${each.key}.${local.domain}"
   validation_method = "DNS"
 
   tags = {
