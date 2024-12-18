@@ -9,7 +9,9 @@ resource "aws_acm_certificate" "medialocal_certificate" {
   }
 
   tags = {
-    Name = "OpenResume Wildcard Certificate"
+    Name        = "ACM Certificate"
+    Environment = "Local"
+    Domain      = "medialocal.${local.domain}"
   }
 }
 
@@ -24,7 +26,9 @@ resource "aws_acm_certificate" "mediatest_certificate" {
   }
 
   tags = {
-    Name = "OpenResume Wildcard Certificate"
+    Name        = "ACM Certificate"
+    Environment = "Test"
+    Domain      = "mediatest.${local.domain}"
   }
 }
 
@@ -39,6 +43,8 @@ resource "aws_acm_certificate" "media_certificate" {
   }
 
   tags = {
-    Name = "OpenResume Wildcard Certificate"
+    Name        = "ACM Certificate"
+    Environment = "Production"
+    Domain      = "media.${local.domain}"
   }
 }

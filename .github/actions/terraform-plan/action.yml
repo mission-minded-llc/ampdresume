@@ -26,8 +26,3 @@ runs:
       working-directory: terraform
       shell: bash
       run: terraform plan
-
-    - name: Apply Terraform
-      working-directory: terraform
-      shell: bash
-      run: terraform apply -auto-approve

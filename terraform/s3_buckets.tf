@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "medialocal" {
   }
 
   tags = {
-    Environment = "medialocal"
+    Environment = "Local"
     Project     = "OpenResume"
     ManagedBy   = "Terraform"
   }
@@ -26,7 +26,7 @@ resource "aws_s3_bucket" "mediatest" {
   }
 
   tags = {
-    Environment = "mediatest"
+    Environment = "Test"
     Project     = "OpenResume"
     ManagedBy   = "Terraform"
   }
@@ -42,7 +42,7 @@ resource "aws_s3_bucket" "media" {
   }
 
   tags = {
-    Environment = "media"
+    Environment = "Production"
     Project     = "OpenResume"
     ManagedBy   = "Terraform"
   }

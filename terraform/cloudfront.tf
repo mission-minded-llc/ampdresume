@@ -47,7 +47,7 @@ resource "aws_cloudfront_distribution" "medialocal_distribution" {
   }
 
   tags = {
-    Environment = "medialocal"
+    Environment = "Local"
     Domain      = "medialocal.${local.domain}"
   }
 }
@@ -101,7 +101,7 @@ resource "aws_cloudfront_distribution" "mediatest_distribution" {
   }
 
   tags = {
-    Environment = "mediatest"
+    Environment = "Test"
     Domain      = "mediatest.${local.domain}"
   }
 }
@@ -155,7 +155,7 @@ resource "aws_cloudfront_distribution" "media_distribution" {
   }
 
   tags = {
-    Environment = "media"
+    Environment = "Production"
     Domain      = "media.${local.domain}"
   }
 }
