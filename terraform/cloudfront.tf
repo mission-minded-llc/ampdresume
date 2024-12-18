@@ -1,8 +1,8 @@
 resource "aws_cloudfront_distribution" "env_distribution" {
-  for_each = toset(local.environments)
+  for_each = toset(local.static_environments)
 
   origin {
-    domain_name = "${each.key}.${local.domain}.s3-website-us-east-1.amazonaws.com"
+    domain_name = "${each.key}.${local.domain}.s3-website-us-west-2.amazonaws.com"
     origin_id   = "S3-${each.key}-${local.domain}"
 
     custom_origin_config {

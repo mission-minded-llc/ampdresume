@@ -6,7 +6,7 @@ provider "aws" {
 # Define local variables for bucket names and environments
 locals {
   domain = "openresume.org"
-  # Bucket names. local, test, and www are the environments
-  # Local is for local dev, test is for staging, and www is for production.
-  environments = ["local", "test", "www"]
+
+  environments        = ["local", "test", "production"]
+  static_environments = ["staticlocal", "statictest", "static"]
 }
