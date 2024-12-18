@@ -1,12 +1,25 @@
 # Outputs to display bucket details
-output "bucket_names" {
-  value = { for env, bucket in aws_s3_bucket.openresume_buckets :
-    env => bucket.bucket
-  }
+
+output "medialocal_bucket_name" {
+  value = aws_s3_bucket.medialocal.bucket
 }
 
-output "bucket_arns" {
-  value = { for env, bucket in aws_s3_bucket.openresume_buckets :
-    env => bucket.arn
-  }
+output "medialocal_bucket_arn" {
+  value = aws_s3_bucket.medialocal.arn
+}
+
+output "mediatest_bucket_name" {
+  value = aws_s3_bucket.mediatest.bucket
+}
+
+output "mediatest_bucket_arn" {
+  value = aws_s3_bucket.mediatest.arn
+}
+
+output "media_bucket_name" {
+  value = aws_s3_bucket.media.bucket
+}
+
+output "media_bucket_arn" {
+  value = aws_s3_bucket.media.arn
 }

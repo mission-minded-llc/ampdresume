@@ -1,10 +1,8 @@
-# Define the policy for each subdomain
-data "aws_iam_policy_document" "env_policy" {
-  for_each = toset(local.s3_bucket_subdomains)
-
+# Define the policy for medialocal
+data "aws_iam_policy_document" "medialocal_policy" {
   statement {
     actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.openresume_buckets[each.key].arn}/assets/user/*"]
+    resources = ["${aws_s3_bucket.medialocal.arn}/assets/user/*"]
 
     condition {
       test     = "StringEquals"
@@ -16,7 +14,6 @@ data "aws_iam_policy_document" "env_policy" {
       ]
     }
 
-    # Add the Principal field in the IAM policy document
     principals {
       type        = "AWS"
       identifiers = ["*"]
@@ -24,12 +21,66 @@ data "aws_iam_policy_document" "env_policy" {
   }
 }
 
-# Apply the policy to each bucket
-resource "aws_s3_bucket_policy" "public_read_policy" {
-  for_each = aws_s3_bucket.openresume_buckets
+# Define the policy for mediatest
+data "aws_iam_policy_document" "mediatest_policy" {
+  statement {
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.mediatest.arn}/assets/user/*"]
 
-  bucket = each.value.id
+    condition {
+      test     = "StringEquals"
+      variable = "aws:Referer"
+      values = [
+        "http://*.${local.domain}/*",
+        "https://*.${local.domain}/*",
+        "http://localhost:3000/*"
+      ]
+    }
 
-  # Use the policy from the policy document
-  policy = data.aws_iam_policy_document.env_policy[each.key].json
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+  }
+}
+
+# Define the policy for media
+data "aws_iam_policy_document" "media_policy" {
+  statement {
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.media.arn}/assets/user/*"]
+
+    condition {
+      test     = "StringEquals"
+      variable = "aws:Referer"
+      values = [
+        "http://*.${local.domain}/*",
+        "https://*.${local.domain}/*",
+        "http://localhost:3000/*"
+      ]
+    }
+
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+  }
+}
+
+# Apply the policy to medialocal bucket
+resource "aws_s3_bucket_policy" "medialocal_policy" {
+  bucket = aws_s3_bucket.medialocal.id
+  policy = data.aws_iam_policy_document.medialocal_policy.json
+}
+
+# Apply the policy to mediatest bucket
+resource "aws_s3_bucket_policy" "mediatest_policy" {
+  bucket = aws_s3_bucket.mediatest.id
+  policy = data.aws_iam_policy_document.mediatest_policy.json
+}
+
+# Apply the policy to media bucket
+resource "aws_s3_bucket_policy" "media_policy" {
+  bucket = aws_s3_bucket.media.id
+  policy = data.aws_iam_policy_document.media_policy.json
 }
