@@ -1,0 +1,23 @@
+import { act, render } from "@testing-library/react";
+
+import React from "react";
+import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
+
+describe("RichTextEditor", () => {
+  it("renders without crashing", async () => {
+    let result;
+    await act(async () => {
+      result = render(<RichTextEditor value="" onChange={() => {}} name="test-editor" />);
+    });
+    expect(result!.container).toBeInTheDocument();
+  });
+
+  it("displays the placeholder text", async () => {
+    const placeholderText = "Type here...";
+    let result;
+    await act(async () => {
+      result = render(<RichTextEditor value="" onChange={() => {}} name="test-editor" />);
+    });
+    expect(result!.getByText(placeholderText)).toBeInTheDocument();
+  });
+});
