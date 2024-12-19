@@ -20,7 +20,9 @@ const jestConfig: JestConfigWithTsJest = {
       { tsconfig: "./tsconfig.jest.json" },
     ],
   },
-  // transformIgnorePatterns: ["node_modules/(?!(@testing-library/jest-dom)/)"],
+  transformIgnorePatterns: ["node_modules"],
+
+  // Coverage settings.
   collectCoverageFrom: ["src/**/*.ts", "src/**/*.tsx", "!**/node_modules/**"],
   coverageThreshold: {
     global: {
