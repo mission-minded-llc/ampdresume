@@ -1,0 +1,26 @@
+name: "CI: Infrastructure"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - "main"
+    paths:
+      - "**.tf"
+  workflow_dispatch:
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
+
+jobs:
+  infra-test:
+    name: Test Infrastructure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/terraform-plan
