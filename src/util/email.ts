@@ -20,6 +20,12 @@ export const normalizeEmail = (email: string) => {
   return `${cleanedLocalPart}@${domain}`.toLowerCase();
 };
 
+/**
+ * Helper used to compare normalized emails.
+ *
+ * @param {string} email
+ * @returns {User | null} the user with the matching normalized email, or null if not found.
+ */
 export const findUserByNormalizedEmail = async (email: string) => {
   const normalizedEmail = normalizeEmail(email);
 
