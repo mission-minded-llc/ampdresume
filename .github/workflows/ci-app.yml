@@ -3,6 +3,14 @@ name: "CI: App"
 on:
   push:
     branches: [main]
+    paths:
+      - "**.ts"
+      - "**.tsx"
+      - "**.scss"
+      - "**.js"
+      - "**.mjs"
+      - "**.css"
+      - "**.json"
   pull_request:
     types: [opened, synchronize]
     branches:
