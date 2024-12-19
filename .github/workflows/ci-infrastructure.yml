@@ -3,6 +3,8 @@ name: "CI: Infrastructure"
 on:
   push:
     branches: [main]
+    paths:
+      - "**.tf"
   pull_request:
     types: [opened, synchronize]
     branches:
