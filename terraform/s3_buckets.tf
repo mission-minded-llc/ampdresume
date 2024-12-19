@@ -1,4 +1,7 @@
 # Create S3 Buckets for different environments
+# It was possible to use a loop to achieve this, however the loop was
+# causing issues when running the `terraform import` commands needed
+# within the setup GitHub Actions workflows.
 
 resource "aws_s3_bucket" "medialocal" {
   provider = aws.us_west_2
