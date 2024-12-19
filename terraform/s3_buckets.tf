@@ -17,6 +17,10 @@ resource "aws_s3_bucket" "medialocal" {
     Project     = "OpenResume"
     ManagedBy   = "Terraform"
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_s3_bucket" "mediatest" {
@@ -33,6 +37,10 @@ resource "aws_s3_bucket" "mediatest" {
     Project     = "OpenResume"
     ManagedBy   = "Terraform"
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_s3_bucket" "media" {
@@ -48,5 +56,9 @@ resource "aws_s3_bucket" "media" {
     Environment = "Production"
     Project     = "OpenResume"
     ManagedBy   = "Terraform"
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
