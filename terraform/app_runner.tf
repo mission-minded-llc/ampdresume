@@ -1,35 +1,28 @@
-resource "aws_apprunner_vpc_connector" "connector" {
-  vpc_connector_name = "app-runner-connector"
-  subnets            = aws_subnet.private[*].id
-  security_groups    = [aws_security_group.app_runner.id]
-}
-
 resource "aws_apprunner_service" "service" {
   for_each = var.environments
 
   service_name = "openresume-${each.key}"
 
   source_configuration {
-    authentication_configuration {
-      access_role_arn = aws_iam_role.app_runner_service_role.arn
-    }
+    auto_deployments_enabled = true
 
     image_repository {
       image_configuration {
-        port = "3000" # Adjust based on your application
+        port = "3000"
         runtime_environment_variables = {
           NODE_ENV     = each.key
           DB_SECRET_ID = aws_secretsmanager_secret.db_secrets[each.key].arn
         }
       }
-      image_identifier      = "public.ecr.aws/docker/library/hello-world:latest" # Placeholder image
+      image_identifier      = "public.ecr.aws/docker/library/hello-world:latest"
       image_repository_type = "ECR_PUBLIC"
     }
   }
 
   instance_configuration {
-    cpu    = "1024"
-    memory = "2048"
+    cpu               = "1024"
+    memory            = "2048"
+    instance_role_arn = aws_iam_role.app_runner_instance_role.arn
   }
 
   network_configuration {
@@ -40,7 +33,7 @@ resource "aws_apprunner_service" "service" {
   }
 
   health_check_configuration {
-    path     = "/health" # Adjust based on your application
+    path     = "/health"
     protocol = "HTTP"
   }
 
