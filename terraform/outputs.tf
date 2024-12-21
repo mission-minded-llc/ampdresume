@@ -37,23 +37,3 @@ output "endpoints" {
     env => instance.endpoint
   }
 }
-
-output "app_runner_services" {
-  value = {
-    for env, service in aws_apprunner_service.service : env => {
-      service_url = service.service_url
-      service_id  = service.service_id
-      status      = service.status
-    }
-  }
-}
-
-output "custom_domains" {
-  value = {
-    for env, domain in aws_apprunner_custom_domain_association.domain : env => {
-      domain_name = domain.domain_name
-      status      = domain.status
-      dns_target  = domain.dns_target
-    }
-  }
-}

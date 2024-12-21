@@ -1,6 +1,10 @@
 resource "aws_db_subnet_group" "postgresql" {
   name       = "postgresql-subnet-group"
   subnet_ids = aws_subnet.private[*].id
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_db_instance" "postgresql" {
@@ -18,11 +22,15 @@ resource "aws_db_instance" "postgresql" {
 
   skip_final_snapshot = true
 
-  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+  vpc_security_group_ids = [var.rds_security_group_id]
   db_subnet_group_name   = aws_db_subnet_group.postgresql.name
 
   publicly_accessible = false
   multi_az            = false
 
   tags = each.value.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }

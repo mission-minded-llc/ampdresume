@@ -17,6 +17,11 @@ runs:
       shell: bash
       run: ./import_resources.sh
 
+    - name: Terraform Import Existing Secrets
+      working-directory: terraform
+      shell: bash
+      run: ./import_secrets.sh
+
     - name: Validate Terraform
       working-directory: terraform
       shell: bash

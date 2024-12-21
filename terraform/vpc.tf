@@ -7,6 +7,10 @@ resource "aws_vpc" "main" {
   tags = {
     Name = "main"
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_subnet" "private" {
@@ -17,6 +21,10 @@ resource "aws_subnet" "private" {
 
   tags = {
     Name = "Private Subnet ${count.index + 1}"
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
@@ -29,15 +37,27 @@ resource "aws_subnet" "public" {
   tags = {
     Name = "Public Subnet ${count.index + 1}"
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 # Internet Gateway and NAT Gateway setup
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 # For AWS Provider version 5.0+
-resource "aws_eip" "nat" {}
+resource "aws_eip" "nat" {
+  lifecycle {
+    prevent_destroy = true
+  }
+}
 
 # For AWS Provider version 4.x, use:
 # resource "aws_eip" "nat" {
@@ -49,6 +69,10 @@ resource "aws_nat_gateway" "main" {
   subnet_id     = aws_subnet.public[0].id
 
   depends_on = [aws_internet_gateway.main]
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 # Route tables
@@ -59,6 +83,10 @@ resource "aws_route_table" "private" {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.main.id
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_route_table" "public" {
@@ -68,16 +96,28 @@ resource "aws_route_table" "public" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.main.id
   }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_route_table_association" "private" {
   count          = 2
   subnet_id      = aws_subnet.private[count.index].id
   route_table_id = aws_route_table.private.id
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_route_table_association" "public" {
   count          = 2
   subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.public.id
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
