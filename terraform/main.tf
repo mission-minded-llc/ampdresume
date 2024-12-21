@@ -4,3 +4,13 @@ locals {
   domain       = "openresume.org"
   environments = ["local", "test", "production"]
 }
+
+terraform {
+  backend "s3" {
+    bucket         = "openresume-terraform-state"
+    key            = "state/terraform.tfstate"
+    region         = "us-west-2"
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
+  }
+}
