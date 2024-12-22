@@ -4,7 +4,7 @@ resource "aws_instance" "bastion" {
   instance_type = "t2.micro"              # Free-tier eligible.
 
   subnet_id              = aws_subnet.public[0].id
-  vpc_security_group_ids = [aws_security_group.bastion-sg.id]
+  vpc_security_group_ids = [aws_security_group.bastion_sg.id]
   iam_instance_profile   = aws_iam_instance_profile.ssm_instance_profile.name
 
   root_block_device {
@@ -22,8 +22,8 @@ resource "aws_instance" "bastion" {
   }
 }
 
-resource "aws_security_group" "bastion-sg" {
-  name        = "bastion-sg"
+resource "aws_security_group" "bastion_sg" {
+  name        = "bastion_sg"
   description = "Security group for bastion host"
   vpc_id      = aws_vpc.main.id
 
@@ -42,7 +42,7 @@ resource "aws_security_group" "bastion-sg" {
   }
 
   tags = {
-    Name = "bastion-sg"
+    Name = "bastion_sg"
   }
 }
 
