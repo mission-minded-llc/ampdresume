@@ -20,6 +20,14 @@ resource "aws_instance" "bastion" {
   lifecycle {
     prevent_destroy = true
   }
+
+  user_data = <<-EOF
+    #!/bin/bash
+    yum update -y
+    yum install -y amazon-ssm-agent
+    systemctl enable amazon-ssm-agent
+    systemctl start amazon-ssm-agent
+  EOF
 }
 
 resource "aws_security_group" "bastion_sg" {
