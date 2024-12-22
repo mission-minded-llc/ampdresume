@@ -5,7 +5,6 @@ resource "aws_instance" "bastion" {
 
   subnet_id              = aws_subnet.public[0].id
   vpc_security_group_ids = [aws_security_group.bastion-sg.id]
-  security_groups        = [aws_security_group.bastion-sg.name]
   iam_instance_profile   = aws_iam_instance_profile.ssm_instance_profile.name
 
   root_block_device {
