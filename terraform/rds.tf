@@ -22,13 +22,42 @@ resource "aws_db_instance" "postgresql" {
 
   skip_final_snapshot = true
 
-  vpc_security_group_ids = [var.rds_security_group_id]
+  vpc_security_group_ids = [var.rds_security_group_id, aws_security_group.rds_sg.id]
   db_subnet_group_name   = aws_db_subnet_group.postgresql.name
 
   publicly_accessible = false
   multi_az            = false
 
   tags = each.value.tags
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+
+resource "aws_security_group" "rds_sg" {
+  name        = "rds-security-group"
+  description = "Security group for RDS instances"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    from_port       = 5432
+    to_port         = 5432
+    protocol        = "tcp"
+    security_groups = [aws_security_group.bastion-sg.id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "rds-sg"
+  }
 
   lifecycle {
     prevent_destroy = true

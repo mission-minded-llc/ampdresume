@@ -25,7 +25,14 @@
     "test:coverage": "jest --coverage",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:seed": "tsx prisma/seed/all.ts"
+    "prisma:seed": "tsx prisma/seed/all.ts",
+    "ssm:init": "./scripts/ssm.sh -init",
+    "ssm:connect:test": "./scripts/ssm.sh -connect:test",
+    "ssm:connect:prod": "./scripts/ssm.sh -connect:prod",
+    "ssm:stop": "./scripts/ssm.sh -stop",
+    "terraform:validate": "cd terraform && terraform validate",
+    "terraform:plan": "cd terraform && terraform plan",
+    "terraform:apply": "cd terraform && terraform apply"
   },
   "dependencies": {
     "@apollo/client": "^3.11.10",
