@@ -1,11 +1,18 @@
 # Create a micro free-tier EC2 instance to use as a bastion host for SSM Session Manager. 
-resource "aws_instance" "bastion" {
-  ami           = "ami-07d9cf938edb0739b" # AWS Linux 2 AMI
-  instance_type = "t2.micro"              # Free-tier eligible.
+resource "aws_key_pair" "bastion_key" {
+  key_name   = "bastion-key"
+  public_key = var.ssh_public_key
+}
 
-  subnet_id              = aws_subnet.public[0].id
-  vpc_security_group_ids = [aws_security_group.bastion_sg.id]
-  iam_instance_profile   = aws_iam_instance_profile.ssm_instance_profile.name
+resource "aws_instance" "bastion" {
+  ami           = "ami-07d9cf938edb0739b" # AWS Linux 2023 AMI
+  instance_type = "t2.micro"              # Free-tier eligible.
+  key_name      = aws_key_pair.bastion_key.key_name
+
+  subnet_id                   = aws_subnet.public[0].id
+  associate_public_ip_address = true
+  vpc_security_group_ids      = [aws_security_group.bastion_sg.id]
+  iam_instance_profile        = aws_iam_instance_profile.ssm_instance_profile.name
 
   root_block_device {
     volume_size = 8
@@ -20,14 +27,6 @@ resource "aws_instance" "bastion" {
   lifecycle {
     prevent_destroy = true
   }
-
-  user_data = <<-EOF
-    #!/bin/bash
-    yum update -y
-    yum install -y amazon-ssm-agent
-    systemctl enable amazon-ssm-agent
-    systemctl start amazon-ssm-agent
-  EOF
 }
 
 resource "aws_security_group" "bastion_sg" {
@@ -47,6 +46,13 @@ resource "aws_security_group" "bastion_sg" {
     to_port         = 5432
     protocol        = "tcp"
     security_groups = [aws_security_group.rds_sg.id]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ssh_ips
   }
 
   tags = {

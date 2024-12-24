@@ -1,3 +1,6 @@
 # Overrides the default values for the variables defined in variables.tf
 region                = "us-west-2"
 rds_security_group_id = "sg-0c40327281d3f4db4"
+
+allowed_ssh_ips = ["204.195.89.110/32"]
+ssh_public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDBlNPgpJay58Qcxop1qgIWGLWNmomKRcU3h7+uEHOBnVM9cHHOLdpka7gcLXBMkhp65hfnVoWw3oC6QEYKmN0bJblbnoqjf7+wh6p54Po/TUWyzu2KGM6D1UvebdNKHOFBZ6YZPxu6A5B/7LLo6+AzbGlzOZheNs2hnuXLKYyyIfadiQpHZQjPxgC7XJbnVKVd5nMpxG86PrXNyHnQdb2mMteCeGNOKfU5H1jCWJorcNt/YhvG7FnGwvREloYVuoKcfjFbX+AwZQRyJG5pZyDk1dP0DMZNNFFaL2AepPLexvRgTwt2YI7AA7nH1gm6MrTTl1KP44uexy66/nuVUQfAzi6yoGYG8Yotz9cmKsKntC5Y+N88xxbkyQyDIUWVCIbURam1N7E9wyTBZtU4tI8lfu1rOAluLkZKMd03w7WjoMKzScRPX4dOI3tUByb5+PfswcZyFwyTr9DROQtQdJYrQYjGfsUZ1cNoocd7BzFBf0csr2fFi8uqyrt8kWgdEj8jODX3chKemUrKLv/jE2W0+dRPN+R4wuvsgugA8+kTyfJJvNVfXsbVoP/Aab42D3D3yJfaSRUl+Vw0M/peA1QoZyR/3FQJ9DQXTS+F4kTPReiC+0IPBaz4/vN7scF2qnnbczJ3HwpvT+9FXAUEplp5HBrwwEUESLJOAvAj5aLC2w== missionmike@Missions-MacBook-Pro.local"
