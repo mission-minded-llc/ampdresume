@@ -16,7 +16,7 @@ if [ "$1" == "-connect:prod" ]; then
   aws ssm start-session \
     --target $BASTION_EC2_INSTANCE_ID \
     --document-name AWS-StartPortForwardingSessionToRemoteHost \
-    --parameters host="$RDS_PROD_INSTANCE_HOST",portNumber="5432",localPortNumber="5433"
+    --parameters host="$RDS_PROD_INSTANCE_HOST",portNumber="5432",localPortNumber="5434"
 fi
 
 if [ "$1" == "-stop" ]; then
