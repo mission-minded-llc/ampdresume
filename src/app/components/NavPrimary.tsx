@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
+import { Edit } from "@mui/icons-material";
 import ExitIcon from "@mui/icons-material/ExitToApp";
 import HomeIcon from "@mui/icons-material/Home";
 import IconButton from "@mui/material/IconButton";
@@ -114,12 +115,13 @@ export const NavPrimary = () => {
               <>
                 {session?.data?.user?.slug ? (
                   <NavItem
-                    text="Resume"
+                    text="View Resume"
                     icon={<PersonIcon />}
                     href={`/r/${session.data.user.slug}`}
                     target="_blank"
                   />
                 ) : null}
+                <NavItem text="Edit Resume" icon={<Edit />} href="/resume/edit" />
                 <NavItem text="Account" icon={<SettingsIcon />} href="/account" />
                 <NavItem text="Logout" icon={<ExitIcon />} href="/api/auth/signout" />
               </>
