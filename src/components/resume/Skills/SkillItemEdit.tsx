@@ -18,7 +18,7 @@ export const SkillItemEdit = ({
 
   const [value, setValue] = useState(skill?.description ?? "");
   const [yearStarted, setYearStarted] = useState(skill?.yearStarted ?? new Date().getFullYear());
-  const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 1);
+  const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 0);
 
   const handleSave = () => {
     if (updateSkillForUserMutation) {
@@ -45,6 +45,7 @@ export const SkillItemEdit = ({
           label="Year Started"
           value={yearStarted}
           onChange={(e) => setYearStarted(Number(e.target.value))}
+          slotProps={{ htmlInput: { min: 1900, max: new Date().getFullYear() } }}
         />
         <>
           <TextField
@@ -52,6 +53,7 @@ export const SkillItemEdit = ({
             label="Total Years"
             value={totalYears}
             onChange={(e) => setTotalYears(Number(e.target.value))}
+            slotProps={{ htmlInput: { min: 0, max: 100 } }}
           />
           <Tooltip
             message="Enter the year you started using this skill 
