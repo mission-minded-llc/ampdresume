@@ -1,11 +1,15 @@
 /* eslint-disable no-console */
 
 import { PrismaClient } from "@prisma/client";
+import { fileURLToPath } from "url";
 import { getTestUserIds } from "./helpers/ids";
+import { logTitle } from "./helpers/util";
 
 const prisma = new PrismaClient();
 
 export async function seedSkillsForUser() {
+  logTitle("Seeding Demo Skills for Users");
+
   const testUserIds = await getTestUserIds();
 
   // Find the exact skills HTML, CSS, JavaScript, TypeScript, PHP, Python,
@@ -31,6 +35,7 @@ export async function seedSkillsForUser() {
   });
 
   for (const userId of testUserIds) {
+    console.log(`Deleting existing skills for user ${userId}`);
     await prisma.skillForUser.deleteMany({
       where: {
         userId,
@@ -53,10 +58,12 @@ export async function seedSkillsForUser() {
   }
 }
 
-seedSkillsForUser()
-  .catch((e) => {
-    throw e;
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  seedSkillsForUser()
+    .catch((e) => {
+      throw e;
+    })
+    .finally(async () => {
+      await prisma.$disconnect();
+    });
+}

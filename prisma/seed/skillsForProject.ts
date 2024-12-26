@@ -1,11 +1,15 @@
 /* eslint-disable no-console */
 
 import { PrismaClient } from "@prisma/client";
+import { fileURLToPath } from "url";
 import { getTestProjectIds } from "./helpers/ids";
+import { logTitle } from "./helpers/util";
 
 const prisma = new PrismaClient();
 
 export async function seedSkillsForProject() {
+  logTitle("Seeding Demo Skills for Projects");
+
   const testProjectIds = await getTestProjectIds();
 
   // Loop through the projects, find the userId tied to each project, then add 2
@@ -57,6 +61,7 @@ export async function seedSkillsForProject() {
     });
 
     // Delete all skills in project if found.
+    console.log(`Deleting existing skills for project ${projectId}`);
     await prisma.skillForProject.deleteMany({
       where: {
         projectId,
@@ -84,10 +89,12 @@ export async function seedSkillsForProject() {
   }
 }
 
-seedSkillsForProject()
-  .catch((e) => {
-    throw e;
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  seedSkillsForProject()
+    .catch((e) => {
+      throw e;
+    })
+    .finally(async () => {
+      await prisma.$disconnect();
+    });
+}

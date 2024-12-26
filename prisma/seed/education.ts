@@ -1,11 +1,15 @@
 /* eslint-disable no-console */
 
 import { PrismaClient } from "@prisma/client";
+import { fileURLToPath } from "url";
 import { getTestUserIds } from "./helpers/ids";
+import { logTitle } from "./helpers/util";
 
 const prisma = new PrismaClient();
 
 export async function seedEducation() {
+  logTitle("Seeding Demo Education");
+
   const testUserIds = await getTestUserIds();
 
   for (const userId of testUserIds) {
@@ -32,10 +36,12 @@ export async function seedEducation() {
   }
 }
 
-seedEducation()
-  .catch((e) => {
-    throw e;
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  seedEducation()
+    .catch((e) => {
+      throw e;
+    })
+    .finally(async () => {
+      await prisma.$disconnect();
+    });
+}

@@ -1,12 +1,16 @@
 /* eslint-disable no-console */
 
 import { PrismaClient } from "@prisma/client";
+import { fileURLToPath } from "url";
 import { getTestPositionIds } from "./helpers/ids";
+import { logTitle } from "./helpers/util";
 import { randomLoremIpsumDescriptions } from "./helpers/data";
 
 const prisma = new PrismaClient();
 
 export async function seedProjects() {
+  logTitle("Seeding Demo Projects");
+
   const testPositionIds = await getTestPositionIds();
 
   const projects = [
@@ -25,6 +29,7 @@ export async function seedProjects() {
   ];
 
   for (const positionId of testPositionIds) {
+    console.log(`Deleting existing projects for position ${positionId}`);
     await prisma.project.deleteMany({
       where: {
         positionId,
@@ -45,10 +50,12 @@ export async function seedProjects() {
   }
 }
 
-seedProjects()
-  .catch((e) => {
-    throw e;
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  seedProjects()
+    .catch((e) => {
+      throw e;
+    })
+    .finally(async () => {
+      await prisma.$disconnect();
+    });
+}

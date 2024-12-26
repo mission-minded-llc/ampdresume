@@ -1,11 +1,18 @@
 /* eslint-disable no-console */
 
 import { PrismaClient } from "@prisma/client";
+import { fileURLToPath } from "url";
+import { logTitle } from "./helpers/util";
 import { testUsers } from "./helpers/data";
 
 const prisma = new PrismaClient();
 
 export async function seedUsers() {
+  logTitle("Seeding Demo Users");
+
+  let usersUpdatedCount = 0;
+  let usersCreatedCount = 0;
+
   for (const user of testUsers) {
     const existingUser = await prisma.user.findFirst({
       where: {
@@ -14,33 +21,36 @@ export async function seedUsers() {
     });
 
     if (existingUser) {
-      console.log(`User ${user.email} already exists, attempting update.`);
-
-      const updatedUser = await prisma.user.update({
+      await prisma.user.update({
         where: {
           id: existingUser.id,
         },
         data: { ...user },
       });
-      console.log(`Updated user with id: ${updatedUser.id}`);
+      usersUpdatedCount += 1;
 
       continue;
     }
 
-    const createdUser = await prisma.user.create({
+    await prisma.user.create({
       data: {
         emailVerified: new Date(),
         ...user,
       },
     });
-    console.log(`Created user with id: ${createdUser.id}`);
+    usersCreatedCount += 1;
   }
+
+  console.log(`Users created: ${usersCreatedCount}`);
+  console.log(`Users updated: ${usersUpdatedCount}`);
 }
 
-seedUsers()
-  .catch((e) => {
-    throw e;
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  seedUsers()
+    .catch((e) => {
+      throw e;
+    })
+    .finally(async () => {
+      await prisma.$disconnect();
+    });
+}

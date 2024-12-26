@@ -1,19 +1,21 @@
-import { seedUsers } from "./users";
 import { seedCompanies } from "./company";
+import { seedEducation } from "./education";
 import { seedPositions } from "./position";
 import { seedProjects } from "./project";
-import { seedEducation } from "./education";
-
 import { seedSkills } from "./skills";
-import { seedSkillsForUser } from "./skillsForUser";
 import { seedSkillsForProject } from "./skillsForProject";
+import { seedSkillsForUser } from "./skillsForUser";
+import { seedUsers } from "./users";
 
-await seedUsers();
-await seedCompanies();
-await seedPositions();
-await seedProjects();
-await seedEducation();
+async function seed() {
+  await seedUsers();
+  await seedCompanies();
+  await seedPositions();
+  await seedProjects();
+  await seedEducation();
+  await seedSkills();
+  await seedSkillsForUser();
+  await seedSkillsForProject();
+}
 
-await seedSkills();
-await seedSkillsForUser();
-await seedSkillsForProject();
+seed();
