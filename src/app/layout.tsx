@@ -1,5 +1,3 @@
-import "./globals.scss";
-
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Layout } from "./components/Layout";
 import { ThemeAppearanceProvider } from "./components/ThemeContext";
