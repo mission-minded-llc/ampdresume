@@ -1,3 +1,8 @@
+import { CodeHighlightNode, CodeNode } from "@lexical/code";
+import { ListItemNode, ListNode } from "@lexical/list";
+import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
+
+import { HeadingNode } from "@lexical/rich-text";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RICH_TEXT_OPTIONS } from "@/components/resume/RichTextEditor/plugins/constants";
 import { ToolbarPlugin } from "@/components/resume/RichTextEditor/plugins/ToolbarPlugin";
@@ -9,6 +14,16 @@ const initialConfig = {
   onError: (error: Error) => {
     throw error;
   },
+  nodes: [
+    HeadingNode,
+    CodeNode,
+    CodeHighlightNode,
+    ListNode,
+    ListItemNode,
+    TableNode,
+    TableRowNode,
+    TableCellNode,
+  ],
 };
 
 describe("ToolbarPlugin", () => {
