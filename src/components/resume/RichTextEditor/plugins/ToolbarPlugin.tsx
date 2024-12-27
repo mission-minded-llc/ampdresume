@@ -15,6 +15,7 @@ import { HEADINGS, LOW_PRIORIRTY, RICH_TEXT_OPTIONS, RichTextAction } from "./co
 import { useEffect, useState } from "react";
 
 import { $wrapNodes } from "@lexical/selection";
+import { ColorPlugin } from "./ColorPlugin";
 import { Icon } from "@iconify/react";
 import { mergeRegister } from "@lexical/utils";
 import { useKeyBindings } from "@/hooks/useKeyBindings";
@@ -184,6 +185,7 @@ export const ToolbarPlugin = () => {
           </IconButton>
         ),
       )}
+      <ColorPlugin />
     </Box>
   );
 };

@@ -45,6 +45,7 @@
     "@emotion/styled": "^11.13.5",
     "@iconify/react": "^5.0.2",
     "@lexical/react": "^0.21.0",
+    "@mui/base": "^5.0.0-beta.68",
     "@mui/icons-material": "^6.2.0",
     "@mui/material": "^6.1.9",
     "@mui/material-nextjs": "^6.1.8",
@@ -60,6 +61,7 @@
     "next-auth": "^4.24.10",
     "nodemailer": "^6.9.16",
     "react": "^18.3.1",
+    "react-color": "^2.19.3",
     "react-dom": "^18.3.1",
     "sass": "^1.81.0"
   },
@@ -72,6 +74,7 @@
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",
     "@types/react": "^18.3.12",
+    "@types/react-color": "^3.0.13",
     "@types/react-dom": "^18.3.1",
     "@whatwg-node/fetch": "^0.10.1",
     "babel-jest": "^29.7.0",
