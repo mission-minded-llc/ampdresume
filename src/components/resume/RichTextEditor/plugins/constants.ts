@@ -14,6 +14,8 @@ export enum RichTextAction {
   Divider = "divider",
   Undo = "undo",
   Redo = "redo",
+  UnorderedList = "unorderedList",
+  OrderedList = "orderedList",
 }
 
 export const RICH_TEXT_OPTIONS = [

@@ -1,4 +1,5 @@
 import { $createHeadingNode, HeadingTagType } from "@lexical/rich-text";
+import { $getNearestNodeOfType, mergeRegister } from "@lexical/utils";
 import {
   $getSelection,
   $isRangeSelection,
@@ -7,9 +8,11 @@ import {
   FORMAT_ELEMENT_COMMAND,
   FORMAT_TEXT_COMMAND,
   REDO_COMMAND,
+  RangeSelection,
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "lexical";
+import { $isListNode, ListNode } from "@lexical/list";
 import { Box, Divider, IconButton, MenuItem, Select } from "@mui/material";
 import { HEADINGS, LOW_PRIORIRTY, RICH_TEXT_OPTIONS, RichTextAction } from "./constants";
 import { useEffect, useState } from "react";
@@ -17,7 +20,7 @@ import { useEffect, useState } from "react";
 import { $wrapNodes } from "@lexical/selection";
 import { ColorPlugin } from "./ColorPlugin";
 import { Icon } from "@iconify/react";
-import { mergeRegister } from "@lexical/utils";
+import { ListPlugin } from "./ListPlugin";
 import { useKeyBindings } from "@/hooks/useKeyBindings";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
@@ -28,29 +31,50 @@ export const ToolbarPlugin = () => {
     [RichTextAction.Redo]: true,
   });
   const [selectionMap, setSelectionMap] = useState<{ [id: string]: boolean }>({});
+  const [blockType, setBlockType] = useState("paragraph");
+
+  const updateToolbarSelectionText = (selection: RangeSelection) => {
+    const newSelectionMap = {
+      [RichTextAction.Bold]: selection.hasFormat("bold"),
+      [RichTextAction.Italics]: selection.hasFormat("italic"),
+      [RichTextAction.Underline]: selection.hasFormat("underline"),
+      [RichTextAction.Highlight]: selection.hasFormat("highlight"),
+      [RichTextAction.Strikethrough]: selection.hasFormat("strikethrough"),
+      [RichTextAction.Superscript]: selection.hasFormat("superscript"),
+      [RichTextAction.Subscript]: selection.hasFormat("subscript"),
+      [RichTextAction.Code]: selection.hasFormat("code"),
+      // TODO: Figure this out:
+      // [RichTextAction.LeftAlign]: selection.hasFormat("left"),
+      // [RichTextAction.CenterAlign]: selection.hasFormat("center"),
+      // [RichTextAction.RightAlign]: selection.hasFormat("right"),
+      // [RichTextAction.JustifyAlign]: selection.hasFormat("justify"),
+    };
+    setSelectionMap(newSelectionMap);
+  };
+
+  const updateToolbarSelectionList = (selection: RangeSelection) => {
+    const anchorNode = selection.anchor.getNode();
+    const element =
+      anchorNode.getKey() === "root" ? anchorNode : anchorNode.getTopLevelElementOrThrow();
+    const elementKey = element.getKey();
+    const elementDOM = editor.getElementByKey(elementKey);
+
+    if (!elementDOM || !$isListNode(element)) return;
+
+    const parentList = $getNearestNodeOfType(anchorNode, ListNode);
+    const type = parentList ? parentList.getTag() : element.getTag();
+    setBlockType(type);
+  };
 
   const updateToolbar = () => {
     const selection = $getSelection();
 
-    if ($isRangeSelection(selection)) {
-      const newSelectionMap = {
-        [RichTextAction.Bold]: selection.hasFormat("bold"),
-        [RichTextAction.Italics]: selection.hasFormat("italic"),
-        [RichTextAction.Underline]: selection.hasFormat("underline"),
-        [RichTextAction.Highlight]: selection.hasFormat("highlight"),
-        [RichTextAction.Strikethrough]: selection.hasFormat("strikethrough"),
-        [RichTextAction.Superscript]: selection.hasFormat("superscript"),
-        [RichTextAction.Subscript]: selection.hasFormat("subscript"),
-        [RichTextAction.Code]: selection.hasFormat("code"),
-        // TODO: Figure this out:
-        // [RichTextAction.LeftAlign]: selection.hasFormat("left"),
-        // [RichTextAction.CenterAlign]: selection.hasFormat("center"),
-        // [RichTextAction.RightAlign]: selection.hasFormat("right"),
-        // [RichTextAction.JustifyAlign]: selection.hasFormat("justify"),
-      };
-      setSelectionMap(newSelectionMap);
-    }
+    if (!$isRangeSelection(selection)) return;
+
+    updateToolbarSelectionText(selection);
+    updateToolbarSelectionList(selection);
   };
+
   useEffect(() => {
     return mergeRegister(
       editor.registerUpdateListener(({ editorState }) => {
@@ -186,6 +210,7 @@ export const ToolbarPlugin = () => {
         ),
       )}
       <ColorPlugin />
+      <ListPlugin blockType={blockType} />
     </Box>
   );
 };

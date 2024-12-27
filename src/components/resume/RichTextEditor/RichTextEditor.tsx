@@ -1,6 +1,7 @@
 // Thank you: https://www.youtube.com/watch?v=XI6nufqMSek
 
 import { CodeHighlightNode, CodeNode } from "@lexical/code";
+import { ListItemNode, ListNode } from "@lexical/list";
 import React, { useMemo } from "react";
 
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
@@ -12,6 +13,7 @@ import { HeadingNode } from "@lexical/rich-text";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
+import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ToolbarPlugin } from "./plugins/ToolbarPlugin";
 import { css } from "@emotion/css";
@@ -48,7 +50,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
       namespace: name,
       theme,
       onError: () => {},
-      nodes: [HeadingNode, CodeNode, CodeHighlightNode],
+      nodes: [HeadingNode, CodeNode, CodeHighlightNode, ListNode, ListItemNode],
     }),
     [name],
   );
@@ -95,6 +97,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
           <AutoFocusPlugin />
           <HistoryPlugin />
           <CustomOnChangePlugin value={value} onChange={onChange} />
+          <ListPlugin />
         </Box>
       </LexicalComposer>
     </Box>
