@@ -1,4 +1,4 @@
-import { $createHeadingNode, HeadingTagType } from "@lexical/rich-text";
+import { $createHeadingNode, $isHeadingNode, HeadingTagType } from "@lexical/rich-text";
 import { $getNearestNodeOfType, mergeRegister } from "@lexical/utils";
 import {
   $getSelection,
@@ -12,12 +12,14 @@ import {
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "lexical";
+import { $isCodeNode, getDefaultCodeLanguage } from "@lexical/code";
 import { $isListNode, ListNode } from "@lexical/list";
 import { Box, Divider, IconButton, MenuItem, Select } from "@mui/material";
 import { HEADINGS, LOW_PRIORIRTY, RICH_TEXT_OPTIONS, RichTextAction } from "./constants";
 import { useEffect, useState } from "react";
 
 import { $wrapNodes } from "@lexical/selection";
+import { CodeBlockPlugin } from "./CodeBlockPlugin";
 import { ColorPlugin } from "./ColorPlugin";
 import { Icon } from "@iconify/react";
 import { ListPlugin } from "./ListPlugin";
@@ -33,6 +35,8 @@ export const ToolbarPlugin = () => {
   });
   const [selectionMap, setSelectionMap] = useState<{ [id: string]: boolean }>({});
   const [blockType, setBlockType] = useState("paragraph");
+  const [codeLanguage, setCodeLanguage] = useState(getDefaultCodeLanguage());
+  const [selectedElementKey, setSelectedElementKey] = useState("");
 
   const updateToolbarSelectionText = (selection: RangeSelection) => {
     const newSelectionMap = {
@@ -58,13 +62,23 @@ export const ToolbarPlugin = () => {
     const element =
       anchorNode.getKey() === "root" ? anchorNode : anchorNode.getTopLevelElementOrThrow();
     const elementKey = element.getKey();
+    setSelectedElementKey(elementKey);
     const elementDOM = editor.getElementByKey(elementKey);
 
-    if (!elementDOM || !$isListNode(element)) return;
+    if (!elementDOM) return;
 
-    const parentList = $getNearestNodeOfType(anchorNode, ListNode);
-    const type = parentList ? parentList.getTag() : element.getTag();
-    setBlockType(type);
+    if ($isListNode(element)) {
+      const parentList = $getNearestNodeOfType(anchorNode, ListNode);
+      const type = parentList ? parentList.getTag() : element.getTag();
+      setBlockType(type);
+    } else {
+      const type = $isHeadingNode(element) ? element.getTag() : element.getType();
+      setBlockType(type);
+
+      if ($isCodeNode(element)) {
+        setCodeLanguage(element.getLanguage() || getDefaultCodeLanguage());
+      }
+    }
   };
 
   const updateToolbar = () => {
@@ -175,44 +189,62 @@ export const ToolbarPlugin = () => {
     <Box
       sx={{
         display: "flex",
+        flexDirection: "column",
         flexWrap: "wrap",
         gap: 1,
         margin: "0 0 8px",
       }}
     >
-      <Select
-        onChange={(e) => {
-          updateHeading(e.target.value as HeadingTagType);
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 1,
+          width: "100%",
+          pointerEvents: blockType === "code" ? "none" : "auto",
+          opacity: blockType === "code" ? 0.5 : 1,
         }}
-        value="h1"
       >
-        {HEADINGS.map((heading) => (
-          <MenuItem key={heading} value={heading}>
-            {heading}
-          </MenuItem>
-        ))}
-      </Select>
-      {RICH_TEXT_OPTIONS.map(({ id, icon, label }, index) =>
-        id === RichTextAction.Divider ? (
-          <Divider orientation="vertical" key={`divider-${index}`} flexItem />
-        ) : (
-          <IconButton
-            key={id}
-            aria-label={label}
-            onClick={() => onAction(id)}
-            sx={{
-              borderRadius: 0,
-            }}
-            disabled={disableMap[id]}
-            color={getSelectedButtonColor(selectionMap[id])}
-          >
-            {icon ? <Icon icon={icon} width="20" height="20" /> : label}
-          </IconButton>
-        ),
-      )}
-      <ColorPlugin />
-      <ListPlugin blockType={blockType} />
-      <TablePlugin />
+        <Select
+          onChange={(e) => {
+            updateHeading(e.target.value as HeadingTagType);
+          }}
+          value="h1"
+        >
+          {HEADINGS.map((heading) => (
+            <MenuItem key={heading} value={heading}>
+              {heading}
+            </MenuItem>
+          ))}
+        </Select>
+        {RICH_TEXT_OPTIONS.map(({ id, icon, label }, index) =>
+          id === RichTextAction.Divider ? (
+            <Divider orientation="vertical" key={`divider-${index}`} flexItem />
+          ) : (
+            <IconButton
+              key={id}
+              aria-label={label}
+              onClick={() => onAction(id)}
+              sx={{
+                borderRadius: 0,
+              }}
+              disabled={disableMap[id]}
+              color={getSelectedButtonColor(selectionMap[id])}
+            >
+              {icon ? <Icon icon={icon} width="20" height="20" /> : label}
+            </IconButton>
+          ),
+        )}
+        <ColorPlugin />
+        <ListPlugin blockType={blockType} />
+        <TablePlugin />
+      </Box>
+      <Divider flexItem />
+      <CodeBlockPlugin
+        blockType={blockType}
+        selectedElementKey={selectedElementKey}
+        codeLanguage={codeLanguage}
+      />
     </Box>
   );
 };
