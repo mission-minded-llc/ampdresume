@@ -3,6 +3,7 @@
 import { CodeHighlightNode, CodeNode } from "@lexical/code";
 import { ListItemNode, ListNode } from "@lexical/list";
 import React, { useMemo } from "react";
+import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { Box } from "@mui/material";
@@ -30,6 +31,9 @@ const theme: EditorThemeClasses = {
     subscript: css({ verticalAlign: "sub" }),
     code: css({ fontFamily: "monospace", padding: 4 }),
   },
+  table: css({ marginTop: "4px" }),
+  tableCell: css({ border: "1px solid #bbb", paddingLeft: "6px", minWidth: "100px" }),
+  tableCellHeader: css({}),
 };
 
 interface RichTextEditorProps {
@@ -50,7 +54,16 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
       namespace: name,
       theme,
       onError: () => {},
-      nodes: [HeadingNode, CodeNode, CodeHighlightNode, ListNode, ListItemNode],
+      nodes: [
+        HeadingNode,
+        CodeNode,
+        CodeHighlightNode,
+        ListNode,
+        ListItemNode,
+        TableNode,
+        TableRowNode,
+        TableCellNode,
+      ],
     }),
     [name],
   );

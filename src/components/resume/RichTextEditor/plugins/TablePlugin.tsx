@@ -1,0 +1,99 @@
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  TextField,
+} from "@mui/material";
+
+import { $createTableNodeWithDimensions } from "@lexical/table";
+import { $insertNodeToNearestRoot } from "@lexical/utils";
+import TableChartIcon from "@mui/icons-material/TableChart";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { useState } from "react";
+
+export const TablePlugin = () => {
+  const [editor] = useLexicalComposerContext();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [rows, setRows] = useState<number>();
+  const [columns, setColumns] = useState<number>();
+
+  const onAddTable = () => {
+    if (!rows || !columns) return;
+
+    editor.update(() => {
+      const tableNode = $createTableNodeWithDimensions(rows, columns, true);
+      $insertNodeToNearestRoot(tableNode);
+    });
+
+    setRows(undefined);
+    setColumns(undefined);
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
+        <DialogTitle>Add Table</DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={() => setIsOpen(false)}
+          sx={(theme) => ({
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: theme.palette.grey[500],
+          })}
+        >
+          X
+        </IconButton>
+        <DialogContent
+          sx={{
+            width: "400px",
+            maxWidth: "90vw",
+          }}
+        >
+          <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 2, zIndex: 100 }}>
+            <TextField
+              placeholder="Rows"
+              label="Number of Rows"
+              type="number"
+              name="rows"
+              autoFocus
+              value={rows}
+              onChange={(e) => {
+                setRows(Number(e.target.value));
+              }}
+              slotProps={{ htmlInput: { min: 1, max: 100 } }}
+            />
+            <TextField
+              placeholder="Columns"
+              label="Number of Columns"
+              type="number"
+              name="columns"
+              value={columns}
+              onChange={(e) => {
+                setColumns(Number(e.target.value));
+              }}
+              slotProps={{ htmlInput: { min: 1, max: 20 } }}
+            />
+            <Button onClick={onAddTable} disabled={!rows || !columns}>
+              Add
+            </Button>
+          </Box>
+        </DialogContent>
+      </Dialog>
+      <IconButton
+        aria-label="Add table"
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        <TableChartIcon />
+      </IconButton>
+    </>
+  );
+};

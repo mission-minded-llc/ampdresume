@@ -21,6 +21,7 @@ import { $wrapNodes } from "@lexical/selection";
 import { ColorPlugin } from "./ColorPlugin";
 import { Icon } from "@iconify/react";
 import { ListPlugin } from "./ListPlugin";
+import { TablePlugin } from "./TablePlugin";
 import { useKeyBindings } from "@/hooks/useKeyBindings";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
@@ -211,6 +212,7 @@ export const ToolbarPlugin = () => {
       )}
       <ColorPlugin />
       <ListPlugin blockType={blockType} />
+      <TablePlugin />
     </Box>
   );
 };
