@@ -29,7 +29,7 @@ export const SkillSearch = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedSkillId, setSelectedSkillId] = useState<string | null>(null);
   const [yearStarted, setYearStarted] = useState(new Date().getFullYear());
-  const [totalYears, setTotalYears] = useState(1);
+  const [totalYears, setTotalYears] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
   // When the search term is at least this length, the search will trigger
@@ -115,7 +115,7 @@ export const SkillSearch = () => {
       setOpenDialog(false);
       setSelectedSkillId(null);
       setYearStarted(new Date().getFullYear());
-      setTotalYears(1);
+      setTotalYears(0);
       setSearchTerm("");
     }
   };
@@ -187,6 +187,7 @@ export const SkillSearch = () => {
               value={yearStarted}
               label="Year Started"
               onChange={(e) => setYearStarted(Number(e.target.value))}
+              slotProps={{ htmlInput: { min: 1900, max: new Date().getFullYear() } }}
             />
             <TextField
               margin="dense"
@@ -196,6 +197,7 @@ export const SkillSearch = () => {
               value={totalYears}
               label="Total Years"
               onChange={(e) => setTotalYears(Number(e.target.value))}
+              slotProps={{ htmlInput: { min: 0, max: 100 } }}
             />
           </Box>
         </DialogContent>
