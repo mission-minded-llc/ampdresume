@@ -230,6 +230,7 @@ export const ToolbarPlugin = () => {
           width: "100%",
           pointerEvents: blockType === "code" ? "none" : "auto",
           opacity: blockType === "code" ? 0.5 : 1,
+          alignItems: "center",
         }}
       >
         <Select
