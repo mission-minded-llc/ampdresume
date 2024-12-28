@@ -39,7 +39,7 @@ export const SkillItemEdit = ({
 
   return (
     <Box>
-      <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
+      <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
         <TextField
           type="number"
           label="Year Started"
@@ -47,7 +47,7 @@ export const SkillItemEdit = ({
           onChange={(e) => setYearStarted(Number(e.target.value))}
           slotProps={{ htmlInput: { min: 1900, max: new Date().getFullYear() } }}
         />
-        <>
+        <Box sx={{ display: "grid", gridTemplateColumns: "80% 1fr" }}>
           <TextField
             type="number"
             label="Total Years"
@@ -63,7 +63,7 @@ export const SkillItemEdit = ({
             value, it will override the calculated value. Leave 0
             for none."
           />
-        </>
+        </Box>
       </Box>
       <Divider sx={{ my: 2 }} />
       <Box sx={{ mb: 2 }}>
