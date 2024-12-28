@@ -14,6 +14,7 @@ import { CustomOnChangePlugin } from "./plugins/CustomOnChangePlugin";
 import { EditorThemeClasses } from "lexical";
 import { HeadingNode } from "@lexical/rich-text";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { ImageNode } from "./nodes/ImageNode";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
@@ -90,6 +91,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
       onError: () => {},
       nodes: [
         HeadingNode,
+        ImageNode,
         CodeNode,
         CodeHighlightNode,
         ListNode,

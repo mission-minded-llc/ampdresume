@@ -22,6 +22,7 @@ import { $wrapNodes } from "@lexical/selection";
 import { CodeBlockPlugin } from "./CodeBlockPlugin";
 import { ColorPlugin } from "./ColorPlugin";
 import { Icon } from "@iconify/react";
+import { ImagePlugin } from "./ImagePlugin";
 import { ListPlugin } from "./ListPlugin";
 import { TablePlugin } from "./TablePlugin";
 import { useKeyBindings } from "@/hooks/useKeyBindings";
@@ -240,11 +241,25 @@ export const ToolbarPlugin = () => {
         <TablePlugin />
       </Box>
       <Divider flexItem />
-      <CodeBlockPlugin
-        blockType={blockType}
-        selectedElementKey={selectedElementKey}
-        codeLanguage={codeLanguage}
-      />
+      <Box sx={{ display: "flex", gap: 1 }}>
+        <CodeBlockPlugin
+          blockType={blockType}
+          selectedElementKey={selectedElementKey}
+          codeLanguage={codeLanguage}
+        />
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 1,
+            width: "100%",
+            pointerEvents: blockType === "code" ? "none" : "auto",
+            opacity: blockType === "code" ? 0.5 : 1,
+          }}
+        >
+          <ImagePlugin />
+        </Box>
+      </Box>
     </Box>
   );
 };
