@@ -9,13 +9,34 @@ import {
 } from "@mui/material";
 import { useRef, useState } from "react";
 
+import { $createImageNode } from "../nodes/ImageNode";
+import { $insertNodes } from "lexical";
 import ImageIcon from "@mui/icons-material/Image";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 export const ImagePlugin = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [url, setUrl] = useState<string>();
   const [file, setFile] = useState<File>();
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [editor] = useLexicalComposerContext();
+
+  const onAddImage = () => {
+    let src = "";
+    if (url) src = url;
+    if (file) src = URL.createObjectURL(file);
+
+    editor.update(() => {
+      const node = $createImageNode({ src, altText: "Image" });
+
+      $insertNodes([node]);
+
+      setUrl("");
+      setFile(undefined);
+      setIsOpen(false);
+    });
+  };
 
   return (
     <>
@@ -71,8 +92,12 @@ export const ImagePlugin = () => {
               onClick={() => {
                 inputRef.current?.click();
               }}
+              variant="outlined"
             >
               {file ? file.name : "Upload Image"}
+            </Button>
+            <Button onClick={onAddImage} disabled={!url && !file} variant="contained">
+              Add Image
             </Button>
           </Box>
         </DialogContent>

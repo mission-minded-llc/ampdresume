@@ -32,16 +32,27 @@ export const CodeBlockPlugin = ({
   const [editor] = useLexicalComposerContext();
 
   useEffect(() => {
-    registerCodeHighlighting(editor);
+    // Remove the direct call to registerCodeHighlighting
+    return editor.registerUpdateListener(() => {
+      // Register highlighting only when the editor is not updating
+      if (!editor._updating) {
+        registerCodeHighlighting(editor);
+      }
+    });
   }, [editor]);
 
   const onAddCodeBlock = () => {
-    editor.update(() => {
-      const selection = $getSelection();
-      if ($isRangeSelection(selection)) {
-        $wrapNodes(selection, () => $createCodeNode());
-      }
-    });
+    // Wrap the update in a try-catch to handle any potential errors
+    try {
+      editor.update(() => {
+        const selection = $getSelection();
+        if ($isRangeSelection(selection)) {
+          $wrapNodes(selection, () => $createCodeNode());
+        }
+      });
+    } catch {
+      // TODO: Handle the error with Sentry.
+    }
   };
 
   const updateLanguage = (language: string) => {
