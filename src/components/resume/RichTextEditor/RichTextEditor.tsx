@@ -20,6 +20,7 @@ import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ToolbarPlugin } from "./plugins/ToolbarPlugin";
+import { YouTubeNode } from "./nodes/YouTubeNode";
 import { css } from "@emotion/css";
 
 const theme: EditorThemeClasses = {
@@ -92,6 +93,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
       nodes: [
         HeadingNode,
         ImageNode,
+        YouTubeNode,
         CodeNode,
         CodeHighlightNode,
         ListNode,

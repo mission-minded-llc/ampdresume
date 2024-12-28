@@ -5,8 +5,11 @@ import {
   $isRangeSelection,
   CAN_REDO_COMMAND,
   CAN_UNDO_COMMAND,
+  COMMAND_PRIORITY_HIGH,
   FORMAT_ELEMENT_COMMAND,
   FORMAT_TEXT_COMMAND,
+  KEY_BACKSPACE_COMMAND,
+  LexicalNode,
   REDO_COMMAND,
   RangeSelection,
   SELECTION_CHANGE_COMMAND,
@@ -22,11 +25,17 @@ import { $wrapNodes } from "@lexical/selection";
 import { CodeBlockPlugin } from "./CodeBlockPlugin";
 import { ColorPlugin } from "./ColorPlugin";
 import { Icon } from "@iconify/react";
+import { ImageNode } from "../nodes/ImageNode";
 import { ImagePlugin } from "./ImagePlugin";
 import { ListPlugin } from "./ListPlugin";
 import { TablePlugin } from "./TablePlugin";
+import { YouTubeNode } from "../nodes/YouTubeNode";
+import YoutubePlugin from "./YouTubePlugin";
 import { useKeyBindings } from "@/hooks/useKeyBindings";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+
+const $isCustomNode = (node: LexicalNode): boolean =>
+  node instanceof YouTubeNode || node instanceof ImageNode;
 
 export const ToolbarPlugin = () => {
   const [editor] = useLexicalComposerContext();
@@ -121,6 +130,23 @@ export const ToolbarPlugin = () => {
           return false;
         },
         LOW_PRIORIRTY,
+      ),
+
+      // Handles deleting custom nodes.
+      editor.registerCommand(
+        KEY_BACKSPACE_COMMAND,
+        () => {
+          const selection = $getSelection();
+          if ($isRangeSelection(selection)) {
+            const node = selection.getNodes()[0];
+            if (node && $isCustomNode(node)) {
+              const parent = node.getParent();
+              if (parent) parent.remove();
+            }
+          }
+          return false;
+        },
+        COMMAND_PRIORITY_HIGH,
       ),
     );
   });
@@ -258,6 +284,7 @@ export const ToolbarPlugin = () => {
           }}
         >
           <ImagePlugin />
+          <YoutubePlugin />
         </Box>
       </Box>
     </Box>

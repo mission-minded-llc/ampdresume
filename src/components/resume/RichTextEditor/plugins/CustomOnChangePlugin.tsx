@@ -18,6 +18,7 @@ export const CustomOnChangePlugin = ({ value, onChange }: CustomOnChangePluginPr
     if (!value || !isFirstRender) return;
 
     setIsFirstRender(false);
+
     editor.update(() => {
       const currentHtml = $generateHtmlFromNodes(editor);
 

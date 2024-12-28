@@ -387,6 +387,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
 
   exportJSON(): SerializedLexicalNode & ImageNodeData {
     return {
+      ...super.exportJSON(),
       type: "image",
       version: 1,
       src: this.__src,
