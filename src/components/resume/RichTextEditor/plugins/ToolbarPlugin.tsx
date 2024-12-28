@@ -141,7 +141,10 @@ export const ToolbarPlugin = () => {
             const node = selection.getNodes()[0];
             if (node && $isCustomNode(node)) {
               const parent = node.getParent();
-              if (parent) parent.remove();
+              if (parent) {
+                parent.remove();
+                return true;
+              }
             }
           }
           return false;
