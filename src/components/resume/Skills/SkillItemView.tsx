@@ -13,14 +13,5 @@ export const SkillItemView = ({ skill }: { skill: SkillForUserWithSkill }) => {
     return null;
   }
 
-  return (
-    <Box
-      sx={{
-        minWidth: "400px",
-        maxWidth: "100%",
-      }}
-    >
-      {nodes}
-    </Box>
-  );
+  return <Box>{nodes}</Box>;
 };

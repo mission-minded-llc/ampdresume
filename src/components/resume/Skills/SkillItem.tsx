@@ -44,7 +44,12 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
         ) : null}
         {skill.skill.name}
       </Button>
-      <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="xl">
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        fullWidth
+        maxWidth={userCanEdit ? "xl" : "lg"}
+      >
         <DialogTitle
           sx={{ display: "flex", alignItems: "center", gap: "1em", padding: "16px 48px" }}
         >
