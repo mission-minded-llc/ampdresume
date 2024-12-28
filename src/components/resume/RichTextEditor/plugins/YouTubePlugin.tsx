@@ -20,18 +20,29 @@ export default function YoutubePlugin() {
 
   const [editor] = useLexicalComposerContext();
 
-  const onEmbed = () => {
-    if (!url) return;
+  const extractYouTubeId = (url: string) => {
     const match = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/.exec(url);
 
-    const id = match && match?.[2]?.length === 11 ? match?.[2] : null;
+    return match && match?.[2]?.length === 11 ? match?.[2] : null;
+  };
+
+  const onEmbed = () => {
+    if (!url) return;
+
+    const id = extractYouTubeId(url);
     if (!id) return;
+
     editor.update(() => {
       const node = $createYouTubeNode({ id });
       $insertNodes([node]);
     });
+
     setURL("");
     setIsOpen(false);
+  };
+
+  const isValidYouTubeURL = (url: string) => {
+    return !!extractYouTubeId(url);
   };
 
   return (
@@ -57,7 +68,7 @@ export default function YoutubePlugin() {
               onChange={(e) => setURL(e.target.value)}
               placeholder="Add Youtube URL"
             />
-            <Button variant="contained" onClick={onEmbed}>
+            <Button variant="contained" onClick={onEmbed} disabled={!isValidYouTubeURL(url)}>
               Embed
             </Button>
           </Box>
