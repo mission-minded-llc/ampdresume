@@ -10,6 +10,7 @@ import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { Box } from "@mui/material";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
+import { CustomLinkNode } from "./nodes/CustomLinkNode";
 import { CustomOnChangePlugin } from "./plugins/CustomOnChangePlugin";
 import { EditorThemeClasses } from "lexical";
 import { HeadingNode } from "@lexical/rich-text";
@@ -39,6 +40,7 @@ const theme: EditorThemeClasses = {
   tableCell: css({ border: "1px solid #bbb", paddingLeft: "6px", minWidth: "100px" }),
   tableCellHeader: css({}),
   code: "editorCode",
+  link: "editorLink",
   codeHighlight: {
     atrule: "editorTokenAttr",
     attr: "editorTokenAttr",
@@ -96,6 +98,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
         YouTubeNode,
         CodeNode,
         CodeHighlightNode,
+        CustomLinkNode,
         ListNode,
         ListItemNode,
         TableNode,

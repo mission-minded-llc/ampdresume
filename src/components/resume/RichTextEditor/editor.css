@@ -65,3 +65,8 @@
 .editorTokenFunction {
   color: #dd4a68;
 }
+
+.editorLink {
+  color: inherit;
+  text-decoration: underline;
+}

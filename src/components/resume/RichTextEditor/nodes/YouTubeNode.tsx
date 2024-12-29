@@ -54,6 +54,10 @@ export class YouTubeNode extends DecoratorNode<JSX.Element> {
     return div;
   }
 
+  updateDOM(): boolean {
+    return false;
+  }
+
   exportDOM(): DOMExportOutput {
     const iframe = document.createElement("iframe");
     iframe.setAttribute(ID_ATTR, this.__id);
