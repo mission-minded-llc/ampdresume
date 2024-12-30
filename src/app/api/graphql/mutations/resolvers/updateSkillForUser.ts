@@ -21,6 +21,15 @@ export const updateSkillForUser = async (
     throw new Error("Unauthorized");
   }
 
+  const existingSkill = await prisma.skillForUser.findFirst({
+    where: { id },
+  });
+
+  // User doesn't own this user skill.
+  if (existingSkill?.userId !== userId) {
+    throw new Error("Unauthorized: User does not own this skill");
+  }
+
   return await prisma.skillForUser.update({
     where: { id },
     data: {

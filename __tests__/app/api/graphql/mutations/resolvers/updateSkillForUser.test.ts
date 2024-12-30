@@ -5,6 +5,7 @@ import { verifySessionOwnership } from "@/app/api/graphql/util";
 jest.mock("@/lib/prisma", () => ({
   prisma: {
     skillForUser: {
+      findFirst: jest.fn(),
       update: jest.fn(),
     },
   },
@@ -15,7 +16,7 @@ jest.mock("@/app/api/graphql/util", () => ({
 }));
 
 describe("updateSkillForUser", () => {
-  it("throws an error if user is unauthorized", async () => {
+  it("throws an error if user is unauthorized for session", async () => {
     (verifySessionOwnership as jest.Mock).mockResolvedValueOnce(false);
     await expect(
       updateSkillForUser("", {
@@ -28,10 +29,42 @@ describe("updateSkillForUser", () => {
     ).rejects.toThrow("Unauthorized");
   });
 
+  it("throws an error if user is not authorized to edit this skill", async () => {
+    (verifySessionOwnership as jest.Mock).mockResolvedValueOnce(true);
+    (prisma.skillForUser.findFirst as jest.Mock).mockResolvedValueOnce({
+      id: "skill-for-user-id",
+      userId: "user-id-other",
+    });
+
+    (prisma.skillForUser.update as jest.Mock).mockResolvedValueOnce({
+      id: "skill-for-user-id",
+      userId: "user-id",
+      yearStarted: 2020,
+      totalYears: 3,
+      description: "New description",
+      skill: { name: "Sample Skill" },
+    });
+
+    await expect(
+      updateSkillForUser("", {
+        id: "skill-id",
+        userId: "user-id",
+        yearStarted: 2020,
+        totalYears: 3,
+        description: "Test description",
+      }),
+    ).rejects.toThrow("Unauthorized: User does not own this skill");
+  });
+
   it("updates skill if user is authorized", async () => {
     (verifySessionOwnership as jest.Mock).mockResolvedValueOnce(true);
+    (prisma.skillForUser.findFirst as jest.Mock).mockResolvedValueOnce({
+      id: "skill-for-user-id",
+      userId: "user-id",
+    });
+
     (prisma.skillForUser.update as jest.Mock).mockResolvedValueOnce({
-      id: "skill-id",
+      id: "skill-for-user-id",
       userId: "user-id",
       yearStarted: 2020,
       totalYears: 3,
@@ -48,7 +81,7 @@ describe("updateSkillForUser", () => {
     });
 
     expect(result).toMatchObject({
-      id: "skill-id",
+      id: "skill-for-user-id",
       description: "New description",
       skill: { name: "Sample Skill" },
     });
