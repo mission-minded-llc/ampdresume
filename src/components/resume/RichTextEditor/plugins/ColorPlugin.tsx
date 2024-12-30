@@ -38,7 +38,7 @@ export const ColorPlugin = () => {
         LOW_PRIORIRTY,
       ),
     );
-  }, []);
+  }, [editor]);
 
   const updateColor = ({
     property,

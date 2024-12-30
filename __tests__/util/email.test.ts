@@ -1,17 +1,14 @@
 import { findUserByNormalizedEmail, normalizeEmail } from "@/util/email";
 
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 
-jest.mock("@prisma/client", () => {
-  const mPrismaClient = {
+jest.mock("@/lib/prisma", () => ({
+  prisma: {
     user: {
       findMany: jest.fn(),
     },
-  };
-  return { PrismaClient: jest.fn(() => mPrismaClient) };
-});
-
-const prisma = new PrismaClient();
+  },
+}));
 
 describe("normalizeEmail", () => {
   it("should normalize email by removing dots and anything after +", () => {

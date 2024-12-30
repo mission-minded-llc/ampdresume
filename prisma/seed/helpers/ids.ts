@@ -1,6 +1,6 @@
-import { prisma } from "./prisma";
-import { testUserEmails } from "./data";
 import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
+import { testUserEmails } from "./data";
 
 const getIds = async (
   model: keyof Omit<PrismaClient, "$connect" | "$disconnect" | "$on" | "$transaction" | "$use">,

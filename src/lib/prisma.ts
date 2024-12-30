@@ -1,3 +1,6 @@
+/**
+ * This should be the ONLY prisma import in your codebase.
+ */
 import { PrismaClient } from "@prisma/client";
 
 // Prevent multiple Prisma Client instances in development

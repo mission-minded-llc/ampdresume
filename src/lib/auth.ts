@@ -1,14 +1,12 @@
-import { Session as NextAuthSession, getServerSession, NextAuthOptions } from "next-auth";
-import { JWT } from "next-auth/jwt";
-import { AdapterUser } from "next-auth/adapters";
 import EmailProvider, { EmailConfig } from "next-auth/providers/email";
+import { NextAuthOptions, Session as NextAuthSession, getServerSession } from "next-auth";
+
+import { AdapterUser } from "next-auth/adapters";
+import { JWT } from "next-auth/jwt";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 import { findUserByNormalizedEmail } from "@/util/email";
 import nodemailer from "nodemailer";
-
-// Initialize Prisma client here.
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 /**
  * The custom email sending function for the email provider.

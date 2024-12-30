@@ -1,11 +1,9 @@
 /* eslint-disable no-console */
 
-import { PrismaClient } from "@prisma/client";
 import { fileURLToPath } from "url";
 import { logTitle } from "./helpers/util";
+import { prisma } from "@/lib/prisma";
 import { testUsers } from "./helpers/data";
-
-const prisma = new PrismaClient();
 
 export async function seedUsers() {
   logTitle("Seeding Demo Users");

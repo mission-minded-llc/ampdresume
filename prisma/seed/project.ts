@@ -1,12 +1,10 @@
 /* eslint-disable no-console */
 
-import { PrismaClient } from "@prisma/client";
 import { fileURLToPath } from "url";
 import { getTestPositionIds } from "./helpers/ids";
 import { logTitle } from "./helpers/util";
+import { prisma } from "@/lib/prisma";
 import { randomLoremIpsumDescriptions } from "./helpers/data";
-
-const prisma = new PrismaClient();
 
 export async function seedProjects() {
   logTitle("Seeding Demo Projects");

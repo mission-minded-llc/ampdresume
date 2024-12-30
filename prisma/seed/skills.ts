@@ -2,16 +2,14 @@
 
 // Use Prisma to seed data from ./skills.csv into the Skills table.
 
-import { PrismaClient } from "@prisma/client";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import { logTitle } from "./helpers/util";
 import path from "path";
+import { prisma } from "@/lib/prisma";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-const prisma = new PrismaClient();
 
 export async function seedSkills() {
   logTitle("Seeding Predefined Skills");
