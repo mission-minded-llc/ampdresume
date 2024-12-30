@@ -1,8 +1,8 @@
+import { AutoLinkNode, LinkNode } from "@lexical/link";
 import { CodeHighlightNode, CodeNode } from "@lexical/code";
 import { ListItemNode, ListNode } from "@lexical/list";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 
-import { CustomLinkNode } from "@/components/resume/RichTextEditor/nodes/CustomLinkNode";
 import { HeadingNode } from "@lexical/rich-text";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RICH_TEXT_OPTIONS } from "@/components/resume/RichTextEditor/plugins/constants";
@@ -19,7 +19,8 @@ const initialConfig = {
     HeadingNode,
     CodeNode,
     CodeHighlightNode,
-    CustomLinkNode,
+    LinkNode,
+    AutoLinkNode,
     ListNode,
     ListItemNode,
     TableNode,

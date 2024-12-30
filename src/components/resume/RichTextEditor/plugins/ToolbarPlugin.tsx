@@ -27,7 +27,6 @@ import { ColorPlugin } from "./ColorPlugin";
 import { Icon } from "@iconify/react";
 import { ImageNode } from "../nodes/ImageNode";
 import { ImagePlugin } from "./ImagePlugin";
-import { LinkCustomPlugin } from "./LinkCustomPlugin";
 import { ListPlugin } from "./ListPlugin";
 import { TablePlugin } from "./TablePlugin";
 import { YouTubeNode } from "../nodes/YouTubeNode";
@@ -289,7 +288,6 @@ export const ToolbarPlugin = () => {
           }}
         >
           <ImagePlugin />
-          <LinkCustomPlugin />
           <YoutubePlugin />
         </Box>
       </Box>

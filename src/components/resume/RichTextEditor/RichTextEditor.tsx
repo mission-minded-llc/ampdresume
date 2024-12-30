@@ -2,22 +2,26 @@
 
 import "./editor.css";
 
+import { AutoLinkNode, LinkNode } from "@lexical/link";
+import { AutoLinkPlugin, createLinkMatcherWithRegExp } from "@lexical/react/LexicalAutoLinkPlugin";
 import { CodeHighlightNode, CodeNode } from "@lexical/code";
 import { ListItemNode, ListNode } from "@lexical/list";
 import React, { useMemo } from "react";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
+import { URL_REGEX, validateUrl } from "@/util/url";
 
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { Box } from "@mui/material";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { CustomLinkNode } from "./nodes/CustomLinkNode";
 import { CustomOnChangePlugin } from "./plugins/CustomOnChangePlugin";
+import { EMAIL_REGEX } from "@/util/email";
 import { EditorThemeClasses } from "lexical";
 import { HeadingNode } from "@lexical/rich-text";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { ImageNode } from "./nodes/ImageNode";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
+import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ToolbarPlugin } from "./plugins/ToolbarPlugin";
@@ -98,7 +102,8 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
         YouTubeNode,
         CodeNode,
         CodeHighlightNode,
-        CustomLinkNode,
+        LinkNode,
+        AutoLinkNode,
         ListNode,
         ListItemNode,
         TableNode,
@@ -108,6 +113,15 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
     }),
     [name],
   );
+
+  const MATCHERS = [
+    createLinkMatcherWithRegExp(URL_REGEX, (text) => {
+      return text;
+    }),
+    createLinkMatcherWithRegExp(EMAIL_REGEX, (text) => {
+      return `mailto:${text}`;
+    }),
+  ];
 
   return (
     <Box>
@@ -152,6 +166,12 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
           <HistoryPlugin />
           <CustomOnChangePlugin value={value} onChange={onChange} />
           <ListPlugin />
+          {/**
+           * Thank you:
+           * https://javascript.plainenglish.io/lexical-how-to-use-link-plugins-d9a7734977a0
+           */}
+          <LinkPlugin validateUrl={validateUrl} />
+          <AutoLinkPlugin matchers={MATCHERS} />
         </Box>
       </LexicalComposer>
     </Box>

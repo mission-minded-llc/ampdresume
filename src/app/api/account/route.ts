@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
@@ -33,6 +34,7 @@ export async function POST(req: NextRequest) {
         id: true,
       },
     });
+
     if (existingUser && existingUser.id !== session.user.id) {
       return NextResponse.json({ error: "Slug is already taken" }, { status: 400 });
     }
