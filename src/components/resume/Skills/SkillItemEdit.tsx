@@ -14,7 +14,8 @@ export const SkillItemEdit = ({
   skill: SkillForUserWithSkill;
   successCallback?: () => void;
 }) => {
-  const { skillType, updateSkillForUserMutation } = useContext(SkillsContext);
+  const { skillType, updateSkillForUserMutation, deleteSkillForUserMutation } =
+    useContext(SkillsContext);
 
   const [value, setValue] = useState(skill?.description ?? "");
   const [yearStarted, setYearStarted] = useState(skill?.yearStarted ?? new Date().getFullYear());
@@ -35,7 +36,15 @@ export const SkillItemEdit = ({
     }
   };
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    if (deleteSkillForUserMutation) {
+      deleteSkillForUserMutation.mutate({ id: skill.id });
+
+      if (successCallback) {
+        successCallback();
+      }
+    }
+  };
 
   return (
     <Box>

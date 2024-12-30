@@ -2,11 +2,11 @@
 
 import { Box, Container, Divider, IconButton, Tooltip, Typography } from "@mui/material";
 import { UseMutationResult, useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteSkillForUser, updateSkillForUser } from "@/server/skills";
 
 import { InfoOutlined } from "@mui/icons-material";
 import { SkillSearch } from "./SkillSearch";
 import { Skills } from "@/components/resume/Skills/Skills";
-import { updateSkillForUser } from "@/server/skills";
 import { useSession } from "next-auth/react";
 
 export type UpdateSkillForUserMutation = UseMutationResult<
@@ -16,11 +16,13 @@ export type UpdateSkillForUserMutation = UseMutationResult<
   unknown
 >;
 
+export type DeleteSkillForUserMutation = UseMutationResult<void, Error, { id: string }, unknown>;
+
 export const EditSkills = () => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
+  const updateSkillForUserMutation = useMutation({
     mutationFn: async ({
       id,
       description,
@@ -49,6 +51,22 @@ export const EditSkills = () => {
     },
   });
 
+  const deleteSkillForUserMutation = useMutation({
+    mutationFn: async ({ id }: { id: string }) => {
+      if (!session?.user?.id) return;
+
+      await deleteSkillForUser({
+        id,
+        userId: session.user.id,
+      });
+    },
+    onSuccess: () => {
+      if (!session?.user?.id) return;
+      // Refetch skills after deleting one
+      queryClient.invalidateQueries({ queryKey: ["skills", session.user.id] });
+    },
+  });
+
   return (
     <Container>
       <Divider sx={{ mb: 2, mt: 2 }} />
@@ -68,7 +86,11 @@ export const EditSkills = () => {
           </IconButton>
         </Tooltip>
       </Typography>
-      <Skills skillType="user" updateSkillForUserMutation={mutation} />
+      <Skills
+        skillType="user"
+        updateSkillForUserMutation={updateSkillForUserMutation}
+        deleteSkillForUserMutation={deleteSkillForUserMutation}
+      />
     </Container>
   );
 };

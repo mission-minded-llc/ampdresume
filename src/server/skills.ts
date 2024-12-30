@@ -1,6 +1,7 @@
 import { GET_SKILLS_FOR_USER, SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 
 import { ADD_SKILL_FOR_USER } from "@/graphql/addSkillForUser";
+import { DELETE_SKILL_FOR_USER } from "@/graphql/deleteSkillForUser";
 import { GET_SKILLS } from "@/graphql/getSkills";
 import { Skill } from "@prisma/client";
 import { UPDATE_SKILL_FOR_USER } from "@/graphql/updateSkillForUser";
@@ -103,6 +104,25 @@ export const updateSkillForUser = async ({
       yearStarted,
       totalYears,
       description,
+    },
+  });
+};
+
+/**
+ * Used to delete a skill for a user.
+ *
+ * @param userId - the user ID to delete the skill for.
+ * @param id - the skill ID to delete.
+ * @returns success or failure.
+ */
+export const deleteSkillForUser = async ({ userId, id }: { userId: string; id: string }) => {
+  const client = getApolloClient();
+
+  await client.mutate({
+    mutation: DELETE_SKILL_FOR_USER,
+    variables: {
+      userId,
+      id,
     },
   });
 };

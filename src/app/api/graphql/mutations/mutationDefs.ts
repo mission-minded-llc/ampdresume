@@ -11,5 +11,6 @@ export const mutationDefs = gql`
       totalYears: Int
       description: String
     ): SkillForUser!
+    deleteSkillForUser(userId: ID!, id: ID!): SkillForUser
   }
 `;
