@@ -1,257 +1,29 @@
-import { PrismaClient } from "@prisma/client";
 import gql from "graphql-tag";
 import { makeExecutableSchema } from "@graphql-tools/schema";
+import { mutationDefs } from "./mutationDefs";
+import { mutationResolvers } from "./mutationResolvers";
+import { queryDefs } from "./queryDefs";
+import { queryResolvers } from "./queryResolvers";
+import { types } from "./types";
 
-const prisma = new PrismaClient();
-
-// Define type definitions
+/**
+ * Before data can be queried or mutated, we need to define the schema.
+ * This is done by combining the types, queries, and mutations into a single schema.
+ * The types represent the data structure, the queries represent the data retrieval,
+ * and the mutations represent the data manipulation/updates.
+ */
 const typeDefs = gql`
-  type Query {
-    # General queries.
-    skills: [Skill!]!
-
-    # User-specific queries.
-    user(slug: String!): User!
-    skillsForUser(userId: ID!): [SkillForUser!]!
-    companies(userId: ID!, sort: [SortInput!]): [Company!]!
-    positions(companyIds: [ID!], sort: [SortInput!]): [Position!]!
-    education(userId: ID!, sort: [SortInput!]): [Education!]!
-  }
-
-  type Mutation {
-    # User-specific mutations.
-    addSkillForUser(userId: ID!, skillId: ID!, yearStarted: Int, totalYears: Int): SkillForUser!
-    updateSkillForUser(
-      id: ID!
-      userId: ID!
-      yearStarted: Int
-      totalYears: Int
-      description: String
-    ): SkillForUser!
-  }
-
-  type User {
-    id: ID!
-    name: String!
-    email: String!
-    displayEmail: String
-    location: String
-    title: String
-    siteTitle: String
-    siteImage: String
-  }
-
-  type SkillsForUser {
-    skillsForUser: [SkillForUser!]
-  }
-
-  type SkillForUser {
-    id: ID!
-    userId: ID!
-    skill: Skill!
-    icon: String
-    description: String
-    yearStarted: Int
-    totalYears: Int
-  }
-
-  type Skill {
-    id: ID!
-    name: String!
-    icon: String
-  }
-
-  type Company {
-    id: ID!
-    name: String!
-    location: String
-    startDate: String
-    endDate: String
-  }
-
-  type Position {
-    id: ID!
-    title: String!
-    startDate: String
-    endDate: String
-    company: Company!
-    projects: [Project!]!
-  }
-
-  type Project {
-    id: ID!
-    name: String!
-    description: String
-    skillsForProject: [SkillForProject!]!
-  }
-
-  type SkillForProject {
-    id: ID!
-    skillForUser: SkillForUser!
-    description: String
-  }
-
-  type Education {
-    id: ID!
-    school: String!
-    degree: String
-    dateAwarded: String
-  }
-
-  input SortInput {
-    field: String!
-    direction: SortDirection!
-  }
-
-  enum SortDirection {
-    ASC
-    DESC
-  }
+  ${types}
+  ${queryDefs}
+  ${mutationDefs}
 `;
 
+/**
+ * The resolvers handle the actual data retrieval and manipulation.
+ */
 const resolvers = {
-  Query: {
-    // General queries.
-    skills: async () => {
-      return await prisma.skill.findMany();
-    },
-
-    // User-specific queries.
-    user: async (_: string, { slug }: { slug: string }) => {
-      return await prisma.user.findUnique({
-        where: { slug },
-      });
-    },
-    skillsForUser: async (_: string, { userId }: { userId: string }) => {
-      return await prisma.skillForUser.findMany({
-        where: { userId },
-        include: { skill: true }, // Include skill details
-      });
-    },
-    companies: async (
-      _: string,
-      {
-        userId,
-        sort,
-      }: { userId: string; sort: Array<{ field: string; direction: "ASC" | "DESC" }> },
-    ) => {
-      // Map the sort array into Prisma-compatible orderBy
-      const orderBy =
-        sort?.map(({ field, direction }) => ({
-          [field]: direction.toLowerCase(), // Prisma expects lowercase for ASC/DESC
-        })) || [];
-
-      return await prisma.company.findMany({
-        where: { userId },
-        orderBy, // Apply sorting
-      });
-    },
-    positions: async (
-      _: string,
-      {
-        companyIds,
-        sort,
-      }: { companyIds: string[]; sort: Array<{ field: string; direction: "ASC" | "DESC" }> },
-    ) => {
-      // Map the sort array into Prisma-compatible orderBy
-      const orderBy =
-        sort?.map(({ field, direction }) => ({
-          [field]: direction.toLowerCase(), // Prisma expects lowercase for ASC/DESC
-        })) || [];
-
-      return await prisma.position.findMany({
-        where: { companyId: { in: companyIds } },
-        orderBy, // Apply sorting
-        include: {
-          company: true, // Include company details
-          projects: { include: { skillsForProject: { include: { skillForUser: true } } } },
-        }, // Include project and skill details
-      });
-    },
-    education: async (
-      _: string,
-      {
-        userId,
-        sort,
-      }: { userId: string; sort: Array<{ field: string; direction: "ASC" | "DESC" }> },
-    ) => {
-      // Map the sort array into Prisma-compatible orderBy
-      const orderBy =
-        sort?.map(({ field, direction }) => ({
-          [field]: direction.toLowerCase(), // Prisma expects lowercase for ASC/DESC
-        })) || [];
-
-      return await prisma.education.findMany({
-        where: { userId },
-        orderBy, // Apply sorting
-      });
-    },
-  },
-
-  // Mutation resolvers.
-  Mutation: {
-    // User-specific mutations.
-    addSkillForUser: async (
-      _: string,
-      {
-        userId,
-        skillId,
-        yearStarted,
-        totalYears,
-      }: { userId: string; skillId: string; yearStarted: number; totalYears: number },
-    ) => {
-      // Check if this skill already exists for this user.
-      const existingSkill = await prisma.skillForUser.findFirst({
-        where: { userId, skillId },
-      });
-
-      if (existingSkill) {
-        return {
-          id: existingSkill.id,
-        };
-      }
-
-      return await prisma.skillForUser.create({
-        data: {
-          userId,
-          skillId,
-          yearStarted,
-          totalYears,
-        },
-        include: { skill: true }, // Include skill details
-      });
-    },
-
-    updateSkillForUser: async (
-      _: string,
-      {
-        id,
-        userId,
-        yearStarted,
-        totalYears,
-        description,
-      }: {
-        id: string;
-        userId: string;
-        yearStarted: number;
-        totalYears: number;
-        description: string;
-      },
-    ) => {
-      /// TODO: verify that userId matches the current session user.
-
-      return await prisma.skillForUser.update({
-        where: { id },
-        data: {
-          userId,
-          description,
-          yearStarted,
-          totalYears,
-        },
-        include: { skill: true }, // Include skill details
-      });
-    },
-  },
+  Query: queryResolvers,
+  Mutation: mutationResolvers,
 };
 
 export const schema = makeExecutableSchema({ typeDefs, resolvers });
