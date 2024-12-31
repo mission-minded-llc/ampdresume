@@ -1,4 +1,3 @@
-# CORS configurations remain the same for all buckets
 resource "aws_s3_bucket_cors_configuration" "medialocal_cors" {
   bucket = aws_s3_bucket.medialocal.id
 
@@ -47,24 +46,13 @@ resource "aws_s3_bucket_cors_configuration" "media_cors" {
   }
 }
 
-# Bucket policies reverted to only allow GetObject
 data "aws_iam_policy_document" "medialocal_policy" {
   statement {
-    actions   = ["s3:GetObject"] # Only GetObject
-    resources = ["${aws_s3_bucket.medialocal.arn}/assets/user/*"]
-
-    condition {
-      test     = "StringEquals"
-      variable = "aws:Referer"
-      values = [
-        "http://*.${local.domain}/*",
-        "https://*.${local.domain}/*",
-        "http://localhost:3000/*"
-      ]
-    }
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.medialocal.arn}/*"] # Changed to allow access to all objects
 
     principals {
-      type        = "AWS"
+      type        = "*"
       identifiers = ["*"]
     }
   }
@@ -72,21 +60,11 @@ data "aws_iam_policy_document" "medialocal_policy" {
 
 data "aws_iam_policy_document" "mediatest_policy" {
   statement {
-    actions   = ["s3:GetObject"] # Only GetObject
-    resources = ["${aws_s3_bucket.mediatest.arn}/assets/user/*"]
-
-    condition {
-      test     = "StringEquals"
-      variable = "aws:Referer"
-      values = [
-        "http://*.${local.domain}/*",
-        "https://*.${local.domain}/*",
-        "http://localhost:3000/*"
-      ]
-    }
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.mediatest.arn}/*"] # Changed to allow access to all objects
 
     principals {
-      type        = "AWS"
+      type        = "*"
       identifiers = ["*"]
     }
   }
@@ -94,24 +72,42 @@ data "aws_iam_policy_document" "mediatest_policy" {
 
 data "aws_iam_policy_document" "media_policy" {
   statement {
-    actions   = ["s3:GetObject"] # Only GetObject
-    resources = ["${aws_s3_bucket.media.arn}/assets/user/*"]
-
-    condition {
-      test     = "StringEquals"
-      variable = "aws:Referer"
-      values = [
-        "http://*.${local.domain}/*",
-        "https://*.${local.domain}/*",
-        "http://localhost:3000/*"
-      ]
-    }
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.media.arn}/*"] # Changed to allow access to all objects
 
     principals {
-      type        = "AWS"
+      type        = "*"
       identifiers = ["*"]
     }
   }
+}
+
+# Make sure Block Public Access settings are disabled for the buckets
+resource "aws_s3_bucket_public_access_block" "medialocal" {
+  bucket = aws_s3_bucket.medialocal.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+resource "aws_s3_bucket_public_access_block" "mediatest" {
+  bucket = aws_s3_bucket.mediatest.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+resource "aws_s3_bucket_public_access_block" "media" {
+  bucket = aws_s3_bucket.media.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
 }
 
 # Apply the policies
@@ -155,4 +151,4 @@ resource "aws_iam_user_policy" "upload_policy" {
       }
     ]
   })
-}
+} 
