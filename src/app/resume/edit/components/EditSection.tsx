@@ -1,6 +1,8 @@
 import { Box } from "@mui/material";
+import { EditEducation } from "./sections/education/EditEducation";
 import { EditPageContext } from "./EditContext";
 import { EditSkills } from "./sections/skills/EditSkills";
+import { EditWorkExperience } from "./sections/experience/EditWorkExperience";
 import { useContext } from "react";
 
 export const EditSection = () => {
@@ -10,8 +12,8 @@ export const EditSection = () => {
     <Box>
       {{
         Skills: <EditSkills />,
-        "Work Experience": <div>Work Experience</div>,
-        Education: <div>Education</div>,
+        "Professional Experience": <EditWorkExperience />,
+        Education: <EditEducation />,
       }[activeSection] || <div>Not found</div>}
     </Box>
   );

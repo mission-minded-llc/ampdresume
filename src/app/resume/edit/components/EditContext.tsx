@@ -11,7 +11,7 @@ const sections: EditSection[] = [
     title: "Skills",
   },
   {
-    title: "Work Experience",
+    title: "Professional Experience",
   },
   {
     title: "Education",
