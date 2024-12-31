@@ -1,4 +1,14 @@
-import { Box, Button, Divider, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Divider,
+  TextField,
+} from "@mui/material";
 import { deleteSkillForUser, updateSkillForUser } from "@/server/skills";
 import { useContext, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -25,6 +35,15 @@ export const SkillItemEdit = ({
   const [value, setValue] = useState(skill?.description ?? "");
   const [yearStarted, setYearStarted] = useState(skill?.yearStarted ?? new Date().getFullYear());
   const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 0);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+
+  const handleOpenConfirm = () => setConfirmOpen(true);
+  const handleCloseConfirm = () => setConfirmOpen(false);
+
+  const handleConfirmDelete = () => {
+    setConfirmOpen(false);
+    handleDelete();
+  };
 
   const updateSkillForUserMutation = useMutation({
     mutationFn: async ({
@@ -124,10 +143,24 @@ export const SkillItemEdit = ({
         />
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Button variant="outlined" color="secondary" onClick={handleDelete}>
+        <Button variant="outlined" color="secondary" onClick={handleOpenConfirm}>
           <Icon icon="dashicons:trash" />
           Delete
         </Button>
+        <Dialog open={confirmOpen} onClose={handleCloseConfirm} maxWidth="xs" fullWidth>
+          <DialogTitle>Are you sure?</DialogTitle>
+          <DialogContent>
+            <DialogContentText>This cannot be undone!</DialogContentText>
+          </DialogContent>
+          <DialogActions sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Button onClick={handleCloseConfirm} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={handleConfirmDelete} color="secondary" autoFocus>
+              Yes, Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
         <Button variant="contained" color="primary" onClick={handleSave}>
           Save
         </Button>
