@@ -1,10 +1,6 @@
 "use client";
 
 import { Box, Button } from "@mui/material";
-import {
-  DeleteSkillForUserMutation,
-  UpdateSkillForUserMutation,
-} from "@/app/resume/edit/components/sections/skills/EditSkills";
 import React, { MouseEvent, useState } from "react";
 
 import { ResumeContext } from "../ResumeContext";
@@ -15,8 +11,6 @@ import { useContext } from "react";
 
 interface SkillsContext {
   skillType: SkillType;
-  updateSkillForUserMutation?: UpdateSkillForUserMutation;
-  deleteSkillForUserMutation?: DeleteSkillForUserMutation;
 }
 
 export const SkillsContext = React.createContext<SkillsContext>({
@@ -25,31 +19,13 @@ export const SkillsContext = React.createContext<SkillsContext>({
 
 export const SkillsContextProvider = ({
   skillType,
-  updateSkillForUserMutation,
-  deleteSkillForUserMutation,
   children,
 }: {
   skillType: SkillType;
-  updateSkillForUserMutation?: UpdateSkillForUserMutation;
-  deleteSkillForUserMutation?: DeleteSkillForUserMutation;
   children: React.ReactNode;
-}) => (
-  <SkillsContext.Provider
-    value={{ skillType, updateSkillForUserMutation, deleteSkillForUserMutation }}
-  >
-    {children}
-  </SkillsContext.Provider>
-);
+}) => <SkillsContext.Provider value={{ skillType }}>{children}</SkillsContext.Provider>;
 
-export const Skills = ({
-  skillType,
-  updateSkillForUserMutation,
-  deleteSkillForUserMutation,
-}: {
-  skillType: SkillType;
-  updateSkillForUserMutation?: UpdateSkillForUserMutation;
-  deleteSkillForUserMutation?: DeleteSkillForUserMutation;
-}) => {
+export const Skills = ({ skillType }: { skillType: SkillType }) => {
   const { skillsForUser } = useContext(ResumeContext);
 
   const [skillsLayout, setSkillsLayout] = useState<"experience" | "cloud">("experience");
@@ -67,11 +43,7 @@ export const Skills = ({
   };
 
   return (
-    <SkillsContextProvider
-      skillType={skillType}
-      updateSkillForUserMutation={updateSkillForUserMutation}
-      deleteSkillForUserMutation={deleteSkillForUserMutation}
-    >
+    <SkillsContextProvider skillType={skillType}>
       <section>
         <Box>
           Group by:{" "}

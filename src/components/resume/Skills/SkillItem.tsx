@@ -1,22 +1,24 @@
 import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
 import { Icon } from "@iconify/react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItemEdit } from "./SkillItemEdit";
 import { SkillItemView } from "./SkillItemView";
-import { SkillsContext } from "./Skills";
+import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
   const { data: session, status } = useSession();
-  const { updateSkillForUserMutation } = useContext(SkillsContext);
+  const pathname = usePathname();
 
   const [open, setOpen] = useState(false);
 
   const userCanEdit =
-    updateSkillForUserMutation && status === "authenticated" && session?.user?.id === skill.userId;
+    pathname.startsWith("/resume/edit") &&
+    status === "authenticated" &&
+    session?.user?.id === skill.userId;
 
   const buttonDisabled = !(skill?.description || userCanEdit);
 
@@ -48,7 +50,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
         open={open}
         onClose={() => setOpen(false)}
         fullWidth
-        maxWidth={userCanEdit ? "xl" : "lg"}
+        maxWidth={userCanEdit ? "xl" : "md"}
       >
         <DialogTitle
           sx={{ display: "flex", alignItems: "center", gap: "1em", padding: "16px 48px" }}

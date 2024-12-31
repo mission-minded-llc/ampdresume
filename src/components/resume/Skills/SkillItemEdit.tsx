@@ -1,11 +1,14 @@
 import { Box, Button, Divider, TextField } from "@mui/material";
+import { deleteSkillForUser, updateSkillForUser } from "@/server/skills";
 import { useContext, useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Icon } from "@iconify/react";
 import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillsContext } from "./Skills";
 import { Tooltip } from "@/components/Tooltip";
+import { useSession } from "next-auth/react";
 
 export const SkillItemEdit = ({
   skill,
@@ -14,36 +17,74 @@ export const SkillItemEdit = ({
   skill: SkillForUserWithSkill;
   successCallback?: () => void;
 }) => {
-  const { skillType, updateSkillForUserMutation, deleteSkillForUserMutation } =
-    useContext(SkillsContext);
+  const { data: session } = useSession();
+  const queryClient = useQueryClient();
+
+  const { skillType } = useContext(SkillsContext);
 
   const [value, setValue] = useState(skill?.description ?? "");
   const [yearStarted, setYearStarted] = useState(skill?.yearStarted ?? new Date().getFullYear());
   const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 0);
 
-  const handleSave = () => {
-    if (updateSkillForUserMutation) {
-      updateSkillForUserMutation.mutate({
-        id: skill.id,
-        description: value,
+  const updateSkillForUserMutation = useMutation({
+    mutationFn: async ({
+      id,
+      description,
+      yearStarted,
+      totalYears,
+    }: {
+      id: string;
+      description: string;
+      yearStarted: number;
+      totalYears: number;
+    }) => {
+      if (!session?.user?.id) return;
+
+      await updateSkillForUser({
+        id,
+        userId: session.user.id,
+        description,
         yearStarted,
         totalYears,
       });
+    },
+    onSuccess: () => {
+      if (!session?.user?.id) return;
+      // Refetch skills after adding a new one
+      queryClient.invalidateQueries({ queryKey: ["skills", session.user.id] });
+    },
+  });
 
-      if (successCallback) {
-        successCallback();
-      }
-    }
+  const deleteSkillForUserMutation = useMutation({
+    mutationFn: async ({ id }: { id: string }) => {
+      if (!session?.user?.id) return;
+
+      await deleteSkillForUser({
+        id,
+        userId: session.user.id,
+      });
+    },
+    onSuccess: () => {
+      if (!session?.user?.id) return;
+      // Refetch skills after deleting one
+      queryClient.invalidateQueries({ queryKey: ["skills", session.user.id] });
+    },
+  });
+
+  const handleSave = () => {
+    updateSkillForUserMutation.mutate({
+      id: skill.id,
+      description: value,
+      yearStarted,
+      totalYears,
+    });
+    if (successCallback) successCallback();
   };
 
   const handleDelete = () => {
-    if (deleteSkillForUserMutation) {
-      deleteSkillForUserMutation.mutate({ id: skill.id });
+    deleteSkillForUserMutation.mutate({ id: skill.id });
 
-      if (successCallback) {
-        successCallback();
-      }
-    }
+    if (successCallback) successCallback();
   };
 
   return (
