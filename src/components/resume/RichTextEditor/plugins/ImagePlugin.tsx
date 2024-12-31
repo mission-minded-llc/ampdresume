@@ -6,26 +6,59 @@ import {
   DialogTitle,
   IconButton,
   TextField,
+  Typography,
 } from "@mui/material";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { $createImageNode } from "../nodes/ImageNode";
 import { $insertNodes } from "lexical";
 import ImageIcon from "@mui/icons-material/Image";
+import { MAX_USER_IMAGE_SIZE } from "@/constants";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 export const ImagePlugin = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState("");
   const [url, setUrl] = useState<string>();
   const [file, setFile] = useState<File>();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [editor] = useLexicalComposerContext();
 
-  const onAddImage = () => {
+  useEffect(() => {
+    if (!file) return;
+    if (file.size > MAX_USER_IMAGE_SIZE) {
+      setError("File exceeds 2MB limit.");
+      return;
+    }
+  }, [file]);
+
+  const onAddImage = async () => {
     let src = "";
     if (url) src = url;
-    if (file) src = URL.createObjectURL(file);
+
+    if (file) {
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const response = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          const { error } = await response.json();
+          setError(`Error (${response.status}): ${error}`);
+          return;
+        }
+
+        const { url } = await response.json();
+        src = url;
+      } catch (error) {
+        setError(`Upload failed: ${(error as Error).message}`);
+      }
+    }
 
     editor.update(() => {
       const node = $createImageNode({ src, altText: "Image" });
@@ -59,6 +92,7 @@ export const ImagePlugin = () => {
           if (file) setFile(file);
 
           e.target.files = null;
+          setError("");
         }}
       />
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
@@ -88,6 +122,9 @@ export const ImagePlugin = () => {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
+            <Typography sx={{ color: "error.main" }} variant="body2">
+              {error}
+            </Typography>
             <Button
               onClick={() => {
                 inputRef.current?.click();

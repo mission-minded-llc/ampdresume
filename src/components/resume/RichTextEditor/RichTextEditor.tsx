@@ -146,7 +146,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
               <ContentEditable
                 className={css({
                   position: "relative",
-                  height: 240,
+                  height: 500,
                   fontSize: 14,
                   padding: 8,
                   outline: "none",
