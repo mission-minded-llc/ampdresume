@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
-
 import { BottomNavigation, Box } from "@mui/material";
-import { getBaseUrl } from "@/util/url";
-import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
+
 import { MuiLink } from "@/components/MuiLink";
+import React from "react";
+import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
+import { getBaseUrl } from "@/util/url";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-import { useIsResumePage } from "@/hooks/useIsResumePage";
 import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
+import { useIsResumePage } from "@/hooks/useIsResumePage";
 
 export const Footer = () => {
   const baseUrl = getBaseUrl();
@@ -45,7 +45,7 @@ export const Footer = () => {
             gap: "0.35em",
           }}
         >
-          {isDesktop && !isLoggedIn ? `Create your free interactive resume at ` : null}
+          {isDesktop && !isLoggedIn ? "Create your free interactive resume at " : null}
           <MuiLink href={baseUrl}>openresume.org</MuiLink>
         </Box>
         {isResumePage ? <ThemeAppearanceToggle /> : null}
