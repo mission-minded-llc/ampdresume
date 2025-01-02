@@ -6,8 +6,12 @@ import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEdito
 describe("RichTextEditor", () => {
   it("renders without crashing", async () => {
     let result;
+    const editorStateRef = { current: null };
+
     await act(async () => {
-      result = render(<RichTextEditor value="" onChange={() => {}} name="test-editor" />);
+      result = render(
+        <RichTextEditor editorStateRef={editorStateRef} value="" name="test-editor" />,
+      );
     });
     expect(result!.container).toBeInTheDocument();
   });
@@ -15,8 +19,12 @@ describe("RichTextEditor", () => {
   it("displays the placeholder text", async () => {
     const placeholderText = "Type here...";
     let result;
+    const editorStateRef = { current: null };
+
     await act(async () => {
-      result = render(<RichTextEditor value="" onChange={() => {}} name="test-editor" />);
+      result = render(
+        <RichTextEditor editorStateRef={editorStateRef} value="" name="test-editor" />,
+      );
     });
     expect(result!.getByText(placeholderText)).toBeInTheDocument();
   });
