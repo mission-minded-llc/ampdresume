@@ -91,11 +91,18 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
   placeholder = "Type here...",
   name,
 }) {
+  let initialEditorState;
+  try {
+    initialEditorState = JSON.parse(value);
+  } catch {
+    initialEditorState = null;
+  }
+
   const initialConfig = {
     namespace: name,
     theme,
     onError: () => {},
-    editorState: value, // JSON string
+    editorState: initialEditorState,
     nodes: [
       HeadingNode,
       ImageNode,
