@@ -19,7 +19,7 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 export const ImagePlugin = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
-  const [url, setUrl] = useState<string>();
+  const [url, setUrl] = useState("");
   const [file, setFile] = useState<File>();
   const inputRef = useRef<HTMLInputElement>(null);
 

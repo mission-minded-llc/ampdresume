@@ -5,17 +5,15 @@ import "./editor.css";
 import { AutoLinkNode, LinkNode } from "@lexical/link";
 import { AutoLinkPlugin, createLinkMatcherWithRegExp } from "@lexical/react/LexicalAutoLinkPlugin";
 import { CodeHighlightNode, CodeNode } from "@lexical/code";
+import { EditorState, EditorThemeClasses } from "lexical";
 import { ListItemNode, ListNode } from "@lexical/list";
-import React, { useMemo } from "react";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 import { URL_REGEX, validateUrl } from "@/util/url";
 
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { Box } from "@mui/material";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { CustomOnChangePlugin } from "./plugins/CustomOnChangePlugin";
 import { EMAIL_REGEX } from "@/util/email";
-import { EditorThemeClasses } from "lexical";
 import { HeadingNode } from "@lexical/rich-text";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { ImageNode } from "./nodes/ImageNode";
@@ -23,6 +21,8 @@ import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
+import React from "react";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ToolbarPlugin } from "./plugins/ToolbarPlugin";
 import { YouTubeNode } from "./nodes/YouTubeNode";
@@ -80,39 +80,37 @@ const theme: EditorThemeClasses = {
 
 interface RichTextEditorProps {
   value: string;
-  onChange: (value: string) => void;
+  editorStateRef: React.MutableRefObject<EditorState | null>;
   placeholder?: string;
   name: string;
 }
 
 export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function RichTextEditor({
   value,
-  onChange,
+  editorStateRef,
   placeholder = "Type here...",
   name,
 }) {
-  const initialConfig = useMemo(
-    () => ({
-      namespace: name,
-      theme,
-      onError: () => {},
-      nodes: [
-        HeadingNode,
-        ImageNode,
-        YouTubeNode,
-        CodeNode,
-        CodeHighlightNode,
-        LinkNode,
-        AutoLinkNode,
-        ListNode,
-        ListItemNode,
-        TableNode,
-        TableRowNode,
-        TableCellNode,
-      ],
-    }),
-    [name],
-  );
+  const initialConfig = {
+    namespace: name,
+    theme,
+    onError: () => {},
+    editorState: value, // JSON string
+    nodes: [
+      HeadingNode,
+      ImageNode,
+      YouTubeNode,
+      CodeNode,
+      CodeHighlightNode,
+      LinkNode,
+      AutoLinkNode,
+      ListNode,
+      ListItemNode,
+      TableNode,
+      TableRowNode,
+      TableCellNode,
+    ],
+  };
 
   const MATCHERS = [
     createLinkMatcherWithRegExp(URL_REGEX, (text) => {
@@ -164,7 +162,6 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
           />
           <AutoFocusPlugin />
           <HistoryPlugin />
-          <CustomOnChangePlugin value={value} onChange={onChange} />
           <ListPlugin />
           {/**
            * Thank you:
@@ -172,6 +169,12 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
            */}
           <LinkPlugin validateUrl={validateUrl} />
           <AutoLinkPlugin matchers={MATCHERS} />
+
+          <OnChangePlugin
+            onChange={(editorState) => {
+              editorStateRef.current = editorState;
+            }}
+          />
         </Box>
       </LexicalComposer>
     </Box>

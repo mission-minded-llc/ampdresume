@@ -10,9 +10,10 @@ import {
   TextField,
 } from "@mui/material";
 import { deleteSkillForUser, updateSkillForUser } from "@/server/skills";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { EditorState } from "lexical";
 import { Icon } from "@iconify/react";
 import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
@@ -32,7 +33,8 @@ export const SkillItemEdit = ({
 
   const { skillType } = useContext(SkillsContext);
 
-  const [value, setValue] = useState(skill?.description ?? "");
+  const editorStateRef = useRef<EditorState | null>(null);
+
   const [yearStarted, setYearStarted] = useState(skill?.yearStarted ?? new Date().getFullYear());
   const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 0);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -91,9 +93,11 @@ export const SkillItemEdit = ({
   });
 
   const handleSave = () => {
+    if (!editorStateRef.current) return;
+
     updateSkillForUserMutation.mutate({
       id: skill.id,
-      description: value,
+      description: JSON.stringify(editorStateRef.current.toJSON()),
       yearStarted,
       totalYears,
     });
@@ -138,8 +142,8 @@ export const SkillItemEdit = ({
       <Box sx={{ mb: 2 }}>
         <RichTextEditor
           name={skillType}
-          value={value}
-          onChange={(newValue) => setValue(newValue)}
+          editorStateRef={editorStateRef}
+          value={skill?.description ?? ""}
         />
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
