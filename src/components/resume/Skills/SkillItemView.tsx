@@ -1,3 +1,5 @@
+import "./SkillItemView.css";
+
 import { Box } from "@mui/material";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import parse from "html-react-parser";
@@ -5,5 +7,5 @@ import parse from "html-react-parser";
 export const SkillItemView = ({ skill }: { skill: SkillForUserWithSkill }) => {
   if (!skill?.description) return null;
 
-  return <Box>{parse(skill.description)}</Box>;
+  return <Box className="skillDescription">{parse(skill.description)}</Box>;
 };
