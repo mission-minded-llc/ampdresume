@@ -13,7 +13,6 @@ import { deleteSkillForUser, updateSkillForUser } from "@/server/skills";
 import { useContext, useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { EditorState } from "lexical";
 import { Icon } from "@iconify/react";
 import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
@@ -33,7 +32,7 @@ export const SkillItemEdit = ({
 
   const { skillType } = useContext(SkillsContext);
 
-  const editorStateRef = useRef<EditorState | null>(null);
+  const editorStateRef = useRef<string | null>(null);
 
   const [yearStarted, setYearStarted] = useState(skill?.yearStarted ?? new Date().getFullYear());
   const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 0);
@@ -97,7 +96,7 @@ export const SkillItemEdit = ({
 
     updateSkillForUserMutation.mutate({
       id: skill.id,
-      description: JSON.stringify(editorStateRef.current.toJSON()),
+      description: editorStateRef.current,
       yearStarted,
       totalYears,
     });

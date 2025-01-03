@@ -2,10 +2,11 @@
 
 import "./editor.css";
 
+import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
+import { $getRoot, EditorThemeClasses, LexicalEditor } from "lexical";
 import { AutoLinkNode, LinkNode } from "@lexical/link";
 import { AutoLinkPlugin, createLinkMatcherWithRegExp } from "@lexical/react/LexicalAutoLinkPlugin";
 import { CodeHighlightNode, CodeNode } from "@lexical/code";
-import { EditorState, EditorThemeClasses } from "lexical";
 import { ListItemNode, ListNode } from "@lexical/list";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 import { URL_REGEX, validateUrl } from "@/util/url";
@@ -28,7 +29,7 @@ import { ToolbarPlugin } from "./plugins/ToolbarPlugin";
 import { YouTubeNode } from "./nodes/YouTubeNode";
 import { css } from "@emotion/css";
 
-const theme: EditorThemeClasses = {
+export const editorTheme: EditorThemeClasses = {
   text: {
     bold: css({ fontWeight: "bold" }),
     italic: css({ fontStyle: "italic" }),
@@ -78,9 +79,24 @@ const theme: EditorThemeClasses = {
   },
 };
 
+export const supportedEditorNodes = [
+  HeadingNode,
+  ImageNode,
+  YouTubeNode,
+  CodeNode,
+  CodeHighlightNode,
+  LinkNode,
+  AutoLinkNode,
+  ListNode,
+  ListItemNode,
+  TableNode,
+  TableRowNode,
+  TableCellNode,
+];
+
 interface RichTextEditorProps {
   value: string;
-  editorStateRef: React.MutableRefObject<EditorState | null>;
+  editorStateRef: React.MutableRefObject<string | null>;
   placeholder?: string;
   name: string;
 }
@@ -91,32 +107,19 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
   placeholder = "Type here...",
   name,
 }) {
-  let initialEditorState;
-  try {
-    initialEditorState = JSON.parse(value);
-  } catch {
-    initialEditorState = null;
-  }
-
   const initialConfig = {
     namespace: name,
-    theme,
+    theme: editorTheme,
     onError: () => {},
-    editorState: initialEditorState,
-    nodes: [
-      HeadingNode,
-      ImageNode,
-      YouTubeNode,
-      CodeNode,
-      CodeHighlightNode,
-      LinkNode,
-      AutoLinkNode,
-      ListNode,
-      ListItemNode,
-      TableNode,
-      TableRowNode,
-      TableCellNode,
-    ],
+    nodes: [...supportedEditorNodes],
+    editorState: (editor: LexicalEditor) => {
+      const parser = new DOMParser();
+      const dom = parser.parseFromString(value, "text/html");
+      const nodes = $generateNodesFromDOM(editor, dom);
+      const root = $getRoot();
+      root.clear();
+      nodes.forEach((node) => root.append(node));
+    },
   };
 
   const MATCHERS = [
@@ -176,10 +179,11 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
            */}
           <LinkPlugin validateUrl={validateUrl} />
           <AutoLinkPlugin matchers={MATCHERS} />
-
           <OnChangePlugin
-            onChange={(editorState) => {
-              editorStateRef.current = editorState;
+            onChange={(editorState, editor) => {
+              editor.read(() => {
+                editorStateRef.current = $generateHtmlFromNodes(editor);
+              });
             }}
           />
         </Box>
