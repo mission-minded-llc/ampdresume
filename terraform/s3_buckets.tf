@@ -7,11 +7,6 @@ resource "aws_s3_bucket" "medialocal" {
   provider = aws.us_west_2
   bucket   = "medialocal.${local.domain}"
 
-  # Create an /assets/user folder in the bucket if it doesn't exist.
-  provisioner "local-exec" {
-    command = "aws s3api put-object --bucket medialocal.${local.domain} --key assets/user/ --acl public-read"
-  }
-
   tags = {
     Environment = "Local"
     Project     = "OpenResume"
@@ -26,11 +21,6 @@ resource "aws_s3_bucket" "medialocal" {
 resource "aws_s3_bucket" "mediatest" {
   provider = aws.us_west_2
   bucket   = "mediatest.${local.domain}"
-
-  # Create an /assets/user folder in the bucket if it doesn't exist.
-  provisioner "local-exec" {
-    command = "aws s3api put-object --bucket mediatest.${local.domain} --key assets/user/ --acl public-read"
-  }
 
   tags = {
     Environment = "Test"
@@ -47,11 +37,6 @@ resource "aws_s3_bucket" "media" {
   provider = aws.us_west_2
   bucket   = "media.${local.domain}"
 
-  # Create an /assets/user folder in the bucket if it doesn't exist.
-  provisioner "local-exec" {
-    command = "aws s3api put-object --bucket media.${local.domain} --key assets/user/ --acl public-read"
-  }
-
   tags = {
     Environment = "Production"
     Project     = "OpenResume"
@@ -61,4 +46,23 @@ resource "aws_s3_bucket" "media" {
   lifecycle {
     prevent_destroy = true
   }
+}
+
+# Create an /assets/user folder in the buckets if it doesn't exist and set Cache-Control headers
+resource "aws_s3_object" "medialocal_assets_user" {
+  bucket        = aws_s3_bucket.medialocal.bucket
+  key           = "assets/user/"
+  cache_control = "public, max-age=2592000"
+}
+
+resource "aws_s3_object" "mediatest_assets_user" {
+  bucket        = aws_s3_bucket.mediatest.bucket
+  key           = "assets/user/"
+  cache_control = "public, max-age=2592000"
+}
+
+resource "aws_s3_object" "media_assets_user" {
+  bucket        = aws_s3_bucket.media.bucket
+  key           = "assets/user/"
+  cache_control = "public, max-age=2592000"
 }

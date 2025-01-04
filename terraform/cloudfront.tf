@@ -21,8 +21,8 @@ resource "aws_cloudfront_distribution" "medialocal_distribution" {
     allowed_methods = ["GET", "HEAD"]
     cached_methods  = ["GET", "HEAD"]
     compress        = true
-    default_ttl     = 3600
-    max_ttl         = 86400
+    default_ttl     = 86400
+    max_ttl         = 31536000
     min_ttl         = 0
 
     forwarded_values {
@@ -30,6 +30,8 @@ resource "aws_cloudfront_distribution" "medialocal_distribution" {
       cookies {
         forward = "none"
       }
+
+      headers = ["Cache-Control"]
     }
   }
 
@@ -75,8 +77,8 @@ resource "aws_cloudfront_distribution" "mediatest_distribution" {
     allowed_methods = ["GET", "HEAD"]
     cached_methods  = ["GET", "HEAD"]
     compress        = true
-    default_ttl     = 3600
-    max_ttl         = 86400
+    default_ttl     = 86400
+    max_ttl         = 31536000
     min_ttl         = 0
 
     forwarded_values {
@@ -84,6 +86,8 @@ resource "aws_cloudfront_distribution" "mediatest_distribution" {
       cookies {
         forward = "none"
       }
+
+      headers = ["Cache-Control"]
     }
   }
 
@@ -129,8 +133,8 @@ resource "aws_cloudfront_distribution" "media_distribution" {
     allowed_methods = ["GET", "HEAD"]
     cached_methods  = ["GET", "HEAD"]
     compress        = true
-    default_ttl     = 3600
-    max_ttl         = 86400
+    default_ttl     = 86400
+    max_ttl         = 31536000
     min_ttl         = 0
 
     forwarded_values {
@@ -138,6 +142,8 @@ resource "aws_cloudfront_distribution" "media_distribution" {
       cookies {
         forward = "none"
       }
+
+      headers = ["Cache-Control"]
     }
   }
 
