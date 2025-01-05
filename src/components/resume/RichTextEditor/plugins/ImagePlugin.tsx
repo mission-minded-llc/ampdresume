@@ -16,6 +16,25 @@ import ImageIcon from "@mui/icons-material/Image";
 import { MAX_USER_IMAGE_SIZE } from "@/constants";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
+export const deleteImage = async (src: string) => {
+  try {
+    const response = await fetch("/api/user-asset/delete", {
+      method: "POST",
+      body: JSON.stringify({ src }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      const { error } = await response.json();
+      throw new Error(`Error (${response.status}): ${error}`);
+    }
+  } catch (error) {
+    throw new Error(`Delete failed: ${(error as Error).message}`);
+  }
+};
+
 export const ImagePlugin = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
@@ -42,7 +61,7 @@ export const ImagePlugin = () => {
         const formData = new FormData();
         formData.append("file", file);
 
-        const response = await fetch("/api/upload", {
+        const response = await fetch("/api/user-asset/upload", {
           method: "POST",
           body: formData,
         });

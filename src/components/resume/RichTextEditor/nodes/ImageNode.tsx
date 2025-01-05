@@ -100,6 +100,10 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
     });
   }
 
+  getSrc(): string {
+    return this.__src;
+  }
+
   exportJSON(): SerializedLexicalNode & ImageNodeData {
     return {
       type: "image",
