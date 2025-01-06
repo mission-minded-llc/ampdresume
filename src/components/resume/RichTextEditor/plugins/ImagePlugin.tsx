@@ -23,13 +23,14 @@ import { MAX_USER_IMAGE_SIZE } from "@/constants";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 /**
- * Helper function to delete an image from the user's S3 folder.
+ * Helper function to manage images in the user's S3 folder.
  *
- * @param src the S3 URL of the image to delete.
+ * @param src the S3 URL of the image to manage
+ * @param action the action to perform ('delete' or 'undelete')
  */
-export const deleteImage = async (src: string) => {
+export const manageImage = async (src: string, action: "delete" | "undelete") => {
   try {
-    const response = await fetch("/api/user-asset/delete", {
+    const response = await fetch(`/api/user-asset/${action}`, {
       method: "POST",
       body: JSON.stringify({ src }),
       headers: {
@@ -42,28 +43,12 @@ export const deleteImage = async (src: string) => {
       throw new Error(`Error (${response.status}): ${error}`);
     }
   } catch (error) {
-    throw new Error(`delete failed: ${(error as Error).message}`);
+    throw new Error(`${action} failed: ${(error as Error).message}`);
   }
 };
 
-export const undeleteImage = async (src: string) => {
-  try {
-    const response = await fetch("/api/user-asset/undelete", {
-      method: "POST",
-      body: JSON.stringify({ src }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      const { error } = await response.json();
-      throw new Error(`Error (${response.status}): ${error}`);
-    }
-  } catch (error) {
-    throw new Error(`undelete failed: ${(error as Error).message}`);
-  }
-};
+export const deleteImage = (src: string) => manageImage(src, "delete");
+const undeleteImage = (src: string) => manageImage(src, "undelete");
 
 export const ImagePlugin = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -74,7 +59,8 @@ export const ImagePlugin = () => {
 
   const [editor] = useLexicalComposerContext();
 
-  // Add an editor event listener for the UNDO_COMMAND and REDO_COMMAND commands.
+  // Add an editor event listener for the UNDO_COMMAND and REDO_COMMAND commands,
+  // to handle image removal/re-addition when undoing/redoing.
   useEffect(() => {
     const findRemovedImages = (
       beforeState: SerializedEditorState<SerializedLexicalNode>,
@@ -137,12 +123,10 @@ export const ImagePlugin = () => {
     const unregisterRedo = editor.registerCommand(
       REDO_COMMAND,
       () => {
-        // Capture the state before the redo
         const beforeState = prevEditorState.toJSON();
 
         // Let the redo command proceed
         setTimeout(() => {
-          // Capture the state after the redo
           const afterState = editor.getEditorState().toJSON();
           const imagesRemoved = findRemovedImages(beforeState, afterState);
           const imagesAdded = findAddedImages(beforeState, afterState);

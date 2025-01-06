@@ -6,6 +6,11 @@ import {
   S3Client,
 } from "@aws-sdk/client-s3";
 
+/**
+ * Internal helper to create an S3 client instance.
+ *
+ * @returns an S3 client instance.
+ */
 const getS3Client = () => {
   if (
     !process.env?.AWS_REGION ||
