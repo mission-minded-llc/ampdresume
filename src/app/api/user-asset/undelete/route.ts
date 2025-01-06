@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
-import { flagForDeletion } from "@/lib/s3";
 import { handleAssetRequest } from "@/middleware/validateAssetRequest";
+import { revertFlagForDeletion } from "@/lib/s3";
 
 export async function POST(req: NextRequest) {
-  return handleAssetRequest(req, flagForDeletion);
+  return handleAssetRequest(req, revertFlagForDeletion);
 }

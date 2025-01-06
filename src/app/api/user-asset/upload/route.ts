@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
-import { uploadObject } from "../s3";
+import { uploadObject } from "../../../../lib/s3";
 
 export const config = {
   api: {

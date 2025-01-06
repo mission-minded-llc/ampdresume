@@ -15,6 +15,8 @@ type ImageNodeData = {
   height?: "inherit" | number;
 };
 
+export type SerializedImageNode = SerializedLexicalNode & ImageNodeData;
+
 export const $createImageNode = ({
   src,
   altText,
@@ -104,7 +106,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
     return this.__src;
   }
 
-  exportJSON(): SerializedLexicalNode & ImageNodeData {
+  exportJSON(): SerializedImageNode {
     return {
       type: "image",
       version: 1,
