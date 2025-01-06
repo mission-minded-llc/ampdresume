@@ -3,7 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
-import { uploadObject } from "../../../../lib/s3";
+import sharp from "sharp";
+import { uploadObject } from "@/lib/s3";
 
 export const config = {
   api: {
@@ -32,12 +33,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Use ImageMagick or similar to validate image format.
-
-    if (file.size > MAX_USER_IMAGE_SIZE) {
-      return NextResponse.json({ error: "File size must be less than 2MB" }, { status: 400 });
-    }
-
     // Generate a unique filename to prevent overwrites
     const timestamp = Date.now();
     const extension = file.type.split("/")[1];
@@ -47,6 +42,45 @@ export async function POST(req: NextRequest) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     const objectLocation = `assets/user/${session.user.id}/${uniqueFilename}`;
+
+    // Validate that the file is actually an image using Sharp
+    try {
+      const metadata = await sharp(buffer).metadata();
+
+      // Check if the file has valid image dimensions
+      if (!metadata.width || !metadata.height) {
+        return NextResponse.json({ error: "Invalid image file" }, { status: 400 });
+      }
+
+      // Optional: You can add additional checks here
+      // For example, minimum/maximum dimensions:
+      if (metadata.width < 10 || metadata.height < 10) {
+        return NextResponse.json({ error: "Image dimensions too small" }, { status: 400 });
+      }
+
+      // Verify format matches the claimed mime type
+      const formatToMime: Record<string, string> = {
+        jpeg: "image/jpeg",
+        png: "image/png",
+        gif: "image/gif",
+      };
+
+      if (metadata.format && formatToMime[metadata.format] !== file.type) {
+        return NextResponse.json(
+          { error: "Image format doesn't match the declared type" },
+          { status: 400 },
+        );
+      }
+    } catch (error) {
+      return NextResponse.json(
+        { error: `Invalid image file: ${(error as Error).message}` },
+        { status: 400 },
+      );
+    }
+
+    if (file.size > MAX_USER_IMAGE_SIZE) {
+      return NextResponse.json({ error: "File size must be less than 1MB" }, { status: 400 });
+    }
 
     await uploadObject(objectLocation, buffer, file.type);
 

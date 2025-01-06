@@ -155,7 +155,7 @@ export const ImagePlugin = () => {
   useEffect(() => {
     if (!file) return;
     if (file.size > MAX_USER_IMAGE_SIZE) {
-      setError("File exceeds 2MB limit.");
+      setError("File exceeds 1MB limit.");
       return;
     }
   }, [file]);
