@@ -137,3 +137,6 @@ dist
 .terraform.lock.hcl
 terraform.tfstate
 terraform.tfstate.backup
+
+# Sentry Config File
+.env.sentry-build-plugin
