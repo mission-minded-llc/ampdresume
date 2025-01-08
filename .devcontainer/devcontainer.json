@@ -56,5 +56,5 @@
 
   "forwardPorts": [3000, 5432],
 
-  "postCreateCommand": "npm i"
+  "postCreateCommand": "npm i && npm run prisma:generate"
 }
