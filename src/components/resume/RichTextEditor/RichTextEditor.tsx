@@ -142,8 +142,8 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
                 className={css({
                   position: "absolute",
                   color: "#888",
-                  top: 8,
-                  left: 8,
+                  top: 23,
+                  left: 10,
                   fontSize: 14,
                 })}
               >

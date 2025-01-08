@@ -18,6 +18,7 @@ import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEdito
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillsContext } from "./Skills";
 import { Tooltip } from "@/components/Tooltip";
+import { TooltipTotalYears } from "./Tooltip";
 import { useSession } from "next-auth/react";
 
 export const SkillItemEdit = ({
@@ -127,14 +128,7 @@ export const SkillItemEdit = ({
             onChange={(e) => setTotalYears(Number(e.target.value))}
             slotProps={{ htmlInput: { min: 0, max: 100 } }}
           />
-          <Tooltip
-            message="Enter the year you started using this skill 
-            or the total years of experience. If you enter the 
-            year started, the total years will be calculated 
-            for you automatically. If you enter a total years
-            value, it will override the calculated value. Leave 0
-            for none."
-          />
+          <Tooltip message={<TooltipTotalYears />} />
         </Box>
       </Box>
       <Divider sx={{ my: 2 }} />
@@ -165,7 +159,7 @@ export const SkillItemEdit = ({
           </DialogActions>
         </Dialog>
         <Button variant="contained" color="primary" onClick={handleSave}>
-          Save
+          Save &amp; Close
         </Button>
       </Box>
     </Box>

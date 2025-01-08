@@ -20,6 +20,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Tooltip } from "@/components/Tooltip";
+import { TooltipTotalYears } from "@/components/resume/Skills/Tooltip";
 import { useSession } from "next-auth/react";
 
 export const SkillSearch = () => {
@@ -165,14 +166,7 @@ export const SkillSearch = () => {
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="md" fullWidth>
         <DialogTitle>
           Enter Proficiency Level
-          <Tooltip
-            message="Enter the year you started using this skill 
-            or the total years of experience. If you enter the 
-            year started, the total years will be calculated 
-            for you automatically. If you enter a total years
-            value, it will override the calculated value. Leave 0
-            for none."
-          />
+          <Tooltip message={<TooltipTotalYears />} />
         </DialogTitle>
 
         <DialogContent>

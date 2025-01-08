@@ -71,7 +71,11 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
           X
         </IconButton>
         <DialogContent>
-          {userCanEdit ? <SkillItemEdit skill={skill} /> : <SkillItemView skill={skill} />}
+          {userCanEdit ? (
+            <SkillItemEdit skill={skill} successCallback={() => setOpen(false)} />
+          ) : (
+            <SkillItemView skill={skill} />
+          )}
         </DialogContent>
       </Dialog>
     </React.Fragment>
