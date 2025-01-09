@@ -25,6 +25,7 @@ describe("updateSkillForUser", () => {
         yearStarted: 2020,
         totalYears: 3,
         description: "Test description",
+        icon: "icon",
       }),
     ).rejects.toThrow("Unauthorized");
   });
@@ -52,6 +53,7 @@ describe("updateSkillForUser", () => {
         yearStarted: 2020,
         totalYears: 3,
         description: "Test description",
+        icon: "icon",
       }),
     ).rejects.toThrow("Unauthorized: User does not own this skill");
   });
@@ -78,6 +80,7 @@ describe("updateSkillForUser", () => {
       yearStarted: 2020,
       totalYears: 3,
       description: "New description",
+      icon: "icon",
     });
 
     expect(result).toMatchObject({
@@ -92,6 +95,7 @@ describe("updateSkillForUser", () => {
         description: "New description",
         yearStarted: 2020,
         totalYears: 3,
+        icon: "icon",
       },
       include: { skill: true },
     });

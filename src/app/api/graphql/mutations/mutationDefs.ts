@@ -13,5 +13,12 @@ export const mutationDefs = gql`
       icon: String
     ): SkillForUser!
     deleteSkillForUser(userId: ID!, id: ID!): SkillForUser
+    addCompany(
+      userId: ID!
+      name: String!
+      location: String
+      startDate: String!
+      endDate: String
+    ): Company!
   }
 `;

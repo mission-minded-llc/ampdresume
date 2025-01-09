@@ -15,8 +15,8 @@ export const updateSkillForUser = async (
     userId: string;
     yearStarted: number;
     totalYears: number;
-    description: string;
-    icon: string;
+    description: string | null;
+    icon: string | null;
   },
 ) => {
   if ((await verifySessionOwnership(userId)) === false) {

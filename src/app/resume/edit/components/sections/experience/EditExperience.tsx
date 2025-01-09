@@ -55,7 +55,7 @@ export const EditExperience = () => {
     onSuccess: () => {
       if (!session?.user?.id) return;
 
-      queryClient.invalidateQueries({ queryKey: ["companies", session.user.id] });
+      queryClient.invalidateQueries({ queryKey: ["companies"] });
     },
   });
 
