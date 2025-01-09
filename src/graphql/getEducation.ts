@@ -4,6 +4,12 @@ import { Education } from "@prisma/client";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
+/**
+ * Used to get all education for a user.
+ *
+ * @param {string} userId the user ID to get the education for.
+ * @returns {Education[]} all education for the user.
+ */
 export const getEducation = async (userId: string | undefined) => {
   if (!userId) return;
 
@@ -24,6 +30,7 @@ export const getEducation = async (userId: string | undefined) => {
       variables: {
         userId,
       },
+      fetchPolicy: "no-cache",
     })
     .catch((error) => {
       Sentry.captureException(error);

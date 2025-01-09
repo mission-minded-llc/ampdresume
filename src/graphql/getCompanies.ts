@@ -30,6 +30,7 @@ export const getCompanies = async (userId: string | undefined) => {
       variables: {
         userId,
       },
+      fetchPolicy: "no-cache",
     })
     .catch((error) => {
       Sentry.captureException(error);

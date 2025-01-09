@@ -1,29 +1,43 @@
+import * as Sentry from "@sentry/react";
+
 import { User } from "@prisma/client";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
+/**
+ * Used to get a user by their slug.
+ *
+ * @param {string} slug the user slug to get the user by.
+ * @returns {User} the user.
+ */
 export const getUser = async (slug: string) => {
   const client = getApolloClient();
 
   const {
     data: { user },
-  } = await client.query<{ user: User }>({
-    query: gql`
-      query getUser($slug: String!) {
-        user(slug: $slug) {
-          id
-          name
-          email
-          displayEmail
-          location
-          title
-          siteImage
-          siteTitle
+  } = await client
+    .query<{ user: User }>({
+      query: gql`
+        query getUser($slug: String!) {
+          user(slug: $slug) {
+            id
+            name
+            email
+            displayEmail
+            location
+            title
+            siteImage
+            siteTitle
+          }
         }
-      }
-    `,
-    variables: { slug },
-  });
+      `,
+      variables: { slug },
+    })
+    .catch((error) => {
+      Sentry.captureException(error);
+
+      return { data: { user: {} } };
+    });
 
   return user;
 };

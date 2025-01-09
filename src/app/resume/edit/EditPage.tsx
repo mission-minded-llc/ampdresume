@@ -21,8 +21,7 @@ export const EditPage = () => {
     error: errorSkillsForUser,
     data: skillsForUser,
   } = useQuery({
-    // Only enable the query when the session is loaded and has a user ID
-    enabled: status === "authenticated" && !!session?.user?.id,
+    enabled: status === "authenticated" && !!session?.user.id,
     queryKey: ["skillsForUser"],
     queryFn: async () => await getSkillsForUser(session?.user.id),
   });

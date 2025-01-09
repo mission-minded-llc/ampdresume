@@ -6,7 +6,7 @@ import { gql } from "@apollo/client";
 /**
  * Used to add a company for a user.
  *
- * @param userId - the user ID to add the skill to.
+ * @param userId - the user ID to add the company to.
  * @param companyName - the name of the company.
  * @param location - the location of the company.
  * @param startDate - the date the user started at the company.

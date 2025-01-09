@@ -13,7 +13,7 @@ export interface SkillForUserWithSkill extends SkillForUser {
  * Used to fetch all skills for a specific user.
  *
  * @param userId - the user ID to fetch skills for.
- * @returns all skills for the user, including the parent skill.
+ * @returns {SkillForUserWithSkill[]} all skills for the user, including the parent skill.
  */
 export const getSkillsForUser = async (userId: string | undefined) => {
   if (!userId) return;
@@ -42,6 +42,7 @@ export const getSkillsForUser = async (userId: string | undefined) => {
       variables: {
         userId,
       },
+      fetchPolicy: "no-cache",
     })
     .catch((error) => {
       Sentry.captureException(error);

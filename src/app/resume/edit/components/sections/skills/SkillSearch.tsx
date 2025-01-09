@@ -70,8 +70,6 @@ export const SkillSearch = () => {
       await addSkillForUser({ userId: session.user.id, skillId, yearStarted, totalYears });
     },
     onSuccess: () => {
-      if (!session?.user?.id) return;
-      // Refetch skills after adding a new one
       queryClient.invalidateQueries({ queryKey: ["skillsForUser"] });
     },
   });

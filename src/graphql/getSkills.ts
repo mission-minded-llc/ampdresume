@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/react";
+
 import { Skill } from "@prisma/client";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
@@ -7,22 +9,28 @@ export type SkillType = "user" | "project";
 /**
  * Used to fetch all skills as part of a search/selector.
  *
- * @returns all available skills.
+ * @returns {Skill[]} all available skills.
  */
 export const getSkills = async () => {
   const client = getApolloClient();
 
-  const { data: skills } = await client.query<{ skills: Skill[] }>({
-    query: gql`
-      query getSkills {
-        skills {
-          id
-          name
-          icon
+  const { data: skills } = await client
+    .query<{ skills: Skill[] }>({
+      query: gql`
+        query getSkills {
+          skills {
+            id
+            name
+            icon
+          }
         }
-      }
-    `,
-  });
+      `,
+    })
+    .catch((error) => {
+      Sentry.captureException(error);
+
+      return { data: { skills: [] } };
+    });
 
   return skills;
 };
