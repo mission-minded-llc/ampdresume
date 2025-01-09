@@ -53,11 +53,7 @@ export const SkillSearch = () => {
   const { isPending, error, data } = useQuery({
     enabled: status === "authenticated" && !!session?.user?.id,
     queryKey: ["skills"],
-    queryFn: async () => {
-      const data = await getSkills();
-
-      return data;
-    },
+    queryFn: async () => await getSkills(),
   });
 
   const mutation = useMutation({
@@ -76,7 +72,7 @@ export const SkillSearch = () => {
     onSuccess: () => {
       if (!session?.user?.id) return;
       // Refetch skills after adding a new one
-      queryClient.invalidateQueries({ queryKey: ["skills", session.user.id] });
+      queryClient.invalidateQueries({ queryKey: ["skillsForUser"] });
     },
   });
 

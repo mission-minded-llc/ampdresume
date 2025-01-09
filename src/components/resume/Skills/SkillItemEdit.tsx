@@ -56,7 +56,7 @@ export const SkillItemEdit = ({
       totalYears,
     }: {
       id: string;
-      description: string;
+      description: string | null;
       yearStarted: number;
       totalYears: number;
     }) => {
@@ -70,11 +70,7 @@ export const SkillItemEdit = ({
         totalYears,
       });
     },
-    onSuccess: () => {
-      if (!session?.user?.id) return;
-      // Refetch skills after adding a new one
-      queryClient.invalidateQueries({ queryKey: ["skills", session.user.id] });
-    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForUser"] }),
   });
 
   const deleteSkillForUserMutation = useMutation({
@@ -86,16 +82,10 @@ export const SkillItemEdit = ({
         userId: session.user.id,
       });
     },
-    onSuccess: () => {
-      if (!session?.user?.id) return;
-      // Refetch skills after deleting one
-      queryClient.invalidateQueries({ queryKey: ["skills", session.user.id] });
-    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForUser"] }),
   });
 
   const handleSave = () => {
-    if (!editorStateRef.current) return;
-
     updateSkillForUserMutation.mutate({
       id: skill.id,
       description: editorStateRef.current,

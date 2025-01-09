@@ -23,7 +23,7 @@ export const EditPage = () => {
   } = useQuery({
     // Only enable the query when the session is loaded and has a user ID
     enabled: status === "authenticated" && !!session?.user?.id,
-    queryKey: ["skills", session?.user?.id],
+    queryKey: ["skillsForUser"],
     queryFn: async () => await getSkillsForUser(session?.user.id),
   });
 
@@ -33,7 +33,7 @@ export const EditPage = () => {
     data: companies,
   } = useQuery({
     enabled: status === "authenticated" && !!session?.user?.id,
-    queryKey: ["companies", session?.user?.id],
+    queryKey: ["companies"],
     queryFn: async () => await getCompanies(session?.user.id),
   });
 

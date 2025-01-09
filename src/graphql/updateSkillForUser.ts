@@ -22,7 +22,7 @@ export const updateSkillForUser = async ({
   userId: string;
   yearStarted: number;
   totalYears: number;
-  description: string;
+  description: string | null;
 }) => {
   const client = getApolloClient();
 
