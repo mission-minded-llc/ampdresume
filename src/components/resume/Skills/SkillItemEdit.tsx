@@ -9,7 +9,6 @@ import {
   Divider,
   TextField,
 } from "@mui/material";
-import { deleteSkillForUser, updateSkillForUser } from "@/server/skills";
 import { useContext, useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -18,7 +17,9 @@ import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEdito
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillsContext } from "./Skills";
 import { Tooltip } from "@/components/Tooltip";
-import { TooltipTotalYears } from "./Tooltip";
+import { TooltipTotalYears } from "@/components/tooltips";
+import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
+import { updateSkillForUser } from "@/graphql/updateSkillForUser";
 import { useSession } from "next-auth/react";
 
 export const SkillItemEdit = ({

@@ -1,19 +1,16 @@
-import { Company, Education as EducationType, User } from "@prisma/client";
-import { GET_POSITIONS, PositionWithProjects } from "@/graphql/getPositions";
-import { GET_SKILLS_FOR_USER, SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
-
 import { Box } from "@mui/material";
 import { Education } from "@/components/resume/Education";
-import { GET_COMPANIES } from "@/graphql/getCompanies";
-import { GET_EDUCATION } from "@/graphql/getEducation";
-import { GET_USER } from "@/graphql/getUser";
 import { Metadata } from "next";
 import { ResumeHeading } from "@/components/resume/ResumeHeading";
 import { ResumeProvider } from "@/components/resume/ResumeContext";
 import { ResumeTitle } from "@/components/resume/ResumeTitle";
 import { Skills } from "@/components/resume/Skills/Skills";
 import { WorkExperience } from "@/components/resume/WorkExperience/WorkExperience";
-import { getApolloClient } from "@/lib/apolloClient";
+import { getCompanies } from "@/graphql/getCompanies";
+import { getEducation } from "@/graphql/getEducation";
+import { getPositions } from "@/graphql/getPositions";
+import { getSkillsForUser } from "@/graphql/getSkillsForUser";
+import { getUser } from "@/graphql/getUser";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({
@@ -23,15 +20,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
 
-  const client = getApolloClient();
-
-  const {
-    data: { user },
-  } = await client.query<{ user: User }>({
-    query: GET_USER,
-    variables: { slug },
-  });
-
+  const user = await getUser(slug);
   const { name, title, siteTitle, siteDescription, siteImage } = user;
 
   const siteTitleDefault = name && title ? `Resume of ${name}, ${title}` : "OpenResume";
@@ -60,57 +49,14 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const user = await getUser(slug);
 
-  const client = getApolloClient();
+  if (!user) notFound();
 
-  const {
-    data: { user },
-  } = await client
-    .query<{ user: User }>({
-      query: GET_USER,
-      variables: {
-        slug,
-      },
-    })
-    .catch(() => {
-      notFound();
-    });
-
-  const {
-    data: { skillsForUser },
-  } = await client.query<{ skillsForUser: SkillForUserWithSkill[] }>({
-    query: GET_SKILLS_FOR_USER,
-    variables: {
-      userId: user.id,
-    },
-  });
-
-  const {
-    data: { companies },
-  } = await client.query<{ companies: Company[] }>({
-    query: GET_COMPANIES,
-    variables: {
-      userId: user.id,
-    },
-  });
-
-  const {
-    data: { positions },
-  } = await client.query<{ positions: PositionWithProjects[] }>({
-    query: GET_POSITIONS,
-    variables: {
-      companyIds: companies.map((company) => company.id),
-    },
-  });
-
-  const {
-    data: { education },
-  } = await client.query<{ education: EducationType[] }>({
-    query: GET_EDUCATION,
-    variables: {
-      userId: user.id,
-    },
-  });
+  const skillsForUser = (await getSkillsForUser(user.id)) ?? [];
+  const companies = (await getCompanies(user.id)) ?? [];
+  const positions = (await getPositions(companies.map((company) => company.id))) ?? [];
+  const education = (await getEducation(user.id)) ?? [];
 
   return (
     <ResumeProvider

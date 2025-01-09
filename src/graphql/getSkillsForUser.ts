@@ -1,25 +1,53 @@
+import * as Sentry from "@sentry/react";
+
 import { Skill, SkillForUser } from "@prisma/client";
 
+import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
-
-export const GET_SKILLS_FOR_USER = gql`
-  query getSkillsForUser($userId: ID!) {
-    skillsForUser(userId: $userId) {
-      id
-      userId
-      skill {
-        id
-        name
-        icon
-      }
-      icon
-      description
-      yearStarted
-      totalYears
-    }
-  }
-`;
 
 export interface SkillForUserWithSkill extends SkillForUser {
   skill: Skill;
 }
+
+/**
+ * Used to fetch all skills for a specific user.
+ *
+ * @param userId - the user ID to fetch skills for.
+ * @returns all skills for the user, including the parent skill.
+ */
+export const getSkillsForUser = async (userId: string | undefined) => {
+  if (!userId) return;
+
+  const client = getApolloClient();
+
+  const { data } = await client
+    .query<{ skillsForUser: SkillForUserWithSkill[] }>({
+      query: gql`
+        query getSkillsForUser($userId: ID!) {
+          skillsForUser(userId: $userId) {
+            id
+            userId
+            skill {
+              id
+              name
+              icon
+            }
+            icon
+            description
+            yearStarted
+            totalYears
+          }
+        }
+      `,
+      variables: {
+        userId,
+      },
+    })
+    .catch((error) => {
+      Sentry.captureException(error);
+
+      return { data: { skillsForUser: [] } };
+    });
+
+  return data.skillsForUser;
+};

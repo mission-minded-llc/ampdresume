@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/node";
+
 import { NextRequest, NextResponse } from "next/server";
 
 import { authOptions } from "@/lib/auth";
@@ -56,6 +58,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ data }, { status: 200 });
   } catch (error) {
+    Sentry.captureException(error);
+
     return NextResponse.json({ error }, { status: 500 });
   }
 }

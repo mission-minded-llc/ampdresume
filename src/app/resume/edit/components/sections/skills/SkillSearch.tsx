@@ -14,13 +14,14 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
-import { addSkillForUser, getSkills } from "@/server/skills";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Tooltip } from "@/components/Tooltip";
-import { TooltipTotalYears } from "@/components/resume/Skills/Tooltip";
+import { TooltipTotalYears } from "@/components/tooltips";
+import { addSkillForUser } from "@/graphql/addSkillForUser";
+import { getSkills } from "@/graphql/getSkills";
 import { useSession } from "next-auth/react";
 
 export const SkillSearch = () => {

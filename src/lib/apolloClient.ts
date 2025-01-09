@@ -1,8 +1,13 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, NormalizedCacheObject } from "@apollo/client";
+
+let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
 export function getApolloClient() {
-  return new ApolloClient({
-    uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
-    cache: new InMemoryCache(),
-  });
+  if (!apolloClient) {
+    apolloClient = new ApolloClient({
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
+      cache: new InMemoryCache(),
+    });
+  }
+  return apolloClient;
 }
