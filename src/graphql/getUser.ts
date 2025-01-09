@@ -1,5 +1,3 @@
-import * as Sentry from "@sentry/react";
-
 import { User } from "@prisma/client";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
@@ -15,29 +13,24 @@ export const getUser = async (slug: string) => {
 
   const {
     data: { user },
-  } = await client
-    .query<{ user: User }>({
-      query: gql`
-        query getUser($slug: String!) {
-          user(slug: $slug) {
-            id
-            name
-            email
-            displayEmail
-            location
-            title
-            siteImage
-            siteTitle
-          }
+  } = await client.query<{ user: User }>({
+    query: gql`
+      query getUser($slug: String!) {
+        user(slug: $slug) {
+          id
+          name
+          email
+          displayEmail
+          location
+          title
+          siteImage
+          siteTitle
+          siteDescription
         }
-      `,
-      variables: { slug },
-    })
-    .catch((error) => {
-      Sentry.captureException(error);
-
-      return { data: { user: {} } };
-    });
+      }
+    `,
+    variables: { slug },
+  });
 
   return user;
 };

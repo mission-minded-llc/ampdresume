@@ -21,6 +21,7 @@ export async function generateMetadata({
   const { slug } = await params;
 
   const user = await getUser(slug);
+
   const { name, title, siteTitle, siteDescription, siteImage } = user;
 
   const siteTitleDefault = name && title ? `Resume of ${name}, ${title}` : "OpenResume";

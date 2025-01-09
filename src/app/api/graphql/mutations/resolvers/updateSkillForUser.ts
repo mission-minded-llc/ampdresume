@@ -9,12 +9,14 @@ export const updateSkillForUser = async (
     yearStarted,
     totalYears,
     description,
+    icon,
   }: {
     id: string;
     userId: string;
     yearStarted: number;
     totalYears: number;
     description: string;
+    icon: string;
   },
 ) => {
   if ((await verifySessionOwnership(userId)) === false) {
@@ -37,6 +39,7 @@ export const updateSkillForUser = async (
       description,
       yearStarted,
       totalYears,
+      icon,
     },
     include: { skill: true }, // Include skill details
   });

@@ -17,12 +17,14 @@ export const updateSkillForUser = async ({
   yearStarted,
   totalYears,
   description,
+  icon,
 }: {
   id: string;
   userId: string;
   yearStarted: number;
   totalYears: number;
   description: string | null;
+  icon: string | null;
 }) => {
   const client = getApolloClient();
 
@@ -35,6 +37,7 @@ export const updateSkillForUser = async ({
           $yearStarted: Int
           $totalYears: Int
           $description: String
+          $icon: String
         ) {
           updateSkillForUser(
             id: $id
@@ -42,6 +45,7 @@ export const updateSkillForUser = async ({
             yearStarted: $yearStarted
             totalYears: $totalYears
             description: $description
+            icon: $icon
           ) {
             id
           }
@@ -53,6 +57,7 @@ export const updateSkillForUser = async ({
         yearStarted,
         totalYears,
         description,
+        icon,
       },
     })
     .catch((error) => {

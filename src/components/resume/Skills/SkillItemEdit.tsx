@@ -13,6 +13,7 @@ import { useContext, useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Icon } from "@iconify/react";
+import { MuiLink } from "@/components/MuiLink";
 import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillsContext } from "./Skills";
@@ -38,6 +39,7 @@ export const SkillItemEdit = ({
 
   const [yearStarted, setYearStarted] = useState(skill?.yearStarted ?? new Date().getFullYear());
   const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 0);
+  const [icon, setIcon] = useState(skill?.icon ? skill.icon : skill?.skill?.icon);
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const handleOpenConfirm = () => setConfirmOpen(true);
@@ -59,6 +61,7 @@ export const SkillItemEdit = ({
       description: string | null;
       yearStarted: number;
       totalYears: number;
+      icon: string | null;
     }) => {
       if (!session?.user?.id) return;
 
@@ -68,6 +71,7 @@ export const SkillItemEdit = ({
         description,
         yearStarted,
         totalYears,
+        icon,
       });
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForUser"] }),
@@ -91,6 +95,7 @@ export const SkillItemEdit = ({
       description: editorStateRef.current,
       yearStarted,
       totalYears,
+      icon,
     });
     if (successCallback) successCallback();
   };
@@ -103,7 +108,7 @@ export const SkillItemEdit = ({
 
   return (
     <Box>
-      <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+      <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 2 }}>
         <TextField
           type="number"
           label="Year Started"
@@ -120,6 +125,25 @@ export const SkillItemEdit = ({
             slotProps={{ htmlInput: { min: 0, max: 100 } }}
           />
           <Tooltip message={<TooltipTotalYears />} />
+        </Box>
+        <Box sx={{ display: "grid", gridTemplateColumns: "80% 1fr" }}>
+          <TextField
+            label="Icon"
+            value={icon}
+            onChange={(e) => setIcon(e.target.value)}
+            slotProps={{ htmlInput: { placeholder: "dashicons:icon-name" } }}
+          />
+          <Tooltip
+            message={
+              <>
+                Enter a valid icon name from{" "}
+                <MuiLink href="https://icon-sets.iconify.design/" target="_blank">
+                  iconify
+                </MuiLink>
+                .
+              </>
+            }
+          />
         </Box>
       </Box>
       <Divider sx={{ my: 2 }} />

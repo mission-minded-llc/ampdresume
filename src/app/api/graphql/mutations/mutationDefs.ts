@@ -10,6 +10,7 @@ export const mutationDefs = gql`
       yearStarted: Int
       totalYears: Int
       description: String
+      icon: String
     ): SkillForUser!
     deleteSkillForUser(userId: ID!, id: ID!): SkillForUser
   }

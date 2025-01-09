@@ -9,6 +9,7 @@ export const types = gql`
     location: String
     title: String
     siteTitle: String
+    siteDescription: String
     siteImage: String
   }
 
