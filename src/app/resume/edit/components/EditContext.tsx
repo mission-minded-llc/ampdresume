@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export interface EditSection {
   title: string;
@@ -31,7 +31,19 @@ export const EditPageContext = createContext<EditPageProviderProps>({
 });
 
 export const EditPageProvider = ({ children }: { children?: React.ReactNode }) => {
-  const [activeSection, setActiveSection] = useState(sections[0].title);
+  const [activeSection, setActiveSection] = useState("");
+
+  // Supports hash-based navigation for this page's sections.
+  useEffect(() => {
+    const currentHash = decodeURIComponent(window.location.hash.slice(1) || "");
+    setActiveSection(currentHash || sections[0].title);
+  }, []);
+
+  useEffect(() => {
+    if (!activeSection) return;
+
+    window.location.hash = activeSection;
+  }, [activeSection]);
 
   return (
     <EditPageContext.Provider value={{ sections, activeSection, setActiveSection }}>

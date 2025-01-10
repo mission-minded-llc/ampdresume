@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
 import { Box, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
 import { EditPageContext, EditSection } from "./EditContext";
+import React, { useContext } from "react";
 
 export const SidebarLeft = ({ width = 240 }) => {
-  const { sections, setActiveSection } = useContext(EditPageContext);
+  const { sections, activeSection, setActiveSection } = useContext(EditPageContext);
 
   const handleSectionClick = (section: EditSection) => {
     setActiveSection(section.title);
@@ -37,6 +37,8 @@ export const SidebarLeft = ({ width = 240 }) => {
               "&:hover": {
                 backgroundColor: theme.palette.action.hover,
               },
+              backgroundColor:
+                activeSection === section.title ? theme.palette.action.hover : "inherit",
             })}
           >
             <ListItemButton
