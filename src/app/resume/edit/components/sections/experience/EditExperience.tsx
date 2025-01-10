@@ -6,16 +6,19 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  IconButton,
   TextField,
   Typography,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { ResumeContext } from "@/components/resume/ResumeContext";
 import { SectionTitle } from "../SectionTitle";
-import { WorkExperience } from "@/components/resume/WorkExperience/WorkExperience";
 import { addCompany } from "@/graphql/addCompany";
+import { formatDate } from "@/lib/format";
 import { useSession } from "next-auth/react";
 
 export const EditExperience = () => {
@@ -108,9 +111,7 @@ export const EditExperience = () => {
   return (
     <Container>
       <SectionTitle title="Edit Professional Experience" />
-      {companies.map((company) => (
-        <div key={company.id}>{company.name}</div>
-      ))}
+
       <Box sx={{ mb: 4 }}>
         <Button variant="outlined" color="primary" onClick={() => setOpenDialog(true)}>
           Add Company
@@ -120,7 +121,35 @@ export const EditExperience = () => {
       {companies?.length > 0 ? (
         <>
           <SectionTitle title="Your Work Experience" />
-          <WorkExperience />
+          {companies.map((company) => (
+            <Box
+              key={company.id}
+              sx={{
+                mb: 4,
+                border: "1px solid #ccc",
+                p: 2,
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <p>
+                <strong>{company.name}&nbsp;-&nbsp;</strong>
+                {company?.location ? ` (${company.location}) ` : " "}
+                {formatDate(company.startDate.toString())} to{" "}
+                {company?.endDate ? formatDate(company.endDate?.toString()) : "present"}
+              </p>
+              <Box sx={{ display: "flex", gap: 4 }}>
+                <IconButton aria-label="edit">
+                  <EditIcon />
+                </IconButton>
+                {/* TODO: make delete available only if all positions are removed from company. */}
+                <IconButton aria-label="delete">
+                  <DeleteIcon />
+                </IconButton>
+              </Box>
+            </Box>
+          ))}
         </>
       ) : null}
 
