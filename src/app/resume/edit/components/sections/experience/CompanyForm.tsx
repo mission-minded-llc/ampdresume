@@ -1,5 +1,5 @@
 import { Box, Button, TextField } from "@mui/material";
-import { CompanyGraphql, CompanyGraphqlGeneric } from "@/graphql/getCompanies";
+import { Company, CompanyGeneric } from "@/graphql/getCompanies";
 import React, { useState } from "react";
 
 export const CompanyForm = ({
@@ -7,8 +7,8 @@ export const CompanyForm = ({
   handler,
   onCancel = null,
 }: {
-  company?: CompanyGraphql | null;
-  handler: (company: CompanyGraphqlGeneric | CompanyGraphql) => void;
+  company?: Company | null;
+  handler: (company: CompanyGeneric | Company) => void;
   onCancel?: (() => void) | null;
 }) => {
   const formattedStartDate = company?.startDate

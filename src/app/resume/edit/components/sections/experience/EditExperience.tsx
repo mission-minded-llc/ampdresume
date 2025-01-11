@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CompanyForm } from "./CompanyForm";
-import { CompanyGraphqlGeneric } from "@/graphql/getCompanies";
+import { CompanyGeneric } from "@/graphql/getCompanies";
 import { CompanyItem } from "./CompanyItem";
 import { ResumeContext } from "@/components/resume/ResumeContext";
 import { SectionTitle } from "../SectionTitle";
@@ -45,7 +45,7 @@ export const EditExperience = () => {
     },
   });
 
-  const handleAddCompany = (company: CompanyGraphqlGeneric) => {
+  const handleAddCompany = (company: CompanyGeneric) => {
     mutation.mutate({
       companyName: company.name,
       location: company?.location,

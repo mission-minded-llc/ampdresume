@@ -1,19 +1,19 @@
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import { CompanyGraphql, CompanyGraphqlGeneric } from "@/graphql/getCompanies";
+import { Company, CompanyGeneric } from "@/graphql/getCompanies";
 import React, { useState } from "react";
 
 import { CompanyForm } from "./CompanyForm";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { formatDate } from "@/lib/format";
 
-export const CompanyItem = ({ company }: { company: CompanyGraphql }) => {
+export const CompanyItem = ({ company }: { company: Company }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const handleEditCompany = (companyGeneric: CompanyGraphqlGeneric) => {
+  const handleEditCompany = (companyGeneric: CompanyGeneric) => {
     company.name = companyGeneric.name;
     company.location = companyGeneric.location;
     company.startDate = companyGeneric.startDate;

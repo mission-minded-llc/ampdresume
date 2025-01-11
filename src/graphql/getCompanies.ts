@@ -1,15 +1,15 @@
 import * as Sentry from "@sentry/react";
 
-import { Company } from "@prisma/client";
+import { Company as CompanyServer } from "@prisma/client";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
-export type CompanyGraphql = Omit<Company, "startDate" | "endDate"> & {
+export type Company = Omit<CompanyServer, "startDate" | "endDate"> & {
   startDate: string;
   endDate: string | null;
 };
 
-export type CompanyGraphqlGeneric = Omit<CompanyGraphql, "id" | "userId">;
+export type CompanyGeneric = Omit<Company, "id" | "userId">;
 
 /**
  * Used to fetch all companies for a specific user.
@@ -23,7 +23,7 @@ export const getCompanies = async (userId: string | undefined) => {
   const client = getApolloClient();
 
   const { data } = await client
-    .query<{ companies: CompanyGraphql[] }>({
+    .query<{ companies: Company[] }>({
       query: gql`
         query getCompanies($userId: ID!) {
           companies(userId: $userId, sort: [{ field: "endDate", direction: DESC }]) {

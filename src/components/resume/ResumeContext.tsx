@@ -1,16 +1,16 @@
 "use client";
 
-import { CompanyGraphql } from "@/graphql/getCompanies";
-import { EducationGraphql } from "@/graphql/getEducation";
-import { PositionWithProjectsGraphql } from "@/graphql/getPositions";
+import { Company } from "@/graphql/getCompanies";
+import { Education } from "@/graphql/getEducation";
+import { PositionWithProjects } from "@/graphql/getPositions";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { createContext } from "react";
 
 interface ResumeProviderProps {
   skillsForUser: SkillForUserWithSkill[];
-  companies: CompanyGraphql[];
-  positions: PositionWithProjectsGraphql[];
-  education: EducationGraphql[];
+  companies: Company[];
+  positions: PositionWithProjects[];
+  education: Education[];
 }
 
 export const ResumeContext = createContext<ResumeProviderProps>({
