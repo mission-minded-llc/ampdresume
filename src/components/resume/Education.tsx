@@ -3,7 +3,7 @@
 import { Box, Typography } from "@mui/material";
 import React, { useContext } from "react";
 
-import type { Education as EducationType } from "@prisma/client";
+import type { EducationGraphql } from "@/graphql/getEducation";
 import { ResumeContext } from "./ResumeContext";
 import { formatDate } from "@/lib/format";
 
@@ -13,7 +13,7 @@ export const Education = () => {
   // Group education by school name. This was a simpler
   // approach than to create a separate type speficially to group
   // by school in Sanity.
-  const educationGroupedBySchool: { [key: string]: EducationType[] } = {};
+  const educationGroupedBySchool: { [key: string]: EducationGraphql[] } = {};
   education.map((edu) => {
     if (!edu?.school) return;
 

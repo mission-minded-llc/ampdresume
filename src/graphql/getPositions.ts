@@ -13,22 +13,24 @@ export interface ProjectWithSkills extends Project {
   skillsForProject: SkillForProjectWithSkill[];
 }
 
-export interface PositionWithProjects extends Position {
+export interface PositionWithProjectsGraphql extends Omit<Position, "startDate" | "endDate"> {
   company: Company;
   projects: ProjectWithSkills[];
+  startDate: string;
+  endDate: string;
 }
 
 /**
  * Used to fetch all positions for a specific company.
  *
  * @param {string[]} companyIds - the company IDs to fetch positions for.
- * @returns {PositionWithProjects[]} all positions for the company, including projects for each position.
+ * @returns {PositionWithProjectsGraphql[]} all positions for the company, including projects for each position.
  */
 export const getPositions = async (companyIds: string[]) => {
   const client = getApolloClient();
 
   const { data } = await client
-    .query<{ positions: PositionWithProjects[] }>({
+    .query<{ positions: PositionWithProjectsGraphql[] }>({
       query: gql`
         query getPositions($companyIds: [ID!]) {
           positions(companyIds: $companyIds, sort: [{ field: "endDate", direction: DESC }]) {

@@ -1,16 +1,16 @@
 "use client";
 
-import { Company, Education } from "@prisma/client";
-
-import { PositionWithProjects } from "@/graphql/getPositions";
+import { CompanyGraphql } from "@/graphql/getCompanies";
+import { EducationGraphql } from "@/graphql/getEducation";
+import { PositionWithProjectsGraphql } from "@/graphql/getPositions";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { createContext } from "react";
 
 interface ResumeProviderProps {
   skillsForUser: SkillForUserWithSkill[];
-  companies: Company[];
-  positions: PositionWithProjects[];
-  education: Education[];
+  companies: CompanyGraphql[];
+  positions: PositionWithProjectsGraphql[];
+  education: EducationGraphql[];
 }
 
 export const ResumeContext = createContext<ResumeProviderProps>({

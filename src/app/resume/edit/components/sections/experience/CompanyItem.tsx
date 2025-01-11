@@ -1,38 +1,48 @@
-import { Box, IconButton } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { CompanyGraphql, CompanyGraphqlGeneric } from "@/graphql/getCompanies";
+import React, { useState } from "react";
 
-import { Company } from "@prisma/client";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+import { CompanyForm } from "./CompanyForm";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { formatDate } from "@/lib/format";
 
-export const CompanyItem = ({ company }: { company: Company }) => {
+export const CompanyItem = ({ company }: { company: CompanyGraphql }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
+  const handleEditCompany = (companyGeneric: CompanyGraphqlGeneric) => {
+    company.name = companyGeneric.name;
+    company.location = companyGeneric.location;
+    company.startDate = companyGeneric.startDate;
+    company.endDate = companyGeneric.endDate;
+
+    // console.log({ company });
+    // Send update mutation here.
+  };
+
   return (
-    <Box
-      key={company.id}
-      sx={{
-        mb: 4,
-        border: "1px solid #ccc",
-        p: 2,
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-      }}
-    >
-      <p>
-        <strong>{company.name}&nbsp;-&nbsp;</strong>
-        {company?.location ? ` (${company.location}) ` : " "}
-        {formatDate(company.startDate.toString())} to{" "}
-        {company?.endDate ? formatDate(company.endDate?.toString()) : "present"}
-      </p>
-      <Box sx={{ display: "flex", gap: 4 }}>
-        <IconButton aria-label="edit">
-          <EditIcon />
-        </IconButton>
-        {/* TODO: make delete available only if all positions are removed from company. */}
-        <IconButton aria-label="delete">
-          <DeleteIcon />
-        </IconButton>
-      </Box>
-    </Box>
+    <Accordion expanded={expanded}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+        onClick={handleExpandClick}
+      >
+        <p>
+          <strong>{company.name}&nbsp;-&nbsp;</strong>
+          {company?.location ? ` (${company.location}) ` : " "}
+          {formatDate(company.startDate)} to{" "}
+          {company.endDate ? formatDate(company?.endDate?.toString()) : "present"}
+        </p>
+      </AccordionSummary>
+      <AccordionDetails>
+        <CompanyForm company={company} handler={handleEditCompany} />
+      </AccordionDetails>
+    </Accordion>
   );
 };
+
+export default CompanyItem;
