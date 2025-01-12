@@ -3,12 +3,6 @@ import * as Sentry from "@sentry/react";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
-/**
- * Used to add a skill to a user.
- *
- * @param userId - the user ID to add the skill to.
- * @param skillId - the skill ID to add to the user.
- */
 export const addSkillForUser = async ({
   userId,
   skillId,
@@ -19,7 +13,7 @@ export const addSkillForUser = async ({
   skillId: string;
   yearStarted: number;
   totalYears: number;
-}) => {
+}): Promise<void> => {
   const client = getApolloClient();
 
   await client

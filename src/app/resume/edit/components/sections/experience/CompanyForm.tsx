@@ -2,13 +2,17 @@ import { Box, Button, TextField } from "@mui/material";
 import { Company, CompanyGeneric } from "@/graphql/getCompanies";
 import React, { useState } from "react";
 
+import { DeleteWithConfirmation } from "../../DeleteWithConfirmation";
+
 export const CompanyForm = ({
   company,
   handler,
+  deleteHandler = null,
   onCancel = null,
 }: {
   company?: Company | null;
   handler: (company: CompanyGeneric | Company) => void;
+  deleteHandler?: ((company: Company) => void) | null;
   onCancel?: (() => void) | null;
 }) => {
   const formattedStartDate = company?.startDate
@@ -147,11 +151,17 @@ export const CompanyForm = ({
       <Box
         sx={{
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: "center",
           gap: 2,
           mt: 2,
         }}
       >
+        {company && deleteHandler && (
+          <DeleteWithConfirmation
+            buttonLabel="Delete Company"
+            onConfirmDelete={() => deleteHandler(company)}
+          />
+        )}
         {onCancel && (
           <Button variant="outlined" color="primary" onClick={onCancel}>
             Cancel

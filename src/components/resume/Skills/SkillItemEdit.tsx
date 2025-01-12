@@ -1,18 +1,8 @@
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Divider,
-  TextField,
-} from "@mui/material";
+import { Box, Button, Divider, TextField } from "@mui/material";
 import { useContext, useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Icon } from "@iconify/react";
+import { DeleteWithConfirmation } from "@/app/resume/edit/components/DeleteWithConfirmation";
 import { MuiLink } from "@/components/MuiLink";
 import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
@@ -40,15 +30,6 @@ export const SkillItemEdit = ({
   const [yearStarted, setYearStarted] = useState(skill?.yearStarted ?? new Date().getFullYear());
   const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 0);
   const [icon, setIcon] = useState(skill?.icon ? skill.icon : skill?.skill?.icon);
-  const [confirmOpen, setConfirmOpen] = useState(false);
-
-  const handleOpenConfirm = () => setConfirmOpen(true);
-  const handleCloseConfirm = () => setConfirmOpen(false);
-
-  const handleConfirmDelete = () => {
-    setConfirmOpen(false);
-    handleDelete();
-  };
 
   const updateSkillForUserMutation = useMutation({
     mutationFn: async ({
@@ -155,24 +136,7 @@ export const SkillItemEdit = ({
         />
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Button variant="outlined" color="secondary" onClick={handleOpenConfirm}>
-          <Icon icon="dashicons:trash" />
-          Delete
-        </Button>
-        <Dialog open={confirmOpen} onClose={handleCloseConfirm} maxWidth="xs" fullWidth>
-          <DialogTitle>Are you sure?</DialogTitle>
-          <DialogContent>
-            <DialogContentText>This cannot be undone!</DialogContentText>
-          </DialogContent>
-          <DialogActions sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Button onClick={handleCloseConfirm} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={handleConfirmDelete} color="secondary" autoFocus>
-              Yes, Delete
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <DeleteWithConfirmation onConfirmDelete={handleDelete} />
         <Button variant="contained" color="primary" onClick={handleSave}>
           Save &amp; Close
         </Button>

@@ -3,15 +3,6 @@ import * as Sentry from "@sentry/react";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
-/**
- * Used to add a company for a user.
- *
- * @param userId - the user ID to add the company to.
- * @param name - the name of the company.
- * @param location - the location of the company.
- * @param startDate - the date the user started at the company.
- * @param endDate - the date the user ended at the company.
- */
 export const addCompany = async ({
   userId,
   name,
@@ -24,7 +15,7 @@ export const addCompany = async ({
   location: string;
   startDate: string;
   endDate: string;
-}) => {
+}): Promise<void> => {
   const client = getApolloClient();
 
   await client

@@ -26,7 +26,7 @@ export interface PositionWithProjects extends Omit<Position, "startDate" | "endD
  * @param {string[]} companyIds - the company IDs to fetch positions for.
  * @returns {PositionWithProjects[]} all positions for the company, including projects for each position.
  */
-export const getPositions = async (companyIds: string[]) => {
+export const getPositions = async (companyIds: string[]): Promise<PositionWithProjects[]> => {
   const client = getApolloClient();
 
   const { data } = await client

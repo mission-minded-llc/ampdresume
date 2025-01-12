@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CompanyForm } from "./CompanyForm";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { deleteCompany } from "@/graphql/deleteCompany";
 import { formatDate } from "@/lib/format";
 import { updateCompany } from "@/graphql/updateCompany";
 import { useSession } from "next-auth/react";
@@ -14,7 +15,11 @@ export const CompanyItem = ({ company }: { company: Company }) => {
   const queryClient = useQueryClient();
   const [expanded, setExpanded] = useState(false);
 
-  const mutation = useMutation({
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
+  const saveMutation = useMutation({
     mutationFn: async ({
       id,
       name,
@@ -39,15 +44,18 @@ export const CompanyItem = ({ company }: { company: Company }) => {
       });
     },
     onSuccess: () => {
-      if (!session?.user?.id) return;
-
       queryClient.invalidateQueries({ queryKey: ["companies"] });
     },
   });
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const deleteMutation = useMutation({
+    mutationFn: async ({ id, userId }: { id: string; userId: string }) => {
+      await deleteCompany({ id, userId });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["companies"] });
+    },
+  });
 
   const handleEditCompany = (companyGeneric: CompanyGeneric) => {
     company.name = companyGeneric.name;
@@ -55,13 +63,19 @@ export const CompanyItem = ({ company }: { company: Company }) => {
     company.startDate = companyGeneric.startDate;
     company.endDate = companyGeneric.endDate;
 
-    mutation.mutate({
+    saveMutation.mutate({
       id: company.id,
       name: company.name,
       location: company.location,
       startDate: company.startDate,
       endDate: company.endDate || "",
     });
+  };
+
+  const handleDeleteCompany = (company: Company) => {
+    if (!session?.user?.id) return;
+
+    deleteMutation.mutate({ userId: session.user.id, id: company.id });
   };
 
   return (
@@ -80,7 +94,11 @@ export const CompanyItem = ({ company }: { company: Company }) => {
         </p>
       </AccordionSummary>
       <AccordionDetails>
-        <CompanyForm company={company} handler={handleEditCompany} />
+        <CompanyForm
+          company={company}
+          handler={handleEditCompany}
+          deleteHandler={handleDeleteCompany}
+        />
       </AccordionDetails>
     </Accordion>
   );

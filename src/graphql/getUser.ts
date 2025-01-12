@@ -8,7 +8,7 @@ import { gql } from "@apollo/client";
  * @param {string} slug the user slug to get the user by.
  * @returns {User} the user.
  */
-export const getUser = async (slug: string) => {
+export const getUser = async (slug: string): Promise<User> => {
   const client = getApolloClient();
 
   const {

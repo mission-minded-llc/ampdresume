@@ -11,13 +11,7 @@ export type Company = Omit<CompanyServer, "startDate" | "endDate"> & {
 
 export type CompanyGeneric = Omit<Company, "id" | "userId">;
 
-/**
- * Used to fetch all companies for a specific user.
- *
- * @param userId - the user ID to fetch companies for.
- * @returns all companies for the user.
- */
-export const getCompanies = async (userId: string | undefined) => {
+export const getCompanies = async (userId: string | undefined): Promise<Company[] | undefined> => {
   if (!userId) return;
 
   const client = getApolloClient();

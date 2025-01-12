@@ -30,5 +30,6 @@ export const mutationDefs = gql`
       startDate: String!
       endDate: String
     ): Company!
+    deleteCompany(userId: ID!, id: ID!): Company
   }
 `;

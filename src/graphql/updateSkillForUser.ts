@@ -25,7 +25,7 @@ export const updateSkillForUser = async ({
   totalYears: number;
   description: string | null;
   icon: string | null;
-}) => {
+}): Promise<void> => {
   const client = getApolloClient();
 
   await client

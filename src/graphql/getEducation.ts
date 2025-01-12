@@ -8,13 +8,9 @@ export type Education = Omit<EducationServer, "dateAwarded"> & {
   dateAwarded: string;
 };
 
-/**
- * Used to get all education for a user.
- *
- * @param {string} userId the user ID to get the education for.
- * @returns {Education[]} all education for the user.
- */
-export const getEducation = async (userId: string | undefined) => {
+export const getEducation = async (
+  userId: string | undefined,
+): Promise<Education[] | undefined> => {
   if (!userId) return;
 
   const client = getApolloClient();

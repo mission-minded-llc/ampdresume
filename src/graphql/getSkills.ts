@@ -11,7 +11,7 @@ export type SkillType = "user" | "project";
  *
  * @returns {Skill[]} all available skills.
  */
-export const getSkills = async () => {
+export const getSkills = async (): Promise<{ skills: Skill[] }> => {
   const client = getApolloClient();
 
   const { data: skills } = await client

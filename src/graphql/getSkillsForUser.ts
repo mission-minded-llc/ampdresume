@@ -15,7 +15,9 @@ export interface SkillForUserWithSkill extends SkillForUser {
  * @param userId - the user ID to fetch skills for.
  * @returns {SkillForUserWithSkill[]} all skills for the user, including the parent skill.
  */
-export const getSkillsForUser = async (userId: string | undefined) => {
+export const getSkillsForUser = async (
+  userId: string | undefined,
+): Promise<SkillForUserWithSkill[] | undefined> => {
   if (!userId) return;
 
   const client = getApolloClient();

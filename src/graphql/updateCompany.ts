@@ -17,7 +17,7 @@ export const updateCompany = async ({
   location: string;
   startDate: string;
   endDate: string;
-}) => {
+}): Promise<void> => {
   const client = getApolloClient();
 
   await client

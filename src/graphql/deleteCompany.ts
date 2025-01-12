@@ -3,7 +3,7 @@ import * as Sentry from "@sentry/react";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
-export const deleteSkillForUser = async ({
+export const deleteCompany = async ({
   userId,
   id,
 }: {
@@ -15,8 +15,8 @@ export const deleteSkillForUser = async ({
   await client
     .mutate({
       mutation: gql`
-        mutation updateSkillForUser($id: ID!, $userId: ID!) {
-          deleteSkillForUser(id: $id, userId: $userId) {
+        mutation deleteCompany($id: ID!, $userId: ID!) {
+          deleteCompany(id: $id, userId: $userId) {
             id
           }
         }
