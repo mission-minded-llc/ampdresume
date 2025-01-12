@@ -19,12 +19,12 @@ export const EditExperience = () => {
 
   const mutation = useMutation({
     mutationFn: async ({
-      companyName,
+      name,
       location,
       startDate,
       endDate,
     }: {
-      companyName: string;
+      name: string;
       location: string;
       startDate: string;
       endDate: string;
@@ -32,7 +32,7 @@ export const EditExperience = () => {
       if (!session?.user?.id) return;
       await addCompany({
         userId: session.user.id,
-        companyName,
+        name,
         location,
         startDate,
         endDate,
@@ -47,7 +47,7 @@ export const EditExperience = () => {
 
   const handleAddCompany = (company: CompanyGeneric) => {
     mutation.mutate({
-      companyName: company.name,
+      name: company.name,
       location: company?.location,
       startDate: company.startDate,
       endDate: company?.endDate || "",

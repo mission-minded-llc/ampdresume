@@ -20,16 +20,15 @@ export const updateSkillForUser = async (
   },
 ) => {
   if ((await verifySessionOwnership(userId)) === false) {
-    throw new Error("Unauthorized");
+    throw new Error("Unauthorized: Session ownership verification failed for " + userId);
   }
 
   const existingSkill = await prisma.skillForUser.findFirst({
     where: { id },
   });
 
-  // User doesn't own this user skill.
   if (existingSkill?.userId !== userId) {
-    throw new Error("Unauthorized: User does not own this skill");
+    throw new Error("Unauthorized: You do not own this skill");
   }
 
   return await prisma.skillForUser.update({

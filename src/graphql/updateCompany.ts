@@ -3,22 +3,15 @@ import * as Sentry from "@sentry/react";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
-/**
- * Used to add a company for a user.
- *
- * @param userId - the user ID to add the company to.
- * @param name - the name of the company.
- * @param location - the location of the company.
- * @param startDate - the date the user started at the company.
- * @param endDate - the date the user ended at the company.
- */
-export const addCompany = async ({
+export const updateCompany = async ({
+  id,
   userId,
   name,
   location,
   startDate,
   endDate,
 }: {
+  id: string;
   userId: string;
   name: string;
   location: string;
@@ -30,14 +23,16 @@ export const addCompany = async ({
   await client
     .mutate({
       mutation: gql`
-        mutation addCompany(
+        mutation updateCompany(
+          $id: ID!
           $userId: ID!
           $name: String!
           $location: String
           $startDate: String!
           $endDate: String
         ) {
-          addCompany(
+          updateCompany(
+            id: $id
             userId: $userId
             name: $name
             location: $location
@@ -49,6 +44,7 @@ export const addCompany = async ({
         }
       `,
       variables: {
+        id,
         userId,
         name,
         location,

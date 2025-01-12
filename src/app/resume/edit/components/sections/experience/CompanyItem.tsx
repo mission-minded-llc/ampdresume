@@ -1,13 +1,49 @@
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { Company, CompanyGeneric } from "@/graphql/getCompanies";
 import React, { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CompanyForm } from "./CompanyForm";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { formatDate } from "@/lib/format";
+import { updateCompany } from "@/graphql/updateCompany";
+import { useSession } from "next-auth/react";
 
 export const CompanyItem = ({ company }: { company: Company }) => {
+  const { data: session } = useSession();
+  const queryClient = useQueryClient();
   const [expanded, setExpanded] = useState(false);
+
+  const mutation = useMutation({
+    mutationFn: async ({
+      id,
+      name,
+      location,
+      startDate,
+      endDate,
+    }: {
+      id: string;
+      name: string;
+      location: string;
+      startDate: string;
+      endDate: string;
+    }) => {
+      if (!session?.user?.id) return;
+      await updateCompany({
+        id,
+        userId: session.user.id,
+        name,
+        location,
+        startDate,
+        endDate,
+      });
+    },
+    onSuccess: () => {
+      if (!session?.user?.id) return;
+
+      queryClient.invalidateQueries({ queryKey: ["companies"] });
+    },
+  });
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -19,8 +55,13 @@ export const CompanyItem = ({ company }: { company: Company }) => {
     company.startDate = companyGeneric.startDate;
     company.endDate = companyGeneric.endDate;
 
-    // console.log({ company });
-    // Send update mutation here.
+    mutation.mutate({
+      id: company.id,
+      name: company.name,
+      location: company.location,
+      startDate: company.startDate,
+      endDate: company.endDate || "",
+    });
   };
 
   return (

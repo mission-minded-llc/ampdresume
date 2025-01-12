@@ -1,7 +1,13 @@
-export const formatDate = (timestamp: string | null | undefined) => {
-  if (!timestamp) return "";
+export const formatDate = (dateStr: string | null | undefined) => {
+  if (!dateStr) return "";
 
-  const intTimestamp = parseInt(timestamp, 10);
+  // If dateStr is in YYYY-MM format, convert it to a timestamp.
+  if (dateStr.includes("-")) {
+    const [year, month] = dateStr.split("-");
+    dateStr = new Date(parseInt(year, 10), parseInt(month, 10) - 1).getTime().toString();
+  }
+
+  const intTimestamp = parseInt(dateStr, 10);
 
   // This is a workaround to fix the issue where the date is off by one month.
   // The issue is caused by the date being in UTC.
