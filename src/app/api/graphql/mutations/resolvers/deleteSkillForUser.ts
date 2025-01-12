@@ -12,6 +12,7 @@ export const deleteSkillForUser = async (
   const existingSkill = await prisma.skillForUser.findFirst({
     where: { id },
   });
+
   if (!existingSkill) return null;
 
   if (existingSkill.userId !== userId) {

@@ -14,7 +14,6 @@ export const addSkillForUser = async (
     throw new Error("Unauthorized");
   }
 
-  // Check if this skill already exists for this user.
   const existingSkill = await prisma.skillForUser.findFirst({
     where: { userId, skillId },
   });
