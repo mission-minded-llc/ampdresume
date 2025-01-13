@@ -17,7 +17,7 @@ jest.mock("@/app/api/graphql/util", () => ({
 
 describe("updateSkillForUser", () => {
   it("throws an error if user is unauthorized for session", async () => {
-    (verifySessionOwnership as jest.Mock).mockResolvedValueOnce(false);
+    (verifySessionOwnership as jest.Mock).mockRejectedValueOnce(new Error("Unauthorized"));
     await expect(
       updateSkillForUser("", {
         id: "skill-id",

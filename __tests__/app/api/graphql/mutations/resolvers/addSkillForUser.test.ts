@@ -26,7 +26,7 @@ jest.mock("@/app/api/graphql/util", () => ({
 
 describe("addSkillForUser", () => {
   it("throws an error if user is unauthorized", async () => {
-    (verifySessionOwnership as jest.Mock).mockResolvedValueOnce(false);
+    (verifySessionOwnership as jest.Mock).mockRejectedValueOnce(new Error("Unauthorized"));
     await expect(
       addSkillForUser("", { userId: "1", skillId: "2", yearStarted: 2020, totalYears: 3 }),
     ).rejects.toThrow("Unauthorized");
