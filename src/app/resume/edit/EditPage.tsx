@@ -17,12 +17,14 @@ import { useSession } from "next-auth/react";
 export const EditPage = () => {
   const { data: session, status } = useSession();
 
+  const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
+
   const {
     isPending: isPendingSkillsForUser,
     error: errorSkillsForUser,
     data: skillsForUser,
   } = useQuery({
-    enabled: status === "authenticated" && !!session?.user.id,
+    enabled: isAuthenticatedUser,
     queryKey: ["skillsForUser"],
     queryFn: async () => await getSkillsForUser(session?.user.id),
   });
@@ -32,7 +34,7 @@ export const EditPage = () => {
     error: errorCompanies,
     data: companies,
   } = useQuery({
-    enabled: status === "authenticated" && !!session?.user?.id,
+    enabled: isAuthenticatedUser,
     queryKey: ["companies"],
     queryFn: async () => await getCompanies(session?.user.id),
   });
@@ -42,8 +44,8 @@ export const EditPage = () => {
     error: errorPositions,
     data: positions,
   } = useQuery({
-    enabled: status === "authenticated" && !!session?.user?.id && companies && companies.length > 0,
-    queryKey: ["positions"],
+    enabled: isAuthenticatedUser,
+    queryKey: ["positions", companies],
     queryFn: async () => {
       if (!companies) return [];
 
@@ -66,7 +68,7 @@ export const EditPage = () => {
   if (errorCompanies) return <Box>Error loading companies: {errorCompanies.message}</Box>;
   if (errorPositions) return <Box>Error loading positions: {errorPositions.message}</Box>;
 
-  const sidebarWidth = 200;
+  const sidebarWidth = 150;
 
   return (
     <ResumeProvider

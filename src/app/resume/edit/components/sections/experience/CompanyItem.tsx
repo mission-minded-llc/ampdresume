@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Divider } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { Company, CompanyGeneric } from "@/graphql/getCompanies";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -36,6 +36,7 @@ export const CompanyItem = ({ company }: { company: Company }) => {
       endDate: string;
     }) => {
       if (!session?.user?.id) return;
+
       await updateCompany({
         id,
         userId: session.user.id,
@@ -101,11 +102,8 @@ export const CompanyItem = ({ company }: { company: Company }) => {
           handler={handleEditCompany}
           deleteHandler={handleDeleteCompany}
         />
-        <Divider sx={{ mt: 4, mb: 4 }} />
         <PositionsList company={company} />
       </AccordionDetails>
     </Accordion>
   );
 };
-
-export default CompanyItem;

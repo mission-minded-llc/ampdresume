@@ -148,8 +148,10 @@ export const PositionForm = ({
       >
         {position && deleteHandler && (
           <DeleteWithConfirmation
-            buttonLabel="Delete Company"
-            onConfirmDelete={() => deleteHandler(position)}
+            buttonLabel="Delete Position"
+            onConfirmDelete={() => {
+              deleteHandler(position);
+            }}
           />
         )}
         {onCancel && (
@@ -158,7 +160,7 @@ export const PositionForm = ({
           </Button>
         )}
         <Button variant="contained" color="primary" onClick={saveHandler}>
-          Save
+          Save Position
         </Button>
       </Box>
     </>

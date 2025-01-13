@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CompanyForm } from "./CompanyForm";
 import { CompanyGeneric } from "@/graphql/getCompanies";
-import CompanyItem from "./CompanyItem";
+import { CompanyItem } from "./CompanyItem";
 import { ResumeContext } from "@/components/resume/ResumeContext";
 import { SectionTitle } from "../SectionTitle";
 import { addCompany } from "@/graphql/addCompany";
@@ -67,8 +67,8 @@ export const CompanyList = () => {
         ))}
       </Box>
 
-      <Box sx={{ mb: 4 }}>
-        <Button variant="outlined" color="primary" onClick={() => setOpenDialog(true)}>
+      <Box sx={{ mb: 4, display: "flex", justifyContent: "center" }}>
+        <Button variant="outlined" color="secondary" onClick={() => setOpenDialog(true)}>
           Add Company
         </Button>
       </Box>

@@ -40,5 +40,14 @@ export const mutationDefs = gql`
       startDate: String!
       endDate: String
     ): Position!
+    updatePosition(
+      id: ID!
+      userId: ID!
+      companyId: ID!
+      title: String!
+      startDate: String!
+      endDate: String
+    ): Position!
+    deletePosition(userId: ID!, id: ID!): Position
   }
 `;

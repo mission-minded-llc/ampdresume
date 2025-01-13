@@ -16,6 +16,7 @@ interface DeleteWithConfirmationProps {
   dialogMessage?: string;
   confirmLabel?: string;
   cancelLabel?: string;
+  disabled?: boolean;
 }
 
 export const DeleteWithConfirmation = ({
@@ -25,6 +26,7 @@ export const DeleteWithConfirmation = ({
   dialogMessage = "This cannot be undone!",
   confirmLabel = "Yes, Delete",
   cancelLabel = "Cancel",
+  disabled = false,
 }: DeleteWithConfirmationProps) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
@@ -43,6 +45,7 @@ export const DeleteWithConfirmation = ({
         color="secondary"
         onClick={handleOpenConfirm}
         sx={{ marginRight: "auto" }}
+        disabled={disabled}
       >
         {buttonLabel}
       </Button>

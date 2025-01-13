@@ -1,8 +1,9 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Company, CompanyGeneric } from "@/graphql/getCompanies";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { DeleteWithConfirmation } from "../../DeleteWithConfirmation";
+import { ResumeContext } from "@/components/resume/ResumeContext";
 
 export const CompanyForm = ({
   company,
@@ -15,6 +16,10 @@ export const CompanyForm = ({
   deleteHandler?: ((company: Company) => void) | null;
   onCancel?: (() => void) | null;
 }) => {
+  const { positions } = useContext(ResumeContext);
+
+  const positionsInCompany = positions.filter((position) => position.company.id === company?.id);
+
   const formattedStartDate = company?.startDate
     ? new Date(parseInt(company.startDate, 10)).toISOString().split("T")[0].substring(0, 7)
     : "";
@@ -160,6 +165,7 @@ export const CompanyForm = ({
           <DeleteWithConfirmation
             buttonLabel="Delete Company"
             onConfirmDelete={() => deleteHandler(company)}
+            disabled={positionsInCompany.length > 0}
           />
         )}
         {onCancel && (
@@ -168,7 +174,7 @@ export const CompanyForm = ({
           </Button>
         )}
         <Button variant="contained" color="primary" onClick={saveHandler}>
-          Save
+          Save Company
         </Button>
       </Box>
     </>

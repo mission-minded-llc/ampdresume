@@ -1,17 +1,17 @@
 "use client";
 
+import { Box, Container, ThemeProvider } from "@mui/material";
 import React, { useContext } from "react";
 
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Footer } from "./Footer";
-import { ThemeAppearanceContext } from "./ThemeContext";
-import { Box, Container, ThemeProvider } from "@mui/material";
-import { createTheme } from "@mui/material";
-import { usePathname } from "next/navigation";
 import { Header } from "./Header";
 import { SessionProvider } from "next-auth/react";
 import { TanstackQueryProvider } from "./TanstackContext";
+import { ThemeAppearanceContext } from "./ThemeContext";
+import { createTheme } from "@mui/material";
+import { usePathname } from "next/navigation";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { themeAppearance } = useContext(ThemeAppearanceContext);
@@ -25,6 +25,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       primary: {
         main: themeAppearance === "dark" ? "#eee" : "#333",
         light: themeAppearance === "dark" ? "#333" : "#eee",
+      },
+      secondary: {
+        main: themeAppearance === "dark" ? "#cf75ff" : "#350052",
+        light: themeAppearance === "dark" ? "#350052" : "#cf75ff",
       },
       background: {
         default: themeAppearance === "dark" ? "#151515" : "#fff",
