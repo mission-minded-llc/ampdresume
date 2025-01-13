@@ -10,9 +10,7 @@ export const addSkillForUser = async (
     totalYears,
   }: { userId: string; skillId: string; yearStarted: number; totalYears: number },
 ) => {
-  if ((await verifySessionOwnership(userId)) === false) {
-    throw new Error("Unauthorized");
-  }
+  await verifySessionOwnership(userId);
 
   const existingSkill = await prisma.skillForUser.findFirst({
     where: { userId, skillId },

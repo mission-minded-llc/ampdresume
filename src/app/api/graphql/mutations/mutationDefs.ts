@@ -31,5 +31,14 @@ export const mutationDefs = gql`
       endDate: String
     ): Company!
     deleteCompany(userId: ID!, id: ID!): Company
+
+    # Position specific mutations.
+    addPosition(
+      userId: ID!
+      companyId: ID!
+      title: String!
+      startDate: String!
+      endDate: String
+    ): Position!
   }
 `;

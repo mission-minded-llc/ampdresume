@@ -1,7 +1,8 @@
 import * as Sentry from "@sentry/react";
 
-import { Company, Position, Project, Skill, SkillForProject } from "@prisma/client";
+import { Company, Project, Skill, SkillForProject } from "@prisma/client";
 
+import type { Position as PositionServer } from "@prisma/client";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
@@ -13,11 +14,16 @@ export interface ProjectWithSkills extends Project {
   skillsForProject: SkillForProjectWithSkill[];
 }
 
-export interface PositionWithProjects extends Omit<Position, "startDate" | "endDate"> {
-  company: Company;
-  projects: ProjectWithSkills[];
+export interface Position extends Omit<PositionServer, "startDate" | "endDate"> {
   startDate: string;
   endDate: string;
+}
+
+export type PositionGeneric = Omit<Position, "id" | "companyId">;
+
+export interface PositionWithProjects extends Position {
+  company: Company;
+  projects: ProjectWithSkills[];
 }
 
 /**

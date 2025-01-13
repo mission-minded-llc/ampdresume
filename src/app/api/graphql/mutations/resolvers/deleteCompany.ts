@@ -2,9 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "@/app/api/graphql/util";
 
 export const deleteCompany = async (_: string, { userId, id }: { userId: string; id: string }) => {
-  if ((await verifySessionOwnership(userId)) === false) {
-    throw new Error("Unauthorized: Session ownership verification failed");
-  }
+  await verifySessionOwnership(userId);
 
   const existingCompany = await prisma.company.findFirst({
     where: { id },

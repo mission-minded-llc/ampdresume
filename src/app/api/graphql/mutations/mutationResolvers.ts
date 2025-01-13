@@ -1,4 +1,5 @@
 import { addCompany } from "./resolvers/addCompany";
+import { addPosition } from "./resolvers/addPosition";
 import { addSkillForUser } from "./resolvers/addSkillForUser";
 import { deleteCompany } from "./resolvers/deleteCompany";
 import { deleteSkillForUser } from "./resolvers/deleteSkillForUser";
@@ -12,4 +13,5 @@ export const mutationResolvers = {
   addCompany,
   updateCompany,
   deleteCompany,
+  addPosition,
 };

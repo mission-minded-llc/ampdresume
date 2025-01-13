@@ -9,6 +9,7 @@ import { MuiLink } from "@/components/MuiLink";
 import { ResumeProvider } from "@/components/resume/ResumeContext";
 import { SidebarLeft } from "./components/SidebarLeft";
 import { getCompanies } from "@/graphql/getCompanies";
+import { getPositions } from "@/graphql/getPositions";
 import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -36,6 +37,20 @@ export const EditPage = () => {
     queryFn: async () => await getCompanies(session?.user.id),
   });
 
+  const {
+    isPending: isPendingPositions,
+    error: errorPositions,
+    data: positions,
+  } = useQuery({
+    enabled: status === "authenticated" && !!session?.user?.id && companies && companies.length > 0,
+    queryKey: ["positions"],
+    queryFn: async () => {
+      if (!companies) return [];
+
+      return await getPositions(companies.map((company) => company.id));
+    },
+  });
+
   if (status === "loading") return <LoadingOverlay message="Loading session..." />;
   if (status === "unauthenticated")
     return (
@@ -44,11 +59,12 @@ export const EditPage = () => {
       </Box>
     );
 
-  const isPending = isPendingSkillsForUser || isPendingCompanies;
+  const isPending = isPendingSkillsForUser || isPendingCompanies || isPendingPositions;
 
   if (isPending) return <LoadingOverlay message="Loading resume data..." />;
   if (errorSkillsForUser) return <Box>Error loading skills: {errorSkillsForUser.message}</Box>;
   if (errorCompanies) return <Box>Error loading companies: {errorCompanies.message}</Box>;
+  if (errorPositions) return <Box>Error loading positions: {errorPositions.message}</Box>;
 
   const sidebarWidth = 200;
 
@@ -56,7 +72,7 @@ export const EditPage = () => {
     <ResumeProvider
       skillsForUser={skillsForUser ?? []}
       companies={companies ?? []}
-      positions={[]}
+      positions={positions ?? []}
       education={[]}
     >
       <EditPageProvider>

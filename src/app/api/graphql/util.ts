@@ -6,12 +6,12 @@ export const verifySessionOwnership = async (userId: string) => {
 
   // No session, or no user in session. Ownership cannot be verified.
   if (!session || !session?.user) {
-    return false;
+    throw new Error("Unauthorized: No session or user in session");
   }
 
   // Session user ID does not match the user ID being verified.
   if (session.user.id !== userId) {
-    return false;
+    throw new Error("Unauthorized: Session user ID does not match the user ID being verified");
   }
 
   return true;

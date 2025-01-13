@@ -8,6 +8,6 @@ export const SectionTitle = ({ title }: { title: string }) => (
         {title}
       </Typography>
     </Box>
-    <Divider sx={{ mb: 6, mt: 2 }} />
+    <Divider sx={{ mb: 4, mt: 2 }} />
   </>
 );

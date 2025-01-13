@@ -1,10 +1,11 @@
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Divider } from "@mui/material";
 import { Company, CompanyGeneric } from "@/graphql/getCompanies";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CompanyForm } from "./CompanyForm";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { PositionsList } from "./PositionsList";
 import { deleteCompany } from "@/graphql/deleteCompany";
 import { formatDate } from "@/lib/format";
 import { updateCompany } from "@/graphql/updateCompany";
@@ -13,6 +14,7 @@ import { useSession } from "next-auth/react";
 export const CompanyItem = ({ company }: { company: Company }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
+
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
@@ -99,6 +101,8 @@ export const CompanyItem = ({ company }: { company: Company }) => {
           handler={handleEditCompany}
           deleteHandler={handleDeleteCompany}
         />
+        <Divider sx={{ mt: 4, mb: 4 }} />
+        <PositionsList company={company} />
       </AccordionDetails>
     </Accordion>
   );

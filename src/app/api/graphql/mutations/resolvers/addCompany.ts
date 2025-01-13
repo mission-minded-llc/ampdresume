@@ -11,9 +11,7 @@ export const addCompany = async (
     endDate,
   }: { userId: string; name: string; location: string; startDate: string; endDate: string },
 ) => {
-  if ((await verifySessionOwnership(userId)) === false) {
-    throw new Error("Unauthorized");
-  }
+  await verifySessionOwnership(userId);
 
   // Convert the startDate and endDate from "YYYY-MM" format to a Date.
   const startDateTimestamp = new Date(startDate);
