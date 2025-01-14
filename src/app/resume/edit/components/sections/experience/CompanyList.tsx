@@ -6,7 +6,6 @@ import { CompanyForm } from "./CompanyForm";
 import { CompanyGeneric } from "@/graphql/getCompanies";
 import { CompanyItem } from "./CompanyItem";
 import { ResumeContext } from "@/components/resume/ResumeContext";
-import { SectionTitle } from "../SectionTitle";
 import { addCompany } from "@/graphql/addCompany";
 import { useSession } from "next-auth/react";
 
@@ -59,17 +58,9 @@ export const CompanyList = () => {
 
   return (
     <>
-      <SectionTitle title="Companies" />
-
-      <Box sx={{ mb: 4 }}>
-        {companies.map((company) => (
-          <CompanyItem key={company.id} company={company} />
-        ))}
-      </Box>
-
-      <Box sx={{ mb: 4, display: "flex", justifyContent: "center" }}>
+      <Box sx={{ mb: 4, display: "flex", justifyContent: "flex-start" }}>
         <Button variant="outlined" color="secondary" onClick={() => setOpenDialog(true)}>
-          Add Company
+          Add New Company
         </Button>
       </Box>
 
@@ -79,6 +70,10 @@ export const CompanyList = () => {
           <CompanyForm handler={handleAddCompany} onCancel={() => setOpenDialog(false)} />
         </DialogContent>
       </Dialog>
+
+      {companies.map((company) => (
+        <CompanyItem key={company.id} company={company} />
+      ))}
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Position, PositionGeneric } from "@/graphql/getPositions";
+import { Position, PositionGeneric, PositionWithProjects } from "@/graphql/getPositions";
 import React, { useState } from "react";
 
 import { DeleteWithConfirmation } from "../../DeleteWithConfirmation";
@@ -10,7 +10,7 @@ export const PositionForm = ({
   deleteHandler = null,
   onCancel = null,
 }: {
-  position?: Position | null;
+  position?: PositionWithProjects | null;
   handler: (position: Position | PositionGeneric) => void;
   deleteHandler?: ((position: Position) => void) | null;
   onCancel?: (() => void) | null;
@@ -73,7 +73,7 @@ export const PositionForm = ({
 
   return (
     <>
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 2, display: "grid", gap: 2, gridTemplateColumns: "50% 1fr 1fr" }}>
         <TextField
           margin="dense"
           fullWidth
@@ -83,8 +83,6 @@ export const PositionForm = ({
           onChange={(e) => setPositionTitle(e.target.value)}
           required
         />
-      </Box>
-      <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
         <TextField
           autoFocus
           margin="dense"
@@ -152,6 +150,7 @@ export const PositionForm = ({
             onConfirmDelete={() => {
               deleteHandler(position);
             }}
+            disabled={position.projects.length > 0}
           />
         )}
         {onCancel && (

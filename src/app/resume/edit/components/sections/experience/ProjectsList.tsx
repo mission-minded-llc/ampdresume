@@ -1,63 +1,68 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { PositionWithProjects } from "@/graphql/getPositions";
 import { ProjectItem } from "./ProjectItem";
+import { addProject } from "@/graphql/addProject";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 export const ProjectsList = ({ position }: { position: PositionWithProjects }) => {
-  // const { data: session } = useSession();
-  // const queryClient = useQueryClient();
+  const { data: session } = useSession();
+  const queryClient = useQueryClient();
 
-  // const mutation = useMutation({
-  //   mutationFn: async ({
-  //     title,
-  //     startDate,
-  //     endDate,
-  //     companyId,
-  //   }: {
-  //     title: string;
-  //     startDate: string;
-  //     endDate: string;
-  //     companyId: string;
-  //   }) => {
-  //     if (!session?.user?.id) return;
+  const [projectValue, setProjectValue] = useState("");
 
-  //     await addPosition({
-  //       userId: session.user.id,
-  //       title,
-  //       startDate,
-  //       endDate,
-  //       companyId,
-  //     });
-  //   },
-  //   onSuccess: () => {
-  //     if (!session?.user?.id) return;
+  const mutation = useMutation({
+    mutationFn: async ({ name, positionId }: { name: string; positionId: string }) => {
+      if (!session?.user?.id) return;
 
-  //     queryClient.invalidateQueries({ queryKey: ["positions"] });
-  //   },
-  // });
+      await addProject({
+        userId: session.user.id,
+        name,
+        positionId,
+      });
+    },
+    onSuccess: () => {
+      if (!session?.user?.id) return;
 
-  // const handleAddPosition = (position: PositionGeneric) => {
-  //   mutation.mutate({
-  //     title: position.title,
-  //     startDate: position.startDate,
-  //     endDate: position?.endDate || "",
-  //     companyId: company.id,
-  //   });
+      queryClient.invalidateQueries({ queryKey: ["positions"] });
+    },
+  });
 
-  //   setOpenDialog(false);
-  // };
+  const handleAddProject = () => {
+    if (!projectValue) return;
+
+    const trimmedValue = projectValue.trim();
+
+    if (!trimmedValue) return;
+
+    mutation.mutate({
+      name: trimmedValue,
+      positionId: position.id,
+    });
+
+    setProjectValue("");
+  };
 
   return (
     <>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <TextField
+          label="Bullet Point"
+          fullWidth
+          sx={{ mt: 2 }}
+          value={projectValue}
+          onChange={(e) => setProjectValue(e.target.value)}
+        />
+        <Button variant="outlined" color="secondary" sx={{ mt: 2 }} onClick={handleAddProject}>
+          Add
+        </Button>
+      </Box>
+
       {position.projects.map((project) => (
         <ProjectItem key={project.id} project={project} />
       ))}
-
-      <Box sx={{ mb: 4, display: "flex", justifyContent: "center" }}>
-        <Button variant="outlined" color="secondary" onClick={() => {}}>
-          Add Project
-        </Button>
-      </Box>
     </>
   );
 };

@@ -49,5 +49,8 @@ export const mutationDefs = gql`
       endDate: String
     ): Position!
     deletePosition(userId: ID!, id: ID!): Position
+
+    # Project specific mutations.
+    addProject(userId: ID!, positionId: ID!, name: String!): Project!
   }
 `;

@@ -66,9 +66,9 @@ export const PositionsList = ({ company }: { company: Company }) => {
         <PositionItem key={position.id} position={position} />
       ))}
 
-      <Box sx={{ mb: 4, display: "flex", justifyContent: "center" }}>
+      <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
         <Button variant="outlined" color="secondary" onClick={() => setOpenDialog(true)}>
-          Add Position
+          Add New Position
         </Button>
       </Box>
 
