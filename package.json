@@ -20,7 +20,7 @@
     "lint": "next lint",
     "prettier": "prettier --check .",
     "types:check": "tsc --noEmit",
-    "test": "jest",
+    "test": "jest --maxConcurrency=2",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "prisma:generate": "prisma generate",
