@@ -119,6 +119,7 @@ model Project {
   skillsForProject SkillForProject[]
   position         Position?         @relation(fields: [positionId], references: [id])
   positionId       String?
+  sortIndex        Int               @default(0) // Used for sorting projects.
 }
 
 // Position is a position that a user has worked in, e.g. "Software Engineer", "Product Manager", and is specific
