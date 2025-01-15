@@ -54,7 +54,14 @@ export const queryResolvers = {
       orderBy, // Apply sorting
       include: {
         company: true, // Include company details
-        projects: { include: { skillsForProject: { include: { skillForUser: true } } } },
+        projects: {
+          orderBy: {
+            sortIndex: "asc",
+          },
+          include: {
+            skillsForProject: { include: { skillForUser: true } },
+          },
+        },
       }, // Include project and skill details
     });
   },

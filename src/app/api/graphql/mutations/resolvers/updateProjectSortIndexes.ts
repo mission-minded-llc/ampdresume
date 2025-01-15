@@ -1,9 +1,17 @@
 import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "@/app/api/graphql/util";
 
-export const addProject = async (
+export const updateProjectSortIndexes = async (
   _: string,
-  { userId, positionId, name }: { userId: string; positionId: string; name: string },
+  {
+    userId,
+    positionId,
+    projectSortIndexes,
+  }: {
+    userId: string;
+    positionId: string;
+    projectSortIndexes: Array<{ id: string; sortIndex: number }>;
+  },
 ) => {
   await verifySessionOwnership(userId);
 
@@ -23,19 +31,13 @@ export const addProject = async (
     throw new Error("Unauthorized: You do not own this position or company");
   }
 
-  // Get all projects within the position, and set the new sortIndex value to the
-  // next-highest value (or 0 if there are no projects).
-  const projects = await prisma.project.findMany({
-    where: { positionId },
-    orderBy: { sortIndex: "desc" },
-  });
-  const sortIndex = projects.length > 0 ? projects[0].sortIndex + 1 : 0;
+  // Update the sort indexes for each project.
+  for (const { id, sortIndex } of projectSortIndexes) {
+    await prisma.project.update({
+      where: { id },
+      data: { sortIndex },
+    });
+  }
 
-  return await prisma.project.create({
-    data: {
-      positionId,
-      name,
-      sortIndex,
-    },
-  });
+  return true;
 };

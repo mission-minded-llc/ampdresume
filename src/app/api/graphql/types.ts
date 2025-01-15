@@ -55,6 +55,7 @@ export const types = gql`
     name: String!
     description: String
     skillsForProject: [SkillForProject!]!
+    sortIndex: Int
   }
 
   type SkillForProject {

@@ -52,6 +52,7 @@ export const getPositions = async (companyIds: string[]): Promise<PositionWithPr
               id
               name
               description
+              sortIndex
               skillsForProject {
                 skillForUser {
                   id

@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { PositionWithProjects } from "@/graphql/getPositions";
 import { ProjectItem } from "./ProjectItem";
 import { addProject } from "@/graphql/addProject";
+import { updateProjectSortIndexes } from "@/graphql/updateProjectSortIndexes";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
@@ -13,7 +14,7 @@ export const ProjectsList = ({ position }: { position: PositionWithProjects }) =
 
   const [projectValue, setProjectValue] = useState("");
 
-  const mutation = useMutation({
+  const mutationAddProject = useMutation({
     mutationFn: async ({ name, positionId }: { name: string; positionId: string }) => {
       if (!session?.user?.id) return;
 
@@ -30,6 +31,21 @@ export const ProjectsList = ({ position }: { position: PositionWithProjects }) =
     },
   });
 
+  const mutationUpdateSortIndex = useMutation({
+    mutationFn: async ({ projects }: { projects: { id: string; sortIndex: number }[] }) => {
+      if (!session?.user?.id) return;
+
+      await updateProjectSortIndexes({
+        userId: session.user.id,
+        positionId: position.id,
+        projectSortIndexes: projects,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["positions"] });
+    },
+  });
+
   const handleAddProject = () => {
     if (!projectValue) return;
 
@@ -37,7 +53,7 @@ export const ProjectsList = ({ position }: { position: PositionWithProjects }) =
 
     if (!trimmedValue) return;
 
-    mutation.mutate({
+    mutationAddProject.mutate({
       name: trimmedValue,
       positionId: position.id,
     });
@@ -60,9 +76,61 @@ export const ProjectsList = ({ position }: { position: PositionWithProjects }) =
         </Button>
       </Box>
 
-      {position.projects.map((project) => (
-        <ProjectItem key={project.id} project={project} />
-      ))}
+      <Box
+        component="div"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          mt: 2,
+        }}
+        onDragOver={(e) => e.preventDefault()}
+      >
+        {[...position.projects]
+          .sort((a, b) => (a.sortIndex ?? 0) - (b.sortIndex ?? 0))
+          .map((project) => (
+            <Box
+              key={project.id}
+              draggable
+              onDragStart={(e) => {
+                e.dataTransfer.setData("projectId", project.id);
+              }}
+              onDrop={(e) => {
+                e.preventDefault();
+                const draggedId = e.dataTransfer.getData("projectId");
+                const draggedProject = position.projects.find((p) => p.id === draggedId);
+                const targetProject = project;
+
+                if (draggedProject && draggedProject.id !== targetProject.id) {
+                  const updatedProjects = [...position.projects].sort(
+                    (a, b) => (a.sortIndex ?? 0) - (b.sortIndex ?? 0),
+                  );
+
+                  const draggedIndex = updatedProjects.findIndex((p) => p.id === draggedId);
+                  const targetIndex = updatedProjects.findIndex((p) => p.id === targetProject.id);
+
+                  // Reorder array
+                  updatedProjects.splice(draggedIndex, 1);
+                  updatedProjects.splice(targetIndex, 0, draggedProject);
+
+                  // Update sortIndex values
+                  updatedProjects.forEach((p, idx) => {
+                    p.sortIndex = idx;
+                  });
+
+                  mutationUpdateSortIndex.mutate({
+                    projects: updatedProjects.map((p) => ({
+                      id: p.id,
+                      sortIndex: p.sortIndex,
+                    })),
+                  });
+                }
+              }}
+            >
+              <ProjectItem project={project} />
+            </Box>
+          ))}
+      </Box>
     </>
   );
 };

@@ -52,5 +52,15 @@ export const mutationDefs = gql`
 
     # Project specific mutations.
     addProject(userId: ID!, positionId: ID!, name: String!): Project!
+    updateProjectSortIndexes(
+      userId: ID!
+      positionId: ID!
+      projectSortIndexes: [ProjectSortIndexInput!]!
+    ): [Project!]!
+  }
+
+  input ProjectSortIndexInput {
+    id: ID!
+    sortIndex: Int!
   }
 `;
