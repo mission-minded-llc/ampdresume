@@ -11,5 +11,8 @@ export const queryDefs = gql`
     companies(userId: ID!, sort: [SortInput!]): [Company!]!
     positions(companyIds: [ID!], sort: [SortInput!]): [Position!]!
     education(userId: ID!, sort: [SortInput!]): [Education!]!
+
+    # Project-specific queries.
+    skillsForProject(projectId: ID!): [SkillForProject!]!
   }
 `;

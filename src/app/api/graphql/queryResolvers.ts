@@ -81,4 +81,17 @@ export const queryResolvers = {
       orderBy, // Apply sorting
     });
   },
+
+  skillsForProject: async (_: string, { projectId }: { projectId: string }) => {
+    return await prisma.skillForProject.findMany({
+      where: { projectId },
+      include: {
+        skillForUser: {
+          include: {
+            skill: true, // Include skill details
+          },
+        },
+      },
+    });
+  },
 };

@@ -65,7 +65,7 @@ export const ProjectsList = ({ position }: { position: PositionWithProjects }) =
     <>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
-          label="Bullet Point"
+          label="Project"
           fullWidth
           sx={{ mt: 2 }}
           value={projectValue}

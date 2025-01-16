@@ -1,13 +1,14 @@
 import * as Sentry from "@sentry/react";
 
-import { Company, Project, Skill, SkillForProject } from "@prisma/client";
+import { Company, Project, SkillForProject } from "@prisma/client";
 
 import type { Position as PositionServer } from "@prisma/client";
+import { SkillForUserWithSkill } from "./getSkillsForUser";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
 export interface SkillForProjectWithSkill extends SkillForProject {
-  skillForUser: Skill;
+  skillForUser: SkillForUserWithSkill;
 }
 
 export interface ProjectWithSkills extends Project {

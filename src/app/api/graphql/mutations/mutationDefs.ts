@@ -57,6 +57,7 @@ export const mutationDefs = gql`
       positionId: ID!
       projectSortIndexes: [ProjectSortIndexInput!]!
     ): [Project!]!
+    addSkillForProject(userId: ID!, projectId: ID!, skillForUserId: ID!): SkillForProject!
   }
 
   input ProjectSortIndexInput {
