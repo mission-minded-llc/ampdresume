@@ -117,8 +117,8 @@ model Project {
   name             String
   description      String?
   skillsForProject SkillForProject[]
-  position         Position?         @relation(fields: [positionId], references: [id])
-  positionId       String?
+  position         Position          @relation(fields: [positionId], references: [id])
+  positionId       String
   sortIndex        Int               @default(0) // Used for sorting projects.
 }
 

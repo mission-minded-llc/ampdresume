@@ -26,6 +26,10 @@ export const addSkillForProject = async (
       projectId,
       skillForUserId,
     },
-    include: { skillForUser: true }, // Include skill details
+    include: {
+      skillForUser: {
+        include: { skill: true },
+      },
+    },
   });
 };

@@ -138,7 +138,7 @@ export const SkillItemEdit = ({
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <DeleteWithConfirmation onConfirmDelete={handleDelete} />
         <Button variant="contained" color="primary" onClick={handleSave}>
-          Save &amp; Close
+          Save
         </Button>
       </Box>
     </Box>

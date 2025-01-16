@@ -16,6 +16,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Project } from "@prisma/client";
+import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 import { addSkillForProject } from "@/graphql/addSkillForProject";
 import { getSkillsForProject } from "@/graphql/getSkillsForProject";
 import { getSkillsForUser } from "@/graphql/getSkillsForUser";
@@ -79,7 +80,7 @@ export const ProjectItem = ({ project }: { project: Project }) => {
       .slice(0, 10); // Limit to top 10 matches
   }, [skillsForUser, searchTerm]);
 
-  const skillForProjectMutation = useMutation({
+  const addSkillForProjectMutation = useMutation({
     mutationFn: async ({ skillForUserId }: { skillForUserId: string }) => {
       if (!session?.user?.id) return;
 
@@ -90,12 +91,13 @@ export const ProjectItem = ({ project }: { project: Project }) => {
       });
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["skillsForProject"] });
+      await queryClient.invalidateQueries({ queryKey: ["skillsForProject", project.id] });
+      setSearchTerm("");
     },
   });
 
   const handleSkillSelection = (skillForUserId: string) => {
-    skillForProjectMutation.mutate({ skillForUserId });
+    addSkillForProjectMutation.mutate({ skillForUserId });
   };
 
   const isPending = isPendingSkillsForUser || isPendingSkillsForProject;
@@ -139,7 +141,11 @@ export const ProjectItem = ({ project }: { project: Project }) => {
           }}
         >
           {skillsForProject?.map((skillForProject) => (
-            <Box key={skillForProject.id}>{skillForProject.skillForUser.skill.name}</Box>
+            <SkillItemForProjectEdit
+              key={skillForProject.id}
+              project={project}
+              skillForProject={skillForProject}
+            />
           ))}
         </Box>
       </Box>
@@ -151,7 +157,7 @@ export const ProjectItem = ({ project }: { project: Project }) => {
         fullWidth
         PaperProps={{
           style: {
-            height: "80vh", // Set the height to 80% of the viewport height
+            height: "80vh",
           },
         }}
       >
@@ -168,11 +174,11 @@ export const ProjectItem = ({ project }: { project: Project }) => {
               fullWidth
             />
           </Box>
-          <Box>
+          <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
             <TextField
               fullWidth
               variant="outlined"
-              label="Search Your Skills to Add to Project"
+              label="Search your skills to add..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               sx={{ mb: 2 }}
@@ -211,6 +217,22 @@ export const ProjectItem = ({ project }: { project: Project }) => {
                 </List>
               </Paper>
             )}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-start",
+                flexWrap: "wrap",
+                gap: 1,
+              }}
+            >
+              {skillsForProject?.map((skillForProject) => (
+                <SkillItemForProjectEdit
+                  key={skillForProject.id}
+                  project={project}
+                  skillForProject={skillForProject}
+                />
+              ))}
+            </Box>
           </Box>
         </DialogContent>
       </Dialog>
