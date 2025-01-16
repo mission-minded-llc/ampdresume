@@ -1,8 +1,10 @@
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { SyntheticEvent, useState } from "react";
 
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ProjectItem } from "./ProjectItem";
 import { ProjectWithSkills } from "@/graphql/getPositions";
+import { RichTextBlock } from "../RichTextBlock";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 
 export const ProjectAccordion = ({
@@ -54,33 +56,20 @@ export const ProjectAccordion = ({
         },
       }}
     >
-      <AccordionSummary
-        expandIcon={
-          <Typography
-            component="span"
-            sx={{
-              fontSize: "2rem",
-              color: "white",
-              transform: expanded ? "rotate(-90deg)" : "rotate(90deg)",
-              transition: "transform 0.3s",
-            }}
-          >
-            &lt;
-          </Typography>
-        }
-      >
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <ProjectItem project={project} projectSkills={projectSkills} />
       </AccordionSummary>
       <AccordionDetails
         sx={(theme) => ({
           backgroundColor: theme.palette.primary.light,
-          padding: "2rem",
+          padding: "1.1rem",
           "@media screen and (max-width: $breakpoint_mobile)": {
             padding: "1rem !important",
           },
+          textAlign: "left",
         })}
       >
-        {project.description}
+        <RichTextBlock content={project?.description} />
       </AccordionDetails>
     </Accordion>
   );

@@ -13,13 +13,7 @@ import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
 import { updateSkillForUser } from "@/graphql/updateSkillForUser";
 import { useSession } from "next-auth/react";
 
-export const SkillItemEdit = ({
-  skill,
-  successCallback,
-}: {
-  skill: SkillForUserWithSkill;
-  successCallback?: () => void;
-}) => {
+export const SkillItemEdit = ({ skill }: { skill: SkillForUserWithSkill }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
 
@@ -70,7 +64,7 @@ export const SkillItemEdit = ({
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForUser"] }),
   });
 
-  const handleSave = () => {
+  const handleSave = () =>
     updateSkillForUserMutation.mutate({
       id: skill.id,
       description: editorStateRef.current,
@@ -78,14 +72,8 @@ export const SkillItemEdit = ({
       totalYears,
       icon,
     });
-    if (successCallback) successCallback();
-  };
 
-  const handleDelete = () => {
-    deleteSkillForUserMutation.mutate({ id: skill.id });
-
-    if (successCallback) successCallback();
-  };
+  const handleDelete = () => deleteSkillForUserMutation.mutate({ id: skill.id });
 
   return (
     <Box>

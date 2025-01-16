@@ -5,10 +5,12 @@ import { addSkillForProject } from "./resolvers/addSkillForProject";
 import { addSkillForUser } from "./resolvers/addSkillForUser";
 import { deleteCompany } from "./resolvers/deleteCompany";
 import { deletePosition } from "./resolvers/deletePosition";
+import { deleteProject } from "./resolvers/deleteProject";
 import { deleteSkillForProject } from "./resolvers/deleteSkillForProject";
 import { deleteSkillForUser } from "./resolvers/deleteSkillForUser";
 import { updateCompany } from "./resolvers/updateCompany";
 import { updatePosition } from "./resolvers/updatePosition";
+import { updateProject } from "./resolvers/updateProject";
 import { updateProjectSortIndexes } from "./resolvers/updateProjectSortIndexes";
 import { updateSkillForProject } from "./resolvers/updateSkillForProject";
 import { updateSkillForUser } from "./resolvers/updateSkillForUser";
@@ -31,6 +33,8 @@ export const mutationResolvers = {
 
   // Project specific mutations.
   addProject,
+  updateProject,
+  deleteProject,
   updateProjectSortIndexes,
   addSkillForProject,
   updateSkillForProject,

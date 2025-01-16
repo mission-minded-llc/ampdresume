@@ -14,11 +14,9 @@ import { useSession } from "next-auth/react";
 export const SkillItemForProjectEdit = ({
   skillForProject,
   project,
-  successCallback,
 }: {
   skillForProject: SkillForProjectWithSkill;
   project: Project;
-  successCallback?: () => void;
 }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
@@ -51,19 +49,13 @@ export const SkillItemForProjectEdit = ({
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForProject", project.id] }),
   });
 
-  const handleSave = () => {
+  const handleSave = () =>
     updateSkillForProjectMutation.mutate({
       id: skillForProject.id,
       description: editorStateRef.current,
     });
-    if (successCallback) successCallback();
-  };
 
-  const handleDelete = () => {
-    deleteSkillForProjectMutation.mutate({ id: skillForProject.id });
-
-    if (successCallback) successCallback();
-  };
+  const handleDelete = () => deleteSkillForProjectMutation.mutate({ id: skillForProject.id });
 
   const SkillIcon = () =>
     skillForProject?.skillForUser?.icon ? (

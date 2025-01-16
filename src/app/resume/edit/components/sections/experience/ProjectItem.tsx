@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -10,25 +11,30 @@ import {
   Paper,
   TextField,
 } from "@mui/material";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+import { DeleteWithConfirmation } from "../../DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Project } from "@prisma/client";
+import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
 import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 import { addSkillForProject } from "@/graphql/addSkillForProject";
+import { deleteProject } from "@/graphql/deleteProject";
 import { getSkillsForProject } from "@/graphql/getSkillsForProject";
 import { getSkillsForUser } from "@/graphql/getSkillsForUser";
+import { updateProject } from "@/graphql/updateProject";
 import { useSession } from "next-auth/react";
 
 export const ProjectItem = ({ project }: { project: Project }) => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
 
+  const editorStateRef = useRef<string | null>(null);
+
   const [isOpen, setIsOpen] = useState(false);
   const [projectName, setProjectName] = useState(project.name);
-  // const [selectedSkillId, setSelectedSkillId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
   const minCharsForSearch = 3;
@@ -95,6 +101,42 @@ export const ProjectItem = ({ project }: { project: Project }) => {
       setSearchTerm("");
     },
   });
+
+  const updateProjectMutation = useMutation({
+    mutationFn: async ({ id, description }: { id: string; description: string }) => {
+      if (!session?.user?.id) return;
+
+      await updateProject({
+        id,
+        userId: session.user.id,
+        description,
+      });
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["positions"] }),
+  });
+
+  const deleteProjectMutation = useMutation({
+    mutationFn: async ({ id }: { id: string }) => {
+      if (!session?.user?.id) return;
+
+      await deleteProject({
+        id,
+        userId: session.user.id,
+      });
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["positions"] }),
+  });
+
+  const handleSave = () => {
+    updateProjectMutation.mutate({
+      id: project.id,
+      description: editorStateRef.current ?? "",
+    });
+  };
+
+  const handleDelete = () => {
+    deleteProjectMutation.mutate({ id: project.id });
+  };
 
   const handleSkillSelection = (skillForUserId: string) => {
     addSkillForProjectMutation.mutate({ skillForUserId });
@@ -232,6 +274,21 @@ export const ProjectItem = ({ project }: { project: Project }) => {
                   skillForProject={skillForProject}
                 />
               ))}
+            </Box>
+          </Box>
+          <Box>
+            <Box>
+              <RichTextEditor
+                name="skill-description"
+                editorStateRef={editorStateRef}
+                value={project?.description ?? ""}
+              />
+            </Box>
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <DeleteWithConfirmation onConfirmDelete={handleDelete} />
+              <Button variant="contained" color="primary" onClick={handleSave}>
+                Save
+              </Button>
             </Box>
           </Box>
         </DialogContent>

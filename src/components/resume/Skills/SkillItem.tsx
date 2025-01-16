@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
+import { Box, Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
@@ -46,17 +46,18 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
         ) : null}
         {skill.skill.name}
       </Button>
+
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
         fullWidth
         maxWidth={userCanEdit ? "xl" : "md"}
       >
-        <DialogTitle
-          sx={{ display: "flex", alignItems: "center", gap: "1em", padding: "16px 48px" }}
-        >
-          {skill?.icon ? <Icon icon={skill.icon} /> : null}
-          {skill.skill.name}
+        <DialogTitle sx={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
+            {skill?.icon ? <Icon icon={skill.icon} /> : null}
+            {skill.skill.name}
+          </Box>
         </DialogTitle>
         <IconButton
           aria-label="close"
@@ -71,11 +72,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
           X
         </IconButton>
         <DialogContent>
-          {userCanEdit ? (
-            <SkillItemEdit skill={skill} successCallback={() => setOpen(false)} />
-          ) : (
-            <SkillItemView skill={skill} />
-          )}
+          {userCanEdit ? <SkillItemEdit skill={skill} /> : <SkillItemView skill={skill} />}
         </DialogContent>
       </Dialog>
     </React.Fragment>
