@@ -99,7 +99,10 @@ export const SkillItemForProjectEdit = ({
               />
             </Box>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <DeleteWithConfirmation onConfirmDelete={handleDelete} />
+              <DeleteWithConfirmation
+                onConfirmDelete={handleDelete}
+                tooltip="Deleting this skill will only remove it from this project. The skill will still be available for other projects."
+              />
               <Button variant="contained" color="primary" onClick={handleSave}>
                 Save
               </Button>

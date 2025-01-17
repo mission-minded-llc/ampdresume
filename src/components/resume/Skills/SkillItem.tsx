@@ -17,7 +17,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const userCanEdit =
-    pathname.startsWith("/resume/edit") &&
+    pathname.startsWith("/edit/skills") &&
     status === "authenticated" &&
     session?.user?.id === skill.userId;
 

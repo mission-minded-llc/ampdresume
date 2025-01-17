@@ -236,7 +236,7 @@ export const ToolbarPlugin = () => {
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          gap: 1,
+          gap: 0.3,
           width: "100%",
           pointerEvents: blockType === "code" ? "none" : "auto",
           opacity: blockType === "code" ? 0.5 : 1,
@@ -248,6 +248,7 @@ export const ToolbarPlugin = () => {
             updateHeading(e.target.value as HeadingTagType);
           }}
           value="h1"
+          sx={{ p: 0 }}
         >
           {HEADINGS.map((heading) => (
             <MenuItem key={heading} value={heading}>
