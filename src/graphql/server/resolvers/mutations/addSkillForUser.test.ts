@@ -20,7 +20,7 @@ jest.mock("@/lib/auth", () => ({
   authOptions: {},
 }));
 
-jest.mock("@/app/api/graphql/util", () => ({
+jest.mock("@/graphql/server/util", () => ({
   verifySessionOwnership: jest.fn(),
 }));
 

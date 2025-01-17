@@ -11,7 +11,7 @@ jest.mock("@/lib/prisma", () => ({
   },
 }));
 
-jest.mock("@/app/api/graphql/util", () => ({
+jest.mock("@/graphql/server/util", () => ({
   verifySessionOwnership: jest.fn(),
 }));
 
