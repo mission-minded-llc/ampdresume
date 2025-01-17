@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
-import { verifySessionOwnership } from "@/app/api/graphql/util";
+import { verifySessionOwnership } from "@/graphql/server/util";
 
-export const updateSkillForProject = async (
+export const updateProject = async (
   _: string,
   {
     id,
@@ -10,21 +10,13 @@ export const updateSkillForProject = async (
   }: {
     id: string;
     userId: string;
-    description: string | null;
+    description: string;
   },
 ) => {
   await verifySessionOwnership(userId);
 
-  const existingSkillForProject = await prisma.skillForProject.findFirst({
-    where: { id },
-  });
-
-  if (!existingSkillForProject) {
-    throw new Error("Skill not found");
-  }
-
   const existingProject = await prisma.project.findFirst({
-    where: { id: existingSkillForProject.projectId },
+    where: { id },
   });
 
   if (!existingProject) {
@@ -43,19 +35,18 @@ export const updateSkillForProject = async (
     where: { id: existingPosition.companyId },
   });
 
-  if (existingCompany?.userId !== userId) {
-    throw new Error("Unauthorized: You do not own this skill");
+  if (!existingCompany) {
+    throw new Error("Company not found");
   }
 
-  return await prisma.skillForProject.update({
+  if (existingCompany?.userId !== userId) {
+    throw new Error("Unauthorized: You do not own this project");
+  }
+
+  return await prisma.project.update({
     where: { id },
     data: {
       description,
-    },
-    include: {
-      skillForUser: {
-        include: { skill: true },
-      },
     },
   });
 };

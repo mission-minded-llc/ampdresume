@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
-import { updateSkillForUser } from "@/app/api/graphql/mutations/resolvers/updateSkillForUser";
-import { verifySessionOwnership } from "@/app/api/graphql/util";
+import { updateSkillForUser } from "@/graphql/server/resolvers/mutations/updateSkillForUser";
+import { verifySessionOwnership } from "@/graphql/server/util";
 
 jest.mock("@/lib/prisma", () => ({
   prisma: {

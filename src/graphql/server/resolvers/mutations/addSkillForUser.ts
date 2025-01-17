@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { verifySessionOwnership } from "@/app/api/graphql/util";
+import { verifySessionOwnership } from "@/graphql/server/util";
 
 export const addSkillForUser = async (
   _: string,

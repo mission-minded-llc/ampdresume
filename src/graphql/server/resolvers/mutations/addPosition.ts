@@ -1,28 +1,20 @@
 import { prisma } from "@/lib/prisma";
-import { verifySessionOwnership } from "@/app/api/graphql/util";
+import { verifySessionOwnership } from "@/graphql/server/util";
 
-export const updateCompany = async (
+export const addPosition = async (
   _: string,
   {
-    id,
     userId,
-    name,
-    location,
+    companyId,
+    title,
     startDate,
     endDate,
-  }: {
-    id: string;
-    userId: string;
-    name: string;
-    location: string;
-    startDate: string;
-    endDate: string;
-  },
+  }: { userId: string; companyId: string; title: string; startDate: string; endDate: string },
 ) => {
   await verifySessionOwnership(userId);
 
   const existingCompany = await prisma.company.findFirst({
-    where: { id },
+    where: { id: companyId },
   });
 
   if (existingCompany?.userId !== userId) {
@@ -33,11 +25,10 @@ export const updateCompany = async (
   const startDateTimestamp = new Date(startDate);
   const endDateTimestamp = endDate ? new Date(endDate) : null;
 
-  return await prisma.company.update({
-    where: { id },
+  return await prisma.position.create({
     data: {
-      name,
-      location,
+      companyId,
+      title,
       startDate: startDateTimestamp,
       endDate: endDateTimestamp,
     },

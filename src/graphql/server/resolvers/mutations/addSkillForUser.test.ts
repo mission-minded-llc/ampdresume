@@ -1,6 +1,6 @@
-import { addSkillForUser } from "@/app/api/graphql/mutations/resolvers/addSkillForUser";
+import { addSkillForUser } from "@/graphql/server/resolvers/mutations/addSkillForUser";
 import { prisma } from "@/lib/prisma";
-import { verifySessionOwnership } from "@/app/api/graphql/util";
+import { verifySessionOwnership } from "@/graphql/server/util";
 
 // Mock dependencies
 jest.mock("next-auth", () => ({
