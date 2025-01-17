@@ -11,14 +11,13 @@ import {
   Button,
   Dialog,
   DialogContent,
-  DialogTitle,
   IconButton,
   TextField,
   Typography,
 } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 
-import { CloseButton } from "@/components/CloseButton";
+import { CustomDialogTitle } from "@/components/DialogTitle";
 import ImageIcon from "@mui/icons-material/Image";
 import { MAX_USER_IMAGE_SIZE } from "@/constants";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
@@ -224,8 +223,7 @@ export const ImagePlugin = () => {
         }}
       />
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-        <DialogTitle>Add Image</DialogTitle>
-        <CloseButton onClick={() => setIsOpen(false)} />
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Add Image</CustomDialogTitle>
         <DialogContent
           sx={{
             width: "400px",

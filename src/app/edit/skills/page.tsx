@@ -1,4 +1,4 @@
-import { EditNav } from "../components/EditNav";
+import { EditPageLayout } from "../components/EditPageLayout";
 import { EditSkills } from "./EditSkills";
 
 export function generateMetadata() {
@@ -9,9 +9,8 @@ export function generateMetadata() {
 
 export default function Page() {
   return (
-    <>
-      <EditNav />
+    <EditPageLayout>
       <EditSkills />
-    </>
+    </EditPageLayout>
   );
 }

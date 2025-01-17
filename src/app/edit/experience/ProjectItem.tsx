@@ -3,7 +3,6 @@ import {
   Button,
   Dialog,
   DialogContent,
-  DialogTitle,
   List,
   ListItem,
   ListItemIcon,
@@ -14,7 +13,7 @@ import {
 import { useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { CloseButton } from "@/components/CloseButton";
+import { CustomDialogTitle } from "@/components/DialogTitle";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
@@ -204,17 +203,7 @@ export const ProjectItem = ({ project }: { project: Project }) => {
           },
         }}
       >
-        <DialogTitle
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <>Edit Project</>
-          <CloseButton onClick={() => setIsOpen(false)} />
-        </DialogTitle>
-
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Edit Project</CustomDialogTitle>
         <DialogContent>
           <Box sx={{ mt: 2, mb: 4 }}>
             <TextField

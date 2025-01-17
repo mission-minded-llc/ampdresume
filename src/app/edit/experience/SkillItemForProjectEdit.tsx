@@ -1,8 +1,8 @@
-import { Box, Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { Box, Button, Dialog, DialogContent } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { CloseButton } from "@/components/CloseButton";
+import { CustomDialogTitle } from "@/components/DialogTitle";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { Project } from "@prisma/client";
@@ -84,14 +84,11 @@ export const SkillItemForProjectEdit = ({
         <SkillIcon />
         {skillForProject.skillForUser.skill.name}
       </Button>
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)} fullWidth maxWidth="lg">
-        <DialogTitle
-          sx={{ display: "flex", alignItems: "center", gap: "1em", padding: "16px 48px" }}
-        >
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md">
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
           <SkillIcon />
           {skillForProject.skillForUser.skill.name}
-        </DialogTitle>
-        <CloseButton onClick={() => setIsOpen(false)} />
+        </CustomDialogTitle>
         <DialogContent>
           <Box>
             <Box sx={{ mb: 2 }}>

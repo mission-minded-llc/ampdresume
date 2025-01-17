@@ -1,10 +1,11 @@
-import { Box, Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { Box, Button, Dialog, DialogContent } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CompanyForm } from "./CompanyForm";
 import { CompanyGeneric } from "@/graphql/getCompanies";
 import { CompanyItem } from "./CompanyItem";
+import { CustomDialogTitle } from "@/components/DialogTitle";
 import { ResumeContext } from "@/components/resume/ResumeContext";
 import { addCompany } from "@/graphql/addCompany";
 import { useSession } from "next-auth/react";
@@ -15,6 +16,7 @@ export const CompanyList = () => {
   const queryClient = useQueryClient();
 
   const [openDialog, setOpenDialog] = useState(false);
+  const [expanded, setExpanded] = useState<string | false>(false);
 
   const mutation = useMutation({
     mutationFn: async ({
@@ -57,23 +59,33 @@ export const CompanyList = () => {
   };
 
   return (
-    <>
-      <Box sx={{ mb: 4, display: "flex", justifyContent: "flex-start" }}>
-        <Button variant="outlined" color="secondary" onClick={() => setOpenDialog(true)}>
-          Add New Company
-        </Button>
-      </Box>
-
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="md" fullWidth>
-        <DialogTitle>Add Company</DialogTitle>
-        <DialogContent>
-          <CompanyForm handler={handleAddCompany} onCancel={() => setOpenDialog(false)} />
-        </DialogContent>
-      </Dialog>
-
+    <Box sx={{ mb: 4 }}>
       {companies.map((company) => (
-        <CompanyItem key={company.id} company={company} />
+        <CompanyItem
+          key={company.id}
+          company={company}
+          expanded={expanded}
+          setExpanded={setExpanded}
+        />
       ))}
-    </>
+
+      {expanded === false ? (
+        <>
+          <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
+            <Button variant="outlined" color="secondary" onClick={() => setOpenDialog(true)}>
+              Add New Company
+            </Button>
+          </Box>
+          <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="md" fullWidth>
+            <CustomDialogTitle closeHandler={() => setOpenDialog(false)}>
+              Add New Company
+            </CustomDialogTitle>
+            <DialogContent>
+              <CompanyForm handler={handleAddCompany} onCancel={() => setOpenDialog(false)} />
+            </DialogContent>
+          </Dialog>
+        </>
+      ) : null}
+    </Box>
   );
 };

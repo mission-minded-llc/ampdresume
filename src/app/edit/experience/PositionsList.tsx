@@ -1,8 +1,9 @@
-import { Box, Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { Box, Button, Dialog, DialogContent } from "@mui/material";
 import { useContext, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Company } from "@/graphql/getCompanies";
+import { CustomDialogTitle } from "@/components/DialogTitle";
 import { PositionForm } from "./PositionForm";
 import { PositionGeneric } from "@/graphql/getPositions";
 import { PositionItem } from "./PositionItem";
@@ -16,7 +17,7 @@ export const PositionsList = ({ company }: { company: Company }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
 
-  const [openDialog, setOpenDialog] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const mutation = useMutation({
     mutationFn: async ({
@@ -55,7 +56,7 @@ export const PositionsList = ({ company }: { company: Company }) => {
       companyId: company.id,
     });
 
-    setOpenDialog(false);
+    setIsOpen(false);
   };
 
   const positionsInCompany = positions.filter((position) => position.company.id === company.id);
@@ -66,16 +67,16 @@ export const PositionsList = ({ company }: { company: Company }) => {
         <PositionItem key={position.id} position={position} />
       ))}
 
-      <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
-        <Button variant="outlined" color="secondary" onClick={() => setOpenDialog(true)}>
+      <Box sx={{ mt: 4, mb: 2, display: "flex", justifyContent: "center" }}>
+        <Button variant="outlined" color="secondary" onClick={() => setIsOpen(true)}>
           Add New Position
         </Button>
       </Box>
 
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="md" fullWidth>
-        <DialogTitle>Add Position</DialogTitle>
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Add Position</CustomDialogTitle>
         <DialogContent>
-          <PositionForm handler={handleAddPosition} onCancel={() => setOpenDialog(false)} />
+          <PositionForm handler={handleAddPosition} onCancel={() => setIsOpen(false)} />
         </DialogContent>
       </Dialog>
     </Box>

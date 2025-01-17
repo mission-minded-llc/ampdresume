@@ -1,12 +1,6 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText } from "@mui/material";
 
+import { CustomDialogTitle } from "@/components/DialogTitle";
 import { useState } from "react";
 
 interface DeleteWithConfirmationProps {
@@ -51,7 +45,7 @@ export const DeleteWithConfirmation = ({
       </Button>
 
       <Dialog open={confirmOpen} onClose={handleCloseConfirm} maxWidth="xs" fullWidth>
-        <DialogTitle>{dialogTitle}</DialogTitle>
+        <CustomDialogTitle closeHandler={handleCloseConfirm}>{dialogTitle}</CustomDialogTitle>
         <DialogContent>
           <DialogContentText>{dialogMessage}</DialogContentText>
         </DialogContent>

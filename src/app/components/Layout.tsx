@@ -10,7 +10,7 @@ import { Header } from "./Header";
 import { SessionProvider } from "next-auth/react";
 import { TanstackQueryProvider } from "./TanstackContext";
 import { ThemeAppearanceContext } from "./ThemeContext";
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 import { usePathname } from "next/navigation";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {

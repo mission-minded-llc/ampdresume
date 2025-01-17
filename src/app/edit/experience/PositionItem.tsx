@@ -78,7 +78,12 @@ export const PositionItem = ({ position }: { position: PositionWithProjects }) =
   };
 
   return (
-    <Accordion expanded={expanded}>
+    <Accordion
+      expanded={expanded}
+      sx={(theme) => {
+        return { mb: 2, backgroundColor: theme.palette.background.default };
+      }}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"

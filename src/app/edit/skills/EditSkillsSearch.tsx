@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
   List,
   ListItem,
   ListItemIcon,
@@ -18,6 +17,7 @@ import {
 import React, { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+import { CustomDialogTitle } from "@/components/DialogTitle";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Tooltip } from "@/components/Tooltip";
@@ -30,7 +30,7 @@ export const EditSkillsSearch = () => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
 
-  const [openDialog, setOpenDialog] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedSkillId, setSelectedSkillId] = useState<string | null>(null);
   const [yearStarted, setYearStarted] = useState(new Date().getFullYear());
   const [totalYears, setTotalYears] = useState(0);
@@ -98,7 +98,7 @@ export const EditSkillsSearch = () => {
   const handleSkillSelection = (skillId: string) => {
     // Open dialog to get proficiency level
     setSelectedSkillId(skillId);
-    setOpenDialog(true);
+    setIsOpen(true);
   };
 
   const handleAddSkill = () => {
@@ -110,7 +110,7 @@ export const EditSkillsSearch = () => {
       });
 
       // Close dialog and reset states
-      setOpenDialog(false);
+      setIsOpen(false);
       setSelectedSkillId(null);
       setYearStarted(new Date().getFullYear());
       setTotalYears(0);
@@ -159,12 +159,11 @@ export const EditSkillsSearch = () => {
         </Paper>
       )}
 
-      {/* Proficiency Level Dialog */}
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="md" fullWidth>
-        <DialogTitle>
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md">
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
           Enter Proficiency Level
           <Tooltip message={<TooltipTotalYears />} />
-        </DialogTitle>
+        </CustomDialogTitle>
 
         <DialogContent>
           <Typography>Enter year started, and/or total years experience below.</Typography>
@@ -193,7 +192,7 @@ export const EditSkillsSearch = () => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
+          <Button onClick={() => setIsOpen(false)}>Cancel</Button>
           <Button onClick={handleAddSkill}>Add Skill</Button>
         </DialogActions>
       </Dialog>

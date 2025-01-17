@@ -1,24 +1,30 @@
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
 import { Company, CompanyGeneric } from "@/graphql/getCompanies";
-import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CompanyForm } from "./CompanyForm";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { PositionsList } from "./PositionsList";
+import React from "react";
 import { deleteCompany } from "@/graphql/deleteCompany";
 import { formatDate } from "@/lib/format";
 import { updateCompany } from "@/graphql/updateCompany";
 import { useSession } from "next-auth/react";
 
-export const CompanyItem = ({ company }: { company: Company }) => {
+export const CompanyItem = ({
+  company,
+  expanded,
+  setExpanded,
+}: {
+  company: Company;
+  expanded: string | false;
+  setExpanded: React.Dispatch<React.SetStateAction<string | false>>;
+}) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
 
-  const [expanded, setExpanded] = useState(false);
-
   const handleExpandClick = () => {
-    setExpanded(!expanded);
+    setExpanded(expanded === company.id ? false : company.id);
   };
 
   const saveMutation = useMutation({
@@ -82,26 +88,36 @@ export const CompanyItem = ({ company }: { company: Company }) => {
   };
 
   return (
-    <Accordion expanded={expanded}>
+    <Accordion expanded={expanded === company.id} sx={{ mb: 2 }}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
         onClick={handleExpandClick}
+        sx={(theme) => {
+          return {
+            cursor: "pointer",
+            pt: 1,
+            pb: 1,
+            "&:hover": { backgroundColor: theme.palette.primary.light },
+          };
+        }}
       >
-        <p>
+        <Typography component="p" variant="body1">
           <strong>{company.name}&nbsp;-&nbsp;</strong>
           {company?.location ? ` (${company.location}) ` : " "}
           {formatDate(company.startDate)} to{" "}
           {company.endDate ? formatDate(company?.endDate?.toString()) : "present"}
-        </p>
+        </Typography>
       </AccordionSummary>
+
       <AccordionDetails>
         <CompanyForm
           company={company}
           handler={handleEditCompany}
           deleteHandler={handleDeleteCompany}
         />
+
         <PositionsList company={company} />
       </AccordionDetails>
     </Accordion>

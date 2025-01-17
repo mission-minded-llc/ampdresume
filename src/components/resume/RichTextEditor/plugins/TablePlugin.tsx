@@ -1,16 +1,8 @@
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  TextField,
-} from "@mui/material";
+import { Box, Button, Dialog, DialogContent, IconButton, TextField } from "@mui/material";
 
 import { $createTableNodeWithDimensions } from "@lexical/table";
 import { $insertNodeToNearestRoot } from "@lexical/utils";
-import { CloseButton } from "@/components/CloseButton";
+import { CustomDialogTitle } from "@/components/DialogTitle";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useState } from "react";
@@ -38,8 +30,7 @@ export const TablePlugin = () => {
   return (
     <>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-        <DialogTitle>Add Table</DialogTitle>
-        <CloseButton onClick={() => setIsOpen(false)} />
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Add Table</CustomDialogTitle>
         <DialogContent
           sx={{
             width: "400px",

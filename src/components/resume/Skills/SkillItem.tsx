@@ -1,8 +1,8 @@
-import { Box, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { Box, Dialog, DialogContent } from "@mui/material";
 import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
-import { CloseButton } from "@/components/CloseButton";
+import { CustomDialogTitle } from "@/components/DialogTitle";
 import { Icon } from "@iconify/react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItemEdit } from "./SkillItemEdit";
@@ -54,13 +54,12 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
         fullWidth
         maxWidth={userCanEdit ? "xl" : "md"}
       >
-        <DialogTitle sx={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
           <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
             {skill?.icon ? <Icon icon={skill.icon} /> : null}
             {skill.skill.name}
           </Box>
-        </DialogTitle>
-        <CloseButton onClick={() => setIsOpen(false)} />
+        </CustomDialogTitle>
         <DialogContent>
           {userCanEdit ? <SkillItemEdit skill={skill} /> : <SkillItemView skill={skill} />}
         </DialogContent>

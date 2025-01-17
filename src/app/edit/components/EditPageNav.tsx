@@ -7,7 +7,7 @@ import { MuiLink } from "@/components/MuiLink";
 import React from "react";
 import { usePathname } from "next/navigation";
 
-export const EditNav = () => {
+export const EditPageNav = () => {
   const pathname = usePathname();
 
   const sections = [

@@ -1,17 +1,9 @@
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  TextField,
-} from "@mui/material";
+import { Box, Button, Dialog, DialogContent, IconButton, TextField } from "@mui/material";
 import React, { useState } from "react";
 
 import { $createYouTubeNode } from "../nodes/YouTubeNode";
 import { $insertNodes } from "lexical";
-import { CloseButton } from "@/components/CloseButton";
+import { CustomDialogTitle } from "@/components/DialogTitle";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
@@ -49,9 +41,10 @@ export default function YoutubePlugin() {
   return (
     <>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-        <DialogTitle>Embed YouTube Video</DialogTitle>
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
+          Embed YouTube Video
+        </CustomDialogTitle>
         <DialogContent>
-          <CloseButton onClick={() => setIsOpen(false)} />
           <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 2, zIndex: 100 }}>
             <TextField
               value={url}

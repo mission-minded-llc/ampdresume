@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import { CompanyList } from "./CompanyList";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
@@ -63,16 +63,14 @@ export const EditExperience = () => {
       education={[]}
       skillsForUser={[]}
     >
-      <Container>
-        <SectionTitle title="Edit Professional Experience" />
-        <Typography variant="body1" sx={{ mb: 4 }}>
-          Add your professional experience to your resume. You can add multiple companies and
-          positions. To begin, add a company. Positions can be added within a company, and from
-          there you can add projects (e.g. bullet points) to positions.
-        </Typography>
+      <SectionTitle title="Edit Professional Experience" />
+      <Typography variant="body1" sx={{ mb: 4 }}>
+        Add your professional experience to your resume. You can add multiple companies and
+        positions. To begin, add a company. Positions can be added within a company, and from there
+        you can add projects (e.g. bullet points) to positions.
+      </Typography>
 
-        <CompanyList />
-      </Container>
+      <CompanyList />
     </ResumeProvider>
   );
 };
