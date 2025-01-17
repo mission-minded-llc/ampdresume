@@ -1,4 +1,4 @@
-import { addSkillForUser } from "@/graphql/server/resolvers/mutations/addSkillForUser";
+import { addSkillForUser } from "./addSkillForUser";
 import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "@/graphql/server/util";
 
