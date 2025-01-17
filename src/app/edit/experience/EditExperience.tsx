@@ -1,33 +1,22 @@
 "use client";
 
-import { Box, Container } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 
-import { EditPageProvider } from "./components/EditContext";
-import { EditSection } from "./components/EditSection";
+import { CompanyList } from "./CompanyList";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
+import React from "react";
 import { ResumeProvider } from "@/components/resume/ResumeContext";
-import { SidebarLeft } from "./components/SidebarLeft";
+import { SectionTitle } from "../components/SectionTitle";
 import { getCompanies } from "@/graphql/getCompanies";
 import { getPositions } from "@/graphql/getPositions";
-import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
-export const EditPage = () => {
+export const EditExperience = () => {
   const { data: session, status } = useSession();
 
   const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
-
-  const {
-    isPending: isPendingSkillsForUser,
-    error: errorSkillsForUser,
-    data: skillsForUser,
-  } = useQuery({
-    enabled: isAuthenticatedUser,
-    queryKey: ["skillsForUser"],
-    queryFn: async () => await getSkillsForUser(session?.user.id),
-  });
 
   const {
     isPending: isPendingCompanies,
@@ -61,34 +50,29 @@ export const EditPage = () => {
       </Box>
     );
 
-  const isPending = isPendingSkillsForUser || isPendingCompanies || isPendingPositions;
+  const isPending = isPendingCompanies || isPendingPositions;
 
   if (isPending) return <LoadingOverlay message="Loading resume data..." />;
-  if (errorSkillsForUser) return <Box>Error loading skills: {errorSkillsForUser.message}</Box>;
   if (errorCompanies) return <Box>Error loading companies: {errorCompanies.message}</Box>;
   if (errorPositions) return <Box>Error loading positions: {errorPositions.message}</Box>;
 
-  const sidebarWidth = 150;
-
   return (
     <ResumeProvider
-      skillsForUser={skillsForUser ?? []}
       companies={companies ?? []}
       positions={positions ?? []}
       education={[]}
+      skillsForUser={[]}
     >
-      <EditPageProvider>
-        <Container
-          sx={{
-            display: "grid",
-            height: "100%",
-            gridTemplateColumns: `${sidebarWidth}px 1fr`,
-          }}
-        >
-          <SidebarLeft width={sidebarWidth} />
-          <EditSection />
-        </Container>
-      </EditPageProvider>
+      <Container>
+        <SectionTitle title="Edit Professional Experience" />
+        <Typography variant="body1" sx={{ mb: 4 }}>
+          Add your professional experience to your resume. You can add multiple companies and
+          positions. To begin, add a company. Positions can be added within a company, and from
+          there you can add projects (e.g. bullet points) to positions.
+        </Typography>
+
+        <CompanyList />
+      </Container>
     </ResumeProvider>
   );
 };

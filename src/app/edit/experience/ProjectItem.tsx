@@ -15,7 +15,7 @@ import { useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { CloseButton } from "@/components/CloseButton";
-import { DeleteWithConfirmation } from "../../DeleteWithConfirmation";
+import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Project } from "@prisma/client";

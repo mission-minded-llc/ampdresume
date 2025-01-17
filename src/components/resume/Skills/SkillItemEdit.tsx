@@ -2,7 +2,7 @@ import { Box, Button, Divider, TextField } from "@mui/material";
 import { useContext, useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { DeleteWithConfirmation } from "@/app/resume/edit/components/DeleteWithConfirmation";
+import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
 import { MuiLink } from "@/components/MuiLink";
 import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";

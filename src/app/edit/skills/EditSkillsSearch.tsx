@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Box,
   Button,
@@ -24,7 +26,7 @@ import { addSkillForUser } from "@/graphql/addSkillForUser";
 import { getSkills } from "@/graphql/getSkills";
 import { useSession } from "next-auth/react";
 
-export const SkillSearch = () => {
+export const EditSkillsSearch = () => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
 

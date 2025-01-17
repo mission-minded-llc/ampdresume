@@ -25,7 +25,7 @@ export const config = {
     // User account pages.
     "/account/:path*",
     // Resume editing pages.
-    "/r/:slug/edit/:path*",
+    "/edit/:path*",
     // Apply to all API routes.
     "/api/:path*",
   ],

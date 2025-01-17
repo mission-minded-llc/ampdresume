@@ -1,28 +1,34 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Position, PositionGeneric, PositionWithProjects } from "@/graphql/getPositions";
-import React, { useState } from "react";
+import { Company, CompanyGeneric } from "@/graphql/getCompanies";
+import React, { useContext, useState } from "react";
 
-import { DeleteWithConfirmation } from "../../DeleteWithConfirmation";
+import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
+import { ResumeContext } from "@/components/resume/ResumeContext";
 
-export const PositionForm = ({
-  position,
+export const CompanyForm = ({
+  company,
   handler,
   deleteHandler = null,
   onCancel = null,
 }: {
-  position?: PositionWithProjects | null;
-  handler: (position: Position | PositionGeneric) => void;
-  deleteHandler?: ((position: Position) => void) | null;
+  company?: Company | null;
+  handler: (company: CompanyGeneric | Company) => void;
+  deleteHandler?: ((company: Company) => void) | null;
   onCancel?: (() => void) | null;
 }) => {
-  const formattedStartDate = position?.startDate
-    ? new Date(parseInt(position.startDate, 10)).toISOString().split("T")[0].substring(0, 7)
+  const { positions } = useContext(ResumeContext);
+
+  const positionsInCompany = positions.filter((position) => position.company.id === company?.id);
+
+  const formattedStartDate = company?.startDate
+    ? new Date(parseInt(company.startDate, 10)).toISOString().split("T")[0].substring(0, 7)
     : "";
-  const formattedEndDate = position?.endDate
-    ? new Date(parseInt(position.endDate, 10)).toISOString().split("T")[0].substring(0, 7)
+  const formattedEndDate = company?.endDate
+    ? new Date(parseInt(company.endDate, 10)).toISOString().split("T")[0].substring(0, 7)
     : "";
 
-  const [positionTitle, setPositionTitle] = useState(position?.title || "");
+  const [companyName, setCompanyName] = useState(company?.name || "");
+  const [location, setLocation] = useState(company?.location || "");
   const [startDate, setStartDate] = useState(formattedStartDate);
   const [endDate, setEndDate] = useState(formattedEndDate);
 
@@ -65,7 +71,8 @@ export const PositionForm = ({
     if (!startDate) return;
 
     handler({
-      title: positionTitle,
+      name: companyName,
+      location,
       startDate,
       endDate,
     });
@@ -73,16 +80,26 @@ export const PositionForm = ({
 
   return (
     <>
-      <Box sx={{ mb: 2, display: "grid", gap: 2, gridTemplateColumns: "50% 1fr 1fr" }}>
+      <Box sx={{ mb: 2, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
         <TextField
           margin="dense"
           fullWidth
           variant="outlined"
-          label="Position Title"
-          value={positionTitle}
-          onChange={(e) => setPositionTitle(e.target.value)}
+          label="Company Name"
+          value={companyName}
+          onChange={(e) => setCompanyName(e.target.value)}
           required
         />
+        <TextField
+          margin="dense"
+          fullWidth
+          variant="outlined"
+          label="Location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+      </Box>
+      <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
         <TextField
           autoFocus
           margin="dense"
@@ -144,13 +161,11 @@ export const PositionForm = ({
           mt: 2,
         }}
       >
-        {position && deleteHandler && (
+        {company && deleteHandler && (
           <DeleteWithConfirmation
-            buttonLabel="Delete Position"
-            onConfirmDelete={() => {
-              deleteHandler(position);
-            }}
-            disabled={position.projects.length > 0}
+            buttonLabel="Delete Company"
+            onConfirmDelete={() => deleteHandler(company)}
+            disabled={positionsInCompany.length > 0}
           />
         )}
         {onCancel && (
@@ -159,7 +174,7 @@ export const PositionForm = ({
           </Button>
         )}
         <Button variant="contained" color="primary" onClick={saveHandler}>
-          Save Position
+          Save Company
         </Button>
       </Box>
     </>

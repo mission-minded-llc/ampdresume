@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CloseButton } from "@/components/CloseButton";
-import { DeleteWithConfirmation } from "@/app/resume/edit/components/DeleteWithConfirmation";
+import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { Project } from "@prisma/client";
 import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";

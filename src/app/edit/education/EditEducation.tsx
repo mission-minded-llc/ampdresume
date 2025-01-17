@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { SectionTitle } from "../SectionTitle";
+import { SectionTitle } from "../components/SectionTitle";
 
 export const EditEducation = () => (
   <Container>
