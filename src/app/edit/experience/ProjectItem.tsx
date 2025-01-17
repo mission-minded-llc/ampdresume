@@ -152,7 +152,7 @@ export const ProjectItem = ({ project }: { project: Project }) => {
   return (
     <>
       <Box
-        sx={{
+        sx={(theme) => ({
           position: "relative",
           width: "100%",
           textAlign: "left",
@@ -166,7 +166,9 @@ export const ProjectItem = ({ project }: { project: Project }) => {
             gap: "10px",
             padding: "10px",
           },
-        }}
+          backgroundColor: theme.palette.background.paper,
+          borderLeft: "4px solid",
+        })}
         onDoubleClick={() => setIsOpen(true)}
       >
         <Box>{project.name}</Box>

@@ -94,14 +94,12 @@ export const CompanyItem = ({
         aria-controls="panel1a-content"
         id="panel1a-header"
         onClick={handleExpandClick}
-        sx={(theme) => {
-          return {
-            cursor: "pointer",
-            pt: 1,
-            pb: 1,
-            "&:hover": { backgroundColor: theme.palette.primary.light },
-          };
-        }}
+        sx={(theme) => ({
+          cursor: "pointer",
+          pt: 1,
+          pb: 1,
+          "&:hover": { backgroundColor: theme.palette.primary.light },
+        })}
       >
         <Typography component="p" variant="body1">
           <strong>{company.name}&nbsp;-&nbsp;</strong>

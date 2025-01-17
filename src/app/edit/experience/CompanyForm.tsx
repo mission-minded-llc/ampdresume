@@ -33,15 +33,6 @@ export const CompanyForm = ({
   const [endDate, setEndDate] = useState(formattedEndDate);
   const [dateError, setDateError] = useState("");
 
-  const isChanged = () => {
-    return (
-      companyName !== company?.name ||
-      location !== company?.location ||
-      startDate !== formattedStartDate ||
-      endDate !== formattedEndDate
-    );
-  };
-
   const validateDates = (start: string | null, end: string | null) => {
     const startDate = start ? new Date(start) : null;
     const endDate = end ? new Date(end) : null;
@@ -85,6 +76,12 @@ export const CompanyForm = ({
       endDate,
     });
   };
+
+  const isChanged =
+    companyName !== company?.name ||
+    location !== company?.location ||
+    startDate !== formattedStartDate ||
+    endDate !== formattedEndDate;
 
   return (
     <>
@@ -181,7 +178,7 @@ export const CompanyForm = ({
             Cancel
           </Button>
         )}
-        <Button variant="outlined" color="primary" onClick={saveHandler} disabled={!isChanged()}>
+        <Button variant="outlined" color="primary" onClick={saveHandler} disabled={!isChanged}>
           Save Company
         </Button>
       </Box>

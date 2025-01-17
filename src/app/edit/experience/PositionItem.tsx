@@ -1,24 +1,30 @@
 import { Accordion, AccordionDetails, AccordionSummary, Divider } from "@mui/material";
 import { Position, PositionGeneric, PositionWithProjects } from "@/graphql/getPositions";
-import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { PositionForm } from "./PositionForm";
 import { ProjectsList } from "./ProjectsList";
+import React from "react";
 import { deletePosition } from "@/graphql/deletePosition";
 import { formatDate } from "@/lib/format";
 import { updatePosition } from "@/graphql/updatePosition";
 import { useSession } from "next-auth/react";
 
-export const PositionItem = ({ position }: { position: PositionWithProjects }) => {
+export const PositionItem = ({
+  position,
+  expanded,
+  setExpanded,
+}: {
+  position: PositionWithProjects;
+  expanded: string | false;
+  setExpanded: React.Dispatch<React.SetStateAction<string | false>>;
+}) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
 
-  const [expanded, setExpanded] = useState(false);
-
   const handleExpandClick = () => {
-    setExpanded(!expanded);
+    setExpanded(expanded === position.id ? false : position.id);
   };
 
   const saveMutation = useMutation({
@@ -79,10 +85,11 @@ export const PositionItem = ({ position }: { position: PositionWithProjects }) =
 
   return (
     <Accordion
-      expanded={expanded}
-      sx={(theme) => {
-        return { mb: 2, backgroundColor: theme.palette.background.default };
-      }}
+      expanded={expanded === position.id}
+      sx={(theme) => ({
+        mb: 2,
+        backgroundColor: theme.palette.background.default,
+      })}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}

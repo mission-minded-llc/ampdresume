@@ -27,8 +27,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         light: themeAppearance === "dark" ? "#333" : "#eee",
       },
       secondary: {
-        main: themeAppearance === "dark" ? "#cf75ff" : "#350052",
-        light: themeAppearance === "dark" ? "#350052" : "#cf75ff",
+        main: themeAppearance === "dark" ? "#cf75ff" : "#690e9c",
+        light: themeAppearance === "dark" ? "#690e9c" : "#cf75ff",
       },
       background: {
         default: themeAppearance === "dark" ? "#151515" : "#fff",

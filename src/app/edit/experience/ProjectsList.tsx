@@ -63,7 +63,7 @@ export const ProjectsList = ({ position }: { position: PositionWithProjects }) =
 
   return (
     <>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", gap: 1 }}>
         <TextField
           label="Project"
           fullWidth
@@ -71,7 +71,13 @@ export const ProjectsList = ({ position }: { position: PositionWithProjects }) =
           value={projectValue}
           onChange={(e) => setProjectValue(e.target.value)}
         />
-        <Button variant="outlined" color="secondary" sx={{ mt: 2 }} onClick={handleAddProject}>
+        <Button
+          variant="outlined"
+          color="secondary"
+          sx={{ mt: 2 }}
+          onClick={handleAddProject}
+          disabled={projectValue.trim().length < 10}
+        >
           Add
         </Button>
       </Box>

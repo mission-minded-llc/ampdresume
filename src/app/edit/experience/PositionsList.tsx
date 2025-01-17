@@ -18,6 +18,7 @@ export const PositionsList = ({ company }: { company: Company }) => {
   const queryClient = useQueryClient();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [expanded, setExpanded] = useState<string | false>(false);
 
   const mutation = useMutation({
     mutationFn: async ({
@@ -64,21 +65,32 @@ export const PositionsList = ({ company }: { company: Company }) => {
   return (
     <Box sx={{ mt: 2 }}>
       {positionsInCompany.map((position) => (
-        <PositionItem key={position.id} position={position} />
+        <PositionItem
+          key={position.id}
+          position={position}
+          expanded={expanded}
+          setExpanded={setExpanded}
+        />
       ))}
 
-      <Box sx={{ mt: 4, mb: 2, display: "flex", justifyContent: "center" }}>
-        <Button variant="outlined" color="secondary" onClick={() => setIsOpen(true)}>
-          Add New Position
-        </Button>
-      </Box>
+      {expanded === false ? (
+        <>
+          <Box sx={{ mt: 4, mb: 2, display: "flex", justifyContent: "center" }}>
+            <Button variant="outlined" color="secondary" onClick={() => setIsOpen(true)}>
+              Add New Position
+            </Button>
+          </Box>
 
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
-        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Add Position</CustomDialogTitle>
-        <DialogContent>
-          <PositionForm handler={handleAddPosition} onCancel={() => setIsOpen(false)} />
-        </DialogContent>
-      </Dialog>
+          <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
+            <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
+              Add Position
+            </CustomDialogTitle>
+            <DialogContent>
+              <PositionForm handler={handleAddPosition} onCancel={() => setIsOpen(false)} />
+            </DialogContent>
+          </Dialog>
+        </>
+      ) : null}
     </Box>
   );
 };

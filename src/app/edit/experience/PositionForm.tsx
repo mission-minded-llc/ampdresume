@@ -71,6 +71,11 @@ export const PositionForm = ({
     });
   };
 
+  const isChanged =
+    positionTitle !== position?.title ||
+    startDate !== formattedStartDate ||
+    endDate !== formattedEndDate;
+
   return (
     <>
       <Box sx={{ mb: 2, display: "grid", gap: 2, gridTemplateColumns: "50% 1fr 1fr" }}>
@@ -158,7 +163,7 @@ export const PositionForm = ({
             Cancel
           </Button>
         )}
-        <Button variant="contained" color="primary" onClick={saveHandler}>
+        <Button variant="outlined" color="secondary" onClick={saveHandler} disabled={!isChanged}>
           Save Position
         </Button>
       </Box>

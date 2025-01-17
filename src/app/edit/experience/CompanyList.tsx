@@ -15,7 +15,7 @@ export const CompanyList = () => {
   const { companies } = useContext(ResumeContext);
   const queryClient = useQueryClient();
 
-  const [openDialog, setOpenDialog] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | false>(false);
 
   const mutation = useMutation({
@@ -55,7 +55,7 @@ export const CompanyList = () => {
       endDate: company?.endDate || "",
     });
 
-    setOpenDialog(false);
+    setIsOpen(false);
   };
 
   return (
@@ -72,16 +72,16 @@ export const CompanyList = () => {
       {expanded === false ? (
         <>
           <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
-            <Button variant="outlined" color="secondary" onClick={() => setOpenDialog(true)}>
+            <Button variant="outlined" color="secondary" onClick={() => setIsOpen(true)}>
               Add New Company
             </Button>
           </Box>
-          <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="md" fullWidth>
-            <CustomDialogTitle closeHandler={() => setOpenDialog(false)}>
+          <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
+            <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
               Add New Company
             </CustomDialogTitle>
             <DialogContent>
-              <CompanyForm handler={handleAddCompany} onCancel={() => setOpenDialog(false)} />
+              <CompanyForm handler={handleAddCompany} onCancel={() => setIsOpen(false)} />
             </DialogContent>
           </Dialog>
         </>
