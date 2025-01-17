@@ -1,11 +1,20 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from "@mui/material";
 
 import { CustomDialogTitle } from "@/components/DialogTitle";
+import { Tooltip } from "@/components/Tooltip";
 import { useState } from "react";
 
 interface DeleteWithConfirmationProps {
   onConfirmDelete: () => void;
   buttonLabel?: string;
+  tooltip?: string;
   dialogTitle?: string;
   dialogMessage?: string;
   confirmLabel?: string;
@@ -16,6 +25,7 @@ interface DeleteWithConfirmationProps {
 export const DeleteWithConfirmation = ({
   onConfirmDelete,
   buttonLabel = "Delete",
+  tooltip = "",
   dialogTitle = "Are you sure?",
   dialogMessage = "This cannot be undone!",
   confirmLabel = "Yes, Delete",
@@ -34,15 +44,18 @@ export const DeleteWithConfirmation = ({
 
   return (
     <>
-      <Button
-        variant="outlined"
-        color="secondary"
-        onClick={handleOpenConfirm}
-        sx={{ marginRight: "auto" }}
-        disabled={disabled}
-      >
-        {buttonLabel}
-      </Button>
+      <Box>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={handleOpenConfirm}
+          sx={{ marginRight: "auto" }}
+          disabled={disabled}
+        >
+          {buttonLabel}
+        </Button>
+        {tooltip.length > 0 ? <Tooltip message={tooltip} /> : null}
+      </Box>
 
       <Dialog open={confirmOpen} onClose={handleCloseConfirm} maxWidth="xs" fullWidth>
         <CustomDialogTitle closeHandler={handleCloseConfirm}>{dialogTitle}</CustomDialogTitle>

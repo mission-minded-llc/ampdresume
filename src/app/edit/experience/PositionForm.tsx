@@ -144,7 +144,7 @@ export const PositionForm = ({
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-between",
           gap: 2,
           mt: 2,
         }}
@@ -152,6 +152,11 @@ export const PositionForm = ({
         {position && deleteHandler && (
           <DeleteWithConfirmation
             buttonLabel="Delete Position"
+            tooltip={
+              position.projects.length > 0
+                ? "To delete this position, first delete all projects."
+                : ""
+            }
             onConfirmDelete={() => {
               deleteHandler(position);
             }}

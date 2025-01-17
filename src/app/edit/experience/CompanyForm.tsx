@@ -161,7 +161,7 @@ export const CompanyForm = ({
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-between",
           gap: 2,
           mt: 2,
         }}
@@ -169,6 +169,11 @@ export const CompanyForm = ({
         {company && deleteHandler && (
           <DeleteWithConfirmation
             buttonLabel="Delete Company"
+            tooltip={
+              positionsInCompany.length > 0
+                ? "To delete this company, first delete all positions."
+                : ""
+            }
             onConfirmDelete={() => deleteHandler(company)}
             disabled={positionsInCompany.length > 0}
           />
