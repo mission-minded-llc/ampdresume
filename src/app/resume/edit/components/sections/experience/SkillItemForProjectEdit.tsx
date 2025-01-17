@@ -1,7 +1,8 @@
-import { Box, Button, Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
+import { Box, Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { CloseButton } from "@/components/CloseButton";
 import { DeleteWithConfirmation } from "@/app/resume/edit/components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { Project } from "@prisma/client";
@@ -22,7 +23,7 @@ export const SkillItemForProjectEdit = ({
   const queryClient = useQueryClient();
   const editorStateRef = useRef<string | null>(null);
 
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const updateSkillForProjectMutation = useMutation({
     mutationFn: async ({ id, description }: { id: string; description: string | null }) => {
@@ -69,7 +70,7 @@ export const SkillItemForProjectEdit = ({
       <Button
         variant="outlined"
         color="primary"
-        onClick={() => setOpen(true)}
+        onClick={() => setIsOpen(true)}
         sx={(theme) => ({
           color: theme.palette.primary.main,
           "&.Mui-disabled": {
@@ -83,25 +84,14 @@ export const SkillItemForProjectEdit = ({
         <SkillIcon />
         {skillForProject.skillForUser.skill.name}
       </Button>
-      <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="lg">
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} fullWidth maxWidth="lg">
         <DialogTitle
           sx={{ display: "flex", alignItems: "center", gap: "1em", padding: "16px 48px" }}
         >
           <SkillIcon />
           {skillForProject.skillForUser.skill.name}
         </DialogTitle>
-        <IconButton
-          aria-label="close"
-          onClick={() => setOpen(false)}
-          sx={(theme) => ({
-            position: "absolute",
-            right: 8,
-            top: 8,
-            color: theme.palette.grey[500],
-          })}
-        >
-          X
-        </IconButton>
+        <CloseButton onClick={() => setIsOpen(false)} />
         <DialogContent>
           <Box>
             <Box sx={{ mb: 2 }}>

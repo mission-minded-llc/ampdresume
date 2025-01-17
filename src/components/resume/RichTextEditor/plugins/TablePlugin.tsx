@@ -10,6 +10,7 @@ import {
 
 import { $createTableNodeWithDimensions } from "@lexical/table";
 import { $insertNodeToNearestRoot } from "@lexical/utils";
+import { CloseButton } from "@/components/CloseButton";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useState } from "react";
@@ -38,18 +39,7 @@ export const TablePlugin = () => {
     <>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <DialogTitle>Add Table</DialogTitle>
-        <IconButton
-          aria-label="close"
-          onClick={() => setIsOpen(false)}
-          sx={(theme) => ({
-            position: "absolute",
-            right: 8,
-            top: 8,
-            color: theme.palette.grey[500],
-          })}
-        >
-          X
-        </IconButton>
+        <CloseButton onClick={() => setIsOpen(false)} />
         <DialogContent
           sx={{
             width: "400px",

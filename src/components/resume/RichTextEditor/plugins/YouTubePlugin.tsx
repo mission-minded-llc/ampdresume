@@ -11,6 +11,7 @@ import React, { useState } from "react";
 
 import { $createYouTubeNode } from "../nodes/YouTubeNode";
 import { $insertNodes } from "lexical";
+import { CloseButton } from "@/components/CloseButton";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
@@ -50,18 +51,7 @@ export default function YoutubePlugin() {
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <DialogTitle>Embed YouTube Video</DialogTitle>
         <DialogContent>
-          <IconButton
-            aria-label="close"
-            onClick={() => setIsOpen(false)}
-            sx={(theme) => ({
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: theme.palette.grey[500],
-            })}
-          >
-            X
-          </IconButton>
+          <CloseButton onClick={() => setIsOpen(false)} />
           <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 2, zIndex: 100 }}>
             <TextField
               value={url}

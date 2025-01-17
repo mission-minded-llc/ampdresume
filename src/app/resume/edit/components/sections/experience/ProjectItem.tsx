@@ -14,6 +14,7 @@ import {
 import { useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+import { CloseButton } from "@/components/CloseButton";
 import { DeleteWithConfirmation } from "../../DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
@@ -203,7 +204,17 @@ export const ProjectItem = ({ project }: { project: Project }) => {
           },
         }}
       >
-        <DialogTitle>Edit Project</DialogTitle>
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <>Edit Project</>
+          <CloseButton onClick={() => setIsOpen(false)} />
+        </DialogTitle>
+
         <DialogContent>
           <Box sx={{ mt: 2, mb: 4 }}>
             <TextField

@@ -1,7 +1,8 @@
-import { Box, Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
+import { Box, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
+import { CloseButton } from "@/components/CloseButton";
 import { Icon } from "@iconify/react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItemEdit } from "./SkillItemEdit";
@@ -13,7 +14,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
   const { data: session, status } = useSession();
   const pathname = usePathname();
 
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const userCanEdit =
     pathname.startsWith("/resume/edit") &&
@@ -28,7 +29,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
         disabled={buttonDisabled}
         variant="outlined"
         color="primary"
-        onClick={() => setOpen(true)}
+        onClick={() => setIsOpen(true)}
         sx={(theme) => ({
           color: theme.palette.primary.main,
           "&.Mui-disabled": {
@@ -48,8 +49,8 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
       </Button>
 
       <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
         fullWidth
         maxWidth={userCanEdit ? "xl" : "md"}
       >
@@ -59,18 +60,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
             {skill.skill.name}
           </Box>
         </DialogTitle>
-        <IconButton
-          aria-label="close"
-          onClick={() => setOpen(false)}
-          sx={(theme) => ({
-            position: "absolute",
-            right: 8,
-            top: 8,
-            color: theme.palette.grey[500],
-          })}
-        >
-          X
-        </IconButton>
+        <CloseButton onClick={() => setIsOpen(false)} />
         <DialogContent>
           {userCanEdit ? <SkillItemEdit skill={skill} /> : <SkillItemView skill={skill} />}
         </DialogContent>

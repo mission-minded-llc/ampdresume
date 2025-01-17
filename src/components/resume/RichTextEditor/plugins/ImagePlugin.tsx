@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 
+import { CloseButton } from "@/components/CloseButton";
 import ImageIcon from "@mui/icons-material/Image";
 import { MAX_USER_IMAGE_SIZE } from "@/constants";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
@@ -224,18 +225,7 @@ export const ImagePlugin = () => {
       />
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <DialogTitle>Add Image</DialogTitle>
-        <IconButton
-          aria-label="close"
-          onClick={() => setIsOpen(false)}
-          sx={(theme) => ({
-            position: "absolute",
-            right: 8,
-            top: 8,
-            color: theme.palette.grey[500],
-          })}
-        >
-          X
-        </IconButton>
+        <CloseButton onClick={() => setIsOpen(false)} />
         <DialogContent
           sx={{
             width: "400px",
