@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { PositionWithProjects } from "@/graphql/getPositions";
 import { ProjectItem } from "./ProjectItem";
+import { Tooltip } from "@/components/Tooltip";
 import { addProject } from "@/graphql/addProject";
 import { updateProjectSortIndexes } from "@/graphql/updateProjectSortIndexes";
 import { useSession } from "next-auth/react";
@@ -80,6 +81,7 @@ export const ProjectsList = ({ position }: { position: PositionWithProjects }) =
         >
           Add
         </Button>
+        <Tooltip message="Project name must be at least 10 characters long. Drag and drop to reorder." />
       </Box>
 
       <Box
