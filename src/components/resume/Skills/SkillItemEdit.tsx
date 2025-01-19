@@ -76,7 +76,7 @@ export const SkillItemEdit = ({ skill }: { skill: SkillForUserWithSkill }) => {
   const handleDelete = () => deleteSkillForUserMutation.mutate({ id: skill.id });
 
   return (
-    <Box>
+    <Box sx={{ mt: 1 }}>
       <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 2 }}>
         <TextField
           type="number"

@@ -48,12 +48,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
         {skill.skill.name}
       </Button>
 
-      <Dialog
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        fullWidth
-        maxWidth={userCanEdit ? "xl" : "md"}
-      >
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} fullWidth maxWidth="md">
         <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
           <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
             {skill?.icon ? <Icon icon={skill.icon} /> : null}
