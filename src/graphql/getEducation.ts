@@ -8,6 +8,8 @@ export type Education = Omit<EducationServer, "dateAwarded"> & {
   dateAwarded: string;
 };
 
+export type EducationGeneric = Omit<Education, "id" | "userId">;
+
 export const getEducation = async (
   userId: string | undefined,
 ): Promise<Education[] | undefined> => {
