@@ -38,12 +38,14 @@ export const ResumeHeading = ({ user }: { user: User }) => {
         }}
       >
         {user?.displayEmail}
-        <Typography
-          component="span"
-          sx={{ margin: "0 1rem", fontSize: "2rem", fontWeight: "lighter", opacity: 0.5 }}
-        >
-          |
-        </Typography>
+        {user?.displayEmail && user?.location ? (
+          <Typography
+            component="span"
+            sx={{ margin: "0 1rem", fontSize: "2rem", fontWeight: "lighter", opacity: 0.5 }}
+          >
+            |
+          </Typography>
+        ) : null}
         {user?.location}
       </Typography>
     </Typography>
