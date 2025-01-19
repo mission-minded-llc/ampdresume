@@ -15,7 +15,6 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import { MuiLink } from "@/components/MuiLink";
 import PersonIcon from "@mui/icons-material/Person";
-import SettingsIcon from "@mui/icons-material/Settings";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 import Typography from "@mui/material/Typography";
 import { getBaseUrl } from "@/util/url";
@@ -121,8 +120,7 @@ export const NavPrimary = () => {
                     target="_blank"
                   />
                 ) : null}
-                <NavItem text="Edit Resume" icon={<Edit />} href="/edit/experience" />
-                <NavItem text="Account" icon={<SettingsIcon />} href="/account" />
+                <NavItem text="Edit Resume" icon={<Edit />} href="/edit/profile" />
                 <NavItem text="Logout" icon={<ExitIcon />} href="/api/auth/signout" />
               </>
             ) : (

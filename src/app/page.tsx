@@ -76,8 +76,7 @@ export default async function HomePage() {
                 mt: "1rem",
               }}
             >
-              <MuiLink href={`/edit/experience`}>Edit your resume</MuiLink> or{" "}
-              <MuiLink href="/account">update your account settings</MuiLink>.
+              <MuiLink href={`/edit/profile`}>Edit your resume here.</MuiLink>
             </Typography>
           </>
         ) : (

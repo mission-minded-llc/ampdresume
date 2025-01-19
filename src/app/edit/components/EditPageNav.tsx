@@ -2,7 +2,6 @@
 
 import { Box, Typography } from "@mui/material";
 
-import { ACTION_NAVIGATE } from "next/dist/client/components/router-reducer/router-reducer-types";
 import { MuiLink } from "@/components/MuiLink";
 import React from "react";
 import { usePathname } from "next/navigation";
@@ -11,6 +10,7 @@ export const EditPageNav = () => {
   const pathname = usePathname();
 
   const sections = [
+    { title: "Profile", href: "/edit/profile" },
     { title: "Skills", href: "/edit/skills" },
     { title: "Work Experience", href: "/edit/experience" },
     { title: "Education", href: "/edit/education" },
@@ -36,12 +36,13 @@ export const EditPageNav = () => {
               "&:hover": {
                 backgroundColor: theme.palette.action.hover,
               },
-              backgroundColor: ACTION_NAVIGATE ? theme.palette.action.selected : "transparent",
+              backgroundColor: active ? theme.palette.action.selected : "transparent",
               px: 2,
               py: 1.5,
-              borderRight: 1,
-              borderBottom: active ? 4 : 0,
-              borderColor: active ? theme.palette.secondary.main : "transparent",
+              border: 1,
+              borderBottom: 4,
+              borderColor: theme.palette.primary.main,
+              borderBottomColor: active ? theme.palette.secondary.main : theme.palette.primary.main,
             };
           }}
         >

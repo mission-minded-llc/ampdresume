@@ -1,7 +1,10 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+
 import { AccountForm } from "./components/AccountForm";
-import { prisma } from "@/lib/prisma";
+import { EditPageLayout } from "../components/EditPageLayout";
+import { SectionTitle } from "../components/SectionTitle";
 import { getSession } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
 const Page = async () => {
   const session = await getSession();
@@ -16,16 +19,7 @@ const Page = async () => {
   });
 
   return (
-    <Container
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-        width: "100%",
-      }}
-    >
+    <EditPageLayout>
       <Box
         sx={{
           display: "flex",
@@ -34,9 +28,7 @@ const Page = async () => {
           width: "100%",
         }}
       >
-        <Typography component="h1" variant="h4">
-          Account Settings
-        </Typography>
+        <SectionTitle title="Profile" />
         <AccountForm
           name={user?.name || ""}
           slug={user?.slug || ""}
@@ -47,7 +39,7 @@ const Page = async () => {
           siteDescription={user?.siteDescription || ""}
         />
       </Box>
-    </Container>
+    </EditPageLayout>
   );
 };
 

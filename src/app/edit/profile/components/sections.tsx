@@ -25,7 +25,7 @@ export const GridSection = ({
       display: "grid",
       gridTemplateColumns: isDesktop ? "1fr 1fr" : "1fr",
       gap: isDesktop ? 4 : 2,
-      mt: 4,
+      mb: 4,
     }}
   >
     {children}

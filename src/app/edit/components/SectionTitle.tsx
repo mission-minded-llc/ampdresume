@@ -4,7 +4,7 @@ export const SectionTitle = ({ title }: { title: string }) => (
   <>
     <Divider sx={{ mb: 2 }} />
     <Box>
-      <Typography variant="h5" sx={{ mb: 2 }}>
+      <Typography variant="h5" component="h1">
         {title}
       </Typography>
     </Box>
