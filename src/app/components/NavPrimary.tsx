@@ -121,7 +121,7 @@ export const NavPrimary = () => {
                     target="_blank"
                   />
                 ) : null}
-                <NavItem text="Edit Resume" icon={<Edit />} href="/resume/edit" />
+                <NavItem text="Edit Resume" icon={<Edit />} href="/edit/experience" />
                 <NavItem text="Account" icon={<SettingsIcon />} href="/account" />
                 <NavItem text="Logout" icon={<ExitIcon />} href="/api/auth/signout" />
               </>
