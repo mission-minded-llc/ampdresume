@@ -54,7 +54,7 @@ export async function seedPositions() {
       }
 
       const createdPosition = await prisma.position.create({
-        data: { ...positionData },
+        data: { ...positionData, companyId: company.id },
       });
       console.log(`Created position for user ${userId} with id: ${createdPosition.id}`);
     }
