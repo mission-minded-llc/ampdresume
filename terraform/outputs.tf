@@ -23,33 +23,3 @@ output "media_bucket_name" {
 output "media_bucket_arn" {
   value = aws_s3_bucket.media.arn
 }
-
-output "secret_arns" {
-  value = {
-    for env, secret in aws_secretsmanager_secret.db_secrets :
-    env => secret.arn
-  }
-}
-
-output "endpoints" {
-  value = {
-    for env, instance in aws_db_instance.postgresql :
-    env => instance.endpoint
-  }
-}
-
-output "bastion_public_ip" {
-  value = aws_instance.bastion.public_ip
-}
-
-output "bastion_instance_id" {
-  value = aws_instance.bastion.id
-}
-
-output "test_repository_url" {
-  value = aws_ecr_repository.test.repository_url
-}
-
-output "production_repository_url" {
-  value = aws_ecr_repository.production.repository_url
-}
