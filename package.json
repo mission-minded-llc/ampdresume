@@ -23,13 +23,14 @@
     "test": "jest --maxConcurrency=2",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "postinstall": "prisma generate",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "tsx prisma/seed/all.ts",
     "terraform:validate": "cd terraform && terraform validate",
     "terraform:plan": "cd terraform && terraform plan",
-    "terraform:apply": "cd terraform && terraform apply"
+    "terraform:apply": "cd terraform && terraform apply",
+    "postinstall": "prisma generate",
+    "postdeploy": "npm run prisma:migrate && npm run prisma:seed"
   },
   "dependencies": {
     "@apollo/client": "^3.11.10",
