@@ -21,7 +21,7 @@ export const ThemeAppearanceToggle = () => {
         display: "flex",
         alignItems: "center",
         height: "50px",
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: isResumePage ? "transparent" : theme.palette.background.default,
         marginRight: isDesktop && !isResumePage ? "1em" : 0,
         padding: "0 1em",
         borderRadius: "1em",
