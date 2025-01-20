@@ -45,3 +45,11 @@ output "bastion_public_ip" {
 output "bastion_instance_id" {
   value = aws_instance.bastion.id
 }
+
+output "test_repository_url" {
+  value = aws_ecr_repository.test.repository_url
+}
+
+output "production_repository_url" {
+  value = aws_ecr_repository.production.repository_url
+}
