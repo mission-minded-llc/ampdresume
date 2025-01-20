@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import { ProjectWithSkills } from "@/graphql/getPositions";
-import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItem } from "../Skills/SkillItem";
 import { SkillsContextProvider } from "../Skills/Skills";
 
@@ -8,20 +7,14 @@ import { SkillsContextProvider } from "../Skills/Skills";
  * This contains the top-level project description and skill tags. It can
  * be used as standalone, or within the Accordion.
  */
-export const ProjectItem = ({
-  project,
-  projectSkills,
-}: {
-  project: ProjectWithSkills;
-  projectSkills: SkillForUserWithSkill[];
-}) => (
+export const ProjectItem = ({ project }: { project: ProjectWithSkills }) => (
   <Box
     sx={{
       position: "relative",
       width: "100%",
       textAlign: "left",
       display: "grid",
-      gridTemplateColumns: projectSkills?.length > 0 ? "60% 1fr" : "1fr",
+      gridTemplateColumns: project?.skillsForProject?.length > 0 ? "60% 1fr" : "1fr",
       alignItems: "center",
       gap: "20px",
       padding: "10px 40px 10px 20px",
@@ -33,7 +26,7 @@ export const ProjectItem = ({
     }}
   >
     <Box>{project.name}</Box>
-    {projectSkills?.length > 0 ? (
+    {project?.skillsForProject?.length > 0 ? (
       <Box
         sx={{
           display: "flex",
@@ -47,8 +40,11 @@ export const ProjectItem = ({
         }}
       >
         <SkillsContextProvider skillType="project">
-          {projectSkills.map((skill) => (
-            <SkillItem key={`skill-${skill.skill.name}`} skill={skill} />
+          {project.skillsForProject.map((skillForProject) => (
+            <SkillItem
+              key={`skill-${skillForProject.skillForUser.skill.name}`}
+              skill={skillForProject}
+            />
           ))}
         </SkillsContextProvider>
       </Box>

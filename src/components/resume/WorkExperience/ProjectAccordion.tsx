@@ -5,15 +5,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ProjectItem } from "./ProjectItem";
 import { ProjectWithSkills } from "@/graphql/getPositions";
 import { RichTextBlock } from "../RichTextBlock";
-import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 
-export const ProjectAccordion = ({
-  project,
-  projectSkills,
-}: {
-  project: ProjectWithSkills;
-  projectSkills: SkillForUserWithSkill[];
-}) => {
+export const ProjectAccordion = ({ project }: { project: ProjectWithSkills }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleAccordionChange = (event: SyntheticEvent, isExpanded: boolean) => {
@@ -57,7 +50,7 @@ export const ProjectAccordion = ({
       }}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <ProjectItem project={project} projectSkills={projectSkills} />
+        <ProjectItem project={project} />
       </AccordionSummary>
       <AccordionDetails
         sx={(theme) => ({

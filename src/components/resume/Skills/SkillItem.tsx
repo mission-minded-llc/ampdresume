@@ -1,25 +1,39 @@
 import { Box, Dialog, DialogContent } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Button from "@mui/material/Button";
 import { CustomDialogTitle } from "@/components/DialogTitle";
 import { Icon } from "@iconify/react";
+import { SkillForProjectWithSkill } from "@/graphql/getSkillsForProject";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItemEdit } from "./SkillItemEdit";
 import { SkillItemView } from "./SkillItemView";
+import { SkillsContext } from "./Skills";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
+export const SkillItem = ({
+  skill,
+}: {
+  skill: SkillForUserWithSkill | SkillForProjectWithSkill;
+}) => {
+  const { skillType } = useContext(SkillsContext);
   const { data: session, status } = useSession();
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const projectSkill = skill as SkillForProjectWithSkill;
+  const skillData =
+    skillType === "project"
+      ? { ...projectSkill.skillForUser, description: projectSkill.description }
+      : (skill as SkillForUserWithSkill);
+
   const userCanEdit =
+    skillData?.userId &&
     pathname.startsWith("/edit/skills") &&
     status === "authenticated" &&
-    session?.user?.id === skill.userId;
+    session?.user?.id === skillData.userId;
 
   const buttonDisabled = !(skill?.description || userCanEdit);
 
@@ -40,23 +54,23 @@ export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
           gap: "8px",
         })}
       >
-        {skill?.icon ? (
-          <Icon icon={skill.icon} />
-        ) : skill?.skill?.icon ? (
-          <Icon icon={skill.skill.icon} />
+        {skillData?.icon ? (
+          <Icon icon={skillData.icon} />
+        ) : skillData?.skill?.icon ? (
+          <Icon icon={skillData.skill.icon} />
         ) : null}
-        {skill.skill.name}
+        {skillData.skill.name}
       </Button>
 
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} fullWidth maxWidth="md">
         <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
           <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
-            {skill?.icon ? <Icon icon={skill.icon} /> : null}
-            {skill.skill.name}
+            {skillData?.icon ? <Icon icon={skillData.icon} /> : null}
+            {skillData.skill.name}
           </Box>
         </CustomDialogTitle>
         <DialogContent>
-          {userCanEdit ? <SkillItemEdit skill={skill} /> : <SkillItemView skill={skill} />}
+          {userCanEdit ? <SkillItemEdit skill={skillData} /> : <SkillItemView skill={skillData} />}
         </DialogContent>
       </Dialog>
     </React.Fragment>

@@ -1,15 +1,11 @@
 import * as Sentry from "@sentry/react";
 
-import { Company, Project, SkillForProject } from "@prisma/client";
+import { Company, Project } from "@prisma/client";
 
 import type { Position as PositionServer } from "@prisma/client";
-import { SkillForUserWithSkill } from "./getSkillsForUser";
+import { SkillForProjectWithSkill } from "./getSkillsForProject";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
-
-export interface SkillForProjectWithSkill extends SkillForProject {
-  skillForUser: SkillForUserWithSkill;
-}
 
 export interface ProjectWithSkills extends Project {
   skillsForProject: SkillForProjectWithSkill[];
@@ -55,10 +51,16 @@ export const getPositions = async (companyIds: string[]): Promise<PositionWithPr
               description
               sortIndex
               skillsForProject {
+                description
                 skillForUser {
                   id
+                  userId
+                  icon
+                  skill {
+                    name
+                    icon
+                  }
                 }
-                description
               }
             }
           }

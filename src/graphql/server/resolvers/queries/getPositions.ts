@@ -23,7 +23,7 @@ export const getPositions = async (
           sortIndex: "asc",
         },
         include: {
-          skillsForProject: { include: { skillForUser: true } },
+          skillsForProject: { include: { skillForUser: { include: { skill: true } } } },
         },
       },
     }, // Include project and skill details
