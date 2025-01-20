@@ -7,7 +7,7 @@ import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { Project } from "@prisma/client";
 import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
-import { SkillForProjectWithSkill } from "@/graphql/getPositions";
+import { SkillForProjectWithSkill } from "@/graphql/getSkillsForProject";
 import { deleteSkillForProject } from "@/graphql/deleteSkillForProject";
 import { updateSkillForProject } from "@/graphql/updateSkillForProject";
 import { useSession } from "next-auth/react";
