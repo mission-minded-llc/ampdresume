@@ -4,14 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - "**.ts"
-      - "**.tsx"
-      - "**.scss"
-      - "**.js"
-      - "**.mjs"
-      - "**.css"
-      - "**.json"
-      - "**.yml"
+      - "**.sql"
+      - "**.prisma"
   workflow_dispatch:
 
 jobs:
