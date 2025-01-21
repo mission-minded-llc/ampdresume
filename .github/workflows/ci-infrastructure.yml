@@ -2,15 +2,16 @@ name: "CI: Infrastructure"
 
 on:
   push:
+    branches: [develop]
+    paths:
+      - "**.tf"
+      - "**.tfvars"
+  pull_request:
+    types: [opened, synchronize]
     branches: [main]
     paths:
       - "**.tf"
-  pull_request:
-    types: [opened, synchronize]
-    branches:
-      - "main"
-    paths:
-      - "**.tf"
+      - "**.tfvars"
   workflow_dispatch:
 
 env:

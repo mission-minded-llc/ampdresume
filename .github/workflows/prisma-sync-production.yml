@@ -1,0 +1,34 @@
+name: "Prisma Sync - Production Environment"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.ts"
+      - "**.tsx"
+      - "**.scss"
+      - "**.js"
+      - "**.mjs"
+      - "**.css"
+      - "**.json"
+      - "**.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy-app:
+    name: Prisma Sync - Production Environment
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL: "${{ secrets.DATABASE_URL_BASE }}openresume_production?schema=openresume"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup-dependencies
+
+      - name: Migrate database
+        run: npm run prisma:migrate
+
+      - name: Seed database
+        run: npm run prisma:seed

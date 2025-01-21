@@ -2,7 +2,7 @@ name: "CI: App"
 
 on:
   push:
-    branches: [main, develop]
+    branches: [develop]
     paths:
       - "**.ts"
       - "**.tsx"
@@ -14,7 +14,7 @@ on:
       - "**.yml"
   pull_request:
     types: [opened, synchronize]
-    branches: [main, develop]
+    branches: [main]
     paths:
       - "**.ts"
       - "**.tsx"
