@@ -11,7 +11,7 @@ import { useState } from "react";
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(new URLSearchParams(window.location.search).get("error"));
+  const [error, setError] = useState(new URLSearchParams(location.search).get("error"));
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true);
