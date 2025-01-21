@@ -3,15 +3,23 @@
 import * as Sentry from "@sentry/react";
 
 import { Box, Button, TextField, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(new URLSearchParams(location.search).get("error"));
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!window?.location) return;
+
+    const errParam = new URLSearchParams(window.location.search).get("error");
+
+    if (errParam) setError(errParam);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true);
