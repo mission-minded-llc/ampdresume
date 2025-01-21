@@ -28,9 +28,7 @@
     "prisma:seed": "tsx prisma/seed/all.ts",
     "terraform:validate": "cd terraform && terraform validate",
     "terraform:plan": "cd terraform && terraform plan",
-    "terraform:apply": "cd terraform && terraform apply",
-    "postinstall": "prisma generate",
-    "postdeploy": "npm run prisma:migrate && npm run prisma:seed"
+    "terraform:apply": "cd terraform && terraform apply"
   },
   "dependencies": {
     "@apollo/client": "^3.11.10",
