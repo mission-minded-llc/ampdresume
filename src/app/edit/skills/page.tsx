@@ -3,7 +3,7 @@ import { EditSkills } from "./EditSkills";
 
 export function generateMetadata() {
   return {
-    title: "Edit Skills",
+    title: "Edit Skills | OpenResume",
   };
 }
 
