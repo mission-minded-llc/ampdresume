@@ -31,11 +31,12 @@ jobs:
 
     environment: ${{ needs.set-environment.outputs.environment }}
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
-      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      NEXT_PUBLIC_ENVIRONMENT_NAME: ${{ needs.set-environment.outputs.environment }}
+      DATABASE_URL:
+        "${{ secrets.DATABASE_URL_BASE }}openresume_${{ needs.set-environment.outputs.environment
+        }}?schema=openresume"
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB_BASE }}${{ needs.set-environment.outputs.environment }}
 
     steps:
       - uses: actions/checkout@v3
