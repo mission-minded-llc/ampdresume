@@ -1,6 +1,9 @@
+import * as Sentry from "@sentry/nextjs";
+
 import EmailProvider, { EmailConfig } from "next-auth/providers/email";
 import { NextAuthOptions, Session as NextAuthSession, getServerSession } from "next-auth";
 
+import { ALLOWED_USER_EMAILS } from "@/constants";
 import { AdapterUser } from "next-auth/adapters";
 import { JWT } from "next-auth/jwt";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -35,6 +38,12 @@ export const sendVerificationRequest = async ({
 
   // Use the matched email if found, otherwise fallback to the original
   const emailToSend = normalizedEmail?.email ? normalizedEmail.email : identifier;
+
+  if (!ALLOWED_USER_EMAILS.includes(emailToSend)) {
+    Sentry.captureMessage(`Email ${emailToSend} is not allowed to sign in.`);
+
+    throw new Error("Email is not allowed to sign in.");
+  }
 
   await transport.sendMail({
     to: emailToSend,
