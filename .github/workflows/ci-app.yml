@@ -14,8 +14,7 @@ on:
       - "**.yml"
   pull_request:
     types: [opened, synchronize]
-    branches:
-      - [main, develop]
+    branches: [main, develop]
     paths:
       - "**.ts"
       - "**.tsx"

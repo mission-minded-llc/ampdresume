@@ -1,4 +1,5 @@
 name: "CD: App"
+
 on:
   workflow_run:
     workflows: ["CI: App"]
