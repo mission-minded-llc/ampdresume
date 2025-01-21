@@ -1,11 +1,6 @@
 name: "CI: Infrastructure"
 
 on:
-  push:
-    branches: [develop]
-    paths:
-      - "**.tf"
-      - "**.tfvars"
   pull_request:
     types: [opened, synchronize]
     branches: [main]

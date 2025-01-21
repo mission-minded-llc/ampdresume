@@ -1,17 +1,6 @@
 name: "CI: App"
 
 on:
-  push:
-    branches: [develop]
-    paths:
-      - "**.ts"
-      - "**.tsx"
-      - "**.scss"
-      - "**.js"
-      - "**.mjs"
-      - "**.css"
-      - "**.json"
-      - "**.yml"
   pull_request:
     types: [opened, synchronize]
     branches: [main]
