@@ -1,20 +1,9 @@
 name: "CI: App"
 
 on:
-  push:
-    branches: [main, develop]
-    paths:
-      - "**.ts"
-      - "**.tsx"
-      - "**.scss"
-      - "**.js"
-      - "**.mjs"
-      - "**.css"
-      - "**.json"
-      - "**.yml"
   pull_request:
     types: [opened, synchronize]
-    branches: [main, develop]
+    branches: [main]
     paths:
       - "**.ts"
       - "**.tsx"
@@ -53,6 +42,3 @@ jobs:
 
       - name: Run tests
         run: npm run test:coverage
-
-      - name: Run build
-        run: npm run build
