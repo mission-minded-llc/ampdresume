@@ -48,13 +48,13 @@ export const sendVerificationRequest = async ({
   await transport.sendMail({
     to: emailToSend,
     from,
-    subject: `Sign in to ${host}`,
-    text: `Sign in to ${host}\n${url}`,
+    subject: `Sign in to OpenResume (${host})`,
+    text: `Click to sign in to OpenResume:\n\n${url}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 400px; margin: 0 auto;">
-        <h1>Sign in to ${host}</h1>
+        <h1>Sign in to OpenResume (${host})</h1>
         <p>Click the link below to sign in:</p>
-        <a href="${url}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; display: inline-block; border-radius: 5px;">Sign in</a>
+        <a href="${url}" style="background-color: purple; color: white; padding: 10px 20px; text-decoration: none; display: inline-block; border-radius: 10px;">Sign In</a>
         <p>Or copy and paste this URL into your browser:</p>
         <code>${url}</code>
       </div>
