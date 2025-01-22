@@ -7,7 +7,8 @@ resource "aws_s3_bucket_cors_configuration" "medialocal_cors" {
     allowed_origins = [
       "http://*.${local.domain}",
       "https://*.${local.domain}",
-      "http://localhost:3000"
+      "http://localhost:3000",
+      "https://${aws_cloudfront_distribution.medialocal_distribution.domain_name}"
     ]
     expose_headers  = []
     max_age_seconds = 3000
@@ -23,7 +24,9 @@ resource "aws_s3_bucket_cors_configuration" "mediatest_cors" {
     allowed_origins = [
       "http://*.${local.domain}",
       "https://*.${local.domain}",
-      "http://localhost:3000"
+      "http://localhost:3000",
+      "https://${aws_cloudfront_distribution.mediatest_distribution.domain_name}"
+
     ]
     expose_headers  = []
     max_age_seconds = 3000
@@ -39,7 +42,8 @@ resource "aws_s3_bucket_cors_configuration" "media_cors" {
     allowed_origins = [
       "http://*.${local.domain}",
       "https://*.${local.domain}",
-      "http://localhost:3000"
+      "http://localhost:3000",
+      "https://${aws_cloudfront_distribution.media_distribution.domain_name}"
     ]
     expose_headers  = []
     max_age_seconds = 3000
