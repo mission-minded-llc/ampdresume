@@ -3,15 +3,14 @@ import {
   Button,
   Dialog,
   DialogContent,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Paper,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
 } from "@mui/material";
-import { useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRef, useState } from "react";
 
 import { CustomDialogTitle } from "@/components/DialogTitle";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
@@ -35,11 +34,9 @@ export const ProjectItem = ({ project }: { project: Project }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [projectName, setProjectName] = useState(project.name);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedSkillId, setSelectedSkillId] = useState<string>("");
 
-  const minCharsForSearch = 3;
-
-  // Load all available skills for the user for search/selector
+  // Load all available skills for the user
   const {
     isPending: isPendingSkillsForUser,
     error: errorSkillsForUser,
@@ -49,7 +46,6 @@ export const ProjectItem = ({ project }: { project: Project }) => {
     queryKey: ["skills"],
     queryFn: async () => {
       if (!session?.user?.id) return [];
-
       return await getSkillsForUser(session.user.id);
     },
   });
@@ -63,33 +59,13 @@ export const ProjectItem = ({ project }: { project: Project }) => {
     queryKey: ["skillsForProject", project.id],
     queryFn: async () => {
       if (!session?.user?.id) return [];
-
       return await getSkillsForProject(project.id);
     },
   });
 
-  // Filter skills based on search term
-  const filteredSkillsForUser = useMemo(() => {
-    if (!skillsForUser || searchTerm.length < minCharsForSearch) return [];
-
-    // Sort skills by closest match and limit to top 10
-    return skillsForUser
-      .filter((skillForUser) =>
-        skillForUser.skill.name.toLowerCase().includes(searchTerm.toLowerCase()),
-      )
-      .sort((a, b) => {
-        // Basic sorting by how close the match is to the start of the name
-        const aIndex = a.skill.name.toLowerCase().indexOf(searchTerm.toLowerCase());
-        const bIndex = b.skill.name.toLowerCase().indexOf(searchTerm.toLowerCase());
-        return aIndex - bIndex;
-      })
-      .slice(0, 10); // Limit to top 10 matches
-  }, [skillsForUser, searchTerm]);
-
   const addSkillForProjectMutation = useMutation({
     mutationFn: async ({ skillForUserId }: { skillForUserId: string }) => {
       if (!session?.user?.id) return;
-
       await addSkillForProject({
         userId: session.user.id,
         projectId: project.id,
@@ -98,14 +74,13 @@ export const ProjectItem = ({ project }: { project: Project }) => {
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["skillsForProject", project.id] });
-      setSearchTerm("");
+      setSelectedSkillId("");
     },
   });
 
   const updateProjectMutation = useMutation({
     mutationFn: async ({ id, description }: { id: string; description: string }) => {
       if (!session?.user?.id) return;
-
       await updateProject({
         id,
         userId: session.user.id,
@@ -118,7 +93,6 @@ export const ProjectItem = ({ project }: { project: Project }) => {
   const deleteProjectMutation = useMutation({
     mutationFn: async ({ id }: { id: string }) => {
       if (!session?.user?.id) return;
-
       await deleteProject({
         id,
         userId: session.user.id,
@@ -148,6 +122,15 @@ export const ProjectItem = ({ project }: { project: Project }) => {
   if (errorSkillsForUser) return <Box>Error loading skills: {errorSkillsForUser.message}</Box>;
   if (errorSkillsForProject)
     return <Box>Error loading project skills: {errorSkillsForProject.message}</Box>;
+
+  // Filter out skills that are already added to the project
+  const availableSkills =
+    skillsForUser?.filter(
+      (skillForUser) =>
+        !skillsForProject?.find(
+          (skillForProject) => skillForProject.skillForUser.id === skillForUser.id,
+        ),
+    ) ?? [];
 
   return (
     <>
@@ -219,48 +202,33 @@ export const ProjectItem = ({ project }: { project: Project }) => {
             />
           </Box>
           <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
-            <TextField
-              fullWidth
-              variant="outlined"
-              label="Search your skills to add..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              sx={{ mb: 2 }}
-              placeholder="Type at least 3 characters to search"
-            />
-            {searchTerm.length >= minCharsForSearch && (
-              <Paper elevation={3}>
-                <List>
-                  {filteredSkillsForUser.length > 0 ? (
-                    filteredSkillsForUser.map((skillForUser) => (
-                      <ListItem
-                        key={skillForUser.id}
-                        sx={(theme) => ({
-                          cursor: "pointer",
-                          "&:hover": {
-                            backgroundColor: theme.palette.action.hover,
-                          },
-                        })}
-                        onClick={() => handleSkillSelection(skillForUser.id)}
-                      >
-                        <ListItemIcon>
-                          {skillForUser?.icon ? (
-                            <Icon icon={skillForUser.icon} width={24} height={24} />
-                          ) : skillForUser?.skill?.icon ? (
-                            <Icon icon={skillForUser.skill.icon} width={24} height={24} />
-                          ) : null}
-                        </ListItemIcon>
-                        <ListItemText primary={skillForUser.skill.name} />
-                      </ListItem>
-                    ))
-                  ) : (
-                    <ListItem>
-                      <ListItemText primary="No matching skills found" />
-                    </ListItem>
-                  )}
-                </List>
-              </Paper>
-            )}
+            <FormControl fullWidth>
+              <InputLabel>Add Your Skills to Project</InputLabel>
+              <Select
+                value={selectedSkillId}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value) {
+                    handleSkillSelection(value);
+                  }
+                  setSelectedSkillId("");
+                }}
+                label="Add Your Skills to Project"
+              >
+                {availableSkills.map((skillForUser) => (
+                  <MenuItem key={skillForUser.id} value={skillForUser.id}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1, padding: 1 }}>
+                      {skillForUser?.icon ? (
+                        <Icon icon={skillForUser.icon} width={24} height={24} />
+                      ) : skillForUser?.skill?.icon ? (
+                        <Icon icon={skillForUser.skill.icon} width={24} height={24} />
+                      ) : null}
+                      {skillForUser.skill.name}
+                    </Box>
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
             <Box
               sx={{
                 display: "flex",
@@ -278,7 +246,7 @@ export const ProjectItem = ({ project }: { project: Project }) => {
               ))}
             </Box>
           </Box>
-          <Box>
+          <Box sx={{ mt: 4 }}>
             <Box>
               <RichTextEditor
                 name="skill-description"
@@ -286,7 +254,7 @@ export const ProjectItem = ({ project }: { project: Project }) => {
                 value={project?.description ?? ""}
               />
             </Box>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
               <DeleteWithConfirmation onConfirmDelete={handleDelete} />
               <Button variant="contained" color="primary" onClick={handleSave}>
                 Save

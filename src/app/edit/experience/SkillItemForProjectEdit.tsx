@@ -101,6 +101,16 @@ export const SkillItemForProjectEdit = ({
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <DeleteWithConfirmation
                 onConfirmDelete={handleDelete}
+                dialogTitle="Delete Skill from Project?"
+                dialogMessage={
+                  <>
+                    <p>Are you sure you want to delete this skill from the project?</p>
+                    <p>
+                      This skill will remain in your resume under the Skills section, however this
+                      custom project-specific description will be lost.
+                    </p>
+                  </>
+                }
                 tooltip="Deleting this skill will only remove it from this project. The skill will still be available for other projects."
               />
               <Button variant="contained" color="primary" onClick={handleSave}>
