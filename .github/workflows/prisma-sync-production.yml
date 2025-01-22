@@ -6,6 +6,7 @@ on:
     paths:
       - "**.sql"
       - "**.prisma"
+      - "**.csv"
   workflow_dispatch:
 
 jobs:

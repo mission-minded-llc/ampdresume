@@ -19,6 +19,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { CustomDialogTitle } from "@/components/DialogTitle";
 import ImageIcon from "@mui/icons-material/Image";
+import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MAX_USER_IMAGE_SIZE } from "@/constants";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
@@ -55,6 +56,8 @@ export const ImagePlugin = () => {
   const [error, setError] = useState("");
   const [url, setUrl] = useState("");
   const [file, setFile] = useState<File>();
+  const [isUploading, setIsUploading] = useState(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [editor] = useLexicalComposerContext();
@@ -161,6 +164,10 @@ export const ImagePlugin = () => {
   }, [file]);
 
   const onAddImage = async () => {
+    if (isUploading) return;
+
+    setIsUploading(true);
+
     let src = "";
     if (url) src = url;
 
@@ -177,13 +184,17 @@ export const ImagePlugin = () => {
         if (!response.ok) {
           const { error } = await response.json();
           setError(`Error (${response.status}): ${error}`);
+          setIsUploading(false);
           return;
         }
 
         const { url } = await response.json();
         src = url;
+
+        setIsUploading(false);
       } catch (error) {
         setError(`Upload failed: ${(error as Error).message}`);
+        setIsUploading(false);
       }
     }
 
@@ -200,6 +211,7 @@ export const ImagePlugin = () => {
 
   return (
     <>
+      <LoadingOverlay open={isUploading} message="Uploading Image..." />
       <IconButton
         aria-label="Add Image"
         onClick={() => {
@@ -248,7 +260,11 @@ export const ImagePlugin = () => {
             >
               {file ? file.name : "Upload Image"}
             </Button>
-            <Button onClick={onAddImage} disabled={!url && !file} variant="contained">
+            <Button
+              onClick={onAddImage}
+              disabled={(!url && !file) || isUploading}
+              variant="contained"
+            >
               Add Image
             </Button>
           </Box>

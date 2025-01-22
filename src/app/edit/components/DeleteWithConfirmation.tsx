@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 
 import { CustomDialogTitle } from "@/components/DialogTitle";
+import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Tooltip } from "@/components/Tooltip";
 import { useState } from "react";
 
@@ -16,7 +17,7 @@ interface DeleteWithConfirmationProps {
   buttonLabel?: string;
   tooltip?: string;
   dialogTitle?: string;
-  dialogMessage?: string;
+  dialogMessage?: React.ReactNode;
   confirmLabel?: string;
   cancelLabel?: string;
   disabled?: boolean;
@@ -33,17 +34,20 @@ export const DeleteWithConfirmation = ({
   disabled = false,
 }: DeleteWithConfirmationProps) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleOpenConfirm = () => setConfirmOpen(true);
   const handleCloseConfirm = () => setConfirmOpen(false);
 
   const handleConfirmDelete = () => {
+    setIsDeleting(true);
     setConfirmOpen(false);
     onConfirmDelete();
   };
 
   return (
     <>
+      {isDeleting ? <LoadingOverlay message="Deleting..." /> : null}
       <Box>
         <Button
           variant="outlined"

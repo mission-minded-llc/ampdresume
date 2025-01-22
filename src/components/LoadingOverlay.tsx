@@ -1,7 +1,18 @@
-import React from "react";
-import { Backdrop, CircularProgress, Typography, Box } from "@mui/material";
+import { Backdrop, Box, CircularProgress, Typography } from "@mui/material";
 
-export const LoadingOverlay = ({ open = false, message = "Loading...", zIndex = 9999 }) => {
+import React from "react";
+
+interface LoadingOverlayProps {
+  open?: boolean;
+  message?: string;
+  zIndex?: number;
+}
+
+export const LoadingOverlay = ({
+  open = false,
+  message = "Loading...",
+  zIndex = 9999999999,
+}: LoadingOverlayProps) => {
   return (
     <Backdrop
       sx={{
