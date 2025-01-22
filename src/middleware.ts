@@ -22,8 +22,6 @@ export default withAuth({
 
 export const config = {
   matcher: [
-    // User account pages.
-    "/account/:path*",
     // Resume editing pages.
     "/edit/:path*",
     // Apply to all API routes.
