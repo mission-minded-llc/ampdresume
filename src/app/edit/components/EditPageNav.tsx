@@ -20,34 +20,39 @@ export const EditPageNav = () => {
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", sm: "row" },
         mb: 4,
         borderBottom: 1,
       }}
     >
       {sections.map((section) => (
-        <Typography
-          key={section.title}
-          sx={(theme) => {
-            const active = pathname === section.href;
+        <MuiLink href={section.href} key={section.title}>
+          <Typography
+            sx={(theme) => {
+              const active = pathname === section.href;
 
-            return {
-              cursor: "pointer",
-              color: theme.palette.text.primary,
-              "&:hover": {
-                backgroundColor: theme.palette.action.hover,
-              },
-              backgroundColor: active ? theme.palette.action.selected : "transparent",
-              px: 2,
-              py: 1.5,
-              border: 1,
-              borderBottom: 4,
-              borderColor: theme.palette.primary.main,
-              borderBottomColor: active ? theme.palette.secondary.main : theme.palette.primary.main,
-            };
-          }}
-        >
-          <MuiLink href={section.href}>{section.title}</MuiLink>
-        </Typography>
+              return {
+                cursor: "pointer",
+                color: theme.palette.text.primary,
+                "&:hover": {
+                  backgroundColor: theme.palette.action.hover,
+                },
+                backgroundColor: active ? theme.palette.action.selected : "transparent",
+                px: 2,
+                py: { xs: 1, sm: 1.5 },
+                border: 1,
+                borderBottom: { xs: 0, sm: 4 },
+                borderColor: theme.palette.primary.main,
+                borderBottomColor: active
+                  ? theme.palette.secondary.main
+                  : theme.palette.primary.main,
+                textAlign: "center",
+              };
+            }}
+          >
+            {section.title}
+          </Typography>
+        </MuiLink>
       ))}
     </Box>
   );
