@@ -1,4 +1,5 @@
 import { authOptions, sendVerificationRequest } from "@/lib/auth";
+
 import { getServerSession } from "next-auth/next";
 import nodemailer from "nodemailer";
 
@@ -62,7 +63,7 @@ describe("Authentication Configuration", () => {
       const sendMailMock = mockTransport().sendMail as jest.Mock;
 
       await sendVerificationRequest({
-        identifier: "test@example.com",
+        identifier: "test@openresume.org",
         url: "http://localhost:3000/verify?token=test-token",
         provider: {
           id: "email",
@@ -78,7 +79,7 @@ describe("Authentication Configuration", () => {
 
       expect(sendMailMock).toHaveBeenCalledWith(
         expect.objectContaining({
-          to: "test@example.com",
+          to: "test@openresume.org",
           subject: expect.stringContaining("Sign in"),
           html: expect.stringContaining("Click the link below to sign in"),
         }),
@@ -99,7 +100,7 @@ describe("Authentication Configuration", () => {
       const mockGetServerSession = getServerSession as jest.Mock;
       const mockSession = {
         user: {
-          email: "test@example.com",
+          email: "test@openresume.org",
           name: "Test User",
         },
         expires: new Date(Date.now() + 86400000).toISOString(),
@@ -108,7 +109,7 @@ describe("Authentication Configuration", () => {
 
       const session = await getServerSession(authOptions);
       expect(session).toEqual(mockSession);
-      expect(session?.user?.email).toBe("test@example.com");
+      expect(session?.user?.email).toBe("test@openresume.org");
     });
   });
 

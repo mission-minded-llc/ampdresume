@@ -3,7 +3,7 @@ import { EditPageLayout } from "../components/EditPageLayout";
 
 export function generateMetadata() {
   return {
-    title: "Edit Experience",
+    title: "Edit Work Experience | OpenResume",
   };
 }
 

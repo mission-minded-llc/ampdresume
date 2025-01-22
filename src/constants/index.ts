@@ -5,3 +5,12 @@
 // File upload constants.
 export const MAX_USER_IMAGE_SIZE = 1 * 1024 * 1024;
 export const ALLOWED_USER_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif"];
+
+// Temporary list of allowed users, for alpha testing.
+export const ALLOWED_USER_EMAILS = [
+  "test@openresume.org",
+  "missionmiked@gmail.com",
+  "md@missionmike.dev",
+  "leonardo@petruc.ci",
+  "mattgreaneyonline@gmail.com>",
+];

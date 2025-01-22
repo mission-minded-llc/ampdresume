@@ -6,6 +6,12 @@ import { SectionTitle } from "../components/SectionTitle";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
+export function generateMetadata() {
+  return {
+    title: "Edit Profile | OpenResume",
+  };
+}
+
 const Page = async () => {
   const session = await getSession();
   if (!session?.user?.id) {
