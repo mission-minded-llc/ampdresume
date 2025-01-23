@@ -11,5 +11,5 @@ export const ALLOWED_USER_EMAILS = [
   "test@openresume.org",
   "missionmiked@gmail.com",
   "leonardo@petruc.ci",
-  "mattgreaneyonline@gmail.com>",
+  "mattgreaneyonline@gmail.com",
 ];
