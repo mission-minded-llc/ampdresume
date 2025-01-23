@@ -10,7 +10,6 @@ export const ALLOWED_USER_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif"]
 export const ALLOWED_USER_EMAILS = [
   "test@openresume.org",
   "missionmiked@gmail.com",
-  "md@missionmike.dev",
   "leonardo@petruc.ci",
   "mattgreaneyonline@gmail.com>",
 ];
