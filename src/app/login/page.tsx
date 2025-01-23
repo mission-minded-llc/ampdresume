@@ -71,8 +71,16 @@ export default function SignIn() {
             onChange={(e) => setEmail(e.target.value)}
             fullWidth
             required
+            error={!!error}
+            helperText={error}
           />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            disabled={!email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)}
+          >
             Sign in with Email
           </Button>
           {error ? (
