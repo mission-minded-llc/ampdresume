@@ -5,7 +5,7 @@ import { MuiLink } from "@/components/MuiLink";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
-const title = "OpenResume | Free Interactive Resume Builder";
+const title = "OpenResume | Build Your Free Interactive Resume";
 const description =
   "OpenResume is a free interactive resume builder. Sign in and start building your resume today!";
 
@@ -20,7 +20,13 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    // TODO: Add an image.
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 902,
+        height: 556,
+      },
+    ],
   },
 };
 
