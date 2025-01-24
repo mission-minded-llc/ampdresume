@@ -288,7 +288,7 @@ const AccountForm = ({
             <TextField
               label="Image URL"
               name="siteImage"
-              value={siteImage}
+              value={formData.siteImage}
               onChange={handleChange}
               disabled
               fullWidth
