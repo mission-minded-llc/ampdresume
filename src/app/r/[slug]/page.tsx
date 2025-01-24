@@ -48,6 +48,15 @@ export async function generateMetadata({
   };
 }
 
+export const dynamic = "force-dynamic"; // Ensure dynamic rendering
+
+export function generateHeaders() {
+  return {
+    // 'Cache-Control': 'no-store, max-age=0' // Prevent caching for dynamic user pages
+    "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
+  };
+}
+
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const user = await getUser(slug);
