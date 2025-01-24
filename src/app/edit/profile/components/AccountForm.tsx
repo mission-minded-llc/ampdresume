@@ -1,18 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { MessageDialog } from "@/components/MessageDialog";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { InputSection, GridSection, SectionTitle, FieldTitle, FieldDescription } from "./sections";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
+import React, { useEffect, useState } from "react";
+
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import LinkIcon from "@mui/icons-material/Link";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import BadgeIcon from "@mui/icons-material/Badge";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import TocIcon from "@mui/icons-material/Toc";
 import LanguageIcon from "@mui/icons-material/Language";
+import LinkIcon from "@mui/icons-material/Link";
+import { LoadingOverlay } from "@/components/LoadingOverlay";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import { MessageDialog } from "@/components/MessageDialog";
+import TocIcon from "@mui/icons-material/Toc";
+import { UserAssetInput } from "../../components/UserAssetInput";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 const AccountForm = ({
   name,
@@ -22,6 +24,7 @@ const AccountForm = ({
   location,
   siteTitle,
   siteDescription,
+  siteImage,
 }: {
   name: string;
   slug: string;
@@ -30,6 +33,7 @@ const AccountForm = ({
   location: string;
   siteTitle: string;
   siteDescription: string;
+  siteImage: string;
 }) => {
   const [formData, setFormData] = useState({
     name,
@@ -39,11 +43,14 @@ const AccountForm = ({
     location,
     siteTitle,
     siteDescription,
+    siteImage,
   });
   const [errors, setErrors] = useState<{ name?: string; slug?: string; displayEmail?: string }>({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const isDesktop = useIsDesktop();
+
+  const [siteImageUrl, setSiteImageUrl] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -103,8 +110,6 @@ const AccountForm = ({
           setMessage(error);
           return;
         }
-
-        setMessage("Saved!");
       })
       .catch((err) => {
         setMessage(err.message);
@@ -114,6 +119,12 @@ const AccountForm = ({
       });
   };
 
+  // Since siteImage uses a separate state than formData, ensure
+  // that formData is updated when siteImage changes.
+  useEffect(() => {
+    setFormData((prev) => ({ ...prev, siteImage: siteImageUrl }));
+  }, [siteImageUrl]);
+
   return (
     <Box
       sx={{
@@ -121,7 +132,7 @@ const AccountForm = ({
         flexDirection: "column",
       }}
     >
-      <LoadingOverlay open={loading} message="Submitting form..." />
+      <LoadingOverlay open={loading} message="Saving..." />
       <MessageDialog
         open={message?.length > 0}
         message={message}
@@ -267,6 +278,23 @@ const AccountForm = ({
               fullWidth
               sx={{ marginTop: "auto" }}
             />
+          </InputSection>
+          <InputSection>
+            <FieldTitle>Site Image</FieldTitle>
+            <FieldDescription>
+              An image that represents your resume. This will be used when your resume is shared on
+              social media.
+            </FieldDescription>
+            <TextField
+              label="Image URL"
+              name="siteImage"
+              value={siteImage}
+              onChange={handleChange}
+              disabled
+              fullWidth
+              sx={{ marginTop: "auto" }}
+            />
+            <UserAssetInput url={siteImageUrl} setUrl={setSiteImageUrl} buttonType="button" />
           </InputSection>
         </GridSection>
         <Box

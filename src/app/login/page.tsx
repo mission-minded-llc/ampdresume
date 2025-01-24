@@ -26,7 +26,7 @@ export default function SignIn() {
 
     e.preventDefault();
 
-    await signIn("email", { email, callbackUrl: "/edit" }).catch((error) => {
+    await signIn("email", { email, callbackUrl: "/edit/profile" }).catch((error) => {
       Sentry.captureException(error);
       setError(error.message);
       setIsSubmitting(false);

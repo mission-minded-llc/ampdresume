@@ -1,5 +1,5 @@
-import { POST } from "@/app/api/account/route";
 import { NextRequest } from "next/server";
+import { POST } from "@/app/api/account/route";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 
@@ -85,6 +85,7 @@ describe("User Profile Update Endpoint", () => {
         location: null,
         siteTitle: null,
         siteDescription: null,
+        siteImage: null,
       },
     });
   });

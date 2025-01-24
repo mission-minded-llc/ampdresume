@@ -19,7 +19,6 @@ import { $isCodeNode, getDefaultCodeLanguage } from "@lexical/code";
 import { $isListNode, ListNode } from "@lexical/list";
 import { Box, Divider, IconButton, MenuItem, Select } from "@mui/material";
 import { HEADINGS, LOW_PRIORIRTY, RICH_TEXT_OPTIONS, RichTextAction } from "./constants";
-import { ImagePlugin, deleteImage } from "./ImagePlugin";
 import { useEffect, useState } from "react";
 
 import { $wrapNodes } from "@lexical/selection";
@@ -27,10 +26,12 @@ import { CodeBlockPlugin } from "./CodeBlockPlugin";
 import { ColorPlugin } from "./ColorPlugin";
 import { Icon } from "@iconify/react";
 import { ImageNode } from "../nodes/ImageNode";
+import { ImagePlugin } from "./ImagePlugin";
 import { ListPlugin } from "./ListPlugin";
 import { TablePlugin } from "./TablePlugin";
 import { YouTubeNode } from "../nodes/YouTubeNode";
 import YoutubePlugin from "./YouTubePlugin";
+import { deleteUserAsset } from "@/util/userAsset";
 import { useKeyBindings } from "@/hooks/useKeyBindings";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
@@ -144,7 +145,7 @@ export const ToolbarPlugin = () => {
             if (node && $isCustomNode(node)) {
               if ($isCustomImageNode(node)) {
                 const src = (node as ImageNode).getSrc();
-                deleteImage(src);
+                deleteUserAsset(src);
               }
 
               const parent = node.getParent();

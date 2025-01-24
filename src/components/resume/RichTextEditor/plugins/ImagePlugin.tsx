@@ -6,60 +6,14 @@ import {
   SerializedLexicalNode,
   UNDO_COMMAND,
 } from "lexical";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogContent,
-  IconButton,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { deleteUserAsset, undeleteUserAsset } from "@/util/userAsset";
+import { useEffect, useState } from "react";
 
-import { CustomDialogTitle } from "@/components/DialogTitle";
-import ImageIcon from "@mui/icons-material/Image";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { MAX_USER_IMAGE_SIZE } from "@/constants";
+import { UserAssetInput } from "@/app/edit/components/UserAssetInput";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
-/**
- * Helper function to manage images in the user's S3 folder.
- *
- * @param src the S3 URL of the image to manage
- * @param action the action to perform ('delete' or 'undelete')
- */
-export const manageImage = async (src: string, action: "delete" | "undelete") => {
-  try {
-    const response = await fetch(`/api/user-asset/${action}`, {
-      method: "POST",
-      body: JSON.stringify({ src }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      const { error } = await response.json();
-      throw new Error(`Error (${response.status}): ${error}`);
-    }
-  } catch (error) {
-    throw new Error(`${action} failed: ${(error as Error).message}`);
-  }
-};
-
-export const deleteImage = (src: string) => manageImage(src, "delete");
-const undeleteImage = (src: string) => manageImage(src, "undelete");
-
 export const ImagePlugin = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [error, setError] = useState("");
   const [url, setUrl] = useState("");
-  const [file, setFile] = useState<File>();
-  const [isUploading, setIsUploading] = useState(false);
-
-  const inputRef = useRef<HTMLInputElement>(null);
-
   const [editor] = useLexicalComposerContext();
 
   // Add an editor event listener for the UNDO_COMMAND and REDO_COMMAND commands,
@@ -114,8 +68,8 @@ export const ImagePlugin = () => {
           const imagesRemoved = findRemovedImages(beforeState, afterState);
           const imagesAdded = findAddedImages(beforeState, afterState);
 
-          if (imagesRemoved.length) imagesRemoved.forEach(deleteImage);
-          if (imagesAdded.length) imagesAdded.forEach(undeleteImage);
+          if (imagesRemoved.length) imagesRemoved.forEach(deleteUserAsset);
+          if (imagesAdded.length) imagesAdded.forEach(undeleteUserAsset);
         }, 0);
 
         return false; // Don't prevent default undo behavior
@@ -134,8 +88,8 @@ export const ImagePlugin = () => {
           const imagesRemoved = findRemovedImages(beforeState, afterState);
           const imagesAdded = findAddedImages(beforeState, afterState);
 
-          if (imagesRemoved.length) imagesRemoved.forEach(deleteImage);
-          if (imagesAdded.length) imagesAdded.forEach(undeleteImage);
+          if (imagesRemoved.length) imagesRemoved.forEach(deleteUserAsset);
+          if (imagesAdded.length) imagesAdded.forEach(undeleteUserAsset);
         }, 0);
 
         return false; // Don't prevent default redo behavior
@@ -156,120 +110,15 @@ export const ImagePlugin = () => {
   }, [editor]);
 
   useEffect(() => {
-    if (!file) return;
-    if (file.size > MAX_USER_IMAGE_SIZE) {
-      setError("File exceeds 1MB limit.");
-      return;
-    }
-  }, [file]);
-
-  const onAddImage = async () => {
-    if (isUploading) return;
-
-    setIsUploading(true);
-
-    let src = "";
-    if (url) src = url;
-
-    if (file) {
-      try {
-        const formData = new FormData();
-        formData.append("file", file);
-
-        const response = await fetch("/api/user-asset/upload", {
-          method: "POST",
-          body: formData,
-        });
-
-        if (!response.ok) {
-          const { error } = await response.json();
-          setError(`Error (${response.status}): ${error}`);
-          setIsUploading(false);
-          return;
-        }
-
-        const { url } = await response.json();
-        src = url;
-
-        setIsUploading(false);
-      } catch (error) {
-        setError(`Upload failed: ${(error as Error).message}`);
-        setIsUploading(false);
-      }
-    }
+    if (!url) return;
 
     editor.update(() => {
-      const node = $createImageNode({ src, altText: "Image" });
-
+      const node = $createImageNode({ src: url, altText: "Image" });
       $insertNodes([node]);
 
       setUrl("");
-      setFile(undefined);
-      setIsOpen(false);
     });
-  };
+  }, [url, setUrl, editor]);
 
-  return (
-    <>
-      <LoadingOverlay open={isUploading} message="Uploading Image..." />
-      <IconButton
-        aria-label="Add Image"
-        onClick={() => {
-          setIsOpen(true);
-        }}
-      >
-        <ImageIcon />
-      </IconButton>
-      <input
-        type="file"
-        accept="image/*"
-        style={{ display: "none" }}
-        ref={inputRef}
-        onChange={(e) => {
-          const file = e.target.files?.[0];
-
-          if (file) setFile(file);
-
-          e.target.files = null;
-          setError("");
-        }}
-      />
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Add Image</CustomDialogTitle>
-        <DialogContent
-          sx={{
-            width: "400px",
-            maxWidth: "90vw",
-          }}
-        >
-          <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 2, zIndex: 100 }}>
-            <TextField
-              label="URL"
-              placeholder="Add Image URL"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-            />
-            <Typography sx={{ color: "error.main" }} variant="body2">
-              {error}
-            </Typography>
-            <Button
-              onClick={() => {
-                inputRef.current?.click();
-              }}
-              variant="outlined"
-            >
-              {file ? file.name : "Upload Image"}
-            </Button>
-            <Button
-              onClick={onAddImage}
-              disabled={(!url && !file) || isUploading}
-              variant="contained"
-            >
-              Add Image
-            </Button>
-          </Box>
-        </DialogContent>
-      </Dialog>
-    </>
-  );
+  return <UserAssetInput url={url} setUrl={setUrl} />;
 };
