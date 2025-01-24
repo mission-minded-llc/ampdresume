@@ -128,9 +128,33 @@ export default async function HomePage() {
         <Paragraph>
           Your resume is made up of sections. Each section can be edited to include your own
           information. You can add or remove sections as you like. Watch this video for a quick
-          overview:
+          overview on how to set up your resume:
         </Paragraph>
-        <Paragraph>[video coming soon]</Paragraph>
+        <Paragraph>
+          <Box
+            sx={{
+              position: "relative",
+              width: "100%",
+              height: "0",
+              paddingBottom: "56.25%",
+              marginBottom: "2rem",
+            }}
+          >
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/1SdxiH73ovQ"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+            ></iframe>
+          </Box>
+        </Paragraph>
+        <Paragraph>
+          Check out a sample resume <MuiLink href="/r/jane-doe">here</MuiLink>.
+        </Paragraph>
         <Heading>Who is OpenResume For?</Heading>
         <Paragraph>
           Have you ever applied for a job online, and encountered the field that asks for a website
