@@ -393,14 +393,16 @@ Amadeus Altea Reservation,
 Amazing Charts,
 Amazon Data Pipeline,
 Amazon DynamoDB,
-Amazon Elastic Compute Cloud EC2,
-Amazon Elastic Container Service ECS,
-Amazon Kinesis,
-Amazon Redshift,
-Amazon Simple Storage Service S3,
-Amazon Web Services AWS CloudFormation,
+Amazon Elastic Compute Cloud EC2,logos:aws-ec2
+Amazon Elastic Container Service ECS,logos:aws-ecs
+Amazon Kinesis,logos:aws-kinesis
+Amazon Redshift,logos:aws-redshift
+Amazon Simple Storage Service S3,logos:aws-s3
+Amazon CloudFront,logos:aws-cloudfront
+Amazon DocumentDB,logos:aws-documentdb
+AWS,logos:aws
+Amazon Web Services AWS CloudFormation,logos:aws-cloudformation
 Amazon Web Services AWS SageMaker,
-Amazon Web Services AWS software,
 Amber Road,
 Ambient Design ArtRage,
 Amcom AUTOS2000,
@@ -1836,9 +1838,11 @@ Contact management systems,
 Content filter software,
 Content management systems CMS,
 ContextMiner,
+Continuous Deployment,oui:integration-general
+Continuous Delivery,oui:integration-general
 Continuous emission management software,
 Continuous emissions monitoring systems CEMS,
-Continuous integration software,
+Continuous Integration,oui:integration-general
 Contour Storyteller,
 Contract Central,
 Contract management software,
@@ -2036,6 +2040,7 @@ Cygnus IncomeMax,
 Cygnus Software IncomeMax,
 Cygwin,
 CYMA IV Accounting for Windows,
+Cypress,catppuccin:cypress
 CyrillicSoftware Cyrillic,
 Cytel Egret,
 Cytel LogXact,
@@ -3067,7 +3072,7 @@ Fixed income alternative trading systems ATS,
 Fixed-assets depreciation software,
 FlamMap,
 FlashCut CNC,
-Flask,
+Flask,mdi:flask
 Flat File Checker,
 Fleet Asset Management and Optimization Solutions FAMOS PEPSE,
 Fleet management software,
@@ -3202,6 +3207,7 @@ G&P Engineering Software EngVert,
 G&P Engineering Software PhysProps,
 G&P Engineering Software PipeDrop,
 G2X Agility:Insurance,
+GatsbyJS,mdi:gatsby
 GAC International OrthoPlex,
 GAEA Technologies Packet ESA,
 GAEA Technologies WinLog,
@@ -3362,8 +3368,9 @@ GIPSY-OASIS,
 Giraffe Production Systems Giraffe Schedule System,
 GIS/Solutions GIS/Key,
 Git,
-GitHub,
-GitLab,
+GitHub,mdi:github
+GitHub Actions,mdi:github
+GitLab,mdi:gitlab
 Glasscubes,
 Global distribution system GDS software,
 Global Education Technologies EXCENT,
@@ -3540,7 +3547,7 @@ Hazardous materials management HMS software,
 Hazardous waste operations and emergency response standard HAZWOPER training software,
 HCSS HeavyBid,
 HCSS HeavyJob,
-Headless WordPress,
+Headless WordPress,ic:baseline-wordpress
 Health and safety training software,
 Health Care Data HealthProbe,
 Health Care Software HCS INTERACTANT,
@@ -3701,7 +3708,6 @@ HyperOffice Collaboration Suite,
 Hyperscore,
 HyperSpace,
 HTML,logos:html-5
-Hypertext preprocessor PHP,
 Hypertherm ProNest,
 HyperTox,
 I-flex Solutions Reveleus Investment Performance Measurement,
@@ -5501,6 +5507,7 @@ Nextech EMR,
 NexTech EMR & PM,
 NextGen Healthcare Information Systems EMR,
 NextGen Healthcare NextGen Practice Management,
+Next.js,akar-icons:nextjs-fill
 ngrep,
 ngspice,
 Niceware International LabelClinic CT,
@@ -6049,6 +6056,7 @@ Photon Design FIMMWAVE,
 Photon Design OmniSim,
 Photon Design PICWave,
 PHP,devicon:php
+PHPUnit,devicon:php
 Phrap,
 Phred,
 PHYLIP,
@@ -6112,6 +6120,7 @@ Plate reader software,
 Plateau Learning Management System LMS,
 Platform as a service PaaS,
 Platte River Associates BasinMod,
+Playwright,devicon:playwright
 PLC Automation Intellution iFIX,
 Pleier Audit Management System,
 Plex Systems Plex Manufacturing Cloud,
@@ -6240,6 +6249,7 @@ Printed circuit board design software,
 Printer driver software,
 Printers Software Inc. Presidio,
 Printing management system software,
+Prisma,lineicons:prisma
 Private Practice,
 Pro Systems Client Write-Up System for Windows,
 Pro Writing Aid,
@@ -6411,6 +6421,7 @@ PySpark,
 Python,devicon:python
 Python Experimental Economics Toolkit PEET,
 Python Tools for Visual Studio (PTVS),
+pytest,file-icons:pytest
 PyTorch,
 Pyxis MedStation software,
 Q-Chem,
@@ -6597,10 +6608,10 @@ Recruitpoint.net,
 RecruitTrack,
 ReCrystallize Crystal Reports,
 Red Giant Trapcode Particular,
-Red Hat Ansible Engine,
-Red Hat Enterprise Linux,
-Red Hat OpenShift,
-Red Hat WildFly,
+Red Hat Ansible Engine,mdi:redhat
+Red Hat Enterprise Linux,mdi:redhat
+Red Hat OpenShift,mdi:redhat
+Red Hat WildFly,mdi:redhat
 Red Prarie Warehouse Management,
 Red Rock DeltaGraph,
 Red Sweater MarsEdit,
@@ -6898,10 +6909,11 @@ Sales management software,
 Sales processing software,
 Sales software,
 Sales Tax Tools Sales Tax Researcher,
-Salesforce Marketing Cloud,
-Salesforce software,
-Salesforce Visualforce,
-Salesforce.com Salesforce CRM,
+Salesforce Marketing Cloud,devicon:salesforce
+Salesforce software,devicon:salesforce
+Salesforce Visualforce,devicon:salesforce
+Salesforce.com Salesforce CRM,devicon:salesforce
+Salesforce Pardot,devicon:salesforce
 SalesInSync,
 Salford Systems CART,
 Salford Systems TreeNet,
@@ -7102,6 +7114,7 @@ Scribus,
 Scriptella,
 Scripting software,
 ScriptPerfection Power Writer,
+SCSS,vscode-icons:file-type-scss
 SDA Survey,
 SDS Software Solutions DayCare Information Systems PRO,
 SEA.AI Offshore ONE,
@@ -7478,6 +7491,7 @@ Spring Framework,
 Springshare LibGuides,
 Sprut Technology SprutCAM,
 SPX/OTC Genisys ConnecTech PC,
+SQLAlchemy,devicon-plain:sqlalchemy
 SQLite,
 Square,
 Squeegee,
@@ -8482,6 +8496,8 @@ VSCOnline VPMi,
 VSN International GenStat,
 VSNi ASReml,
 VSNi GenStat,
+VS Code,devicon:vscode
+VS Code Dev Containers,devicon:vscode
 vtiger CRM,
 VUE Benefits Manager,
 VUE Compensation Management,
@@ -8666,7 +8682,7 @@ WoodWing,
 Word processing software,
 Word recognition software,
 WordPerfect,
-WordPress,
+WordPress,ic:baseline-wordpress
 Words+ E Z Keys for Windows,
 WordWeb,
 Work inspection software,
