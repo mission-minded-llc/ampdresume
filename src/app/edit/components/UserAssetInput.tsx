@@ -18,9 +18,11 @@ import { uploadUserAsset } from "@/util/userAsset";
 export const UserAssetInput = ({
   url,
   setUrl,
+  buttonType = "icon",
 }: {
   url: string;
   setUrl: React.Dispatch<React.SetStateAction<string>>;
+  buttonType?: "icon" | "button";
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
@@ -39,6 +41,11 @@ export const UserAssetInput = ({
 
   const handleUpload = async () => {
     if (isUploading) return;
+
+    if (url) {
+      setIsOpen(false);
+      return;
+    }
 
     setIsUploading(true);
 
@@ -67,14 +74,26 @@ export const UserAssetInput = ({
   return (
     <>
       <LoadingOverlay open={isUploading} message="Uploading Image..." />
-      <IconButton
-        aria-label="Add Image"
-        onClick={() => {
-          setIsOpen(true);
-        }}
-      >
-        <ImageIcon />
-      </IconButton>
+      {buttonType === "icon" ? (
+        <IconButton
+          aria-label="Add Image"
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          <ImageIcon />
+        </IconButton>
+      ) : (
+        <Button
+          variant="outlined"
+          startIcon={<ImageIcon />}
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          Add Image
+        </Button>
+      )}
       <input
         type="file"
         accept="image/*"
@@ -113,7 +132,7 @@ export const UserAssetInput = ({
               }}
               variant="outlined"
             >
-              {file ? file.name : "Upload Image"}
+              {file ? file.name : "Select Image"}
             </Button>
             <Button
               onClick={handleUpload}

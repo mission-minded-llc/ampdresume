@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { name, slug, displayEmail, title, location, siteTitle, siteDescription } =
+    const { name, slug, displayEmail, title, location, siteTitle, siteDescription, siteImage } =
       await req.json();
     if (!name || !slug) {
       return NextResponse.json({ error: "Name and slug are required" }, { status: 400 });
@@ -53,6 +53,7 @@ export async function POST(req: NextRequest) {
         location: location || null,
         siteTitle: siteTitle || null,
         siteDescription: siteDescription || null,
+        siteImage: siteImage || null,
       },
     });
 
