@@ -48,8 +48,6 @@ export async function generateMetadata({
   };
 }
 
-export const dynamic = "force-dynamic"; // Ensure dynamic rendering
-
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const user = await getUser(slug);
