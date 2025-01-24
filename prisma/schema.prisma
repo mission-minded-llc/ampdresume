@@ -59,6 +59,7 @@ model User {
   skillForUser    SkillForUser[] // One-to-many relationship with SkillForUser, customized skills per user.
   company         Company[] // One-to-many relationship with Company, work experience. Can be multiple companies.
   education       Education[] // One-to-many relationship with Education, education history. Can be multiple schools.
+  Social          Social[] // One-to-many relationship with Social, social media links or usernames.
 }
 
 model VerificationToken {
@@ -67,6 +68,19 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+// Social media links for a user, e.g. "Twitter", "GitHub", "LinkedIn"
+model Social {
+  id     String @id @default(cuid())
+  name   String
+  // URL base dpends on the name, e.g. "https://{name}.com/{username}"
+  // So, if name is "twitter", and username is "jack", the full URL will be "https://twitter.com/jack"
+  // Or if it's LinkedIn, it will be "https://linkedin.com/in/{username}"
+  // However, if the name is "website" or "personal", then the URL should be the full URL.
+  url    String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
 }
 
 // Skill is a general skill that can be used by multiple users, e.g. "HTML", "CSS", "JavaScript"

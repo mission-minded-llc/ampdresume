@@ -5,10 +5,12 @@ import { seedProjects } from "./project";
 import { seedSkills } from "./skills";
 import { seedSkillsForProject } from "./skillsForProject";
 import { seedSkillsForUser } from "./skillsForUser";
+import { seedSocials } from "./social";
 import { seedUsers } from "./users";
 
 async function seed() {
   await seedUsers();
+  await seedSocials();
   await seedCompanies();
   await seedPositions();
   await seedProjects();

@@ -13,6 +13,13 @@ export const types = gql`
     siteImage: String
   }
 
+  type Social {
+    id: ID!
+    userId: ID!
+    name: String!
+    url: String!
+  }
+
   type SkillsForUser {
     skillsForUser: [SkillForUser!]
   }

@@ -7,6 +7,7 @@ export const queryDefs = gql`
 
     # User-specific queries.
     user(slug: String!): User
+    socials(userId: ID!): [Social!]!
     skillsForUser(userId: ID!): [SkillForUser!]!
     companies(userId: ID!, sort: [SortInput!]): [Company!]!
     positions(companyIds: [ID!], sort: [SortInput!]): [Position!]!
