@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
 
 export async function POST(req: NextRequest) {
   try {
@@ -57,8 +56,6 @@ export async function POST(req: NextRequest) {
         siteImage: siteImage || null,
       },
     });
-
-    revalidatePath(`/r/${data.slug}`);
 
     return NextResponse.json({ data }, { status: 200 });
   } catch (error) {
