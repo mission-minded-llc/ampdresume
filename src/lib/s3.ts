@@ -94,7 +94,8 @@ const updateDeleteFlag = async (key: string, deleteFlag: boolean) => {
       CopySource: encodeURIComponent(`${process.env.AWS_S3_BUCKET_NAME}/${sanitizedKey}`),
       MetadataDirective: "REPLACE",
       Metadata: {
-        "x-amz-meta-delete": deleteFlag.toString(),
+        // AWS will automatically prefix the meta key with "x-amz-meta-"
+        delete: deleteFlag.toString(),
       },
     }),
   );

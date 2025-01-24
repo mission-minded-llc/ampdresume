@@ -1,18 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { MessageDialog } from "@/components/MessageDialog";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { InputSection, GridSection, SectionTitle, FieldTitle, FieldDescription } from "./sections";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
+import React, { useState } from "react";
+
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import LinkIcon from "@mui/icons-material/Link";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import BadgeIcon from "@mui/icons-material/Badge";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import TocIcon from "@mui/icons-material/Toc";
 import LanguageIcon from "@mui/icons-material/Language";
+import LinkIcon from "@mui/icons-material/Link";
+import { LoadingOverlay } from "@/components/LoadingOverlay";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import { MessageDialog } from "@/components/MessageDialog";
+import TocIcon from "@mui/icons-material/Toc";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 const AccountForm = ({
   name,
@@ -267,6 +268,13 @@ const AccountForm = ({
               fullWidth
               sx={{ marginTop: "auto" }}
             />
+          </InputSection>
+          <InputSection>
+            <FieldTitle>OpenGraph Image</FieldTitle>
+            <FieldDescription>
+              An image that represents your resume. This will be used when your resume is shared on
+              social media.
+            </FieldDescription>
           </InputSection>
         </GridSection>
         <Box
