@@ -59,8 +59,7 @@ function removeFields<T>(obj: T): T {
 }
 
 export async function GET(request: Request, { params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const user = await getUser(slug);
+  const user = await getUser(params.slug);
 
   if (!user) return notFound();
 
