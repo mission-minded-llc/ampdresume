@@ -19,28 +19,29 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-
   const user = await getUser(slug);
 
-  const { name, title, siteTitle, siteDescription, siteImage } = user;
+  const siteTitleDefault =
+    user?.name && user?.title ? `Resume of ${user.name}, ${user.title}` : "OpenResume";
 
-  const siteTitleDefault = name && title ? `Resume of ${name}, ${title}` : "OpenResume";
+  const title = user?.siteTitle ? user.siteTitle : siteTitleDefault;
+  const description = user?.siteDescription ? user.siteDescription : "";
 
   return {
-    title: siteTitle ? siteTitle : siteTitleDefault,
-    description: siteDescription ? siteDescription : "",
+    title,
+    description,
     authors: [
       {
-        name: name ? name : "",
+        name: user?.name ? user.name : "OpenResume",
       },
     ],
     openGraph: {
-      title: siteTitle ? siteTitle : siteTitleDefault,
-      description: siteDescription ? siteDescription : "",
-      images: siteImage
+      title,
+      description,
+      images: user?.siteImage
         ? [
             {
-              url: siteImage,
+              url: user.siteImage,
             },
           ]
         : [],

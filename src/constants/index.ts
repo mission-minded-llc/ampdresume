@@ -12,4 +12,5 @@ export const ALLOWED_USER_EMAILS = [
   "missionmiked@gmail.com",
   "leonardo@petruc.ci",
   "mattgreaneyonline@gmail.com",
+  "blythenorton@outlook.com",
 ];
