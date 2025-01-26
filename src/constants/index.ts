@@ -14,4 +14,5 @@ export const ALLOWED_USER_EMAILS = [
   "mattgreaneyonline@gmail.com",
   "blythenorton@outlook.com",
   "acockrell37@gmail.com", // https://www.linkedin.com/in/acockrell37/
+  "shawaz@shawaz.org", // https://www.linkedin.com/in/shawazi/
 ];
