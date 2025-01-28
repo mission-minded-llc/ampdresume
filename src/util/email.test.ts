@@ -7,6 +7,7 @@ jest.mock("@/lib/prisma", () => ({
     user: {
       findMany: jest.fn(),
     },
+    $disconnect: jest.fn(),
   },
 }));
 

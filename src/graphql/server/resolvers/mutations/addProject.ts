@@ -12,6 +12,8 @@ export const addProject = async (
   });
 
   if (!existingPosition) {
+    prisma.$disconnect();
+
     throw new Error("Position not found");
   }
 
@@ -20,6 +22,8 @@ export const addProject = async (
   });
 
   if (existingCompany?.userId !== userId) {
+    prisma.$disconnect();
+
     throw new Error("Unauthorized: You do not own this position or company");
   }
 
@@ -31,11 +35,17 @@ export const addProject = async (
   });
   const sortIndex = projects.length > 0 ? projects[0].sortIndex + 1 : 0;
 
-  return await prisma.project.create({
-    data: {
-      positionId,
-      name,
-      sortIndex,
-    },
-  });
+  const project = await prisma.project
+    .create({
+      data: {
+        positionId,
+        name,
+        sortIndex,
+      },
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return project;
 };

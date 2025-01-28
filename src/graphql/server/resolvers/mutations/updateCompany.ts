@@ -26,6 +26,8 @@ export const updateCompany = async (
   });
 
   if (existingCompany?.userId !== userId) {
+    prisma.$disconnect();
+
     throw new Error("Unauthorized: You do not own this company");
   }
 
@@ -33,13 +35,19 @@ export const updateCompany = async (
   const startDateTimestamp = new Date(startDate);
   const endDateTimestamp = endDate ? new Date(endDate) : null;
 
-  return await prisma.company.update({
-    where: { id },
-    data: {
-      name,
-      location,
-      startDate: startDateTimestamp,
-      endDate: endDateTimestamp,
-    },
-  });
+  const company = await prisma.company
+    .update({
+      where: { id },
+      data: {
+        name,
+        location,
+        startDate: startDateTimestamp,
+        endDate: endDateTimestamp,
+      },
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return company;
 };

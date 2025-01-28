@@ -11,15 +11,27 @@ export const deleteSkillForUser = async (
     where: { id },
   });
 
-  if (!existingSkill) return null;
+  if (!existingSkill) {
+    prisma.$disconnect();
+
+    return null;
+  }
 
   if (existingSkill.userId !== userId) {
+    prisma.$disconnect();
+
     throw new Error("Unauthorized: You do not own this skill");
   }
 
-  return await prisma.skillForUser.delete({
-    where: {
-      id: existingSkill.id,
-    },
-  });
+  const skillForUser = await prisma.skillForUser
+    .delete({
+      where: {
+        id: existingSkill.id,
+      },
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return skillForUser;
 };

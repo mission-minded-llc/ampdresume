@@ -16,20 +16,28 @@ export const addSkillForProject = async (
   });
 
   if (existingSkillForProject) {
+    prisma.$disconnect();
+
     return {
       id: existingSkillForProject.id,
     };
   }
 
-  return await prisma.skillForProject.create({
-    data: {
-      projectId,
-      skillForUserId,
-    },
-    include: {
-      skillForUser: {
-        include: { skill: true },
+  const skillForProjects = await prisma.skillForProject
+    .create({
+      data: {
+        projectId,
+        skillForUserId,
       },
-    },
-  });
+      include: {
+        skillForUser: {
+          include: { skill: true },
+        },
+      },
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return skillForProjects;
 };

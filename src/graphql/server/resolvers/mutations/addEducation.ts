@@ -20,12 +20,18 @@ export const addEducation = async (
   // Convert the dateAwarded and endDate from "YYYY-MM" format to a Date.
   const dateAwardedTimestamp = new Date(dateAwarded);
 
-  return await prisma.education.create({
-    data: {
-      userId,
-      school,
-      degree,
-      dateAwarded: dateAwardedTimestamp,
-    },
-  });
+  const education = await prisma.education
+    .create({
+      data: {
+        userId,
+        school,
+        degree,
+        dateAwarded: dateAwardedTimestamp,
+      },
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return education;
 };

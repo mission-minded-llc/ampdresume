@@ -1,10 +1,10 @@
 import * as Sentry from "@sentry/react";
 
 import { Company, Project } from "@prisma/client";
-import { getApolloClient, resetApolloClient } from "@/lib/apolloClient";
 
 import type { Position as PositionServer } from "@prisma/client";
 import { SkillForProjectWithSkill } from "./getSkillsForProject";
+import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
 export interface ProjectWithSkills extends Project {
@@ -73,12 +73,7 @@ export const getPositions = async (companyIds: string[]): Promise<PositionWithPr
     })
     .catch((error) => {
       Sentry.captureException(error);
-      resetApolloClient();
-
       return { data: { positions: [] } };
-    })
-    .finally(() => {
-      resetApolloClient();
     });
 
   return data.positions;

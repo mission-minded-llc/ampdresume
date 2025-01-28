@@ -11,33 +11,57 @@ export const deleteSkillForProject = async (
     where: { id },
   });
 
-  if (!existingSkillForProject) return null;
+  if (!existingSkillForProject) {
+    prisma.$disconnect();
+
+    return null;
+  }
 
   const existingProject = await prisma.project.findFirst({
     where: { id: existingSkillForProject.projectId },
   });
 
-  if (!existingProject) return null;
+  if (!existingProject) {
+    prisma.$disconnect();
+
+    return null;
+  }
 
   const existingPosition = await prisma.position.findFirst({
     where: { id: existingProject.positionId },
   });
 
-  if (!existingPosition) return null;
+  if (!existingPosition) {
+    prisma.$disconnect();
+
+    return null;
+  }
 
   const existingCompany = await prisma.company.findFirst({
     where: { id: existingPosition.companyId },
   });
 
-  if (!existingCompany) return null;
+  if (!existingCompany) {
+    prisma.$disconnect();
+
+    return null;
+  }
 
   if (existingCompany.userId !== userId) {
+    prisma.$disconnect();
+
     throw new Error("Unauthorized: You do not own this skill");
   }
 
-  return await prisma.skillForProject.delete({
-    where: {
-      id: existingSkillForProject.id,
-    },
-  });
+  const skillForProject = await prisma.skillForProject
+    .delete({
+      where: {
+        id: existingSkillForProject.id,
+      },
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return skillForProject;
 };

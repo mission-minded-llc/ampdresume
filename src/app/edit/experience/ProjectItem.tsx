@@ -124,13 +124,14 @@ export const ProjectItem = ({ project }: { project: Project }) => {
     return <Box>Error loading project skills: {errorSkillsForProject.message}</Box>;
 
   // Filter out skills that are already added to the project
-  const availableSkills =
-    skillsForUser?.filter(
-      (skillForUser) =>
-        !skillsForProject?.find(
-          (skillForProject) => skillForProject.skillForUser.id === skillForUser.id,
-        ),
-    ) ?? [];
+  const availableSkills = skillsForUser?.length
+    ? skillsForUser?.filter(
+        (skillForUser) =>
+          !skillsForProject?.find(
+            (skillForProject) => skillForProject.skillForUser.id === skillForUser.id,
+          ),
+      )
+    : [];
 
   return (
     <>

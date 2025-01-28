@@ -40,6 +40,8 @@ export const findUserByNormalizedEmail = async (email: string) => {
     where: { email: { endsWith: `@${domain}` } }, // Fetch users with the same domain
   });
 
+  prisma.$disconnect();
+
   // Compare normalized emails
   const matchedUser = usersWithSameDomain.find((user) => {
     if (!user?.email) return false;

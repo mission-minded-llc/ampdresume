@@ -26,6 +26,8 @@ export const updatePosition = async (
   });
 
   if (existingCompany?.userId !== userId) {
+    prisma.$disconnect();
+
     throw new Error("Unauthorized: You do not own this position or company");
   }
 
@@ -33,12 +35,18 @@ export const updatePosition = async (
   const startDateTimestamp = new Date(startDate);
   const endDateTimestamp = endDate ? new Date(endDate) : null;
 
-  return await prisma.position.update({
-    where: { id },
-    data: {
-      title,
-      startDate: startDateTimestamp,
-      endDate: endDateTimestamp,
-    },
-  });
+  const position = await prisma.position
+    .update({
+      where: { id },
+      data: {
+        title,
+        startDate: startDateTimestamp,
+        endDate: endDateTimestamp,
+      },
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return position;
 };

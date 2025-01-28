@@ -10,8 +10,14 @@ export const getEducation = async (
       [field]: direction.toLowerCase(), // Prisma expects lowercase for ASC/DESC
     })) || [];
 
-  return await prisma.education.findMany({
-    where: { userId },
-    orderBy, // Apply sorting
-  });
+  const education = await prisma.education
+    .findMany({
+      where: { userId },
+      orderBy, // Apply sorting
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return education;
 };

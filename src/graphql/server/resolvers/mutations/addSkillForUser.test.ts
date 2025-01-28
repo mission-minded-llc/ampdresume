@@ -13,6 +13,7 @@ jest.mock("@/lib/prisma", () => ({
       findFirst: jest.fn(),
       create: jest.fn(),
     },
+    $disconnect: jest.fn(),
   },
 }));
 

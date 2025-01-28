@@ -20,6 +20,8 @@ export const updateProjectSortIndexes = async (
   });
 
   if (!existingPosition) {
+    prisma.$disconnect();
+
     throw new Error("Position not found");
   }
 
@@ -28,6 +30,8 @@ export const updateProjectSortIndexes = async (
   });
 
   if (existingCompany?.userId !== userId) {
+    prisma.$disconnect();
+
     throw new Error("Unauthorized: You do not own this position or company");
   }
 
@@ -38,6 +42,8 @@ export const updateProjectSortIndexes = async (
       data: { sortIndex },
     });
   }
+
+  prisma.$disconnect();
 
   return true;
 };
