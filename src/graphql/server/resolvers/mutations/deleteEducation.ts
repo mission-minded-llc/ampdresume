@@ -14,16 +14,26 @@ export const deleteEducation = async (
   });
 
   if (!existingEducation) {
+    prisma.$disconnect();
+
     throw new Error("Education not found");
   }
 
   if (existingEducation.userId !== userId) {
+    prisma.$disconnect();
+
     throw new Error("Unauthorized: you do not own this education");
   }
 
-  return await prisma.education.delete({
-    where: {
-      id,
-    },
-  });
+  const education = await prisma.education
+    .delete({
+      where: {
+        id,
+      },
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return education;
 };

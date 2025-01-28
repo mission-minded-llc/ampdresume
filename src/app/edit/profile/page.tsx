@@ -24,6 +24,8 @@ const Page = async () => {
     },
   });
 
+  prisma.$disconnect();
+
   return (
     <EditPageLayout>
       <Box

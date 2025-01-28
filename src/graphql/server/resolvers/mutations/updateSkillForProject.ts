@@ -20,6 +20,8 @@ export const updateSkillForProject = async (
   });
 
   if (!existingSkillForProject) {
+    prisma.$disconnect();
+
     throw new Error("Skill not found");
   }
 
@@ -28,6 +30,8 @@ export const updateSkillForProject = async (
   });
 
   if (!existingProject) {
+    prisma.$disconnect();
+
     throw new Error("Project not found");
   }
 
@@ -36,6 +40,8 @@ export const updateSkillForProject = async (
   });
 
   if (!existingPosition) {
+    prisma.$disconnect();
+
     throw new Error("Position not found");
   }
 
@@ -44,18 +50,26 @@ export const updateSkillForProject = async (
   });
 
   if (existingCompany?.userId !== userId) {
+    prisma.$disconnect();
+
     throw new Error("Unauthorized: You do not own this skill");
   }
 
-  return await prisma.skillForProject.update({
-    where: { id },
-    data: {
-      description,
-    },
-    include: {
-      skillForUser: {
-        include: { skill: true },
+  const skillForProject = await prisma.skillForProject
+    .update({
+      where: { id },
+      data: {
+        description,
       },
-    },
-  });
+      include: {
+        skillForUser: {
+          include: { skill: true },
+        },
+      },
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return skillForProject;
 };

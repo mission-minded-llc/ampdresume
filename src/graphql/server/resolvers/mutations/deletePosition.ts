@@ -8,23 +8,37 @@ export const deletePosition = async (_: string, { userId, id }: { userId: string
     where: { id },
   });
 
-  if (!existingPosition) return null;
+  if (!existingPosition) {
+    prisma.$disconnect();
+
+    return null;
+  }
 
   const existingCompany = await prisma.company.findFirst({
     where: { id: existingPosition.companyId },
   });
 
   if (!existingCompany) {
+    prisma.$disconnect();
+
     throw new Error("Company not found");
   }
 
   if (existingCompany.userId !== userId) {
+    prisma.$disconnect();
+
     throw new Error("Unauthorized: You do not own this position");
   }
 
-  return await prisma.position.delete({
-    where: {
-      id: existingPosition.id,
-    },
-  });
+  const position = await prisma.position
+    .delete({
+      where: {
+        id: existingPosition.id,
+      },
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return position;
 };

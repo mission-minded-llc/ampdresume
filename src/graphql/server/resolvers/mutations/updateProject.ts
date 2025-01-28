@@ -20,6 +20,8 @@ export const updateProject = async (
   });
 
   if (!existingProject) {
+    prisma.$disconnect();
+
     throw new Error("Project not found");
   }
 
@@ -28,6 +30,8 @@ export const updateProject = async (
   });
 
   if (!existingPosition) {
+    prisma.$disconnect();
+
     throw new Error("Position not found");
   }
 
@@ -36,17 +40,27 @@ export const updateProject = async (
   });
 
   if (!existingCompany) {
+    prisma.$disconnect();
+
     throw new Error("Company not found");
   }
 
   if (existingCompany?.userId !== userId) {
+    prisma.$disconnect();
+
     throw new Error("Unauthorized: You do not own this project");
   }
 
-  return await prisma.project.update({
-    where: { id },
-    data: {
-      description,
-    },
-  });
+  const project = await prisma.project
+    .update({
+      where: { id },
+      data: {
+        description,
+      },
+    })
+    .finally(() => {
+      prisma.$disconnect();
+    });
+
+  return project;
 };

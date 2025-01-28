@@ -64,6 +64,8 @@ export default async function HomePage() {
     : null;
 
   if (userId && !user) {
+    prisma.$disconnect();
+
     return {
       redirect: {
         destination: "/logout",
@@ -71,6 +73,8 @@ export default async function HomePage() {
       },
     };
   }
+
+  prisma.$disconnect();
 
   return (
     <Container maxWidth="lg">
