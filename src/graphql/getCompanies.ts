@@ -1,7 +1,8 @@
 import * as Sentry from "@sentry/react";
 
+import { getApolloClient, resetApolloClient } from "@/lib/apolloClient";
+
 import { Company as CompanyServer } from "@prisma/client";
-import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
 export type Company = Omit<CompanyServer, "startDate" | "endDate"> & {
@@ -36,12 +37,12 @@ export const getCompanies = async (userId: string | undefined): Promise<Company[
     })
     .catch((error) => {
       Sentry.captureException(error);
-      client.stop();
+      resetApolloClient();
 
       return { data: { companies: [] } };
     })
     .finally(() => {
-      client.stop();
+      resetApolloClient();
     });
 
   return data.companies;

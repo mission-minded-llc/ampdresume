@@ -1,8 +1,9 @@
 import * as Sentry from "@sentry/react";
 
+import { getApolloClient, resetApolloClient } from "@/lib/apolloClient";
+
 import { SkillForProject } from "@prisma/client";
 import { SkillForUserWithSkill } from "./getSkillsForUser";
-import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
 export interface SkillForProjectWithSkill extends SkillForProject {
@@ -43,12 +44,12 @@ export const getSkillsForProject = async (
     })
     .catch((error) => {
       Sentry.captureException(error);
-      client.stop();
+      resetApolloClient();
 
       return { data: { skillsForProject: [] } };
     })
     .finally(() => {
-      client.stop();
+      resetApolloClient();
     });
 
   return data.skillsForProject;
