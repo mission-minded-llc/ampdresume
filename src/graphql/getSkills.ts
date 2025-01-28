@@ -1,8 +1,7 @@
 import * as Sentry from "@sentry/react";
 
-import { getApolloClient, resetApolloClient } from "@/lib/apolloClient";
-
 import { Skill } from "@prisma/client";
+import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
 export type SkillType = "user" | "project";
@@ -29,12 +28,7 @@ export const getSkills = async (): Promise<{ skills: Skill[] }> => {
     })
     .catch((error) => {
       Sentry.captureException(error);
-      resetApolloClient();
-
       return { data: { skills: [] } };
-    })
-    .finally(() => {
-      resetApolloClient();
     });
 
   return skills;

@@ -12,11 +12,3 @@ export function getApolloClient() {
 
   return apolloClient;
 }
-
-export function resetApolloClient() {
-  if (apolloClient) {
-    apolloClient.stop();
-  }
-
-  apolloClient = null;
-}

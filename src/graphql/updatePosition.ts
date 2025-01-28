@@ -1,7 +1,6 @@
 import * as Sentry from "@sentry/react";
 
-import { getApolloClient, resetApolloClient } from "@/lib/apolloClient";
-
+import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
 export const updatePosition = async ({
@@ -55,8 +54,5 @@ export const updatePosition = async ({
     })
     .catch((error) => {
       Sentry.captureException(error);
-    })
-    .finally(() => {
-      resetApolloClient();
     });
 };
