@@ -14,6 +14,7 @@ jest.mock("@/lib/prisma", () => ({
       findUnique: jest.fn(),
       update: jest.fn(),
     },
+    $disconnect: jest.fn(),
   },
 }));
 
