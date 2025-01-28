@@ -1,7 +1,8 @@
 import * as Sentry from "@sentry/react";
 
+import { getApolloClient, resetApolloClient } from "@/lib/apolloClient";
+
 import { Education as EducationServer } from "@prisma/client";
-import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
 export type Education = Omit<EducationServer, "dateAwarded"> & {
@@ -36,12 +37,12 @@ export const getEducation = async (
     })
     .catch((error) => {
       Sentry.captureException(error);
-      client.stop();
+      resetApolloClient();
 
       return { data: { education: [] } };
     })
     .finally(() => {
-      client.stop();
+      resetApolloClient();
     });
 
   return data.education;

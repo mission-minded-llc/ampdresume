@@ -9,5 +9,14 @@ export function getApolloClient() {
       cache: new InMemoryCache(),
     });
   }
+
   return apolloClient;
+}
+
+export function resetApolloClient() {
+  if (apolloClient) {
+    apolloClient.stop();
+  }
+
+  apolloClient = null;
 }

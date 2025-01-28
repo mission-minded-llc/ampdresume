@@ -1,5 +1,6 @@
+import { getApolloClient, resetApolloClient } from "@/lib/apolloClient";
+
 import { User } from "@prisma/client";
-import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
 /**
@@ -33,7 +34,7 @@ export const getUser = async (slug: string): Promise<User> => {
       variables: { slug },
     })
     .finally(() => {
-      client.stop();
+      resetApolloClient();
     });
 
   return user;

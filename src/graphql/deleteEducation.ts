@@ -1,6 +1,7 @@
 import * as Sentry from "@sentry/react";
 
-import { getApolloClient } from "@/lib/apolloClient";
+import { getApolloClient, resetApolloClient } from "@/lib/apolloClient";
+
 import { gql } from "@apollo/client";
 
 export const deleteEducation = async ({
@@ -28,9 +29,8 @@ export const deleteEducation = async ({
     })
     .catch((error) => {
       Sentry.captureException(error);
-      client.stop();
     })
     .finally(() => {
-      client.stop();
+      resetApolloClient();
     });
 };
