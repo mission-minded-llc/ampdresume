@@ -36,8 +36,12 @@ export const getCompanies = async (userId: string | undefined): Promise<Company[
     })
     .catch((error) => {
       Sentry.captureException(error);
+      client.stop();
 
       return { data: { companies: [] } };
+    })
+    .finally(() => {
+      client.stop();
     });
 
   return data.companies;

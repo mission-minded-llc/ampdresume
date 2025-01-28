@@ -43,8 +43,12 @@ export const getSkillsForProject = async (
     })
     .catch((error) => {
       Sentry.captureException(error);
+      client.stop();
 
       return { data: { skillsForProject: [] } };
+    })
+    .finally(() => {
+      client.stop();
     });
 
   return data.skillsForProject;

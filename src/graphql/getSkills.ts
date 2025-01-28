@@ -28,8 +28,12 @@ export const getSkills = async (): Promise<{ skills: Skill[] }> => {
     })
     .catch((error) => {
       Sentry.captureException(error);
+      client.stop();
 
       return { data: { skills: [] } };
+    })
+    .finally(() => {
+      client.stop();
     });
 
   return skills;
