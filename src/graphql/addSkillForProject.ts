@@ -35,5 +35,9 @@ export const addSkillForProject = async ({
     })
     .catch((error) => {
       Sentry.captureException(error);
+      client.stop();
+    })
+    .finally(() => {
+      client.stop();
     });
 };

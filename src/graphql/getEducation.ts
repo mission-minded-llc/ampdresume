@@ -36,8 +36,12 @@ export const getEducation = async (
     })
     .catch((error) => {
       Sentry.captureException(error);
+      client.stop();
 
       return { data: { education: [] } };
+    })
+    .finally(() => {
+      client.stop();
     });
 
   return data.education;

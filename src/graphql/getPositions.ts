@@ -73,8 +73,12 @@ export const getPositions = async (companyIds: string[]): Promise<PositionWithPr
     })
     .catch((error) => {
       Sentry.captureException(error);
+      client.stop();
 
       return { data: { positions: [] } };
+    })
+    .finally(() => {
+      client.stop();
     });
 
   return data.positions;
