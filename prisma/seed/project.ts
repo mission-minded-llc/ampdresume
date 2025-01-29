@@ -49,11 +49,7 @@ export async function seedProjects() {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  seedProjects()
-    .catch((e) => {
-      throw e;
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
+  seedProjects().catch((e) => {
+    throw e;
+  });
 }

@@ -57,8 +57,6 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    prisma.$disconnect();
-
     return NextResponse.json({ data }, { status: 200 });
   } catch (error) {
     Sentry.captureException(error);

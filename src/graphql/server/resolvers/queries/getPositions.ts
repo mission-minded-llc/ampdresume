@@ -13,25 +13,21 @@ export const getPositions = async (
       [field]: direction.toLowerCase(), // Prisma expects lowercase for ASC/DESC
     })) || [];
 
-  const positions = await prisma.position
-    .findMany({
-      where: { companyId: { in: companyIds } },
-      orderBy, // Apply sorting
-      include: {
-        company: true, // Include company details
-        projects: {
-          orderBy: {
-            sortIndex: "asc",
-          },
-          include: {
-            skillsForProject: { include: { skillForUser: { include: { skill: true } } } },
-          },
+  const positions = await prisma.position.findMany({
+    where: { companyId: { in: companyIds } },
+    orderBy, // Apply sorting
+    include: {
+      company: true, // Include company details
+      projects: {
+        orderBy: {
+          sortIndex: "asc",
         },
-      }, // Include project and skill details
-    })
-    .finally(() => {
-      prisma.$disconnect();
-    });
+        include: {
+          skillsForProject: { include: { skillForUser: { include: { skill: true } } } },
+        },
+      },
+    }, // Include project and skill details
+  });
 
   return positions;
 };

@@ -23,27 +23,20 @@ export const updateEducation = async (
     where: { id },
   });
 
-  if (existingEducation?.userId !== userId) {
-    prisma.$disconnect();
-
+  if (existingEducation?.userId !== userId)
     throw new Error("Unauthorized: You do not own this education");
-  }
 
   // Convert the dateAwarded and endDate from "YYYY-MM" format to a Date.
   const dateAwardedTimestamp = new Date(dateAwarded);
 
-  const education = await prisma.education
-    .update({
-      where: { id },
-      data: {
-        school,
-        degree,
-        dateAwarded: dateAwardedTimestamp,
-      },
-    })
-    .finally(() => {
-      prisma.$disconnect();
-    });
+  const education = await prisma.education.update({
+    where: { id },
+    data: {
+      school,
+      degree,
+      dateAwarded: dateAwardedTimestamp,
+    },
+  });
 
   return education;
 };

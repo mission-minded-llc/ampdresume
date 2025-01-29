@@ -19,57 +19,38 @@ export const updateSkillForProject = async (
     where: { id },
   });
 
-  if (!existingSkillForProject) {
-    prisma.$disconnect();
-
-    throw new Error("Skill not found");
-  }
+  if (!existingSkillForProject) throw new Error("Skill not found");
 
   const existingProject = await prisma.project.findFirst({
     where: { id: existingSkillForProject.projectId },
   });
 
-  if (!existingProject) {
-    prisma.$disconnect();
-
-    throw new Error("Project not found");
-  }
+  if (!existingProject) throw new Error("Project not found");
 
   const existingPosition = await prisma.position.findFirst({
     where: { id: existingProject.positionId },
   });
 
-  if (!existingPosition) {
-    prisma.$disconnect();
-
-    throw new Error("Position not found");
-  }
+  if (!existingPosition) throw new Error("Position not found");
 
   const existingCompany = await prisma.company.findFirst({
     where: { id: existingPosition.companyId },
   });
 
-  if (existingCompany?.userId !== userId) {
-    prisma.$disconnect();
-
+  if (existingCompany?.userId !== userId)
     throw new Error("Unauthorized: You do not own this skill");
-  }
 
-  const skillForProject = await prisma.skillForProject
-    .update({
-      where: { id },
-      data: {
-        description,
+  const skillForProject = await prisma.skillForProject.update({
+    where: { id },
+    data: {
+      description,
+    },
+    include: {
+      skillForUser: {
+        include: { skill: true },
       },
-      include: {
-        skillForUser: {
-          include: { skill: true },
-        },
-      },
-    })
-    .finally(() => {
-      prisma.$disconnect();
-    });
+    },
+  });
 
   return skillForProject;
 };

@@ -50,11 +50,7 @@ export async function seedSocials() {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  seedSocials()
-    .catch((e) => {
-      throw e;
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
+  seedSocials().catch((e) => {
+    throw e;
+  });
 }

@@ -19,48 +19,29 @@ export const updateProject = async (
     where: { id },
   });
 
-  if (!existingProject) {
-    prisma.$disconnect();
-
-    throw new Error("Project not found");
-  }
+  if (!existingProject) throw new Error("Project not found");
 
   const existingPosition = await prisma.position.findFirst({
     where: { id: existingProject.positionId },
   });
 
-  if (!existingPosition) {
-    prisma.$disconnect();
-
-    throw new Error("Position not found");
-  }
+  if (!existingPosition) throw new Error("Position not found");
 
   const existingCompany = await prisma.company.findFirst({
     where: { id: existingPosition.companyId },
   });
 
-  if (!existingCompany) {
-    prisma.$disconnect();
+  if (!existingCompany) throw new Error("Company not found");
 
-    throw new Error("Company not found");
-  }
-
-  if (existingCompany?.userId !== userId) {
-    prisma.$disconnect();
-
+  if (existingCompany?.userId !== userId)
     throw new Error("Unauthorized: You do not own this project");
-  }
 
-  const project = await prisma.project
-    .update({
-      where: { id },
-      data: {
-        description,
-      },
-    })
-    .finally(() => {
-      prisma.$disconnect();
-    });
+  const project = await prisma.project.update({
+    where: { id },
+    data: {
+      description,
+    },
+  });
 
   return project;
 };

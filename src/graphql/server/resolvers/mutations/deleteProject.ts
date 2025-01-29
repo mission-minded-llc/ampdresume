@@ -8,47 +8,28 @@ export const deleteProject = async (_: string, { userId, id }: { userId: string;
     where: { id },
   });
 
-  if (!existingProject) {
-    prisma.$disconnect();
-
-    return null;
-  }
+  if (!existingProject) return null;
 
   const existingPosition = await prisma.position.findFirst({
     where: { id: existingProject.positionId },
   });
 
-  if (!existingPosition) {
-    prisma.$disconnect();
-
-    throw new Error("Position not found");
-  }
+  if (!existingPosition) throw new Error("Position not found");
 
   const existingCompany = await prisma.company.findFirst({
     where: { id: existingPosition.companyId },
   });
 
-  if (!existingCompany) {
-    prisma.$disconnect();
+  if (!existingCompany) throw new Error("Company not found");
 
-    throw new Error("Company not found");
-  }
-
-  if (existingCompany?.userId !== userId) {
-    prisma.$disconnect();
-
+  if (existingCompany?.userId !== userId)
     throw new Error("Unauthorized: You do not own this project");
-  }
 
-  const project = await prisma.project
-    .delete({
-      where: {
-        id: existingProject.id,
-      },
-    })
-    .finally(() => {
-      prisma.$disconnect();
-    });
+  const project = await prisma.project.delete({
+    where: {
+      id: existingProject.id,
+    },
+  });
 
   return project;
 };

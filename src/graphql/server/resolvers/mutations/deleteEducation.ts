@@ -13,27 +13,16 @@ export const deleteEducation = async (
     },
   });
 
-  if (!existingEducation) {
-    prisma.$disconnect();
+  if (!existingEducation) throw new Error("Education not found");
 
-    throw new Error("Education not found");
-  }
-
-  if (existingEducation.userId !== userId) {
-    prisma.$disconnect();
-
+  if (existingEducation.userId !== userId)
     throw new Error("Unauthorized: you do not own this education");
-  }
 
-  const education = await prisma.education
-    .delete({
-      where: {
-        id,
-      },
-    })
-    .finally(() => {
-      prisma.$disconnect();
-    });
+  const education = await prisma.education.delete({
+    where: {
+      id,
+    },
+  });
 
   return education;
 };

@@ -25,27 +25,20 @@ export const updateSkillForUser = async (
     where: { id },
   });
 
-  if (existingSkill?.userId !== userId) {
-    prisma.$disconnect();
-
+  if (existingSkill?.userId !== userId)
     throw new Error("Unauthorized: User does not own this skill");
-  }
 
-  const skillForUser = await prisma.skillForUser
-    .update({
-      where: { id },
-      data: {
-        userId,
-        description,
-        yearStarted,
-        totalYears,
-        icon,
-      },
-      include: { skill: true }, // Include skill details
-    })
-    .finally(() => {
-      prisma.$disconnect();
-    });
+  const skillForUser = await prisma.skillForUser.update({
+    where: { id },
+    data: {
+      userId,
+      description,
+      yearStarted,
+      totalYears,
+      icon,
+    },
+    include: { skill: true }, // Include skill details
+  });
 
   return skillForUser;
 };

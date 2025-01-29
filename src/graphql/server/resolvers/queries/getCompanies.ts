@@ -10,14 +10,10 @@ export const getCompanies = async (
       [field]: direction.toLowerCase(), // Prisma expects lowercase for ASC/DESC
     })) || [];
 
-  const companies = await prisma.company
-    .findMany({
-      where: { userId },
-      orderBy, // Apply sorting
-    })
-    .finally(() => {
-      prisma.$disconnect();
-    });
+  const companies = await prisma.company.findMany({
+    where: { userId },
+    orderBy, // Apply sorting
+  });
 
   return companies;
 };

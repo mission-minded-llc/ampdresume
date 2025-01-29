@@ -62,11 +62,7 @@ export async function seedPositions() {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  seedPositions()
-    .catch((e) => {
-      throw e;
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
+  seedPositions().catch((e) => {
+    throw e;
+  });
 }
