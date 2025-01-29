@@ -2,7 +2,10 @@ import { Box, Button, TextField } from "@mui/material";
 import { Position, PositionGeneric, PositionWithProjects } from "@/graphql/getPositions";
 import React, { useState } from "react";
 
+import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
+// @ts-expect-error
+import dayjs from "dayjs";
 
 export const PositionForm = ({
   position,
@@ -15,16 +18,12 @@ export const PositionForm = ({
   deleteHandler?: ((position: Position) => void) | null;
   onCancel?: (() => void) | null;
 }) => {
-  const formattedStartDate = position?.startDate
-    ? new Date(parseInt(position.startDate, 10)).toISOString().split("T")[0].substring(0, 7)
-    : "";
-  const formattedEndDate = position?.endDate
-    ? new Date(parseInt(position.endDate, 10)).toISOString().split("T")[0].substring(0, 7)
-    : "";
+  const formattedStartDate = position?.startDate ? new Date(parseInt(position.startDate, 10)) : "";
+  const formattedEndDate = position?.endDate ? new Date(parseInt(position.endDate, 10)) : "";
 
   const [positionTitle, setPositionTitle] = useState(position?.title || "");
-  const [startDate, setStartDate] = useState(formattedStartDate);
-  const [endDate, setEndDate] = useState(formattedEndDate);
+  const [startDate, setStartDate] = useState(dayjs(formattedStartDate));
+  const [endDate, setEndDate] = useState(dayjs(formattedEndDate));
 
   const [dateError, setDateError] = useState("");
 
@@ -32,15 +31,8 @@ export const PositionForm = ({
     const startDate = start ? new Date(start) : null;
     const endDate = end ? new Date(end) : null;
 
-    const currentDate = new Date();
-
     if (endDate && startDate && endDate < startDate) {
-      setDateError("End date cannot be before start date");
-      return false;
-    }
-
-    if ((startDate && startDate > currentDate) || (endDate && endDate > currentDate)) {
-      setDateError("Dates cannot be in the future");
+      setDateError("WARNING: End date is before start date!");
       return false;
     }
 
@@ -48,16 +40,14 @@ export const PositionForm = ({
     return true;
   };
 
-  const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const newStartDate = e.target.value;
+  const handleStartDateChange = (newStartDate: Object): void => {
     setStartDate(newStartDate);
-    validateDates(newStartDate, endDate);
+    validateDates(newStartDate.toString(), endDate);
   };
 
-  const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newEndDate = e.target.value;
+  const handleEndDateChange = (newEndDate: Object) => {
     setEndDate(newEndDate);
-    validateDates(startDate, newEndDate);
+    validateDates(startDate, newEndDate.toString());
   };
 
   const saveHandler = () => {
@@ -73,12 +63,20 @@ export const PositionForm = ({
 
   const isChanged =
     positionTitle !== position?.title ||
-    startDate !== formattedStartDate ||
-    endDate !== formattedEndDate;
+    dayjs(new Date(startDate.toString())).$d.toString() != formattedStartDate ||
+    dayjs(new Date(endDate.toString())).$d.toString() != formattedEndDate;
 
   return (
     <>
-      <Box sx={{ mb: 2, display: "grid", gap: 2, gridTemplateColumns: "50% 1fr 1fr" }}>
+      <Box
+        sx={{
+          mb: 2,
+          display: "grid",
+          gap: 2,
+          gridTemplateColumns: "50% 1fr 1fr",
+          alignItems: "center",
+        }}
+      >
         <TextField
           margin="dense"
           fullWidth
@@ -88,57 +86,27 @@ export const PositionForm = ({
           onChange={(e) => setPositionTitle(e.target.value)}
           required
         />
-        <TextField
-          autoFocus
-          margin="dense"
-          type="month"
-          fullWidth
-          variant="outlined"
-          value={startDate}
+        <DatePicker
           label="Date Started"
+          value={startDate}
           onChange={handleStartDateChange}
-          slotProps={{
-            htmlInput: {
-              max: new Date().toISOString().split("T")[0].substring(0, 7),
-            },
-            inputLabel: {
-              shrink: true,
-              sx: {
-                visibility: endDate ? "visible" : "hidden",
-                "&.Mui-focused": {
-                  visibility: "visible",
-                },
-              },
-            },
-          }}
-          error={!!dateError}
-          required
+          views={["month", "year"]}
+          sx={{ flex: 1 }}
+          disableFuture
+          maxDate={endDate || new Date()}
         />
-        <TextField
-          margin="dense"
-          type="month"
-          fullWidth
-          variant="outlined"
-          value={endDate}
+        <DatePicker
           label="Date Ended"
+          value={endDate}
           onChange={handleEndDateChange}
+          views={["month", "year"]}
+          sx={{ flex: 1 }}
+          disableFuture
           slotProps={{
-            htmlInput: {
-              min: startDate,
-              max: new Date().toISOString().split("T")[0].substring(0, 7),
-            },
-            inputLabel: {
-              shrink: true,
-              sx: {
-                visibility: endDate ? "visible" : "hidden",
-                "&.Mui-focused": {
-                  visibility: "visible",
-                },
-              },
+            textField: {
+              helperText: dateError,
             },
           }}
-          error={!!dateError}
-          helperText={dateError}
         />
       </Box>
       <Box

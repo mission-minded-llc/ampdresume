@@ -1,5 +1,9 @@
-export const formatDate = (dateStr: string | null | undefined) => {
+export const formatDate = (dateStr: object | string | null | undefined) => {
   if (!dateStr) return "";
+
+  if (typeof dateStr !== "string") {
+    dateStr = dateStr.toString();
+  }
 
   // If dateStr is in YYYY-MM format, convert it to a timestamp.
   if (dateStr.includes("-")) {
@@ -7,13 +11,7 @@ export const formatDate = (dateStr: string | null | undefined) => {
     dateStr = new Date(parseInt(year, 10), parseInt(month, 10) - 1).getTime().toString();
   }
 
-  const intTimestamp = parseInt(dateStr, 10);
-
-  // This is a workaround to fix the issue where the date is off by one month.
-  // The issue is caused by the date being in UTC.
-  const twoDays = 2 * 24 * 60 * 60 * 1000;
-
-  const date = new Date(intTimestamp + twoDays).toLocaleDateString("en-US", {
+  const date = new Date(parseInt(dateStr, 10)).toLocaleDateString("en-US", {
     month: "long",
     year: "numeric",
   });

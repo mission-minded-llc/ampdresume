@@ -121,9 +121,9 @@ export default async function HomePage() {
         <Divider />
         <Heading>What is OpenResume?</Heading>
         <Paragraph>
-          <strong>OpenResume</strong> is a free interactive resume builder that allows you to build
-          your resume and host it for <em>free.</em> You can also download your resume as a PDF to
-          use in job applications.
+          <strong>OpenResume</strong> is an interactive resume builder that allows you to build your
+          resume and host it <em>for free.</em> You can also download your resume as a PDF to use in
+          job applications.
         </Paragraph>
         <Paragraph>
           Your resume is made up of sections. Each section can be edited to include your own

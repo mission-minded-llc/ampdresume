@@ -3,10 +3,12 @@
 import { Box, Container, ThemeProvider } from "@mui/material";
 import React, { useContext } from "react";
 
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 import { SessionProvider } from "next-auth/react";
 import { TanstackQueryProvider } from "./TanstackContext";
 import { ThemeAppearanceContext } from "./ThemeContext";
@@ -49,20 +51,22 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     <AppRouterCacheProvider>
       <SessionProvider>
         <TanstackQueryProvider>
-          <ThemeProvider theme={theme}>
-            <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-              <Header />
-              <Container
-                sx={(theme) => ({
-                  backgroundColor: theme.palette.background.default,
-                })}
-              >
-                <CssBaseline />
-                {children}
-              </Container>
-              <Footer />
-            </Box>
-          </ThemeProvider>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <ThemeProvider theme={theme}>
+              <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+                <Header />
+                <Container
+                  sx={(theme) => ({
+                    backgroundColor: theme.palette.background.default,
+                  })}
+                >
+                  <CssBaseline />
+                  {children}
+                </Container>
+                <Footer />
+              </Box>
+            </ThemeProvider>
+          </LocalizationProvider>
         </TanstackQueryProvider>
       </SessionProvider>
     </AppRouterCacheProvider>
