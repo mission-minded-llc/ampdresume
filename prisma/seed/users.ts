@@ -44,11 +44,7 @@ export async function seedUsers() {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  seedUsers()
-    .catch((e) => {
-      throw e;
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
+  seedUsers().catch((e) => {
+    throw e;
+  });
 }

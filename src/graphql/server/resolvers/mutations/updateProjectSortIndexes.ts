@@ -19,21 +19,14 @@ export const updateProjectSortIndexes = async (
     where: { id: positionId },
   });
 
-  if (!existingPosition) {
-    prisma.$disconnect();
-
-    throw new Error("Position not found");
-  }
+  if (!existingPosition) throw new Error("Position not found");
 
   const existingCompany = await prisma.company.findFirst({
     where: { id: existingPosition.companyId },
   });
 
-  if (existingCompany?.userId !== userId) {
-    prisma.$disconnect();
-
+  if (existingCompany?.userId !== userId)
     throw new Error("Unauthorized: You do not own this position or company");
-  }
 
   // Update the sort indexes for each project.
   for (const { id, sortIndex } of projectSortIndexes) {
@@ -42,8 +35,6 @@ export const updateProjectSortIndexes = async (
       data: { sortIndex },
     });
   }
-
-  prisma.$disconnect();
 
   return true;
 };

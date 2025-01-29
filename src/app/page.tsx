@@ -63,8 +63,6 @@ export default async function HomePage() {
       })
     : null;
 
-  prisma.$disconnect();
-
   if (userId && !user) {
     return {
       redirect: {

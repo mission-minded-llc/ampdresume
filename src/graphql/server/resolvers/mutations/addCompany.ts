@@ -17,19 +17,15 @@ export const addCompany = async (
   const startDateTimestamp = new Date(startDate);
   const endDateTimestamp = endDate ? new Date(endDate) : null;
 
-  const company = await prisma.company
-    .create({
-      data: {
-        userId,
-        name,
-        location,
-        startDate: startDateTimestamp,
-        endDate: endDateTimestamp,
-      },
-    })
-    .finally(() => {
-      prisma.$disconnect();
-    });
+  const company = await prisma.company.create({
+    data: {
+      userId,
+      name,
+      location,
+      startDate: startDateTimestamp,
+      endDate: endDateTimestamp,
+    },
+  });
 
   return company;
 };

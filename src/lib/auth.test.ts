@@ -11,7 +11,6 @@ jest.mock("@prisma/client", () => ({
       findUnique: jest.fn(),
       findMany: jest.fn().mockResolvedValue([]), // Returns an empty array
     },
-    $disconnect: jest.fn(),
   })),
 }));
 

@@ -8,30 +8,19 @@ export const deleteCompany = async (_: string, { userId, id }: { userId: string;
     where: { id },
   });
 
-  if (!existingCompany) {
-    prisma.$disconnect();
+  if (!existingCompany) return null;
 
-    return null;
-  }
-
-  if (existingCompany.userId !== userId) {
-    prisma.$disconnect();
-
+  if (existingCompany.userId !== userId)
     throw new Error("Unauthorized: You do not own this company");
-  }
 
   // TODO: Additional checks to ensure all related positions and projects are removed
   // first. Do not support delete cascade on companies!
 
-  const company = await prisma.company
-    .delete({
-      where: {
-        id: existingCompany.id,
-      },
-    })
-    .finally(() => {
-      prisma.$disconnect();
-    });
+  const company = await prisma.company.delete({
+    where: {
+      id: existingCompany.id,
+    },
+  });
 
   return company;
 };

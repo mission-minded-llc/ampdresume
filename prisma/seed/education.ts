@@ -35,11 +35,7 @@ export async function seedEducation() {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  seedEducation()
-    .catch((e) => {
-      throw e;
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
+  seedEducation().catch((e) => {
+    throw e;
+  });
 }

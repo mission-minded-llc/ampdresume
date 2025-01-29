@@ -25,29 +25,22 @@ export const updateCompany = async (
     where: { id },
   });
 
-  if (existingCompany?.userId !== userId) {
-    prisma.$disconnect();
-
+  if (existingCompany?.userId !== userId)
     throw new Error("Unauthorized: You do not own this company");
-  }
 
   // Convert the startDate and endDate from "YYYY-MM" format to a Date.
   const startDateTimestamp = new Date(startDate);
   const endDateTimestamp = endDate ? new Date(endDate) : null;
 
-  const company = await prisma.company
-    .update({
-      where: { id },
-      data: {
-        name,
-        location,
-        startDate: startDateTimestamp,
-        endDate: endDateTimestamp,
-      },
-    })
-    .finally(() => {
-      prisma.$disconnect();
-    });
+  const company = await prisma.company.update({
+    where: { id },
+    data: {
+      name,
+      location,
+      startDate: startDateTimestamp,
+      endDate: endDateTimestamp,
+    },
+  });
 
   return company;
 };

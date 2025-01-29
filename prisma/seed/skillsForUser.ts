@@ -57,11 +57,7 @@ export async function seedSkillsForUser() {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  seedSkillsForUser()
-    .catch((e) => {
-      throw e;
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
+  seedSkillsForUser().catch((e) => {
+    throw e;
+  });
 }
