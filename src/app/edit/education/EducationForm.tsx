@@ -1,7 +1,10 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Education, EducationGeneric } from "@/graphql/getEducation";
 import React, { useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
+import { formatLongDate, timestampToDate } from "@/lib/format";
 
+import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 
 export const EducationForm = ({
@@ -15,26 +18,24 @@ export const EducationForm = ({
   deleteHandler?: ((education: Education) => void) | null;
   onCancel?: (() => void) | null;
 }) => {
-  const formattedDateAwarded = education?.dateAwarded
-    ? new Date(parseInt(education.dateAwarded, 10)).toISOString().split("T")[0].substring(0, 7)
-    : "";
-
   const [school, setSchool] = useState(education?.school || "");
   const [degree, setDegree] = useState(education?.degree || "");
-  const [dateAwarded, setDateAwarded] = useState(formattedDateAwarded);
+  const [dateAwarded, setDateAwarded] = useState<Dayjs | null>(
+    dayjs(timestampToDate(education?.dateAwarded)),
+  );
 
   const saveHandler = () => {
     handler({
       school,
       degree,
-      dateAwarded,
+      dateAwarded: dateAwarded?.toString() || "",
     });
   };
 
   const isChanged =
     school !== education?.school ||
     degree !== education?.degree ||
-    dateAwarded !== formattedDateAwarded;
+    formatLongDate(dateAwarded) !== formatLongDate(education?.dateAwarded);
 
   return (
     <>
@@ -59,29 +60,11 @@ export const EducationForm = ({
       </Box>
       <Box sx={{ mb: 2, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
         <div></div>
-        <TextField
-          autoFocus
-          margin="dense"
-          type="month"
-          fullWidth
-          variant="outlined"
-          value={dateAwarded}
+        <DatePicker
           label="Date Awarded"
-          onChange={(e) => setDateAwarded(e.target.value)}
-          slotProps={{
-            htmlInput: {
-              max: new Date().toISOString().split("T")[0].substring(0, 7),
-            },
-            inputLabel: {
-              shrink: true,
-              sx: {
-                "&.Mui-focused": {
-                  visibility: "visible",
-                },
-              },
-            },
-          }}
-          required
+          value={dateAwarded}
+          onChange={(newValue) => setDateAwarded(newValue)}
+          views={["month", "year"]}
         />
       </Box>
       <Box

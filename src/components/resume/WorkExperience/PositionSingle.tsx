@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import { PositionWithProjects } from "@/graphql/getPositions";
 import { Projects } from "./Projects";
 import Typography from "@mui/material/Typography";
-import { formatDate } from "@/lib/format";
+import { formatLongDate } from "@/lib/format";
 
 export const PositionSingle = ({
   position,
@@ -32,8 +32,8 @@ export const PositionSingle = ({
     };
   }, []);
 
-  const startDate = formatDate(position?.startDate?.toString());
-  const endDate = formatDate(position?.endDate?.toString());
+  const startDate = formatLongDate(position?.startDate?.toString());
+  const endDate = formatLongDate(position?.endDate?.toString());
 
   return (
     <Box

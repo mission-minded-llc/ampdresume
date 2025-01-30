@@ -18,7 +18,7 @@ export const addEducation = async (
   await verifySessionOwnership(userId);
 
   // Convert the dateAwarded and endDate from "YYYY-MM" format to a Date.
-  const dateAwardedTimestamp = new Date(dateAwarded);
+  const dateAwardedTimestamp = new Date(dateAwarded + "-02"); // "-02" is added to the date to avoid timezone issues.
 
   const education = await prisma.education.create({
     data: {

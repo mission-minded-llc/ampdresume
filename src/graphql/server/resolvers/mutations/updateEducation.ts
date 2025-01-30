@@ -27,7 +27,7 @@ export const updateEducation = async (
     throw new Error("Unauthorized: You do not own this education");
 
   // Convert the dateAwarded and endDate from "YYYY-MM" format to a Date.
-  const dateAwardedTimestamp = new Date(dateAwarded);
+  const dateAwardedTimestamp = new Date(dateAwarded + "-02"); // "-02" is added to the date to avoid timezone issues.
 
   const education = await prisma.education.update({
     where: { id },

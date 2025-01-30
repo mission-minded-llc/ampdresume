@@ -6,7 +6,7 @@ import { EducationForm } from "./EducationForm";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React from "react";
 import { deleteEducation } from "@/graphql/deleteEducation";
-import { formatDate } from "@/lib/format";
+import { formatLongDate } from "@/lib/format";
 import { updateEducation } from "@/graphql/updateEducation";
 import { useSession } from "next-auth/react";
 
@@ -94,7 +94,7 @@ export const EducationItem = ({
         <Typography component="p" variant="body1">
           <strong>{education.school}&nbsp;-&nbsp;</strong>
           {education?.degree ? ` (${education.degree}) ` : " "}
-          {formatDate(education.dateAwarded)}
+          {formatLongDate(education.dateAwarded)}
         </Typography>
       </AccordionSummary>
 
