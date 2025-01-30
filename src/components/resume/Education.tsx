@@ -5,7 +5,7 @@ import React, { useContext } from "react";
 
 import type { Education as EducationType } from "@/graphql/getEducation";
 import { ResumeContext } from "./ResumeContext";
-import { formatDate } from "@/lib/format";
+import { formatLongDate } from "@/lib/format";
 
 export const Education = () => {
   const { education } = useContext(ResumeContext);
@@ -45,7 +45,7 @@ export const Education = () => {
               {edu.degree}
               <Typography component="span" variant="h6" sx={{ fontWeight: "normal" }}>
                 {" "}
-                &mdash; {formatDate(edu?.dateAwarded?.toString())}
+                &mdash; {formatLongDate(edu?.dateAwarded)}
               </Typography>
             </Typography>
           ))}

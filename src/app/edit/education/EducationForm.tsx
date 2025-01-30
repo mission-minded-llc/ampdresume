@@ -1,11 +1,11 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Education, EducationGeneric } from "@/graphql/getEducation";
 import React, { useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
+import { formatLongDate, timestampToDate } from "@/lib/format";
 
 import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
-// @ts-expect-error
-import dayjs from "dayjs";
 
 export const EducationForm = ({
   education,
@@ -18,26 +18,24 @@ export const EducationForm = ({
   deleteHandler?: ((education: Education) => void) | null;
   onCancel?: (() => void) | null;
 }) => {
-  const formattedDateAwarded = education?.dateAwarded
-    ? new Date(parseInt(education.dateAwarded, 10))
-    : "";
-
   const [school, setSchool] = useState(education?.school || "");
   const [degree, setDegree] = useState(education?.degree || "");
-  const [dateAwarded, setDateAwarded] = useState(dayjs(formattedDateAwarded));
+  const [dateAwarded, setDateAwarded] = useState<Dayjs | null>(
+    dayjs(timestampToDate(education?.dateAwarded)),
+  );
 
   const saveHandler = () => {
     handler({
       school,
       degree,
-      dateAwarded,
+      dateAwarded: dateAwarded?.toString() || "",
     });
   };
 
   const isChanged =
     school !== education?.school ||
     degree !== education?.degree ||
-    dayjs(new Date(dateAwarded.toString())).$d.toString() != formattedDateAwarded;
+    formatLongDate(dateAwarded) !== formatLongDate(education?.dateAwarded);
 
   return (
     <>

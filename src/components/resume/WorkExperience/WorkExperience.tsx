@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material";
 
 import { PositionsList } from "./PositionsList";
 import { ResumeContext } from "../ResumeContext";
-import { formatDate } from "@/lib/format";
+import { formatLongDate } from "@/lib/format";
 import { useContext } from "react";
 
 export const WorkExperience = () => {
@@ -17,8 +17,8 @@ export const WorkExperience = () => {
           (position) => position.company.id === company.id,
         );
 
-        const startDate = formatDate(company?.startDate?.toString());
-        const endDate = formatDate(company?.endDate?.toString());
+        const startDate = formatLongDate(company?.startDate?.toString());
+        const endDate = formatLongDate(company?.endDate?.toString());
 
         return (
           <Box

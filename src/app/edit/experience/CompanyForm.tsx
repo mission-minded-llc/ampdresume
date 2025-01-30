@@ -1,12 +1,12 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Company, CompanyGeneric } from "@/graphql/getCompanies";
 import React, { useContext, useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
+import { formatLongDate, formatShortDate, timestampToDate } from "@/lib/format";
 
 import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { ResumeContext } from "@/components/resume/ResumeContext";
-// @ts-expect-error
-import dayjs from "dayjs";
 
 export const CompanyForm = ({
   company,
@@ -21,57 +21,31 @@ export const CompanyForm = ({
 }) => {
   const { positions } = useContext(ResumeContext);
 
-  const positionsInCompany = positions.filter((position) => position.company.id === company?.id);
-
-  const formattedStartDate = company?.startDate ? new Date(parseInt(company.startDate, 10)) : "";
-  const formattedEndDate = company?.endDate ? new Date(parseInt(company.endDate, 10)) : "";
-
   const [companyName, setCompanyName] = useState(company?.name || "");
   const [location, setLocation] = useState(company?.location || "");
-  const [startDate, setStartDate] = useState(dayjs(formattedStartDate));
-  const [endDate, setEndDate] = useState(dayjs(formattedEndDate));
-  const [dateError, setDateError] = useState("");
+  const [startDate, setStartDate] = useState<Dayjs | null>(
+    dayjs(timestampToDate(company?.startDate)),
+  );
+  const [endDate, setEndDate] = useState<Dayjs | null>(dayjs(timestampToDate(company?.endDate)));
 
-  const validateDates = (start: string | null, end: string | null) => {
-    const startDate = start ? new Date(start) : null;
-    const endDate = end ? new Date(end) : null;
-
-    if (endDate && startDate && endDate < startDate) {
-      setDateError("WARNING: End date is before start date!");
-      return false;
-    }
-
-    setDateError("");
-    return true;
-  };
-
-  const handleStartDateChange = (newStartDate: Object): void => {
-    setStartDate(newStartDate);
-    validateDates(newStartDate.toString(), endDate);
-  };
-
-  const handleEndDateChange = (newEndDate: Object) => {
-    setEndDate(newEndDate);
-    validateDates(startDate, newEndDate.toString());
-  };
+  const positionsInCompany = positions.filter((position) => position.company.id === company?.id);
 
   const saveHandler = () => {
-    if (!validateDates(startDate, endDate)) return;
     if (!startDate) return;
 
     handler({
       name: companyName,
       location,
-      startDate,
-      endDate,
+      startDate: formatShortDate(startDate),
+      endDate: formatShortDate(endDate),
     });
   };
 
   const isChanged =
     companyName !== company?.name ||
     location !== company?.location ||
-    dayjs(new Date(startDate.toString())).$d.toString() != formattedStartDate ||
-    dayjs(new Date(endDate.toString())).$d.toString() != formattedEndDate;
+    formatLongDate(startDate) !== formatLongDate(company?.startDate) ||
+    formatLongDate(endDate) !== formatLongDate(company?.endDate);
 
   return (
     <>
@@ -98,24 +72,20 @@ export const CompanyForm = ({
         <DatePicker
           label="Date Started"
           value={startDate}
-          onChange={handleStartDateChange}
+          onChange={(value) => setStartDate(value)}
           views={["month", "year"]}
           sx={{ flex: 1 }}
           disableFuture
-          maxDate={endDate || new Date()}
+          maxDate={endDate || dayjs(new Date())}
         />
         <DatePicker
           label="Date Ended"
           value={endDate}
-          onChange={handleEndDateChange}
+          onChange={(value) => setEndDate(value)}
           views={["month", "year"]}
           sx={{ flex: 1 }}
           disableFuture
-          slotProps={{
-            textField: {
-              helperText: dateError,
-            },
-          }}
+          maxDate={dayjs(new Date())}
         />
       </Box>
       <Box

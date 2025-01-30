@@ -7,7 +7,7 @@ import { PositionForm } from "./PositionForm";
 import { ProjectsList } from "./ProjectsList";
 import React from "react";
 import { deletePosition } from "@/graphql/deletePosition";
-import { formatDate } from "@/lib/format";
+import { formatLongDate } from "@/lib/format";
 import { updatePosition } from "@/graphql/updatePosition";
 import { useSession } from "next-auth/react";
 
@@ -99,8 +99,8 @@ export const PositionItem = ({
       >
         <p>
           <strong>{position.title}&nbsp;-&nbsp;</strong>
-          {formatDate(position.startDate)} to{" "}
-          {position.endDate ? formatDate(position?.endDate?.toString()) : "present"}
+          {formatLongDate(position.startDate)} to{" "}
+          {position.endDate ? formatLongDate(position?.endDate) : "present"}
         </p>
       </AccordionSummary>
       <AccordionDetails>

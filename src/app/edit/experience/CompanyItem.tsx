@@ -7,7 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { PositionsList } from "./PositionsList";
 import React from "react";
 import { deleteCompany } from "@/graphql/deleteCompany";
-import { formatDate } from "@/lib/format";
+import { formatLongDate } from "@/lib/format";
 import { updateCompany } from "@/graphql/updateCompany";
 import { useSession } from "next-auth/react";
 
@@ -104,8 +104,8 @@ export const CompanyItem = ({
         <Typography component="p" variant="body1">
           <strong>{company.name}&nbsp;-&nbsp;</strong>
           {company?.location ? ` (${company.location}) ` : " "}
-          {formatDate(company.startDate)} to{" "}
-          {company.endDate ? formatDate(company?.endDate?.toString()) : "present"}
+          {formatLongDate(company.startDate)} to{" "}
+          {company.endDate ? formatLongDate(company?.endDate) : "present"}
         </Typography>
       </AccordionSummary>
 
@@ -115,7 +115,6 @@ export const CompanyItem = ({
           handler={handleEditCompany}
           deleteHandler={handleDeleteCompany}
         />
-
         <PositionsList company={company} />
       </AccordionDetails>
     </Accordion>
