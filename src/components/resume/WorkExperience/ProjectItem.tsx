@@ -9,21 +9,23 @@ import { SkillsContextProvider } from "../Skills/Skills";
  */
 export const ProjectItem = ({ project }: { project: ProjectWithSkills }) => (
   <Box
-    sx={{
+    sx={(theme) => ({
       position: "relative",
       width: "100%",
       textAlign: "left",
       display: "grid",
       gridTemplateColumns: project?.skillsForProject?.length > 0 ? "60% 1fr" : "1fr",
       alignItems: "center",
-      gap: "20px",
-      padding: "10px 40px 10px 20px",
+      gap: 4,
+      padding: 2,
       "@media screen and (max-width: 600px)": {
         gridTemplateColumns: "1fr",
         gap: "10px",
         padding: "10px",
       },
-    }}
+      borderBottom: "1px solid",
+      borderBottomColor: theme.palette.divider,
+    })}
   >
     <Box>{project.name}</Box>
     {project?.skillsForProject?.length > 0 ? (

@@ -29,7 +29,9 @@ export const ProjectAccordion = ({ project }: { project: ProjectWithSkills }) =>
       expanded={expanded}
       sx={{
         boxShadow: "none",
-        padding: "0",
+        padding: 0,
+        mt: 0,
+        mb: 0,
         backgroundColor: "transparent",
         borderTop: "2px solid transparent",
         borderBottom: "2px solid transparent",
@@ -37,8 +39,7 @@ export const ProjectAccordion = ({ project }: { project: ProjectWithSkills }) =>
           display: "none",
         },
         "&.Mui-expanded": {
-          borderTop: "2px solid #666",
-          borderBottom: "2px solid #666",
+          margin: 0,
         },
         "& div.MuiButtonBase-root": {
           padding: 0,
@@ -49,13 +50,22 @@ export const ProjectAccordion = ({ project }: { project: ProjectWithSkills }) =>
         },
       }}
     >
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        sx={{
+          margin: "0 !important",
+          "& .Mui-expanded": {
+            margin: "0 !important",
+          },
+        }}
+      >
         <ProjectItem project={project} />
       </AccordionSummary>
       <AccordionDetails
         sx={(theme) => ({
           backgroundColor: theme.palette.primary.light,
-          padding: "1.1rem",
+          padding: "0.2rem 1rem",
+          mt: 0,
           "@media screen and (max-width: $breakpoint_mobile)": {
             padding: "1rem !important",
           },

@@ -95,7 +95,7 @@ export const ProjectsList = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: 2,
+          gap: 0,
           mt: 2,
         }}
         onDragOver={(e) => e.preventDefault()}

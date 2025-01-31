@@ -15,7 +15,7 @@ import { useState } from "react";
 interface DeleteWithConfirmationProps {
   onConfirmDelete: () => void;
   buttonLabel?: string;
-  tooltip?: string;
+  tooltip?: string | React.ReactNode;
   dialogTitle?: string;
   dialogMessage?: React.ReactNode;
   confirmLabel?: string;
@@ -58,7 +58,7 @@ export const DeleteWithConfirmation = ({
         >
           {buttonLabel}
         </Button>
-        {tooltip.length > 0 ? <Tooltip message={tooltip} /> : null}
+        {tooltip ? <Tooltip message={tooltip} /> : null}
       </Box>
 
       <Dialog open={confirmOpen} onClose={handleCloseConfirm} maxWidth="xs" fullWidth>
