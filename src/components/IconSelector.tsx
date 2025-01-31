@@ -19,16 +19,20 @@ export const IconSelector: React.FC<IconSelectorProps> = ({ setIcon }) => {
     if (query.length >= 3) {
       setLoading(true);
 
-      fetch(`/api/icons?q=${query}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setIcons(data.icons);
-          setLoading(false);
-        })
-        .catch((error) => {
-          Sentry.captureException(error);
-          setLoading(false);
-        });
+      const debounceFetch = setTimeout(() => {
+        fetch(`/api/icons?q=${query}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setIcons(data.icons);
+            setLoading(false);
+          })
+          .catch((error) => {
+            Sentry.captureException(error);
+            setLoading(false);
+          });
+      }, 1000);
+
+      return () => clearTimeout(debounceFetch);
     } else {
       setIcons([]);
     }
