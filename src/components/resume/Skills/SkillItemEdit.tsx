@@ -13,7 +13,13 @@ import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
 import { updateSkillForUser } from "@/graphql/updateSkillForUser";
 import { useSession } from "next-auth/react";
 
-export const SkillItemEdit = ({ skill }: { skill: SkillForUserWithSkill }) => {
+export const SkillItemEdit = ({
+  skill,
+  handleClose,
+}: {
+  skill: SkillForUserWithSkill;
+  handleClose: VoidFunction;
+}) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
 
@@ -64,7 +70,7 @@ export const SkillItemEdit = ({ skill }: { skill: SkillForUserWithSkill }) => {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForUser"] }),
   });
 
-  const handleSave = () =>
+  const handleSave = (saveAndClose = false) => {
     updateSkillForUserMutation.mutate({
       id: skill.id,
       description: editorStateRef.current,
@@ -72,6 +78,8 @@ export const SkillItemEdit = ({ skill }: { skill: SkillForUserWithSkill }) => {
       totalYears,
       icon,
     });
+    if (saveAndClose) handleClose();
+  };
 
   const handleDelete = () => deleteSkillForUserMutation.mutate({ id: skill.id });
 
@@ -125,12 +133,24 @@ export const SkillItemEdit = ({ skill }: { skill: SkillForUserWithSkill }) => {
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <DeleteWithConfirmation
+          buttonLabel="Delete Skill"
           onConfirmDelete={handleDelete}
           tooltip="Deleting this skill will also remove it from all projects! (No undo!)"
         />
-        <Button variant="contained" color="primary" onClick={handleSave}>
-          Save
-        </Button>
+        <Box sx={{ display: "flex", gap: 2 }}>
+          <Button variant="outlined" color="primary" onClick={() => handleSave()}>
+            Save
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              handleSave(true);
+            }}
+          >
+            Save &amp; Close
+          </Button>
+        </Box>
       </Box>
     </Box>
   );

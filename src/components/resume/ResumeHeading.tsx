@@ -9,8 +9,8 @@ export const ResumeHeading = ({ user }: { user: User }) => {
       component="h1"
       variant="h4"
       sx={(theme) => ({
-        marginTop: "16px",
-        marginBottom: "0",
+        marginTop: 8,
+        marginBottom: 0,
         textAlign: "center",
         lineHeight: "100%",
         [theme.breakpoints.down("sm")]: {

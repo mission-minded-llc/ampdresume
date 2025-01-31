@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogContent } from "@mui/material";
+import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -86,8 +86,11 @@ export const SkillItemForProjectEdit = ({
       </Button>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md">
         <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
-          <SkillIcon />
-          {skillForProject.skillForUser.skill.name}
+          <Typography sx={{ fontWeight: "bolder" }}>Edit Project Skill</Typography>
+          <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
+            <SkillIcon />
+            {skillForProject.skillForUser.skill.name}
+          </Box>
         </CustomDialogTitle>
         <DialogContent>
           <Box>
@@ -100,6 +103,7 @@ export const SkillItemForProjectEdit = ({
             </Box>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <DeleteWithConfirmation
+                buttonLabel="Delete from Project"
                 onConfirmDelete={handleDelete}
                 dialogTitle="Delete Skill from Project?"
                 dialogMessage={
@@ -111,11 +115,28 @@ export const SkillItemForProjectEdit = ({
                     </p>
                   </>
                 }
-                tooltip="Deleting this skill will only remove it from this project. The skill will still be available for other projects."
+                tooltip={
+                  <>
+                    Deleting this skill will only remove it from this project. The skill will still
+                    be available for other projects. (No undo!)
+                  </>
+                }
               />
-              <Button variant="contained" color="primary" onClick={handleSave}>
-                Save
-              </Button>
+              <Box sx={{ display: "flex", gap: 2 }}>
+                <Button variant="outlined" color="primary" onClick={handleSave}>
+                  Save
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    handleSave();
+                    setIsOpen(false);
+                  }}
+                >
+                  Save &amp; Close
+                </Button>
+              </Box>
             </Box>
           </Box>
         </DialogContent>

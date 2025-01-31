@@ -4,6 +4,7 @@ import {
   Dialog,
   DialogContent,
   FormControl,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -149,7 +150,7 @@ export const ProjectItem = ({
           width: "100%",
           textAlign: "left",
           display: "grid",
-          gridTemplateColumns: "70% 1fr",
+          gridTemplateColumns: "60% 1fr",
           alignItems: "center",
           gap: "20px",
           padding: "10px 40px 10px 20px",
@@ -160,10 +161,26 @@ export const ProjectItem = ({
           },
           backgroundColor: theme.palette.background.paper,
           borderLeft: "4px solid",
+          borderBottom: "1px solid white",
+          cursor: "grab",
         })}
         onDoubleClick={() => setIsOpen(true)}
       >
-        <Box>{project.name}</Box>
+        <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <IconButton
+            onClick={() => setIsOpen(true)}
+            sx={{
+              opacity: 0.5,
+              "&:hover": {
+                opacity: 1,
+              },
+            }}
+          >
+            <Icon icon="mdi:pencil" />
+          </IconButton>
+
+          {project.name}
+        </Box>
         <Box
           sx={{
             display: "flex",
@@ -265,9 +282,21 @@ export const ProjectItem = ({
             </Box>
             <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
               <DeleteWithConfirmation onConfirmDelete={handleDelete} />
-              <Button variant="contained" color="primary" onClick={handleSave}>
-                Save
-              </Button>
+              <Box sx={{ display: "flex", gap: 2 }}>
+                <Button variant="outlined" color="primary" onClick={handleSave}>
+                  Save
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    handleSave();
+                    setIsOpen(false);
+                  }}
+                >
+                  Save &amp; Close
+                </Button>
+              </Box>
             </Box>
           </Box>
         </DialogContent>

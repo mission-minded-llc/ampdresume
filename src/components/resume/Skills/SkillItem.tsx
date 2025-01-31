@@ -37,6 +37,13 @@ export const SkillItem = ({
 
   const buttonDisabled = !(skill?.description || userCanEdit);
 
+  const SkillIcon = () =>
+    skillData?.icon ? (
+      <Icon icon={skillData.icon} />
+    ) : skillData?.skill?.icon ? (
+      <Icon icon={skillData.skill.icon} />
+    ) : null;
+
   return (
     <React.Fragment>
       <Button
@@ -45,10 +52,14 @@ export const SkillItem = ({
         color="primary"
         onClick={() => setIsOpen(true)}
         sx={(theme) => ({
+          padding: "2px 10px",
           color: theme.palette.primary.main,
+          backgroundColor: theme.palette.primary.light,
+          boxShadow: `2px 2px 3px 0px ${theme.palette.primary.dark}`,
           "&.Mui-disabled": {
             color: theme.palette.primary.main,
             borderColor: "transparent",
+            boxShadow: "none",
           },
           textTransform: "none",
           gap: "8px",
@@ -65,12 +76,16 @@ export const SkillItem = ({
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} fullWidth maxWidth="md">
         <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
           <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
-            {skillData?.icon ? <Icon icon={skillData.icon} /> : null}
+            <SkillIcon />
             {skillData.skill.name}
           </Box>
         </CustomDialogTitle>
         <DialogContent>
-          {userCanEdit ? <SkillItemEdit skill={skillData} /> : <SkillItemView skill={skillData} />}
+          {userCanEdit ? (
+            <SkillItemEdit skill={skillData} handleClose={() => setIsOpen(false)} />
+          ) : (
+            <SkillItemView skill={skillData} />
+          )}
         </DialogContent>
       </Dialog>
     </React.Fragment>
