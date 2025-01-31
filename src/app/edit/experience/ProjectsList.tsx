@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { PositionWithProjects } from "@/graphql/getPositions";
+import { PositionWithProjects } from "@/graphql/getPositionsWithProjects";
 import { ProjectItem } from "./ProjectItem";
 import { Tooltip } from "@/components/Tooltip";
 import { addProject } from "@/graphql/addProject";
@@ -9,7 +9,13 @@ import { updateProjectSortIndexes } from "@/graphql/updateProjectSortIndexes";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
-export const ProjectsList = ({ position }: { position: PositionWithProjects }) => {
+export const ProjectsList = ({
+  position,
+  expanded = false,
+}: {
+  position: PositionWithProjects;
+  expanded?: boolean;
+}) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
 
@@ -126,16 +132,18 @@ export const ProjectsList = ({ position }: { position: PositionWithProjects }) =
                     p.sortIndex = idx;
                   });
 
+                  const projectSortIndexes = updatedProjects.map((p) => ({
+                    id: p.id,
+                    sortIndex: p.sortIndex,
+                  }));
+
                   mutationUpdateSortIndex.mutate({
-                    projects: updatedProjects.map((p) => ({
-                      id: p.id,
-                      sortIndex: p.sortIndex,
-                    })),
+                    projects: projectSortIndexes,
                   });
                 }
               }}
             >
-              <ProjectItem project={project} />
+              <ProjectItem project={project} expanded={expanded} />
             </Box>
           ))}
       </Box>

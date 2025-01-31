@@ -113,7 +113,7 @@ export default async function HomePage() {
               mt: "2rem",
             }}
           >
-            <MuiLink href="/api/auth/signin">Sign in</MuiLink> and start building your resume today!
+            <MuiLink href="/login">Sign in</MuiLink> and start building your resume today!
           </Typography>
         )}
       </Box>

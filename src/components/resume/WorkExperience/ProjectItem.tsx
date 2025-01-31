@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { ProjectWithSkills } from "@/graphql/getPositions";
+import { ProjectWithSkills } from "@/graphql/getPositionsWithSkillsForProjects";
 import { SkillItem } from "../Skills/SkillItem";
 import { SkillsContextProvider } from "../Skills/Skills";
 

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { Box } from "@mui/material";
-import { PositionWithProjects } from "@/graphql/getPositions";
+import { PositionWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
 import { Projects } from "./Projects";
 import Typography from "@mui/material/Typography";
 import { formatLongDate } from "@/lib/format";
@@ -12,7 +12,7 @@ export const PositionSingle = ({
   position,
   showDates,
 }: {
-  position: PositionWithProjects;
+  position: PositionWithSkillsForProjects;
   showDates: boolean;
 }) => {
   const [isSticky, setIsSticky] = useState(false);

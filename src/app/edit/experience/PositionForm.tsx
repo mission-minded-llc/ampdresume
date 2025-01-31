@@ -1,5 +1,9 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Position, PositionGeneric, PositionWithProjects } from "@/graphql/getPositions";
+import {
+  Position,
+  PositionGeneric,
+  PositionWithProjects,
+} from "@/graphql/getPositionsWithProjects";
 import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { formatLongDate, timestampToDate } from "@/lib/format";

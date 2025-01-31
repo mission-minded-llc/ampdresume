@@ -38,7 +38,13 @@ export const EditEducation = () => {
   if (error) return <Box>Error loading education: {error.message}</Box>;
 
   return (
-    <ResumeProvider skillsForUser={[]} companies={[]} positions={[]} education={education ?? []}>
+    <ResumeProvider
+      skillsForUser={[]}
+      companies={[]}
+      positionsWithProjects={[]}
+      positionsWithSkillsForProjects={[]}
+      education={education ?? []}
+    >
       <SectionTitle title="Your Education" />
 
       <Box sx={{ mb: 4 }}>

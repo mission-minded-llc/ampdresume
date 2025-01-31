@@ -1,5 +1,8 @@
 import { Company, getCompanies } from "@/graphql/getCompanies";
-import { PositionWithProjects, getPositions } from "@/graphql/getPositions";
+import {
+  PositionWithSkillsForProjects,
+  getPositionsWithSkillsForProjects,
+} from "@/graphql/getPositionsWithSkillsForProjects";
 
 import { NextResponse } from "next/server";
 import { getEducation } from "@/graphql/getEducation";
@@ -8,7 +11,7 @@ import { notFound } from "next/navigation";
 import { removeHiddenFields } from "@/util/userData";
 
 type CompanyJson = Omit<Company, "id"> & {
-  positions?: PositionWithProjects[];
+  positions?: PositionWithSkillsForProjects[];
 };
 
 export async function GET(request: Request, { params }: { params: { slug: string } }) {
@@ -17,7 +20,8 @@ export async function GET(request: Request, { params }: { params: { slug: string
   if (!user) return notFound();
 
   const companies = (await getCompanies(user.id)) ?? [];
-  const positions = (await getPositions(companies.map((company) => company.id))) ?? [];
+  const positions =
+    (await getPositionsWithSkillsForProjects(companies.map((company) => company.id))) ?? [];
   const education = (await getEducation(user.id)) ?? [];
 
   const companiesWithPositions: CompanyJson[] = [];

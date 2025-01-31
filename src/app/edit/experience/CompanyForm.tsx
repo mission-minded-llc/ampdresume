@@ -19,7 +19,7 @@ export const CompanyForm = ({
   deleteHandler?: ((company: Company) => void) | null;
   onCancel?: (() => void) | null;
 }) => {
-  const { positions } = useContext(ResumeContext);
+  const { positionsWithProjects } = useContext(ResumeContext);
 
   const [companyName, setCompanyName] = useState(company?.name || "");
   const [location, setLocation] = useState(company?.location || "");
@@ -28,7 +28,9 @@ export const CompanyForm = ({
   );
   const [endDate, setEndDate] = useState<Dayjs | null>(dayjs(timestampToDate(company?.endDate)));
 
-  const positionsInCompany = positions.filter((position) => position.company.id === company?.id);
+  const positionsInCompany = positionsWithProjects.filter(
+    (position) => position.company.id === company?.id,
+  );
 
   const saveHandler = () => {
     if (!startDate) return;

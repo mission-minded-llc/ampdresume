@@ -5,14 +5,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Company } from "@/graphql/getCompanies";
 import { CustomDialogTitle } from "@/components/DialogTitle";
 import { PositionForm } from "./PositionForm";
-import { PositionGeneric } from "@/graphql/getPositions";
+import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { PositionItem } from "./PositionItem";
 import { ResumeContext } from "@/components/resume/ResumeContext";
 import { addPosition } from "@/graphql/addPosition";
 import { useSession } from "next-auth/react";
 
 export const PositionsList = ({ company }: { company: Company }) => {
-  const { positions } = useContext(ResumeContext);
+  const { positionsWithProjects } = useContext(ResumeContext);
 
   const { data: session } = useSession();
   const queryClient = useQueryClient();
@@ -60,7 +60,9 @@ export const PositionsList = ({ company }: { company: Company }) => {
     setIsOpen(false);
   };
 
-  const positionsInCompany = positions.filter((position) => position.company.id === company.id);
+  const positionsInCompany = positionsWithProjects.filter(
+    (position) => position.company.id === company.id,
+  );
 
   return (
     <Box sx={{ mt: 2 }}>

@@ -26,7 +26,13 @@ import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { updateProject } from "@/graphql/updateProject";
 import { useSession } from "next-auth/react";
 
-export const ProjectItem = ({ project }: { project: Project }) => {
+export const ProjectItem = ({
+  project,
+  expanded = false,
+}: {
+  project: Project;
+  expanded?: boolean;
+}) => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
 
@@ -36,14 +42,16 @@ export const ProjectItem = ({ project }: { project: Project }) => {
   const [projectName, setProjectName] = useState(project.name);
   const [selectedSkillId, setSelectedSkillId] = useState<string>("");
 
+  const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
+
   // Load all available skills for the user
   const {
     isPending: isPendingSkillsForUser,
     error: errorSkillsForUser,
     data: skillsForUser,
   } = useQuery({
-    enabled: status === "authenticated" && !!session?.user?.id,
-    queryKey: ["skills"],
+    enabled: isAuthenticatedUser,
+    queryKey: ["skillsForUser"],
     queryFn: async () => {
       if (!session?.user?.id) return [];
       return await getSkillsForUser(session.user.id);
@@ -55,7 +63,7 @@ export const ProjectItem = ({ project }: { project: Project }) => {
     error: errorSkillsForProject,
     data: skillsForProject,
   } = useQuery({
-    enabled: status === "authenticated" && !!session?.user?.id,
+    enabled: isAuthenticatedUser && expanded, // Only fetch skills if the project is expanded.
     queryKey: ["skillsForProject", project.id],
     queryFn: async () => {
       if (!session?.user?.id) return [];

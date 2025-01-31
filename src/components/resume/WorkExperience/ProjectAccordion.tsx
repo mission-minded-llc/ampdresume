@@ -3,7 +3,7 @@ import { SyntheticEvent, useState } from "react";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ProjectItem } from "./ProjectItem";
-import { ProjectWithSkills } from "@/graphql/getPositions";
+import { ProjectWithSkills } from "@/graphql/getPositionsWithSkillsForProjects";
 import { RichTextBlock } from "../RichTextBlock";
 
 export const ProjectAccordion = ({ project }: { project: ProjectWithSkills }) => {

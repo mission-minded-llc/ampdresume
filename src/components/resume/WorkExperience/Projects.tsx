@@ -1,6 +1,6 @@
 import { ProjectAccordion } from "./ProjectAccordion";
 import { ProjectItem } from "./ProjectItem";
-import { ProjectWithSkills } from "@/graphql/getPositions";
+import { ProjectWithSkills } from "@/graphql/getPositionsWithSkillsForProjects";
 
 /**
  * This is the primary Projects component, which renders as list of all projects.

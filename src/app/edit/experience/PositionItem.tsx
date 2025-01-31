@@ -1,5 +1,9 @@
 import { Accordion, AccordionDetails, AccordionSummary, Divider } from "@mui/material";
-import { Position, PositionGeneric, PositionWithProjects } from "@/graphql/getPositions";
+import {
+  Position,
+  PositionGeneric,
+  PositionWithProjects,
+} from "@/graphql/getPositionsWithProjects";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -111,7 +115,7 @@ export const PositionItem = ({
         />
         <Divider sx={{ mt: 4, mb: 4 }} />
 
-        <ProjectsList position={position} />
+        <ProjectsList position={position} expanded={expanded === position.id} />
       </AccordionDetails>
     </Accordion>
   );
