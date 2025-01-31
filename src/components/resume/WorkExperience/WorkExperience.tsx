@@ -8,12 +8,12 @@ import { formatLongDate } from "@/lib/format";
 import { useContext } from "react";
 
 export const WorkExperience = () => {
-  const { companies, positions } = useContext(ResumeContext);
+  const { companies, positionsWithSkillsForProjects } = useContext(ResumeContext);
 
   return (
     <Box component="section">
       {companies.map((company) => {
-        const positionsInCompany = positions.filter(
+        const positionsInCompany = positionsWithSkillsForProjects.filter(
           (position) => position.company.id === company.id,
         );
 

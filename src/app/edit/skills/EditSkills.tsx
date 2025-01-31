@@ -43,7 +43,8 @@ export const EditSkills = () => {
     <ResumeProvider
       skillsForUser={skillsForUser ?? []}
       companies={[]}
-      positions={[]}
+      positionsWithProjects={[]}
+      positionsWithSkillsForProjects={[]}
       education={[]}
     >
       <SectionTitle title="Add a Skill" />

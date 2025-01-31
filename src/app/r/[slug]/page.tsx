@@ -8,7 +8,7 @@ import { Skills } from "@/components/resume/Skills/Skills";
 import { WorkExperience } from "@/components/resume/WorkExperience/WorkExperience";
 import { getCompanies } from "@/graphql/getCompanies";
 import { getEducation } from "@/graphql/getEducation";
-import { getPositions } from "@/graphql/getPositions";
+import { getPositionsWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
 import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { getUser } from "@/graphql/getUser";
 import { notFound } from "next/navigation";
@@ -57,14 +57,16 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   const skillsForUser = (await getSkillsForUser(user.id)) ?? [];
   const companies = (await getCompanies(user.id)) ?? [];
-  const positions = (await getPositions(companies.map((company) => company.id))) ?? [];
+  const positionsWithSkillsForProjects =
+    (await getPositionsWithSkillsForProjects(companies.map((company) => company.id))) ?? [];
   const education = (await getEducation(user.id)) ?? [];
 
   return (
     <ResumeProvider
       skillsForUser={skillsForUser}
       companies={companies}
-      positions={positions}
+      positionsWithProjects={[]}
+      positionsWithSkillsForProjects={positionsWithSkillsForProjects}
       education={education}
     >
       <Box
@@ -93,7 +95,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               <Skills skillType="user" />
             </>
           ) : null}
-          {companies?.length && positions?.length ? (
+          {companies?.length && positionsWithSkillsForProjects?.length ? (
             <>
               <ResumeTitle>Work Experience</ResumeTitle>
               <WorkExperience />

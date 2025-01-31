@@ -9,7 +9,7 @@ import React from "react";
 import { ResumeProvider } from "@/components/resume/ResumeContext";
 import { SectionTitle } from "../components/SectionTitle";
 import { getCompanies } from "@/graphql/getCompanies";
-import { getPositions } from "@/graphql/getPositions";
+import { getPositionsWithProjects } from "@/graphql/getPositionsWithProjects";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
@@ -38,7 +38,7 @@ export const EditExperience = () => {
     queryFn: async () => {
       if (!companies) return [];
 
-      return await getPositions(companies.map((company) => company.id));
+      return await getPositionsWithProjects(companies.map((company) => company.id));
     },
   });
 
@@ -59,7 +59,8 @@ export const EditExperience = () => {
   return (
     <ResumeProvider
       companies={companies ?? []}
-      positions={positions ?? []}
+      positionsWithProjects={positions ?? []}
+      positionsWithSkillsForProjects={[]}
       education={[]}
       skillsForUser={[]}
     >

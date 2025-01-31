@@ -1,15 +1,9 @@
 import * as Sentry from "@sentry/react";
 
-import { Company, Project } from "@prisma/client";
+import { Company, Position as PositionServer, Project } from "@prisma/client";
 
-import type { Position as PositionServer } from "@prisma/client";
-import { SkillForProjectWithSkill } from "./getSkillsForProject";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
-
-export interface ProjectWithSkills extends Project {
-  skillsForProject: SkillForProjectWithSkill[];
-}
 
 export interface Position extends Omit<PositionServer, "startDate" | "endDate"> {
   startDate: string;
@@ -20,16 +14,20 @@ export type PositionGeneric = Omit<Position, "id" | "companyId">;
 
 export interface PositionWithProjects extends Position {
   company: Company;
-  projects: ProjectWithSkills[];
+  projects: Project[];
 }
 
 /**
- * Used to fetch all positions for a specific company.
+ * Used to fetch all positions for a specific company, excluding
+ * the skills for each project. This saves on bandwidth when we
+ * don't need the skills for a project, specifically during editing.
  *
  * @param {string[]} companyIds - the company IDs to fetch positions for.
  * @returns {PositionWithProjects[]} all positions for the company, including projects for each position.
  */
-export const getPositions = async (companyIds: string[]): Promise<PositionWithProjects[]> => {
+export const getPositionsWithProjects = async (
+  companyIds: string[],
+): Promise<PositionWithProjects[]> => {
   const client = getApolloClient();
 
   const { data } = await client
@@ -50,18 +48,6 @@ export const getPositions = async (companyIds: string[]): Promise<PositionWithPr
               name
               description
               sortIndex
-              skillsForProject {
-                description
-                skillForUser {
-                  id
-                  userId
-                  icon
-                  skill {
-                    name
-                    icon
-                  }
-                }
-              }
             }
           }
         }
