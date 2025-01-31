@@ -13,9 +13,12 @@ interface IconifyJSON {
 
 async function searchIcons(searchTerm: string): Promise<string[]> {
   // Get all JSON files from @iconify/json/json directory
-  const iconifyPath = path.join(process.cwd(), "node_modules/@iconify/json/json");
-  const files = await fs.readdir(iconifyPath);
+  const iconifyPath =
+    process.env.NODE_ENV === "production"
+      ? path.join(process.cwd(), "data/iconify")
+      : path.join(process.cwd(), "node_modules/@iconify/json/json");
 
+  const files = await fs.readdir(iconifyPath);
   const results: string[] = [];
 
   // Search through each icon set

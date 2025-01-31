@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "tsx scripts/generateRobotsTxt.ts",
+    "prebuild": "tsx scripts/generateRobotsTxt.ts && tsx scripts/copyIconifyJson.ts",
     "build": "prisma generate && next build",
     "start": "next start",
     "check": "npm run types:check && npm run lint && npm run prettier && npm run test",
