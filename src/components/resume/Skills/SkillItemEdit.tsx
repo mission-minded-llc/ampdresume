@@ -3,6 +3,7 @@ import { useContext, useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
+import { IconSelector } from "@/components/IconSelector";
 import { MuiLink } from "@/components/MuiLink";
 import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
@@ -104,12 +105,7 @@ export const SkillItemEdit = ({
           <Tooltip message={<TooltipTotalYears />} />
         </Box>
         <Box sx={{ display: "grid", gridTemplateColumns: "80% 1fr" }}>
-          <TextField
-            label="Icon"
-            value={icon}
-            onChange={(e) => setIcon(e.target.value)}
-            slotProps={{ htmlInput: { placeholder: "dashicons:icon-name" } }}
-          />
+          <IconSelector setIcon={setIcon} />
           <Tooltip
             message={
               <>

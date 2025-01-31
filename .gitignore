@@ -142,3 +142,6 @@ terraform.tfstate.backup
 
 # Sentry Config File
 .env.sentry-build-plugin
+
+# Data folder
+data/iconify
