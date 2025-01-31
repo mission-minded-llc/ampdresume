@@ -57,6 +57,9 @@ export const ProjectAccordion = ({ project }: { project: ProjectWithSkills }) =>
           "& .Mui-expanded": {
             margin: "0 !important",
           },
+          ".MuiAccordionSummary-content": {
+            margin: "0 !important",
+          },
         }}
       >
         <ProjectItem project={project} />
