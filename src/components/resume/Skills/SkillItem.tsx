@@ -63,6 +63,7 @@ export const SkillItem = ({
           },
           textTransform: "none",
           gap: "8px",
+          borderColor: userCanEdit && skill?.description ? "lawngreen" : theme.palette.primary.dark,
         })}
       >
         {skillData?.icon ? (

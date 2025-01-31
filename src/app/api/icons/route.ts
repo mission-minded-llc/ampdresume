@@ -20,11 +20,6 @@ async function searchIcons(searchTerm: string): Promise<string[]> {
 
   // Search through each icon set
   for (const file of files) {
-    // If results has more than 50 icons, stop searching.
-    if (results.length > 50) {
-      break;
-    }
-
     if (file.endsWith(".json")) {
       const filePath = path.join(iconifyPath, file);
       const content = await fs.readFile(filePath, "utf8");
@@ -35,10 +30,18 @@ async function searchIcons(searchTerm: string): Promise<string[]> {
 
       // Find matching icons and add them with their prefix
       icons.forEach((iconName) => {
+        if (results.length >= 50) {
+          return;
+        }
+
         if (iconName.includes(searchTerm)) {
           results.push(`${prefix}:${iconName}`);
         }
       });
+
+      if (results.length >= 50) {
+        break;
+      }
     }
   }
 
