@@ -12,12 +12,21 @@ import { Skills } from "./sections/Skills";
 import { User } from "@prisma/client";
 import { WorkExperience } from "./sections/WorkExperience";
 
+interface PDFViewThemeDefaultOptions {
+  showSkillsInWorkExperience: boolean;
+}
+
+const defaultThemeOptions: PDFViewThemeDefaultOptions = {
+  showSkillsInWorkExperience: true,
+};
+
 interface PDFViewProps {
   user: User;
   skillsForUser: SkillForUserWithSkill[];
   companies: Company[];
   positionsWithSkillsForProjects: PositionWithSkillsForProjects[];
   education: EducationType[];
+  themeOptions?: PDFViewThemeDefaultOptions;
 }
 
 export const PDFViewThemeDefault = ({
@@ -26,23 +35,28 @@ export const PDFViewThemeDefault = ({
   companies,
   positionsWithSkillsForProjects,
   education,
-}: PDFViewProps) => (
-  <Box
-    sx={{
-      padding: 3,
-      pb: "1in",
-      lineHeight: 1.5,
-      fontFamily: "Arial",
-      color: "#000",
-      letterSpacing: 0,
-    }}
-  >
-    <Header user={user} />
-    <Skills skillsForUser={skillsForUser} />
-    <WorkExperience
-      companies={companies}
-      positionsWithSkillsForProjects={positionsWithSkillsForProjects}
-    />
-    <Education education={education} />
-  </Box>
-);
+  themeOptions = defaultThemeOptions,
+}: PDFViewProps) => {
+  const options = { ...defaultThemeOptions, ...themeOptions };
+
+  return (
+    <Box
+      sx={{
+        padding: 0,
+        lineHeight: 1.5,
+        fontFamily: "Arial",
+        color: "#000",
+        letterSpacing: 0,
+      }}
+    >
+      <Header user={user} />
+      <Skills skillsForUser={skillsForUser} />
+      <WorkExperience
+        companies={companies}
+        positionsWithSkillsForProjects={positionsWithSkillsForProjects}
+        showSkills={options.showSkillsInWorkExperience}
+      />
+      <Education education={education} />
+    </Box>
+  );
+};

@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { Section, SectionTitle } from "../styled";
+import { Section, SectionTitle, fontSize } from "../styled";
 
 import React from "react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
@@ -17,7 +17,7 @@ export const Skills = ({ skillsForUser }: { skillsForUser: SkillForUserWithSkill
           gridTemplateColumns: "auto 1fr",
           gridTemplateRows: "auto",
           width: "100%",
-          gap: "5px",
+          gap: "1px",
           mb: 3,
         }}
       >
@@ -32,7 +32,7 @@ export const Skills = ({ skillsForUser }: { skillsForUser: SkillForUserWithSkill
                   fontWeight: "bold",
                   textAlign: "right",
                   pr: 1,
-                  fontSize: 14,
+                  fontSize: fontSize.body,
                 }}
               >
                 {totalYears ? `${totalYears} year${parseInt(totalYears, 10) > 1 ? "s" : ""}:` : ""}
@@ -46,7 +46,10 @@ export const Skills = ({ skillsForUser }: { skillsForUser: SkillForUserWithSkill
                 }}
               >
                 {skillsList.map((skill, index) => (
-                  <Typography key={`skill-${skill.skill.name}`} sx={{ fontSize: 14 }}>
+                  <Typography
+                    key={`skill-${skill.skill.name}`}
+                    sx={{ fontSize: fontSize.body, lineHeight: 1, color: "maroon" }}
+                  >
                     {skill.skill.name}
                     {index < skillsList.length - 1 ? "," : ""}
                   </Typography>

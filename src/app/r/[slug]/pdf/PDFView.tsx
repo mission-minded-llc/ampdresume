@@ -32,7 +32,7 @@ export const PDFView = ({
     if (!pdfRef.current) return;
 
     const options = {
-      margin: [0, 0, 0, 0], // top, right, bottom, left
+      margin: [0.75, 0.75, 0.75, 0.75], // top, right, bottom, left
       filename: "resume.pdf",
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: { scale: 2 },
@@ -57,23 +57,25 @@ export const PDFView = ({
         </Button>
       </Box>
       <Box
-        ref={pdfRef}
         sx={{
+          padding: "0.75in",
           width: "8.5in",
           minHeight: "11in",
-          padding: 0,
           margin: "auto",
           backgroundColor: "white",
           boxShadow: 3,
         }}
       >
-        <PDFViewThemeDefault
-          user={user}
-          skillsForUser={skillsForUser}
-          companies={companies}
-          positionsWithSkillsForProjects={positionsWithSkillsForProjects}
-          education={education}
-        />
+        <Box ref={pdfRef}>
+          <PDFViewThemeDefault
+            user={user}
+            skillsForUser={skillsForUser}
+            companies={companies}
+            positionsWithSkillsForProjects={positionsWithSkillsForProjects}
+            education={education}
+            themeOptions={{ showSkillsInWorkExperience: false }}
+          />
+        </Box>
       </Box>
     </Box>
   );
