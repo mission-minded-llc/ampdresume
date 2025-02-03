@@ -1,19 +1,24 @@
 import { Typography } from "@mui/material";
 import { User } from "@prisma/client";
+import { fontSize } from "../styled";
 
 export const Header = ({ user }: { user: User }) => (
   <>
-    <Typography
-      sx={{ padding: 1, fontSize: 13, textAlign: "center", borderBottom: `1px solid #ccc` }}
-    >
+    <Typography sx={{ mt: 0, fontSize: fontSize.title, fontWeight: "bold" }}>
+      {user.name}
+    </Typography>
+    <Typography sx={{ pb: 1, fontSize: fontSize.body, borderBottom: `1px solid #ccc` }}>
       {user?.location ? `${user.location} | ` : null}
       {user?.displayEmail ? <a href={`mailto:${user.displayEmail}`}>{user.displayEmail}</a> : null}
     </Typography>
-    <Typography sx={{ mt: 1, fontSize: 26, fontWeight: "bold", textAlign: "center" }}>
-      {user.name}
-    </Typography>
     <Typography
-      sx={{ mb: 2, mt: 1, fontSize: 13, fontWeight: "bold", textAlign: "center", letterSpacing: 0 }}
+      sx={{
+        mb: 2,
+        mt: 1,
+        fontSize: fontSize.body,
+        fontWeight: "bold",
+        letterSpacing: 0,
+      }}
     >
       {user.title}
     </Typography>
