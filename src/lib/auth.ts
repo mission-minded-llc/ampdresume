@@ -5,6 +5,7 @@ import { NextAuthOptions, Session as NextAuthSession, getServerSession } from "n
 
 import { ALLOWED_USER_EMAILS } from "@/constants";
 import { AdapterUser } from "next-auth/adapters";
+import GoogleProvider from "next-auth/providers/google";
 import { JWT } from "next-auth/jwt";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { findUserByNormalizedEmail } from "@/util/email";
@@ -73,6 +74,11 @@ export const authOptions: NextAuthOptions = {
 
   // Providers to use for authentication.
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      allowDangerousEmailAccountLinking: true,
+    }),
     EmailProvider({
       server: {
         host: process.env.EMAIL_SERVER_HOST,
@@ -108,7 +114,27 @@ export const authOptions: NextAuthOptions = {
   // Customized callbacks.
   callbacks: {
     async signIn(data) {
-      const { user, account } = data;
+      const { user, account, profile } = data;
+
+      if (account?.provider === "google" && profile?.email && account?.email_verified) {
+        if (!ALLOWED_USER_EMAILS.includes(profile.email)) {
+          Sentry.captureMessage(`Email ${profile.email} is not allowed to sign in.`);
+
+          return false; // Prevent sign-in
+        }
+
+        const existingUser = await findUserByNormalizedEmail(profile.email);
+
+        // If a match is found, use the database email
+        if (existingUser?.email) {
+          user.id = existingUser.email;
+          user.email = existingUser.email;
+          account.providerAccountId = existingUser.email;
+          account.userId = existingUser.email;
+        }
+
+        return true; // Proceed with the default sign-in flow.
+      }
 
       if (account?.provider === "email" && user?.email) {
         const existingUser = await findUserByNormalizedEmail(user?.email);
@@ -120,6 +146,8 @@ export const authOptions: NextAuthOptions = {
           account.providerAccountId = existingUser.email;
           account.userId = existingUser.email;
         }
+
+        return true; // Proceed with the default sign-in flow.
       }
 
       return true; // Proceed with the default sign-in flow.
