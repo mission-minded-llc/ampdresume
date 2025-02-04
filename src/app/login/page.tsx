@@ -2,9 +2,10 @@
 
 import * as Sentry from "@sentry/react";
 
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
+import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { signIn } from "next-auth/react";
 
@@ -88,6 +89,25 @@ export default function SignIn() {
               An error occurred. Please try again later.
             </Typography>
           ) : null}
+
+          <Divider />
+          <Typography variant="body2" textAlign="center">
+            Or sign in with a social account:
+          </Typography>
+          <Button
+            variant="outlined"
+            color="secondary"
+            fullWidth
+            onClick={() => signIn("google", { callbackUrl: "/edit/profile" })}
+          >
+            <Icon
+              icon="flat-color-icons:google"
+              width={24}
+              height={24}
+              style={{ marginRight: 8 }}
+            />
+            Sign in with Google
+          </Button>
         </Box>
       </Box>
     </>
