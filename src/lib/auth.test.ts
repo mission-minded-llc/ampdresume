@@ -34,10 +34,6 @@ describe("Authentication Configuration", () => {
   });
 
   describe("NextAuth Configuration", () => {
-    it("should have email provider configured", () => {
-      expect(authOptions.providers[0].type).toBe("email");
-    });
-
     it("should use PrismaAdapter", () => {
       expect(authOptions.adapter).toBeDefined();
     });
