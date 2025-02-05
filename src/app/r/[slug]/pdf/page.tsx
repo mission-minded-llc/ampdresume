@@ -6,6 +6,7 @@ import { getPositionsWithSkillsForProjects } from "@/graphql/getPositionsWithSki
 import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { getUser } from "@/graphql/getUser";
 import { notFound } from "next/navigation";
+import { titleSuffix } from "@/constants";
 
 export async function generateMetadata({
   params,
@@ -16,7 +17,9 @@ export async function generateMetadata({
   const user = await getUser(slug);
 
   const siteTitleDefault =
-    user?.name && user?.title ? `Resume of ${user.name}, ${user.title}` : "OpenResume";
+    user?.name && user?.title
+      ? `Resume of ${user.name}, ${user.title} ${titleSuffix}`
+      : `Resume PDF ${titleSuffix}`;
 
   const title = user?.siteTitle ? user.siteTitle : siteTitleDefault;
   const description = user?.siteDescription ? user.siteDescription : "";

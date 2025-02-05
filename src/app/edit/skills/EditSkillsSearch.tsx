@@ -24,6 +24,7 @@ import { Tooltip } from "@/components/Tooltip";
 import { TooltipTotalYears } from "@/components/tooltips";
 import { addSkillForUser } from "@/graphql/addSkillForUser";
 import { getSkills } from "@/graphql/getSkills";
+import { removeLeadingZero } from "@/lib/format";
 import { useSession } from "next-auth/react";
 
 export const EditSkillsSearch = () => {
@@ -176,6 +177,10 @@ export const EditSkillsSearch = () => {
               variant="outlined"
               value={yearStarted}
               label="Year Started"
+              onInput={(e) => {
+                const target = e.target as HTMLInputElement;
+                target.value = removeLeadingZero(target.value);
+              }}
               onChange={(e) => setYearStarted(Number(e.target.value))}
               slotProps={{ htmlInput: { min: 1900, max: new Date().getFullYear() } }}
             />
@@ -186,6 +191,13 @@ export const EditSkillsSearch = () => {
               variant="outlined"
               value={totalYears}
               label="Total Years"
+              onInput={(e) => {
+                const target = e.target as HTMLInputElement;
+                target.value = Math.max(
+                  0,
+                  Math.min(parseInt(removeLeadingZero(target.value)), 100),
+                ).toString();
+              }}
               onChange={(e) => setTotalYears(Number(e.target.value))}
               slotProps={{ htmlInput: { min: 0, max: 100 } }}
             />

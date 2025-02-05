@@ -81,7 +81,7 @@ export const CompanyForm = ({
           maxDate={endDate || dayjs(new Date())}
         />
         <DatePicker
-          label="Date Ended"
+          label="Date Ended (leave blank if current)"
           value={endDate}
           onChange={(value) => setEndDate(value)}
           views={["month", "year"]}

@@ -59,3 +59,14 @@ export const timestampToDate = (timestamp: string | number | null | undefined) =
 
   return new Date(parseInt(timestamp, 10));
 };
+
+/**
+ * Helper to remove the leading zero from a string.
+ *
+ * @param {string} str the string to remove the leading zero from.
+ * @returns {string} the string without the leading zero.
+ */
+export const removeLeadingZero = (str: string) => {
+  if (str.startsWith("0")) return str.substring(1);
+  return str;
+};

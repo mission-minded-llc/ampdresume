@@ -1,9 +1,10 @@
 import { EditPageLayout } from "../components/EditPageLayout";
 import { EditSkills } from "./EditSkills";
+import { titleSuffix } from "@/constants";
 
 export function generateMetadata() {
   return {
-    title: "Edit Skills | OpenResume",
+    title: `Edit Skills ${titleSuffix}`,
   };
 }
 
