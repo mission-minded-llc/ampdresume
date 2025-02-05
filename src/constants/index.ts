@@ -22,4 +22,5 @@ export const ALLOWED_USER_EMAILS = [
   "shawaz@shawaz.org", // https://www.linkedin.com/in/shawazi/
   "alex@unjumbl.me", // https://www.linkedin.com/in/alexandru-stan-8b78a723/
   "timothy.partee@gmail.com", // https://www.linkedin.com/in/timothypartee/
+  "wenyanw@gmail.com", // https://www.linkedin.com/in/wenyan-w-8ab1482/
 ];
