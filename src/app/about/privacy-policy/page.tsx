@@ -1,6 +1,13 @@
 import { Box, Container, Link, List, ListItem, Typography } from "@mui/material";
 
 import React from "react";
+import { titleSuffix } from "@/constants";
+
+export function generateMetadata() {
+  return {
+    title: `Privacy Policy ${titleSuffix}`,
+  };
+}
 
 const Subtitle = ({ children }: { children: React.ReactNode }) => (
   <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 2 }}>

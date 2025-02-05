@@ -5,10 +5,11 @@ import { EditPageLayout } from "../components/EditPageLayout";
 import { SectionTitle } from "../components/SectionTitle";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { titleSuffix } from "@/constants";
 
 export function generateMetadata() {
   return {
-    title: "Edit Profile | OpenResume",
+    title: `Edit Profile ${titleSuffix}`,
   };
 }
 
