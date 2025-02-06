@@ -50,7 +50,7 @@ const AccountForm = ({
   const [message, setMessage] = useState("");
   const isDesktop = useIsDesktop();
 
-  const [siteImageUrl, setSiteImageUrl] = useState("");
+  const [siteImageUrl, setSiteImageUrl] = useState(siteImage);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -288,7 +288,7 @@ const AccountForm = ({
             <TextField
               label="Image URL"
               name="siteImage"
-              value={formData.siteImage}
+              value={siteImageUrl}
               onChange={handleChange}
               disabled
               fullWidth

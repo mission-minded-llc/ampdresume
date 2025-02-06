@@ -80,15 +80,11 @@ model VerificationToken {
 
 // Social media links for a user, e.g. "Twitter", "GitHub", "LinkedIn"
 model Social {
-  id     String @id @default(cuid())
-  name   String
-  // URL base dpends on the name, e.g. "https://{name}.com/{username}"
-  // So, if name is "twitter", and username is "jack", the full URL will be "https://twitter.com/jack"
-  // Or if it's LinkedIn, it will be "https://linkedin.com/in/{username}"
-  // However, if the name is "website" or "personal", then the URL should be the full URL.
-  url    String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
+  id       String @id @default(cuid())
+  platform String
+  ref      String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId   String
 
   @@schema("openresume")
 }

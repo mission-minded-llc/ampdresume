@@ -12,20 +12,20 @@ export async function seedSocials() {
 
   const socials = [
     {
-      name: "GitHub",
-      url: "missionmike",
+      platform: "github",
+      ref: "missionmike",
     },
     {
-      name: "LinkedIn",
-      url: "michael-dinerstein",
+      platform: "linkedin",
+      ref: "michael-dinerstein",
     },
     {
-      name: "X",
-      url: "missionmikedev",
+      platform: "x",
+      ref: "missionmikedev",
     },
     {
-      name: "Website",
-      url: "https://www.missionmike.dev",
+      platform: "website",
+      ref: "https://www.missionmike.dev",
     },
   ];
 
@@ -44,7 +44,9 @@ export async function seedSocials() {
           ...social,
         },
       });
-      console.log(`Created social ${social.name} for user ${userId} with id: ${createdSocial.id}`);
+      console.log(
+        `Created social ${social.platform} for user ${userId} with id: ${createdSocial.id}`,
+      );
     }
   }
 }
