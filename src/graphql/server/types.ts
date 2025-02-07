@@ -16,8 +16,8 @@ export const types = gql`
   type Social {
     id: ID!
     userId: ID!
-    name: String!
-    url: String!
+    platform: String!
+    ref: String!
   }
 
   type SkillsForUser {

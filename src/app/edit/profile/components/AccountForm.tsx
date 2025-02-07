@@ -12,6 +12,7 @@ import { LoadingOverlay } from "@/components/LoadingOverlay";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { MessageDialog } from "@/components/MessageDialog";
+import { SocialsForm } from "./SocialsForm";
 import TocIcon from "@mui/icons-material/Toc";
 import { UserAssetInput } from "../../components/UserAssetInput";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
@@ -242,6 +243,9 @@ const AccountForm = ({
               sx={{ marginTop: "auto" }}
             />
           </InputSection>
+        </GridSection>
+        <GridSection isDesktop={isDesktop}>
+          <SocialsForm />
         </GridSection>
         <GridSection isDesktop={isDesktop}>
           <SectionTitle>Resume Site Information</SectionTitle>

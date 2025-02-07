@@ -13,6 +13,7 @@ export const mutationDefs = gql`
       icon: String
     ): SkillForUser!
     deleteSkillForUser(userId: ID!, id: ID!): SkillForUser
+    addSocial(userId: ID!, platform: String!, ref: String!): Social!
 
     # Company specific mutations.
     addCompany(
