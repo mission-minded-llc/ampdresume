@@ -1,12 +1,21 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, Dialog, DialogContent, TextField, Typography } from "@mui/material";
 import { FieldDescription, FieldTitle, InputSection, SectionTitle } from "./sections";
-import { generateSocialUrl, getSocialIcon, getSocialMediaPlatformByHostname } from "@/util/social";
+import {
+  generateSocialUrl,
+  getSocialIcon,
+  getSocialMediaPlatformByHostname,
+  getSocialMediaPlatformByPlatformName,
+} from "@/util/social";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+import { CustomDialogTitle } from "@/components/DialogTitle";
+import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
+import { Social } from "@prisma/client";
 import { addSocial } from "@/graphql/addSocial";
+import { deleteSocial } from "@/graphql/deleteSocial";
 import { getSocials } from "@/graphql/getSocials";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
@@ -15,7 +24,10 @@ export const SocialsForm = () => {
   const { status, data: session } = useSession();
   const queryClient = useQueryClient();
 
-  const [socialUrl, setSocialUrl] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [editSocial, setEditSocial] = useState<Social | null>(null);
+  const [newSocialUrl, setNewSocialUrl] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
@@ -43,8 +55,19 @@ export const SocialsForm = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["socials"] });
 
-      setSocialUrl("");
+      setNewSocialUrl("");
       setErrorMessage("");
+    },
+  });
+
+  const mutationDeleteSocial = useMutation({
+    mutationFn: async ({ id }: { id: string }) => {
+      if (!session?.user.id) return null;
+
+      await deleteSocial({ userId: session?.user.id, id });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["socials"] });
     },
   });
 
@@ -56,24 +79,24 @@ export const SocialsForm = () => {
       url = `https://${url}`;
     }
 
-    setSocialUrl(url);
+    setNewSocialUrl(url);
     setErrorMessage("");
   };
 
   const addSocialEntry = () => {
     try {
-      const url = new URL(socialUrl);
+      const url = new URL(newSocialUrl);
 
       const hostname = url.hostname.replace("www.", "");
       const platformDetails = getSocialMediaPlatformByHostname(hostname);
 
       let platform = "website";
-      let ref = socialUrl;
+      let ref = newSocialUrl;
 
       if (platformDetails.regex) {
-        // Extract the username via platform.regex against the socialUrl.
+        // Extract the username via platform.regex against the newSocialUrl.
         // If the regex does not match, throw an error.
-        const usernameMatch = socialUrl.match(platformDetails.regex);
+        const usernameMatch = newSocialUrl.match(platformDetails.regex);
         if (!usernameMatch) {
           throw new Error("Username not found in URL");
         }
@@ -85,6 +108,17 @@ export const SocialsForm = () => {
       mutationAddSocial.mutate({ platform, ref });
     } catch {
       setErrorMessage("Error adding social, please check the URL.");
+    }
+  };
+
+  const editSocialEntry = () => {
+    setIsOpen(false);
+  };
+
+  const deleteSocialEntry = () => {
+    if (editSocial) {
+      mutationDeleteSocial.mutate({ id: editSocial.id });
+      setIsOpen(false);
     }
   };
 
@@ -104,8 +138,8 @@ export const SocialsForm = () => {
         </FieldDescription>
         <TextField
           label="Social URL"
-          name="socialUrl"
-          value={socialUrl}
+          name="newSocialUrl"
+          value={newSocialUrl}
           onChange={handleSocialUrlChange}
           fullWidth
           sx={{ marginTop: "auto" }}
@@ -116,22 +150,67 @@ export const SocialsForm = () => {
           Add Social
         </Button>
       </InputSection>
+
       <Box>
         {socials && socials?.length > 0 ? (
           <>
             <FieldTitle>Current Socials</FieldTitle>
             <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 3 }}>
               {socials.map((social) => (
-                <Box key={social.id}>
-                  <MuiLink target="_blank" href={generateSocialUrl(social)}>
-                    <Icon icon={getSocialIcon(social)} width="48" height="48" />
-                  </MuiLink>
+                <Box
+                  key={social.id}
+                  onClick={() => {
+                    setEditSocial(social);
+                    setIsOpen(true);
+                  }}
+                  sx={{ cursor: "pointer" }}
+                >
+                  <Icon icon={getSocialIcon(social)} width="48" height="48" />
                 </Box>
               ))}
             </Box>
           </>
         ) : null}
       </Box>
+
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Edit Social</CustomDialogTitle>
+        <DialogContent>
+          {editSocial ? (
+            <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 2 }}>
+              <Typography variant="body2" sx={{ mb: 2 }}>
+                View:{" "}
+                <MuiLink target="_blank" href={generateSocialUrl(editSocial)}>
+                  {generateSocialUrl(editSocial).split("://")[1]}
+                </MuiLink>
+              </Typography>
+              <TextField
+                label={`Edit ${getSocialMediaPlatformByPlatformName(editSocial.platform).name}`}
+                value={editSocial.ref}
+                onChange={(e) => {
+                  const socialHandleRef = e.target.value.replaceAll("@", "");
+                  setEditSocial({ ...editSocial, ref: socialHandleRef });
+                }}
+              />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  gap: 2,
+                }}
+              >
+                <DeleteWithConfirmation onConfirmDelete={deleteSocialEntry} />
+                <Button variant="contained" color="primary" onClick={editSocialEntry}>
+                  Save
+                </Button>
+              </Box>
+            </Box>
+          ) : (
+            "No social selected."
+          )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
