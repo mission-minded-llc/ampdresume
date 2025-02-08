@@ -1,6 +1,12 @@
-"use client";
-
 import { Box, Typography } from "@mui/material";
+
+import { titleSuffix } from "@/constants";
+
+export function generateMetadata() {
+  return {
+    title: `Check Your Email ${titleSuffix}`,
+  };
+}
 
 export default function SignIn() {
   return (

@@ -1,3 +1,5 @@
+export { SOCIAL_MEDIA_PLATFORMS } from "./social";
+
 /**
  * Global constant values can live here.
  */
