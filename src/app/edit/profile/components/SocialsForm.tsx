@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogContent, TextField, Typography } from "@mui/material";
+import { Box, Button, Dialog, DialogContent, List, TextField, Typography } from "@mui/material";
 import { FieldDescription, FieldTitle, InputSection, SectionTitle } from "./sections";
 import {
   generateSocialUrl,
@@ -13,7 +13,9 @@ import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation"
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
+import { SOCIAL_MEDIA_PLATFORMS } from "@/constants";
 import { Social } from "@prisma/client";
+import { Tooltip } from "@/components/Tooltip";
 import { addSocial } from "@/graphql/addSocial";
 import { deleteSocial } from "@/graphql/deleteSocial";
 import { getSocials } from "@/graphql/getSocials";
@@ -147,7 +149,23 @@ export const SocialsForm = () => {
     <>
       <SectionTitle>Social Media Links</SectionTitle>
       <InputSection>
-        <FieldTitle>Add Link</FieldTitle>
+        <FieldTitle>
+          Add Link{" "}
+          <Tooltip
+            message={
+              <List>
+                <Typography variant="body2" sx={{ mb: 2 }}>
+                  Supported Social URLs:
+                </Typography>
+                {Object.values(SOCIAL_MEDIA_PLATFORMS).map((platform) => (
+                  <Typography key={platform.name} variant="body2">
+                    {platform.name}
+                  </Typography>
+                ))}
+              </List>
+            }
+          />
+        </FieldTitle>
         <FieldDescription>
           Paste a link below to add to your socials. Link icons will appear at the top of your
           resume.
