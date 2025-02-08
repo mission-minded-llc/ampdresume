@@ -17,6 +17,7 @@ import { Social } from "@prisma/client";
 import { addSocial } from "@/graphql/addSocial";
 import { deleteSocial } from "@/graphql/deleteSocial";
 import { getSocials } from "@/graphql/getSocials";
+import { updateSocial } from "@/graphql/updateSocial";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
@@ -57,6 +58,17 @@ export const SocialsForm = () => {
 
       setNewSocialUrl("");
       setErrorMessage("");
+    },
+  });
+
+  const mutationUpdateSocial = useMutation({
+    mutationFn: async ({ id, ref }: { id: string; ref: string }) => {
+      if (!session?.user.id) return null;
+
+      await updateSocial({ userId: session?.user.id, id, ref });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["socials"] });
     },
   });
 
@@ -111,7 +123,11 @@ export const SocialsForm = () => {
     }
   };
 
-  const editSocialEntry = () => {
+  const updateSocialEntry = () => {
+    if (editSocial) {
+      mutationUpdateSocial.mutate({ id: editSocial.id, ref: editSocial.ref });
+    }
+
     setIsOpen(false);
   };
 
@@ -201,7 +217,7 @@ export const SocialsForm = () => {
                 }}
               >
                 <DeleteWithConfirmation onConfirmDelete={deleteSocialEntry} />
-                <Button variant="contained" color="primary" onClick={editSocialEntry}>
+                <Button variant="contained" color="primary" onClick={updateSocialEntry}>
                   Save
                 </Button>
               </Box>

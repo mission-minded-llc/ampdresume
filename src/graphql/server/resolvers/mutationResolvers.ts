@@ -19,6 +19,7 @@ import { updateProject } from "./mutations/updateProject";
 import { updateProjectSortIndexes } from "./mutations/updateProjectSortIndexes";
 import { updateSkillForProject } from "./mutations/updateSkillForProject";
 import { updateSkillForUser } from "./mutations/updateSkillForUser";
+import { updateSocial } from "./mutations/updateSocial";
 
 export const mutationResolvers = {
   // User specific mutations.
@@ -27,6 +28,7 @@ export const mutationResolvers = {
   deleteSkillForUser,
   addSocial,
   deleteSocial,
+  updateSocial,
 
   // Company specific mutations.
   addCompany,
