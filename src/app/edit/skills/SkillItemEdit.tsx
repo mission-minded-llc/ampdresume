@@ -1,13 +1,12 @@
 import { Box, Button, Divider, TextField } from "@mui/material";
-import { useContext, useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRef, useState } from "react";
 
 import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
 import { IconSelector } from "@/components/IconSelector";
 import { MuiLink } from "@/components/MuiLink";
 import { RichTextEditor } from "@/app/edit/components/RichTextEditor/RichTextEditor";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
-import { SkillsContext } from "../../r/[slug]/theme/Default/components/Skills/Skills";
 import { Tooltip } from "@/components/Tooltip";
 import { TooltipTotalYears } from "@/components/tooltips";
 import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
@@ -24,8 +23,6 @@ export const SkillItemEdit = ({
 }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
-
-  const { skillType } = useContext(SkillsContext);
 
   const editorStateRef = useRef<string | null>(null);
 
@@ -134,7 +131,7 @@ export const SkillItemEdit = ({
       <Divider sx={{ my: 2 }} />
       <Box sx={{ mb: 2 }}>
         <RichTextEditor
-          name={skillType}
+          name="user"
           editorStateRef={editorStateRef}
           value={skill?.description ?? ""}
         />
