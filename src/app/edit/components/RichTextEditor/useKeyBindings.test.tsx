@@ -4,9 +4,9 @@ import {
   LexicalComposerContextType,
 } from "@lexical/react/LexicalComposerContext";
 
-import { RichTextAction } from "@/components/resume/RichTextEditor/plugins/constants";
+import { RichTextAction } from "@/app/edit/components/RichTextEditor/plugins/constants";
 import { renderHook } from "@testing-library/react";
-import { useKeyBindings } from "@/hooks/useKeyBindings";
+import { useKeyBindings } from "@/app/edit/components/RichTextEditor/useKeyBindings";
 
 describe("useKeyBindings", () => {
   let onAction: jest.Mock;

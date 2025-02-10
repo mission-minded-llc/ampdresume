@@ -1,7 +1,4 @@
-import {
-  LOW_PRIORIRTY,
-  RichTextAction,
-} from "@/components/resume/RichTextEditor/plugins/constants";
+import { LOW_PRIORIRTY, RichTextAction } from "./plugins/constants";
 
 import { KEY_ENTER_COMMAND } from "lexical";
 import { useEffect } from "react";

@@ -6,9 +6,8 @@ import { EditSkillsSearch } from "./EditSkillsSearch";
 import { InfoOutlined } from "@mui/icons-material";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
-import { ResumeProvider } from "@/components/resume/ResumeContext";
 import { SectionTitle } from "../components/SectionTitle";
-import { Skills } from "@/components/resume/Skills/Skills";
+import { Skills } from "@/app/r/[slug]/theme/Default/components/Skills/Skills";
 import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -40,28 +39,28 @@ export const EditSkills = () => {
   if (error) return <Box>Error loading skills: {error.message}</Box>;
 
   return (
-    <ResumeProvider
-      skillsForUser={skillsForUser ?? []}
-      companies={[]}
-      positionsWithProjects={[]}
-      positionsWithSkillsForProjects={[]}
-      education={[]}
-    >
+    <>
       <SectionTitle title="Add a Skill" />
 
       <Typography sx={{ mb: 2 }}>Search for a skill to add to your profile:</Typography>
       <EditSkillsSearch />
 
-      <Typography variant="h5" sx={{ mb: 2, mt: 6 }}>
-        Your Skills{" "}
-        <Tooltip title="Click on a skill to edit or remove it.">
-          <IconButton size="small" sx={{ ml: 1 }}>
-            <InfoOutlined fontSize="small" />
-          </IconButton>
-        </Tooltip>
-      </Typography>
+      {skillsForUser ? (
+        <>
+          <Typography variant="h5" sx={{ mb: 2, mt: 6 }}>
+            Your Skills{" "}
+            <Tooltip title="Click on a skill to edit or remove it.">
+              <IconButton size="small" sx={{ ml: 1 }}>
+                <InfoOutlined fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </Typography>
 
-      <Skills skillType="user" />
-    </ResumeProvider>
+          <Skills skillType="user" skillsForUser={skillsForUser} />
+        </>
+      ) : (
+        <Typography>No skills found.</Typography>
+      )}
+    </>
   );
 };

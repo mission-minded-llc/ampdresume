@@ -94,7 +94,7 @@ export const PositionForm = ({
             buttonLabel="Delete Position"
             tooltip={
               position.projects.length > 0
-                ? "To delete this position, first delete all projects."
+                ? "To delete this position, first delete all projects in the position."
                 : ""
             }
             onConfirmDelete={() => {

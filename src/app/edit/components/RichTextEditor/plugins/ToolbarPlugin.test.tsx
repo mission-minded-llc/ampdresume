@@ -5,8 +5,8 @@ import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 
 import { HeadingNode } from "@lexical/rich-text";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { RICH_TEXT_OPTIONS } from "@/components/resume/RichTextEditor/plugins/constants";
-import { ToolbarPlugin } from "@/components/resume/RichTextEditor/plugins/ToolbarPlugin";
+import { RICH_TEXT_OPTIONS } from "./constants";
+import { ToolbarPlugin } from "./ToolbarPlugin";
 import { render } from "@testing-library/react";
 
 const initialConfig = {

@@ -6,7 +6,6 @@ import { CompanyList } from "./CompanyList";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import React from "react";
-import { ResumeProvider } from "@/components/resume/ResumeContext";
 import { SectionTitle } from "../components/SectionTitle";
 import { getCompanies } from "@/graphql/getCompanies";
 import { getPositionsWithProjects } from "@/graphql/getPositionsWithProjects";
@@ -31,7 +30,7 @@ export const EditExperience = () => {
   const {
     isPending: isPendingPositions,
     error: errorPositions,
-    data: positions,
+    data: positionsWithProjects,
   } = useQuery({
     enabled: isAuthenticatedUser,
     queryKey: ["positions", companies],
@@ -57,13 +56,7 @@ export const EditExperience = () => {
   if (errorPositions) return <Box>Error loading positions: {errorPositions.message}</Box>;
 
   return (
-    <ResumeProvider
-      companies={companies ?? []}
-      positionsWithProjects={positions ?? []}
-      positionsWithSkillsForProjects={[]}
-      education={[]}
-      skillsForUser={[]}
-    >
+    <>
       <SectionTitle title="Edit Professional Experience" />
       <Typography variant="body1" sx={{ mb: 4 }}>
         Add your professional experience to your resume. You can add multiple companies and
@@ -71,7 +64,11 @@ export const EditExperience = () => {
         you can add projects (e.g. bullet points) to positions.
       </Typography>
 
-      <CompanyList />
-    </ResumeProvider>
+      {companies ? (
+        <CompanyList companies={companies} positionsWithProjects={positionsWithProjects} />
+      ) : (
+        <Typography>No companies found.</Typography>
+      )}
+    </>
   );
 };

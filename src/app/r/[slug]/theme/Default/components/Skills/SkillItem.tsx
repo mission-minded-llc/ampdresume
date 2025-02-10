@@ -6,7 +6,7 @@ import { CustomDialogTitle } from "@/components/DialogTitle";
 import { Icon } from "@iconify/react";
 import { SkillForProjectWithSkill } from "@/graphql/getSkillsForProject";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
-import { SkillItemEdit } from "./SkillItemEdit";
+import { SkillItemEdit } from "@/app/edit/skills/SkillItemEdit";
 import { SkillItemView } from "./SkillItemView";
 import { SkillsContext } from "./Skills";
 import { usePathname } from "next/navigation";
