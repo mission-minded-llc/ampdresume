@@ -2,10 +2,10 @@ import { Box, Button, Divider, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 
-import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
+import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { IconSelector } from "@/components/IconSelector";
 import { MuiLink } from "@/components/MuiLink";
-import { RichTextEditor } from "@/app/edit/components/RichTextEditor/RichTextEditor";
+import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { Tooltip } from "@/components/Tooltip";
 import { TooltipTotalYears } from "@/components/tooltips";

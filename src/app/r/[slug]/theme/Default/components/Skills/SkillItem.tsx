@@ -6,11 +6,8 @@ import { CustomDialogTitle } from "@/components/DialogTitle";
 import { Icon } from "@iconify/react";
 import { SkillForProjectWithSkill } from "@/graphql/getSkillsForProject";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
-import { SkillItemEdit } from "@/app/edit/skills/SkillItemEdit";
 import { SkillItemView } from "./SkillItemView";
 import { SkillsContext } from "./Skills";
-import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 export const SkillItem = ({
   skill,
@@ -18,9 +15,6 @@ export const SkillItem = ({
   skill: SkillForUserWithSkill | SkillForProjectWithSkill;
 }) => {
   const { skillType } = useContext(SkillsContext);
-  const { data: session, status } = useSession();
-  const pathname = usePathname();
-
   const [isOpen, setIsOpen] = useState(false);
 
   const projectSkill = skill as SkillForProjectWithSkill;
@@ -28,14 +22,6 @@ export const SkillItem = ({
     skillType === "project"
       ? { ...projectSkill.skillForUser, description: projectSkill.description }
       : (skill as SkillForUserWithSkill);
-
-  const userCanEdit =
-    skillData?.userId &&
-    pathname.startsWith("/edit/skills") &&
-    status === "authenticated" &&
-    session?.user?.id === skillData.userId;
-
-  const buttonDisabled = !(skill?.description || userCanEdit);
 
   const SkillIcon = () =>
     skillData?.icon ? (
@@ -47,7 +33,7 @@ export const SkillItem = ({
   return (
     <React.Fragment>
       <Button
-        disabled={buttonDisabled}
+        disabled={!skill?.description}
         variant="outlined"
         color="primary"
         onClick={() => setIsOpen(true)}
@@ -63,7 +49,7 @@ export const SkillItem = ({
           },
           textTransform: "none",
           gap: "8px",
-          borderColor: userCanEdit && skill?.description ? "lawngreen" : theme.palette.primary.dark,
+          borderColor: skill?.description ? "lawngreen" : theme.palette.primary.dark,
         })}
       >
         {skillData?.icon ? (
@@ -82,11 +68,7 @@ export const SkillItem = ({
           </Box>
         </CustomDialogTitle>
         <DialogContent>
-          {userCanEdit ? (
-            <SkillItemEdit skill={skillData} handleClose={() => setIsOpen(false)} />
-          ) : (
-            <SkillItemView skill={skillData} />
-          )}
+          <SkillItemView skill={skillData} />
         </DialogContent>
       </Dialog>
     </React.Fragment>
