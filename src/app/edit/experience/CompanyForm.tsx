@@ -1,36 +1,32 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Company, CompanyGeneric } from "@/graphql/getCompanies";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { formatLongDate, formatShortDate, timestampToDate } from "@/lib/format";
 
 import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
-import { ResumeContext } from "@/components/resume/ResumeContext";
+import { PositionWithProjects } from "@/graphql/getPositionsWithProjects";
 
 export const CompanyForm = ({
   company,
+  positionsWithProjectsInCompany = [],
   handler,
   deleteHandler = null,
   onCancel = null,
 }: {
   company?: Company | null;
+  positionsWithProjectsInCompany?: PositionWithProjects[];
   handler: (company: CompanyGeneric | Company) => void;
   deleteHandler?: ((company: Company) => void) | null;
   onCancel?: (() => void) | null;
 }) => {
-  const { positionsWithProjects } = useContext(ResumeContext);
-
   const [companyName, setCompanyName] = useState(company?.name || "");
   const [location, setLocation] = useState(company?.location || "");
   const [startDate, setStartDate] = useState<Dayjs | null>(
     dayjs(timestampToDate(company?.startDate)),
   );
   const [endDate, setEndDate] = useState<Dayjs | null>(dayjs(timestampToDate(company?.endDate)));
-
-  const positionsInCompany = positionsWithProjects.filter(
-    (position) => position.company.id === company?.id,
-  );
 
   const saveHandler = () => {
     if (!startDate) return;
@@ -102,12 +98,12 @@ export const CompanyForm = ({
           <DeleteWithConfirmation
             buttonLabel="Delete Company"
             tooltip={
-              positionsInCompany.length > 0
-                ? "To delete this company, first delete all positions."
+              positionsWithProjectsInCompany.length > 0
+                ? "To delete this company, first delete all positions in the company."
                 : ""
             }
             onConfirmDelete={() => deleteHandler(company)}
-            disabled={positionsInCompany.length > 0}
+            disabled={positionsWithProjectsInCompany.length > 0}
           />
         )}
         {onCancel && (

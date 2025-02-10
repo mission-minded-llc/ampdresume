@@ -18,7 +18,7 @@ import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Project } from "@prisma/client";
-import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
+import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 import { addSkillForProject } from "@/graphql/addSkillForProject";
 import { deleteProject } from "@/graphql/deleteProject";
@@ -141,6 +141,9 @@ export const ProjectItem = ({
           ),
       )
     : [];
+
+  // Sort available skills by name
+  availableSkills?.sort((a, b) => a.skill.name.localeCompare(b.skill.name));
 
   return (
     <>

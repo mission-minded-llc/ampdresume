@@ -6,7 +6,7 @@ import { CustomDialogTitle } from "@/components/DialogTitle";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { Project } from "@prisma/client";
-import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
+import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 import { SkillForProjectWithSkill } from "@/graphql/getSkillsForProject";
 import { deleteSkillForProject } from "@/graphql/deleteSkillForProject";
 import { updateSkillForProject } from "@/graphql/updateSkillForProject";

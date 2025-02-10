@@ -32,7 +32,7 @@ import { TablePlugin } from "./TablePlugin";
 import { YouTubeNode } from "../nodes/YouTubeNode";
 import YoutubePlugin from "./YouTubePlugin";
 import { deleteUserAsset } from "@/util/userAsset";
-import { useKeyBindings } from "@/hooks/useKeyBindings";
+import { useKeyBindings } from "../useKeyBindings";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 const $isCustomImageNode = (node: LexicalNode): boolean => node instanceof ImageNode;

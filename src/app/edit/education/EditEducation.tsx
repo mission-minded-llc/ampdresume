@@ -5,7 +5,6 @@ import { Box, Typography } from "@mui/material";
 import { EducationList } from "./EducationList";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
-import { ResumeProvider } from "@/components/resume/ResumeContext";
 import { SectionTitle } from "../components/SectionTitle";
 import { getEducation } from "@/graphql/getEducation";
 import { useQuery } from "@tanstack/react-query";
@@ -38,13 +37,7 @@ export const EditEducation = () => {
   if (error) return <Box>Error loading education: {error.message}</Box>;
 
   return (
-    <ResumeProvider
-      skillsForUser={[]}
-      companies={[]}
-      positionsWithProjects={[]}
-      positionsWithSkillsForProjects={[]}
-      education={education ?? []}
-    >
+    <>
       <SectionTitle title="Your Education" />
 
       <Box sx={{ mb: 4 }}>
@@ -54,7 +47,11 @@ export const EditEducation = () => {
         </Typography>
       </Box>
 
-      <EducationList />
-    </ResumeProvider>
+      {education ? (
+        <EducationList education={education} />
+      ) : (
+        <Typography>No education found.</Typography>
+      )}
+    </>
   );
 };

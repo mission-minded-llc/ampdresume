@@ -3,11 +3,10 @@
 import { Box, Button } from "@mui/material";
 import React, { MouseEvent, useState } from "react";
 
-import { ResumeContext } from "../ResumeContext";
+import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillType } from "@/graphql/getSkills";
 import { SkillsCloud } from "./SkillsCloud";
 import { SkillsExperience } from "./SkillsExperience";
-import { useContext } from "react";
 
 interface SkillsContext {
   skillType: SkillType;
@@ -25,9 +24,13 @@ export const SkillsContextProvider = ({
   children: React.ReactNode;
 }) => <SkillsContext.Provider value={{ skillType }}>{children}</SkillsContext.Provider>;
 
-export const Skills = ({ skillType }: { skillType: SkillType }) => {
-  const { skillsForUser } = useContext(ResumeContext);
-
+export const Skills = ({
+  skillType,
+  skillsForUser,
+}: {
+  skillType: SkillType;
+  skillsForUser: SkillForUserWithSkill[];
+}) => {
   const [skillsLayout, setSkillsLayout] = useState<"experience" | "cloud">("experience");
 
   const toggleSkillsLayout = (e: MouseEvent<HTMLButtonElement>) => {
@@ -41,6 +44,8 @@ export const Skills = ({ skillType }: { skillType: SkillType }) => {
 
     setSkillsLayout(layout);
   };
+
+  if (!skillsForUser) return null;
 
   return (
     <SkillsContextProvider skillType={skillType}>

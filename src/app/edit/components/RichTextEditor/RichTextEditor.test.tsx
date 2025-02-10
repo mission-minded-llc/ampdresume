@@ -1,7 +1,7 @@
 import { act, render } from "@testing-library/react";
 
 import React from "react";
-import { RichTextEditor } from "@/components/resume/RichTextEditor/RichTextEditor";
+import { RichTextEditor } from "./RichTextEditor";
 
 describe("RichTextEditor", () => {
   it("renders without crashing", async () => {

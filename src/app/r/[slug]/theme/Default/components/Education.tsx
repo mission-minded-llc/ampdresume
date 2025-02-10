@@ -1,16 +1,12 @@
-"use client";
-
 import { Box, Typography } from "@mui/material";
-import React, { useContext } from "react";
 
 import type { Education as EducationType } from "@/graphql/getEducation";
-import { ResumeContext } from "./ResumeContext";
+import React from "react";
 import { formatLongDate } from "@/lib/format";
 
-export const Education = () => {
-  const { education } = useContext(ResumeContext);
-
+export const Education = ({ education }: { education: EducationType[] }) => {
   const educationGroupedBySchool: { [key: string]: EducationType[] } = {};
+
   education.map((edu) => {
     if (!edu?.school) return;
 

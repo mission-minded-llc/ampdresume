@@ -1,18 +1,16 @@
 import { Box, Button, Dialog, DialogContent } from "@mui/material";
-import React, { useContext, useState } from "react";
+import { Education, EducationGeneric } from "@/graphql/getEducation";
+import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CustomDialogTitle } from "@/components/DialogTitle";
 import { EducationForm } from "./EducationForm";
-import { EducationGeneric } from "@/graphql/getEducation";
 import { EducationItem } from "./EducationItem";
-import { ResumeContext } from "@/components/resume/ResumeContext";
 import { addEducation } from "@/graphql/addEducation";
 import { useSession } from "next-auth/react";
 
-export const EducationList = () => {
+export const EducationList = ({ education }: { education: Education[] }) => {
   const { data: session } = useSession();
-  const { education } = useContext(ResumeContext);
   const queryClient = useQueryClient();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -56,13 +54,8 @@ export const EducationList = () => {
 
   return (
     <Box sx={{ mb: 4 }}>
-      {education.map((education) => (
-        <EducationItem
-          key={education.id}
-          education={education}
-          expanded={expanded}
-          setExpanded={setExpanded}
-        />
+      {education.map((edu) => (
+        <EducationItem key={edu.id} education={edu} expanded={expanded} setExpanded={setExpanded} />
       ))}
 
       {expanded === false ? (

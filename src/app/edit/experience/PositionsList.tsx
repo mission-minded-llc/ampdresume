@@ -1,22 +1,24 @@
 import { Box, Button, Dialog, DialogContent } from "@mui/material";
-import { useContext, useState } from "react";
+import { PositionGeneric, PositionWithProjects } from "@/graphql/getPositionsWithProjects";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Company } from "@/graphql/getCompanies";
 import { CustomDialogTitle } from "@/components/DialogTitle";
 import { PositionForm } from "./PositionForm";
-import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { PositionItem } from "./PositionItem";
-import { ResumeContext } from "@/components/resume/ResumeContext";
 import { addPosition } from "@/graphql/addPosition";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 
-export const PositionsList = ({ company }: { company: Company }) => {
-  const { positionsWithProjects } = useContext(ResumeContext);
-
+export const PositionsList = ({
+  company,
+  positionsWithProjectsInCompany,
+}: {
+  company: Company;
+  positionsWithProjectsInCompany: PositionWithProjects[];
+}) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
-
   const [isOpen, setIsOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | false>(false);
 
@@ -60,13 +62,9 @@ export const PositionsList = ({ company }: { company: Company }) => {
     setIsOpen(false);
   };
 
-  const positionsInCompany = positionsWithProjects.filter(
-    (position) => position.company.id === company.id,
-  );
-
   return (
     <Box sx={{ mt: 2 }}>
-      {positionsInCompany.map((position) => (
+      {positionsWithProjectsInCompany.map((position) => (
         <PositionItem
           key={position.id}
           position={position}
