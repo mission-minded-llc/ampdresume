@@ -40,7 +40,11 @@ export const sendVerificationRequest = async ({
   // Use the matched email if found, otherwise fallback to the original
   const emailToSend = normalizedEmail?.email ? normalizedEmail.email : identifier;
 
-  if (!ALLOWED_USER_EMAILS.includes(emailToSend)) {
+  if (
+    process.env?.NEXT_PUBLIC_ENVIRONMENT_NAME &&
+    process.env.NEXT_PUBLIC_ENVIRONMENT_NAME !== "production" &&
+    !ALLOWED_USER_EMAILS.includes(emailToSend)
+  ) {
     Sentry.captureMessage(`Email ${emailToSend} is not allowed to sign in.`);
 
     throw new Error("Email is not allowed to sign in.");
@@ -117,7 +121,11 @@ export const authOptions: NextAuthOptions = {
       const { user, account, profile } = data;
 
       if (account?.provider === "google" && profile?.email && account?.email_verified) {
-        if (!ALLOWED_USER_EMAILS.includes(profile.email)) {
+        if (
+          process.env?.NEXT_PUBLIC_ENVIRONMENT_NAME &&
+          process.env.NEXT_PUBLIC_ENVIRONMENT_NAME !== "production" &&
+          !ALLOWED_USER_EMAILS.includes(profile.email)
+        ) {
           Sentry.captureMessage(`Email ${profile.email} is not allowed to sign in.`);
 
           return false; // Prevent sign-in
