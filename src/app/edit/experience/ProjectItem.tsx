@@ -142,6 +142,9 @@ export const ProjectItem = ({
       )
     : [];
 
+  // Sort available skills by name
+  availableSkills?.sort((a, b) => a.skill.name.localeCompare(b.skill.name));
+
   return (
     <>
       <Box
