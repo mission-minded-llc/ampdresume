@@ -18,7 +18,7 @@ import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Project } from "@prisma/client";
-import { RichTextEditor } from "@/app/edit/components/RichTextEditor/RichTextEditor";
+import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 import { addSkillForProject } from "@/graphql/addSkillForProject";
 import { deleteProject } from "@/graphql/deleteProject";

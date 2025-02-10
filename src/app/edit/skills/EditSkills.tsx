@@ -7,7 +7,7 @@ import { InfoOutlined } from "@mui/icons-material";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import { SectionTitle } from "../components/SectionTitle";
-import { Skills } from "@/app/r/[slug]/theme/Default/components/Skills/Skills";
+import { SkillsExperience } from "./SkillsExperience";
 import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -56,7 +56,7 @@ export const EditSkills = () => {
             </Tooltip>
           </Typography>
 
-          <Skills skillType="user" skillsForUser={skillsForUser} />
+          <SkillsExperience skills={skillsForUser} />
         </>
       ) : (
         <Typography>No skills found.</Typography>
