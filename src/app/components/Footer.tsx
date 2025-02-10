@@ -23,6 +23,8 @@ export const Footer = () => {
         backgroundColor: theme.palette.background.paper,
         position: isResumePage ? "fixed" : "relative",
         marginTop: "auto",
+        height: "auto",
+        overflow: "auto",
         zIndex: 2,
         bottom: 0,
         left: 0,
@@ -34,25 +36,36 @@ export const Footer = () => {
         sx={{
           width: "100%",
           display: "flex",
+          flexDirection: isDesktop ? "row" : "column",
+          padding: "0.5em",
           justifyContent: "space-around",
           alignItems: "center",
+          textAlign: "center",
         }}
       >
         <Box
           sx={{
             display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
             alignItems: "center",
+            textAlign: "center",
+            width: "100%",
+            pl: 2,
             gap: "0.35em",
           }}
         >
           {isDesktop && !isLoggedIn ? "Create your free interactive resume at " : null}
           <MuiLink href={baseUrl}>openresume.org</MuiLink>
+          {isResumePage ? <ThemeAppearanceToggle /> : null}
         </Box>
-        {isResumePage ? <ThemeAppearanceToggle /> : null}
         <Box>
           <Typography variant="caption" sx={{ textAlign: "center" }}>
             <MuiLink href="/about/privacy-policy">Privacy Policy</MuiLink> |{" "}
             <MuiLink href="/about/terms-of-service">Terms of Service</MuiLink>
+            {isDesktop ? (
+              <> | &copy; {new Date().getFullYear()} OpenResume. All rights reserved.</>
+            ) : null}
           </Typography>
         </Box>
       </Box>

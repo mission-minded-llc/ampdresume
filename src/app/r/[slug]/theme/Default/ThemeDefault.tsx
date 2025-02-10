@@ -41,9 +41,6 @@ export const ThemeDefault = ({
       sx={{
         display: "flex",
         flexDirection: "column",
-        "@media screen and (max-width: 600px)": {
-          flexDirection: "column-reverse",
-        },
       }}
     >
       {skillsForUser?.length ? (
