@@ -21,6 +21,8 @@ export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[]
         lineHeight: "100%",
         [theme.breakpoints.down("sm")]: {
           textAlign: "left",
+          fontSize: "2rem",
+          marginTop: 0,
         },
       })}
     >
@@ -28,11 +30,14 @@ export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[]
       <Typography
         component="span"
         variant="h5"
-        sx={{
+        sx={(theme) => ({
           display: "block",
           mt: 1,
           pt: 1,
-        }}
+          [theme.breakpoints.down("sm")]: {
+            fontSize: "1rem",
+          },
+        })}
       >
         {user?.title}
       </Typography>

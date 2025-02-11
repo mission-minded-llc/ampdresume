@@ -89,11 +89,14 @@ export const SkillsExperience = ({ skills }: { skills: SkillForUserWithSkill[] }
         return (
           <React.Fragment key={`skill-group-${skillsExperience[0]}`}>
             <Box
-              sx={{
+              sx={(theme) => ({
                 fontWeight: "bold",
                 padding: "4px 14px 4px 0",
                 textAlign: "right",
-              }}
+                [theme.breakpoints.down("sm")]: {
+                  fontSize: "1rem",
+                },
+              })}
             >
               {totalYears ? `${totalYears} year${parseInt(totalYears, 10) > 1 ? "s" : ""}:` : ""}
             </Box>

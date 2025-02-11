@@ -73,6 +73,9 @@ export const ProjectAccordion = ({ project }: { project: ProjectWithSkills }) =>
             padding: "1rem !important",
           },
           textAlign: "left",
+          [theme.breakpoints.down("sm")]: {
+            fontSize: "1rem",
+          },
         })}
       >
         <RichTextBlock content={project?.description} />

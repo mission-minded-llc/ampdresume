@@ -72,9 +72,14 @@ export const NavPrimary = () => {
         aria-label="menu"
         onClick={toggleDrawer(true)}
         sx={(theme) => ({
-          marginLeft: 1,
-          marginTop: 1,
+          mt: 1,
+          ml: 1,
           backgroundColor: theme.palette.background.paper,
+          borderRadius: 0,
+          [theme.breakpoints.down("sm")]: {
+            mt: 0,
+            mr: 0,
+          },
         })}
       >
         <MenuIcon fontSize="large" />
@@ -117,7 +122,6 @@ export const NavPrimary = () => {
                     text="View Resume"
                     icon={<PersonIcon />}
                     href={`/r/${session.data.user.slug}`}
-                    target="_blank"
                   />
                 ) : null}
                 <NavItem text="Edit Resume" icon={<Edit />} href="/edit/profile" />

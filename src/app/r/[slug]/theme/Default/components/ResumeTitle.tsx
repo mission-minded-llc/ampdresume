@@ -4,7 +4,7 @@ export const ResumeTitle = ({ children }: { children: React.ReactNode }) => (
   <Typography
     component="h2"
     variant="h5"
-    sx={{
+    sx={(theme) => ({
       margin: "40px 0 20px",
       padding: "15px 0",
       borderTop: "1px solid gray",
@@ -13,7 +13,12 @@ export const ResumeTitle = ({ children }: { children: React.ReactNode }) => (
       "@media screen and (max-width: $breakpoint_mobile)": {
         textAlign: "left",
       },
-    }}
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "1.5rem",
+        margin: "20px 0 10px",
+        padding: "10px 0",
+      },
+    })}
   >
     {children}
   </Typography>
