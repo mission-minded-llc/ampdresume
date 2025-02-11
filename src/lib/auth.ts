@@ -9,6 +9,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { JWT } from "next-auth/jwt";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { findUserByNormalizedEmail } from "@/util/email";
+import { getEnvironmentName } from "@/util/url";
 import nodemailer from "nodemailer";
 import { prisma } from "@/lib/prisma";
 
@@ -40,11 +41,7 @@ export const sendVerificationRequest = async ({
   // Use the matched email if found, otherwise fallback to the original
   const emailToSend = normalizedEmail?.email ? normalizedEmail.email : identifier;
 
-  if (
-    process.env?.NEXT_PUBLIC_ENVIRONMENT_NAME &&
-    process.env.NEXT_PUBLIC_ENVIRONMENT_NAME !== "production" &&
-    !ALLOWED_USER_EMAILS.includes(emailToSend)
-  ) {
+  if (getEnvironmentName() !== "production" && !ALLOWED_USER_EMAILS.includes(emailToSend)) {
     Sentry.captureMessage(`Email ${emailToSend} is not allowed to sign in.`);
 
     throw new Error("Email is not allowed to sign in.");
@@ -120,13 +117,9 @@ export const authOptions: NextAuthOptions = {
     async signIn(data) {
       const { user, account, profile } = data;
 
-      if (account?.provider === "google" && profile?.email && account?.email_verified) {
-        if (
-          process.env?.NEXT_PUBLIC_ENVIRONMENT_NAME &&
-          process.env.NEXT_PUBLIC_ENVIRONMENT_NAME !== "production" &&
-          !ALLOWED_USER_EMAILS.includes(profile.email)
-        ) {
-          Sentry.captureMessage(`Email ${profile.email} is not allowed to sign in.`);
+      if (account?.provider === "google" && profile?.email) {
+        if (getEnvironmentName() !== "production" && !ALLOWED_USER_EMAILS.includes(profile.email)) {
+          Sentry.captureMessage(`Email ${profile.email} is not allowed to sign in with Google.`);
 
           return false; // Prevent sign-in
         }
