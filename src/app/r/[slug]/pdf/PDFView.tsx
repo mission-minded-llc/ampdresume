@@ -2,10 +2,9 @@
 
 import { Box, Button } from "@mui/material";
 
-import { Company } from "@/graphql/getCompanies";
+import { CompanyWithPositionsWithProjectsWithSkills } from "@/graphql/getCompanies";
 import { Education } from "@/graphql/getEducation";
 import { PDFViewThemeDefault } from "./pdf-theme";
-import { PositionWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { User } from "@prisma/client";
 import html2pdf from "html2pdf.js";
@@ -14,18 +13,11 @@ import { useRef } from "react";
 interface PDFViewProps {
   user: User;
   skillsForUser: SkillForUserWithSkill[];
-  companies: Company[];
-  positionsWithSkillsForProjects: PositionWithSkillsForProjects[];
+  companies: CompanyWithPositionsWithProjectsWithSkills[];
   education: Education[];
 }
 
-export const PDFView = ({
-  user,
-  skillsForUser,
-  companies,
-  positionsWithSkillsForProjects,
-  education,
-}: PDFViewProps) => {
+export const PDFView = ({ user, skillsForUser, companies, education }: PDFViewProps) => {
   const pdfRef = useRef<HTMLDivElement>(null);
 
   const handleGeneratePdf = () => {
@@ -71,7 +63,6 @@ export const PDFView = ({
             user={user}
             skillsForUser={skillsForUser}
             companies={companies}
-            positionsWithSkillsForProjects={positionsWithSkillsForProjects}
             education={education}
             themeOptions={{ showSkillsInWorkExperience: false }}
           />

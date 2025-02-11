@@ -1,6 +1,7 @@
 import { getCompanies } from "./queries/getCompanies";
 import { getEducation } from "./queries/getEducation";
 import { getPositions } from "./queries/getPositions";
+import { getResume } from "./queries/getResume";
 import { getSkills } from "./queries/getSkills";
 import { getSkillsForProject } from "./queries/getSkillsForProject";
 import { getSkillsForUser } from "./queries/getSkillsForUser";
@@ -19,4 +20,7 @@ export const queryResolvers = {
   positions: getPositions,
   education: getEducation,
   skillsForProject: getSkillsForProject,
+
+  // Full resume query.
+  resume: getResume,
 };

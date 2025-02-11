@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 
 import type { Education as EducationType } from "@/graphql/getEducation";
 import React from "react";
+import { ResumeTitle } from "./ResumeTitle";
 import { formatLongDate } from "@/lib/format";
 
 export const Education = ({ education }: { education: EducationType[] }) => {
@@ -26,6 +27,7 @@ export const Education = ({ education }: { education: EducationType[] }) => {
         },
       }}
     >
+      <ResumeTitle>Education</ResumeTitle>
       {Object.keys(educationGroupedBySchool).map((school) => (
         <React.Fragment key={`education-${school}`}>
           <Typography component="h3" variant="h5">

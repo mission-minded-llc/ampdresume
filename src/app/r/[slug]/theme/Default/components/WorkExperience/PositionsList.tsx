@@ -1,13 +1,18 @@
 "use client";
 
+import { CompanyWithPositionsWithProjectsWithSkills } from "@/graphql/getCompanies";
 import { PositionSingle } from "./PositionSingle";
-import { PositionWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
 
-export const PositionsList = ({ positions }: { positions: PositionWithSkillsForProjects[] }) =>
-  positions.map((position) => (
+export const PositionsList = ({
+  company,
+}: {
+  company: CompanyWithPositionsWithProjectsWithSkills;
+}) =>
+  company?.positions?.map((position) => (
     <PositionSingle
       key={`position-single-${position.id}`}
       position={position}
-      showDates={positions.length > 1}
+      company={company}
+      showDates={company?.positions?.length ? company.positions.length > 1 : false}
     />
   ));
