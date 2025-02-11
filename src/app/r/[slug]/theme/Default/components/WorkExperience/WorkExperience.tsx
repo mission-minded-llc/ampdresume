@@ -2,28 +2,21 @@
 
 import { Box, Typography } from "@mui/material";
 
-import { Company } from "@/graphql/getCompanies";
-import { PositionWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
+import { CompanyWithPositionsWithProjectsWithSkills } from "@/graphql/getCompanies";
 import { PositionsList } from "./PositionsList";
 import { formatLongDate } from "@/lib/format";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 export const WorkExperience = ({
   companies,
-  positionsWithSkillsForProjects,
 }: {
-  companies: Company[];
-  positionsWithSkillsForProjects: PositionWithSkillsForProjects[];
+  companies: CompanyWithPositionsWithProjectsWithSkills[];
 }) => {
   const isDesktop = useIsDesktop();
 
   return (
     <Box component="section">
       {companies.map((company) => {
-        const positionsInCompany = positionsWithSkillsForProjects.filter(
-          (position) => position.company.id === company.id,
-        );
-
         const startDate = formatLongDate(company?.startDate?.toString());
         const endDate = formatLongDate(company?.endDate?.toString());
 
@@ -68,7 +61,7 @@ export const WorkExperience = ({
                 {startDate} to {endDate.length ? endDate : "Present"}
               </Typography>
             </Typography>
-            <PositionsList positions={positionsInCompany} />
+            <PositionsList company={company} />
           </Box>
         );
       })}

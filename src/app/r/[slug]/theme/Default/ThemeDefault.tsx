@@ -1,10 +1,9 @@
 import { Social, User } from "@prisma/client";
 
 import { Box } from "@mui/material";
-import { Company } from "@/graphql/getCompanies";
+import { CompanyWithPositionsWithProjectsWithSkills } from "@/graphql/getCompanies";
 import { Education } from "./components/Education";
 import { Education as EducationType } from "@/graphql/getEducation";
-import { PositionWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
 import { ResumeHeading } from "./components/ResumeHeading";
 import { ResumeTitle } from "./components/ResumeTitle";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
@@ -16,14 +15,12 @@ export const ThemeDefault = ({
   socials,
   skillsForUser,
   companies,
-  positionsWithSkillsForProjects,
   education,
 }: {
   user: User;
   socials: Social[];
   skillsForUser: SkillForUserWithSkill[];
-  companies: Company[];
-  positionsWithSkillsForProjects: PositionWithSkillsForProjects[];
+  companies: CompanyWithPositionsWithProjectsWithSkills[];
   education: EducationType[];
 }) => (
   <Box
@@ -49,13 +46,10 @@ export const ThemeDefault = ({
           <Skills skillType="user" skillsForUser={skillsForUser} />
         </>
       ) : null}
-      {companies?.length && positionsWithSkillsForProjects?.length ? (
+      {companies?.length ? (
         <>
           <ResumeTitle>Work Experience</ResumeTitle>
-          <WorkExperience
-            companies={companies}
-            positionsWithSkillsForProjects={positionsWithSkillsForProjects}
-          />
+          <WorkExperience companies={companies} />
         </>
       ) : null}
     </Box>
