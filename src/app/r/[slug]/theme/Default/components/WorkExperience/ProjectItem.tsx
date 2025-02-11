@@ -18,10 +18,11 @@ export const ProjectItem = ({ project }: { project: ProjectWithSkills }) => (
       alignItems: "center",
       gap: 4,
       padding: 2,
-      "@media screen and (max-width: 600px)": {
+      [theme.breakpoints.down("sm")]: {
         gridTemplateColumns: "1fr",
         gap: "10px",
-        padding: "10px",
+        padding: "10px 0",
+        fontSize: "1rem",
       },
       borderBottom: "1px solid",
       borderBottomColor: theme.palette.divider,

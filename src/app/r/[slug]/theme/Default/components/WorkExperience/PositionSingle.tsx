@@ -37,14 +37,13 @@ export const PositionSingle = ({
 
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         marginTop: "10px",
-        "@media screen and (max-width: 600px)": {
-          marginTop: "16px",
-          paddingTop: 0,
+        [theme.breakpoints.down("sm")]: {
+          pt: 0,
         },
         textAlign: "center",
-      }}
+      })}
     >
       <Typography
         component="h4"
@@ -60,8 +59,11 @@ export const PositionSingle = ({
           zIndex: 1,
           borderBottom: "1px solid white",
           [theme.breakpoints.down("sm")]: {
-            marginTop: "16px",
             textAlign: "left",
+            fontSize: "1.2rem",
+            mb: 0,
+            padding: 0,
+            fontWeight: "bold",
           },
         })}
       >
