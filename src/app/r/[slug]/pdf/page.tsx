@@ -1,9 +1,6 @@
 import { Metadata } from "next";
 import { PDFView } from "./PDFView";
-import { getCompanies } from "@/graphql/getCompanies";
-import { getEducation } from "@/graphql/getEducation";
-import { getPositionsWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
-import { getSkillsForUser } from "@/graphql/getSkillsForUser";
+import { getResume } from "@/graphql/getResume";
 import { getUser } from "@/graphql/getUser";
 import { notFound } from "next/navigation";
 import { titleSuffix } from "@/constants";
@@ -48,22 +45,17 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const user = await getUser(slug);
+  const resume = await getResume(slug);
 
-  if (!user) notFound();
+  if (!resume) notFound();
 
-  const skillsForUser = (await getSkillsForUser(user.id)) ?? [];
-  const companies = (await getCompanies(user.id)) ?? [];
-  const positionsWithSkillsForProjects =
-    (await getPositionsWithSkillsForProjects(companies.map((company) => company.id))) ?? [];
-  const education = (await getEducation(user.id)) ?? [];
+  const { user, skillsForUser, companies, education } = resume;
 
   return (
     <PDFView
       user={user}
       skillsForUser={skillsForUser}
       companies={companies}
-      positionsWithSkillsForProjects={positionsWithSkillsForProjects}
       education={education}
     />
   );

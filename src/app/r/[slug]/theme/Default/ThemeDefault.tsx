@@ -5,7 +5,6 @@ import { CompanyWithPositionsWithProjectsWithSkills } from "@/graphql/getCompani
 import { Education } from "./components/Education";
 import { Education as EducationType } from "@/graphql/getEducation";
 import { ResumeHeading } from "./components/ResumeHeading";
-import { ResumeTitle } from "./components/ResumeTitle";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { Skills } from "./components/Skills/Skills";
 import { WorkExperience } from "./components/WorkExperience/WorkExperience";
@@ -34,30 +33,9 @@ export const ThemeDefault = ({
     }}
   >
     <ResumeHeading user={user} socials={socials} />
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      {skillsForUser?.length ? (
-        <>
-          <ResumeTitle>Skills</ResumeTitle>
-          <Skills skillType="user" skillsForUser={skillsForUser} />
-        </>
-      ) : null}
-      {companies?.length ? (
-        <>
-          <ResumeTitle>Work Experience</ResumeTitle>
-          <WorkExperience companies={companies} />
-        </>
-      ) : null}
-    </Box>
-    {education?.length ? (
-      <>
-        <ResumeTitle>Education</ResumeTitle>
-        <Education education={education} />
-      </>
-    ) : null}
+
+    {skillsForUser?.length ? <Skills skillType="user" skillsForUser={skillsForUser} /> : null}
+    {companies?.length ? <WorkExperience companies={companies} /> : null}
+    {education?.length ? <Education education={education} /> : null}
   </Box>
 );

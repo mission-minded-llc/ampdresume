@@ -3,6 +3,7 @@
 import { Box, Button } from "@mui/material";
 import React, { MouseEvent, useState } from "react";
 
+import { ResumeTitle } from "../ResumeTitle";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillType } from "@/graphql/getSkills";
 import { SkillsCloud } from "./SkillsCloud";
@@ -49,33 +50,32 @@ export const Skills = ({
 
   return (
     <SkillsContextProvider skillType={skillType}>
-      <section>
-        <Box>
-          Group by:{" "}
-          <Button
-            data-active={skillsLayout === "experience"}
-            data-layout="experience"
-            onClick={toggleSkillsLayout}
-            color={skillsLayout === "experience" ? "primary" : "secondary"}
-          >
-            Experience
-          </Button>{" "}
-          |{" "}
-          <Button
-            data-active={skillsLayout === "cloud"}
-            data-layout="cloud"
-            onClick={toggleSkillsLayout}
-            color={skillsLayout === "cloud" ? "primary" : "secondary"}
-          >
-            Cloud
-          </Button>
-        </Box>
-        {skillsLayout === "experience" ? (
-          <SkillsExperience skills={skillsForUser} />
-        ) : (
-          <SkillsCloud skills={skillsForUser} />
-        )}
-      </section>
+      <ResumeTitle>Skills</ResumeTitle>
+      <Box>
+        Group by:{" "}
+        <Button
+          data-active={skillsLayout === "experience"}
+          data-layout="experience"
+          onClick={toggleSkillsLayout}
+          color={skillsLayout === "experience" ? "primary" : "secondary"}
+        >
+          Experience
+        </Button>{" "}
+        |{" "}
+        <Button
+          data-active={skillsLayout === "cloud"}
+          data-layout="cloud"
+          onClick={toggleSkillsLayout}
+          color={skillsLayout === "cloud" ? "primary" : "secondary"}
+        >
+          Cloud
+        </Button>
+      </Box>
+      {skillsLayout === "experience" ? (
+        <SkillsExperience skills={skillsForUser} />
+      ) : (
+        <SkillsCloud skills={skillsForUser} />
+      )}
     </SkillsContextProvider>
   );
 };
