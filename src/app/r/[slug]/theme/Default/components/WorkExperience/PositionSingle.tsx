@@ -3,18 +3,24 @@
 import { useEffect, useRef, useState } from "react";
 
 import { Box } from "@mui/material";
-import { PositionWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
+import { Company } from "@/graphql/getCompanies";
+import { PositionWithProjectsWithSkills } from "@/graphql/getPositionsWithSkillsForProjects";
 import { Projects } from "./Projects";
 import Typography from "@mui/material/Typography";
 import { formatLongDate } from "@/lib/format";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 export const PositionSingle = ({
   position,
+  company,
   showDates,
 }: {
-  position: PositionWithSkillsForProjects;
+  position: PositionWithProjectsWithSkills;
+  company: Company;
   showDates: boolean;
 }) => {
+  const isDesktop = useIsDesktop();
+
   const [isSticky, setIsSticky] = useState(false);
   const stickyRef = useRef<HTMLHeadingElement | null>(null);
 
@@ -52,6 +58,8 @@ export const PositionSingle = ({
         sx={(theme) => ({
           backgroundColor: theme.palette.background.default,
           boxShadow: isSticky ? "0 2px 4px rgba(0, 0, 0, 0.1)" : "none",
+          position: isDesktop ? "sticky" : "static",
+          top: 0,
           textAlign: "center",
           padding: "1rem 0",
           marginTop: 0,
@@ -84,7 +92,7 @@ export const PositionSingle = ({
             },
           })}
         >
-          {position.company.name}
+          {company.name}
         </Typography>
       </Typography>
       {position?.projects ? <Projects projects={position.projects} /> : null}

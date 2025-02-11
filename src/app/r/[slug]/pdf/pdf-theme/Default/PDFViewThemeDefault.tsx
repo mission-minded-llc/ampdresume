@@ -1,11 +1,10 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { Company } from "@/graphql/getCompanies";
+import { CompanyWithPositionsWithProjectsWithSkills } from "@/graphql/getCompanies";
 import { Education } from "./sections/Education";
 import { Education as EducationType } from "@/graphql/getEducation";
 import { Header } from "./sections/Header";
-import { PositionWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
 import React from "react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { Skills } from "./sections/Skills";
@@ -23,8 +22,7 @@ const defaultThemeOptions: PDFViewThemeDefaultOptions = {
 interface PDFViewProps {
   user: User;
   skillsForUser: SkillForUserWithSkill[];
-  companies: Company[];
-  positionsWithSkillsForProjects: PositionWithSkillsForProjects[];
+  companies: CompanyWithPositionsWithProjectsWithSkills[];
   education: EducationType[];
   themeOptions?: PDFViewThemeDefaultOptions;
 }
@@ -33,7 +31,6 @@ export const PDFViewThemeDefault = ({
   user,
   skillsForUser,
   companies,
-  positionsWithSkillsForProjects,
   education,
   themeOptions = defaultThemeOptions,
 }: PDFViewProps) => {
@@ -51,11 +48,7 @@ export const PDFViewThemeDefault = ({
     >
       <Header user={user} />
       <Skills skillsForUser={skillsForUser} />
-      <WorkExperience
-        companies={companies}
-        positionsWithSkillsForProjects={positionsWithSkillsForProjects}
-        showSkills={options.showSkillsInWorkExperience}
-      />
+      <WorkExperience companies={companies} showSkills={options.showSkillsInWorkExperience} />
       <Education education={education} />
     </Box>
   );

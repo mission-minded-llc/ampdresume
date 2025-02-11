@@ -1,10 +1,6 @@
 import { Metadata } from "next";
 import { ResumeView } from "./ResumeView";
-import { getCompanies } from "@/graphql/getCompanies";
-import { getEducation } from "@/graphql/getEducation";
-import { getPositionsWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
-import { getSkillsForUser } from "@/graphql/getSkillsForUser";
-import { getSocials } from "@/graphql/getSocials";
+import { getResume } from "@/graphql/getResume";
 import { getUser } from "@/graphql/getUser";
 import { notFound } from "next/navigation";
 
@@ -46,16 +42,11 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const user = await getUser(slug);
+  const resume = await getResume(slug);
 
-  if (!user) notFound();
+  if (!resume) notFound();
 
-  const socials = (await getSocials(user.id)) ?? [];
-  const skillsForUser = (await getSkillsForUser(user.id)) ?? [];
-  const companies = (await getCompanies(user.id)) ?? [];
-  const positionsWithSkillsForProjects =
-    (await getPositionsWithSkillsForProjects(companies.map((company) => company.id))) ?? [];
-  const education = (await getEducation(user.id)) ?? [];
+  const { user, socials, skillsForUser, companies, education } = resume;
 
   return (
     <ResumeView
@@ -63,7 +54,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       socials={socials}
       skillsForUser={skillsForUser}
       companies={companies}
-      positionsWithSkillsForProjects={positionsWithSkillsForProjects}
       education={education}
     />
   );
