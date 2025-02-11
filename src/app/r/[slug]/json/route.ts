@@ -1,6 +1,6 @@
 import { Company, getCompanies } from "@/graphql/getCompanies";
 import {
-  PositionWithSkillsForProjects,
+  PositionWithProjectsWithSkills,
   getPositionsWithSkillsForProjects,
 } from "@/graphql/getPositionsWithSkillsForProjects";
 
@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 import { removeHiddenFields } from "@/util/userData";
 
 type CompanyJson = Omit<Company, "id"> & {
-  positions?: PositionWithSkillsForProjects[];
+  positions?: PositionWithProjectsWithSkills[];
 };
 
 export async function GET(request: Request, { params }: { params: { slug: string } }) {

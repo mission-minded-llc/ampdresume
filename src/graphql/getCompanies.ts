@@ -1,7 +1,7 @@
 import * as Sentry from "@sentry/react";
 
 import { Company as CompanyServer } from "@prisma/client";
-import { PositionWithSkillsForProjects } from "./getPositionsWithSkillsForProjects";
+import { PositionWithProjectsWithSkills } from "./getPositionsWithSkillsForProjects";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
@@ -11,7 +11,7 @@ export type Company = Omit<CompanyServer, "startDate" | "endDate"> & {
 };
 
 export type CompanyWithPositionsWithProjectsWithSkills = Company & {
-  positions: PositionWithSkillsForProjects[];
+  positions: PositionWithProjectsWithSkills[];
 };
 
 export type CompanyGeneric = Omit<Company, "id" | "userId">;

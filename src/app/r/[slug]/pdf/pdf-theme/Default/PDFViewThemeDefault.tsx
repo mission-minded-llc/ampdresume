@@ -5,7 +5,7 @@ import { Company } from "@/graphql/getCompanies";
 import { Education } from "./sections/Education";
 import { Education as EducationType } from "@/graphql/getEducation";
 import { Header } from "./sections/Header";
-import { PositionWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
+import { PositionWithProjectsWithSkills } from "@/graphql/getPositionsWithSkillsForProjects";
 import React from "react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { Skills } from "./sections/Skills";
@@ -24,7 +24,7 @@ interface PDFViewProps {
   user: User;
   skillsForUser: SkillForUserWithSkill[];
   companies: Company[];
-  positionsWithSkillsForProjects: PositionWithSkillsForProjects[];
+  positionsWithSkillsForProjects: PositionWithProjectsWithSkills[];
   education: EducationType[];
   themeOptions?: PDFViewThemeDefaultOptions;
 }

@@ -2,12 +2,12 @@ import { Box, Divider, Typography } from "@mui/material";
 import { Section, SectionSubtitle, SectionTitle, fontSize } from "../styled";
 
 import { Company } from "@/graphql/getCompanies";
-import { PositionWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
+import { PositionWithProjectsWithSkills } from "@/graphql/getPositionsWithSkillsForProjects";
 import { formatLongDate } from "@/lib/format";
 
 interface SectionWorkExperienceProps {
   companies: Company[];
-  positionsWithSkillsForProjects: PositionWithSkillsForProjects[];
+  positionsWithSkillsForProjects: PositionWithProjectsWithSkills[];
   showSkills: boolean;
 }
 

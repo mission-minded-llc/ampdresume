@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Box } from "@mui/material";
 import { Company } from "@/graphql/getCompanies";
-import { PositionWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
+import { PositionWithProjectsWithSkills } from "@/graphql/getPositionsWithSkillsForProjects";
 import { Projects } from "./Projects";
 import Typography from "@mui/material/Typography";
 import { formatLongDate } from "@/lib/format";
@@ -15,7 +15,7 @@ export const PositionSingle = ({
   company,
   showDates,
 }: {
-  position: PositionWithSkillsForProjects;
+  position: PositionWithProjectsWithSkills;
   company: Company;
   showDates: boolean;
 }) => {

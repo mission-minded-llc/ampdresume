@@ -5,7 +5,7 @@ import { Box, Button } from "@mui/material";
 import { Company } from "@/graphql/getCompanies";
 import { Education } from "@/graphql/getEducation";
 import { PDFViewThemeDefault } from "./pdf-theme";
-import { PositionWithSkillsForProjects } from "@/graphql/getPositionsWithSkillsForProjects";
+import { PositionWithProjectsWithSkills } from "@/graphql/getPositionsWithSkillsForProjects";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { User } from "@prisma/client";
 import html2pdf from "html2pdf.js";
@@ -15,7 +15,7 @@ interface PDFViewProps {
   user: User;
   skillsForUser: SkillForUserWithSkill[];
   companies: Company[];
-  positionsWithSkillsForProjects: PositionWithSkillsForProjects[];
+  positionsWithSkillsForProjects: PositionWithProjectsWithSkills[];
   education: Education[];
 }
 

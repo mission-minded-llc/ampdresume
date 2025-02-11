@@ -11,7 +11,7 @@ export interface ProjectWithSkills extends Project {
   skillsForProject: SkillForProjectWithSkill[];
 }
 
-export interface PositionWithSkillsForProjects extends Position {
+export interface PositionWithProjectsWithSkills extends Position {
   company: Company;
   projects: ProjectWithSkills[];
 }
@@ -24,11 +24,11 @@ export interface PositionWithSkillsForProjects extends Position {
  */
 export const getPositionsWithSkillsForProjects = async (
   companyIds: string[],
-): Promise<PositionWithSkillsForProjects[]> => {
+): Promise<PositionWithProjectsWithSkills[]> => {
   const client = getApolloClient();
 
   const { data } = await client
-    .query<{ positions: PositionWithSkillsForProjects[] }>({
+    .query<{ positions: PositionWithProjectsWithSkills[] }>({
       query: gql`
         query getPositions($companyIds: [ID!]) {
           positions(companyIds: $companyIds, sort: [{ field: "endDate", direction: DESC }]) {
