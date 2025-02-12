@@ -7,7 +7,7 @@ import {
   DialogContentText,
 } from "@mui/material";
 
-import { CustomDialogTitle } from "@/components/DialogTitle";
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Tooltip } from "@/components/Tooltip";
 import { useState } from "react";

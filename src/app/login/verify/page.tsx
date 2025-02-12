@@ -8,7 +8,7 @@ export function generateMetadata() {
   };
 }
 
-export default function SignIn() {
+export default function Verify() {
   return (
     <Box
       sx={{

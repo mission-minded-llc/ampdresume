@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 import { $createYouTubeNode } from "../nodes/YouTubeNode";
 import { $insertNodes } from "lexical";
-import { CustomDialogTitle } from "@/components/DialogTitle";
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
