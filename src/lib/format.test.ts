@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { formatLongDate } from "@/lib/format";
 
 describe("formatDate", () => {
@@ -9,5 +10,20 @@ describe("formatDate", () => {
   it("should format the timestamp correctly", () => {
     const timestamp = "1633046400000"; // October 1, 2021
     expect(formatLongDate(timestamp)).toBe("October 2021");
+  });
+
+  it("should format a Dayjs object correctly", () => {
+    const dayjsObj = dayjs("2021-10-01");
+    expect(formatLongDate(dayjsObj)).toBe("October 2021");
+  });
+
+  it("should format a numeric string correctly", () => {
+    const timestamp = "1633046400000"; // October 1, 2021
+    expect(formatLongDate(timestamp)).toBe("October 2021");
+  });
+
+  it("should format a standard date string correctly", () => {
+    const dateStr = "2021-10-01";
+    expect(formatLongDate(dateStr)).toBe("October 2021");
   });
 });

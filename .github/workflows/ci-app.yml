@@ -21,6 +21,7 @@ env:
   AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
   NEXT_PUBLIC_ENVIRONMENT_NAME: ci
+  NEXT_PUBLIC_BASE_URL: http://localhost:3000
 
 jobs:
   code-tests:

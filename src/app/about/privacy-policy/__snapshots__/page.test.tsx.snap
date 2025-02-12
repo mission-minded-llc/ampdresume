@@ -1,0 +1,234 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrivacyPolicy Page matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthMd css-ds0qfq-MuiContainer-root"
+  >
+    <h4
+      class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom css-1it4a80-MuiTypography-root"
+    >
+      Privacy Policy
+    </h4>
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+    >
+      Welcome to 
+      <strong>
+        OpenResume
+      </strong>
+      ! We are committed to protecting your privacy and ensuring the security of your personal information. By using our services and providing your personal information, you agree to the practices described in this Privacy Policy.
+    </p>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Information We Collect
+      </h5>
+      <ul
+        class="MuiList-root MuiList-padding css-b7dj7n-MuiList-root"
+      >
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+          >
+            Personal Information
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
+          >
+            When you sign up on 
+            <strong>
+              OpenResume
+            </strong>
+            , we collect your email address at signup. You can optionally add your location, skills, work history, education history, references, and letters.
+          </p>
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+          >
+            Usage Data
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
+          >
+            We may also collect information about how you interact with our website, such as IP addresses, browser types, and pages visited.
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        How We Use Your Information
+      </h5>
+      <ul
+        class="MuiList-root MuiList-padding css-b7dj7n-MuiList-root"
+      >
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+          >
+            Service Provision
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
+          >
+            We use your information to provide you with the services you requested, including maintaining your resume information on our platform.
+          </p>
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+          >
+            Communication
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
+          >
+            We may use your email address to communicate with you about our services, updates, and relevant information.
+          </p>
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+          >
+            Legal Compliance
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
+          >
+            We may disclose your information as required by law or to protect our rights.
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Data Security
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+      >
+        We implement reasonable security measures to protect your personal information from unauthorized access and use. However, please note that no method of transmission over the internet or electronic storage is 100% secure.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Data Retention
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+      >
+        We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law.
+        <br />
+         
+        <br />
+        You can request to have your account and all information permanently deleted by emailingy our request to mail@openresume.org from the email address your account is associated with.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Third-Party Disclosure
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+      >
+        We do not sell, trade, or otherwise transfer your personal information to outside parties except as outlined in this Privacy Policy or with your consent.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Future Use
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+      >
+        In the future, we may sell access to aggregated and anonymized user information to recruiting companies and other entities for analytics and recruitment purposes. You will be notified if this becomes the case, and given the option to opt out by deleting your data.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Your Consent
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+      >
+        By using our services, you consent to the collection, use, and storage of your information as described in this Privacy Policy.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Changes to this Privacy Policy
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+      >
+        We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Contact Us
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+      >
+        If you have any questions about this Privacy Policy, please contact us at
+         
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+          href="mailto:mail@openresume.org"
+        >
+          mail@openresume.org
+        </a>
+        .
+      </p>
+    </div>
+  </div>
+</div>
+`;

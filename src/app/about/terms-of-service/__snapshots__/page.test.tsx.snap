@@ -1,0 +1,240 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TermsOfService Page matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthMd css-ds0qfq-MuiContainer-root"
+  >
+    <h4
+      class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom css-1it4a80-MuiTypography-root"
+    >
+      Terms of Service
+    </h4>
+    <p
+      class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph css-rn0nqi-MuiTypography-root"
+    >
+      Welcome to 
+      <strong>
+        OpenResume
+      </strong>
+      ! By accessing or using our website and services, you agree to comply with and be bound by the following Terms of Service. Please read them carefully.
+    </p>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Use of Services
+      </h5>
+      <ul
+        class="MuiList-root MuiList-padding css-b7dj7n-MuiList-root"
+      >
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+          >
+            Eligibility
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
+          >
+            You must be at least 18 years old to use our services. By using
+             
+            <strong>
+              OpenResume
+            </strong>
+            , you represent and warrant that you meet this requirement.
+          </p>
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+          >
+            Account Responsibility
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
+          >
+            You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.
+          </p>
+        </li>
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+          >
+            Prohibited Activities
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
+          >
+            You agree not to use our services for any unlawful purpose or in any way that could harm 
+            <strong>
+              OpenResume
+            </strong>
+             or others.
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        User Content
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph css-rn0nqi-MuiTypography-root"
+      >
+        By submitting content to 
+        <strong>
+          OpenResume
+        </strong>
+        , you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, and distribute your content for the purposes of providing our services.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Data Usage and Privacy
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph css-rn0nqi-MuiTypography-root"
+      >
+        Your use of our services is also governed by our
+         
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+          href="/about/privacy-policy"
+        >
+          Privacy Policy
+        </a>
+        . By using
+         
+        <strong>
+          OpenResume
+        </strong>
+        , you consent to the collection and use of your information as outlined in the Privacy Policy.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Limitation of Liability
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph css-rn0nqi-MuiTypography-root"
+      >
+        <strong>
+          OpenResume
+        </strong>
+         is not liable for any indirect, incidental, or consequential damages arising out of your use of our services. We do not guarantee that our services will be uninterrupted or error-free.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Indemnification
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph css-rn0nqi-MuiTypography-root"
+      >
+        You agree to indemnify and hold harmless 
+        <strong>
+          OpenResume
+        </strong>
+        , its affiliates, and its employees from any claims, damages, or expenses arising from your use of our services or violation of these Terms.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Termination
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph css-rn0nqi-MuiTypography-root"
+      >
+        We reserve the right to suspend or terminate your access to our services at any time, without notice, for conduct that we believe violates these Terms or is harmful to other users of 
+        <strong>
+          OpenResume
+        </strong>
+        .
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Changes to Terms
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph css-rn0nqi-MuiTypography-root"
+      >
+        We may update these Terms of Service from time to time. We will notify you of any changes by posting the new Terms of Service on this page.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Governing Law
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph css-rn0nqi-MuiTypography-root"
+      >
+        These Terms of Service are governed by and construed in accordance with the laws of the jurisdiction in which 
+        <strong>
+          OpenResume
+        </strong>
+         operates.
+      </p>
+    </div>
+    <div
+      class="MuiBox-root css-5vb4lz"
+    >
+      <h5
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-1f9xtph-MuiTypography-root"
+      >
+        Contact Us
+      </h5>
+      <p
+        class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph css-rn0nqi-MuiTypography-root"
+      >
+        If you have any questions about these Terms of Service, please contact us at
+         
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+          href="mailto:mail@openresume.org"
+        >
+          mail@openresume.org
+        </a>
+        .
+      </p>
+    </div>
+  </div>
+</div>
+`;

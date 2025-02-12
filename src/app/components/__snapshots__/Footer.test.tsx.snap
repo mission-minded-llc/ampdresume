@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component matches snapshot for regular page 1`] = `
+<div>
+  <footer
+    class="MuiBottomNavigation-root css-r8tkd3-MuiBottomNavigation-root"
+  >
+    <div
+      class="MuiBox-root css-1a8n5hv"
+      value="0"
+    >
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+        href="http://localhost:3000"
+        target="_self"
+      >
+        openresume.org
+      </a>
+      <div
+        class="MuiBox-root css-0"
+      >
+        <span
+          class="MuiTypography-root MuiTypography-caption css-1fi1ecl-MuiTypography-root"
+        >
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+            href="/about/privacy-policy"
+            target="_self"
+          >
+            Privacy Policy
+          </a>
+           |
+           
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+            href="/about/terms-of-service"
+            target="_self"
+          >
+            Terms of Service
+          </a>
+        </span>
+      </div>
+    </div>
+  </footer>
+</div>
+`;
+
+exports[`Footer component matches snapshot for resume page 1`] = `
+<div>
+  <footer
+    class="MuiBottomNavigation-root css-1woayr8-MuiBottomNavigation-root"
+  >
+    <div
+      class="MuiBox-root css-1a8n5hv"
+      value="0"
+    >
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+        href="http://localhost:3000"
+        target="_self"
+      >
+        openresume.org
+      </a>
+      <div
+        class="MuiBox-root css-0"
+      >
+        <span
+          class="MuiTypography-root MuiTypography-caption css-1fi1ecl-MuiTypography-root"
+        >
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+            href="/about/privacy-policy"
+            target="_self"
+          >
+            Privacy Policy
+          </a>
+           |
+           
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+            href="/about/terms-of-service"
+            target="_self"
+          >
+            Terms of Service
+          </a>
+        </span>
+      </div>
+    </div>
+  </footer>
+</div>
+`;
