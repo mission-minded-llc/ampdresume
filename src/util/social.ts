@@ -13,7 +13,7 @@ export const getSocialMediaPlatformByHostname = (hostname: string) => {
 
 export const getSocialMediaPlatformByPlatformName = (platform: string) => {
   for (const [, value] of Object.entries(SOCIAL_MEDIA_PLATFORMS)) {
-    if (value.name.toLowerCase() === platform) {
+    if (value.name.toLowerCase() === platform.toLowerCase()) {
       return value;
     }
   }
