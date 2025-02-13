@@ -119,7 +119,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
   }
 }
 
-const convertImageElement = (domNode: HTMLElement): DOMConversionOutput | null => {
+export const convertImageElement = (domNode: HTMLElement): DOMConversionOutput | null => {
   if (domNode instanceof HTMLImageElement) {
     const { src, alt, width, height } = domNode;
     const node = $createImageNode({
