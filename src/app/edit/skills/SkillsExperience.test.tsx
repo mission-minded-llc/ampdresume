@@ -48,12 +48,13 @@ describe("SkillsExperience", () => {
       ["4", [mockSkills[1]]],
     ]);
 
-    const { getByText } = render(<SkillsExperience skills={mockSkills} />);
+    const { container, getByText } = render(<SkillsExperience skills={mockSkills} />);
 
     expect(getByText("6 years:")).toBeInTheDocument();
     expect(getByText("JavaScript")).toBeInTheDocument();
     expect(getByText("4 years:")).toBeInTheDocument();
     expect(getByText("TypeScript")).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it("renders correctly with no skills", () => {
@@ -63,5 +64,6 @@ describe("SkillsExperience", () => {
 
     // Expect the container to have an empty div.
     expect(container.firstChild).toBeEmptyDOMElement();
+    expect(container).toMatchSnapshot();
   });
 });

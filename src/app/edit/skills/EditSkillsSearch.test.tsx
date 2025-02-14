@@ -70,22 +70,25 @@ describe("EditSkillsSearch", () => {
   it("renders correctly", () => {
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: { skills: [] } });
 
-    const { getByLabelText } = render(<EditSkillsSearch />);
+    const { container, getByLabelText } = render(<EditSkillsSearch />);
     expect(getByLabelText("Search Skills to Add")).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it("displays loading overlay when skills are being fetched", () => {
     (useQuery as jest.Mock).mockReturnValue({ isPending: true });
 
-    const { getByText } = render(<EditSkillsSearch />);
+    const { container, getByText } = render(<EditSkillsSearch />);
     expect(getByText("Loading skills...")).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it("displays error message when skills fetching fails", () => {
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, error: { message: "Error" } });
 
-    const { getByText } = render(<EditSkillsSearch />);
+    const { container, getByText } = render(<EditSkillsSearch />);
     expect(getByText("Error loading skills: Error")).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it("filters and displays skills based on search term", async () => {
@@ -95,13 +98,22 @@ describe("EditSkillsSearch", () => {
     ];
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: { skills: mockSkills } });
 
-    const { getByLabelText, getByText } = render(<EditSkillsSearch />);
+    const { container, getByLabelText, getByText } = render(<EditSkillsSearch />);
     const searchInput = getByLabelText("Search Skills to Add");
+    expect(container).toMatchSnapshot();
 
     fireEvent.change(searchInput, { target: { value: "Java" } });
 
     await waitFor(() => {
       expect(getByText("JavaScript")).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
+    });
+
+    fireEvent.change(searchInput, { target: { value: "Java" } });
+
+    await waitFor(() => {
+      expect(getByText("JavaScript")).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
   });
 
@@ -109,17 +121,20 @@ describe("EditSkillsSearch", () => {
     const mockSkills = [{ id: "1", name: "JavaScript", icon: "icon-js" }];
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: { skills: mockSkills } });
 
-    const { getByLabelText, getByText } = render(<EditSkillsSearch />);
+    const { container, getByLabelText, getByText } = render(<EditSkillsSearch />);
     const searchInput = getByLabelText("Search Skills to Add");
+    expect(container).toMatchSnapshot();
 
     fireEvent.change(searchInput, { target: { value: "Java" } });
 
     await waitFor(() => {
       expect(getByText("JavaScript")).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
     fireEvent.click(getByText("JavaScript"));
 
     expect(getByText("Enter Proficiency Level")).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 });

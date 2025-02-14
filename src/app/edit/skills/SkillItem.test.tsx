@@ -72,19 +72,24 @@ describe("SkillItem", () => {
   });
 
   it("closes the dialog when the close button is clicked", async () => {
-    const { getByText, getByRole, queryByRole } = render(<SkillItem skill={mockSkill} />);
+    const { container, getByText, getByRole, queryByRole } = render(
+      <SkillItem skill={mockSkill} />,
+    );
     const button = getByText("JavaScript");
+    expect(container).toMatchSnapshot();
 
     fireEvent.click(button);
 
     await waitFor(() => {
       expect(getByRole("dialog")).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
     fireEvent.click(getByText("Close"));
 
     await waitFor(() => {
       expect(queryByRole("dialog")).not.toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
   });
 });

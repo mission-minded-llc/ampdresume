@@ -90,7 +90,7 @@ describe("SkillItemEdit", () => {
   });
 
   it("renders correctly", () => {
-    const { getByLabelText, getByText } = render(
+    const { container, getByLabelText, getByText } = render(
       <SkillItemEdit skill={mockSkill} handleClose={() => {}} />,
     );
 
@@ -101,13 +101,15 @@ describe("SkillItemEdit", () => {
     expect(getByText("Delete Skill")).toBeInTheDocument();
     expect(getByText("Save")).toBeInTheDocument();
     expect(getByText("Save & Close")).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it("updates fields and handles save", async () => {
     const handleCloseMock = jest.fn();
-    const { getByLabelText, getByText } = render(
+    const { container, getByLabelText, getByText } = render(
       <SkillItemEdit skill={mockSkill} handleClose={handleCloseMock} />,
     );
+    expect(container).toMatchSnapshot();
 
     const yearStartedInput = getByLabelText("Year Started");
     const totalYearsInput = getByLabelText("Total Years");
@@ -129,11 +131,15 @@ describe("SkillItemEdit", () => {
       expect(mockQueryClient.invalidateQueries).toHaveBeenCalledWith({
         queryKey: ["skillsForUser"],
       });
+      expect(container).toMatchSnapshot();
     });
   });
 
   it("handles delete", async () => {
-    const { getByText } = render(<SkillItemEdit skill={mockSkill} handleClose={() => {}} />);
+    const { container, getByText } = render(
+      <SkillItemEdit skill={mockSkill} handleClose={() => {}} />,
+    );
+    expect(container).toMatchSnapshot();
 
     fireEvent.click(getByText("Delete Skill"));
     fireEvent.click(getByText("Yes, Delete")); // There's a confirmation dialog.
@@ -146,12 +152,16 @@ describe("SkillItemEdit", () => {
       expect(mockQueryClient.invalidateQueries).toHaveBeenCalledWith({
         queryKey: ["skillsForUser"],
       });
+      expect(container).toMatchSnapshot();
     });
   });
 
   it("handles save and close", async () => {
     const handleCloseMock = jest.fn();
-    const { getByText } = render(<SkillItemEdit skill={mockSkill} handleClose={handleCloseMock} />);
+    const { container, getByText } = render(
+      <SkillItemEdit skill={mockSkill} handleClose={handleCloseMock} />,
+    );
+    expect(container).toMatchSnapshot();
 
     fireEvent.click(getByText("Save & Close"));
 
@@ -168,6 +178,7 @@ describe("SkillItemEdit", () => {
         queryKey: ["skillsForUser"],
       });
       expect(handleCloseMock).toHaveBeenCalled();
+      expect(container).toMatchSnapshot();
     });
   });
 });

@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditSkills renders error message when fetching skills fails 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-0"
+  >
+    Error loading skills: 
+    Error
+  </div>
+</div>
+`;
+
+exports[`EditSkills renders loading state when fetching skills 1`] = `
+<div>
+  <div>
+    Loading resume data...
+  </div>
+</div>
+`;
+
+exports[`EditSkills renders loading state when session is loading 1`] = `
+<div>
+  <div>
+    Loading session...
+  </div>
+</div>
+`;
+
+exports[`EditSkills renders login prompt when unauthenticated 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-0"
+  >
+    Please 
+    <a
+      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+      href="/login"
+      target="_self"
+    >
+      log in.
+    </a>
+  </div>
+</div>
+`;
+
+exports[`EditSkills renders no skills message when no skills are found 1`] = `
+<div>
+  <div>
+    Add a Skill
+  </div>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-9ebprp-MuiTypography-root"
+  >
+    Search for a skill to add to your profile:
+  </p>
+  <div>
+    EditSkillsSearch
+  </div>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+  >
+    No skills found.
+  </p>
+</div>
+`;
+
+exports[`EditSkills renders skills when fetched successfully 1`] = `
+<div>
+  <div>
+    Add a Skill
+  </div>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-9ebprp-MuiTypography-root"
+  >
+    Search for a skill to add to your profile:
+  </p>
+  <div>
+    EditSkillsSearch
+  </div>
+  <h5
+    class="MuiTypography-root MuiTypography-h5 css-3i9q64-MuiTypography-root"
+  >
+    Your Skills
+     
+    <button
+      aria-label="Click on a skill to edit or remove it."
+      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1mikb9b-MuiButtonBase-root-MuiIconButton-root"
+      data-mui-internal-clone-element="true"
+      tabindex="0"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-120dh41-MuiSvgIcon-root"
+        data-testid="InfoOutlinedIcon"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"
+        />
+      </svg>
+    </button>
+  </h5>
+  <div>
+    <div>
+      Skill 1
+    </div>
+    <div>
+      Skill 2
+    </div>
+  </div>
+</div>
+`;

@@ -156,6 +156,7 @@ const AccountForm = ({
               helperText={errors.name ? errors.name : " "}
               fullWidth
               sx={{ marginTop: "auto" }}
+              label="Full Name"
             />
           </InputSection>
           <InputSection>
@@ -181,7 +182,7 @@ const AccountForm = ({
               <strong>not</strong> be created, so please update your shared links.
             </FieldDescription>
             <TextField
-              label="Slug"
+              label="URL Slug"
               name="slug"
               value={formData.slug}
               onChange={handleChange}

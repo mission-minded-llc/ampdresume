@@ -56,34 +56,38 @@ describe("EditSkills", () => {
     (useSession as jest.Mock).mockReturnValue({ data: null, status: "loading" });
     (useQuery as jest.Mock).mockReturnValue({ isPending: true });
 
-    const { getByText } = render(<EditSkills />);
+    const { container, getByText } = render(<EditSkills />);
 
     waitFor(() => expect(getByText("Loading session...")).toBeInTheDocument());
+    expect(container).toMatchSnapshot();
   });
 
   it("renders login prompt when unauthenticated", () => {
     (useSession as jest.Mock).mockReturnValue({ data: null, status: "unauthenticated" });
     (useQuery as jest.Mock).mockReturnValue({ isPending: true });
 
-    const { getByText } = render(<EditSkills />);
+    const { container, getByText } = render(<EditSkills />);
 
     waitFor(() => expect(getByText("Please log in.")).toBeInTheDocument());
+    expect(container).toMatchSnapshot();
   });
 
   it("renders loading state when fetching skills", () => {
     (useSession as jest.Mock).mockReturnValue({ data: mockSession, status: "authenticated" });
     (useQuery as jest.Mock).mockReturnValue({ isPending: true });
 
-    const { getByText } = render(<EditSkills />);
+    const { container, getByText } = render(<EditSkills />);
     expect(getByText("Loading resume data...")).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it("renders error message when fetching skills fails", () => {
     (useSession as jest.Mock).mockReturnValue({ data: mockSession, status: "authenticated" });
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, error: { message: "Error" } });
 
-    const { getByText } = render(<EditSkills />);
+    const { container, getByText } = render(<EditSkills />);
     expect(getByText("Error loading skills: Error")).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 
   it("renders skills when fetched successfully", async () => {
@@ -94,7 +98,7 @@ describe("EditSkills", () => {
     (useSession as jest.Mock).mockReturnValue({ data: mockSession, status: "authenticated" });
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: mockSkills });
 
-    const { getByText } = render(<EditSkills />);
+    const { container, getByText } = render(<EditSkills />);
 
     await waitFor(() => {
       expect(getByText("Add a Skill")).toBeInTheDocument();
@@ -104,16 +108,18 @@ describe("EditSkills", () => {
       expect(getByText("Skill 1")).toBeInTheDocument();
       expect(getByText("Skill 2")).toBeInTheDocument();
     });
+    expect(container).toMatchSnapshot();
   });
 
   it("renders no skills message when no skills are found", async () => {
     (useSession as jest.Mock).mockReturnValue({ data: mockSession, status: "authenticated" });
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: [] });
 
-    const { getByText } = render(<EditSkills />);
+    const { container, getByText } = render(<EditSkills />);
 
     await waitFor(() => {
       expect(getByText("No skills found.")).toBeInTheDocument();
     });
+    expect(container).toMatchSnapshot();
   });
 });
