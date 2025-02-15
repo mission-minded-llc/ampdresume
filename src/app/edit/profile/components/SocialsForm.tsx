@@ -149,7 +149,7 @@ export const SocialsForm = () => {
     <>
       <SectionTitle>Social Media Links</SectionTitle>
       <InputSection>
-        <FieldTitle>
+        <FieldTitle component="span">
           Add Link{" "}
           <Tooltip
             message={
