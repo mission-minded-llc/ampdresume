@@ -56,12 +56,7 @@ const AccountForm = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    setFormData({ ...formData, [name]: value });
-    if (value.trim() === "") {
-      setErrors((prev) => ({ ...prev, [name]: `${name} is required` }));
-    } else {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+    setFormData({ ...formData, [name]: value.trim() });
 
     // Ensure the slug is alphanumeric and lowercase, with hyphens for spaces.
     if (name === "slug") {

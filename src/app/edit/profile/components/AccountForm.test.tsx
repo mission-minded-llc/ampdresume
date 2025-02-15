@@ -19,22 +19,22 @@ jest.mock("./SocialsForm", () => ({
   SocialsForm: () => <div>SocialsForm</div>,
 }));
 
+const mockProps = {
+  name: "John Doe",
+  slug: "john-doe",
+  displayEmail: "john@example.com",
+  title: "Software Engineer",
+  location: "San Francisco, CA",
+  siteTitle: "John's Resume",
+  siteDescription: "This is John's resume.",
+  siteImage: "https://example.com/image.png",
+};
+
 describe("AccountForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     (useIsDesktop as jest.Mock).mockReturnValue(true);
   });
-
-  const mockProps = {
-    name: "John Doe",
-    slug: "john-doe",
-    displayEmail: "john@example.com",
-    title: "Software Engineer",
-    location: "San Francisco, CA",
-    siteTitle: "John's Resume",
-    siteDescription: "This is John's resume.",
-    siteImage: "https://example.com/image.png",
-  };
 
   it("renders correctly", () => {
     const { container, getByLabelText } = render(<AccountForm {...mockProps} />);
@@ -48,30 +48,25 @@ describe("AccountForm", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("handles input changes and validation", () => {
+  it("handles input changes and validation", async () => {
     const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
 
     const nameInput = getByLabelText("Full Name");
-    fireEvent.change(nameInput, { target: { value: "" } });
+    fireEvent.change(nameInput, { target: { value: "  " } });
     fireEvent.blur(nameInput);
-    waitFor(() => {
-      expect(getByText("Name is required")).toBeInTheDocument();
+
+    // Expect the new value to be an empty, trimmed string.
+    await waitFor(() => {
+      expect(nameInput).toHaveValue("");
     });
 
     const slugInput = getByLabelText("URL Slug");
     fireEvent.change(slugInput, { target: { value: "invalid slug" } });
     fireEvent.blur(slugInput);
-    waitFor(() => {
+    await waitFor(() => {
       expect(
         getByText("Slug must be alphanumeric and lowercase. Hyphens allowed."),
       ).toBeInTheDocument();
-    });
-
-    const emailInput = getByLabelText("Display Email");
-    fireEvent.change(emailInput, { target: { value: "invalid-email" } });
-    waitFor(() => {
-      fireEvent.blur(emailInput);
-      expect(getByText("Invalid email address")).toBeInTheDocument();
     });
   });
 
@@ -114,6 +109,40 @@ describe("AccountForm", () => {
 
     await waitFor(() => {
       expect(getByText("Submission failed")).toBeInTheDocument();
+    });
+  });
+
+  it("displays error message on form submission failure for invalid name", async () => {
+    const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
+
+    fireEvent.change(getByLabelText("Full Name"), { target: { value: "   " } });
+    fireEvent.click(getByText("Save"));
+
+    await waitFor(() => {
+      expect(getByText("Name is required")).toBeInTheDocument();
+    });
+  });
+
+  it("displays error message on form submission failure for invalid slug", async () => {
+    const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
+
+    fireEvent.change(getByLabelText("URL Slug"), { target: { value: "   " } });
+    fireEvent.click(getByText("Save"));
+
+    await waitFor(() => {
+      expect(getByText("Slug is required")).toBeInTheDocument();
+    });
+  });
+
+  it("displays error message on form submission failure for invalid email", async () => {
+    const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
+
+    const emailInput = getByLabelText("Display Email");
+    fireEvent.change(emailInput, { target: { value: "invalid-email" } });
+    fireEvent.click(getByText("Save"));
+
+    await waitFor(() => {
+      expect(getByText("Invalid email address")).toBeInTheDocument();
     });
   });
 });
