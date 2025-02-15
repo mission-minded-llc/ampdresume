@@ -1,0 +1,855 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page renders correctly for authenticated users 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-1yado2t"
+  >
+    <div
+      class="MuiBox-root css-1qf5vz2"
+    >
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+        href="/edit/profile"
+        target="_self"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-y2yvsj-MuiTypography-root"
+        >
+          Profile
+        </p>
+      </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+        href="/edit/skills"
+        target="_self"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-y2yvsj-MuiTypography-root"
+        >
+          Skills
+        </p>
+      </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+        href="/edit/experience"
+        target="_self"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-y2yvsj-MuiTypography-root"
+        >
+          Work Experience
+        </p>
+      </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+        href="/edit/education"
+        target="_self"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-y2yvsj-MuiTypography-root"
+        >
+          Education
+        </p>
+      </a>
+    </div>
+    <div
+      class="MuiBox-root css-6bsmlk"
+    >
+      <hr
+        class="MuiDivider-root MuiDivider-fullWidth css-1nih0dr-MuiDivider-root"
+      />
+      <div
+        class="MuiBox-root css-0"
+      >
+        <h1
+          class="MuiTypography-root MuiTypography-h5 css-16xl4zq-MuiTypography-root"
+        >
+          Profile
+        </h1>
+      </div>
+      <hr
+        class="MuiDivider-root MuiDivider-fullWidth css-1o0cmko-MuiDivider-root"
+      />
+      <div
+        class="MuiBox-root css-j7qwjs"
+      >
+        <div
+          aria-hidden="true"
+          class="MuiBackdrop-root css-qn1782-MuiBackdrop-root"
+          style="opacity: 0; visibility: hidden;"
+        >
+          <div
+            class="MuiBox-root css-u6v8er"
+          >
+            <span
+              class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorInherit css-gxw4l9-MuiCircularProgress-root"
+              role="progressbar"
+              style="width: 40px; height: 40px;"
+            >
+              <svg
+                class="MuiCircularProgress-svg css-54pwck-MuiCircularProgress-svg"
+                viewBox="22 22 44 44"
+              >
+                <circle
+                  class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-960umw-MuiCircularProgress-circle"
+                  cx="44"
+                  cy="44"
+                  fill="none"
+                  r="20.2"
+                  stroke-width="3.6"
+                />
+              </svg>
+            </span>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-24ci41-MuiTypography-root"
+            >
+              Saving...
+            </p>
+          </div>
+        </div>
+        <form
+          class="MuiBox-root css-0"
+        >
+          <div
+            class="MuiBox-root css-12dc65p"
+          >
+            <h2
+              class="MuiTypography-root MuiTypography-h5 css-xt72g8-MuiTypography-root"
+            >
+              General Information
+            </h2>
+            <div
+              class="MuiBox-root css-18mctc4"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+                  data-testid="AccountBoxIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6m7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58z"
+                  />
+                </svg>
+                 Full Name
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+              >
+                Displayed on your public resume.
+              </p>
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
+                  for=":r1:"
+                  id=":r1:-label"
+                >
+                  Full Name
+                </label>
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
+                >
+                  <input
+                    aria-describedby=":r1:-helper-text"
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+                    id=":r1:"
+                    name="name"
+                    type="text"
+                    value="John Doe"
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-w1u3ce"
+                    >
+                      <span>
+                        Full Name
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+                <p
+                  class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-er619e-MuiFormHelperText-root"
+                  id=":r1:-helper-text"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="notranslate"
+                  >
+                    ​
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div
+              class="MuiBox-root css-18mctc4"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+                  data-testid="LinkIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5"
+                  />
+                </svg>
+                 URL Slug
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+              >
+                Used in your URL. Example:
+                 
+                <em
+                  class="MuiTypography-root MuiTypography-body1 css-aipyd8-MuiTypography-root"
+                >
+                  openresume.org/r/
+                  <strong>
+                    john-doe
+                  </strong>
+                  /
+                </em>
+                <br />
+                <strong>
+                  Important:
+                </strong>
+                 If you change this, an automatic redirect will
+                 
+                <strong>
+                  not
+                </strong>
+                 be created, so please update your shared links.
+              </p>
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
+                  for=":r2:"
+                  id=":r2:-label"
+                >
+                  URL Slug
+                </label>
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
+                >
+                  <input
+                    aria-describedby=":r2:-helper-text"
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+                    id=":r2:"
+                    name="slug"
+                    type="text"
+                    value="john-doe"
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-w1u3ce"
+                    >
+                      <span>
+                        URL Slug
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+                <p
+                  class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-er619e-MuiFormHelperText-root"
+                  id=":r2:-helper-text"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="notranslate"
+                  >
+                    ​
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div
+              class="MuiBox-root css-18mctc4"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+                  data-testid="MailOutlineIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 14H4V8l8 5 8-5zm-8-7L4 6h16z"
+                  />
+                </svg>
+                 Display Email
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+              >
+                Your display email is publicly visible on your resume!
+              </p>
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
+                  for=":r3:"
+                  id=":r3:-label"
+                >
+                  Display Email
+                </label>
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
+                >
+                  <input
+                    aria-describedby=":r3:-helper-text"
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+                    id=":r3:"
+                    name="displayEmail"
+                    type="text"
+                    value="john@example.com"
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-w1u3ce"
+                    >
+                      <span>
+                        Display Email
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+                <p
+                  class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-er619e-MuiFormHelperText-root"
+                  id=":r3:-helper-text"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="notranslate"
+                  >
+                    ​
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div
+              class="MuiBox-root css-18mctc4"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+                  data-testid="BadgeIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20 7h-5V4c0-1.1-.9-2-2-2h-2c-1.1 0-2 .9-2 2v3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2M9 12c.83 0 1.5.67 1.5 1.5S9.83 15 9 15s-1.5-.67-1.5-1.5S8.17 12 9 12m3 6H6v-.75c0-1 2-1.5 3-1.5s3 .5 3 1.5zm1-9h-2V4h2zm5 7.5h-4V15h4zm0-3h-4V12h4z"
+                  />
+                </svg>
+                 Position Title
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+              >
+                Your current job title or what you are looking for.
+              </p>
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
+                  for=":r4:"
+                  id=":r4:-label"
+                >
+                  Title
+                </label>
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
+                >
+                  <input
+                    aria-describedby=":r4:-helper-text"
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+                    id=":r4:"
+                    name="title"
+                    type="text"
+                    value="Software Engineer"
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-w1u3ce"
+                    >
+                      <span>
+                        Title
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+                <p
+                  class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-er619e-MuiFormHelperText-root"
+                  id=":r4:-helper-text"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="notranslate"
+                  >
+                    ​
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div
+              class="MuiBox-root css-18mctc4"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+                  data-testid="LocationOnIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5"
+                  />
+                </svg>
+                 Location
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+              >
+                Your Location is where you are currently located.
+                <br />
+                Example: 
+                <strong>
+                  Los Angeles, CA
+                </strong>
+              </p>
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
+                  for=":r5:"
+                  id=":r5:-label"
+                >
+                  Location
+                </label>
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
+                >
+                  <input
+                    aria-describedby=":r5:-helper-text"
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+                    id=":r5:"
+                    name="location"
+                    type="text"
+                    value="San Francisco, CA"
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-w1u3ce"
+                    >
+                      <span>
+                        Location
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+                <p
+                  class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-er619e-MuiFormHelperText-root"
+                  id=":r5:-helper-text"
+                >
+                  Recommendation: do not use your full address.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiBox-root css-12dc65p"
+          >
+            <h2
+              class="MuiTypography-root MuiTypography-h5 css-xt72g8-MuiTypography-root"
+            >
+              Social Media Links
+            </h2>
+            <div
+              class="MuiBox-root css-18mctc4"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+              >
+                Add Link
+                 
+                <button
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1mikb9b-MuiButtonBase-root-MuiIconButton-root"
+                  data-mui-internal-clone-element="true"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-120dh41-MuiSvgIcon-root"
+                    data-testid="InfoOutlinedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"
+                    />
+                  </svg>
+                </button>
+              </span>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+              >
+                Paste a link below to add to your socials. Link icons will appear at the top of your resume.
+              </p>
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
+                  for=":r7:"
+                  id=":r7:-label"
+                >
+                  Social URL
+                </label>
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+                    id=":r7:"
+                    name="newSocialUrl"
+                    type="text"
+                    value=""
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-81qg8w"
+                    >
+                      <span>
+                        Social URL
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+              </div>
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-5pf1h4-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                Add Social
+              </button>
+            </div>
+            <div
+              class="MuiBox-root css-0"
+            />
+          </div>
+          <div
+            class="MuiBox-root css-12dc65p"
+          >
+            <h2
+              class="MuiTypography-root MuiTypography-h5 css-xt72g8-MuiTypography-root"
+            >
+              Resume Site Information
+            </h2>
+            <div
+              class="MuiBox-root css-18mctc4"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+                  data-testid="LanguageIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2m6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56M12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96M4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56m2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8M12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96M14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2m.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2z"
+                  />
+                </svg>
+                 Resume Site Title
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+              >
+                Your Site Title is the title of your resume page, shown in the browser tab and social media.
+              </p>
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
+                  for=":r9:"
+                  id=":r9:-label"
+                >
+                  Site Title
+                </label>
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+                    id=":r9:"
+                    name="siteTitle"
+                    type="text"
+                    value="John's Resume"
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-w1u3ce"
+                    >
+                      <span>
+                        Site Title
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiBox-root css-18mctc4"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+                  data-testid="TocIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 9h14V7H3zm0 4h14v-2H3zm0 4h14v-2H3zm16 0h2v-2h-2zm0-10v2h2V7zm0 6h2v-2h-2z"
+                  />
+                </svg>
+                 Resume Site Description
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+              >
+                Your Site Description is a short description of your resume page. This is used in the meta description tag of your website as well as for social media sharing.
+              </p>
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
+                  for=":ra:"
+                  id=":ra:-label"
+                >
+                  Site Description
+                </label>
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+                    id=":ra:"
+                    name="siteDescription"
+                    type="text"
+                    value="This is John's resume."
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-w1u3ce"
+                    >
+                      <span>
+                        Site Description
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiBox-root css-18mctc4"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+              >
+                Site Image
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+              >
+                An image that represents your resume. This will be used when your resume is shared on social media.
+              </p>
+              <div
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-disabled MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
+                  for=":rb:"
+                  id=":rb:-label"
+                >
+                  Image URL
+                </label>
+                <div
+                  class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiOutlinedInput-input Mui-disabled css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+                    disabled=""
+                    id=":rb:"
+                    name="siteImage"
+                    type="text"
+                    value="https://example.com/image.png"
+                  />
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-w1u3ce"
+                    >
+                      <span>
+                        Image URL
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
+              </div>
+              <div
+                aria-hidden="true"
+                class="MuiBackdrop-root css-qn1782-MuiBackdrop-root"
+                style="opacity: 0; visibility: hidden;"
+              >
+                <div
+                  class="MuiBox-root css-u6v8er"
+                >
+                  <span
+                    class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorInherit css-gxw4l9-MuiCircularProgress-root"
+                    role="progressbar"
+                    style="width: 40px; height: 40px;"
+                  >
+                    <svg
+                      class="MuiCircularProgress-svg css-54pwck-MuiCircularProgress-svg"
+                      viewBox="22 22 44 44"
+                    >
+                      <circle
+                        class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-960umw-MuiCircularProgress-circle"
+                        cx="44"
+                        cy="44"
+                        fill="none"
+                        r="20.2"
+                        stroke-width="3.6"
+                      />
+                    </svg>
+                  </span>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-24ci41-MuiTypography-root"
+                  >
+                    Uploading Image...
+                  </p>
+                </div>
+              </div>
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1btmbba-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1jsm74t-MuiButton-startIcon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+                    data-testid="ImageIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2M8.5 13.5l2.5 3.01L14.5 12l4.5 6H5z"
+                    />
+                  </svg>
+                </span>
+                Add Image
+              </button>
+              <input
+                accept="image/*"
+                style="display: none;"
+                type="file"
+              />
+            </div>
+          </div>
+          <div
+            class="MuiBox-root css-kiche5"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-6wuaap-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="submit"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
