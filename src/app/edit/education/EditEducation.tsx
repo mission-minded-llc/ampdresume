@@ -47,7 +47,7 @@ export const EditEducation = () => {
         </Typography>
       </Box>
 
-      {education ? (
+      {education?.length ? (
         <EducationList education={education} />
       ) : (
         <Typography>No education found.</Typography>
