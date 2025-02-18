@@ -5,7 +5,6 @@ import { render, waitFor } from "@testing-library/react";
 import { EditSkills } from "./EditSkills";
 import React from "react";
 import { Skill } from "@prisma/client";
-// import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
