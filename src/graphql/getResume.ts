@@ -68,10 +68,13 @@ export const getResume = async (slug: string) => {
                 projects {
                   id
                   name
+                  description
                   skillsForProject {
                     id
+                    description
                     skillForUser {
                       id
+                      icon
                       userId
                       skill {
                         id
