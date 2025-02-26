@@ -56,12 +56,7 @@ const AccountForm = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    setFormData({ ...formData, [name]: value });
-    if (value.trim() === "") {
-      setErrors((prev) => ({ ...prev, [name]: `${name} is required` }));
-    } else {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+    setFormData({ ...formData, [name]: value.trim() });
 
     // Ensure the slug is alphanumeric and lowercase, with hyphens for spaces.
     if (name === "slug") {
@@ -156,6 +151,7 @@ const AccountForm = ({
               helperText={errors.name ? errors.name : " "}
               fullWidth
               sx={{ marginTop: "auto" }}
+              label="Full Name"
             />
           </InputSection>
           <InputSection>
@@ -181,7 +177,7 @@ const AccountForm = ({
               <strong>not</strong> be created, so please update your shared links.
             </FieldDescription>
             <TextField
-              label="Slug"
+              label="URL Slug"
               name="slug"
               value={formData.slug}
               onChange={handleChange}

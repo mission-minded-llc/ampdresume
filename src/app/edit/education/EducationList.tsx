@@ -3,7 +3,7 @@ import { Education, EducationGeneric } from "@/graphql/getEducation";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { CustomDialogTitle } from "@/components/DialogTitle";
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { EducationForm } from "./EducationForm";
 import { EducationItem } from "./EducationItem";
 import { addEducation } from "@/graphql/addEducation";

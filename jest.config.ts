@@ -20,7 +20,17 @@ const jestConfig: JestConfigWithTsJest = {
   transformIgnorePatterns: ["node_modules"],
 
   // Coverage settings.
-  collectCoverageFrom: ["src/**/*.ts", "src/**/*.tsx", "!src/graphql/**", "!**/node_modules/**"],
+  collectCoverageFrom: [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "!src/graphql/**", // GraphQL gets tested in integration tests.
+    "!src/app/api/graphql/**", // GraphQL gets tested in integration tests.
+    "!src/app/api/auth/**", // Auth gets tested in integration tests.
+    "!src/app/api/icons/**", // Icons get tested in integration tests.
+    "!src/app/api/user-asset/**", // User assets get tested in integration tests.
+    "!src/types/**", // Ignore types.
+    "!**/node_modules/**",
+  ],
   coverageThreshold: {
     global: {
       branches: 1,

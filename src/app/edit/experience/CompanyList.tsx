@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CompanyForm } from "./CompanyForm";
 import { CompanyItem } from "./CompanyItem";
-import { CustomDialogTitle } from "@/components/DialogTitle";
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { PositionWithProjects } from "@/graphql/getPositionsWithProjects";
 import { addCompany } from "@/graphql/addCompany";
 import { useSession } from "next-auth/react";

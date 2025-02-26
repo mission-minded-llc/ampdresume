@@ -2,7 +2,7 @@ import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { CustomDialogTitle } from "@/components/DialogTitle";
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { Project } from "@prisma/client";

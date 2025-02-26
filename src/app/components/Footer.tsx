@@ -1,6 +1,6 @@
 "use client";
 
-import { BottomNavigation, Box, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import { MuiLink } from "@/components/MuiLink";
 import React from "react";
@@ -14,7 +14,7 @@ export const Footer = () => {
   const isResumePage = useIsResumePage();
 
   return (
-    <BottomNavigation
+    <Box
       component="footer"
       sx={(theme) => ({
         backgroundColor: theme.palette.background.paper,
@@ -43,14 +43,14 @@ export const Footer = () => {
         <MuiLink href={baseUrl}>openresume.org</MuiLink>
         <Box>
           <Typography variant="caption" sx={{ textAlign: "center" }}>
+            {isDesktop ? (
+              <>&copy; {new Date().getFullYear()} OpenResume. All rights reserved. | </>
+            ) : null}
             <MuiLink href="/about/privacy-policy">Privacy Policy</MuiLink> |{" "}
             <MuiLink href="/about/terms-of-service">Terms of Service</MuiLink>
-            {isDesktop ? (
-              <> | &copy; {new Date().getFullYear()} OpenResume. All rights reserved.</>
-            ) : null}
           </Typography>
         </Box>
       </Box>
-    </BottomNavigation>
+    </Box>
   );
 };

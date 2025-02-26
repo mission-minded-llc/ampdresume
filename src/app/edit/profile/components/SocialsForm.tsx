@@ -8,7 +8,7 @@ import {
 } from "@/util/social";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { CustomDialogTitle } from "@/components/DialogTitle";
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
@@ -149,7 +149,7 @@ export const SocialsForm = () => {
     <>
       <SectionTitle>Social Media Links</SectionTitle>
       <InputSection>
-        <FieldTitle>
+        <FieldTitle component="span">
           Add Link{" "}
           <Tooltip
             message={

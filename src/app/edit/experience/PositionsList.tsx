@@ -3,7 +3,7 @@ import { PositionGeneric, PositionWithProjects } from "@/graphql/getPositionsWit
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Company } from "@/graphql/getCompanies";
-import { CustomDialogTitle } from "@/components/DialogTitle";
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { PositionForm } from "./PositionForm";
 import { PositionItem } from "./PositionItem";
 import { addPosition } from "@/graphql/addPosition";

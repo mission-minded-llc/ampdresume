@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkillsExperience renders correctly with grouped skills 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-fgdvah"
+  >
+    <div
+      class="MuiBox-root css-9y227z"
+    >
+      6 years:
+    </div>
+    <div
+      class="MuiBox-root css-11dbebx"
+    >
+      <div>
+        JavaScript
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-9y227z"
+    >
+      4 years:
+    </div>
+    <div
+      class="MuiBox-root css-11dbebx"
+    >
+      <div>
+        TypeScript
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SkillsExperience renders correctly with no skills 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-fgdvah"
+  />
+</div>
+`;

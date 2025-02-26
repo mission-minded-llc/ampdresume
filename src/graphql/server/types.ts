@@ -46,6 +46,7 @@ export const types = gql`
     location: String
     startDate: String
     endDate: String
+    positions: [Position!]!
   }
 
   type Position {
@@ -76,6 +77,17 @@ export const types = gql`
     school: String!
     degree: String
     dateAwarded: String
+  }
+
+  # This is the full resume query. It pieces together all
+  # the data needed to render a full resume in either interactive,
+  # or PDF form.
+  type Resume {
+    user: User
+    socials: [Social!]!
+    skillsForUser: [SkillForUser!]!
+    companies: [Company!]!
+    education: [Education!]!
   }
 
   input SortInput {

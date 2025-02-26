@@ -1,0 +1,1395 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkillItemEdit handles delete 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-164r41r"
+  >
+    <div
+      class="MuiBox-root css-1xz8vlv"
+    >
+      <div
+        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="true"
+          for=":r6:"
+          id=":r6:-label"
+        >
+          Year Started
+        </label>
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+            id=":r6:"
+            max="2025"
+            min="1900"
+            type="number"
+            value="2020"
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-w1u3ce"
+            >
+              <span>
+                Year Started
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink="true"
+            for=":r7:"
+            id=":r7:-label"
+          >
+            Total Years
+          </label>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+              id=":r7:"
+              max="100"
+              min="0"
+              type="number"
+              value="2"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-w1u3ce"
+              >
+                <span>
+                  Total Years
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div>
+          <p>
+            Enter the year you 
+            <strong>
+              started
+            </strong>
+             using this skill or the
+             
+            <strong>
+              total years
+            </strong>
+             of experience.
+          </p>
+          <p>
+            If you enter the 
+            <strong>
+              year started
+            </strong>
+            , the 
+            <strong>
+              total years
+            </strong>
+             will be calculated for you automatically.
+          </p>
+          <p>
+            If you enter a 
+            <strong>
+              total years
+            </strong>
+             value, it will override the calculated value. Leave "0" for automatic calculation based on 
+            <strong>
+              year started
+            </strong>
+            .
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          data-testid="icon-selector"
+        >
+          IconSelector
+        </div>
+        <div>
+          Enter a valid icon name from
+           
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+            href="https://icon-sets.iconify.design/"
+            target="_blank"
+          >
+            iconify
+          </a>
+          .
+        </div>
+      </div>
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
+    />
+    <div
+      class="MuiBox-root css-1qm1lh"
+    >
+      <div>
+        RichTextEditor
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-gg4vpm"
+    >
+      <div
+        class="MuiBox-root css-0"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary css-1jl5plp-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Delete Skill
+        </button>
+        <div>
+          Deleting this skill will also remove it from all projects! (No undo!)
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-10egq61"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1btmbba-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save
+        </button>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1abvrni-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save & Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SkillItemEdit handles delete 2`] = `
+<div
+  aria-hidden="true"
+>
+  <div
+    class="MuiBox-root css-164r41r"
+  >
+    <div
+      class="MuiBox-root css-1xz8vlv"
+    >
+      <div
+        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="true"
+          for=":r6:"
+          id=":r6:-label"
+        >
+          Year Started
+        </label>
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+            id=":r6:"
+            max="2025"
+            min="1900"
+            type="number"
+            value="2020"
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-w1u3ce"
+            >
+              <span>
+                Year Started
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink="true"
+            for=":r7:"
+            id=":r7:-label"
+          >
+            Total Years
+          </label>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+              id=":r7:"
+              max="100"
+              min="0"
+              type="number"
+              value="2"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-w1u3ce"
+              >
+                <span>
+                  Total Years
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div>
+          <p>
+            Enter the year you 
+            <strong>
+              started
+            </strong>
+             using this skill or the
+             
+            <strong>
+              total years
+            </strong>
+             of experience.
+          </p>
+          <p>
+            If you enter the 
+            <strong>
+              year started
+            </strong>
+            , the 
+            <strong>
+              total years
+            </strong>
+             will be calculated for you automatically.
+          </p>
+          <p>
+            If you enter a 
+            <strong>
+              total years
+            </strong>
+             value, it will override the calculated value. Leave "0" for automatic calculation based on 
+            <strong>
+              year started
+            </strong>
+            .
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          data-testid="icon-selector"
+        >
+          IconSelector
+        </div>
+        <div>
+          Enter a valid icon name from
+           
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+            href="https://icon-sets.iconify.design/"
+            target="_blank"
+          >
+            iconify
+          </a>
+          .
+        </div>
+      </div>
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
+    />
+    <div
+      class="MuiBox-root css-1qm1lh"
+    >
+      <div>
+        RichTextEditor
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-gg4vpm"
+    >
+      <div
+        aria-hidden="true"
+        class="MuiBackdrop-root css-qn1782-MuiBackdrop-root"
+        style="opacity: 0; visibility: hidden;"
+      >
+        <div
+          class="MuiBox-root css-u6v8er"
+        >
+          <span
+            class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorInherit css-gxw4l9-MuiCircularProgress-root"
+            role="progressbar"
+            style="width: 40px; height: 40px;"
+          >
+            <svg
+              class="MuiCircularProgress-svg css-54pwck-MuiCircularProgress-svg"
+              viewBox="22 22 44 44"
+            >
+              <circle
+                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-960umw-MuiCircularProgress-circle"
+                cx="44"
+                cy="44"
+                fill="none"
+                r="20.2"
+                stroke-width="3.6"
+              />
+            </svg>
+          </span>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-24ci41-MuiTypography-root"
+          >
+            Deleting...
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-0"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary css-1jl5plp-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Delete Skill
+        </button>
+        <div>
+          Deleting this skill will also remove it from all projects! (No undo!)
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-10egq61"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1btmbba-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save
+        </button>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1abvrni-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save & Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SkillItemEdit handles save and close 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-164r41r"
+  >
+    <div
+      class="MuiBox-root css-1xz8vlv"
+    >
+      <div
+        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="true"
+          for=":r9:"
+          id=":r9:-label"
+        >
+          Year Started
+        </label>
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+            id=":r9:"
+            max="2025"
+            min="1900"
+            type="number"
+            value="2020"
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-w1u3ce"
+            >
+              <span>
+                Year Started
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink="true"
+            for=":ra:"
+            id=":ra:-label"
+          >
+            Total Years
+          </label>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+              id=":ra:"
+              max="100"
+              min="0"
+              type="number"
+              value="2"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-w1u3ce"
+              >
+                <span>
+                  Total Years
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div>
+          <p>
+            Enter the year you 
+            <strong>
+              started
+            </strong>
+             using this skill or the
+             
+            <strong>
+              total years
+            </strong>
+             of experience.
+          </p>
+          <p>
+            If you enter the 
+            <strong>
+              year started
+            </strong>
+            , the 
+            <strong>
+              total years
+            </strong>
+             will be calculated for you automatically.
+          </p>
+          <p>
+            If you enter a 
+            <strong>
+              total years
+            </strong>
+             value, it will override the calculated value. Leave "0" for automatic calculation based on 
+            <strong>
+              year started
+            </strong>
+            .
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          data-testid="icon-selector"
+        >
+          IconSelector
+        </div>
+        <div>
+          Enter a valid icon name from
+           
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+            href="https://icon-sets.iconify.design/"
+            target="_blank"
+          >
+            iconify
+          </a>
+          .
+        </div>
+      </div>
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
+    />
+    <div
+      class="MuiBox-root css-1qm1lh"
+    >
+      <div>
+        RichTextEditor
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-gg4vpm"
+    >
+      <div
+        class="MuiBox-root css-0"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary css-1jl5plp-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Delete Skill
+        </button>
+        <div>
+          Deleting this skill will also remove it from all projects! (No undo!)
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-10egq61"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1btmbba-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save
+        </button>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1abvrni-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save & Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SkillItemEdit handles save and close 2`] = `
+<div>
+  <div
+    class="MuiBox-root css-164r41r"
+  >
+    <div
+      class="MuiBox-root css-1xz8vlv"
+    >
+      <div
+        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="true"
+          for=":r9:"
+          id=":r9:-label"
+        >
+          Year Started
+        </label>
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+            id=":r9:"
+            max="2025"
+            min="1900"
+            type="number"
+            value="2020"
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-w1u3ce"
+            >
+              <span>
+                Year Started
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink="true"
+            for=":ra:"
+            id=":ra:-label"
+          >
+            Total Years
+          </label>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+              id=":ra:"
+              max="100"
+              min="0"
+              type="number"
+              value="2"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-w1u3ce"
+              >
+                <span>
+                  Total Years
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div>
+          <p>
+            Enter the year you 
+            <strong>
+              started
+            </strong>
+             using this skill or the
+             
+            <strong>
+              total years
+            </strong>
+             of experience.
+          </p>
+          <p>
+            If you enter the 
+            <strong>
+              year started
+            </strong>
+            , the 
+            <strong>
+              total years
+            </strong>
+             will be calculated for you automatically.
+          </p>
+          <p>
+            If you enter a 
+            <strong>
+              total years
+            </strong>
+             value, it will override the calculated value. Leave "0" for automatic calculation based on 
+            <strong>
+              year started
+            </strong>
+            .
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          data-testid="icon-selector"
+        >
+          IconSelector
+        </div>
+        <div>
+          Enter a valid icon name from
+           
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+            href="https://icon-sets.iconify.design/"
+            target="_blank"
+          >
+            iconify
+          </a>
+          .
+        </div>
+      </div>
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
+    />
+    <div
+      class="MuiBox-root css-1qm1lh"
+    >
+      <div>
+        RichTextEditor
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-gg4vpm"
+    >
+      <div
+        class="MuiBox-root css-0"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary css-1jl5plp-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Delete Skill
+        </button>
+        <div>
+          Deleting this skill will also remove it from all projects! (No undo!)
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-10egq61"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1btmbba-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save
+        </button>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1abvrni-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save & Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SkillItemEdit renders correctly 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-164r41r"
+  >
+    <div
+      class="MuiBox-root css-1xz8vlv"
+    >
+      <div
+        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="true"
+          for=":r0:"
+          id=":r0:-label"
+        >
+          Year Started
+        </label>
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+            id=":r0:"
+            max="2025"
+            min="1900"
+            type="number"
+            value="2020"
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-w1u3ce"
+            >
+              <span>
+                Year Started
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink="true"
+            for=":r1:"
+            id=":r1:-label"
+          >
+            Total Years
+          </label>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+              id=":r1:"
+              max="100"
+              min="0"
+              type="number"
+              value="2"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-w1u3ce"
+              >
+                <span>
+                  Total Years
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div>
+          <p>
+            Enter the year you 
+            <strong>
+              started
+            </strong>
+             using this skill or the
+             
+            <strong>
+              total years
+            </strong>
+             of experience.
+          </p>
+          <p>
+            If you enter the 
+            <strong>
+              year started
+            </strong>
+            , the 
+            <strong>
+              total years
+            </strong>
+             will be calculated for you automatically.
+          </p>
+          <p>
+            If you enter a 
+            <strong>
+              total years
+            </strong>
+             value, it will override the calculated value. Leave "0" for automatic calculation based on 
+            <strong>
+              year started
+            </strong>
+            .
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          data-testid="icon-selector"
+        >
+          IconSelector
+        </div>
+        <div>
+          Enter a valid icon name from
+           
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+            href="https://icon-sets.iconify.design/"
+            target="_blank"
+          >
+            iconify
+          </a>
+          .
+        </div>
+      </div>
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
+    />
+    <div
+      class="MuiBox-root css-1qm1lh"
+    >
+      <div>
+        RichTextEditor
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-gg4vpm"
+    >
+      <div
+        class="MuiBox-root css-0"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary css-1jl5plp-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Delete Skill
+        </button>
+        <div>
+          Deleting this skill will also remove it from all projects! (No undo!)
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-10egq61"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1btmbba-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save
+        </button>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1abvrni-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save & Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SkillItemEdit updates fields and handles save 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-164r41r"
+  >
+    <div
+      class="MuiBox-root css-1xz8vlv"
+    >
+      <div
+        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="true"
+          for=":r3:"
+          id=":r3:-label"
+        >
+          Year Started
+        </label>
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+            id=":r3:"
+            max="2025"
+            min="1900"
+            type="number"
+            value="2020"
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-w1u3ce"
+            >
+              <span>
+                Year Started
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink="true"
+            for=":r4:"
+            id=":r4:-label"
+          >
+            Total Years
+          </label>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+              id=":r4:"
+              max="100"
+              min="0"
+              type="number"
+              value="2"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-w1u3ce"
+              >
+                <span>
+                  Total Years
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div>
+          <p>
+            Enter the year you 
+            <strong>
+              started
+            </strong>
+             using this skill or the
+             
+            <strong>
+              total years
+            </strong>
+             of experience.
+          </p>
+          <p>
+            If you enter the 
+            <strong>
+              year started
+            </strong>
+            , the 
+            <strong>
+              total years
+            </strong>
+             will be calculated for you automatically.
+          </p>
+          <p>
+            If you enter a 
+            <strong>
+              total years
+            </strong>
+             value, it will override the calculated value. Leave "0" for automatic calculation based on 
+            <strong>
+              year started
+            </strong>
+            .
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          data-testid="icon-selector"
+        >
+          IconSelector
+        </div>
+        <div>
+          Enter a valid icon name from
+           
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+            href="https://icon-sets.iconify.design/"
+            target="_blank"
+          >
+            iconify
+          </a>
+          .
+        </div>
+      </div>
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
+    />
+    <div
+      class="MuiBox-root css-1qm1lh"
+    >
+      <div>
+        RichTextEditor
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-gg4vpm"
+    >
+      <div
+        class="MuiBox-root css-0"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary css-1jl5plp-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Delete Skill
+        </button>
+        <div>
+          Deleting this skill will also remove it from all projects! (No undo!)
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-10egq61"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1btmbba-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save
+        </button>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1abvrni-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save & Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SkillItemEdit updates fields and handles save 2`] = `
+<div>
+  <div
+    class="MuiBox-root css-164r41r"
+  >
+    <div
+      class="MuiBox-root css-1xz8vlv"
+    >
+      <div
+        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="true"
+          for=":r3:"
+          id=":r3:-label"
+        >
+          Year Started
+        </label>
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+        >
+          <input
+            aria-invalid="false"
+            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+            id=":r3:"
+            max="2025"
+            min="1900"
+            type="number"
+            value="2021"
+          />
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="css-w1u3ce"
+            >
+              <span>
+                Year Started
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
+        >
+          <label
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink="true"
+            for=":r4:"
+            id=":r4:-label"
+          >
+            Total Years
+          </label>
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+              id=":r4:"
+              max="100"
+              min="0"
+              type="number"
+              value="3"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-w1u3ce"
+              >
+                <span>
+                  Total Years
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div>
+          <p>
+            Enter the year you 
+            <strong>
+              started
+            </strong>
+             using this skill or the
+             
+            <strong>
+              total years
+            </strong>
+             of experience.
+          </p>
+          <p>
+            If you enter the 
+            <strong>
+              year started
+            </strong>
+            , the 
+            <strong>
+              total years
+            </strong>
+             will be calculated for you automatically.
+          </p>
+          <p>
+            If you enter a 
+            <strong>
+              total years
+            </strong>
+             value, it will override the calculated value. Leave "0" for automatic calculation based on 
+            <strong>
+              year started
+            </strong>
+            .
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-1fil4yh"
+      >
+        <div
+          data-testid="icon-selector"
+        >
+          IconSelector
+        </div>
+        <div>
+          Enter a valid icon name from
+           
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+            href="https://icon-sets.iconify.design/"
+            target="_blank"
+          >
+            iconify
+          </a>
+          .
+        </div>
+      </div>
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
+    />
+    <div
+      class="MuiBox-root css-1qm1lh"
+    >
+      <div>
+        RichTextEditor
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-gg4vpm"
+    >
+      <div
+        class="MuiBox-root css-0"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary css-1jl5plp-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Delete Skill
+        </button>
+        <div>
+          Deleting this skill will also remove it from all projects! (No undo!)
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-10egq61"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1btmbba-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save
+        </button>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1abvrni-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save & Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

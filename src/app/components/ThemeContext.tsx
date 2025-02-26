@@ -26,7 +26,7 @@ export const ThemeAppearanceProvider = ({ children }: { children?: React.ReactNo
 
     // Detect the current appearance settings immediately.
     if (mediaQuery.matches) {
-      handleMediaQueryChange(new MediaQueryListEvent("change", { matches: mediaQuery.matches }));
+      handleMediaQueryChange({ matches: mediaQuery.matches } as MediaQueryListEvent);
     }
 
     mediaQuery.addEventListener("change", handleMediaQueryChange);

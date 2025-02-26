@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionTitle renders correctly with the provided title 1`] = `
+<div>
+  <hr
+    class="MuiDivider-root MuiDivider-fullWidth css-1nih0dr-MuiDivider-root"
+  />
+  <div
+    class="MuiBox-root css-0"
+  >
+    <h1
+      class="MuiTypography-root MuiTypography-h5 css-16xl4zq-MuiTypography-root"
+    >
+      Test Title
+    </h1>
+  </div>
+  <hr
+    class="MuiDivider-root MuiDivider-fullWidth css-1o0cmko-MuiDivider-root"
+  />
+</div>
+`;

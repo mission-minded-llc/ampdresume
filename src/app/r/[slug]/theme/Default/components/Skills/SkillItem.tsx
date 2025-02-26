@@ -2,7 +2,7 @@ import { Box, Dialog, DialogContent } from "@mui/material";
 import React, { useContext, useState } from "react";
 
 import Button from "@mui/material/Button";
-import { CustomDialogTitle } from "@/components/DialogTitle";
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { Icon } from "@iconify/react";
 import { SkillForProjectWithSkill } from "@/graphql/getSkillsForProject";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";

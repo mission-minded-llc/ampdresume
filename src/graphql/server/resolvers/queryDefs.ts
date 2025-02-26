@@ -15,5 +15,8 @@ export const queryDefs = gql`
 
     # Project-specific queries.
     skillsForProject(projectId: ID!): [SkillForProject!]!
+
+    # Full resume query.
+    resume(slug: String!): Resume
   }
 `;

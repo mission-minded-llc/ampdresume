@@ -17,7 +17,7 @@ import {
 import React, { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { CustomDialogTitle } from "@/components/DialogTitle";
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Tooltip } from "@/components/Tooltip";
@@ -70,6 +70,7 @@ export const EditSkillsSearch = () => {
       totalYears: number;
     }) => {
       if (!session?.user?.id) return;
+
       await addSkillForUser({ userId: session.user.id, skillId, yearStarted, totalYears });
     },
     onSuccess: () => {
