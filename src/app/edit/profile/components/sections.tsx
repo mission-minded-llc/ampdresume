@@ -48,10 +48,16 @@ export const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   </Typography>
 );
 
-export const FieldTitle = ({ children }: { children: React.ReactNode }) => (
+export const FieldTitle = ({
+  children,
+  component = "p",
+}: {
+  children: React.ReactNode;
+  component?: "p" | "span";
+}) => (
   <Typography
     variant="h6"
-    component="p"
+    component={component}
     color="textPrimary"
     sx={{
       display: "flex",

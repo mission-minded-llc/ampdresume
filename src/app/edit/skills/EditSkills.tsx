@@ -45,7 +45,7 @@ export const EditSkills = () => {
       <Typography sx={{ mb: 2 }}>Search for a skill to add to your profile:</Typography>
       <EditSkillsSearch />
 
-      {skillsForUser ? (
+      {skillsForUser?.length ? (
         <>
           <Typography variant="h5" sx={{ mb: 2, mt: 6 }}>
             Your Skills{" "}

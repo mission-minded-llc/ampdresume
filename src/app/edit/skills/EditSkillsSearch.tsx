@@ -70,6 +70,7 @@ export const EditSkillsSearch = () => {
       totalYears: number;
     }) => {
       if (!session?.user?.id) return;
+
       await addSkillForUser({ userId: session.user.id, skillId, yearStarted, totalYears });
     },
     onSuccess: () => {

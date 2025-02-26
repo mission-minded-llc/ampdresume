@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sections components renders FieldDescription correctly 1`] = `
+<div>
+  <p
+    class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+  >
+    Field Description
+  </p>
+</div>
+`;
+
+exports[`sections components renders FieldTitle correctly 1`] = `
+<div>
+  <p
+    class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+  >
+    Field Title
+  </p>
+</div>
+`;
+
+exports[`sections components renders GridSection correctly for desktop 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-bvujjh"
+  >
+    <div>
+      Child 1
+    </div>
+    <div>
+      Child 2
+    </div>
+  </div>
+</div>
+`;
+
+exports[`sections components renders GridSection correctly for mobile 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-12dc65p"
+  >
+    <div>
+      Child 1
+    </div>
+    <div>
+      Child 2
+    </div>
+  </div>
+</div>
+`;
+
+exports[`sections components renders InputSection correctly 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-18mctc4"
+  >
+    <div>
+      Child 1
+    </div>
+    <div>
+      Child 2
+    </div>
+  </div>
+</div>
+`;
+
+exports[`sections components renders SectionTitle correctly 1`] = `
+<div>
+  <h2
+    class="MuiTypography-root MuiTypography-h5 css-xt72g8-MuiTypography-root"
+  >
+    Section Title
+  </h2>
+</div>
+`;
