@@ -3,10 +3,10 @@ import "@testing-library/jest-dom";
 import React from "react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillsExperience } from "./SkillsExperience";
-import { groupSkillsForUserByYearExperience } from "@/app/r/[slug]/pdf/pdf-theme/util";
+import { groupSkillsForUserByYearExperience } from "openresume-theme";
 import { render } from "@testing-library/react";
 
-jest.mock("@/app/r/[slug]/pdf/pdf-theme/util", () => ({
+jest.mock("openresume-theme", () => ({
   groupSkillsForUserByYearExperience: jest.fn(),
 }));
 

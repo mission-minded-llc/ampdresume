@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItem } from "./SkillItem";
-import { groupSkillsForUserByYearExperience } from "@/app/r/[slug]/pdf/pdf-theme/util";
+import { groupSkillsForUserByYearExperience } from "openresume-theme";
 
 export const SkillsExperience = ({ skills }: { skills: SkillForUserWithSkill[] }) => {
   const skillsExperienceList = groupSkillsForUserByYearExperience(skills);
@@ -44,7 +44,10 @@ export const SkillsExperience = ({ skills }: { skills: SkillForUserWithSkill[] }
               }}
             >
               {skillsList.map((skill) => (
-                <SkillItem key={`skill-${skill.skill.name}`} skill={skill} />
+                <SkillItem
+                  key={`skill-${skill.skill.name}`}
+                  skill={skill as SkillForUserWithSkill}
+                />
               ))}
             </Box>
           </React.Fragment>

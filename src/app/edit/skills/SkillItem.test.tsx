@@ -36,7 +36,6 @@ describe("SkillItem", () => {
   const mockSkill: SkillForUserWithSkill = {
     id: "1",
     userId: "user-id",
-    skillId: "skill-id",
     yearStarted: 2020,
     totalYears: 2,
     skill: { id: "skill-id", name: "JavaScript", icon: "icon-js" },

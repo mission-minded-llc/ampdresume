@@ -5,7 +5,8 @@ import { Skill, SkillForUser } from "@prisma/client";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
-export interface SkillForUserWithSkill extends SkillForUser {
+export interface SkillForUserWithSkill extends Omit<SkillForUser, "skillId" | "icon"> {
+  icon: string | null | undefined;
   skill: Skill;
 }
 
