@@ -1,22 +1,16 @@
 import { Box, Button, Dialog, DialogContent } from "@mui/material";
-import { PositionGeneric, PositionWithProjects } from "@/graphql/getPositionsWithProjects";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Company } from "@/graphql/getCompanies";
+import { Company } from "openresume-theme";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { PositionForm } from "./PositionForm";
+import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { PositionItem } from "./PositionItem";
 import { addPosition } from "@/graphql/addPosition";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
-export const PositionsList = ({
-  company,
-  positionsWithProjectsInCompany,
-}: {
-  company: Company;
-  positionsWithProjectsInCompany: PositionWithProjects[];
-}) => {
+export const PositionsList = ({ company }: { company: Company }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState(false);
@@ -64,7 +58,7 @@ export const PositionsList = ({
 
   return (
     <Box sx={{ mt: 2 }}>
-      {positionsWithProjectsInCompany.map((position) => (
+      {company?.positions?.map((position) => (
         <PositionItem
           key={position.id}
           position={position}

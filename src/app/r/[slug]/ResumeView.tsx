@@ -1,11 +1,10 @@
 "use client";
 
-import { Social, User } from "@prisma/client";
+import { Company, Education, SkillForUser, ThemeDefault } from "openresume-theme";
+import { Social, User } from "openresume-theme";
 
-import { CompanyWithPositionsWithProjectsWithSkills } from "@/graphql/getCompanies";
-import { Education } from "@/graphql/getEducation";
-import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
-import { ThemeDefault } from "openresume-theme";
+import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
+import { useContext } from "react";
 
 export const ResumeView = ({
   user,
@@ -16,12 +15,15 @@ export const ResumeView = ({
 }: {
   user: User;
   socials: Social[];
-  skillsForUser: SkillForUserWithSkill[];
-  companies: CompanyWithPositionsWithProjectsWithSkills[];
+  skillsForUser: SkillForUser[];
+  companies: Company[];
   education: Education[];
 }) => {
+  const { themeAppearance } = useContext(ThemeAppearanceContext);
+
   return (
     <ThemeDefault
+      themeAppearance={themeAppearance}
       user={user}
       socials={socials}
       skillsForUser={skillsForUser}

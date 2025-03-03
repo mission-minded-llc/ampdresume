@@ -14,7 +14,7 @@ import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import { SOCIAL_MEDIA_PLATFORMS } from "@/constants";
-import { Social } from "@prisma/client";
+import { Social } from "openresume-theme";
 import { Tooltip } from "@/components/Tooltip";
 import { addSocial } from "@/graphql/addSocial";
 import { deleteSocial } from "@/graphql/deleteSocial";

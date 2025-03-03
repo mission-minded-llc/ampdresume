@@ -1,22 +1,16 @@
 import { Box, Button, Dialog, DialogContent } from "@mui/material";
-import { Company, CompanyGeneric } from "@/graphql/getCompanies";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { Company } from "openresume-theme";
 import { CompanyForm } from "./CompanyForm";
+import { CompanyGeneric } from "@/graphql/getCompanies";
 import { CompanyItem } from "./CompanyItem";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-import { PositionWithProjects } from "@/graphql/getPositionsWithProjects";
 import { addCompany } from "@/graphql/addCompany";
 import { useSession } from "next-auth/react";
 
-export const CompanyList = ({
-  companies,
-  positionsWithProjects,
-}: {
-  companies: Company[];
-  positionsWithProjects: PositionWithProjects[];
-}) => {
+export const CompanyList = ({ companies }: { companies: Company[] }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
 
@@ -65,21 +59,14 @@ export const CompanyList = ({
 
   return (
     <Box sx={{ mb: 4 }}>
-      {companies.map((company) => {
-        const positionsWithProjectsInCompany = positionsWithProjects.filter(
-          (position) => position.company.id === company.id,
-        );
-
-        return (
-          <CompanyItem
-            key={company.id}
-            company={company}
-            expanded={expanded}
-            setExpanded={setExpanded}
-            positionsWithProjectsInCompany={positionsWithProjectsInCompany}
-          />
-        );
-      })}
+      {companies.map((company) => (
+        <CompanyItem
+          key={company.id}
+          company={company}
+          expanded={expanded}
+          setExpanded={setExpanded}
+        />
+      ))}
 
       {expanded === false ? (
         <>

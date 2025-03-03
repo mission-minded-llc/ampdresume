@@ -6,7 +6,7 @@ import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { IconSelector } from "@/components/IconSelector";
 import { MuiLink } from "@/components/MuiLink";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
-import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
+import { SkillForUser } from "openresume-theme";
 import { Tooltip } from "@/components/Tooltip";
 import { TooltipTotalYears } from "@/components/tooltips";
 import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
@@ -18,7 +18,7 @@ export const SkillItemEdit = ({
   skill,
   handleClose,
 }: {
-  skill: SkillForUserWithSkill;
+  skill: SkillForUser;
   handleClose: VoidFunction;
 }) => {
   const { data: session } = useSession();
@@ -41,7 +41,7 @@ export const SkillItemEdit = ({
       description: string | null;
       yearStarted: number;
       totalYears: number;
-      icon: string | null;
+      icon: string | null | undefined;
     }) => {
       if (!session?.user?.id) return;
 

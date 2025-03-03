@@ -1,11 +1,12 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Education, EducationGeneric } from "@/graphql/getEducation";
 import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { formatLongDate, timestampToDate } from "@/lib/format";
 
 import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
+import { Education } from "openresume-theme";
+import { EducationGeneric } from "@/graphql/getEducation";
 
 export const EducationForm = ({
   education,

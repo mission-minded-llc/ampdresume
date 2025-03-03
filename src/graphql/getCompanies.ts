@@ -1,18 +1,8 @@
 import * as Sentry from "@sentry/react";
 
-import { Company as CompanyServer } from "@prisma/client";
-import { PositionWithProjectsWithSkills } from "./getPositionsWithSkillsForProjects";
+import { Company } from "openresume-theme";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
-
-export type Company = Omit<CompanyServer, "startDate" | "endDate"> & {
-  startDate: string;
-  endDate: string | null;
-};
-
-export type CompanyWithPositionsWithProjectsWithSkills = Company & {
-  positions: PositionWithProjectsWithSkills[];
-};
 
 export type CompanyGeneric = Omit<Company, "id" | "userId">;
 

@@ -1,12 +1,12 @@
 "use client";
 
+import { SkillForUser, groupSkillsForUserByYearExperience } from "openresume-theme";
+
 import { Box } from "@mui/material";
 import React from "react";
-import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillItem } from "./SkillItem";
-import { groupSkillsForUserByYearExperience } from "openresume-theme";
 
-export const SkillsExperience = ({ skills }: { skills: SkillForUserWithSkill[] }) => {
+export const SkillsExperience = ({ skills }: { skills: SkillForUser[] }) => {
   const skillsExperienceList = groupSkillsForUserByYearExperience(skills);
 
   return (
@@ -44,10 +44,7 @@ export const SkillsExperience = ({ skills }: { skills: SkillForUserWithSkill[] }
               }}
             >
               {skillsList.map((skill) => (
-                <SkillItem
-                  key={`skill-${skill.skill.name}`}
-                  skill={skill as SkillForUserWithSkill}
-                />
+                <SkillItem key={`skill-${skill.skill.name}`} skill={skill as SkillForUser} />
               ))}
             </Box>
           </React.Fragment>

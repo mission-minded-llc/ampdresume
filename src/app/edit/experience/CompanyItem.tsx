@@ -1,10 +1,10 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
-import { Company, CompanyGeneric } from "@/graphql/getCompanies";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { Company } from "openresume-theme";
 import { CompanyForm } from "./CompanyForm";
+import { CompanyGeneric } from "@/graphql/getCompanies";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { PositionWithProjects } from "@/graphql/getPositionsWithProjects";
 import { PositionsList } from "./PositionsList";
 import React from "react";
 import { deleteCompany } from "@/graphql/deleteCompany";
@@ -14,12 +14,10 @@ import { useSession } from "next-auth/react";
 
 export const CompanyItem = ({
   company,
-  positionsWithProjectsInCompany,
   expanded,
   setExpanded,
 }: {
   company: Company;
-  positionsWithProjectsInCompany: PositionWithProjects[];
   expanded: string | false;
   setExpanded: React.Dispatch<React.SetStateAction<string | false>>;
 }) => {
@@ -117,12 +115,8 @@ export const CompanyItem = ({
           company={company}
           handler={handleEditCompany}
           deleteHandler={handleDeleteCompany}
-          positionsWithProjectsInCompany={positionsWithProjectsInCompany}
         />
-        <PositionsList
-          company={company}
-          positionsWithProjectsInCompany={positionsWithProjectsInCompany}
-        />
+        <PositionsList company={company} />
       </AccordionDetails>
     </Accordion>
   );

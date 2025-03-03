@@ -1,24 +1,18 @@
 import * as Sentry from "@sentry/react";
 
-import { SkillForProject } from "@prisma/client";
-import { SkillForUserWithSkill } from "./getSkillsForUser";
+import { SkillForProject } from "openresume-theme";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
-export interface SkillForProjectWithSkill extends SkillForProject {
-  description: string;
-  skillForUser: SkillForUserWithSkill;
-}
-
 export const getSkillsForProject = async (
   projectId: string | undefined,
-): Promise<SkillForProjectWithSkill[] | undefined> => {
+): Promise<SkillForProject[] | undefined> => {
   if (!projectId) return;
 
   const client = getApolloClient();
 
   const { data } = await client
-    .query<{ skillsForProject: SkillForProjectWithSkill[] }>({
+    .query<{ skillsForProject: SkillForProject[] }>({
       query: gql`
         query getSkillsForProject($projectId: ID!) {
           skillsForProject(projectId: $projectId) {

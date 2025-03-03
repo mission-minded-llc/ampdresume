@@ -1,9 +1,9 @@
 import "@testing-library/jest-dom";
 
+import { SkillForUser, groupSkillsForUserByYearExperience } from "openresume-theme";
+
 import React from "react";
-import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillsExperience } from "./SkillsExperience";
-import { groupSkillsForUserByYearExperience } from "openresume-theme";
 import { render } from "@testing-library/react";
 
 jest.mock("openresume-theme", () => ({
@@ -11,7 +11,7 @@ jest.mock("openresume-theme", () => ({
 }));
 
 jest.mock("./SkillItem", () => ({
-  SkillItem: ({ skill }: { skill: SkillForUserWithSkill }) => <div>{skill.skill.name}</div>,
+  SkillItem: ({ skill }: { skill: SkillForUser }) => <div>{skill.skill.name}</div>,
 }));
 
 describe("SkillsExperience", () => {

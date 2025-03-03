@@ -1,13 +1,10 @@
 import { Accordion, AccordionDetails, AccordionSummary, Divider } from "@mui/material";
-import {
-  Position,
-  PositionGeneric,
-  PositionWithProjects,
-} from "@/graphql/getPositionsWithProjects";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Position } from "openresume-theme";
 import { PositionForm } from "./PositionForm";
+import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { ProjectsList } from "./ProjectsList";
 import React from "react";
 import { deletePosition } from "@/graphql/deletePosition";
@@ -20,7 +17,7 @@ export const PositionItem = ({
   expanded,
   setExpanded,
 }: {
-  position: PositionWithProjects;
+  position: Position;
   expanded: string | false;
   setExpanded: React.Dispatch<React.SetStateAction<string | false>>;
 }) => {
@@ -48,7 +45,6 @@ export const PositionItem = ({
       await updatePosition({
         id,
         userId: session.user.id,
-        companyId: position.company.id,
         title,
         startDate,
         endDate,

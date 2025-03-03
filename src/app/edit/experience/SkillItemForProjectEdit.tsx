@@ -1,13 +1,12 @@
 import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
+import { Project, SkillForProject } from "openresume-theme";
 import React, { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
-import { Project } from "@prisma/client";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
-import { SkillForProjectWithSkill } from "@/graphql/getSkillsForProject";
 import { deleteSkillForProject } from "@/graphql/deleteSkillForProject";
 import { updateSkillForProject } from "@/graphql/updateSkillForProject";
 import { useSession } from "next-auth/react";
@@ -16,7 +15,7 @@ export const SkillItemForProjectEdit = ({
   skillForProject,
   project,
 }: {
-  skillForProject: SkillForProjectWithSkill;
+  skillForProject: SkillForProject;
   project: Project;
 }) => {
   const { data: session } = useSession();

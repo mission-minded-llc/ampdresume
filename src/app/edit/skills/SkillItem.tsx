@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { Icon } from "@iconify/react";
-import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
+import { SkillForUser } from "openresume-theme";
 import { SkillItemEdit } from "@/app/edit/skills/SkillItemEdit";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-export const SkillItem = ({ skill }: { skill: SkillForUserWithSkill }) => {
+export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
   const { data: session, status } = useSession();
   const pathname = usePathname();
 

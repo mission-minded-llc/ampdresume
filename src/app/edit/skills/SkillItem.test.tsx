@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
 import React from "react";
-import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
+import { SkillForUser } from "openresume-theme";
 import { SkillItem } from "./SkillItem";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -22,7 +22,7 @@ jest.mock("@/app/edit/skills/SkillItemEdit", () => ({
     skill,
     handleClose,
   }: {
-    skill: SkillForUserWithSkill;
+    skill: SkillForUser;
     handleClose: () => void;
   }) => (
     <div>
@@ -33,7 +33,7 @@ jest.mock("@/app/edit/skills/SkillItemEdit", () => ({
 }));
 
 describe("SkillItem", () => {
-  const mockSkill: SkillForUserWithSkill = {
+  const mockSkill: SkillForUser = {
     id: "1",
     userId: "user-id",
     yearStarted: 2020,

@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { PositionWithProjects } from "@/graphql/getPositionsWithProjects";
+import { Position } from "openresume-theme";
 import { ProjectItem } from "./ProjectItem";
 import { Tooltip } from "@/components/Tooltip";
 import { addProject } from "@/graphql/addProject";
@@ -13,7 +13,7 @@ export const ProjectsList = ({
   position,
   expanded = false,
 }: {
-  position: PositionWithProjects;
+  position: Position;
   expanded?: boolean;
 }) => {
   const { data: session } = useSession();
@@ -68,6 +68,8 @@ export const ProjectsList = ({
     setProjectValue("");
   };
 
+  const positionProjects = position.projects ?? [];
+
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "space-between", gap: 1 }}>
@@ -100,7 +102,7 @@ export const ProjectsList = ({
         }}
         onDragOver={(e) => e.preventDefault()}
       >
-        {[...position.projects]
+        {[...positionProjects]
           .sort((a, b) => (a.sortIndex ?? 0) - (b.sortIndex ?? 0))
           .map((project) => (
             <Box
@@ -112,11 +114,11 @@ export const ProjectsList = ({
               onDrop={(e) => {
                 e.preventDefault();
                 const draggedId = e.dataTransfer.getData("projectId");
-                const draggedProject = position.projects.find((p) => p.id === draggedId);
+                const draggedProject = positionProjects.find((p) => p.id === draggedId);
                 const targetProject = project;
 
                 if (draggedProject && draggedProject.id !== targetProject.id) {
-                  const updatedProjects = [...position.projects].sort(
+                  const updatedProjects = [...positionProjects].sort(
                     (a, b) => (a.sortIndex ?? 0) - (b.sortIndex ?? 0),
                   );
 

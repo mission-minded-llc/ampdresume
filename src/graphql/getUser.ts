@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { User } from "openresume-theme";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 

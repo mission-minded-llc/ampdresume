@@ -1,12 +1,12 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Company, CompanyGeneric } from "@/graphql/getCompanies";
+import { Company, Position } from "openresume-theme";
 import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { formatLongDate, formatShortDate, timestampToDate } from "@/lib/format";
 
+import { CompanyGeneric } from "@/graphql/getCompanies";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
-import { PositionWithProjects } from "@/graphql/getPositionsWithProjects";
 
 export const CompanyForm = ({
   company,
@@ -16,7 +16,7 @@ export const CompanyForm = ({
   onCancel = null,
 }: {
   company?: Company | null;
-  positionsWithProjectsInCompany?: PositionWithProjects[];
+  positionsWithProjectsInCompany?: Position[];
   handler: (company: CompanyGeneric | Company) => void;
   deleteHandler?: ((company: Company) => void) | null;
   onCancel?: (() => void) | null;
