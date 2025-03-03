@@ -1,9 +1,9 @@
 "use client";
 
 import { Box, Button } from "@mui/material";
-import { Company, Education, SkillForUser, ThemeDefaultPDF } from "openresume-theme";
+import { Company, Education, SkillForUser, ThemeDefaultPDF } from "@openresume/theme";
 
-import { User } from "openresume-theme";
+import { User } from "@openresume/theme";
 import html2pdf from "html2pdf.js";
 import { useRef } from "react";
 

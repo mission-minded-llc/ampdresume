@@ -1,5 +1,5 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Company, Position } from "openresume-theme";
+import { Company, Position } from "@openresume/theme";
 import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { formatLongDate, formatShortDate, timestampToDate } from "@/lib/format";

@@ -5,7 +5,7 @@ import { formatLongDate, timestampToDate } from "@/lib/format";
 
 import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
-import { Position } from "openresume-theme";
+import { Position } from "@openresume/theme";
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 
 export const PositionForm = ({

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { Icon } from "@iconify/react";
-import { SkillForUser } from "openresume-theme";
+import { SkillForUser } from "@openresume/theme";
 import { SkillItemEdit } from "@/app/edit/skills/SkillItemEdit";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";

@@ -1,5 +1,5 @@
 import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
-import { Project, SkillForProject } from "openresume-theme";
+import { Project, SkillForProject } from "@openresume/theme";
 import React, { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 

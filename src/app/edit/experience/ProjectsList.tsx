@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Position } from "openresume-theme";
+import { Position } from "@openresume/theme";
 import { ProjectItem } from "./ProjectItem";
 import { Tooltip } from "@/components/Tooltip";
 import { addProject } from "@/graphql/addProject";

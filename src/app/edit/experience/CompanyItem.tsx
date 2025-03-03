@@ -1,7 +1,7 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Company } from "openresume-theme";
+import { Company } from "@openresume/theme";
 import { CompanyForm } from "./CompanyForm";
 import { CompanyGeneric } from "@/graphql/getCompanies";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";

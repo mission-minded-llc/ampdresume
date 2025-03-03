@@ -1,7 +1,7 @@
 "use client";
 
-import { Company, Education, SkillForUser, ThemeDefault } from "openresume-theme";
-import { Social, User } from "openresume-theme";
+import { Company, Education, SkillForUser, ThemeDefault } from "@openresume/theme";
+import { Social, User } from "@openresume/theme";
 
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
 import { useContext } from "react";

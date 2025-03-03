@@ -1,12 +1,12 @@
 import "@testing-library/jest-dom";
 
-import { SkillForUser, groupSkillsForUserByYearExperience } from "openresume-theme";
+import { SkillForUser, groupSkillsForUserByYearExperience } from "@openresume/theme";
 
 import React from "react";
 import { SkillsExperience } from "./SkillsExperience";
 import { render } from "@testing-library/react";
 
-jest.mock("openresume-theme", () => ({
+jest.mock("@openresume/theme", () => ({
   groupSkillsForUserByYearExperience: jest.fn(),
 }));
 
