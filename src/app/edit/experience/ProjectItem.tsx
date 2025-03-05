@@ -17,7 +17,7 @@ import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { Project } from "@prisma/client";
+import { Project } from "@openresume/theme";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 import { addSkillForProject } from "@/graphql/addSkillForProject";

@@ -1,21 +1,10 @@
 import * as Sentry from "@sentry/react";
 
-import { Company, Position as PositionServer, Project } from "@prisma/client";
-
+import { Position } from "@openresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
-export interface Position extends Omit<PositionServer, "startDate" | "endDate"> {
-  startDate: string;
-  endDate: string;
-}
-
 export type PositionGeneric = Omit<Position, "id" | "companyId">;
-
-export interface PositionWithProjects extends Position {
-  company: Company;
-  projects: Project[];
-}
 
 /**
  * Used to fetch all positions for a specific company, excluding
@@ -23,15 +12,13 @@ export interface PositionWithProjects extends Position {
  * don't need the skills for a project, specifically during editing.
  *
  * @param {string[]} companyIds - the company IDs to fetch positions for.
- * @returns {PositionWithProjects[]} all positions for the company, including projects for each position.
+ * @returns {Position[]} all positions for the company, including projects for each position.
  */
-export const getPositionsWithProjects = async (
-  companyIds: string[],
-): Promise<PositionWithProjects[]> => {
+export const getPositionsWithProjects = async (companyIds: string[]): Promise<Position[]> => {
   const client = getApolloClient();
 
   const { data } = await client
-    .query<{ positions: PositionWithProjects[] }>({
+    .query<{ positions: Position[] }>({
       query: gql`
         query getPositions($companyIds: [ID!]) {
           positions(companyIds: $companyIds, sort: [{ field: "endDate", direction: DESC }]) {

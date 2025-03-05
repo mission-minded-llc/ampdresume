@@ -6,14 +6,12 @@ import { gql } from "@apollo/client";
 export const updatePosition = async ({
   id,
   userId,
-  companyId,
   title,
   startDate,
   endDate,
 }: {
   id: string;
   userId: string;
-  companyId: string;
   title: string;
   startDate: string;
   endDate: string;
@@ -26,7 +24,6 @@ export const updatePosition = async ({
         mutation updatePosition(
           $id: ID!
           $userId: ID!
-          $companyId: ID!
           $title: String!
           $startDate: String!
           $endDate: String
@@ -34,7 +31,6 @@ export const updatePosition = async ({
           updatePosition(
             id: $id
             userId: $userId
-            companyId: $companyId
             title: $title
             startDate: $startDate
             endDate: $endDate
@@ -46,7 +42,6 @@ export const updatePosition = async ({
       variables: {
         id,
         userId,
-        companyId,
         title,
         startDate,
         endDate,

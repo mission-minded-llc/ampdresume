@@ -1,29 +1,24 @@
 import * as Sentry from "@sentry/react";
 
-import { Skill, SkillForUser } from "@prisma/client";
-
+import { SkillForUser } from "@openresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
-
-export interface SkillForUserWithSkill extends SkillForUser {
-  skill: Skill;
-}
 
 /**
  * Used to fetch all skills for a specific user.
  *
  * @param userId - the user ID to fetch skills for.
- * @returns {SkillForUserWithSkill[]} all skills for the user, including the parent skill.
+ * @returns {SkillForUser[]} all skills for the user, including the parent skill.
  */
 export const getSkillsForUser = async (
   userId: string | undefined,
-): Promise<SkillForUserWithSkill[] | undefined> => {
+): Promise<SkillForUser[] | undefined> => {
   if (!userId) return;
 
   const client = getApolloClient();
 
   const { data } = await client
-    .query<{ skillsForUser: SkillForUserWithSkill[] }>({
+    .query<{ skillsForUser: SkillForUser[] }>({
       query: gql`
         query getSkillsForUser($userId: ID!) {
           skillsForUser(userId: $userId) {

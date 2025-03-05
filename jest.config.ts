@@ -10,25 +10,21 @@ const jestConfig: JestConfigWithTsJest = {
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   transform: {
-    "^.+\\.tsx?$": [
-      "ts-jest",
-      // required due to custom location of tsconfig.json configuration file
-      // https://kulshekhar.github.io/ts-jest/docs/getting-started/options/tsconfig
-      { tsconfig: "./tsconfig.jest.json", isolatedModules: true },
-    ],
+    "^.+\\.tsx?$": ["ts-jest", { tsconfig: "./tsconfig.jest.json", isolatedModules: true }],
   },
   transformIgnorePatterns: ["node_modules"],
+  testPathIgnorePatterns: ["/node_modules/", "/openresume-theme/"],
 
   // Coverage settings.
   collectCoverageFrom: [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "!src/graphql/**", // GraphQL gets tested in integration tests.
-    "!src/app/api/graphql/**", // GraphQL gets tested in integration tests.
-    "!src/app/api/auth/**", // Auth gets tested in integration tests.
-    "!src/app/api/icons/**", // Icons get tested in integration tests.
-    "!src/app/api/user-asset/**", // User assets get tested in integration tests.
-    "!src/types/**", // Ignore types.
+    "!src/graphql/**",
+    "!src/app/api/graphql/**",
+    "!src/app/api/auth/**",
+    "!src/app/api/icons/**",
+    "!src/app/api/user-asset/**",
+    "!src/types/**",
     "!**/node_modules/**",
   ],
   coverageThreshold: {

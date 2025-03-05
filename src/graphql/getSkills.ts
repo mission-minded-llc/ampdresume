@@ -1,10 +1,8 @@
 import * as Sentry from "@sentry/react";
 
-import { Skill } from "@prisma/client";
+import { Skill } from "@openresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
-
-export type SkillType = "user" | "project";
 
 /**
  * Used to fetch all skills as part of a search/selector.

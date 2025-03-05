@@ -1,5 +1,5 @@
 import { SOCIAL_MEDIA_PLATFORMS } from "@/constants";
-import { Social } from "@prisma/client";
+import { Social } from "@openresume/theme";
 
 export const getSocialMediaPlatformByHostname = (hostname: string) => {
   for (const [key, value] of Object.entries(SOCIAL_MEDIA_PLATFORMS)) {

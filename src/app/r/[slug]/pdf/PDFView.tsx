@@ -1,19 +1,16 @@
 "use client";
 
 import { Box, Button } from "@mui/material";
+import { Company, Education, SkillForUser, ThemeDefaultPDF } from "@openresume/theme";
 
-import { CompanyWithPositionsWithProjectsWithSkills } from "@/graphql/getCompanies";
-import { Education } from "@/graphql/getEducation";
-import { PDFViewThemeDefault } from "./pdf-theme";
-import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
-import { User } from "@prisma/client";
+import { User } from "@openresume/theme";
 import html2pdf from "html2pdf.js";
 import { useRef } from "react";
 
 interface PDFViewProps {
   user: User;
-  skillsForUser: SkillForUserWithSkill[];
-  companies: CompanyWithPositionsWithProjectsWithSkills[];
+  skillsForUser: SkillForUser[];
+  companies: Company[];
   education: Education[];
 }
 
@@ -59,7 +56,7 @@ export const PDFView = ({ user, skillsForUser, companies, education }: PDFViewPr
         }}
       >
         <Box ref={pdfRef}>
-          <PDFViewThemeDefault
+          <ThemeDefaultPDF
             user={user}
             skillsForUser={skillsForUser}
             companies={companies}

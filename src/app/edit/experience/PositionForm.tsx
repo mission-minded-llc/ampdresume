@@ -1,15 +1,12 @@
 import { Box, Button, TextField } from "@mui/material";
-import {
-  Position,
-  PositionGeneric,
-  PositionWithProjects,
-} from "@/graphql/getPositionsWithProjects";
 import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { formatLongDate, timestampToDate } from "@/lib/format";
 
 import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
+import { Position } from "@openresume/theme";
+import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 
 export const PositionForm = ({
   position,
@@ -17,7 +14,7 @@ export const PositionForm = ({
   deleteHandler = null,
   onCancel = null,
 }: {
-  position?: PositionWithProjects | null;
+  position?: Position | null;
   handler: (position: Position | PositionGeneric) => void;
   deleteHandler?: ((position: Position) => void) | null;
   onCancel?: (() => void) | null;
@@ -93,14 +90,14 @@ export const PositionForm = ({
           <DeleteWithConfirmation
             buttonLabel="Delete Position"
             tooltip={
-              position.projects.length > 0
+              position?.projects?.length && position.projects.length > 0
                 ? "To delete this position, first delete all projects in the position."
                 : ""
             }
             onConfirmDelete={() => {
               deleteHandler(position);
             }}
-            disabled={position.projects.length > 0}
+            disabled={position?.projects?.length ? position.projects.length > 0 : false}
           />
         )}
         {onCancel && (

@@ -8,7 +8,6 @@ import { MuiLink } from "@/components/MuiLink";
 import React from "react";
 import { SectionTitle } from "../components/SectionTitle";
 import { getCompanies } from "@/graphql/getCompanies";
-import { getPositionsWithProjects } from "@/graphql/getPositionsWithProjects";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
@@ -27,20 +26,6 @@ export const EditExperience = () => {
     queryFn: async () => await getCompanies(session?.user.id),
   });
 
-  const {
-    isPending: isPendingPositions,
-    error: errorPositions,
-    data: positionsWithProjects,
-  } = useQuery({
-    enabled: isAuthenticatedUser,
-    queryKey: ["positions", companies],
-    queryFn: async () => {
-      if (!companies) return [];
-
-      return await getPositionsWithProjects(companies.map((company) => company.id));
-    },
-  });
-
   if (status === "loading") return <LoadingOverlay message="Loading session..." />;
   if (status === "unauthenticated")
     return (
@@ -49,11 +34,8 @@ export const EditExperience = () => {
       </Box>
     );
 
-  const isPending = isPendingCompanies || isPendingPositions;
-
-  if (isPending) return <LoadingOverlay message="Loading resume data..." />;
+  if (isPendingCompanies) return <LoadingOverlay message="Loading resume data..." />;
   if (errorCompanies) return <Box>Error loading companies: {errorCompanies.message}</Box>;
-  if (errorPositions) return <Box>Error loading positions: {errorPositions.message}</Box>;
 
   return (
     <>
@@ -65,7 +47,7 @@ export const EditExperience = () => {
       </Typography>
 
       {companies ? (
-        <CompanyList companies={companies} positionsWithProjects={positionsWithProjects} />
+        <CompanyList companies={companies} />
       ) : (
         <Typography>No companies found.</Typography>
       )}
