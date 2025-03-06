@@ -2,10 +2,9 @@
 
 import { Box, Button } from "@mui/material";
 import { Company, Education, SkillForUser, ThemeDefaultPDF } from "@openresume/theme";
+import { useEffect, useRef, useState } from "react";
 
 import { User } from "@openresume/theme";
-import html2pdf from "html2pdf.js";
-import { useRef } from "react";
 
 interface PDFViewProps {
   user: User;
@@ -16,9 +15,17 @@ interface PDFViewProps {
 
 export const PDFView = ({ user, skillsForUser, companies, education }: PDFViewProps) => {
   const pdfRef = useRef<HTMLDivElement>(null);
+  const [html2pdf, setHtml2pdf] = useState<typeof import("html2pdf.js") | null>(null);
+
+  useEffect(() => {
+    // Dynamically import html2pdf only on the client side
+    import("html2pdf.js").then((module) => {
+      setHtml2pdf(() => module.default);
+    });
+  }, []);
 
   const handleGeneratePdf = () => {
-    if (!pdfRef.current) return;
+    if (!pdfRef.current || !html2pdf) return;
 
     const options = {
       margin: [0.75, 0.75, 0.75, 0.75], // top, right, bottom, left
@@ -41,7 +48,7 @@ export const PDFView = ({ user, skillsForUser, companies, education }: PDFViewPr
   return (
     <Box sx={{ color: "#000", pb: 12 }}>
       <Box sx={{ display: "flex", justifyContent: "center", mb: 2, mt: 2 }}>
-        <Button onClick={handleGeneratePdf} variant="contained">
+        <Button onClick={handleGeneratePdf} variant="contained" disabled={!html2pdf}>
           Generate PDF
         </Button>
       </Box>
