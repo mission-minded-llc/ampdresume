@@ -1,17 +1,17 @@
 import "@testing-library/jest-dom";
 
+import { SkillForUser, groupSkillsForUserByYearExperience } from "@openresume/theme";
+
 import React from "react";
-import { SkillForUserWithSkill } from "@/graphql/getSkillsForUser";
 import { SkillsExperience } from "./SkillsExperience";
-import { groupSkillsForUserByYearExperience } from "@/app/r/[slug]/pdf/pdf-theme/util";
 import { render } from "@testing-library/react";
 
-jest.mock("@/app/r/[slug]/pdf/pdf-theme/util", () => ({
+jest.mock("@openresume/theme", () => ({
   groupSkillsForUserByYearExperience: jest.fn(),
 }));
 
 jest.mock("./SkillItem", () => ({
-  SkillItem: ({ skill }: { skill: SkillForUserWithSkill }) => <div>{skill.skill.name}</div>,
+  SkillItem: ({ skill }: { skill: SkillForUser }) => <div>{skill.skill.name}</div>,
 }));
 
 describe("SkillsExperience", () => {

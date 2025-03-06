@@ -4,7 +4,10 @@
   "service": "app",
   "workspaceFolder": "/workspace",
 
-  "mounts": ["source=${env:HOME}/.aws,target=/root/.aws,type=bind"],
+  "mounts": [
+    "source=${env:HOME}/.aws,target=/root/.aws,type=bind",
+    "source=${localWorkspaceFolder}/../openresume-theme,target=/workspace/openresume-theme,type=bind"
+  ],
 
   "customizations": {
     "vscode": {

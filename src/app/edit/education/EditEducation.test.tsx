@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import { render, waitFor } from "@testing-library/react";
 
 import { EditEducation } from "./EditEducation";
-import { Education } from "@/graphql/getEducation";
+import { Education } from "@openresume/theme";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";

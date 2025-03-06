@@ -13,14 +13,9 @@ import { SessionProvider } from "next-auth/react";
 import { TanstackQueryProvider } from "./TanstackContext";
 import { ThemeAppearanceContext } from "./ThemeContext";
 import { createTheme } from "@mui/material/styles";
-import { usePathname } from "next/navigation";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { themeAppearance } = useContext(ThemeAppearanceContext);
-
-  // If we're rendering a Sanity Studio page, return the children
-  // immediately because we don't need to augment the layout at all.
-  if (usePathname().startsWith("/studio/")) return children;
 
   const theme = createTheme({
     palette: {

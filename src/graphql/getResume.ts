@@ -1,10 +1,9 @@
 import * as Sentry from "@sentry/react";
 
-import { Social, User } from "@prisma/client";
+import { Company, Education } from "@openresume/theme";
+import { Social, User } from "@openresume/theme";
 
-import { CompanyWithPositionsWithProjectsWithSkills } from "./getCompanies";
-import { Education } from "./getEducation";
-import { SkillForUserWithSkill } from "./getSkillsForUser";
+import { SkillForUser } from "@openresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
@@ -16,8 +15,8 @@ export const getResume = async (slug: string) => {
       resume: {
         user: User;
         socials: Social[];
-        skillsForUser: SkillForUserWithSkill[];
-        companies: CompanyWithPositionsWithProjectsWithSkills[];
+        skillsForUser: SkillForUser[];
+        companies: Company[];
         education: Education[];
       };
     }>({
@@ -27,7 +26,6 @@ export const getResume = async (slug: string) => {
             user {
               id
               name
-              email
               displayEmail
               location
               title

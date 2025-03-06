@@ -1,12 +1,8 @@
 import * as Sentry from "@sentry/react";
 
-import { Education as EducationServer } from "@prisma/client";
+import { Education } from "@openresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
-
-export type Education = Omit<EducationServer, "dateAwarded"> & {
-  dateAwarded: string;
-};
 
 export type EducationGeneric = Omit<Education, "id" | "userId">;
 

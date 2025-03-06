@@ -1,10 +1,11 @@
 import { Box, Button, Dialog, DialogContent } from "@mui/material";
-import { Education, EducationGeneric } from "@/graphql/getEducation";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
+import { Education } from "@openresume/theme";
 import { EducationForm } from "./EducationForm";
+import { EducationGeneric } from "@/graphql/getEducation";
 import { EducationItem } from "./EducationItem";
 import { addEducation } from "@/graphql/addEducation";
 import { useSession } from "next-auth/react";
