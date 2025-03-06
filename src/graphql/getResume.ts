@@ -29,6 +29,9 @@ export const getResume = async (slug: string) => {
               displayEmail
               location
               title
+              siteTitle
+              siteDescription
+              siteImage
             }
             socials {
               id
