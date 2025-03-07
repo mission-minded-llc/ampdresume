@@ -43,8 +43,8 @@ export const AiAssist = () => {
 
       <Box sx={{ mb: 4 }}>
         <Typography>
-          Below is a text-only outline of your skills, work experience, and education details as it
-          might appear in a PDF.
+          Below is a text-only outline of your skills and work experience as it might appear in a
+          PDF.
         </Typography>
       </Box>
 
