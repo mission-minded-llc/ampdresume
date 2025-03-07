@@ -21,6 +21,31 @@ export const getCompanies = async (userId: string | undefined): Promise<Company[
             location
             startDate
             endDate
+            positions {
+              id
+              title
+              startDate
+              endDate
+              projects {
+                id
+                name
+                description
+                skillsForProject {
+                  id
+                  description
+                  skillForUser {
+                    id
+                    icon
+                    userId
+                    skill {
+                      id
+                      name
+                      icon
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       `,

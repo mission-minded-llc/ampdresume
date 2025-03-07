@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, FormControl, FormHelperText, TextField } from "@mui/material";
 import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { formatLongDate, timestampToDate } from "@/lib/format";
@@ -20,13 +20,21 @@ export const PositionForm = ({
   onCancel?: (() => void) | null;
 }) => {
   const [positionTitle, setPositionTitle] = useState(position?.title || "");
+  const [positionTitleValid, setPositionTitleValid] = useState(true);
+
   const [startDate, setStartDate] = useState<Dayjs | null>(
-    dayjs(timestampToDate(position?.startDate)),
+    position?.startDate ? dayjs(timestampToDate(position?.startDate)) : null,
   );
-  const [endDate, setEndDate] = useState<Dayjs | null>(dayjs(timestampToDate(position?.endDate)));
+  const [startDateValid, setStartDateValid] = useState(true);
+
+  const [endDate, setEndDate] = useState<Dayjs | null>(
+    position?.endDate ? dayjs(timestampToDate(position?.endDate)) : null,
+  );
 
   const saveHandler = () => {
-    if (!startDate) return;
+    if (!startDate) setStartDateValid(false);
+    if (!positionTitle) setPositionTitleValid(false);
+    if (!startDate || !positionTitle) return;
 
     handler({
       title: positionTitle,
@@ -47,36 +55,47 @@ export const PositionForm = ({
           mb: 2,
           display: "grid",
           gap: 2,
-          gridTemplateColumns: "50% 1fr 1fr",
+          gridTemplateColumns: "50% 50%",
           alignItems: "center",
         }}
       >
-        <TextField
-          margin="dense"
-          fullWidth
-          variant="outlined"
-          label="Position Title"
-          value={positionTitle}
-          onChange={(e) => setPositionTitle(e.target.value)}
-          required
-        />
-        <DatePicker
-          label="Date Started"
-          value={startDate}
-          onChange={(value) => setStartDate(value)}
-          views={["month", "year"]}
-          sx={{ flex: 1 }}
-          disableFuture
-          maxDate={endDate || dayjs(new Date())}
-        />
-        <DatePicker
-          label="Date Ended (leave blank if current)"
-          value={endDate}
-          onChange={(value) => setEndDate(value)}
-          views={["month", "year"]}
-          sx={{ flex: 1 }}
-          disableFuture
-        />
+        <FormControl error={!positionTitleValid} sx={{ gridColumn: "span 2" }}>
+          <TextField
+            margin="dense"
+            fullWidth
+            variant="outlined"
+            label="Position Title"
+            value={positionTitle}
+            onChange={(e) => setPositionTitle(e.target.value)}
+            required
+          />
+          {!positionTitleValid && <FormHelperText>Position title is required.</FormHelperText>}
+        </FormControl>
+        <FormControl error={!startDateValid}>
+          <DatePicker
+            label="Date Started"
+            value={startDate}
+            onChange={(value) => setStartDate(value)}
+            views={["month", "year"]}
+            sx={{ flex: 1 }}
+            disableFuture
+            maxDate={endDate || dayjs(new Date())}
+          />
+          <FormHelperText>
+            {startDateValid ? "Start date is required." : "Please select a valid date."}
+          </FormHelperText>
+        </FormControl>
+        <FormControl>
+          <DatePicker
+            label="Date Ended"
+            value={endDate}
+            onChange={(value) => setEndDate(value)}
+            views={["month", "year"]}
+            sx={{ flex: 1 }}
+            disableFuture
+          />
+          <FormHelperText>Leave blank if current.</FormHelperText>
+        </FormControl>
       </Box>
       <Box
         sx={{
