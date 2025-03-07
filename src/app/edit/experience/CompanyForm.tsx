@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, FormControl, FormHelperText, TextField } from "@mui/material";
 import { Company, Position } from "@openresume/theme";
 import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
@@ -22,14 +22,23 @@ export const CompanyForm = ({
   onCancel?: (() => void) | null;
 }) => {
   const [companyName, setCompanyName] = useState(company?.name || "");
+  const [companyNameValid, setCompanyNameValid] = useState(true);
+
   const [location, setLocation] = useState(company?.location || "");
+
   const [startDate, setStartDate] = useState<Dayjs | null>(
-    dayjs(timestampToDate(company?.startDate)),
+    company?.startDate ? dayjs(timestampToDate(company.startDate)) : null,
   );
-  const [endDate, setEndDate] = useState<Dayjs | null>(dayjs(timestampToDate(company?.endDate)));
+  const [startDateValid, setStartDateValid] = useState(true);
+
+  const [endDate, setEndDate] = useState<Dayjs | null>(
+    company?.endDate ? dayjs(timestampToDate(company.endDate)) : null,
+  );
 
   const saveHandler = () => {
-    if (!startDate) return;
+    if (!startDate) setStartDateValid(false);
+    if (!companyName) setCompanyNameValid(false);
+    if (!startDate || !companyName) return;
 
     handler({
       name: companyName,
@@ -48,15 +57,21 @@ export const CompanyForm = ({
   return (
     <>
       <Box sx={{ mb: 2, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
-        <TextField
-          margin="dense"
-          fullWidth
-          variant="outlined"
-          label="Company Name"
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
-          required
-        />
+        <FormControl error={!companyNameValid}>
+          <TextField
+            margin="dense"
+            fullWidth
+            variant="outlined"
+            label="Company Name"
+            value={companyName}
+            onChange={(e) => {
+              setCompanyName(e.target.value);
+              setCompanyNameValid(true);
+            }}
+            required
+          />
+          {!companyNameValid && <FormHelperText>Company name is required.</FormHelperText>}
+        </FormControl>
         <TextField
           margin="dense"
           fullWidth
@@ -66,25 +81,36 @@ export const CompanyForm = ({
           onChange={(e) => setLocation(e.target.value)}
         />
       </Box>
-      <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
-        <DatePicker
-          label="Date Started"
-          value={startDate}
-          onChange={(value) => setStartDate(value)}
-          views={["month", "year"]}
-          sx={{ flex: 1 }}
-          disableFuture
-          maxDate={endDate || dayjs(new Date())}
-        />
-        <DatePicker
-          label="Date Ended (leave blank if current)"
-          value={endDate}
-          onChange={(value) => setEndDate(value)}
-          views={["month", "year"]}
-          sx={{ flex: 1 }}
-          disableFuture
-          maxDate={dayjs(new Date())}
-        />
+      <Box sx={{ mb: 2, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+        <FormControl error={!startDateValid} sx={{ flex: 1 }}>
+          <DatePicker
+            label="Date Started"
+            value={startDate}
+            onChange={(value) => {
+              setStartDate(value);
+              setStartDateValid(true);
+            }}
+            views={["month", "year"]}
+            sx={{ flex: 1 }}
+            disableFuture
+            maxDate={endDate || dayjs(new Date())}
+          />
+          <FormHelperText>
+            {startDateValid ? "Start date is required." : "Please select a valid date."}
+          </FormHelperText>
+        </FormControl>
+        <FormControl>
+          <DatePicker
+            label="Date Ended"
+            value={endDate}
+            onChange={(value) => setEndDate(value)}
+            views={["month", "year"]}
+            sx={{ flex: 1 }}
+            disableFuture
+            maxDate={dayjs(new Date())}
+          />
+          <FormHelperText>Leave blank if current.</FormHelperText>
+        </FormControl>
       </Box>
       <Box
         sx={{

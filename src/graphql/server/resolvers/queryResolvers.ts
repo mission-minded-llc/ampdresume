@@ -1,6 +1,5 @@
 import { getCompanies } from "./queries/getCompanies";
 import { getEducation } from "./queries/getEducation";
-import { getPositions } from "./queries/getPositions";
 import { getResume } from "./queries/getResume";
 import { getSkills } from "./queries/getSkills";
 import { getSkillsForProject } from "./queries/getSkillsForProject";
@@ -17,7 +16,6 @@ export const queryResolvers = {
   socials: getSocials,
   skillsForUser: getSkillsForUser,
   companies: getCompanies,
-  positions: getPositions,
   education: getEducation,
   skillsForProject: getSkillsForProject,
 

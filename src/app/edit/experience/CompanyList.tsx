@@ -55,6 +55,7 @@ export const CompanyList = ({ companies }: { companies: Company[] }) => {
     });
 
     setIsOpen(false);
+    setExpanded(false);
   };
 
   return (
