@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  # Used by local Postgres connection.
-  DATABASE_URL: postgres://postgres:postgres@postgres:5432/openresume?schema=openresume
+  # Updated to use localhost instead of postgres service name
+  DATABASE_URL: postgres://postgres:postgres@localhost:5432/openresume?schema=openresume
   # Used for sending emails for magic links.
   EMAIL_SERVER_HOST: email-smtp.us-west-2.amazonaws.com
   EMAIL_SERVER_PORT: 587
@@ -44,6 +44,13 @@ jobs:
         run:
           docker run --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e
           POSTGRES_DB=openresume -p 5432:5432 -d postgres:16-alpine
+
+      # Wait for Postgres to be ready
+      - name: Wait for Postgres to be ready
+        run: |
+          echo "Waiting for Postgres to be ready..."
+          timeout 30s bash -c 'until pg_isready -h localhost -p 5432 -U postgres; do sleep 1; done'
+          echo "Postgres is ready!"
 
       # Setup and seed local data.
       - name: Seed data
