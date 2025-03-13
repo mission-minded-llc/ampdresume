@@ -1,0 +1,62 @@
+name: Smoke Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup-dependencies
+
+      - name: Setup Cypress
+        run: |
+          npm ci
+          npm run cypress:install
+        working-directory: cypress
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Start Next.js app
+        run: npm start &
+        env:
+          # Set environment variables for Next.js
+          NEXTAUTH_URL: http://localhost:3000
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          # Add any other environment variables needed for your app
+
+      - name: Wait for app to start
+        run: npx wait-on http://localhost:3000 -t 60000
+
+      - name: Run Cypress smoke tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          headed: false
+        env:
+          # Cypress environment variables
+          CYPRESS_BASE_URL: http://localhost:3000
+          CYPRESS_TEST_EMAIL: ${{ secrets.TEST_EMAIL }}
+          # AWS credentials for SES access
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+
+      # - name: Upload Cypress screenshots
+      #   uses: actions/upload-artifact@v3
+      #   if: failure()
+      #   with:
+      #     name: cypress-screenshots
+      #     path: cypress/screenshots
+
+      # - name: Upload Cypress videos
+      #   uses: actions/upload-artifact@v3
+      #   if: always()
+      #   with:
+      #     name: cypress-videos
+      #     path: cypress/videos

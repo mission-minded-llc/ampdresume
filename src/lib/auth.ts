@@ -9,8 +9,10 @@ import GoogleProvider from "next-auth/providers/google";
 import { JWT } from "next-auth/jwt";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { findUserByNormalizedEmail } from "@/util/email";
+import fs from "fs";
 import { getEnvironmentName } from "@/util/url";
 import nodemailer from "nodemailer";
+import path from "path";
 import { prisma } from "@/lib/prisma";
 
 /**
@@ -45,6 +47,19 @@ export const sendVerificationRequest = async ({
     Sentry.captureMessage(`Email ${emailToSend} is not allowed to sign in.`);
 
     throw new Error("Email is not allowed to sign in.");
+  }
+
+  // Save the magic link to a temp file for Cypress to use.
+  if (process.env.NODE_ENV === "test" || process.env.CYPRESS_TEST === "true") {
+    const tempDir = path.join(process.cwd(), ".cypress-temp");
+
+    if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
+
+    // Save magic link to file named after the email address
+    const safeEmail = emailToSend.replace(/[@.]/g, "_");
+    const filePath = path.join(tempDir, `magic-link-${safeEmail}.txt`);
+
+    fs.writeFileSync(filePath, url);
   }
 
   await transport.sendMail({
