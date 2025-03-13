@@ -71,11 +71,6 @@ jobs:
         run: npm run test:smoke
         working-directory: cypress
 
-      - name: Stop Next.js app
-        if: always()
-        run: |
-          kill $(lsof -t -i:3000)
-
       - name: Stop and remove Postgres
         if: always()
         run: |
