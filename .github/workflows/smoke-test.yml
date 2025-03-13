@@ -13,6 +13,16 @@ jobs:
 
       - uses: ./.github/actions/setup-dependencies
 
+      # Spin up a local Postgres instance.
+      - name: Start Postgres
+        run:
+          docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d
+          postgres:16-alpine
+
+      # Setup and seed local data.
+      - name: Seed data
+        run: npm run prisma:migrate && npm run prisma:seed
+
       - name: Setup Cypress
         run: |
           npm ci
