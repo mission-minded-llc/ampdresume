@@ -66,33 +66,16 @@ jobs:
 
       - name: Start Next.js app
         run: npm start &
-        env:
-          # Set environment variables for Next.js
-          NEXTAUTH_URL: http://localhost:3000
-          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-          # Add any other environment variables needed for your app
 
       - name: Run Cypress smoke tests
-        uses: cypress-io/github-action@v6
-        with:
-          browser: chrome
-          headed: false
+        run: npm run test:smoke
+        working-directory: cypress
 
-      # - name: Upload Cypress screenshots
-      #   uses: actions/upload-artifact@v3
-      #   if: failure()
-      #   with:
-      #     name: cypress-screenshots
-      #     path: cypress/screenshots
+      - name: Stop Next.js app
+        if: always()
+        run: |
+          kill $(lsof -t -i:3000)
 
-      # - name: Upload Cypress videos
-      #   uses: actions/upload-artifact@v3
-      #   if: always()
-      #   with:
-      #     name: cypress-videos
-      #     path: cypress/videos
-
-      # Clean up the Postgres container.
       - name: Stop and remove Postgres
         if: always()
         run: |
