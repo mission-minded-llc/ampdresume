@@ -5,7 +5,7 @@ on:
 
 env:
   # Used by local Postgres connection.
-  DATABASE_URL: postgres://postgres:postgres@host.docker.internal:5432/openresume
+  DATABASE_URL: postgres://postgres:postgres@postgres:5432/openresume
   # Used for sending emails for magic links.
   EMAIL_SERVER_HOST: email-smtp.us-west-2.amazonaws.com
   EMAIL_SERVER_PORT: 587
@@ -96,3 +96,10 @@ jobs:
       #   with:
       #     name: cypress-videos
       #     path: cypress/videos
+
+      # Clean up the Postgres container.
+      - name: Stop and remove Postgres
+        if: always()
+        run: |
+          docker stop postgres
+          docker rm postgres
