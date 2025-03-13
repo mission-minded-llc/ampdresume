@@ -42,8 +42,8 @@ jobs:
       # Spin up a local Postgres instance.
       - name: Start Postgres
         run:
-          docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d
-          postgres:16-alpine
+          docker run --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e
+          POSTGRES_DB=openresume -p 5432:5432 -d postgres:16-alpine
 
       # Setup and seed local data.
       - name: Seed data
