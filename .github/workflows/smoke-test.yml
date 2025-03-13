@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
 
 env:
-  # Updated to use localhost instead of postgres service name
   DATABASE_URL: postgres://postgres:postgres@localhost:5432/openresume?schema=openresume
   # Used for sending emails for magic links.
   EMAIL_SERVER_HOST: email-smtp.us-west-2.amazonaws.com
@@ -73,22 +72,11 @@ jobs:
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
           # Add any other environment variables needed for your app
 
-      - name: Wait for app to start
-        run: npx wait-on http://localhost:3000 -t 60000
-
       - name: Run Cypress smoke tests
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
           headed: false
-        env:
-          # Cypress environment variables
-          CYPRESS_BASE_URL: http://localhost:3000
-          CYPRESS_TEST_EMAIL: ${{ secrets.TEST_EMAIL }}
-          # AWS credentials for SES access
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
 
       # - name: Upload Cypress screenshots
       #   uses: actions/upload-artifact@v3
