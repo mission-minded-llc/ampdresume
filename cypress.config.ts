@@ -3,7 +3,7 @@ import filePlugin from "./cypress/plugins/file-plugin";
 
 export default defineConfig({
   e2e: {
-    supportFile: false,
+    supportFile: "./cypress/support/e2e.ts",
     setupNodeEvents(on, config) {
       return filePlugin(on, config);
     },

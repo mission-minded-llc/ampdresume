@@ -149,3 +149,4 @@ data/iconify
 # Cypress specific
 cypress/screenshots
 cypress/videos
+.cypress-temp

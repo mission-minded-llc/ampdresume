@@ -31,6 +31,8 @@ env:
   AWS_S3_BUCKET_NAME: medialocal.openresume.org
   # Used by Sentry for error tracking.
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+  # Specific for the smoke test.
+  CYPRESS_TEST_EMAIL: test@openresume.org
 
 jobs:
   smoke-test:

@@ -37,11 +37,11 @@ export const sendVerificationRequest = async ({
 
   const transport = nodemailer.createTransport(server);
 
-  // Normalize the email before sending
-  const normalizedEmail = await findUserByNormalizedEmail(identifier);
+  // Check if the email belongs to a user.
+  const user = await findUserByNormalizedEmail(identifier);
 
   // Use the matched email if found, otherwise fallback to the original
-  const emailToSend = normalizedEmail?.email ? normalizedEmail.email : identifier;
+  const emailToSend = user?.email ? user.email : identifier;
 
   if (getEnvironmentName() !== "production" && !ALLOWED_USER_EMAILS.includes(emailToSend)) {
     Sentry.captureMessage(`Email ${emailToSend} is not allowed to sign in.`);
@@ -50,7 +50,7 @@ export const sendVerificationRequest = async ({
   }
 
   // Save the magic link to a temp file for Cypress to use.
-  if (process.env.NODE_ENV === "test" || process.env.CYPRESS_TEST === "true") {
+  if (emailToSend === process.env.CYPRESS_TEST_EMAIL) {
     const tempDir = path.join(process.cwd(), ".cypress-temp");
 
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
