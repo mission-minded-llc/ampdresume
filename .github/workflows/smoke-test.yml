@@ -51,15 +51,8 @@ jobs:
           timeout 30s bash -c 'until pg_isready -h localhost -p 5432 -U postgres; do sleep 1; done'
           echo "Postgres is ready!"
 
-      # Setup and seed local data.
       - name: Seed data
         run: npm run prisma:migrate && npm run prisma:seed
-
-      - name: Setup Cypress
-        run: |
-          npm ci
-          npm run cypress:install
-        working-directory: cypress
 
       - name: Build Next.js app
         run: npm run build
@@ -68,7 +61,7 @@ jobs:
         run: npm start &
 
       - name: Run Cypress smoke tests
-        run: npm run test:smoke
+        run: npm run cypress:test:smoke
         working-directory: cypress
 
       - name: Stop and remove Postgres

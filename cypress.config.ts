@@ -1,5 +1,5 @@
 import { defineConfig } from "cypress";
-import filePlugin from "./plugins/file-plugin";
+import filePlugin from "./cypress/plugins/file-plugin";
 
 export default defineConfig({
   e2e: {
@@ -9,8 +9,8 @@ export default defineConfig({
     },
     baseUrl: "http://localhost:3000",
     env: {
-      BASE_URL: "http://localhost:3000",
-      TEST_EMAIL: "test@openresume.org",
+      BASE_URL: process.env.CYPRESS_BASE_URL || "http://localhost:3000",
+      TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@openresume.org",
     },
     chromeWebSecurity: false, // Might be needed for navigating to magic link
     specPattern: "./**/*.cy.{js,jsx,ts,tsx}",
