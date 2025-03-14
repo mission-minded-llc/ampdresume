@@ -147,5 +147,5 @@ terraform.tfstate.backup
 data/iconify
 
 # Cypress specific
-cypress/cypress/screenshots
-cypress/cypress/videos
+cypress/screenshots
+cypress/videos
