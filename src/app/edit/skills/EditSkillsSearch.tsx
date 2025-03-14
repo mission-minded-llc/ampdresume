@@ -39,7 +39,7 @@ export const EditSkillsSearch = () => {
 
   // When the search term is at least this length, the search will trigger
   // and show the list of skills. Pressing "Esc" will clear the search term.
-  const minCharsForSearch = 3;
+  const minCharsForSearch = 2;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
