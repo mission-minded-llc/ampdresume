@@ -86,9 +86,13 @@ export const EditSkillsSearch = () => {
     return data.skills
       .filter((skill) => skill.name.toLowerCase().includes(searchTerm.toLowerCase()))
       .sort((a, b) => {
+        if (a.name.toLowerCase() === searchTerm.toLowerCase()) return -1;
+        if (b.name.toLowerCase() === searchTerm.toLowerCase()) return 1;
+
         // Basic sorting by how close the match is to the start of the name
         const aIndex = a.name.toLowerCase().indexOf(searchTerm.toLowerCase());
         const bIndex = b.name.toLowerCase().indexOf(searchTerm.toLowerCase());
+
         return aIndex - bIndex;
       })
       .slice(0, 10); // Limit to top 10 matches
