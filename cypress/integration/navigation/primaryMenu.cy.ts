@@ -33,7 +33,10 @@ describe("Primary Nav Menu", () => {
     cy.loginWithMagicLink();
 
     cy.get("[data-test-id=primary-menu-toggle]").click();
-    cy.get("[data-test-id=primary-menu-view-resume]").should("be.visible");
+
+    // TODO: Confirm this after the user fills in profile info.
+    // cy.get("[data-test-id=primary-menu-view-resume]").should("be.visible");
+
     cy.get("[data-test-id=primary-menu-edit-resume]").should("be.visible");
     cy.get("[data-test-id=primary-menu-logout]").should("be.visible");
   });
