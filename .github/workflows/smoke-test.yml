@@ -66,8 +66,8 @@ jobs:
       - name: Start Next.js app
         run: npm start &
 
-      - name: Run Cypress smoke tests
-        run: npm run cypress:test:smoke
+      - name: Run Cypress tests
+        run: npm run cypress:test
         working-directory: cypress
 
       - name: Stop and remove Postgres
