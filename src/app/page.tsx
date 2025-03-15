@@ -73,7 +73,7 @@ export default async function HomePage() {
   }
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="md">
       <Box
         sx={{
           my: 4,
@@ -130,28 +130,25 @@ export default async function HomePage() {
           information. You can add or remove sections as you like. Watch this video for a quick
           overview on how to set up your resume:
         </Paragraph>
-        <Paragraph>
-          <Box
-            sx={{
-              position: "relative",
-              width: "100%",
-              height: "0",
-              paddingBottom: "56.25%",
-              marginBottom: "2rem",
-            }}
-          >
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/1SdxiH73ovQ"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
-            ></iframe>
-          </Box>
-        </Paragraph>
+        <Box
+          sx={{
+            position: "relative",
+            width: "100%",
+            height: "0",
+            paddingBottom: "56.25%",
+            marginBottom: "2rem",
+          }}
+        >
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/1SdxiH73ovQ"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+          ></iframe>
+        </Box>
         <Paragraph>
           Check out a sample resume <MuiLink href="/r/jane-doe">here</MuiLink>.
         </Paragraph>
@@ -159,22 +156,22 @@ export default async function HomePage() {
         <Paragraph>
           Have you ever applied for a job online, and encountered the field that asks for a website
           URL?
-          <Box sx={{ position: "relative", width: "100%", height: "400px", mt: 3 }}>
-            <Image
-              src="/images/home/form-fields.png"
-              alt="Job application form fields"
-              fill
-              objectFit="contain"
-            />
-          </Box>
         </Paragraph>
+        <Box sx={{ position: "relative", width: "100%", height: "400px", mt: 3 }}>
+          <Image
+            src="/images/home/form-fields.png"
+            alt="Job application form fields"
+            fill
+            objectFit="contain"
+          />
+        </Box>
         <Paragraph>
           Not everyone has the means or time to maintain their own personal website. OpenResume is
           for anyone who wants to have a professional online presence without the hassle of
           maintaining a website.
         </Paragraph>
-        <Paragraph>
-          Think of it as a multi-purpose web presence:
+        <Paragraph>Think of it as a multi-purpose web presence:</Paragraph>
+        <Box>
           <List sx={{ listStyleType: "disc" }}>
             <ListItem sx={{ display: "list-item" }}>
               <ListItemText>
@@ -192,11 +189,13 @@ export default async function HomePage() {
               </ListItemText>
             </ListItem>
           </List>
-        </Paragraph>
+        </Box>
         <Heading>New Features (Coming Soon)</Heading>
         <Paragraph>
           OpenResume is constantly being updated with new features. Some of the features that are
           coming soon include:
+        </Paragraph>
+        <Box>
           <List sx={{ listStyleType: "disc" }}>
             <ListItem sx={{ display: "list-item" }}>
               <ListItemText>
@@ -212,7 +211,7 @@ export default async function HomePage() {
               </ListItemText>
             </ListItem>
           </List>
-        </Paragraph>
+        </Box>
       </Box>
     </Container>
   );

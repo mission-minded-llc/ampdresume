@@ -11,6 +11,7 @@ exports[`Header component matches snapshot 1`] = `
       <button
         aria-label="menu"
         class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-1egyfog-MuiButtonBase-root-MuiIconButton-root"
+        data-test-id="primary-menu-toggle"
         tabindex="0"
         type="button"
       >
