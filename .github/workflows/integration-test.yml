@@ -35,7 +35,7 @@ env:
   CYPRESS_TEST_EMAIL: test@openresume.org
 
 jobs:
-  cypress-test:
+  integration-test:
     runs-on: ubuntu-latest
 
     steps:
