@@ -143,7 +143,7 @@ describe("User Profile Update Endpoint", () => {
 
     // Assertions
     expect(response.status).toBe(400);
-    expect(responseBody.error).toBe("Slug must be alphanumeric and lowercase");
+    expect(responseBody.error).toBe("Slug must be alphanumeric and lowercase. Hyphens allowed.");
   });
 
   it("should return 400 if slug is already taken", async () => {
