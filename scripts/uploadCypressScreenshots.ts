@@ -10,7 +10,7 @@ import { join } from "path";
 
 const s3 = getS3Client();
 
-const bucket = "ci.openresume.org";
+const bucket = process.env.AWS_S3_BUCKET_NAME;
 const screenshotsDir = join(__dirname, "..", "cypress", "screenshots");
 
 const files = readdirSync(screenshotsDir);

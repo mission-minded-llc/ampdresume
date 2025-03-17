@@ -73,9 +73,9 @@ jobs:
         if: failure()
         run: npm run cypress:upload:screenshots
         env:
-          AWS_REGION: us-west-2
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_USER_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_S3_USER_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET_NAME: ci.openresume.org
 
       - name: Stop and remove Postgres
         if: always()
