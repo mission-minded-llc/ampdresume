@@ -26,6 +26,8 @@
     "test:update": "jest --updateSnapshot",
     "test:coverage": "jest --coverage",
     "cypress:test": "cypress run",
+    "cypress:upload:screenshots": "tsx scripts/uploadCypressScreenshots.ts",
+    "cypress:upload:videos": "tsx scripts/uploadCypressVideos.ts",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "tsx prisma/seed/all.ts",
