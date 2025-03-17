@@ -50,7 +50,7 @@ resource "aws_s3_bucket" "media" {
 
 resource "aws_s3_bucket" "ci" {
   provider = aws.us_west_2
-  bucket   = "ci-test-results"
+  bucket   = "ci.${local.domain}"
 
   tags = {
     Environment = "CI"
