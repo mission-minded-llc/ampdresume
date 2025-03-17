@@ -41,8 +41,7 @@ describe("Profile Section", () => {
     cy.get("[data-test-id=AccountFormSaveButton]").click();
 
     // Ensure the LoadingOverlay shows up until save is completed.
-    cy.wait(200);
-    cy.contains("Saving...").should("be.visible");
+    cy.contains("Saving...").should("be.visible", { timeout: 8000 });
     cy.contains("Saving...", { timeout: 8000 }).should("not.be.visible");
 
     // Reload the page.
