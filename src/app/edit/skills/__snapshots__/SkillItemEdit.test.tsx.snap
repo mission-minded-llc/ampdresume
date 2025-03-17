@@ -28,6 +28,7 @@ exports[`SkillItemEdit handles delete 1`] = `
             id=":r6:"
             max="2025"
             min="1900"
+            name="yearStarted"
             type="number"
             value="2020"
           />
@@ -68,6 +69,7 @@ exports[`SkillItemEdit handles delete 1`] = `
               id=":r7:"
               max="100"
               min="0"
+              name="totalYears"
               type="number"
               value="2"
             />
@@ -224,6 +226,7 @@ exports[`SkillItemEdit handles delete 2`] = `
             id=":r6:"
             max="2025"
             min="1900"
+            name="yearStarted"
             type="number"
             value="2020"
           />
@@ -264,6 +267,7 @@ exports[`SkillItemEdit handles delete 2`] = `
               id=":r7:"
               max="100"
               min="0"
+              name="totalYears"
               type="number"
               value="2"
             />
@@ -453,6 +457,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
             id=":r9:"
             max="2025"
             min="1900"
+            name="yearStarted"
             type="number"
             value="2020"
           />
@@ -493,6 +498,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
               id=":ra:"
               max="100"
               min="0"
+              name="totalYears"
               type="number"
               value="2"
             />
@@ -647,6 +653,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
             id=":r9:"
             max="2025"
             min="1900"
+            name="yearStarted"
             type="number"
             value="2020"
           />
@@ -687,6 +694,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
               id=":ra:"
               max="100"
               min="0"
+              name="totalYears"
               type="number"
               value="2"
             />
@@ -841,6 +849,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
             id=":r0:"
             max="2025"
             min="1900"
+            name="yearStarted"
             type="number"
             value="2020"
           />
@@ -881,6 +890,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
               id=":r1:"
               max="100"
               min="0"
+              name="totalYears"
               type="number"
               value="2"
             />
@@ -1035,6 +1045,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
             id=":r3:"
             max="2025"
             min="1900"
+            name="yearStarted"
             type="number"
             value="2020"
           />
@@ -1075,6 +1086,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
               id=":r4:"
               max="100"
               min="0"
+              name="totalYears"
               type="number"
               value="2"
             />
@@ -1229,6 +1241,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
             id=":r3:"
             max="2025"
             min="1900"
+            name="yearStarted"
             type="number"
             value="2021"
           />
@@ -1269,6 +1282,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
               id=":r4:"
               max="100"
               min="0"
+              name="totalYears"
               type="number"
               value="3"
             />
