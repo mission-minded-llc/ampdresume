@@ -13,5 +13,19 @@ Cypress.Commands.add("loginWithMagicLink", (email: string = Cypress.env("TEST_EM
     cy.url().should("include", "/edit/profile");
     cy.contains("Profile").should("be.visible");
     cy.contains("General Information").should("be.visible");
+
+    // Set session and CSRF token cookies for future requests.
+    cy.getCookie("next-auth.session-token").then((cookie) => {
+      Cypress.env("sessionToken", cookie?.value || "");
+    });
+
+    cy.getCookie("next-auth.csrf-token").then((cookie) => {
+      Cypress.env("csrfToken", cookie?.value || "");
+    });
   });
+});
+
+Cypress.Commands.add("setNextAuthCookies", () => {
+  cy.setCookie("next-auth.session-token", Cypress.env("sessionToken") || "");
+  cy.setCookie("next-auth.csrf-token", Cypress.env("csrfToken") || "");
 });

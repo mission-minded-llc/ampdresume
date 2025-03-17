@@ -1,5 +1,4 @@
 import * as Cypress from "cypress";
-// cypress/plugins/file-plugin.ts
 import * as fs from "fs";
 import * as path from "path";
 

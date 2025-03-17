@@ -4,5 +4,6 @@ declare namespace Cypress {
      * Custom command to login with magic link
      */
     loginWithMagicLink(): Chainable<void>;
+    setNextAuthCookies(): Chainable<void>;
   }
 }

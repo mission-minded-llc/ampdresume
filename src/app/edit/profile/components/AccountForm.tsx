@@ -87,6 +87,8 @@ const AccountForm = ({
     if (displayEmail.trim()?.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(displayEmail)) {
       setErrors({ displayEmail: "Invalid email address" });
       return;
+    } else {
+      setErrors({ displayEmail: "" }); // Clear any previous errors.
     }
 
     setLoading(true);
