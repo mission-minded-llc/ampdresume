@@ -23,13 +23,13 @@ describe("Profile Section", () => {
     cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/profile`);
 
     const fields = [
-      { name: "name", value: "Test User" },
+      { name: "name", value: " Test User" },
       { name: "slug", value: "test-user" },
       { name: "displayEmail", value: "test@openresume.org" },
-      { name: "title", value: "Professional Tester" },
-      { name: "location", value: "Test City, Test State" },
-      { name: "siteTitle", value: "Test SEO Site Title" },
-      { name: "siteDescription", value: "Test SEO Site Description" },
+      { name: "title", value: "Professional Tester " },
+      { name: "location", value: " Test City, Test State " },
+      { name: "siteTitle", value: " Test SEO Site Title" },
+      { name: "siteDescription", value: " Test SEO Site Description   " },
     ];
 
     fields.forEach((field) => {
@@ -41,7 +41,16 @@ describe("Profile Section", () => {
     cy.get("[data-test-id=AccountFormSaveButton]").click();
 
     // Ensure the LoadingOverlay shows up until save is completed.
+    cy.wait(200);
     cy.contains("Saving...").should("be.visible");
     cy.contains("Saving...", { timeout: 8000 }).should("not.be.visible");
+
+    // Reload the page.
+    cy.reload();
+
+    // Ensure that the fields are populated with the saved data, minus extra leading or trailing spaces.
+    fields.forEach((field) => {
+      cy.get(`input[name='${field.name}']`).should("have.value", field.value.trim());
+    });
   });
 });
