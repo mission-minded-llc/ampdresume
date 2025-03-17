@@ -5,12 +5,16 @@
 import { readFileSync, readdirSync } from "fs";
 
 import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { fileURLToPath } from "url";
 import { getS3Client } from "../src/lib/s3";
 import { join } from "path";
 
 const s3 = getS3Client();
 
 const bucket = process.env.AWS_S3_BUCKET_NAME;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = join(__filename, "..");
 const screenshotsDir = join(__dirname, "..", "cypress", "screenshots");
 
 const files = readdirSync(screenshotsDir);
