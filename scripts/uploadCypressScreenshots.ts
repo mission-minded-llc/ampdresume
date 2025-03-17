@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Helper script to upload cypress screenshots to S3.
  */
@@ -11,24 +12,39 @@ import { join } from "path";
 
 const s3 = getS3Client();
 
-const bucket = process.env.AWS_S3_BUCKET_NAME;
+const bucket = "ci.openresume.org";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = join(__filename, "..");
+
+console.log("Uploading screenshots to S3...");
 const screenshotsDir = join(__dirname, "..", "cypress", "screenshots");
 
+console.log("Local screenshots directory:", screenshotsDir);
 const files = readdirSync(screenshotsDir);
+console.log("Screenshot files list:", files);
+
+const s3dir = "cypress/screenshots/" + new Date().toISOString();
+console.log("S3 bucket:", bucket);
+console.log("S3 directory:", s3dir);
 
 files.forEach(async (file) => {
   const filePath = join(screenshotsDir, file);
   const data = readFileSync(filePath);
 
-  await s3.send(
-    new PutObjectCommand({
-      Bucket: bucket,
-      Key: file,
-      Body: data,
-      ContentType: "image/png",
-    }),
-  );
+  console.log("Uploading file:", file);
+  await s3
+    .send(
+      new PutObjectCommand({
+        Bucket: bucket,
+        Key: `${s3dir}/${file}`,
+        Body: data,
+        ContentType: "image/png",
+      }),
+    )
+    .catch((error) => {
+      console.error("Error uploading file:", file, error);
+    });
+
+  console.log("Done.");
 });
