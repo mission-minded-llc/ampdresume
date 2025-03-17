@@ -8,7 +8,7 @@ exports[`NavPrimary Component matches snapshot when logged in 1`] = `
     <button
       aria-label="menu"
       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-1egyfog-MuiButtonBase-root-MuiIconButton-root"
-      data-test-id="primary-menu-toggle"
+      data-test-id="NavPrimaryMenuIcon"
       tabindex="0"
       type="button"
     >
@@ -36,7 +36,7 @@ exports[`NavPrimary Component matches snapshot when not logged in 1`] = `
     <button
       aria-label="menu"
       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-1egyfog-MuiButtonBase-root-MuiIconButton-root"
-      data-test-id="primary-menu-toggle"
+      data-test-id="NavPrimaryMenuIcon"
       tabindex="0"
       type="button"
     >

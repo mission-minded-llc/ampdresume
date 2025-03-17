@@ -11,7 +11,7 @@ import {
  *
  * @returns an S3 client instance.
  */
-const getS3Client = () => {
+export const getS3Client = () => {
   if (
     !process.env?.AWS_REGION ||
     !process.env?.AWS_S3_USER_ACCESS_KEY_ID ||

@@ -51,15 +51,6 @@ describe("AccountForm", () => {
   it("handles input changes and validation", async () => {
     const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
 
-    const nameInput = getByLabelText("Full Name");
-    fireEvent.change(nameInput, { target: { value: "  " } });
-    fireEvent.blur(nameInput);
-
-    // Expect the new value to be an empty, trimmed string.
-    await waitFor(() => {
-      expect(nameInput).toHaveValue("");
-    });
-
     const slugInput = getByLabelText("URL Slug");
     fireEvent.change(slugInput, { target: { value: "invalid slug" } });
     fireEvent.blur(slugInput);

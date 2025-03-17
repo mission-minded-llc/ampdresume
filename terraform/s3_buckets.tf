@@ -48,6 +48,21 @@ resource "aws_s3_bucket" "media" {
   }
 }
 
+resource "aws_s3_bucket" "ci" {
+  provider = aws.us_west_2
+  bucket   = "ci-test-results"
+
+  tags = {
+    Environment = "CI"
+    Project     = "OpenResume"
+    ManagedBy   = "Terraform"
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 # Create an /assets/user folder in the buckets if it doesn't exist and set Cache-Control headers
 resource "aws_s3_object" "medialocal_assets_user" {
   bucket        = aws_s3_bucket.medialocal.bucket

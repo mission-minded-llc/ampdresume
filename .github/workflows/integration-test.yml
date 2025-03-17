@@ -68,7 +68,10 @@ jobs:
 
       - name: Run Cypress tests
         run: npm run cypress:test
-        working-directory: cypress
+
+      - name: Upload Cypress Screenshots
+        if: failure()
+        run: npm run cypress:upload:screenshots
 
       - name: Stop and remove Postgres
         if: always()

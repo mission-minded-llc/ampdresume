@@ -74,7 +74,7 @@ export const NavPrimary = () => {
         color="inherit"
         aria-label="menu"
         onClick={toggleDrawer(true)}
-        data-test-id="primary-menu-toggle"
+        data-test-id="NavPrimaryMenuIcon"
         sx={(theme) => ({
           mt: 1,
           ml: 1,
@@ -126,20 +126,20 @@ export const NavPrimary = () => {
                     text="View Resume"
                     icon={<PersonIcon />}
                     href={`/r/${session.data.user.slug}`}
-                    dataTestId="primary-menu-view-resume"
+                    dataTestId="NavPrimaryMenuViewResume"
                   />
                 ) : null}
                 <NavItem
                   text="Edit Resume"
                   icon={<Edit />}
                   href="/edit/profile"
-                  dataTestId="primary-menu-edit-resume"
+                  dataTestId="NavPrimaryMenuEditResume"
                 />
                 <NavItem
                   text="Logout"
                   icon={<ExitIcon />}
                   href="/api/auth/signout"
-                  dataTestId="primary-menu-logout"
+                  dataTestId="NavPrimaryMenuLogout"
                 />
               </>
             ) : (
@@ -147,7 +147,7 @@ export const NavPrimary = () => {
                 text="Login"
                 icon={<PersonIcon />}
                 href="/login"
-                dataTestId="primary-menu-login"
+                dataTestId="NavPrimaryMenuLogin"
               />
             )}
             <Divider
@@ -160,7 +160,7 @@ export const NavPrimary = () => {
               text="Home"
               icon={<HomeIcon />}
               href={baseUrl}
-              dataTestId="primary-menu-home"
+              dataTestId="NavPrimaryMenuHome"
             />
           </List>
           <Box
