@@ -58,6 +58,6 @@ describe("Experience Section", () => {
     cy.get(".Mui-expanded button").contains("Delete Company").click();
     cy.get("button").contains("Yes, Delete").click(); // Confirmation dialog.
 
-    cy.get("h3").contains(companyName).should("not.exist");
+    cy.contains(companyName).should("not.exist");
   });
 });
