@@ -79,6 +79,7 @@ export const ProjectsList = ({
           sx={{ mt: 2 }}
           value={projectValue}
           onChange={(e) => setProjectValue(e.target.value)}
+          name="project"
         />
         <Button
           variant="outlined"

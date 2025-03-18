@@ -58,6 +58,7 @@ export const PositionForm = ({
           gridTemplateColumns: "50% 50%",
           alignItems: "center",
         }}
+        className="position-form"
       >
         <FormControl error={!positionTitleValid} sx={{ gridColumn: "span 2" }}>
           <TextField
@@ -68,6 +69,7 @@ export const PositionForm = ({
             value={positionTitle}
             onChange={(e) => setPositionTitle(e.target.value)}
             required
+            name="positionTitle"
           />
           {!positionTitleValid && <FormHelperText>Position title is required.</FormHelperText>}
         </FormControl>
@@ -80,6 +82,7 @@ export const PositionForm = ({
             sx={{ flex: 1 }}
             disableFuture
             maxDate={endDate || dayjs(new Date())}
+            name="dateStarted"
           />
           <FormHelperText>
             {startDateValid ? "Start date is required." : "Please select a valid date."}
@@ -93,6 +96,7 @@ export const PositionForm = ({
             views={["month", "year"]}
             sx={{ flex: 1 }}
             disableFuture
+            name="dateEnded"
           />
           <FormHelperText>Leave blank if current.</FormHelperText>
         </FormControl>
