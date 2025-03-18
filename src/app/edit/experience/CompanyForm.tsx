@@ -1,9 +1,9 @@
 import { Box, Button, FormControl, FormHelperText, TextField } from "@mui/material";
-import { Company, Position } from "@openresume/theme";
 import React, { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { formatLongDate, formatShortDate, timestampToDate } from "@/lib/format";
 
+import { Company } from "@openresume/theme";
 import { CompanyGeneric } from "@/graphql/getCompanies";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
@@ -131,7 +131,7 @@ export const CompanyForm = ({
                 : ""
             }
             onConfirmDelete={() => deleteHandler(company)}
-            disabled={company?.positions?.length}
+            disabled={company?.positions?.length ? true : false}
           />
         )}
         {onCancel && (
