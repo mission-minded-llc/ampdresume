@@ -63,6 +63,7 @@ export const CompanyForm = ({
             fullWidth
             variant="outlined"
             label="Company Name"
+            name="companyName"
             value={companyName}
             onChange={(e) => {
               setCompanyName(e.target.value);
@@ -77,6 +78,7 @@ export const CompanyForm = ({
           fullWidth
           variant="outlined"
           label="Location"
+          name="location"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
@@ -94,6 +96,7 @@ export const CompanyForm = ({
             sx={{ flex: 1 }}
             disableFuture
             maxDate={endDate || dayjs(new Date())}
+            name="dateStarted"
           />
           <FormHelperText>
             {startDateValid ? "Start date is required." : "Please select a valid date."}
@@ -108,6 +111,7 @@ export const CompanyForm = ({
             sx={{ flex: 1 }}
             disableFuture
             maxDate={dayjs(new Date())}
+            name="dateEnded"
           />
           <FormHelperText>Leave blank if current.</FormHelperText>
         </FormControl>
