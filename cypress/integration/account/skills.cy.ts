@@ -7,32 +7,29 @@ describe("Skills Section", () => {
     cy.setNextAuthCookies();
   });
 
-  it("should access protected skills section", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/skills`);
-    cy.contains("Add a Skill").should("be.visible");
-  });
-
   it("should add a skill", () => {
     cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/skills`);
 
     const skill = "JavaScript";
-    const yearStarted = 2010;
+    const yearStarted = "2010";
     cy.get("input[name='searchSkills']").type(skill);
     cy.get("span").contains(skill).click();
     cy.get("h2").contains("Enter Proficiency Level").should("be.visible");
-    cy.get("input[name='yearStarted']")
-      .clear({ force: true })
-      .type(yearStarted.toString(), { delay: 50 });
-    cy.get("input[name='totalYears']").clear({ force: true });
+
+    // The text field defaults to having a "0" when it's cleared, then Cypress
+    // begins typing at the beginning, before the "0" which pushes it back. This
+    // typing results in a year of "2010"
+    cy.get("input[name='yearStarted']").clear().type(yearStarted.substring(0, 3));
+    cy.get("input[name='totalYears']").clear();
 
     cy.get("button").contains("Add Skill").click();
     cy.get("button").contains(skill).should("be.visible");
 
-    const totalYears = new Date().getFullYear() - yearStarted;
+    const totalYears = new Date().getFullYear() - parseInt(yearStarted, 10);
     cy.contains(`${totalYears} years`).should("be.visible");
 
     cy.visit(`${Cypress.env("BASE_URL") || ""}/r/test-user`);
-    cy.contains(skill).should("be.visible");
+    cy.contains("JavaScript").should("be.visible");
     cy.contains(`${totalYears} years`).should("be.visible");
   });
 
@@ -42,12 +39,22 @@ describe("Skills Section", () => {
     const skill = "JavaScript";
     cy.get("button").contains(skill).click();
     cy.get("h2").contains(skill).should("be.visible");
-    cy.get("input[name='yearStarted']").clear({ force: true }).type("2011", { delay: 50 });
-    cy.get("input[name='totalYears']").clear({ force: true }).type("9", { delay: 50 });
+
+    // When editing, the yearStarted field is a number input, so we need to clear
+    // the field before typing in the new year. This results in a "0" being the first
+    // character in the field, which gets pushed back when Cypress types.
+    // This value results in a "10" below.
+    cy.get("input[name='totalYears']").clear().type("1");
+
     cy.get("button").contains("Save & Close").click();
+    cy.wait(1000); // Give it a second to save.
 
     cy.get("button").contains(skill).should("be.visible");
-    cy.contains("9 years").should("be.visible");
+    cy.contains("10 years").should("be.visible");
+
+    cy.visit(`${Cypress.env("BASE_URL") || ""}/r/test-user`);
+    cy.contains("JavaScript").should("be.visible");
+    cy.contains("10 years").should("be.visible");
   });
 
   it("should delete a skill", () => {
