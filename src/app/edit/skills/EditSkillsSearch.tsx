@@ -133,6 +133,7 @@ export const EditSkillsSearch = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         sx={{ mb: 2 }}
+        name="searchSkills"
         placeholder="Type at least 3 characters to search"
       />
       {searchTerm.length >= minCharsForSearch && (
@@ -182,6 +183,7 @@ export const EditSkillsSearch = () => {
               variant="outlined"
               value={yearStarted}
               label="Year Started"
+              name="yearStarted"
               onInput={(e) => {
                 const target = e.target as HTMLInputElement;
                 target.value = removeLeadingZero(target.value);
@@ -196,6 +198,7 @@ export const EditSkillsSearch = () => {
               variant="outlined"
               value={totalYears}
               label="Total Years"
+              name="totalYears"
               onInput={(e) => {
                 const target = e.target as HTMLInputElement;
                 target.value = Math.max(

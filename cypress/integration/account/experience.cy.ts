@@ -1,6 +1,10 @@
 describe("Experience Section", () => {
-  beforeEach(() => {
+  before(() => {
     cy.loginWithMagicLink();
+  });
+
+  beforeEach(() => {
+    cy.setNextAuthCookies();
   });
 
   it("should access protected experience section", () => {

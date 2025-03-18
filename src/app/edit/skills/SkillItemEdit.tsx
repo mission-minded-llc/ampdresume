@@ -95,6 +95,7 @@ export const SkillItemEdit = ({
           }}
           onChange={(e) => setYearStarted(Number(e.target.value))}
           slotProps={{ htmlInput: { min: 1900, max: new Date().getFullYear() } }}
+          name="yearStarted"
         />
         <Box sx={{ display: "grid", gridTemplateColumns: "80% 1fr" }}>
           <TextField
@@ -110,6 +111,7 @@ export const SkillItemEdit = ({
             }}
             onChange={(e) => setTotalYears(Number(e.target.value))}
             slotProps={{ htmlInput: { min: 0, max: 100 } }}
+            name="totalYears"
           />
           <Tooltip message={<TooltipTotalYears />} />
         </Box>
