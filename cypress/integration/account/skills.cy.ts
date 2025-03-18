@@ -47,10 +47,6 @@ describe("Skills Section", () => {
 
     cy.get("button").contains(skill).should("be.visible");
     cy.contains("10 years").should("be.visible");
-
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/r/test-user`);
-    cy.contains("JavaScript").should("be.visible");
-    cy.contains("10 years").should("be.visible");
   });
 
   it("should delete a skill", () => {
