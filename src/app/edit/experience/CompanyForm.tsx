@@ -10,13 +10,11 @@ import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 
 export const CompanyForm = ({
   company,
-  positionsWithProjectsInCompany = [],
   handler,
   deleteHandler = null,
   onCancel = null,
 }: {
   company?: Company | null;
-  positionsWithProjectsInCompany?: Position[];
   handler: (company: CompanyGeneric | Company) => void;
   deleteHandler?: ((company: Company) => void) | null;
   onCancel?: (() => void) | null;
@@ -128,12 +126,12 @@ export const CompanyForm = ({
           <DeleteWithConfirmation
             buttonLabel="Delete Company"
             tooltip={
-              positionsWithProjectsInCompany.length > 0
+              company?.positions?.length
                 ? "To delete this company, first delete all positions in the company."
                 : ""
             }
             onConfirmDelete={() => deleteHandler(company)}
-            disabled={positionsWithProjectsInCompany.length > 0}
+            disabled={company?.positions?.length}
           />
         )}
         {onCancel && (
