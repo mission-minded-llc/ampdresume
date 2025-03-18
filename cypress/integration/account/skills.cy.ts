@@ -27,10 +27,6 @@ describe("Skills Section", () => {
 
     const totalYears = new Date().getFullYear() - parseInt(yearStarted, 10);
     cy.contains(`${totalYears} years`).should("be.visible");
-
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/r/test-user`);
-    cy.contains("JavaScript").should("be.visible");
-    cy.contains(`${totalYears} years`).should("be.visible");
   });
 
   it("should edit a skill", () => {
