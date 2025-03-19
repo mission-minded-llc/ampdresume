@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
     if (!slugRegex.test(slug)) {
       return NextResponse.json(
-        { error: "Slug must be alphanumeric and lowercase" },
+        { error: "Slug must be alphanumeric and lowercase. Hyphens allowed." },
         { status: 400 },
       );
     }

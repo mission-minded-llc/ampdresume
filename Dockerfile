@@ -1,3 +1,7 @@
+# This Dockerfile is not used to build the image, but to document the steps to build the image.
+# This project is currently deployed on Vercel, without using this Dockerfile at all.
+# However, this is saved in the event we need to move off Vercel and host in Docker elsewhere.
+
 # syntax=docker.io/docker/dockerfile:1
 
 FROM node:18-bullseye-slim AS base

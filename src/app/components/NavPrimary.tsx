@@ -45,11 +45,13 @@ export const NavPrimary = () => {
     icon,
     href,
     target = "_self",
+    dataTestId = "",
   }: {
     text: string;
     icon: React.ReactNode;
     href: string;
     target?: "_self" | "_blank";
+    dataTestId?: string;
   }) => (
     <MuiLink href={href} target={target}>
       <ListItem
@@ -57,6 +59,7 @@ export const NavPrimary = () => {
         onClick={() => {
           setIsOpen(false);
         }}
+        {...(dataTestId && { "data-test-id": dataTestId })}
       >
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={text} />
@@ -71,6 +74,7 @@ export const NavPrimary = () => {
         color="inherit"
         aria-label="menu"
         onClick={toggleDrawer(true)}
+        data-test-id="NavPrimaryMenuIcon"
         sx={(theme) => ({
           mt: 1,
           ml: 1,
@@ -122,13 +126,29 @@ export const NavPrimary = () => {
                     text="View Resume"
                     icon={<PersonIcon />}
                     href={`/r/${session.data.user.slug}`}
+                    dataTestId="NavPrimaryMenuViewResume"
                   />
                 ) : null}
-                <NavItem text="Edit Resume" icon={<Edit />} href="/edit/profile" />
-                <NavItem text="Logout" icon={<ExitIcon />} href="/api/auth/signout" />
+                <NavItem
+                  text="Edit Resume"
+                  icon={<Edit />}
+                  href="/edit/profile"
+                  dataTestId="NavPrimaryMenuEditResume"
+                />
+                <NavItem
+                  text="Logout"
+                  icon={<ExitIcon />}
+                  href="/api/auth/signout"
+                  dataTestId="NavPrimaryMenuLogout"
+                />
               </>
             ) : (
-              <NavItem text="Login" icon={<PersonIcon />} href="/login" />
+              <NavItem
+                text="Login"
+                icon={<PersonIcon />}
+                href="/login"
+                dataTestId="NavPrimaryMenuLogin"
+              />
             )}
             <Divider
               sx={{
@@ -136,7 +156,12 @@ export const NavPrimary = () => {
                 marginBottom: 2,
               }}
             />
-            <NavItem text="Home" icon={<HomeIcon />} href={baseUrl} />
+            <NavItem
+              text="Home"
+              icon={<HomeIcon />}
+              href={baseUrl}
+              dataTestId="NavPrimaryMenuHome"
+            />
           </List>
           <Box
             sx={{

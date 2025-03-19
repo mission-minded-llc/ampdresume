@@ -1,0 +1,84 @@
+name: Integration Test
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+env:
+  DATABASE_URL: postgres://postgres:postgres@localhost:5432/openresume?schema=openresume
+  # Used for sending emails for magic links.
+  EMAIL_SERVER_HOST: email-smtp.us-west-2.amazonaws.com
+  EMAIL_SERVER_PORT: 587
+  EMAIL_SERVER_USER: ${{ secrets.EMAIL_SERVER_USER }}
+  EMAIL_SERVER_PASSWORD: ${{ secrets.EMAIL_SERVER_PASSWORD }}
+  EMAIL_FROM: OpenResume <mail@openresume.org>
+  # Used for tracking, analytics, etc.
+  NEXT_PUBLIC_ENVIRONMENT_NAME: test
+  NEXT_PUBLIC_GRAPHQL_ENDPOINT: http://localhost:3000/api/graphql
+  NEXT_PUBLIC_BASE_URL: http://localhost:3000
+  # Used by NextAuth.js for authentication.
+  NEXTAUTH_URL: http://localhost:3000
+  NEXTAUTH_SECRET: this_is_obviously_not_a_secret
+  GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+  GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+  # Used by AWS SDK for S3 uploads.
+  AWS_REGION: us-west-2
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_S3_BUCKET_NAME: medialocal.openresume.org
+  # Used by Sentry for error tracking.
+  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+  # Specific for the integration test.
+  CYPRESS_TEST_EMAIL: test@openresume.org
+
+jobs:
+  integration-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - uses: ./.github/actions/setup-dependencies
+
+      # Spin up a local Postgres instance.
+      - name: Start Postgres
+        run:
+          docker run --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e
+          POSTGRES_DB=openresume -p 5432:5432 -d postgres:16-alpine
+
+      # Wait for Postgres to be ready
+      - name: Wait for Postgres to be ready
+        run: |
+          echo "Waiting for Postgres to be ready..."
+          timeout 30s bash -c 'until pg_isready -h localhost -p 5432 -U postgres; do sleep 1; done'
+          echo "Postgres is ready!"
+
+      - name: Seed data
+        run: npm run prisma:migrate && npm run prisma:seed
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Start Next.js app
+        run: npm start &
+
+      - name: Run Cypress tests
+        run: npm run cypress:test
+
+      - name: Upload Cypress Screenshots
+        if: failure()
+        run: npm run cypress:upload:screenshots
+        env:
+          AWS_S3_USER_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_S3_USER_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET_NAME: ci.openresume.org # Required by the s3Client in the script, but not used.
+
+      - name: Stop and remove Postgres
+        if: always()
+        run: |
+          docker stop postgres
+          docker rm postgres

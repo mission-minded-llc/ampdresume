@@ -56,7 +56,7 @@ const AccountForm = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    setFormData({ ...formData, [name]: value.trim() });
+    setFormData({ ...formData, [name]: value });
 
     // Ensure the slug is alphanumeric and lowercase, with hyphens for spaces.
     if (name === "slug") {
@@ -87,9 +87,21 @@ const AccountForm = ({
     if (displayEmail.trim()?.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(displayEmail)) {
       setErrors({ displayEmail: "Invalid email address" });
       return;
+    } else {
+      setErrors({ displayEmail: "" }); // Clear any previous errors.
     }
 
     setLoading(true);
+
+    // Trim all formData values prior to sending.
+    const formDataTrimmed = Object.keys(formData).reduce(
+      (acc, key) => {
+        const typedKey = key as keyof typeof formData;
+        acc[typedKey] = formData[typedKey].trim();
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
 
     // Send the form data to the next.js API route to
     // update the user's account information. Use POST method.
@@ -98,7 +110,7 @@ const AccountForm = ({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(formDataTrimmed),
     })
       .then(async (res) => {
         if (!res.ok) {
@@ -315,6 +327,7 @@ const AccountForm = ({
               mb: 10,
               maxWidth: "400px",
             }}
+            data-test-id="AccountFormSaveButton"
           >
             Save
           </Button>

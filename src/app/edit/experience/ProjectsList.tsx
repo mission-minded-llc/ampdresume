@@ -34,7 +34,7 @@ export const ProjectsList = ({
     onSuccess: () => {
       if (!session?.user?.id) return;
 
-      queryClient.invalidateQueries({ queryKey: ["positions"] });
+      queryClient.invalidateQueries({ queryKey: ["companies"] });
     },
   });
 
@@ -49,7 +49,7 @@ export const ProjectsList = ({
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["positions"] });
+      queryClient.invalidateQueries({ queryKey: ["companies"] });
     },
   });
 
@@ -79,6 +79,7 @@ export const ProjectsList = ({
           sx={{ mt: 2 }}
           value={projectValue}
           onChange={(e) => setProjectValue(e.target.value)}
+          name="project"
         />
         <Button
           variant="outlined"

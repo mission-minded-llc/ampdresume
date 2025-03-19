@@ -4,6 +4,8 @@ FROM mcr.microsoft.com/devcontainers/javascript-node:20
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
     postgresql-client \
+    libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb \
+    docker.io \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 

@@ -63,6 +63,7 @@ export const CompanyItem = ({
       await deleteCompany({ id, userId });
     },
     onSuccess: () => {
+      setExpanded(false);
       queryClient.invalidateQueries({ queryKey: ["companies"] });
     },
   });

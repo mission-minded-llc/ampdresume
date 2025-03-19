@@ -623,6 +623,7 @@ exports[`AccountForm renders correctly 1`] = `
       >
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-6wuaap-MuiButtonBase-root-MuiButton-root"
+          data-test-id="AccountFormSaveButton"
           tabindex="0"
           type="submit"
         >

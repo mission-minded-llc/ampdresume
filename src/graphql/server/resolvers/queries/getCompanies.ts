@@ -12,6 +12,17 @@ export const getCompanies = async (
 
   const companies = await prisma.company.findMany({
     where: { userId },
+    include: {
+      positions: {
+        include: {
+          projects: {
+            include: {
+              skillsForProject: { include: { skillForUser: { include: { skill: true } } } },
+            },
+          },
+        },
+      },
+    },
     orderBy, // Apply sorting
   });
 
