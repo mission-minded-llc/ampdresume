@@ -90,6 +90,13 @@ export const types = gql`
     education: [Education!]!
   }
 
+  # This is the response format for the AI-assisted experience.
+  type RevisedExperience {
+    company: String!
+    position: String!
+    projects: [String!]!
+  }
+
   input SortInput {
     field: String!
     direction: SortDirection!

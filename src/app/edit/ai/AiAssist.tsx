@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
@@ -39,13 +39,29 @@ export const AiAssist = () => {
 
   return (
     <>
-      <SectionTitle title="Your Resume" />
+      <SectionTitle title="Your Text Resume" />
 
-      <Box sx={{ mb: 4 }}>
-        <Typography>
-          Below is a text-only outline of your skills and work experience as it might appear in a
-          PDF.
+      <Box
+        sx={(theme) => {
+          return {
+            mb: 4,
+            p: 2,
+            border: `1px solid ${theme.palette.primary.main}`,
+            backgroundColor: theme.palette.primary.light,
+          };
+        }}
+      >
+        <Typography sx={{ mb: 2 }}>
+          Below is a text-only version of your work experience. You can use this text to copy and
+          paste into a job application.
         </Typography>
+        <Typography>
+          If you would like to have an LLM take a pass at your resume text in tandem with a job
+          description, please click below to see what the LLM can do for you!
+        </Typography>
+        <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+          Get AI Assistance
+        </Button>
       </Box>
 
       {resume ? (
@@ -53,10 +69,6 @@ export const AiAssist = () => {
           <pre style={{ whiteSpace: "pre-wrap" }}>{parseResumeToText(resume)}</pre>
         </Box>
       ) : null}
-
-      {/* <Box>
-        <pre>{JSON.stringify(resume, null, 2)}</pre>
-      </Box> */}
     </>
   );
 };
