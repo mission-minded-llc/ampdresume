@@ -20,6 +20,6 @@ export const queryDefs = gql`
     resume(slug: String!): Resume
 
     # AI queries.
-    revisedExperience(userId: ID!, jobDescription: String!): [RevisedExperience!]!
+    companiesAi(userId: ID!, jobDescription: String!): [Company!]!
   }
 `;

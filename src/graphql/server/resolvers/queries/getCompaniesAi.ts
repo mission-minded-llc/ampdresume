@@ -2,13 +2,7 @@ import OpenAI from "openai";
 import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "@/graphql/server/util";
 
-export interface RevisedExperience {
-  company: string;
-  position: string;
-  projects: string[];
-}
-
-export const getRevisedExperience = async (
+export const getCompaniesAi = async (
   _: string,
   {
     userId,
@@ -63,23 +57,47 @@ export const getRevisedExperience = async (
   of skills and experiences. Do not return the "Skills" section, but use the individual Skills
   names as applicable within the bullet points. These JSON objects should be structured as follows:
   {
-    "experience": [
+    "companies": [
       {
-        "company": "Company Name",
-        "position": "Position Title",
-        "projects": ["Project 1", "Project 2"]
+        "id": "0",
+        "name": "Company Name",
+        "positions": [
+          {
+            "id": "0",
+            "title": "Position Title",
+            "projects": [
+              {
+                id: "0",
+                sortIndex: "0",
+                name: "Project 1"
+              },
+              {
+                id: "1",
+                sortIndex: "1",
+                name: "Project 2"
+              }
+            ],
+          }
+        ]
       }
     ]
   }
+
+  If the project order is changed, the sortIndex should be updated accordingly.
+  The sortIndex should start from 0 and increment by 1 for each project.
+  The ID should be unique for each company, position, and project, should be a string,
+  and should not change between the original and revised resume.
   
   # Notes
   - Maintain the authenticity of the resume by preserving factual information.
   - Aim for clarity and conciseness in each bullet point revision.
   - Do not add any new skills or experiences to the resume.
+  - Do not change any position titles or company names.
+  - Do not combine positions from the same company.
+  - Do not change the order of the positions.
+  - You can change the order of the projects within a position.
   `;
 
-  // Include 3 free uses, then user needs their own API key.
-  // TODO: Track free tier uses monthly in DB, and prompt user to enter their own API key.
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });
@@ -91,45 +109,29 @@ export const getRevisedExperience = async (
 
   const companies = await prisma.company.findMany({
     where: { userId },
-    include: {
+    select: {
+      id: true,
+      name: true,
       positions: {
-        include: {
-          projects: true,
+        select: {
+          id: true,
+          title: true,
+          projects: {
+            select: {
+              id: true,
+              name: true,
+              sortIndex: true,
+            },
+          },
         },
       },
     },
   });
 
-  // Organize the experience data into a more readable format
-  // before we convert it into text for the AI.
-  const experienceItems: RevisedExperience[] = [];
-
-  companies.map((company) => {
-    return company.positions.map((position) => {
-      experienceItems.push({
-        company: company.name,
-        position: position.title,
-        projects: position.projects.map((project) => project.name),
-      });
-    });
-  });
-
-  let resumeText = "";
-  resumeText += "Skills:\n\n";
-  resumeText += `${skillsForUser.map((skill) => skill.skill.name).join(", ")}\n\n`;
-
-  resumeText += "Professional Experience:\n\n";
-  companies.forEach((company) => {
-    company.positions.forEach((position) => {
-      resumeText += `${company.name}\n`;
-      resumeText += `${position.title}\n`;
-
-      position.projects.forEach((project) => {
-        resumeText += `- ${project.name}\n`;
-      });
-      resumeText += "\n";
-    });
-  });
+  const inputJson = {
+    skills: skillsForUser.map((skill) => skill.skill.name),
+    companies,
+  };
 
   const response = await openai.responses.create({
     model: "gpt-4o",
@@ -148,7 +150,7 @@ export const getRevisedExperience = async (
         content: [
           {
             type: "input_text",
-            text: `Resume:\n\n${resumeText}`,
+            text: JSON.stringify(inputJson),
           },
         ],
       },
@@ -170,25 +172,10 @@ export const getRevisedExperience = async (
     reasoning: {},
     tools: [],
     temperature: 1,
-    max_output_tokens: 2048,
+    max_output_tokens: 4096,
     top_p: 1,
     store: true,
   });
 
-  if (!response.output_text) {
-    throw new Error("Failed to generate revised experience.");
-  }
-
-  let responseJson = null;
-  try {
-    responseJson = JSON.parse(response.output_text);
-  } catch {
-    throw new Error("Failed to parse revised experience JSON.");
-  }
-
-  if (!responseJson?.experience) {
-    throw new Error("Failed to find revised experience in JSON.");
-  }
-
-  return responseJson.experience;
+  return JSON.parse(response.output_text).companies;
 };
