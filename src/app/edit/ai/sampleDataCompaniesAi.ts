@@ -1,6 +1,6 @@
 import { Company } from "@openresume/theme";
 
-export const aiData: Company[] = [
+export const sampleDataCompaniesAi: Company[] = [
   {
     id: "cm6agya6f0005le03m000i26v",
     name: "The Real Deal",

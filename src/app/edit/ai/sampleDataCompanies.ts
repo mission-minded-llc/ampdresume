@@ -1,4 +1,4 @@
-export const defaultData = [
+export const sampleDataCompanies = [
   {
     id: "cm6agya6f0005le03m000i26v",
     name: "The Real Deal",
