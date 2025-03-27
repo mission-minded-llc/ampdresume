@@ -1,10 +1,11 @@
-import { defineConfig } from "cypress";
+import * as Cypress from "cypress";
+
 import { filePlugin } from "./cypress/plugins/filePlugin";
 
-export default defineConfig({
+const config = {
   e2e: {
     supportFile: "./cypress/support/e2e.ts",
-    setupNodeEvents(on, config) {
+    setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) {
       return filePlugin(on, config);
     },
     baseUrl: "http://localhost:3000",
@@ -12,7 +13,9 @@ export default defineConfig({
       BASE_URL: process.env.CYPRESS_BASE_URL || "http://localhost:3000",
       TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@openresume.org",
     },
-    chromeWebSecurity: false, // Might be needed for navigating to magic link
+    chromeWebSecurity: false,
     specPattern: "./**/*.cy.{js,jsx,ts,tsx}",
   },
-});
+};
+
+export default config;
