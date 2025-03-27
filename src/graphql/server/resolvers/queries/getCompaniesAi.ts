@@ -20,29 +20,27 @@ export const getCompaniesAi = async (
 
   const reviseResumePrompt = `
   Improve a given resume in JSON format to closely match a job description by 
-  paraphrasing or editing the existing content and reordering bullet points, 
-  ensuring that you do not fabricate new skills or experiences. Bullet points most
-  pertinent to the job description should be prioritized at the top. Skills that are
-  most pertinent to the job description should be used in the bullet points where
-  applicable.
+  paraphrasing or editing the existing content and reordering bullet points. 
+  
+  Bullet points most pertinent to the job description should be prioritized at 
+  the top. Skills that are most pertinent to the job description should be used
+  in the bullet points where applicable.
   
   Carefully analyze the job description for key terms, skills, and requirements,
   and revise the resume to highlight these using existing data.
-
-  Some companies can have multiple positions. Do not combine them or change the order
-  of the positions. You can change the order of the projects within a position.
   
   # Steps
   
   1. **Analyze the Job Description**: Identify key skills, terms, and 
-  responsibilities mentioned.
+  responsibilities.
   
   2. **Review the Resume**: Examine the resume for relevant skills,
   experiences, and bullet points.
   
   3. **Edit for Alignment**: 
   - Paraphrase existing bullet points to incorporate job description terminology.
-  - Reorder bullet points to prioritize relevant information.
+  - Reorder bullet points to prioritize relevant information higher up in the list,
+    especially if it aligns with the job description or mentions any key skills.
   
   4. **Avoid Fabrication**: Do not add any skills or experiences not present 
   in the original resume.
@@ -55,7 +53,7 @@ export const getCompaniesAi = async (
   The output should be a JSON version of the original resume text with the same structure,
   adjusted to align with the job description while maintaining accuracy in the representation
   of skills and experiences. Do not return the "Skills" section, but use the individual Skills
-  names as applicable within the bullet points. These JSON objects should be structured as follows:
+  names as applicable within the bullet points. These JSON should be structured as follows:
   {
     "companies": [
       {
@@ -84,7 +82,6 @@ export const getCompaniesAi = async (
   }
 
   If the project order is changed, the sortIndex should be updated accordingly.
-  The sortIndex should start from 0 and increment by 1 for each project.
   The ID should be unique for each company, position, and project, should be a string,
   and should not change between the original and revised resume.
   

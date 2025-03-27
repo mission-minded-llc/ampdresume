@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Button, Dialog, TextareaAutosize, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { Company } from "@openresume/theme";
@@ -10,13 +10,140 @@ import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import { SectionTitle } from "../components/SectionTitle";
 import { Tooltip } from "@/components/Tooltip";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { aiData } from "./aiData";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { defaultData } from "./defaultData";
 import { getCompaniesAi } from "@/graphql/getCompaniesAi";
 import { getResume } from "@/graphql/getResume";
 import { useSession } from "next-auth/react";
 
+const AnimatedTextTransition = ({ text = "" }: { text: string }) => {
+  const [sentence, setSentence] = useState(text);
+  const [prevSentence, setPrevSentence] = useState(text); // Initialize with the same text to avoid initial color differences
+  const [hasChanged, setHasChanged] = useState(false); // Track if text has ever changed
+
+  useEffect(() => {
+    if (text !== sentence) {
+      setPrevSentence(sentence);
+      setSentence(text);
+      setHasChanged(true); // Mark that a change has occurred
+    }
+  }, [text, sentence]);
+
+  // Compare words and track their status
+  const getWordStatus = (newWords: string[], oldWords: string[]) => {
+    const wordStatus: Record<
+      string,
+      {
+        status: "remove" | "add" | "move" | "unchanged";
+        oldIndex: number;
+        newIndex: number;
+        key: string; // Add unique key for stable references
+      }
+    > = {};
+
+    // Mark all old words as potentially removed
+    oldWords.forEach((word, index) => {
+      const wordKey = `${word}-old-${index}`;
+      wordStatus[wordKey] = {
+        status: "remove",
+        oldIndex: index,
+        newIndex: -1,
+        key: wordKey,
+      };
+    });
+
+    // Update status for words in the new sentence
+    newWords.forEach((word, index) => {
+      // Find if word exists in old words
+      const oldWordIndex = oldWords.findIndex((w) => w === word);
+      const wordKey = `${word}-new-${index}`;
+
+      if (oldWordIndex === -1) {
+        // New word
+        wordStatus[wordKey] = {
+          status: "add",
+          oldIndex: -1,
+          newIndex: index,
+          key: wordKey,
+        };
+      } else {
+        // Existing word - check if it's in the same position
+        const status = oldWordIndex === index ? "unchanged" : "move";
+        wordStatus[wordKey] = {
+          status,
+          oldIndex: oldWordIndex,
+          newIndex: index,
+          key: wordKey,
+        };
+
+        // Remove the old word entry to prevent duplication
+        const oldKey = `${word}-old-${oldWordIndex}`;
+        if (wordStatus[oldKey]) {
+          delete wordStatus[oldKey];
+        }
+      }
+    });
+
+    return wordStatus;
+  };
+
+  const wordStatusMap = useMemo(() => {
+    const oldWords = prevSentence.split(" ");
+    const newWords = sentence.split(" ");
+    return getWordStatus(newWords, oldWords);
+  }, [prevSentence, sentence]);
+
+  // Get an array of status objects in the order they should appear
+  const orderedWordStatus = useMemo(() => {
+    return Object.values(wordStatusMap)
+      .filter((status) => status.status !== "remove")
+      .sort((a, b) => a.newIndex - b.newIndex);
+  }, [wordStatusMap]);
+
+  // Map of colors for different statuses - inherit (black) for unchanged and when no changes have occurred yet
+  const statusColors = {
+    add: "#4caf50", // Brighter green
+    remove: "#f44336", // Brighter red
+    move: "#2196f3", // Brighter blue
+    unchanged: "inherit",
+  };
+
+  // Simplified render without animations that preserves colors
+  return (
+    <Box sx={{ display: "block", textWrap: "wrap", width: "100%" }}>
+      {sentence.split(" ").map((word, index) => {
+        // Find the status for this word
+        const wordStatus = orderedWordStatus.find((status) => status.newIndex === index);
+
+        // Only apply colors if changes have occurred, otherwise all words are "unchanged"
+        const status = hasChanged && wordStatus ? wordStatus.status : "unchanged";
+
+        return (
+          <Box
+            component="span"
+            key={`word-${index}`}
+            sx={{
+              color: statusColors[status],
+              fontWeight: status === "add" ? 600 : 400,
+              display: "inline-block",
+              mr: "4px",
+            }}
+          >
+            {word}
+          </Box>
+        );
+      })}
+    </Box>
+  );
+};
+
 export const AiAssist = () => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
+
+  const jobDescriptionRef = useRef<HTMLTextAreaElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
   const [jobDescription, setJobDescription] = useState("");
@@ -41,7 +168,7 @@ export const AiAssist = () => {
   });
 
   const {
-    isPending: companiesAiPending,
+    isFetching: companiesAiFetching,
     error: companiesAiError,
     data: companiesAi,
   } = useQuery({
@@ -121,6 +248,7 @@ export const AiAssist = () => {
     if (!updatedCompanies) return;
 
     setCompaniesAiData(updatedCompanies);
+    setActiveDisplay("ai");
   }, [resume?.companies, companiesAi]);
 
   useEffect(() => {
@@ -139,14 +267,14 @@ export const AiAssist = () => {
       </Box>
     );
 
-  if (resumePending) return <LoadingOverlay />;
+  if (resumePending) return <LoadingOverlay open={true} />;
   if (resumeError) return <Box>Error loading resume data: {resumeError.message}</Box>;
   if (companiesAiError) return <Box>Error loading: {companiesAiError.message}</Box>;
 
   return (
     <>
-      {companiesAiPending ? <LoadingOverlay message="Running AI..." /> : null}
-      <SectionTitle title="Your Text Resume" />
+      <LoadingOverlay message="Conferring with bots... [beep boop]" open={companiesAiFetching} />
+      <SectionTitle title="Tweak Your Resume with AI Assist" />
 
       <Box
         sx={(theme) => {
@@ -176,7 +304,7 @@ export const AiAssist = () => {
           color="primary"
           sx={{ ml: 2, borderColor: activeDisplay === "ai" ? "green" : "grey.400" }}
           onClick={() => setActiveDisplay("ai")}
-          disabled={!companiesAiData?.length}
+          disabled={!companiesAiData?.length || companiesAiData === companiesOriginalData}
         >
           View AI-Edited
         </Button>
@@ -185,7 +313,12 @@ export const AiAssist = () => {
           variant="contained"
           color="primary"
           sx={{ ml: "auto" }}
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setIsOpen(true);
+            setJobDescription("");
+            setCleanJobDescription("");
+            jobDescriptionRef.current?.focus();
+          }}
         >
           Get AI Assistance
         </Button>
@@ -204,7 +337,7 @@ export const AiAssist = () => {
         >
           {companiesDisplayData.map((company) =>
             company?.positions?.map((position) => (
-              <Box key={position.id}>
+              <Box key={position.id} sx={{ width: "100%" }}>
                 <Typography variant="h6" sx={{ mt: 4 }}>
                   {company.name}
                 </Typography>
@@ -212,9 +345,7 @@ export const AiAssist = () => {
                   {position.title}
                 </Typography>
                 {position?.projects?.map((project) => (
-                  <Typography key={project.id} variant="body1">
-                    - {project.name}
-                  </Typography>
+                  <AnimatedTextTransition key={project.id} text={project.name} />
                 ))}
               </Box>
             )),
@@ -224,24 +355,22 @@ export const AiAssist = () => {
 
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
         <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
-          AI Assistance{" "}
-          <Tooltip
-            message={
-              <>
-                <Typography>
-                  ChatGPT can take a pass at your resume text in tandem with a job description.
-                </Typography>
-                <Typography sx={{ mt: 2 }}>
-                  Please note that the AI should not add any skills or experiences not present in
-                  your original resume. It will aim for clarity and conciseness in each bullet point
-                  revision.
-                </Typography>
-                <Typography sx={{ mt: 2 }}>
-                  You have 3 free uses. After that, you will need to enter your own OpenAI API key.
-                </Typography>
-              </>
-            }
-          />
+          <span>
+            AI Assistance{" "}
+            <Tooltip
+              message={
+                <>
+                  <Typography>
+                    AI should not add any skills or experiences not present in your original resume.
+                    It will aim for clarity and conciseness in bullet point revisions.
+                  </Typography>
+                  <Typography sx={{ mt: 2 }}>
+                    Paste in a job description for your desired role to get started.
+                  </Typography>
+                </>
+              }
+            />
+          </span>
         </CustomDialogTitle>
         <Box p={2}>
           <Typography sx={{ mb: 2 }}>Paste in the job description below:</Typography>
@@ -250,6 +379,7 @@ export const AiAssist = () => {
             value={jobDescription}
             minRows={3}
             style={{ width: "100%" }}
+            ref={jobDescriptionRef}
           />
 
           <Button
