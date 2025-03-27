@@ -1,11 +1,9 @@
-import * as Cypress from "cypress";
-
 import { filePlugin } from "./cypress/plugins/filePlugin";
 
 const config = {
   e2e: {
     supportFile: "./cypress/support/e2e.ts",
-    setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) {
+    setupNodeEvents(on, config) {
       return filePlugin(on, config);
     },
     baseUrl: "http://localhost:3000",
