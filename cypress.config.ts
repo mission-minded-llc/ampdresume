@@ -1,5 +1,5 @@
 import { defineConfig } from "cypress";
-import { filePlugin } from "./plugins/filePlugin";
+import { filePlugin } from "./cypress/plugins/filePlugin";
 
 export default defineConfig({
   e2e: {

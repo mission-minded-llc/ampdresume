@@ -26,5 +26,5 @@
     "target": "esnext"
   },
   "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "openresume-theme", ".next", "cypress"]
+  "exclude": ["node_modules", "openresume-theme", ".next", "cypress.config.ts"]
 }

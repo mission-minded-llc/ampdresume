@@ -31,7 +31,7 @@ export const filePlugin = (
 
         return magicLink;
       } catch (error) {
-        throw new Error(`Error reading magic link for ${email}: ${error.message}`);
+        throw new Error(`Error reading magic link for ${email}: ${(error as Error).message}`);
       }
     },
 
