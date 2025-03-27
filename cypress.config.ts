@@ -1,7 +1,5 @@
 import { defineConfig } from "cypress";
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const filePlugin = require("./cypress/plugins/filePlugin");
+import filePlugin from "./cypress/plugins/filePlugin.js";
 
 export default defineConfig({
   e2e: {
