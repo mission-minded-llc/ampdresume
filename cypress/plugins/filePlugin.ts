@@ -1,13 +1,13 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as Cypress from "cypress";
 
-import { defineConfig } from "cypress";
+import fs from "fs";
+import path from "path";
 
 interface GetMagicLinkParams {
   email: string;
 }
 
-const pluginFunction = (
+export const filePlugin = (
   on: Cypress.PluginEvents,
   config: Cypress.PluginConfigOptions,
 ): Cypress.PluginConfigOptions => {
@@ -56,19 +56,3 @@ const pluginFunction = (
 
   return config;
 };
-
-export default defineConfig({
-  e2e: {
-    supportFile: "./cypress/support/e2e.ts",
-    setupNodeEvents(on, config) {
-      return pluginFunction(on, config);
-    },
-    baseUrl: "http://localhost:3000",
-    env: {
-      BASE_URL: process.env.CYPRESS_BASE_URL || "http://localhost:3000",
-      TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@openresume.org",
-    },
-    chromeWebSecurity: false, // Might be needed for navigating to magic link
-    specPattern: "./**/*.cy.{js,jsx,ts,tsx}",
-  },
-});
