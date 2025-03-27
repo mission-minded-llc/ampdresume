@@ -1,9 +1,9 @@
 import { defineConfig } from "cypress";
-import { filePlugin } from "./cypress/plugins/filePlugin";
+import { filePlugin } from "./plugins/filePlugin.js";
 
 export default defineConfig({
   e2e: {
-    supportFile: "./cypress/support/e2e.ts",
+    supportFile: "./cypress/support/e2e.js",
     setupNodeEvents(on, config) {
       return filePlugin(on, config);
     },
@@ -13,6 +13,6 @@ export default defineConfig({
       TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@openresume.org",
     },
     chromeWebSecurity: false, // Might be needed for navigating to magic link
-    specPattern: "./**/*.cy.{js,jsx,ts,tsx}",
+    specPattern: "./**/*.cy.js",
   },
 });

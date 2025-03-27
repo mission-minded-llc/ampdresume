@@ -26,7 +26,7 @@
     "test:update": "jest --updateSnapshot",
     "test:coverage": "jest --coverage",
     "cypress:cleanup": "tsx scripts/cleanupTestUser.ts",
-    "cypress:test": "cypress run",
+    "cypress:test": "cd cypress && cypress run",
     "cypress:upload:screenshots": "tsx scripts/uploadCypressScreenshots.ts",
     "cypress:upload:videos": "tsx scripts/uploadCypressVideos.ts",
     "prisma:generate": "prisma generate",

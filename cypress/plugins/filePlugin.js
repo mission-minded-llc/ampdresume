@@ -1,16 +1,9 @@
 import fs from "fs";
 import path from "path";
 
-interface GetMagicLinkParams {
-  email: string;
-}
-
-export const filePlugin = (
-  on: Cypress.PluginEvents,
-  config: Cypress.PluginConfigOptions,
-): Cypress.PluginConfigOptions => {
+export const filePlugin = (on, config) => {
   on("task", {
-    getMagicLink({ email }: GetMagicLinkParams): string {
+    getMagicLink({ email }) {
       // Convert email to safe filename
       const safeEmail = email.replace(/[@.]/g, "_");
       const tempDir = path.join(process.cwd(), ".cypress-temp");
@@ -30,12 +23,12 @@ export const filePlugin = (
 
         return magicLink;
       } catch (error) {
-        throw new Error(`Error reading magic link for ${email}: ${(error as Error).message}`);
+        throw new Error(`Error reading magic link for ${email}: ${error.message}`);
       }
     },
 
     // Optional: Add a task to clean up all magic link files
-    cleanupMagicLinks(): null {
+    cleanupMagicLinks() {
       const tempDir = path.join(process.cwd(), ".cypress-temp");
 
       if (fs.existsSync(tempDir)) {
