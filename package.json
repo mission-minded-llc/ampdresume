@@ -58,6 +58,7 @@
     "@tanstack/react-query": "^5.62.7",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.13",
+    "flagsmith": "^9.0.5",
     "graphql": "^16.9.0",
     "graphql-yoga": "^5.10.4",
     "html-react-parser": "^5.2.1",
