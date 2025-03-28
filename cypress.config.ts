@@ -1,6 +1,6 @@
 import * as Cypress from "cypress";
 
-import { filePlugin } from "./cypress/plugins/filePlugin";
+import { filePlugin } from "cy/plugins/filePlugin";
 
 const config = {
   e2e: {

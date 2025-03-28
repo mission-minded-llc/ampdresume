@@ -20,7 +20,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "cy/*": ["./cypress/*"]
     },
     "types": ["jest"],
     "target": "esnext"
