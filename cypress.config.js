@@ -1,4 +1,3 @@
-// import { filePlugin } from "./cypress/plugins/filePlugin";
 import fs from "fs";
 import path from "path";
 
@@ -61,7 +60,7 @@ const config = {
       TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@openresume.org",
     },
     chromeWebSecurity: false,
-    specPattern: "./cypress/**/*.cy.{js,jsx,ts,tsx}",
+    specPattern: "./cypress/**/*.cy.js",
   },
 };
 
