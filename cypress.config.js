@@ -1,4 +1,6 @@
 // import { filePlugin } from "./cypress/plugins/filePlugin";
+import fs from "fs";
+import path from "path";
 
 const filePlugin = (on, config) => {
   on("task", {
