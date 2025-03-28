@@ -1,17 +1,9 @@
-import * as Cypress from "cypress";
-import * as fs from "fs";
-import * as path from "path";
+import fs from "fs";
+import path from "path";
 
-interface GetMagicLinkParams {
-  email: string;
-}
-
-const pluginFunction = (
-  on: Cypress.PluginEvents,
-  config: Cypress.PluginConfigOptions,
-): Cypress.PluginConfigOptions => {
+const filePlugin = (on, config) => {
   on("task", {
-    getMagicLink({ email }: GetMagicLinkParams): string {
+    getMagicLink({ email }) {
       // Convert email to safe filename
       const safeEmail = email.replace(/[@.]/g, "_");
       const tempDir = path.join(process.cwd(), ".cypress-temp");
@@ -31,12 +23,12 @@ const pluginFunction = (
 
         return magicLink;
       } catch (error) {
-        throw new Error(`Error reading magic link for ${email}: ${(error as Error).message}`);
+        throw new Error(`Error reading magic link for ${email}: ${error.message}`);
       }
     },
 
     // Optional: Add a task to clean up all magic link files
-    cleanupMagicLinks(): null {
+    cleanupMagicLinks() {
       const tempDir = path.join(process.cwd(), ".cypress-temp");
 
       if (fs.existsSync(tempDir)) {
@@ -56,4 +48,20 @@ const pluginFunction = (
   return config;
 };
 
-export default pluginFunction;
+const config = {
+  e2e: {
+    supportFile: "./cypress/support/e2e.js",
+    setupNodeEvents(on, config) {
+      return filePlugin(on, config);
+    },
+    baseUrl: "http://localhost:3000",
+    env: {
+      BASE_URL: process.env.CYPRESS_BASE_URL || "http://localhost:3000",
+      TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@openresume.org",
+    },
+    chromeWebSecurity: false,
+    specPattern: "./cypress/**/*.cy.js",
+  },
+};
+
+export default config;
