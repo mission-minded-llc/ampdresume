@@ -1,5 +1,6 @@
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Layout } from "./components/Layout";
+import { Providers } from "./providers";
 import { ThemeAppearanceProvider } from "./components/ThemeContext";
 import localFont from "next/font/local";
 
@@ -27,9 +28,11 @@ export default function RootLayout({
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ThemeAppearanceProvider>
-          <Layout>{children}</Layout>
-        </ThemeAppearanceProvider>
+        <Providers>
+          <ThemeAppearanceProvider>
+            <Layout>{children}</Layout>
+          </ThemeAppearanceProvider>
+        </Providers>
       </body>
     </html>
   );
