@@ -50,7 +50,7 @@ const filePlugin = (on, config) => {
 
 const config = {
   e2e: {
-    supportFile: "./cypress/support/e2e.ts",
+    supportFile: "./cypress/support/e2e.js",
     setupNodeEvents(on, config) {
       return filePlugin(on, config);
     },
