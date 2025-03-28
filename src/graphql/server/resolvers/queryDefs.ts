@@ -18,5 +18,8 @@ export const queryDefs = gql`
 
     # Full resume query.
     resume(slug: String!): Resume
+
+    # AI queries.
+    companiesAi(userId: ID!, jobDescription: String!): [Company!]!
   }
 `;

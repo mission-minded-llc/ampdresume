@@ -1,4 +1,5 @@
 import { getCompanies } from "./queries/getCompanies";
+import { getCompaniesAi } from "./queries/getCompaniesAi";
 import { getEducation } from "./queries/getEducation";
 import { getResume } from "./queries/getResume";
 import { getSkills } from "./queries/getSkills";
@@ -21,4 +22,7 @@ export const queryResolvers = {
 
   // Full resume query.
   resume: getResume,
+
+  // AI queries.
+  companiesAi: getCompaniesAi,
 };
