@@ -2,13 +2,19 @@ import { HasFeatureOptions } from "flagsmith";
 import { checkFeatureFlag } from "./flagsmith";
 import flagsmith from "flagsmith/isomorphic";
 
-// Mock the flagsmith module
 jest.mock("flagsmith/isomorphic", () => ({
   __esModule: true,
   default: {
     init: jest.fn().mockResolvedValue(undefined),
     hasFeature: jest.fn(),
+    getValue: jest.fn(),
   },
+}));
+
+jest.mock("next-auth", () => ({
+  __esModule: true,
+  NextAuthOptions: jest.fn(),
+  getServerSession: jest.fn(),
 }));
 
 describe("checkFeatureFlag", () => {
@@ -34,6 +40,7 @@ describe("checkFeatureFlag", () => {
   it("should call hasFeature with the flag name", async () => {
     await checkFeatureFlag("test-flag");
 
+    expect(flagsmith.getValue).toHaveBeenCalledWith("test-flag");
     expect(flagsmith.hasFeature).toHaveBeenCalledWith("test-flag", undefined);
   });
 
@@ -41,16 +48,17 @@ describe("checkFeatureFlag", () => {
     const options: HasFeatureOptions = { fallback: true };
     await checkFeatureFlag("test-flag", options);
 
+    expect(flagsmith.getValue).toHaveBeenCalledWith("test-flag");
     expect(flagsmith.hasFeature).toHaveBeenCalledWith("test-flag", options);
   });
 
   it("should return the result from hasFeature", async () => {
-    // Mock the return value for this specific test
+    (flagsmith.getValue as jest.Mock).mockReturnValue("test-value");
     (flagsmith.hasFeature as jest.Mock).mockReturnValue(true);
 
     const result = await checkFeatureFlag("test-flag");
 
-    expect(result).toBe(true);
+    expect(result).toStrictEqual({ enabled: true, value: "test-value" });
   });
 
   it("should use empty string as fallback if environment ID is not set", async () => {
