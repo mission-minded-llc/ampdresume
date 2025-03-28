@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { isFeatureEnabledForUser } from "@/lib/flagsmith";
 import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "@/graphql/server/util";
 
@@ -13,6 +14,12 @@ export const getCompaniesAi = async (
   },
 ) => {
   await verifySessionOwnership(userId);
+
+  const enabled = await isFeatureEnabledForUser("ai_assist");
+
+  if (!enabled) {
+    throw new Error("AI Assist is not enabled for your account.");
+  }
 
   if (!process.env.OPENAI_API_KEY) {
     throw new Error("OpenAI API key is not set.");
