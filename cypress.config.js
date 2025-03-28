@@ -1,11 +1,9 @@
-import * as Cypress from "cypress";
-
-import { filePlugin } from "cy/plugins/filePlugin";
+import { filePlugin } from "./cypress/plugins/filePlugin";
 
 const config = {
   e2e: {
     supportFile: "./cypress/support/e2e.ts",
-    setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) {
+    setupNodeEvents(on, config) {
       return filePlugin(on, config);
     },
     baseUrl: "http://localhost:3000",
@@ -14,7 +12,7 @@ const config = {
       TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@openresume.org",
     },
     chromeWebSecurity: false,
-    specPattern: "./**/*.cy.{js,jsx,ts,tsx}",
+    specPattern: "./cypress/**/*.cy.{js,jsx,ts,tsx}",
   },
 };
 
