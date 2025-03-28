@@ -52,6 +52,17 @@ exports[`Page renders correctly for authenticated users 1`] = `
           Education
         </p>
       </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+        href="/edit/ai"
+        target="_self"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-y2yvsj-MuiTypography-root"
+        >
+          AI Assist
+        </p>
+      </a>
     </div>
     <div
       class="MuiBox-root css-6bsmlk"

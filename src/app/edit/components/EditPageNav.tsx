@@ -14,6 +14,7 @@ export const EditPageNav = () => {
     { title: "Skills", href: "/edit/skills" },
     { title: "Work Experience", href: "/edit/experience" },
     { title: "Education", href: "/edit/education" },
+    { title: "AI Assist", href: "/edit/ai" },
   ];
 
   return (
