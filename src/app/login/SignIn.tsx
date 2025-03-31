@@ -106,7 +106,16 @@ export function SignIn() {
               height={24}
               style={{ marginRight: 8 }}
             />
-            Sign in with Google
+            Google
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            fullWidth
+            onClick={() => signIn("linkedin", { callbackUrl: "/edit/profile" })}
+          >
+            <Icon icon="devicon:linkedin" width={24} height={24} style={{ marginRight: 8 }} />
+            LinkedIn
           </Button>
         </Box>
       </Box>

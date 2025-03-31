@@ -1,6 +1,7 @@
 import * as Sentry from "@sentry/nextjs";
 
 import EmailProvider, { EmailConfig } from "next-auth/providers/email";
+import LinkedInProvider, { LinkedInProfile } from "next-auth/providers/linkedin";
 import { NextAuthOptions, Session as NextAuthSession, getServerSession } from "next-auth";
 
 import { ALLOWED_USER_EMAILS } from "@/constants";
@@ -93,6 +94,25 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      allowDangerousEmailAccountLinking: true,
+    }),
+    LinkedInProvider({
+      clientId: process.env.LINKEDIN_CLIENT_ID || "",
+      clientSecret: process.env.LINKEDIN_CLIENT_SECRET || "",
+      client: { token_endpoint_auth_method: "client_secret_post" },
+      issuer: "https://www.linkedin.com",
+      profile: (profile: LinkedInProfile) => ({
+        id: profile.sub,
+        name: profile.name,
+        email: profile.email,
+        image: profile.picture,
+      }),
+      wellKnown: "https://www.linkedin.com/oauth/.well-known/openid-configuration",
+      authorization: {
+        params: {
+          scope: "openid profile email",
+        },
+      },
       allowDangerousEmailAccountLinking: true,
     }),
     EmailProvider({
