@@ -25,7 +25,8 @@ describe("SignIn", () => {
     const { getByText } = render(<SignIn />);
     expect(getByText("Email Address")).toBeInTheDocument();
     expect(getByText("Sign in with Email")).toBeInTheDocument();
-    expect(getByText("Sign in with Google")).toBeInTheDocument();
+    expect(getByText("Google")).toBeInTheDocument();
+    expect(getByText("LinkedIn")).toBeInTheDocument();
   });
 
   it("handles form submission", async () => {
@@ -61,14 +62,25 @@ describe("SignIn", () => {
     expect(Sentry.captureException).toHaveBeenCalledWith(new Error("Sign in failed"));
   });
 
-  it("handles social sign-in", async () => {
+  it("handles social sign-in with Google", async () => {
     const { getByText } = render(<SignIn />);
-    const googleButton = getByText("Sign in with Google");
+    const btn = getByText("Google");
 
-    fireEvent.click(googleButton);
+    fireEvent.click(btn);
 
     await waitFor(() => {
       expect(signIn).toHaveBeenCalledWith("google", { callbackUrl: "/edit/profile" });
+    });
+  });
+
+  it("handles social sign-in with LinkedIn", async () => {
+    const { getByText } = render(<SignIn />);
+    const btn = getByText("LinkedIn");
+
+    fireEvent.click(btn);
+
+    await waitFor(() => {
+      expect(signIn).toHaveBeenCalledWith("linkedin", { callbackUrl: "/edit/profile" });
     });
   });
 });

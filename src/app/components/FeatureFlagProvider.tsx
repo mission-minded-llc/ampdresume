@@ -14,6 +14,7 @@ export const FeatureFlagProvider = ({
   children: ReactNode;
 }) => {
   const flagsmithInstance = useRef(createFlagsmithInstance());
+
   return (
     <FlagsmithProvider flagsmith={flagsmithInstance.current} serverState={serverState}>
       <>{children}</>
