@@ -111,9 +111,10 @@ describe("Authentication Configuration", () => {
 
   describe("Authentication Providers", () => {
     it("should have correct providers", () => {
-      expect(authOptions.providers).toHaveLength(2);
-      expect(authOptions.providers[0].type).toBe("oauth");
-      expect(authOptions.providers[1].type).toBe("email");
+      expect(authOptions.providers).toHaveLength(3);
+      expect(authOptions.providers[0].type).toBe("oauth"); // Google
+      expect(authOptions.providers[1].type).toBe("oauth"); // LinkedIn
+      expect(authOptions.providers[2].type).toBe("email"); // Magic Links
     });
   });
 });
