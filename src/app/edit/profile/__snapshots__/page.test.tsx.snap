@@ -21,6 +21,17 @@ exports[`Page renders correctly for authenticated users 1`] = `
       </a>
       <a
         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+        href="/edit/import"
+        target="_self"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-y2yvsj-MuiTypography-root"
+        >
+          Import
+        </p>
+      </a>
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
         href="/edit/skills"
         target="_self"
       >
