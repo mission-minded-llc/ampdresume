@@ -96,7 +96,7 @@ export const ProjectItem = ({
         description,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["companies"] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["experience"] }),
   });
 
   const deleteProjectMutation = useMutation({
@@ -107,7 +107,7 @@ export const ProjectItem = ({
         userId: session.user.id,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["companies"] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["experience"] }),
   });
 
   const handleSave = () => {

@@ -6,16 +6,16 @@ import { gql } from "@apollo/client";
 
 export type CompanyGeneric = Omit<Company, "id" | "userId">;
 
-export const getCompanies = async (userId: string | undefined): Promise<Company[] | undefined> => {
+export const getExperience = async (userId: string | undefined): Promise<Company[] | undefined> => {
   if (!userId) return;
 
   const client = getApolloClient();
 
   const { data } = await client
-    .query<{ companies: Company[] }>({
+    .query<{ experience: Company[] }>({
       query: gql`
-        query getCompanies($userId: ID!) {
-          companies(userId: $userId, sort: [{ field: "endDate", direction: DESC }]) {
+        query getExperience($userId: ID!) {
+          experience(userId: $userId, sort: [{ field: "endDate", direction: DESC }]) {
             id
             name
             location
@@ -56,8 +56,8 @@ export const getCompanies = async (userId: string | undefined): Promise<Company[
     })
     .catch((error) => {
       Sentry.captureException(error);
-      return { data: { companies: [] } };
+      return { data: { experience: [] } };
     });
 
-  return data.companies;
+  return data.experience;
 };

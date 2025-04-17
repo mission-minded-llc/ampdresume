@@ -51,7 +51,7 @@ export const PositionItem = ({
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["companies"] });
+      queryClient.invalidateQueries({ queryKey: ["experience"] });
     },
   });
 
@@ -60,7 +60,7 @@ export const PositionItem = ({
       await deletePosition({ id, userId });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["companies"] });
+      queryClient.invalidateQueries({ queryKey: ["experience"] });
     },
   });
 

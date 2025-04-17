@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 
-export const getCompanies = async (
+export const getExperience = async (
   _: string,
   { userId, sort }: { userId: string; sort: Array<{ field: string; direction: "ASC" | "DESC" }> },
 ) => {
@@ -10,7 +10,7 @@ export const getCompanies = async (
       [field]: direction.toLowerCase(), // Prisma expects lowercase for ASC/DESC
     })) || [];
 
-  const companies = await prisma.company.findMany({
+  const experience = await prisma.company.findMany({
     where: { userId },
     include: {
       positions: {
@@ -26,5 +26,5 @@ export const getCompanies = async (
     orderBy, // Apply sorting
   });
 
-  return companies;
+  return experience;
 };

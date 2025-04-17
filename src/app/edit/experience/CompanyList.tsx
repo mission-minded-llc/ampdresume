@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Company } from "@openresume/theme";
 import { CompanyForm } from "./CompanyForm";
-import { CompanyGeneric } from "@/graphql/getCompanies";
+import { CompanyGeneric } from "@/graphql/getExperience";
 import { CompanyItem } from "./CompanyItem";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { addCompany } from "@/graphql/addCompany";
@@ -42,7 +42,7 @@ export const CompanyList = ({ companies }: { companies: Company[] }) => {
     onSuccess: () => {
       if (!session?.user?.id) return;
 
-      queryClient.invalidateQueries({ queryKey: ["companies"] });
+      queryClient.invalidateQueries({ queryKey: ["experience"] });
     },
   });
 

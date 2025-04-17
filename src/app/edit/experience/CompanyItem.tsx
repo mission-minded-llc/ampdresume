@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Company } from "@openresume/theme";
 import { CompanyForm } from "./CompanyForm";
-import { CompanyGeneric } from "@/graphql/getCompanies";
+import { CompanyGeneric } from "@/graphql/getExperience";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { PositionsList } from "./PositionsList";
 import React from "react";
@@ -54,7 +54,7 @@ export const CompanyItem = ({
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["companies"] });
+      queryClient.invalidateQueries({ queryKey: ["experience"] });
     },
   });
 
@@ -64,7 +64,7 @@ export const CompanyItem = ({
     },
     onSuccess: () => {
       setExpanded(false);
-      queryClient.invalidateQueries({ queryKey: ["companies"] });
+      queryClient.invalidateQueries({ queryKey: ["experience"] });
     },
   });
 

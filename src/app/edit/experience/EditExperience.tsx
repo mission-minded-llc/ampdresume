@@ -7,7 +7,7 @@ import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import React from "react";
 import { SectionTitle } from "../components/SectionTitle";
-import { getCompanies } from "@/graphql/getCompanies";
+import { getExperience } from "@/graphql/getExperience";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
@@ -17,13 +17,13 @@ export const EditExperience = () => {
   const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
 
   const {
-    isPending: isPendingCompanies,
-    error: errorCompanies,
-    data: companies,
+    isPending: isPendingExperience,
+    error: errorExperience,
+    data: experience,
   } = useQuery({
     enabled: isAuthenticatedUser,
-    queryKey: ["companies"],
-    queryFn: async () => await getCompanies(session?.user.id),
+    queryKey: ["experience"],
+    queryFn: async () => await getExperience(session?.user.id),
   });
 
   if (status === "loading") return <LoadingOverlay message="Loading session..." />;
@@ -34,8 +34,8 @@ export const EditExperience = () => {
       </Box>
     );
 
-  if (isPendingCompanies) return <LoadingOverlay message="Loading resume data..." />;
-  if (errorCompanies) return <Box>Error loading companies: {errorCompanies.message}</Box>;
+  if (isPendingExperience) return <LoadingOverlay message="Loading resume data..." />;
+  if (errorExperience) return <Box>Error loading experience: {errorExperience.message}</Box>;
 
   return (
     <>
@@ -46,8 +46,8 @@ export const EditExperience = () => {
         you can add projects (e.g. bullet points) to positions.
       </Typography>
 
-      {companies ? (
-        <CompanyList companies={companies} />
+      {experience ? (
+        <CompanyList companies={experience} />
       ) : (
         <Typography>No companies found.</Typography>
       )}

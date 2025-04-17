@@ -41,7 +41,7 @@ export const PositionsList = ({ company }: { company: Company }) => {
     onSuccess: () => {
       if (!session?.user?.id) return;
 
-      queryClient.invalidateQueries({ queryKey: ["companies"] });
+      queryClient.invalidateQueries({ queryKey: ["experience"] });
     },
   });
 

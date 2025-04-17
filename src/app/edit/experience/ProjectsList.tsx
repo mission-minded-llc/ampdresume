@@ -34,7 +34,7 @@ export const ProjectsList = ({
     onSuccess: () => {
       if (!session?.user?.id) return;
 
-      queryClient.invalidateQueries({ queryKey: ["companies"] });
+      queryClient.invalidateQueries({ queryKey: ["experience"] });
     },
   });
 
@@ -47,9 +47,6 @@ export const ProjectsList = ({
         positionId: position.id,
         projectSortIndexes: projects,
       });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["companies"] });
     },
   });
 

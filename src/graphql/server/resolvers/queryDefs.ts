@@ -9,7 +9,7 @@ export const queryDefs = gql`
     user(slug: String!): User
     socials(userId: ID!): [Social!]!
     skillsForUser(userId: ID!): [SkillForUser!]!
-    companies(userId: ID!, sort: [SortInput!]): [Company!]!
+    experience(userId: ID!, sort: [SortInput!]): [Company!]!
     positions(companyIds: [ID!], sort: [SortInput!]): [Position!]!
     education(userId: ID!, sort: [SortInput!]): [Education!]!
 
