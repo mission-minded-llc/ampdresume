@@ -9,7 +9,9 @@ export const queryDefs = gql`
     user(slug: String!): User
     socials(userId: ID!): [Social!]!
     skillsForUser(userId: ID!): [SkillForUser!]!
-    experience(userId: ID!, sort: [SortInput!]): [Company!]!
+
+    experience(userId: ID!, sort: [SortInput!]): [Company!]! # Fetches companies and all sub-data.
+    companies(userId: ID!, sort: [SortInput!]): [Company!]! # Fetches only companies.
     positions(companyIds: [ID!], sort: [SortInput!]): [Position!]!
     education(userId: ID!, sort: [SortInput!]): [Education!]!
 
