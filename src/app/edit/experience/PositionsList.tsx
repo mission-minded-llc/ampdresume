@@ -1,5 +1,5 @@
 import { Box, Button, Dialog, DialogContent } from "@mui/material";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { Company } from "@openresume/theme";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
@@ -7,11 +7,21 @@ import { PositionForm } from "./PositionForm";
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { PositionItem } from "./PositionItem";
 import { addPosition } from "@/graphql/addPosition";
+import { getPositions } from "@/graphql/getPositions";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 export const PositionsList = ({ company }: { company: Company }) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
+
+  const { data: positions } = useQuery({
+    enabled: isAuthenticatedUser,
+    queryKey: ["positions", company.id],
+    queryFn: async () => await getPositions(company.id),
+  });
+
   const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | false>(false);
@@ -42,6 +52,7 @@ export const PositionsList = ({ company }: { company: Company }) => {
       if (!session?.user?.id) return;
 
       queryClient.invalidateQueries({ queryKey: ["companies"] });
+      queryClient.invalidateQueries({ queryKey: ["positions", company.id] });
     },
   });
 
@@ -58,9 +69,10 @@ export const PositionsList = ({ company }: { company: Company }) => {
 
   return (
     <Box sx={{ mt: 2 }}>
-      {company?.positions?.map((position) => (
+      {positions?.map((position) => (
         <PositionItem
           key={position.id}
+          companyId={company.id}
           position={position}
           expanded={expanded}
           setExpanded={setExpanded}

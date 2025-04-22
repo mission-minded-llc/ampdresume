@@ -6,8 +6,8 @@ import { gql } from "@apollo/client";
 
 export type CompanyGeneric = Omit<Company, "id" | "userId">;
 
-export const getCompanies = async (userId: string | undefined): Promise<Company[] | undefined> => {
-  if (!userId) return;
+export const getCompanies = async (userId: string): Promise<Company[] | null> => {
+  if (!userId) return null;
 
   const client = getApolloClient();
 
@@ -21,31 +21,7 @@ export const getCompanies = async (userId: string | undefined): Promise<Company[
             location
             startDate
             endDate
-            positions {
-              id
-              title
-              startDate
-              endDate
-              projects {
-                id
-                name
-                description
-                skillsForProject {
-                  id
-                  description
-                  skillForUser {
-                    id
-                    icon
-                    userId
-                    skill {
-                      id
-                      name
-                      icon
-                    }
-                  }
-                }
-              }
-            }
+            positionCount
           }
         }
       `,
