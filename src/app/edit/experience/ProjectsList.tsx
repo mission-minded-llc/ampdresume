@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
+import { Position, Project } from "@openresume/theme";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Position } from "@openresume/theme";
 import { ProjectItem } from "./ProjectItem";
 import { Tooltip } from "@/components/Tooltip";
 import { addProject } from "@/graphql/addProject";
@@ -11,9 +11,11 @@ import { useState } from "react";
 
 export const ProjectsList = ({
   position,
+  projects,
   expanded = false,
 }: {
   position: Position;
+  projects: Project[];
   expanded?: boolean;
 }) => {
   const { data: session } = useSession();
@@ -34,7 +36,7 @@ export const ProjectsList = ({
     onSuccess: () => {
       if (!session?.user?.id) return;
 
-      queryClient.invalidateQueries({ queryKey: ["companies"] });
+      queryClient.invalidateQueries({ queryKey: ["projects", position.id] });
     },
   });
 
@@ -49,7 +51,9 @@ export const ProjectsList = ({
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["companies"] });
+      if (!session?.user?.id) return;
+
+      queryClient.invalidateQueries({ queryKey: ["projects", position.id] });
     },
   });
 
@@ -67,8 +71,6 @@ export const ProjectsList = ({
 
     setProjectValue("");
   };
-
-  const positionProjects = position.projects ?? [];
 
   return (
     <>
@@ -103,7 +105,7 @@ export const ProjectsList = ({
         }}
         onDragOver={(e) => e.preventDefault()}
       >
-        {[...positionProjects]
+        {[...projects]
           .sort((a, b) => (a.sortIndex ?? 0) - (b.sortIndex ?? 0))
           .map((project) => (
             <Box
@@ -115,11 +117,11 @@ export const ProjectsList = ({
               onDrop={(e) => {
                 e.preventDefault();
                 const draggedId = e.dataTransfer.getData("projectId");
-                const draggedProject = positionProjects.find((p) => p.id === draggedId);
+                const draggedProject = projects.find((p) => p.id === draggedId);
                 const targetProject = project;
 
                 if (draggedProject && draggedProject.id !== targetProject.id) {
-                  const updatedProjects = [...positionProjects].sort(
+                  const updatedProjects = [...projects].sort(
                     (a, b) => (a.sortIndex ?? 0) - (b.sortIndex ?? 0),
                   );
 
@@ -146,7 +148,7 @@ export const ProjectsList = ({
                 }
               }}
             >
-              <ProjectItem project={project} expanded={expanded} />
+              <ProjectItem positionId={position.id} project={project} expanded={expanded} />
             </Box>
           ))}
       </Box>

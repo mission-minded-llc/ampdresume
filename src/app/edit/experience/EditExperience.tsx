@@ -7,9 +7,31 @@ import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import React from "react";
 import { SectionTitle } from "../components/SectionTitle";
+import { SkillForUser } from "@openresume/theme";
 import { getCompanies } from "@/graphql/getCompanies";
+import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+
+export const EditExperienceContext = React.createContext<{
+  skillsForUser: SkillForUser[];
+}>({
+  skillsForUser: [],
+});
+
+const EditExperienceProvider = ({
+  children,
+  skillsForUser,
+}: {
+  children: React.ReactNode;
+  skillsForUser: SkillForUser[];
+}) => {
+  return (
+    <EditExperienceContext.Provider value={{ skillsForUser }}>
+      {children}
+    </EditExperienceContext.Provider>
+  );
+};
 
 export const EditExperience = () => {
   const { data: session, status } = useSession();
@@ -17,13 +39,27 @@ export const EditExperience = () => {
   const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
 
   const {
-    isPending: isPendingCompanies,
-    error: errorCompanies,
+    isPending,
+    error,
     data: companies,
   } = useQuery({
     enabled: isAuthenticatedUser,
     queryKey: ["companies"],
-    queryFn: async () => await getCompanies(session?.user.id),
+    queryFn: async () => {
+      if (!session?.user.id) return null;
+
+      return await getCompanies(session.user.id);
+    },
+  });
+
+  const { data: skillsForUser } = useQuery({
+    enabled: isAuthenticatedUser,
+    queryKey: ["skillsForUser"],
+    queryFn: async () => {
+      if (!session?.user?.id) return [];
+
+      return (await getSkillsForUser(session.user.id)) || [];
+    },
   });
 
   if (status === "loading") return <LoadingOverlay message="Loading session..." />;
@@ -34,8 +70,8 @@ export const EditExperience = () => {
       </Box>
     );
 
-  if (isPendingCompanies) return <LoadingOverlay message="Loading resume data..." />;
-  if (errorCompanies) return <Box>Error loading companies: {errorCompanies.message}</Box>;
+  if (isPending) return <LoadingOverlay message="Loading resume data..." />;
+  if (error) return <Box>Error loading experience: {error.message}</Box>;
 
   return (
     <>
@@ -47,7 +83,9 @@ export const EditExperience = () => {
       </Typography>
 
       {companies ? (
-        <CompanyList companies={companies} />
+        <EditExperienceProvider skillsForUser={skillsForUser || []}>
+          <CompanyList companies={companies} />
+        </EditExperienceProvider>
       ) : (
         <Typography>No companies found.</Typography>
       )}
