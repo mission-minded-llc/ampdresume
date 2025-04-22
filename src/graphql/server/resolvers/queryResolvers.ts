@@ -2,6 +2,7 @@ import { getCompanies } from "./queries/getCompanies";
 import { getCompaniesAi } from "./queries/getCompaniesAi";
 import { getEducation } from "./queries/getEducation";
 import { getExperience } from "./queries/getExperience";
+import { getPositions } from "./queries/getPositions";
 import { getResume } from "./queries/getResume";
 import { getSkills } from "./queries/getSkills";
 import { getSkillsForProject } from "./queries/getSkillsForProject";
@@ -20,6 +21,7 @@ export const queryResolvers = {
 
   experience: getExperience,
   companies: getCompanies,
+  positions: getPositions,
   education: getEducation,
   skillsForProject: getSkillsForProject,
 

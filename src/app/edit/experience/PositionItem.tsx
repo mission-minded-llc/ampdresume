@@ -14,10 +14,12 @@ import { useSession } from "next-auth/react";
 
 export const PositionItem = ({
   position,
+  companyId,
   expanded,
   setExpanded,
 }: {
   position: Position;
+  companyId: string;
   expanded: string | false;
   setExpanded: React.Dispatch<React.SetStateAction<string | false>>;
 }) => {
@@ -51,7 +53,7 @@ export const PositionItem = ({
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["experience"] });
+      queryClient.invalidateQueries({ queryKey: ["positions", companyId] });
     },
   });
 
@@ -60,7 +62,7 @@ export const PositionItem = ({
       await deletePosition({ id, userId });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["experience"] });
+      queryClient.invalidateQueries({ queryKey: ["positions", companyId] });
     },
   });
 
