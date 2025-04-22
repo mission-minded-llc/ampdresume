@@ -7,9 +7,31 @@ import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import React from "react";
 import { SectionTitle } from "../components/SectionTitle";
+import { SkillForUser } from "@openresume/theme";
 import { getCompanies } from "@/graphql/getCompanies";
+import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+
+export const EditExperienceContext = React.createContext<{
+  skillsForUser: SkillForUser[];
+}>({
+  skillsForUser: [],
+});
+
+const EditExperienceProvider = ({
+  children,
+  skillsForUser,
+}: {
+  children: React.ReactNode;
+  skillsForUser: SkillForUser[];
+}) => {
+  return (
+    <EditExperienceContext.Provider value={{ skillsForUser }}>
+      {children}
+    </EditExperienceContext.Provider>
+  );
+};
 
 export const EditExperience = () => {
   const { data: session, status } = useSession();
@@ -27,6 +49,16 @@ export const EditExperience = () => {
       if (!session?.user.id) return null;
 
       return await getCompanies(session.user.id);
+    },
+  });
+
+  const { data: skillsForUser } = useQuery({
+    enabled: isAuthenticatedUser,
+    queryKey: ["skillsForUser"],
+    queryFn: async () => {
+      if (!session?.user?.id) return [];
+
+      return (await getSkillsForUser(session.user.id)) || [];
     },
   });
 
@@ -51,7 +83,9 @@ export const EditExperience = () => {
       </Typography>
 
       {companies ? (
-        <CompanyList companies={companies} />
+        <EditExperienceProvider skillsForUser={skillsForUser || []}>
+          <CompanyList companies={companies} />
+        </EditExperienceProvider>
       ) : (
         <Typography>No companies found.</Typography>
       )}

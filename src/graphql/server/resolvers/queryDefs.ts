@@ -13,6 +13,7 @@ export const queryDefs = gql`
     experience(userId: ID!, sort: [SortInput!]): [Company!]! # Fetches companies and all sub-data.
     companies(userId: ID!, sort: [SortInput!]): [Company!]! # Fetches only companies.
     positions(companyId: ID!, sort: [SortInput!]): [Position!]!
+    projects(positionId: ID!): [Project!]!
     education(userId: ID!, sort: [SortInput!]): [Education!]!
 
     # Project-specific queries.

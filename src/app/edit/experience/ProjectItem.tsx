@@ -10,11 +10,12 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import { useContext, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useRef, useState } from "react";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
+import { EditExperienceContext } from "./EditExperience";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Project } from "@openresume/theme";
@@ -23,7 +24,6 @@ import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 import { addSkillForProject } from "@/graphql/addSkillForProject";
 import { deleteProject } from "@/graphql/deleteProject";
 import { getSkillsForProject } from "@/graphql/getSkillsForProject";
-import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { updateProject } from "@/graphql/updateProject";
 import { useSession } from "next-auth/react";
 
@@ -38,26 +38,13 @@ export const ProjectItem = ({
   const queryClient = useQueryClient();
 
   const editorStateRef = useRef<string | null>(null);
+  const { skillsForUser } = useContext(EditExperienceContext);
 
   const [isOpen, setIsOpen] = useState(false);
   const [projectName, setProjectName] = useState(project.name);
   const [selectedSkillId, setSelectedSkillId] = useState<string>("");
 
   const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
-
-  // Load all available skills for the user
-  const {
-    isPending: isPendingSkillsForUser,
-    error: errorSkillsForUser,
-    data: skillsForUser,
-  } = useQuery({
-    enabled: isAuthenticatedUser,
-    queryKey: ["skillsForUser"],
-    queryFn: async () => {
-      if (!session?.user?.id) return [];
-      return await getSkillsForUser(session.user.id);
-    },
-  });
 
   const {
     isPending: isPendingSkillsForProject,
@@ -125,10 +112,7 @@ export const ProjectItem = ({
     addSkillForProjectMutation.mutate({ skillForUserId });
   };
 
-  const isPending = isPendingSkillsForUser || isPendingSkillsForProject;
-
-  if (isPending) return <LoadingOverlay message="Loading skills..." />;
-  if (errorSkillsForUser) return <Box>Error loading skills: {errorSkillsForUser.message}</Box>;
+  if (isPendingSkillsForProject) return <LoadingOverlay message="Loading skills..." />;
   if (errorSkillsForProject)
     return <Box>Error loading project skills: {errorSkillsForProject.message}</Box>;
 
