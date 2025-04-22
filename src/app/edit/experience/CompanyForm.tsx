@@ -131,7 +131,7 @@ export const CompanyForm = ({
                 : ""
             }
             onConfirmDelete={() => deleteHandler(company)}
-            disabled={company?.positionCount > 0}
+            disabled={company?.positionCount ? company.positionCount > 0 : false}
           />
         )}
         {onCancel && (

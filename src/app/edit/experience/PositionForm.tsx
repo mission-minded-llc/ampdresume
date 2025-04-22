@@ -120,7 +120,7 @@ export const PositionForm = ({
             onConfirmDelete={() => {
               deleteHandler(position);
             }}
-            disabled={position?.projectCount > 0}
+            disabled={position?.projectCount ? position?.projectCount > 0 : false}
           />
         )}
         {onCancel && (
