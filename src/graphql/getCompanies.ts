@@ -21,6 +21,7 @@ export const getCompanies = async (userId: string): Promise<Company[] | null> =>
             location
             startDate
             endDate
+            positionCount
           }
         }
       `,

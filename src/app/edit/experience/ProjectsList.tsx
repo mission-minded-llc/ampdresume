@@ -148,7 +148,7 @@ export const ProjectsList = ({
                 }
               }}
             >
-              <ProjectItem project={project} expanded={expanded} />
+              <ProjectItem positionId={position.id} project={project} expanded={expanded} />
             </Box>
           ))}
       </Box>

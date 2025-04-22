@@ -42,7 +42,7 @@ export const CompanyList = ({ companies }: { companies: Company[] }) => {
     onSuccess: () => {
       if (!session?.user?.id) return;
 
-      queryClient.invalidateQueries({ queryKey: ["experience"] });
+      queryClient.invalidateQueries({ queryKey: ["companies"] });
     },
   });
 

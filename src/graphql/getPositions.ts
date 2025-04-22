@@ -21,6 +21,7 @@ export const getPositions = async (companyId: string): Promise<Position[] | null
             company {
               id
             }
+            projectCount
           }
         }
       `,

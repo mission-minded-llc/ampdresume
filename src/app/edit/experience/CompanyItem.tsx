@@ -54,7 +54,7 @@ export const CompanyItem = ({
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["experience"] });
+      queryClient.invalidateQueries({ queryKey: ["companies"] });
     },
   });
 
@@ -64,7 +64,7 @@ export const CompanyItem = ({
     },
     onSuccess: () => {
       setExpanded(false);
-      queryClient.invalidateQueries({ queryKey: ["experience"] });
+      queryClient.invalidateQueries({ queryKey: ["companies"] });
     },
   });
 

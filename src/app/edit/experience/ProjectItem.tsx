@@ -28,9 +28,11 @@ import { updateProject } from "@/graphql/updateProject";
 import { useSession } from "next-auth/react";
 
 export const ProjectItem = ({
+  positionId,
   project,
   expanded = false,
 }: {
+  positionId: string;
   project: Project;
   expanded?: boolean;
 }) => {
@@ -83,7 +85,7 @@ export const ProjectItem = ({
         description,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["experience"] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projects", positionId] }),
   });
 
   const deleteProjectMutation = useMutation({
@@ -94,7 +96,7 @@ export const ProjectItem = ({
         userId: session.user.id,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["experience"] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projects", positionId] }),
   });
 
   const handleSave = () => {

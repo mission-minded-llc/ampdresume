@@ -74,6 +74,7 @@ export const PositionItem = ({
       await deletePosition({ id, userId });
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["companies"] });
       queryClient.invalidateQueries({ queryKey: ["positions", companyId] });
     },
   });

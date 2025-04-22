@@ -20,9 +20,17 @@ export const getPositions = async (
           id: true,
         },
       },
+      _count: {
+        select: {
+          projects: true, // Count the number of projects
+        },
+      },
     },
     orderBy, // Apply sorting
   });
 
-  return positions;
+  return positions.map((position) => ({
+    ...position,
+    projectCount: position._count.projects,
+  }));
 };

@@ -12,7 +12,15 @@ export const getCompanies = async (
   const companies = await prisma.company.findMany({
     where: { userId },
     orderBy, // Apply sorting
+    include: {
+      _count: {
+        select: { positions: true }, // Count the related positions
+      },
+    },
   });
 
-  return companies;
+  return companies.map((company) => ({
+    ...company,
+    positionCount: company._count.positions,
+  }));
 };
