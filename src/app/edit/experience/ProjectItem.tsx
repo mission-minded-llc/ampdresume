@@ -10,7 +10,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
@@ -31,10 +31,12 @@ export const ProjectItem = ({
   positionId,
   project,
   expanded = false,
+  setIsEditing,
 }: {
   positionId: string;
   project: Project;
   expanded?: boolean;
+  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
@@ -47,6 +49,10 @@ export const ProjectItem = ({
   const [selectedSkillId, setSelectedSkillId] = useState<string>("");
 
   const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
+
+  useEffect(() => {
+    setIsEditing(isOpen);
+  }, [isOpen, setIsEditing]);
 
   const {
     isPending: isPendingSkillsForProject,
