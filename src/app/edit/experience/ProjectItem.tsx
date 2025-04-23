@@ -10,7 +10,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
@@ -27,14 +27,19 @@ import { getSkillsForProject } from "@/graphql/getSkillsForProject";
 import { updateProject } from "@/graphql/updateProject";
 import { useSession } from "next-auth/react";
 
+// Memoized version of SkillItemForProjectEdit
+const MemoizedSkillItemForProjectEdit = React.memo(SkillItemForProjectEdit);
+
 export const ProjectItem = ({
   positionId,
   project,
   expanded = false,
+  setIsEditing,
 }: {
   positionId: string;
   project: Project;
   expanded?: boolean;
+  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
@@ -47,6 +52,10 @@ export const ProjectItem = ({
   const [selectedSkillId, setSelectedSkillId] = useState<string>("");
 
   const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
+
+  useEffect(() => {
+    setIsEditing(isOpen);
+  }, [isOpen, setIsEditing]);
 
   const {
     isPending: isPendingSkillsForProject,
@@ -109,6 +118,19 @@ export const ProjectItem = ({
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projects", positionId] }),
   });
 
+  // Memoize the filtered and sorted available skills
+  const memoizedAvailableSkills = useMemo(() => {
+    const filteredSkills = skillsForUser?.length
+      ? skillsForUser?.filter(
+          (skillForUser) =>
+            !skillsForProject?.find(
+              (skillForProject) => skillForProject.skillForUser.id === skillForUser.id,
+            ),
+        )
+      : [];
+    return filteredSkills.sort((a, b) => a.skill.name.localeCompare(b.skill.name));
+  }, [skillsForUser, skillsForProject]);
+
   const handleSave = () => {
     updateProjectMutation.mutate({
       id: project.id,
@@ -128,19 +150,6 @@ export const ProjectItem = ({
   if (isPendingSkillsForProject) return <LoadingOverlay message="Loading skills..." />;
   if (errorSkillsForProject)
     return <Box>Error loading project skills: {errorSkillsForProject.message}</Box>;
-
-  // Filter out skills that are already added to the project
-  const availableSkills = skillsForUser?.length
-    ? skillsForUser?.filter(
-        (skillForUser) =>
-          !skillsForProject?.find(
-            (skillForProject) => skillForProject.skillForUser.id === skillForUser.id,
-          ),
-      )
-    : [];
-
-  // Sort available skills by name
-  availableSkills?.sort((a, b) => a.skill.name.localeCompare(b.skill.name));
 
   return (
     <>
@@ -194,7 +203,7 @@ export const ProjectItem = ({
           }}
         >
           {skillsForProject?.map((skillForProject) => (
-            <SkillItemForProjectEdit
+            <MemoizedSkillItemForProjectEdit
               key={skillForProject.id}
               project={project}
               skillForProject={skillForProject}
@@ -241,7 +250,7 @@ export const ProjectItem = ({
                 }}
                 label="Add Your Skills to Project"
               >
-                {availableSkills.map((skillForUser) => (
+                {memoizedAvailableSkills.map((skillForUser) => (
                   <MenuItem key={skillForUser.id} value={skillForUser.id}>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1, padding: 1 }}>
                       {skillForUser?.icon ? (
@@ -264,7 +273,7 @@ export const ProjectItem = ({
               }}
             >
               {skillsForProject?.map((skillForProject) => (
-                <SkillItemForProjectEdit
+                <MemoizedSkillItemForProjectEdit
                   key={skillForProject.id}
                   project={project}
                   skillForProject={skillForProject}

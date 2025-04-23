@@ -38,8 +38,10 @@ const SortableProjectItem = ({
   positionId: string;
   expanded?: boolean;
 }) => {
+  const [isEditing, setIsEditing] = useState(false);
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: project.id,
+    disabled: isEditing,
   });
 
   const style = {
@@ -55,7 +57,12 @@ const SortableProjectItem = ({
 
   return (
     <Box ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <MemoizedProjectItem positionId={positionId} project={project} expanded={expanded} />
+      <MemoizedProjectItem
+        positionId={positionId}
+        project={project}
+        expanded={expanded}
+        setIsEditing={setIsEditing}
+      />
     </Box>
   );
 };
