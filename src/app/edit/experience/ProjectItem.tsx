@@ -77,11 +77,21 @@ export const ProjectItem = ({
   });
 
   const updateProjectMutation = useMutation({
-    mutationFn: async ({ id, description }: { id: string; description: string }) => {
+    mutationFn: async ({
+      id,
+      projectName,
+      description,
+    }: {
+      id: string;
+      projectName: string;
+      description: string;
+    }) => {
       if (!session?.user?.id) return;
+
       await updateProject({
         id,
         userId: session.user.id,
+        projectName,
         description,
       });
     },
@@ -102,6 +112,7 @@ export const ProjectItem = ({
   const handleSave = () => {
     updateProjectMutation.mutate({
       id: project.id,
+      projectName,
       description: editorStateRef.current ?? "",
     });
   };

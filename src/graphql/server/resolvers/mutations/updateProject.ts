@@ -6,10 +6,12 @@ export const updateProject = async (
   {
     id,
     userId,
+    projectName,
     description,
   }: {
     id: string;
     userId: string;
+    projectName: string;
     description: string;
   },
 ) => {
@@ -39,6 +41,7 @@ export const updateProject = async (
   const project = await prisma.project.update({
     where: { id },
     data: {
+      name: projectName,
       description,
     },
   });

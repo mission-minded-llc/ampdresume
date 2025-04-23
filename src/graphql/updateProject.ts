@@ -6,10 +6,12 @@ import { gql } from "@apollo/client";
 export const updateProject = async ({
   id,
   userId,
+  projectName,
   description,
 }: {
   id: string;
   userId: string;
+  projectName: string;
   description: string;
 }): Promise<void> => {
   const client = getApolloClient();
@@ -17,8 +19,18 @@ export const updateProject = async ({
   await client
     .mutate({
       mutation: gql`
-        mutation updateProject($id: ID!, $userId: ID!, $description: String!) {
-          updateProject(id: $id, userId: $userId, description: $description) {
+        mutation updateProject(
+          $id: ID!
+          $userId: ID!
+          $projectName: String!
+          $description: String!
+        ) {
+          updateProject(
+            id: $id
+            userId: $userId
+            projectName: $projectName
+            description: $description
+          ) {
             id
           }
         }
@@ -26,6 +38,7 @@ export const updateProject = async ({
       variables: {
         id,
         userId,
+        projectName,
         description,
       },
     })
