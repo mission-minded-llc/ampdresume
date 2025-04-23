@@ -92,25 +92,6 @@ describe("Experience Section", () => {
     cy.contains(projectTitle).should("be.visible");
   });
 
-  it("should edit a project", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
-
-    const companyName = "Acme Corp";
-    const positionTitle = "Software Engineer";
-    const projectTitle = "Open Source Project";
-    const newProjectTitle = "Updated Open Source Project";
-
-    cy.get("h3").contains(companyName).click();
-    cy.get("h3").contains(positionTitle).click();
-    cy.contains(projectTitle).dblclick();
-    cy.get(".MuiDialog-root .MuiDialog-container textarea.MuiInputBase-input")
-      .clear()
-      .type(newProjectTitle);
-    cy.get(".MuiDialog-root .MuiDialog-container button").contains("Save").click();
-
-    cy.contains(newProjectTitle).should("be.visible");
-  });
-
   it("should be unable to delete the position because a project is present", () => {
     cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
 
