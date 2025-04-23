@@ -6,6 +6,7 @@ export const getProjects = async (_: string, { positionId }: { positionId: strin
     include: {
       skillsForProject: { include: { skillForUser: { include: { skill: true } } } },
     },
+    orderBy: { sortIndex: "asc" },
   });
 
   return projects;

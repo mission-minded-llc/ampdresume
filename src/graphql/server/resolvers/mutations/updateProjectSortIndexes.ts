@@ -28,13 +28,15 @@ export const updateProjectSortIndexes = async (
   if (existingCompany?.userId !== userId)
     throw new Error("Unauthorized: You do not own this position or company");
 
-  // Update the sort indexes for each project.
-  for (const { id, sortIndex } of projectSortIndexes) {
-    await prisma.project.update({
-      where: { id },
-      data: { sortIndex },
-    });
-  }
+  // Update the sort indexes for each project concurrently.
+  await Promise.all(
+    projectSortIndexes.map(({ id, sortIndex }) =>
+      prisma.project.update({
+        where: { id },
+        data: { sortIndex },
+      }),
+    ),
+  );
 
   return true;
 };

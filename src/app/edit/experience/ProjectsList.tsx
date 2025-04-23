@@ -164,16 +164,15 @@ export const ProjectsList = ({
       return; // Safety check
     }
 
-    // Create a new array with the updated order
     const reorderedProjects = arrayMove(localProjects, activeIndex, overIndex);
 
     // Update local state immediately for a responsive UI
     setLocalProjects(reorderedProjects);
 
     // Create the sort index updates
-    const projectSortIndexes = reorderedProjects.map((p, idx) => ({
+    const projectSortIndexes = reorderedProjects.map((p, sortIndex) => ({
       id: p.id,
-      sortIndex: idx,
+      sortIndex,
     }));
 
     // Update the backend
