@@ -18,10 +18,12 @@ export const getResume = async (_: string, { slug }: { slug: string }) => {
 
   const companies = await prisma.company.findMany({
     where: { userId: user.id },
+    orderBy: { endDate: "desc" },
     include: {
       positions: {
         include: {
           projects: {
+            orderBy: { sortIndex: "asc" },
             include: {
               skillsForProject: { include: { skillForUser: { include: { skill: true } } } },
             },
