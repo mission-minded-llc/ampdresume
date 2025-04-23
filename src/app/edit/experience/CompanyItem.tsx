@@ -1,4 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
+import React, { useRef } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Company } from "@openresume/theme";
@@ -6,7 +7,6 @@ import { CompanyForm } from "./CompanyForm";
 import { CompanyGeneric } from "@/graphql/getExperience";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { PositionsList } from "./PositionsList";
-import React from "react";
 import { deleteCompany } from "@/graphql/deleteCompany";
 import { formatLongDate } from "@/lib/format";
 import { updateCompany } from "@/graphql/updateCompany";
@@ -21,11 +21,17 @@ export const CompanyItem = ({
   expanded: string | false;
   setExpanded: React.Dispatch<React.SetStateAction<string | false>>;
 }) => {
+  const companyRef = useRef<HTMLDivElement>(null);
   const { data: session } = useSession();
   const queryClient = useQueryClient();
 
   const handleExpandClick = () => {
-    setExpanded(expanded === company.id ? false : company.id);
+    const isExpanding = expanded !== company.id;
+    setExpanded(isExpanding ? company.id : false);
+
+    if (isExpanding) {
+      companyRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   const saveMutation = useMutation({
@@ -90,7 +96,7 @@ export const CompanyItem = ({
   };
 
   return (
-    <Accordion expanded={expanded === company.id} sx={{ mb: 2 }}>
+    <Accordion expanded={expanded === company.id} sx={{ mb: 2 }} ref={companyRef}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"

@@ -1,4 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, Divider } from "@mui/material";
+import React, { useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -6,7 +7,6 @@ import { Position } from "@openresume/theme";
 import { PositionForm } from "./PositionForm";
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { ProjectsList } from "./ProjectsList";
-import React from "react";
 import { deletePosition } from "@/graphql/deletePosition";
 import { formatLongDate } from "@/lib/format";
 import { getProjects } from "@/graphql/getProjects";
@@ -24,13 +24,19 @@ export const PositionItem = ({
   expanded: string | false;
   setExpanded: React.Dispatch<React.SetStateAction<string | false>>;
 }) => {
+  const positionRef = useRef<HTMLDivElement>(null);
   const { status, data: session } = useSession();
   const queryClient = useQueryClient();
 
   const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
 
   const handleExpandClick = () => {
-    setExpanded(expanded === position.id ? false : position.id);
+    const isExpanding = expanded !== position.id;
+    setExpanded(isExpanding ? position.id : false);
+
+    if (isExpanding) {
+      positionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   const { data: projects } = useQuery({
@@ -106,6 +112,7 @@ export const PositionItem = ({
         mb: 2,
         backgroundColor: theme.palette.background.default,
       })}
+      ref={positionRef}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
