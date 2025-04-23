@@ -113,6 +113,7 @@ export const PositionItem = ({
         backgroundColor: theme.palette.background.default,
       })}
       ref={positionRef}
+      slotProps={{ transition: { unmountOnExit: true, timeout: 200 } }}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}

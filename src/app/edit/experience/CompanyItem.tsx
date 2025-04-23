@@ -96,7 +96,12 @@ export const CompanyItem = ({
   };
 
   return (
-    <Accordion expanded={expanded === company.id} sx={{ mb: 2 }} ref={companyRef}>
+    <Accordion
+      expanded={expanded === company.id}
+      sx={{ mb: 2 }}
+      ref={companyRef}
+      slotProps={{ transition: { unmountOnExit: false, timeout: 200 } }}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
