@@ -103,7 +103,7 @@ describe("Experience Section", () => {
     cy.get("h3").contains(companyName).click();
     cy.get("h3").contains(positionTitle).click();
     cy.contains(projectTitle).dblclick();
-    cy.get(".MuiDialog-container input[name=project]").clear().type(newProjectTitle);
+    cy.get(".MuiDialog-container textarea").clear().type(newProjectTitle);
     cy.get(".MuiDialog-container button").contains("Save").click();
 
     cy.contains(newProjectTitle).should("be.visible");
