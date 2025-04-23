@@ -3,11 +3,14 @@ import { Position, Project } from "@openresume/theme";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { ProjectItem } from "./ProjectItem";
+import React from "react"; // Added for React.memo
 import { Tooltip } from "@/components/Tooltip";
 import { addProject } from "@/graphql/addProject";
 import { updateProjectSortIndexes } from "@/graphql/updateProjectSortIndexes";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+
+const MemoizedProjectItem = React.memo(ProjectItem);
 
 export const ProjectsList = ({
   position,
@@ -41,13 +44,17 @@ export const ProjectsList = ({
   });
 
   const mutationUpdateSortIndex = useMutation({
-    mutationFn: async ({ projects }: { projects: { id: string; sortIndex: number }[] }) => {
+    mutationFn: async ({
+      projectSortIndexes,
+    }: {
+      projectSortIndexes: { id: string; sortIndex: number }[];
+    }) => {
       if (!session?.user?.id) return;
 
       await updateProjectSortIndexes({
         userId: session.user.id,
         positionId: position.id,
-        projectSortIndexes: projects,
+        projectSortIndexes,
       });
     },
     onSuccess: () => {
@@ -112,43 +119,40 @@ export const ProjectsList = ({
               key={project.id}
               draggable
               onDragStart={(e) => {
-                e.dataTransfer.setData("projectId", project.id);
+                e.dataTransfer.setData("draggedProjectId", project.id); // Use a clear key name
               }}
               onDrop={(e) => {
                 e.preventDefault();
-                const draggedId = e.dataTransfer.getData("projectId");
+                const draggedId = e.dataTransfer.getData("draggedProjectId");
                 const draggedProject = projects.find((p) => p.id === draggedId);
                 const targetProject = project;
 
                 if (draggedProject && draggedProject.id !== targetProject.id) {
-                  const updatedProjects = [...projects].sort(
-                    (a, b) => (a.sortIndex ?? 0) - (b.sortIndex ?? 0),
-                  );
+                  const updatedProjects = [...projects];
 
+                  // Find the indexes of the dragged and target projects
                   const draggedIndex = updatedProjects.findIndex((p) => p.id === draggedId);
                   const targetIndex = updatedProjects.findIndex((p) => p.id === targetProject.id);
 
-                  // Reorder array
+                  // Remove the dragged project and insert it at the target index
                   updatedProjects.splice(draggedIndex, 1);
                   updatedProjects.splice(targetIndex, 0, draggedProject);
 
-                  // Update sortIndex values
-                  updatedProjects.forEach((p, idx) => {
-                    p.sortIndex = idx;
-                  });
-
-                  const projectSortIndexes = updatedProjects.map((p) => ({
+                  // Update sortIndex values to reflect the new order
+                  const projectSortIndexes = updatedProjects.map((p, idx) => ({
                     id: p.id,
-                    sortIndex: p.sortIndex,
+                    sortIndex: idx,
                   }));
 
+                  // Trigger the mutation to update the backend
                   mutationUpdateSortIndex.mutate({
-                    projects: projectSortIndexes,
+                    projectSortIndexes,
                   });
                 }
               }}
+              onDragOver={(e) => e.preventDefault()} // Allow drop
             >
-              <ProjectItem positionId={position.id} project={project} expanded={expanded} />
+              <MemoizedProjectItem positionId={position.id} project={project} expanded={expanded} />
             </Box>
           ))}
       </Box>

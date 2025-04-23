@@ -61,7 +61,7 @@ export const mutationDefs = gql`
       userId: ID!
       positionId: ID!
       projectSortIndexes: [ProjectSortIndexInput!]!
-    ): [Project!]!
+    ): Boolean!
     addSkillForProject(userId: ID!, projectId: ID!, skillForUserId: ID!): SkillForProject!
     updateSkillForProject(userId: ID!, id: ID!, description: String): SkillForProject!
     deleteSkillForProject(userId: ID!, id: ID!): SkillForProject!
