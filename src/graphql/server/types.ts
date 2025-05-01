@@ -47,6 +47,7 @@ export const types = gql`
     startDate: String
     endDate: String
     positions: [Position!]!
+    positionCount: Int
   }
 
   type Position {
@@ -56,6 +57,7 @@ export const types = gql`
     endDate: String
     company: Company!
     projects: [Project!]!
+    projectCount: Int
   }
 
   type Project {

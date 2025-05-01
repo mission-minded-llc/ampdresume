@@ -10,7 +10,7 @@ export const updateProjectSortIndexes = async ({
 }: {
   userId: string;
   positionId: string;
-  projectSortIndexes: { id: string; sortIndex: number }[];
+  projectSortIndexes: Array<{ id: string; sortIndex: number }>;
 }): Promise<void> => {
   const client = getApolloClient();
 
@@ -26,9 +26,7 @@ export const updateProjectSortIndexes = async ({
             userId: $userId
             positionId: $positionId
             projectSortIndexes: $projectSortIndexes
-          ) {
-            id
-          }
+          )
         }
       `,
       variables: {

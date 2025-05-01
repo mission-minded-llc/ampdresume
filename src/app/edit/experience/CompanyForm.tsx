@@ -4,7 +4,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { formatLongDate, formatShortDate, timestampToDate } from "@/lib/format";
 
 import { Company } from "@openresume/theme";
-import { CompanyGeneric } from "@/graphql/getCompanies";
+import { CompanyGeneric } from "@/graphql/getExperience";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 
@@ -131,7 +131,7 @@ export const CompanyForm = ({
                 : ""
             }
             onConfirmDelete={() => deleteHandler(company)}
-            disabled={company?.positions?.length ? true : false}
+            disabled={company?.positionCount ? company.positionCount > 0 : false}
           />
         )}
         {onCancel && (
