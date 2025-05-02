@@ -36,6 +36,8 @@ env:
   FLAGSMITH_ENVIRONMENT_ID: ${{ secrets.FLAGSMITH_ENVIRONMENT_ID }}
   # Specific for the integration test.
   CYPRESS_TEST_EMAIL: test@openresume.org
+  # For all AI integrations.
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
   integration-test:
