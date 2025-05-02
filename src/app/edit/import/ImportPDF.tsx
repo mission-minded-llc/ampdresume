@@ -3,27 +3,16 @@
 import * as Sentry from "@sentry/react";
 import * as pdfjsLib from "pdfjs-dist";
 
-import { Box, Typography } from "@mui/material";
+import { FileUploadEvent, PDFFile, TextItem } from "./types";
 
-import { SectionTitle } from "../components/SectionTitle";
-import { useState } from "react"; // Added for state management
-
-interface PDFFile extends File {
-  arrayBuffer: () => Promise<ArrayBuffer>;
-}
-
-interface TextItem {
-  str: string;
-  hasEOL: boolean;
-  transform: number[];
-  width: number;
-  height: number;
-  fontName: string;
-}
-
-interface FileUploadEvent extends React.ChangeEvent<HTMLInputElement> {
-  target: HTMLInputElement & { files: FileList };
-}
+import { ExtractedInformation } from "./ExtractedInformation";
+import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { PageHeading } from "./PageHeading";
+import { UploadPDF } from "./UploadPDF";
+import { getParsedResumeAi } from "@/graphql/getParsedResumeAi";
+import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -31,8 +20,24 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 export const ImportPDF = () => {
-  const [extractedText, setExtractedText] = useState<string>(""); // State to store extracted text
+  const { data: session, status } = useSession();
+  const isAuthenticatedUser =
+    status === "authenticated" && !!session?.user.id && !!session?.user.slug;
+
+  const [extractedText, setExtractedText] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+
+  const shouldFetchResume = isAuthenticatedUser && !!extractedText && extractedText.length > 200;
+
+  // Fetch the parsed resume from AI
+  const { data: parsedResumeAi, isPending } = useQuery({
+    enabled: shouldFetchResume,
+    queryKey: ["parsedResumeAi"],
+    queryFn: async () => {
+      if (!session?.user?.id || !extractedText) return null;
+      return await getParsedResumeAi(session.user.id, extractedText);
+    },
+  });
 
   const extractTextFromPDF = async (file: PDFFile): Promise<void> => {
     try {
@@ -74,7 +79,7 @@ export const ImportPDF = () => {
 
       setExtractedText(fullText);
     } catch (err: unknown) {
-      Sentry.captureException(err); // Capture the error with Sentry
+      Sentry.captureException(err);
       setError("Error extracting text from PDF. Please try again or use a different file.");
     }
   };
@@ -88,61 +93,13 @@ export const ImportPDF = () => {
 
   return (
     <>
-      <SectionTitle title="Import from PDF" />
-
-      <Box sx={{ mb: 4 }}>
-        <Typography>
-          Do you have a PDF resume that you want to import? Upload it here and we will extract the
-          information for you. Please note that the extraction may not be perfect, and you may need
-          to review and edit the information after import.
-        </Typography>
-      </Box>
-
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-          mb: 4,
-        }}
-      >
-        <Typography variant="h6">Upload PDF</Typography>
-        <input type="file" accept="application/pdf" onChange={handleFileUpload} />
-        <Typography variant="body2" color="textSecondary">
-          Please upload a PDF file. The file size should not exceed 5MB.
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-          mb: 4,
-        }}
-      >
-        <Typography variant="h6">Extracted Information</Typography>
-        <Typography variant="body2" color="textSecondary">
-          The extracted information will be displayed here after the file is processed. Please
-          review and edit the information as needed.
-        </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            border: 1,
-            borderColor: "divider",
-            borderRadius: 1,
-            padding: 2,
-          }}
-        >
-          {error ? (
-            <Typography color="error">{error}</Typography>
-          ) : (
-            <Typography component="pre">{extractedText || "No text extracted yet."}</Typography>
-          )}
-        </Box>
-      </Box>
+      <PageHeading />
+      <UploadPDF onFileUpload={handleFileUpload} />
+      {isPending && shouldFetchResume ? (
+        <LoadingOverlay open={true} message="Analyzing your resume..." />
+      ) : (
+        <ExtractedInformation data={parsedResumeAi || null} error={error} />
+      )}
     </>
   );
 };
