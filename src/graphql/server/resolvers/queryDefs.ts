@@ -24,5 +24,6 @@ export const queryDefs = gql`
 
     # AI queries.
     companiesAi(userId: ID!, jobDescription: String!): [Company!]!
+    parsedResumeAi(userId: ID!, text: String!): ParsedResume!
   }
 `;

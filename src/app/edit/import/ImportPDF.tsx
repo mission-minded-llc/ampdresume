@@ -8,6 +8,23 @@ import { Box, Typography } from "@mui/material";
 import { SectionTitle } from "../components/SectionTitle";
 import { useState } from "react"; // Added for state management
 
+interface PDFFile extends File {
+  arrayBuffer: () => Promise<ArrayBuffer>;
+}
+
+interface TextItem {
+  str: string;
+  hasEOL: boolean;
+  transform: number[];
+  width: number;
+  height: number;
+  fontName: string;
+}
+
+interface FileUploadEvent extends React.ChangeEvent<HTMLInputElement> {
+  target: HTMLInputElement & { files: FileList };
+}
+
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
   import.meta.url,
@@ -15,19 +32,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 
 export const ImportPDF = () => {
   const [extractedText, setExtractedText] = useState<string>(""); // State to store extracted text
-
-  interface PDFFile extends File {
-    arrayBuffer: () => Promise<ArrayBuffer>;
-  }
-
-  interface TextItem {
-    str: string;
-    hasEOL: boolean;
-    transform: number[];
-    width: number;
-    height: number;
-    fontName: string;
-  }
+  const [error, setError] = useState<string | null>(null);
 
   const extractTextFromPDF = async (file: PDFFile): Promise<void> => {
     try {
@@ -64,18 +69,15 @@ export const ImportPDF = () => {
         fullText += pageText;
       }
 
+      // Ensure the text's maximum length is 10000 characters.
+      fullText = fullText.slice(0, 10000);
+
       setExtractedText(fullText);
     } catch (err: unknown) {
-      // eslint-disable-next-line no-console
-      console.error("Error extracting text from PDF:", err);
       Sentry.captureException(err); // Capture the error with Sentry
-      setExtractedText("Error extracting text from PDF. Please try again or use a different file.");
+      setError("Error extracting text from PDF. Please try again or use a different file.");
     }
   };
-
-  interface FileUploadEvent extends React.ChangeEvent<HTMLInputElement> {
-    target: HTMLInputElement & { files: FileList };
-  }
 
   const handleFileUpload = (event: FileUploadEvent): void => {
     const file = event.target.files[0];
@@ -134,7 +136,11 @@ export const ImportPDF = () => {
             padding: 2,
           }}
         >
-          <Typography component="pre">{extractedText || "No text extracted yet."}</Typography>
+          {error ? (
+            <Typography color="error">{error}</Typography>
+          ) : (
+            <Typography component="pre">{extractedText || "No text extracted yet."}</Typography>
+          )}
         </Box>
       </Box>
     </>
