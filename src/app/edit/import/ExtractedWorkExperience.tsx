@@ -55,6 +55,23 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
     setLocalCompanies(updatedCompanies);
   };
 
+  const handleDeleteCompany = (companyIndex: number) => {
+    const updatedCompanies = localCompanies.filter((_, i) => i !== companyIndex);
+    setLocalCompanies(updatedCompanies);
+  };
+
+  const handleDeletePosition = (companyIndex: number, positionIndex: number) => {
+    const updatedCompanies = [...localCompanies];
+    const updatedPositions = updatedCompanies[companyIndex].positions?.filter(
+      (_, i) => i !== positionIndex,
+    );
+    updatedCompanies[companyIndex] = {
+      ...updatedCompanies[companyIndex],
+      positions: updatedPositions,
+    };
+    setLocalCompanies(updatedCompanies);
+  };
+
   return (
     <Box>
       <Typography variant="h5" sx={{ mb: 2 }}>
@@ -72,29 +89,46 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
             backgroundColor: "background.default",
           }}
         >
-          <Box sx={{ mb: 2 }}>
-            <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
-              <TextField fullWidth label="Company" value={company.name || ""} sx={{ mb: 1 }} />
-              <TextField fullWidth label="Location" value={company.location || ""} sx={{ mb: 1 }} />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              mb: 2,
+            }}
+          >
+            <Box sx={{ flex: 1, mr: 2 }}>
+              <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+                <TextField fullWidth label="Company" value={company.name || ""} sx={{ mb: 1 }} />
+                <TextField
+                  fullWidth
+                  label="Location"
+                  value={company.location || ""}
+                  sx={{ mb: 1 }}
+                />
+              </Box>
+              <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+                <DatePicker
+                  label="Start Date"
+                  value={company.startDate ? dayjs(company.startDate) : null}
+                  onChange={(date) =>
+                    handleDateChange(index, undefined, "startDate", date?.toISOString() || "")
+                  }
+                  sx={{ flex: 1 }}
+                />
+                <DatePicker
+                  label="End Date"
+                  value={company.endDate ? dayjs(company.endDate) : null}
+                  onChange={(date) =>
+                    handleDateChange(index, undefined, "endDate", date?.toISOString() || "")
+                  }
+                  sx={{ flex: 1 }}
+                />
+              </Box>
             </Box>
-            <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
-              <DatePicker
-                label="Start Date"
-                value={company.startDate ? dayjs(company.startDate) : null}
-                onChange={(date) =>
-                  handleDateChange(index, undefined, "startDate", date?.toISOString() || "")
-                }
-                sx={{ flex: 1 }}
-              />
-              <DatePicker
-                label="End Date"
-                value={company.endDate ? dayjs(company.endDate) : null}
-                onChange={(date) =>
-                  handleDateChange(index, undefined, "endDate", date?.toISOString() || "")
-                }
-                sx={{ flex: 1 }}
-              />
-            </Box>
+            <IconButton onClick={() => handleDeleteCompany(index)} size="small" color="error">
+              <DeleteIcon />
+            </IconButton>
           </Box>
           {company.positions?.map((position, positionIndex) => (
             <Box
@@ -106,35 +140,55 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
                 borderColor: "divider",
                 borderRadius: 1,
                 bgcolor: "background.default",
-                "&:hover": {
-                  bgcolor: "action.hover",
-                },
               }}
             >
-              <TextField fullWidth label="Position" value={position.title || ""} sx={{ mb: 2 }} />
-              <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
-                <DatePicker
-                  label="Start Date"
-                  value={position.startDate ? dayjs(position.startDate) : null}
-                  onChange={(date) =>
-                    handleDateChange(index, positionIndex, "startDate", date?.toISOString() || "")
-                  }
-                  sx={{ flex: 1 }}
-                />
-                <DatePicker
-                  label="End Date"
-                  value={position.endDate ? dayjs(position.endDate) : null}
-                  onChange={(date) =>
-                    handleDateChange(index, positionIndex, "endDate", date?.toISOString() || "")
-                  }
-                  sx={{ flex: 1 }}
-                />
+              <Box
+                sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}
+              >
+                <Box sx={{ flex: 1, mr: 2 }}>
+                  <TextField
+                    fullWidth
+                    label="Position"
+                    value={position.title || ""}
+                    sx={{ mb: 2 }}
+                  />
+                  <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+                    <DatePicker
+                      label="Start Date"
+                      value={position.startDate ? dayjs(position.startDate) : null}
+                      onChange={(date) =>
+                        handleDateChange(
+                          index,
+                          positionIndex,
+                          "startDate",
+                          date?.toISOString() || "",
+                        )
+                      }
+                      sx={{ flex: 1 }}
+                    />
+                    <DatePicker
+                      label="End Date"
+                      value={position.endDate ? dayjs(position.endDate) : null}
+                      onChange={(date) =>
+                        handleDateChange(index, positionIndex, "endDate", date?.toISOString() || "")
+                      }
+                      sx={{ flex: 1 }}
+                    />
+                  </Box>
+                </Box>
+                <IconButton
+                  onClick={() => handleDeletePosition(index, positionIndex)}
+                  size="small"
+                  color="error"
+                >
+                  <DeleteIcon />
+                </IconButton>
               </Box>
               {position?.projects?.map((project, projectIndex) => (
                 <Box key={projectIndex} sx={{ display: "flex", gap: 1, alignItems: "flex-start" }}>
                   <TextField
                     fullWidth
-                    label="Bullet Points (Project)"
+                    label="Project"
                     value={project.name || ""}
                     sx={{ mb: 2, border: "none" }}
                   />
