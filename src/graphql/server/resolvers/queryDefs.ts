@@ -4,6 +4,7 @@ export const queryDefs = gql`
   type Query {
     # General queries.
     skills: [Skill!]!
+    skillsFuzzyMatch(skills: [String!]!): [Skill!]!
 
     # User-specific queries.
     user(slug: String!): User

@@ -9,12 +9,14 @@ import { getResume } from "./queries/getResume";
 import { getSkills } from "./queries/getSkills";
 import { getSkillsForProject } from "./queries/getSkillsForProject";
 import { getSkillsForUser } from "./queries/getSkillsForUser";
+import { getSkillsFuzzyMatch } from "./queries/getSkillsFuzzyMatch";
 import { getSocials } from "./queries/getSocials";
 import { getUser } from "./queries/getUser";
 
 export const queryResolvers = {
   // General queries.
   skills: getSkills,
+  skillsFuzzyMatch: getSkillsFuzzyMatch,
 
   // User-specific queries.
   user: getUser,
