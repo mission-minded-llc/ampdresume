@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import { FileUploadEvent, PDFFile } from "./types";
+
+import { FileUploadEvent } from "./types";
 
 interface UploadPDFProps {
   onFileUpload: (event: FileUploadEvent) => void;
