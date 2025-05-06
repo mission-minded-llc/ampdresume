@@ -49,7 +49,9 @@ const AccountForm = ({
   const [errors, setErrors] = useState<{ name?: string; slug?: string; displayEmail?: string }>({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [showSlugPopup, setShowSlugPopup] = useState(slug.length === 0);
   const isDesktop = useIsDesktop();
+  const slugInputRef = React.useRef<HTMLInputElement>(null);
 
   const [siteImageUrl, setSiteImageUrl] = useState(siteImage);
 
@@ -72,15 +74,33 @@ const AccountForm = ({
     }
   };
 
+  const validateForm = () => {
+    const newErrors: { name?: string; slug?: string; displayEmail?: string } = {};
+    let hasEmptyFields = false;
+
+    // Check for empty fields
+    Object.entries(formData).forEach(([key, value]) => {
+      if (!value.trim()) {
+        if (["name", "slug", "displayEmail"].includes(key)) {
+          hasEmptyFields = true;
+          if (key === "name") newErrors.name = "Name is required";
+          if (key === "slug") newErrors.slug = "Slug is required";
+          if (key === "displayEmail") newErrors.displayEmail = "Email is required";
+        }
+      }
+    });
+
+    setErrors(newErrors);
+    return !hasEmptyFields;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const { name, slug, displayEmail } = formData;
 
-    if (!name.trim() || !slug.trim()) {
-      setErrors({
-        name: !name.trim() ? "Name is required" : "",
-        slug: !slug.trim() ? "Slug is required" : "",
-      });
+    if (!validateForm()) {
+      if (!formData.slug.trim()) {
+        setShowSlugPopup(true);
+      }
       return;
     }
 
@@ -133,6 +153,11 @@ const AccountForm = ({
     setFormData((prev) => ({ ...prev, siteImage: siteImageUrl }));
   }, [siteImageUrl]);
 
+  const handleSlugPopupClose = () => {
+    setShowSlugPopup(false);
+    setTimeout(() => slugInputRef.current?.focus(), 100);
+  };
+
   return (
     <Box
       sx={{
@@ -147,7 +172,22 @@ const AccountForm = ({
         onClose={() => setMessage("")}
         onConfirm={() => setMessage("")}
       />
-      <Box component="form" onSubmit={handleSubmit}>
+      <MessageDialog
+        open={showSlugPopup}
+        title="Don't forget to set your URL!"
+        message="Your URL name is very important! It's how others will find your resume page. Please set a name to continue."
+        onClose={handleSlugPopupClose}
+        onConfirm={handleSlugPopupClose}
+      />
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+        }}
+      >
         <GridSection isDesktop={isDesktop}>
           <SectionTitle>General Information</SectionTitle>
           <InputSection>
@@ -162,7 +202,14 @@ const AccountForm = ({
               error={!!errors.name}
               helperText={errors.name ? errors.name : " "}
               fullWidth
-              sx={{ marginTop: "auto" }}
+              sx={{
+                marginTop: "auto",
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: !formData.name.trim() ? "error.main" : undefined,
+                  },
+                },
+              }}
               label="Full Name"
             />
           </InputSection>
@@ -196,7 +243,15 @@ const AccountForm = ({
               error={!!errors.slug}
               helperText={errors.slug ? errors.slug : " "}
               fullWidth
-              sx={{ marginTop: "auto" }}
+              inputRef={slugInputRef}
+              sx={{
+                marginTop: "auto",
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: !formData.slug.trim() ? "error.main" : undefined,
+                  },
+                },
+              }}
             />
           </InputSection>
           <InputSection>
@@ -214,7 +269,14 @@ const AccountForm = ({
               error={!!errors.displayEmail}
               helperText={errors.displayEmail ? errors.displayEmail : " "}
               fullWidth
-              sx={{ marginTop: "auto" }}
+              sx={{
+                marginTop: "auto",
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: !formData.displayEmail.trim() ? "error.main" : undefined,
+                  },
+                },
+              }}
             />
           </InputSection>
           <InputSection>
@@ -315,16 +377,22 @@ const AccountForm = ({
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "row",
+            position: "sticky",
+            bottom: 0,
+            backgroundColor: "background.paper",
+            padding: "16px 0",
+            borderTop: "1px solid",
+            borderColor: "divider",
+            zIndex: 1,
+            mt: "auto",
           }}
         >
           <Button
-            type="submit"
+            onClick={handleSubmit}
             variant="contained"
             color="primary"
             fullWidth
             sx={{
-              mt: 6,
-              mb: 10,
               maxWidth: "400px",
             }}
             data-test-id="AccountFormSaveButton"
