@@ -104,7 +104,10 @@ const AccountForm = ({
       return;
     }
 
-    if (displayEmail.trim()?.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(displayEmail)) {
+    if (
+      formData.displayEmail.trim()?.length > 0 &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.displayEmail)
+    ) {
       setErrors({ displayEmail: "Invalid email address" });
       return;
     } else {
