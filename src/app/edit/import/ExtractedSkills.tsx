@@ -1,6 +1,5 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
-import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { SkillItem } from "../skills/SkillItem";
 import { getSkillsFuzzyMatch } from "@/graphql/getSkillsFuzzyMatch";
@@ -48,9 +47,15 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
           borderColor: "divider",
           borderRadius: 1,
           bgcolor: "background.paper",
+          display: "flex",
+          flexWrap: "wrap",
+          flexDirection: "row",
+          gap: 2,
         }}
       >
         {fuzzyMatches?.map((skill, index) => {
+          const skillId = `skill-${index}`;
+
           const skillForUser = {
             skill,
             id: skill.id,
@@ -59,13 +64,18 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
           };
 
           return (
-            <Box key={index} display="flex" flexDirection="row" gap={1}>
-              <Box sx={{ display: "block", border: 1, borderColor: "divider", borderRadius: 1 }}>
-                <SkillItem key={index} skill={skillForUser} />
-                <IconButton>
-                  <Icon icon="mdi:delete" />
-                </IconButton>
-              </Box>
+            <Box
+              key={skillId}
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap: 1,
+                border: 1,
+                borderColor: "divider",
+                borderRadius: 1,
+              }}
+            >
+              <SkillItem skill={skillForUser} />
             </Box>
           );
         })}

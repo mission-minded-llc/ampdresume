@@ -27,7 +27,13 @@ export const getParsedResumeAi = async (
         {
           role: "system",
           content: `You are a helpful assistant that extracts structured resume 
-            data from unstructured text. Return the data as a JSON object in this structure: 
+            data from unstructured text. The resume text should include companies,
+            positions, projects, skills, and education. If skills are not an explicit
+            list, extract them from the text. If projects are not an explicit list, they
+            are usually near each position, sometimes prefixed with "Projects" or 
+            "Projects and Responsibilities" and may or may not have bullet points.
+            
+            Return the data as a JSON object in this structure: 
             
             {
               user: {

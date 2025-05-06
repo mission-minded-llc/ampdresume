@@ -1,5 +1,9 @@
 import { Company, Education } from "@openresume/theme";
 
+export interface PDFFile extends File {
+  arrayBuffer: () => Promise<ArrayBuffer>;
+}
+
 export interface TextItem {
   str: string;
   hasEOL: boolean;

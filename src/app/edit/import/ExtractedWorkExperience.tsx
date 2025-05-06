@@ -279,6 +279,7 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
                           <TextField
                             fullWidth
                             value={project.name || ""}
+                            multiline
                             sx={{
                               boxShadow: "none",
                               bgcolor: "background.default",
