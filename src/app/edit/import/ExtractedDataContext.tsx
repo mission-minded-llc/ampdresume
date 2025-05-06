@@ -69,7 +69,6 @@ export const ExtractedDataProvider = ({
         error: initialError,
         updateUser,
         updateSkills,
-        updateSocialUrls,
         updateCompanies,
         updateEducation,
       }}
