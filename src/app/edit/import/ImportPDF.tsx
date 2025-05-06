@@ -8,6 +8,7 @@ import { FileUploadEvent, PDFFile, TextItem } from "./types";
 import { ExtractedInformation } from "./ExtractedInformation";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { PageHeading } from "./PageHeading";
+import { Typography } from "@mui/material";
 import { UploadPDF } from "./UploadPDF";
 import { getParsedResumeAi } from "@/graphql/getParsedResumeAi";
 import { useQuery } from "@tanstack/react-query";
@@ -30,7 +31,11 @@ export const ImportPDF = () => {
   const shouldFetchResume = isAuthenticatedUser && !!extractedText && extractedText.length > 200;
 
   // Fetch the parsed resume from AI
-  const { data: parsedResumeAi, isPending } = useQuery({
+  const {
+    data: parsedResumeAi,
+    isPending,
+    isError,
+  } = useQuery({
     enabled: shouldFetchResume,
     queryKey: ["parsedResumeAi"],
     queryFn: async () => {
@@ -95,6 +100,7 @@ export const ImportPDF = () => {
     <>
       <PageHeading />
       <UploadPDF onFileUpload={handleFileUpload} />
+      {isError && <Typography>Error loading resume</Typography>}
       {isPending && shouldFetchResume ? (
         <LoadingOverlay open={true} message="Analyzing your resume..." />
       ) : (

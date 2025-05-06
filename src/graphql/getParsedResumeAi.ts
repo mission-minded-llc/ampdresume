@@ -1,6 +1,6 @@
 import * as Sentry from "@sentry/react";
 
-import { Company, Education } from "@openresume/theme";
+import { Company, Education, Skill } from "@openresume/theme";
 
 import { ParsedResumeData } from "@/app/edit/import/types";
 import { getApolloClient } from "@/lib/apolloClient";
@@ -13,7 +13,7 @@ export type ParsedResumeAi = {
     location: string;
     title: string;
   };
-  skills: string[];
+  skills: Skill[];
   companies: Company[];
   education: Education[];
 };
@@ -37,7 +37,11 @@ export const getParsedResumeAi = async (
               location
               title
             }
-            skills
+            skills {
+              id
+              name
+              icon
+            }
             companies {
               name
               location

@@ -1,41 +1,23 @@
-import { Box, Chip, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 
-import { LoadingOverlay } from "@/components/LoadingOverlay";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { Skill } from "@openresume/theme";
 import { SkillItem } from "../skills/SkillItem";
-import { getSkillsFuzzyMatch } from "@/graphql/getSkillsFuzzyMatch";
 import { useExtractedData } from "./ExtractedDataContext";
-import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
 interface ExtractedSkillsProps {
-  skills: string[];
+  skills: Skill[];
 }
 
 export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
   const { updateSkills } = useExtractedData();
   const { data: session } = useSession();
 
-  // Take the list of extracted skills text, and request fuzzy matches from the API.
-  const {
-    isPending,
-    isError,
-    data: fuzzyMatches,
-  } = useQuery({
-    queryKey: ["skillsFuzzyMatch", skills],
-    queryFn: () => getSkillsFuzzyMatch(skills),
-  });
-
   const handleDelete = (skillToDelete: string) => {
-    updateSkills(skills.filter((skill) => skill !== skillToDelete));
+    const filteredMatches = skills?.filter((skill) => skill.name !== skillToDelete) || [];
+    updateSkills(filteredMatches);
   };
-
-  if (isPending) {
-    return <LoadingOverlay message="Matching extracted skills..." />;
-  }
-
-  if (isError) {
-    return <Typography>Error loading skills</Typography>;
-  }
 
   if (!session) {
     return <Typography>Please sign in to continue</Typography>;
@@ -46,17 +28,6 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
       <Typography variant="h6" sx={{ mb: 2 }}>
         Skills
       </Typography>
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
-        {skills.map((skill) => (
-          <Chip
-            key={skill}
-            label={skill}
-            onDelete={() => handleDelete(skill)}
-            color="primary"
-            variant="outlined"
-          />
-        ))}
-      </Box>
       <Box
         sx={{
           p: 2,
@@ -70,7 +41,7 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
           gap: 2,
         }}
       >
-        {fuzzyMatches?.map((skill, index) => {
+        {skills?.map((skill, index) => {
           const skillId = `skill-${index}`;
 
           const skillForUser = {
@@ -93,6 +64,14 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
               }}
             >
               <SkillItem skill={skillForUser} />
+              <IconButton
+                size="small"
+                color="error"
+                onClick={() => handleDelete(skill.name)}
+                sx={{ p: 0.5 }}
+              >
+                <DeleteOutlineIcon fontSize="small" />
+              </IconButton>
             </Box>
           );
         })}

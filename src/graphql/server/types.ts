@@ -95,7 +95,7 @@ export const types = gql`
   # This type represents the parsed resume data from OpenAI
   type ParsedResume {
     user: User!
-    skills: [String!]!
+    skills: [Skill!]!
     companies: [Company!]!
     education: [Education!]!
   }

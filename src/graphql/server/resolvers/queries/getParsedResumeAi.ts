@@ -2,6 +2,7 @@ import * as Sentry from "@sentry/node";
 
 import OpenAI from "openai";
 import { isFeatureEnabledForUser } from "@/lib/flagsmith";
+import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "../../util";
 
 const openai = new OpenAI({
@@ -79,7 +80,26 @@ export const getParsedResumeAi = async (
 
     const parsedData = JSON.parse(content);
 
-    return parsedData;
+    // Run a fuzzy match on the skills so that we can return any skills that are actually
+    // found in the database.
+    const fuzzySkillsMatches = await prisma.skill.findMany({
+      where: {
+        OR: parsedData.skills
+          .filter((skill: string) => skill.length > 4)
+          .map((skill: string) => ({
+            name: {
+              contains: skill,
+              mode: "insensitive",
+            },
+          })),
+      },
+      take: 30, // Limit to 30 fuzzy matches.
+    });
+
+    return {
+      ...parsedData,
+      skills: fuzzySkillsMatches,
+    };
   } catch (error) {
     Sentry.captureException(error);
     throw new Error("Failed to parse resume text");

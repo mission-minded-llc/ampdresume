@@ -1,5 +1,6 @@
 import * as Sentry from "@sentry/react";
 
+import { ParsedResumeData } from "@/app/edit/import/types";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
@@ -9,36 +10,7 @@ export const saveExtractedResumeData = async ({
   skills,
   companies,
   education,
-}: {
-  userId: string;
-  user: {
-    name: string;
-    email: string;
-    location: string | null;
-    title: string | null;
-  };
-  skills: string[];
-  companies: {
-    name: string;
-    location: string | null;
-    startDate: string;
-    endDate: string | null;
-    positions: {
-      title: string;
-      startDate: string;
-      endDate: string | null;
-      projects: {
-        name: string;
-        description: string | null;
-      }[];
-    }[];
-  }[];
-  education: {
-    school: string;
-    degree: string;
-    dateAwarded: string;
-  }[];
-}): Promise<boolean> => {
+}: ParsedResumeData): Promise<boolean> => {
   const client = getApolloClient();
 
   const { data } = await client

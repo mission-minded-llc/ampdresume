@@ -1,4 +1,4 @@
-import { Company, Education, Position, Project, User } from "@openresume/theme";
+import { Company, Education, Position, Project, Skill, User } from "@openresume/theme";
 
 export interface PDFFile extends File {
   arrayBuffer: () => Promise<ArrayBuffer>;
@@ -26,13 +26,14 @@ export type ExtractedProject = Omit<Project, "id">;
 export type ExtractedEducation = Omit<Education, "id">;
 
 export interface ParsedResumeData {
+  userId?: string;
   user: {
     name: string;
     email: string;
     location: string;
     title: string;
   };
-  skills: string[];
+  skills: Skill[];
   companies: {
     name: string;
     location: string | null;

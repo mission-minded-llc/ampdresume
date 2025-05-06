@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useState } from "react";
 
 import { ParsedResumeData } from "./types";
+import { Skill } from "@openresume/theme";
 
 interface ExtractedDataContextType {
   data: ParsedResumeData | null;
   error: string | null;
   updateUser: (user: ParsedResumeData["user"]) => void;
-  updateSkills: (skills: string[]) => void;
+  updateSkills: (skills: Skill[]) => void;
   updateCompanies: (companies: ParsedResumeData["companies"]) => void;
   updateEducation: (education: ParsedResumeData["education"]) => void;
 }
@@ -41,7 +42,7 @@ export const ExtractedDataProvider = ({
     });
   };
 
-  const updateSkills = (skills: string[]) => {
+  const updateSkills = (skills: Skill[]) => {
     setData((prev) => {
       if (!prev) return null;
       return { ...prev, skills };
