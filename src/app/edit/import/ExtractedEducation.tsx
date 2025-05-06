@@ -7,13 +7,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { memo, useCallback, useState } from "react";
 
 import { DatePicker } from "@mui/x-date-pickers";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import dayjs from "dayjs";
 import { useExtractedData } from "./ExtractedDataContext";
-import { useState } from "react";
 
 interface ExtractedEducationProps {
   education: {
@@ -22,6 +22,86 @@ interface ExtractedEducationProps {
     dateAwarded: string;
   }[];
 }
+
+const EducationField = memo(
+  ({
+    label,
+    value,
+    onChange,
+  }: {
+    label: string;
+    value: string;
+    onChange: (value: string) => void;
+  }) => {
+    const [localValue, setLocalValue] = useState(value);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setLocalValue(e.target.value);
+    };
+
+    const handleBlur = () => {
+      if (localValue !== value) {
+        onChange(localValue);
+      }
+    };
+
+    return (
+      <TextField
+        fullWidth
+        label={label}
+        value={localValue}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        sx={{ mb: 1 }}
+      />
+    );
+  },
+);
+EducationField.displayName = "EducationField";
+
+const EducationFields = memo(
+  ({
+    education,
+    index,
+    onFieldChange,
+    onDateChange,
+    onDelete,
+  }: {
+    education: ExtractedEducationProps["education"][0];
+    index: number;
+    onFieldChange: (index: number, field: string, value: string) => void;
+    onDateChange: (index: number, date: string) => void;
+    onDelete: (index: number) => void;
+  }) => {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <Box sx={{ flex: 1, mr: 2 }}>
+          <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+            <EducationField
+              label="Institution"
+              value={education.school || ""}
+              onChange={(value) => onFieldChange(index, "school", value)}
+            />
+            <EducationField
+              label="Degree"
+              value={education.degree || ""}
+              onChange={(value) => onFieldChange(index, "degree", value)}
+            />
+          </Box>
+          <DatePicker
+            label="Date Awarded"
+            value={education.dateAwarded ? dayjs(education.dateAwarded) : null}
+            onChange={(date) => onDateChange(index, date?.toISOString() || "")}
+          />
+        </Box>
+        <IconButton onClick={() => onDelete(index)} size="small" color="error">
+          <DeleteIcon />
+        </IconButton>
+      </Box>
+    );
+  },
+);
+EducationFields.displayName = "EducationFields";
 
 export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
   const { updateEducation } = useExtractedData();
@@ -32,28 +112,37 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
       setExpandedEducation(isExpanded ? panel : false);
     };
 
-  const handleDateChange = (index: number, date: string) => {
-    const updatedEducation = [...education];
-    updatedEducation[index] = {
-      ...updatedEducation[index],
-      dateAwarded: date,
-    };
-    updateEducation(updatedEducation);
-  };
+  const handleDateChange = useCallback(
+    (index: number, date: string) => {
+      const updatedEducation = [...education];
+      updatedEducation[index] = {
+        ...updatedEducation[index],
+        dateAwarded: date,
+      };
+      updateEducation(updatedEducation);
+    },
+    [education, updateEducation],
+  );
 
-  const handleDeleteEducation = (index: number) => {
-    const updatedEducation = education.filter((_, i) => i !== index);
-    updateEducation(updatedEducation);
-  };
+  const handleDeleteEducation = useCallback(
+    (index: number) => {
+      const updatedEducation = education.filter((_, i) => i !== index);
+      updateEducation(updatedEducation);
+    },
+    [education, updateEducation],
+  );
 
-  const handleFieldChange = (index: number, field: string, value: string) => {
-    const updatedEducation = [...education];
-    updatedEducation[index] = {
-      ...updatedEducation[index],
-      [field]: value,
-    };
-    updateEducation(updatedEducation);
-  };
+  const handleFieldChange = useCallback(
+    (index: number, field: string, value: string) => {
+      const updatedEducation = [...education];
+      updatedEducation[index] = {
+        ...updatedEducation[index],
+        [field]: value,
+      };
+      updateEducation(updatedEducation);
+    },
+    [education, updateEducation],
+  );
 
   return (
     <Box>
@@ -98,40 +187,13 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                }}
-              >
-                <Box sx={{ flex: 1, mr: 2 }}>
-                  <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
-                    <TextField
-                      fullWidth
-                      label="Institution"
-                      value={edu.school || ""}
-                      onChange={(e) => handleFieldChange(index, "school", e.target.value)}
-                      sx={{ mb: 1 }}
-                    />
-                    <TextField
-                      fullWidth
-                      label="Degree"
-                      value={edu.degree || ""}
-                      onChange={(e) => handleFieldChange(index, "degree", e.target.value)}
-                      sx={{ mb: 1 }}
-                    />
-                  </Box>
-                  <DatePicker
-                    label="Date Awarded"
-                    value={edu.dateAwarded ? dayjs(edu.dateAwarded) : null}
-                    onChange={(date) => handleDateChange(index, date?.toISOString() || "")}
-                  />
-                </Box>
-                <IconButton onClick={() => handleDeleteEducation(index)} size="small" color="error">
-                  <DeleteIcon />
-                </IconButton>
-              </Box>
+              <EducationFields
+                education={edu}
+                index={index}
+                onFieldChange={handleFieldChange}
+                onDateChange={handleDateChange}
+                onDelete={handleDeleteEducation}
+              />
             </AccordionDetails>
           </Accordion>
         );

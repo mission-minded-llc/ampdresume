@@ -24,8 +24,8 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
   }
 
   return (
-    <Box>
-      <Typography variant="h6" sx={{ mb: 2 }}>
+    <Box sx={{ mb: 4 }}>
+      <Typography variant="h5" sx={{ mb: 2 }}>
         Skills
       </Typography>
       <Box
@@ -34,7 +34,7 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
           border: 1,
           borderColor: "divider",
           borderRadius: 1,
-          bgcolor: "background.paper",
+          bgcolor: "background.default",
           display: "flex",
           flexWrap: "wrap",
           flexDirection: "row",
@@ -61,6 +61,7 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
                 border: 1,
                 borderColor: "divider",
                 borderRadius: 1,
+                bgcolor: "background.paper",
               }}
             >
               <SkillItem skill={skillForUser} />

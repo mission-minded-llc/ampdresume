@@ -47,11 +47,9 @@ const ExtractedInformationContent = () => {
           display: "flex",
           flexDirection: "column",
           gap: 2,
-          border: 1,
-          borderColor: "primary.main",
           borderRadius: 2,
           padding: 3,
-          backgroundColor: "background.paper",
+          backgroundColor: "#f3f3f3",
           boxShadow: 1,
         }}
       >
