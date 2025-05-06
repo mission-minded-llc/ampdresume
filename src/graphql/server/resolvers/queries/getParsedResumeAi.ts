@@ -43,7 +43,6 @@ export const getParsedResumeAi = async (
                 title: string,
               },
               skills: string[], // e.g. ["React", "Node.js", "TypeScript"], use the original text.
-              socialUrls: string[], // e.g. ["https://www.linkedin.com/in/john-doe", "https://github.com/johndoe"]
               companies: {
                 name: string,
                 location: string,

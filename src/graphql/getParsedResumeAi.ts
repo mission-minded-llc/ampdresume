@@ -2,6 +2,7 @@ import * as Sentry from "@sentry/react";
 
 import { Company, Education } from "@openresume/theme";
 
+import { ParsedResumeData } from "@/app/edit/import/types";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 
@@ -13,12 +14,14 @@ export type ParsedResumeAi = {
     title: string;
   };
   skills: string[];
-  socialUrls: string[];
   companies: Company[];
   education: Education[];
 };
 
-export const getParsedResumeAi = async (userId: string, text: string) => {
+export const getParsedResumeAi = async (
+  userId: string,
+  text: string,
+): Promise<ParsedResumeData | null> => {
   const client = getApolloClient();
 
   const { data } = await client
@@ -35,7 +38,6 @@ export const getParsedResumeAi = async (userId: string, text: string) => {
               title
             }
             skills
-            socialUrls
             companies {
               name
               location
@@ -65,5 +67,33 @@ export const getParsedResumeAi = async (userId: string, text: string) => {
       return { data: { parsedResumeAi: null } };
     });
 
-  return data.parsedResumeAi ?? null;
+  if (!data.parsedResumeAi) return null;
+
+  // Transform the data to match ParsedResumeData structure
+  return {
+    user: data.parsedResumeAi.user,
+    skills: data.parsedResumeAi.skills,
+    companies: data.parsedResumeAi.companies.map((company) => ({
+      name: company.name,
+      location: company.location,
+      startDate: company.startDate,
+      endDate: company.endDate,
+      positions:
+        company.positions?.map((position) => ({
+          title: position.title,
+          startDate: position.startDate,
+          endDate: position.endDate,
+          projects:
+            position.projects?.map((project) => ({
+              name: project.name,
+              description: null,
+            })) || [],
+        })) || [],
+    })),
+    education: data.parsedResumeAi.education.map((edu) => ({
+      school: edu.school,
+      degree: edu.degree,
+      dateAwarded: edu.dateAwarded,
+    })),
+  };
 };

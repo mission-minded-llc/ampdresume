@@ -96,7 +96,6 @@ export const types = gql`
   type ParsedResume {
     user: User!
     skills: [String!]!
-    socialUrls: [String!]!
     companies: [Company!]!
     education: [Education!]!
   }
@@ -109,5 +108,38 @@ export const types = gql`
   enum SortDirection {
     ASC
     DESC
+  }
+
+  input UserInput {
+    name: String!
+    email: String!
+    location: String
+    title: String
+  }
+
+  input CompanyInput {
+    name: String!
+    location: String
+    startDate: String!
+    endDate: String
+    positions: [PositionInput!]!
+  }
+
+  input PositionInput {
+    title: String!
+    startDate: String!
+    endDate: String
+    projects: [ProjectInput!]!
+  }
+
+  input ProjectInput {
+    name: String!
+    description: String
+  }
+
+  input EducationInput {
+    school: String!
+    degree: String!
+    dateAwarded: String!
   }
 `;

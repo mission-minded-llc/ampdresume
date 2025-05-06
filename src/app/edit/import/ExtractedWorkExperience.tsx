@@ -1,20 +1,41 @@
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import { Box, IconButton, TextField, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 
-import { Company } from "@openresume/theme";
 import { DatePicker } from "@mui/x-date-pickers";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DeleteIconOutlined from "@mui/icons-material/DeleteOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import dayjs from "dayjs";
+import { useExtractedData } from "./ExtractedDataContext";
 import { useState } from "react";
 
 interface ExtractedWorkExperienceProps {
-  companies: Company[];
+  companies: {
+    name: string;
+    location: string | null;
+    startDate: string;
+    endDate: string | null;
+    positions: {
+      title: string;
+      startDate: string;
+      endDate: string | null;
+      projects: {
+        name: string;
+        description: string | null;
+      }[];
+    }[];
+  }[];
 }
 
 export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperienceProps) => {
-  const [localCompanies, setLocalCompanies] = useState<Company[]>(companies);
+  const { updateCompanies } = useExtractedData();
   const [expandedCompany, setExpandedCompany] = useState<string | false>(false);
   const [expandedPosition, setExpandedPosition] = useState<string | false>(false);
 
@@ -34,10 +55,10 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
     field: "startDate" | "endDate",
     date: string,
   ) => {
-    const updatedCompanies = [...localCompanies];
+    const updatedCompanies = [...companies];
     if (positionIndex !== undefined) {
-      updatedCompanies[companyIndex].positions![positionIndex] = {
-        ...updatedCompanies[companyIndex].positions![positionIndex],
+      updatedCompanies[companyIndex].positions[positionIndex] = {
+        ...updatedCompanies[companyIndex].positions[positionIndex],
         [field]: date,
       };
     } else {
@@ -46,7 +67,7 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
         [field]: date,
       };
     }
-    setLocalCompanies(updatedCompanies);
+    updateCompanies(updatedCompanies);
   };
 
   const handleDeleteProject = (
@@ -54,37 +75,64 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
     positionIndex: number,
     projectIndex: number,
   ) => {
-    const updatedCompanies = [...localCompanies];
+    const updatedCompanies = [...companies];
     const updatedPosition = {
-      ...updatedCompanies[companyIndex].positions![positionIndex],
-      projects: updatedCompanies[companyIndex].positions![positionIndex].projects?.filter(
+      ...updatedCompanies[companyIndex].positions[positionIndex],
+      projects: updatedCompanies[companyIndex].positions[positionIndex].projects.filter(
         (_, i) => i !== projectIndex,
       ),
     };
-    const updatedPositions = [...updatedCompanies[companyIndex].positions!];
+    const updatedPositions = [...updatedCompanies[companyIndex].positions];
     updatedPositions[positionIndex] = updatedPosition;
     updatedCompanies[companyIndex] = {
       ...updatedCompanies[companyIndex],
       positions: updatedPositions,
     };
-    setLocalCompanies(updatedCompanies);
+    updateCompanies(updatedCompanies);
   };
 
   const handleDeleteCompany = (companyIndex: number) => {
-    const updatedCompanies = localCompanies.filter((_, i) => i !== companyIndex);
-    setLocalCompanies(updatedCompanies);
+    const updatedCompanies = companies.filter((_, i) => i !== companyIndex);
+    updateCompanies(updatedCompanies);
   };
 
   const handleDeletePosition = (companyIndex: number, positionIndex: number) => {
-    const updatedCompanies = [...localCompanies];
-    const updatedPositions = updatedCompanies[companyIndex].positions?.filter(
+    const updatedCompanies = [...companies];
+    const updatedPositions = updatedCompanies[companyIndex].positions.filter(
       (_, i) => i !== positionIndex,
     );
     updatedCompanies[companyIndex] = {
       ...updatedCompanies[companyIndex],
       positions: updatedPositions,
     };
-    setLocalCompanies(updatedCompanies);
+    updateCompanies(updatedCompanies);
+  };
+
+  const handleFieldChange = (
+    companyIndex: number,
+    positionIndex: number | undefined,
+    projectIndex: number | undefined,
+    field: string,
+    value: string,
+  ) => {
+    const updatedCompanies = [...companies];
+    if (projectIndex !== undefined) {
+      updatedCompanies[companyIndex].positions[positionIndex!].projects[projectIndex] = {
+        ...updatedCompanies[companyIndex].positions[positionIndex!].projects[projectIndex],
+        [field]: value,
+      };
+    } else if (positionIndex !== undefined) {
+      updatedCompanies[companyIndex].positions[positionIndex] = {
+        ...updatedCompanies[companyIndex].positions[positionIndex],
+        [field]: value,
+      };
+    } else {
+      updatedCompanies[companyIndex] = {
+        ...updatedCompanies[companyIndex],
+        [field]: value,
+      };
+    }
+    updateCompanies(updatedCompanies);
   };
 
   return (
@@ -92,7 +140,7 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
       <Typography variant="h5" sx={{ mb: 2 }}>
         Work Experience
       </Typography>
-      {localCompanies?.map((company, index) => {
+      {companies.map((company, index) => {
         const companyId = `company-${index}`;
         const isCompanyExpanded = expandedCompany === companyId;
 
@@ -149,12 +197,18 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
                       fullWidth
                       label="Company"
                       value={company.name || ""}
+                      onChange={(e) =>
+                        handleFieldChange(index, undefined, undefined, "name", e.target.value)
+                      }
                       sx={{ mb: 1 }}
                     />
                     <TextField
                       fullWidth
                       label="Location"
                       value={company.location || ""}
+                      onChange={(e) =>
+                        handleFieldChange(index, undefined, undefined, "location", e.target.value)
+                      }
                       sx={{ mb: 1 }}
                     />
                   </Box>
@@ -181,7 +235,7 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
                   <DeleteIcon />
                 </IconButton>
               </Box>
-              {company.positions?.map((position, positionIndex) => {
+              {company.positions.map((position, positionIndex) => {
                 const positionId = `position-${index}-${positionIndex}`;
                 const isPositionExpanded = expandedPosition === positionId;
 
@@ -232,6 +286,15 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
                             fullWidth
                             label="Position"
                             value={position.title || ""}
+                            onChange={(e) =>
+                              handleFieldChange(
+                                index,
+                                positionIndex,
+                                undefined,
+                                "title",
+                                e.target.value,
+                              )
+                            }
                             sx={{ mb: 2 }}
                           />
                           <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
@@ -271,7 +334,7 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
                           <DeleteIcon />
                         </IconButton>
                       </Box>
-                      {position?.projects?.map((project, projectIndex) => (
+                      {position.projects.map((project, projectIndex) => (
                         <Box
                           key={projectIndex}
                           sx={{ display: "flex", gap: 1, alignItems: "flex-start" }}
@@ -279,6 +342,15 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
                           <TextField
                             fullWidth
                             value={project.name || ""}
+                            onChange={(e) =>
+                              handleFieldChange(
+                                index,
+                                positionIndex,
+                                projectIndex,
+                                "name",
+                                e.target.value,
+                              )
+                            }
                             multiline
                             sx={{
                               boxShadow: "none",

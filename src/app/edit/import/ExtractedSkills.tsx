@@ -1,8 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Chip, Typography } from "@mui/material";
 
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { SkillItem } from "../skills/SkillItem";
 import { getSkillsFuzzyMatch } from "@/graphql/getSkillsFuzzyMatch";
+import { useExtractedData } from "./ExtractedDataContext";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
@@ -11,6 +12,7 @@ interface ExtractedSkillsProps {
 }
 
 export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
+  const { updateSkills } = useExtractedData();
   const { data: session } = useSession();
 
   // Take the list of extracted skills text, and request fuzzy matches from the API.
@@ -22,6 +24,10 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
     queryKey: ["skillsFuzzyMatch", skills],
     queryFn: () => getSkillsFuzzyMatch(skills),
   });
+
+  const handleDelete = (skillToDelete: string) => {
+    updateSkills(skills.filter((skill) => skill !== skillToDelete));
+  };
 
   if (isPending) {
     return <LoadingOverlay message="Matching extracted skills..." />;
@@ -37,9 +43,20 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ mb: 2 }}>
+      <Typography variant="h6" sx={{ mb: 2 }}>
         Skills
       </Typography>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+        {skills.map((skill) => (
+          <Chip
+            key={skill}
+            label={skill}
+            onDelete={() => handleDelete(skill)}
+            color="primary"
+            variant="outlined"
+          />
+        ))}
+      </Box>
       <Box
         sx={{
           p: 2,

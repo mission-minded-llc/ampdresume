@@ -10,17 +10,21 @@ import {
 
 import { DatePicker } from "@mui/x-date-pickers";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Education } from "@openresume/theme";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import dayjs from "dayjs";
+import { useExtractedData } from "./ExtractedDataContext";
 import { useState } from "react";
 
 interface ExtractedEducationProps {
-  education: Education[];
+  education: {
+    school: string;
+    degree: string;
+    dateAwarded: string;
+  }[];
 }
 
 export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
-  const [localEducation, setLocalEducation] = useState<Education[]>(education);
+  const { updateEducation } = useExtractedData();
   const [expandedEducation, setExpandedEducation] = useState<string | false>(false);
 
   const handleEducationChange =
@@ -29,17 +33,26 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
     };
 
   const handleDateChange = (index: number, date: string) => {
-    const updatedEducation = [...localEducation];
+    const updatedEducation = [...education];
     updatedEducation[index] = {
       ...updatedEducation[index],
       dateAwarded: date,
     };
-    setLocalEducation(updatedEducation);
+    updateEducation(updatedEducation);
   };
 
   const handleDeleteEducation = (index: number) => {
-    const updatedEducation = localEducation.filter((_, i) => i !== index);
-    setLocalEducation(updatedEducation);
+    const updatedEducation = education.filter((_, i) => i !== index);
+    updateEducation(updatedEducation);
+  };
+
+  const handleFieldChange = (index: number, field: string, value: string) => {
+    const updatedEducation = [...education];
+    updatedEducation[index] = {
+      ...updatedEducation[index],
+      [field]: value,
+    };
+    updateEducation(updatedEducation);
   };
 
   return (
@@ -47,7 +60,7 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
       <Typography variant="h5" sx={{ mb: 2 }}>
         Education
       </Typography>
-      {localEducation?.map((edu, index) => {
+      {education?.map((edu, index) => {
         const educationId = `education-${index}`;
         const isExpanded = expandedEducation === educationId;
 
@@ -98,9 +111,16 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
                       fullWidth
                       label="Institution"
                       value={edu.school || ""}
+                      onChange={(e) => handleFieldChange(index, "school", e.target.value)}
                       sx={{ mb: 1 }}
                     />
-                    <TextField fullWidth label="Degree" value={edu.degree || ""} sx={{ mb: 1 }} />
+                    <TextField
+                      fullWidth
+                      label="Degree"
+                      value={edu.degree || ""}
+                      onChange={(e) => handleFieldChange(index, "degree", e.target.value)}
+                      sx={{ mb: 1 }}
+                    />
                   </Box>
                   <DatePicker
                     label="Date Awarded"

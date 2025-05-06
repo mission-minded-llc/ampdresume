@@ -1,37 +1,42 @@
 import { Box, TextField, Typography } from "@mui/material";
 
+import { useExtractedData } from "./ExtractedDataContext";
+
 interface ExtractedUserProps {
   user: {
     name: string;
     email: string;
     location: string;
     title: string;
-  } | null;
+  };
 }
 
 export const ExtractedUser = ({ user }: ExtractedUserProps) => {
+  const { updateUser } = useExtractedData();
+
+  const handleChange =
+    (field: keyof typeof user) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      updateUser({
+        ...user,
+        [field]: event.target.value,
+      });
+    };
+
   return (
     <Box>
-      <Typography variant="h5" sx={{ mb: 2 }}>
-        Basic Info
+      <Typography variant="h6" sx={{ mb: 2 }}>
+        Personal Information
       </Typography>
-      <Box
-        sx={{
-          p: 2,
-          border: 1,
-          borderColor: "divider",
-          borderRadius: 1,
-          bgcolor: "background.paper",
-          "&:hover": {
-            bgcolor: "action.hover",
-          },
-          display: "flex",
-          flexDirection: "row",
-          gap: 2,
-        }}
-      >
-        <TextField fullWidth label="Display Email" value={user?.email || ""} sx={{ mb: 2 }} />
-        <TextField fullWidth label="Location" value={user?.location || ""} sx={{ mb: 2 }} />
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <TextField label="Name" value={user.name} onChange={handleChange("name")} fullWidth />
+        <TextField label="Email" value={user.email} onChange={handleChange("email")} fullWidth />
+        <TextField
+          label="Location"
+          value={user.location}
+          onChange={handleChange("location")}
+          fullWidth
+        />
+        <TextField label="Title" value={user.title} onChange={handleChange("title")} fullWidth />
       </Box>
     </Box>
   );
