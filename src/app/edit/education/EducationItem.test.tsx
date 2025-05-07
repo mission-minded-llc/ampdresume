@@ -52,17 +52,18 @@ describe("EducationItem", () => {
     (useQueryClient as jest.Mock).mockReturnValue(mockQueryClient);
   });
 
-  it("renders correctly", () => {
+  it("renders correctly", async () => {
     const { getByText } = render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <EducationItem education={mockEducation} expanded={false} setExpanded={mockSetExpanded} />
       </LocalizationProvider>,
     );
 
-    waitFor(() => {
-      expect(getByText("Test University")).toBeInTheDocument();
-      expect(getByText("(Bachelor of Science)")).toBeInTheDocument();
-      expect(getByText("January 2022")).toBeInTheDocument();
+    await waitFor(() => {
+      const schoolText = getByText((content, element) => {
+        return element?.textContent === "Test University - (Bachelor of Science) January 2022";
+      });
+      expect(schoolText).toBeInTheDocument();
     });
   });
 
