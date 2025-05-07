@@ -32,11 +32,10 @@ describe("Primary Nav Menu", () => {
   it("should show protected links when logged in", () => {
     cy.loginWithMagicLink();
 
-    cy.get("[data-test-id=NavPrimaryMenuIcon]").click();
+    // Wait for the menu icon to be visible and click it
+    cy.get("[data-test-id=NavPrimaryMenuIcon]").should("be.visible").click();
 
-    // TODO: Confirm this after the user fills in profile info.
-    // cy.get("[data-test-id=NavPrimaryMenuViewResume]").should("be.visible");
-
+    // Wait for the menu to be visible before checking for protected links
     cy.get("[data-test-id=NavPrimaryMenuEditResume]").should("be.visible");
     cy.get("[data-test-id=NavPrimaryMenuLogout]").should("be.visible");
   });
