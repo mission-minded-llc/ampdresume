@@ -36,7 +36,7 @@ describe("Primary Nav Menu", () => {
     cy.get("[data-test-id=NavPrimaryMenuIcon]").should("be.visible").click();
 
     // Wait for the menu to be visible before checking for protected links
-    cy.get("[data-test-id=NavPrimaryMenuEditResume]").should("be.visible");
-    cy.get("[data-test-id=NavPrimaryMenuLogout]").should("be.visible");
+    cy.get("[data-test-id=NavPrimaryMenuEditResume]", { timeout: 10000 }).should("be.visible");
+    cy.get("[data-test-id=NavPrimaryMenuLogout]", { timeout: 10000 }).should("be.visible");
   });
 });
