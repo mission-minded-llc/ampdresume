@@ -53,17 +53,17 @@ describe("EducationItem", () => {
   });
 
   it("renders correctly", async () => {
-    const { getByText } = render(
+    const { getByRole } = render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <EducationItem education={mockEducation} expanded={false} setExpanded={mockSetExpanded} />
       </LocalizationProvider>,
     );
 
     await waitFor(() => {
-      const schoolText = getByText((content, element) => {
-        return element?.textContent === "Test University - (Bachelor of Science) January 2022";
-      });
-      expect(schoolText).toBeInTheDocument();
+      const paragraph = getByRole("paragraph");
+      expect(paragraph).toHaveTextContent("Test University");
+      expect(paragraph).toHaveTextContent("Bachelor of Science");
+      expect(paragraph).toHaveTextContent("January 2022");
     });
   });
 
