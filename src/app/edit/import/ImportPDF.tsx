@@ -14,7 +14,7 @@ import { getParsedResumeAi } from "@/graphql/getParsedResumeAi";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
-let pdfjsLib: any = null;
+let pdfjsLib: typeof import("pdfjs-dist") | null = null;
 
 export const ImportPDF = () => {
   const { data: session, status } = useSession();
@@ -35,8 +35,8 @@ export const ImportPDF = () => {
         pdfjsLib = pdfjs;
         setIsPdfJsReady(true);
       } catch (err) {
-        console.error("Failed to load PDF.js:", err);
         setError("Failed to load PDF processing library");
+        Sentry.captureException(err);
       }
     };
     loadPdfJs();
