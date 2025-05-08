@@ -218,7 +218,7 @@ const AccountForm = ({
           </InputSection>
           <InputSection>
             <FieldTitle>
-              <LinkIcon /> URL Slug
+              <LinkIcon /> URL Name
             </FieldTitle>
             <FieldDescription>
               Used in your URL. Example:{" "}
@@ -239,7 +239,7 @@ const AccountForm = ({
               <strong>not</strong> be created, so please update your shared links.
             </FieldDescription>
             <TextField
-              label="URL Slug"
+              label="URL Name"
               name="slug"
               value={formData.slug}
               onChange={handleChange}

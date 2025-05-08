@@ -1,12 +1,13 @@
-import React from "react";
 import {
+  Button,
   Dialog,
-  DialogTitle,
+  DialogActions,
   DialogContent,
   DialogContentText,
-  DialogActions,
-  Button,
+  DialogTitle,
 } from "@mui/material";
+
+import React from "react";
 
 export const MessageDialog = ({
   open = false,
@@ -35,6 +36,7 @@ export const MessageDialog = ({
       aria-describedby="alert-dialog-description"
       maxWidth="xs"
       fullWidth
+      data-test-id="MessageDialog"
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>

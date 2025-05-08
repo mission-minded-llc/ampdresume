@@ -32,11 +32,16 @@ describe("Primary Nav Menu", () => {
   it("should show protected links when logged in", () => {
     cy.loginWithMagicLink();
 
+    // If there is a modal dialog box with the title "Don't forget to set your URL!", click the "OK" button
+    // to close it first.
+    cy.get("[data-test-id=MessageDialog]").should("be.visible");
+    cy.get("[data-test-id=MessageDialog]").contains("OK").click();
+
     // Wait for the menu icon to be visible and click it
     cy.get("[data-test-id=NavPrimaryMenuIcon]").should("be.visible").click();
 
     // Wait for the menu to be visible before checking for protected links
-    cy.get("[data-test-id=NavPrimaryMenuEditResume]", { timeout: 10000 }).should("be.visible");
-    cy.get("[data-test-id=NavPrimaryMenuLogout]", { timeout: 10000 }).should("be.visible");
+    cy.get("[data-test-id=NavPrimaryMenuEditResume]").should("be.visible");
+    cy.get("[data-test-id=NavPrimaryMenuLogout]").should("be.visible");
   });
 });
