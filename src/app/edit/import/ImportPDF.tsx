@@ -110,6 +110,8 @@ export const ImportPDF = () => {
     const file = event.target.files[0];
     if (file && file.type === "application/pdf") {
       extractTextFromPDF(file as PDFFile);
+    } else {
+      setError("Please upload a valid PDF file.");
     }
   };
 
