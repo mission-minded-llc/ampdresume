@@ -18,10 +18,7 @@ describe("Profile Section", () => {
   it("should populate profile data and save", () => {
     cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/profile`);
 
-    // If there is a modal dialog box with the title "Don't forget to set your URL!", click the "OK" button
-    // to close it first.
-    cy.get("[data-test-id=MessageDialog]").should("be.visible");
-    cy.get("[data-test-id=MessageDialog]").contains("OK").click();
+    cy.closeMessageDialog({ required: true });
 
     const fields = [
       { name: "name", value: " Test User" },

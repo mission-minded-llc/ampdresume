@@ -1,9 +1,9 @@
 "use client";
 
 import * as Sentry from "@sentry/react";
-import * as pdfjsLib from "pdfjs-dist";
 
 import { FileUploadEvent, PDFFile, TextItem } from "./types";
+import { useEffect, useState } from "react";
 
 import { ExtractedInformation } from "./ExtractedInformation";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
@@ -13,12 +13,8 @@ import { UploadPDF } from "./UploadPDF";
 import { getParsedResumeAi } from "@/graphql/getParsedResumeAi";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url,
-).toString();
+let pdfjsLib: any = null;
 
 export const ImportPDF = () => {
   const { data: session, status } = useSession();
@@ -27,6 +23,24 @@ export const ImportPDF = () => {
 
   const [extractedText, setExtractedText] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [isPdfJsReady, setIsPdfJsReady] = useState(false);
+
+  useEffect(() => {
+    const loadPdfJs = async () => {
+      if (typeof window === "undefined") return;
+
+      try {
+        const pdfjs = await import("pdfjs-dist");
+        pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+        pdfjsLib = pdfjs;
+        setIsPdfJsReady(true);
+      } catch (err) {
+        console.error("Failed to load PDF.js:", err);
+        setError("Failed to load PDF processing library");
+      }
+    };
+    loadPdfJs();
+  }, []);
 
   const shouldFetchResume = isAuthenticatedUser && !!extractedText && extractedText.length > 200;
 
@@ -45,18 +59,23 @@ export const ImportPDF = () => {
   });
 
   const extractTextFromPDF = async (file: PDFFile): Promise<void> => {
+    if (!isPdfJsReady || !pdfjsLib) {
+      setError("PDF processing library not loaded yet. Please try again.");
+      return;
+    }
+
     try {
       const arrayBuffer: ArrayBuffer = await file.arrayBuffer();
 
       // Load the PDF document
       const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
-      const pdf: pdfjsLib.PDFDocumentProxy = await loadingTask.promise;
+      const pdf = await loadingTask.promise;
 
       let fullText = "";
 
       // Iterate through each page
       for (let i = 1; i <= pdf.numPages; i++) {
-        const page: pdfjsLib.PDFPageProxy = await pdf.getPage(i);
+        const page = await pdf.getPage(i);
         const textContent = await page.getTextContent();
 
         let pageText = "";

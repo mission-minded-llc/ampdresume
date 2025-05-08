@@ -29,3 +29,18 @@ Cypress.Commands.add("setNextAuthCookies", () => {
   cy.setCookie("next-auth.session-token", Cypress.env("sessionToken") || "");
   cy.setCookie("next-auth.csrf-token", Cypress.env("csrfToken") || "");
 });
+
+Cypress.Commands.add("closeMessageDialog", ({ required = false } = {}) => {
+  if (required) {
+    cy.get("[data-test-id=MessageDialog]").should("be.visible");
+    cy.get("[data-test-id=MessageDialog]").contains("OK").click();
+  } else {
+    // Close any message dialog that may appear
+    cy.get("[data-test-id=MessageDialog]").then(($dialog) => {
+      if ($dialog.length) {
+        cy.wrap($dialog).should("be.visible");
+        cy.wrap($dialog).contains("OK").click();
+      }
+    });
+  }
+});
