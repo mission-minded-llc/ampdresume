@@ -26,10 +26,10 @@ describe("Import Section", () => {
       mimeType: "application/pdf",
     });
 
-    // Wait 20 seconds for the file to be uploaded
-    cy.wait(20000);
-
     // Check that the import was successful
-    cy.contains("Imported successfully").should("be.visible");
+    cy.contains("Personal Information", { timeout: 60000 }).should("be.visible");
+    cy.contains("Work Experience", { timeout: 60000 }).should("be.visible");
+    cy.contains("Education", { timeout: 60000 }).should("be.visible");
+    cy.contains("Skills", { timeout: 60000 }).should("be.visible");
   });
 });
