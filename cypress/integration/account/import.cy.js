@@ -16,19 +16,15 @@ describe("Import Section", () => {
   it("should import resume from PDF", () => {
     cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/import`);
 
-    // Wait for the page to load
+    // Wait for the page to load, including PDF.js worker.
     cy.wait(1000);
 
     // Upload a PDF file
-    cy.fixture("test-resume-1.pdf", "binary")
-      .then(Cypress.Blob.binaryStringToBlob)
-      .then((fileContent) => {
-        cy.get('input[type="file"]').selectFile({
-          contents: fileContent,
-          fileName: "test-resume-1.pdf",
-          mimeType: "application/pdf",
-        });
-      });
+    cy.get('input[type="file"]').selectFile({
+      contents: "cypress/fixtures/test-resume-1.pdf",
+      fileName: "test-resume-1.pdf",
+      mimeType: "application/pdf",
+    });
 
     // Wait 20 seconds for the file to be uploaded
     cy.wait(20000);

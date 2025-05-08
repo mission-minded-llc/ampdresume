@@ -23,7 +23,6 @@ export const ImportPDF = () => {
 
   const [extractedText, setExtractedText] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const [isPdfJsReady, setIsPdfJsReady] = useState(false);
 
   useEffect(() => {
     const loadPdfJs = async () => {
@@ -33,7 +32,6 @@ export const ImportPDF = () => {
         const pdfjs = await import("pdfjs-dist");
         pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
         pdfjsLib = pdfjs;
-        setIsPdfJsReady(true);
       } catch (err) {
         setError("Failed to load PDF processing library");
         Sentry.captureException(err);
@@ -59,7 +57,7 @@ export const ImportPDF = () => {
   });
 
   const extractTextFromPDF = async (file: PDFFile): Promise<void> => {
-    if (!isPdfJsReady || !pdfjsLib) {
+    if (!pdfjsLib) {
       setError("PDF processing library not loaded yet. Please try again.");
       return;
     }
