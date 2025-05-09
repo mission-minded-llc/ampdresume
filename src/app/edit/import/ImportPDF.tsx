@@ -18,8 +18,7 @@ let pdfjsLib: typeof import("pdfjs-dist") | null = null;
 
 export const ImportPDF = () => {
   const { data: session, status } = useSession();
-  const isAuthenticatedUser =
-    status === "authenticated" && !!session?.user.id && !!session?.user.slug;
+  const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
 
   const [extractedText, setExtractedText] = useState<string>("");
   const [error, setError] = useState<string | null>(null);

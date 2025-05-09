@@ -1,0 +1,330 @@
+{
+  "data": {
+    "parsedResumeAi": {
+      "user": {
+        "name": "Michael R. Dinerstein",
+        "displayEmail": "md@missionmike.dev",
+        "location": "Oregon, U.S.A.",
+        "title": "Software Engineer, Full Stack Web Applications & Data"
+      },
+      "skills": [
+        {
+          "id": "cm667w3ik00fdq8n1vp4tvphz",
+          "name": "Apache Airflow",
+          "icon": "logos:airflow-icon"
+        },
+        {
+          "id": "cm667w54f00frq8n1fpntf0b7",
+          "name": "Apache JMeter",
+          "icon": "simple-icons:apachejmeter"
+        },
+        {
+          "id": "cm667xxdr00vaq8n11btpp352",
+          "name": "Bioreactor Design",
+          "icon": ""
+        },
+        {
+          "id": "cm667y5nv00xaq8n1wcil4uui",
+          "name": "Bootstrap",
+          "icon": ""
+        },
+        {
+          "id": "cm6681z2o01uhq8n1k0kot5qo",
+          "name": "Docker",
+          "icon": ""
+        },
+        {
+          "id": "cm6684b9b02f0q8n1e0dfgj13",
+          "name": "Flask",
+          "icon": "mdi:flask"
+        },
+        {
+          "id": "cm6685cqf02o5q8n1vyrvkxpq",
+          "name": "Google Analytics",
+          "icon": "logos:google-analytics"
+        },
+        {
+          "id": "cm6685f5y02oqq8n1l4gsjdyu",
+          "name": "Google Tag Manager",
+          "icon": ""
+        },
+        {
+          "id": "cm6685ic402piq8n1j3xodr6v",
+          "name": "GraphQL",
+          "icon": ""
+        },
+        {
+          "id": "cm6686lhe02z1q8n1fxw5tb87",
+          "name": "IBM Terraform",
+          "icon": ""
+        },
+        {
+          "id": "cm6687wto03afq8n1r577zy89",
+          "name": "JavaScript",
+          "icon": "logos:javascript"
+        },
+        {
+          "id": "cm66881k503bkq8n1xwjldtfd",
+          "name": "jQuery",
+          "icon": "devicon:jquery"
+        },
+        {
+          "id": "cm66884jf03caq8n15ehmxvm4",
+          "name": "Kali Linux",
+          "icon": ""
+        },
+        {
+          "id": "cm6688dzj03ekq8n1sszbthoy",
+          "name": "Kubernetes",
+          "icon": "devicon:kubernetes"
+        },
+        {
+          "id": "cm6688xv703jdq8n1iy33olzm",
+          "name": "Linux",
+          "icon": ""
+        },
+        {
+          "id": "cm6688xzc03jeq8n1bjbbzvyj",
+          "name": "Linux Virtual Server",
+          "icon": ""
+        },
+        {
+          "id": "cm6689e0y03naq8n1353td21l",
+          "name": "MailChimp",
+          "icon": ""
+        },
+        {
+          "id": "cm6689m7503p9q8n1o6ppfpaz",
+          "name": "MariaDB",
+          "icon": ""
+        },
+        {
+          "id": "cm668b7ge0434q8n1x83rswbn",
+          "name": "MongoDB",
+          "icon": "skill-icons:mongodb"
+        },
+        {
+          "id": "cm668bkqu046cq8n1qt6z80w0",
+          "name": "MySQL",
+          "icon": "logos:mysql-icon"
+        },
+        {
+          "id": "cm668c3w304azq8n1v9xze4bi",
+          "name": "Node.js",
+          "icon": "akar-icons:node-fill"
+        },
+        {
+          "id": "cm668e6mc04t1q8n12dwno2rt",
+          "name": "PostgreSQL",
+          "icon": "devicon:postgresql"
+        },
+        {
+          "id": "cm668eb1q04u4q8n1guymarqa",
+          "name": "Preactor APS",
+          "icon": ""
+        },
+        {
+          "id": "cm668eb5s04u5q8n1h4xrr2rq",
+          "name": "Preactor Finite Capacity Scheduling",
+          "icon": ""
+        },
+        {
+          "id": "cm668eo1604xaq8n1edosy4hn",
+          "name": "Propeller Multimedia React2",
+          "icon": ""
+        },
+        {
+          "id": "cm668eyaj04zsq8n1ncmo4s05",
+          "name": "Python",
+          "icon": "devicon:python"
+        },
+        {
+          "id": "cm668eyem04ztq8n1j2so4a25",
+          "name": "Python Experimental Economics Toolkit PEET",
+          "icon": ""
+        },
+        {
+          "id": "cm668eyio04zuq8n1txv8ph9r",
+          "name": "Python Tools for Visual Studio (PTVS)",
+          "icon": ""
+        },
+        {
+          "id": "cm668feg1053qq8n19cooz2k5",
+          "name": "React",
+          "icon": "devicon:react"
+        },
+        {
+          "id": "cm668fek4053rq8n1gvvqcuxj",
+          "name": "React Native",
+          "icon": "devicon:react"
+        }
+      ],
+      "companies": [
+        {
+          "name": "OpenResume.org",
+          "location": "Newport, OR",
+          "startDate": "2024-09",
+          "endDate": null,
+          "positions": [
+            {
+              "title": "Founder, Software Engineer",
+              "startDate": "2024-09",
+              "endDate": null,
+              "projects": [
+                {
+                  "name": "Created open-source template repository for web and print resume themes."
+                },
+                {
+                  "name": "Integrated AI assistance to optimize resumes for applications."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "The Real Deal",
+          "location": "New York, NY (Remote)",
+          "startDate": "2022-02",
+          "endDate": "2024-08",
+          "positions": [
+            {
+              "title": "Senior Full Stack Developer",
+              "startDate": "2022-02",
+              "endDate": "2024-08",
+              "projects": [
+                {
+                  "name": "Reduced cloud costs by 10% by solving complex caching issues with images, Next.js, CloudFront and Kubernetes."
+                },
+                {
+                  "name": "Increased confidence in deployments by instilling continuous integration workflows for repositories."
+                },
+                {
+                  "name": "Enhanced quality and reliability by improving team development practices and code review processes."
+                },
+                {
+                  "name": "Reduced developer onboarding time from hours to minutes with VS Code Dev Containers and improved docs."
+                },
+                {
+                  "name": "Streamlined debugging and troubleshooting processes by enabling visibility in all layers of the stack with Sentry."
+                },
+                {
+                  "name": "Improved stability and performance of the company website with 3+ million monthly visitors."
+                },
+                {
+                  "name": "Increased address data accuracy to 90% by engineering a robust geocoding solution."
+                },
+                {
+                  "name": "Fostered cross-team collaboration by developing an internal API to share secure access to data stores."
+                },
+                {
+                  "name": "Reduced manual testing steps by containerizing automated test suites for use within GitHub Actions."
+                },
+                {
+                  "name": "Pinpointed performance bottlenecks by configuring containerized JMeter test suites with reporting."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RRFC",
+          "location": "Los Angeles, CA (Remote)",
+          "startDate": "2014-01",
+          "endDate": "2022-02",
+          "positions": [
+            {
+              "title": "Lead Developer / Designer",
+              "startDate": "2018-07",
+              "endDate": "2022-02",
+              "projects": [
+                {
+                  "name": "Enhanced productivity for all departments by upgrading Salesforce in partnership with vendors."
+                },
+                {
+                  "name": "Modernized accounting workflows between learning management systems, Salesforce and QuickBooks."
+                },
+                {
+                  "name": "Improved website performance and fixed technical SEO issues across multiple websites."
+                },
+                {
+                  "name": "Streamlined student payments and reduced friction via customized payment portal integrated with Salesforce."
+                },
+                {
+                  "name": "Prioritized deliverables and managed project timelines by overseeing contract work from vendors."
+                },
+                {
+                  "name": "Ensured knowledge redundancy by training up and mentoring other developers and designers."
+                },
+                {
+                  "name": "Increased growth and rate of deployments for new student curriculum."
+                },
+                {
+                  "name": "Optimized funnels in Salesforce via geo-targeted tier systems and automated workflows."
+                }
+              ]
+            },
+            {
+              "title": "Web Developer / Designer",
+              "startDate": "2016-01",
+              "endDate": "2018-07",
+              "projects": [
+                {
+                  "name": "Innovated custom learning management systems to tailor the experience to a unique model of education."
+                },
+                {
+                  "name": "Optimized websites with shared content via proprietary internal API and robust caching mechanism."
+                },
+                {
+                  "name": "Organized development processes by utilizing version control in GitHub."
+                }
+              ]
+            },
+            {
+              "title": "Junior Graphic Designer",
+              "startDate": "2014-01",
+              "endDate": "2016-01",
+              "projects": [
+                {
+                  "name": "Digitized print curriculum and modernized the student experience with interactive eBook programming."
+                },
+                {
+                  "name": "Improved student engagement with custom interactive web exercises (canvas, web audio)."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Self-Employed / Freelance",
+          "location": "Los Angeles, CA (Remote)",
+          "startDate": null,
+          "endDate": null,
+          "positions": [
+            {
+              "title": "",
+              "startDate": null,
+              "endDate": null,
+              "projects": [
+                {
+                  "name": "Bridged the gap between business needs and tech solutions for clients in a variety of verticals including motorsports, legal, beauty, real estate, entertainment, places of worship, television, photography, film, audio engineering, construction, ecommerce, and education."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "education": [
+        {
+          "school": "Santa Monica College",
+          "degree": "Database Applications Developer, Department Certificate",
+          "dateAwarded": null
+        },
+        {
+          "school": "Santa Monica College",
+          "degree": "Web Programmer, Department Certificate",
+          "dateAwarded": null
+        }
+      ]
+    }
+  }
+}

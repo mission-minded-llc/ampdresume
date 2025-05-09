@@ -1,6 +1,6 @@
-import { Box, TextField } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
 
-import { DeleteButton } from "./DeleteButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface ProjectItemProps {
   value: string;
@@ -25,7 +25,9 @@ export const ProjectItem = ({ value, onChange, onDelete, sx }: ProjectItemProps)
           },
         }}
       />
-      <DeleteButton onClick={onDelete} size="small" sx={{ mt: 1 }} />
+      <IconButton color="error" onClick={onDelete} size="small" sx={{ mt: 1 }}>
+        <DeleteIcon />
+      </IconButton>
     </Box>
   );
 };
