@@ -2,6 +2,7 @@ import { getCompanies } from "./queries/getCompanies";
 import { getCompaniesAi } from "./queries/getCompaniesAi";
 import { getEducation } from "./queries/getEducation";
 import { getExperience } from "./queries/getExperience";
+import { getParsedResumeAi } from "./queries/getParsedResumeAi";
 import { getPositions } from "./queries/getPositions";
 import { getProjects } from "./queries/getProjects";
 import { getResume } from "./queries/getResume";
@@ -40,4 +41,5 @@ export const queryResolvers = {
 
   // AI queries.
   companiesAi: getCompaniesAi,
+  parsedResumeAi: getParsedResumeAi,
 };

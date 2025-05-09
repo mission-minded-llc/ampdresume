@@ -1,0 +1,330 @@
+{
+  "data": {
+    "parsedResumeAi": {
+      "user": {
+        "name": "John Smith",
+        "displayEmail": "john.smith@example.com",
+        "location": "West Coast, USA",
+        "title": "Senior Software Engineer"
+      },
+      "skills": [
+        {
+          "id": "cm667w3ik00fdq8n1vp4tvphz",
+          "name": "Apache Airflow",
+          "icon": "logos:airflow-icon"
+        },
+        {
+          "id": "cm667w54f00frq8n1fpntf0b7",
+          "name": "Apache JMeter",
+          "icon": "simple-icons:apachejmeter"
+        },
+        {
+          "id": "cm667xxdr00vaq8n11btpp352",
+          "name": "Bioreactor Design",
+          "icon": ""
+        },
+        {
+          "id": "cm667y5nv00xaq8n1wcil4uui",
+          "name": "Bootstrap",
+          "icon": ""
+        },
+        {
+          "id": "cm6681z2o01uhq8n1k0kot5qo",
+          "name": "Docker",
+          "icon": ""
+        },
+        {
+          "id": "cm6684b9b02f0q8n1e0dfgj13",
+          "name": "Flask",
+          "icon": "mdi:flask"
+        },
+        {
+          "id": "cm6685cqf02o5q8n1vyrvkxpq",
+          "name": "Google Analytics",
+          "icon": "logos:google-analytics"
+        },
+        {
+          "id": "cm6685f5y02oqq8n1l4gsjdyu",
+          "name": "Google Tag Manager",
+          "icon": ""
+        },
+        {
+          "id": "cm6685ic402piq8n1j3xodr6v",
+          "name": "GraphQL",
+          "icon": ""
+        },
+        {
+          "id": "cm6686lhe02z1q8n1fxw5tb87",
+          "name": "IBM Terraform",
+          "icon": ""
+        },
+        {
+          "id": "cm6687wto03afq8n1r577zy89",
+          "name": "JavaScript",
+          "icon": "logos:javascript"
+        },
+        {
+          "id": "cm66881k503bkq8n1xwjldtfd",
+          "name": "jQuery",
+          "icon": "devicon:jquery"
+        },
+        {
+          "id": "cm66884jf03caq8n15ehmxvm4",
+          "name": "Kali Linux",
+          "icon": ""
+        },
+        {
+          "id": "cm6688dzj03ekq8n1sszbthoy",
+          "name": "Kubernetes",
+          "icon": "devicon:kubernetes"
+        },
+        {
+          "id": "cm6688xv703jdq8n1iy33olzm",
+          "name": "Linux",
+          "icon": ""
+        },
+        {
+          "id": "cm6688xzc03jeq8n1bjbbzvyj",
+          "name": "Linux Virtual Server",
+          "icon": ""
+        },
+        {
+          "id": "cm6689e0y03naq8n1353td21l",
+          "name": "MailChimp",
+          "icon": ""
+        },
+        {
+          "id": "cm6689m7503p9q8n1o6ppfpaz",
+          "name": "MariaDB",
+          "icon": ""
+        },
+        {
+          "id": "cm668b7ge0434q8n1x83rswbn",
+          "name": "MongoDB",
+          "icon": "skill-icons:mongodb"
+        },
+        {
+          "id": "cm668bkqu046cq8n1qt6z80w0",
+          "name": "MySQL",
+          "icon": "logos:mysql-icon"
+        },
+        {
+          "id": "cm668c3w304azq8n1v9xze4bi",
+          "name": "Node.js",
+          "icon": "akar-icons:node-fill"
+        },
+        {
+          "id": "cm668e6mc04t1q8n12dwno2rt",
+          "name": "PostgreSQL",
+          "icon": "devicon:postgresql"
+        },
+        {
+          "id": "cm668eb1q04u4q8n1guymarqa",
+          "name": "Preactor APS",
+          "icon": ""
+        },
+        {
+          "id": "cm668eb5s04u5q8n1h4xrr2rq",
+          "name": "Preactor Finite Capacity Scheduling",
+          "icon": ""
+        },
+        {
+          "id": "cm668eo1604xaq8n1edosy4hn",
+          "name": "Propeller Multimedia React2",
+          "icon": ""
+        },
+        {
+          "id": "cm668eyaj04zsq8n1ncmo4s05",
+          "name": "Python",
+          "icon": "devicon:python"
+        },
+        {
+          "id": "cm668eyem04ztq8n1j2so4a25",
+          "name": "Python Experimental Economics Toolkit PEET",
+          "icon": ""
+        },
+        {
+          "id": "cm668eyio04zuq8n1txv8ph9r",
+          "name": "Python Tools for Visual Studio (PTVS)",
+          "icon": ""
+        },
+        {
+          "id": "cm668feg1053qq8n19cooz2k5",
+          "name": "React",
+          "icon": "devicon:react"
+        },
+        {
+          "id": "cm668fek4053rq8n1gvvqcuxj",
+          "name": "React Native",
+          "icon": "devicon:react"
+        }
+      ],
+      "companies": [
+        {
+          "name": "Resume Software Company",
+          "location": "West Coast, USA",
+          "startDate": "2024-01",
+          "endDate": null,
+          "positions": [
+            {
+              "title": "Software Engineer",
+              "startDate": "2024-01",
+              "endDate": null,
+              "projects": [
+                {
+                  "name": "Built template system for resume creation platform"
+                },
+                {
+                  "name": "Developed AI-powered resume optimization features"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TechNews Daily",
+          "location": "Chicago, IL (Remote)",
+          "startDate": "2022-02",
+          "endDate": "2024-08",
+          "positions": [
+            {
+              "title": "Senior Full Stack Developer",
+              "startDate": "2022-02",
+              "endDate": "2024-08",
+              "projects": [
+                {
+                  "name": "Increased developer productivity by 50% through implementation of VS Code Dev Containers and documentation improvements"
+                },
+                {
+                  "name": "Engineered robust data validation system achieving 95% accuracy for user-submitted information"
+                },
+                {
+                  "name": "Optimized cloud infrastructure resulting in 15% cost reduction across AWS services"
+                },
+                {
+                  "name": "Established CI/CD pipelines reducing deployment time from hours to minutes"
+                },
+                {
+                  "name": "Enhanced system observability by implementing comprehensive logging and monitoring with Datadog"
+                },
+                {
+                  "name": "Scaled main platform to handle 5M+ monthly active users while maintaining sub-second response times"
+                },
+                {
+                  "name": "Developed internal API gateway enabling secure cross-team data access"
+                },
+                {
+                  "name": "Automated test coverage reaching 80% through containerized test suites"
+                },
+                {
+                  "name": "Led architecture redesign reducing page load times by 40%"
+                },
+                {
+                  "name": "Mentored junior developers and established code review best practices"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "EdTech Solutions",
+          "location": "Boston, MA (Remote)",
+          "startDate": "2014-01",
+          "endDate": "2022-02",
+          "positions": [
+            {
+              "title": "Lead Developer / Designer",
+              "startDate": "2018-07",
+              "endDate": "2022-02",
+              "projects": [
+                {
+                  "name": "Integrated CRM system with third-party vendors increasing operational efficiency by 35%"
+                },
+                {
+                  "name": "Built custom payment processing system handling $2M+ in annual transactions"
+                },
+                {
+                  "name": "Improved site performance metrics achieving 95+ PageSpeed scores"
+                },
+                {
+                  "name": "Developed automated workflow system reducing manual tasks by 60%"
+                },
+                {
+                  "name": "Managed vendor relationships and coordinated deliverables across multiple projects"
+                },
+                {
+                  "name": "Created comprehensive training program for new technical team members"
+                },
+                {
+                  "name": "Implemented new deployment pipeline reducing release cycles by 50%"
+                },
+                {
+                  "name": "Designed data-driven marketing funnels increasing conversion rates by 25%"
+                }
+              ]
+            },
+            {
+              "title": "Web Developer / Designer",
+              "startDate": "2016-01",
+              "endDate": "2018-07",
+              "projects": [
+                {
+                  "name": "Built custom LMS platform serving 10,000+ active students"
+                },
+                {
+                  "name": "Developed content distribution API with advanced caching layer"
+                },
+                {
+                  "name": "Implemented version control and deployment strategies"
+                }
+              ]
+            },
+            {
+              "title": "Junior Designer",
+              "startDate": "2014-01",
+              "endDate": "2016-01",
+              "projects": [
+                {
+                  "name": "Created interactive digital learning materials increasing student engagement by 40%"
+                },
+                {
+                  "name": "Developed multimedia web applications for enhanced learning experience"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Independent Consultant",
+          "location": "Seattle, WA (Remote)",
+          "startDate": "2011-01",
+          "endDate": null,
+          "positions": [
+            {
+              "title": "",
+              "startDate": null,
+              "endDate": null,
+              "projects": [
+                {
+                  "name": "Delivered custom software solutions across diverse industries including healthcare, finance, retail, education, and media, focusing on scalable architecture and optimal user experience"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "education": [
+        {
+          "school": "Santa Monica College",
+          "degree": "Database Applications Developer, Department Certificate",
+          "dateAwarded": null
+        },
+        {
+          "school": "Santa Monica College",
+          "degree": "Web Programmer, Department Certificate",
+          "dateAwarded": null
+        }
+      ]
+    }
+  }
+}
