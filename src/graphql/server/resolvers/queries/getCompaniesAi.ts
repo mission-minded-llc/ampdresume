@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { isFeatureEnabledForUser } from "@/lib/flagsmith";
+import { isFeatureEnabledForUser } from "@/lib/featureFlags";
 import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "@/graphql/server/util";
 

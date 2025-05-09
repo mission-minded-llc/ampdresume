@@ -1,7 +1,7 @@
 import { AiAssist } from "./AiAssist";
 import { EditPageLayout } from "../components/EditPageLayout";
 import { MuiLink } from "@/components/MuiLink";
-import { isFeatureEnabledForUser } from "@/lib/flagsmith";
+import { isFeatureEnabledForUser } from "@/lib/featureFlags";
 import { titleSuffix } from "@/constants";
 
 export function generateMetadata() {
