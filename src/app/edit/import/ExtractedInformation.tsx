@@ -29,7 +29,7 @@ const ExtractedInformationContent = () => {
         userId: session.user.id,
         user: {
           name: data.user.name,
-          email: data.user.email,
+          displayEmail: data.user.displayEmail,
           location: data.user.location,
           title: data.user.title,
         },
@@ -51,7 +51,7 @@ const ExtractedInformationContent = () => {
         mb: 4,
       }}
     >
-      {saveMutation.isPending && <LoadingOverlay message="Saving Resume..." />}
+      <LoadingOverlay open={saveMutation.isPending} message="Saving Resume..." />
       {!data && <Typography variant="h6">Extracted Information</Typography>}
       <Box
         sx={(theme) => ({

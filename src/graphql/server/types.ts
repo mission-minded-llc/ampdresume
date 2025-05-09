@@ -112,7 +112,7 @@ export const types = gql`
 
   input UserInput {
     name: String!
-    email: String!
+    displayEmail: String
     location: String
     title: String
   }

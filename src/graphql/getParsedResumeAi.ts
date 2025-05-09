@@ -9,7 +9,7 @@ import { gql } from "@apollo/client";
 export type ParsedResumeAi = {
   user: {
     name: string;
-    email: string;
+    displayEmail: string;
     location: string;
     title: string;
   };
@@ -33,7 +33,7 @@ export const getParsedResumeAi = async (
           parsedResumeAi(userId: $userId, text: $text) {
             user {
               name
-              email
+              displayEmail
               location
               title
             }

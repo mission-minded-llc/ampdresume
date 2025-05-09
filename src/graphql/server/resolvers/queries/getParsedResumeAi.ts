@@ -39,7 +39,7 @@ export const getParsedResumeAi = async (
             {
               user: {
                 name: string,
-                email: string,
+                displayEmail: string,
                 location: string,
                 title: string,
               },

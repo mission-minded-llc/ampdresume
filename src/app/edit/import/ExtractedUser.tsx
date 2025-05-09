@@ -6,7 +6,7 @@ import { useExtractedData } from "./ExtractedDataContext";
 interface ExtractedUserProps {
   user: {
     name: string;
-    email: string;
+    displayEmail: string;
     location: string;
     title: string;
   };
@@ -73,7 +73,11 @@ export const ExtractedUser = ({ user }: ExtractedUserProps) => {
         }}
       >
         <UserField label="Name" value={user.name} onChange={handleFieldChange("name")} />
-        <UserField label="Email" value={user.email} onChange={handleFieldChange("email")} />
+        <UserField
+          label="Display Email"
+          value={user.displayEmail}
+          onChange={handleFieldChange("displayEmail")}
+        />
         <UserField
           label="Location"
           value={user.location}

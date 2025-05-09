@@ -29,7 +29,7 @@ export interface ParsedResumeData {
   userId?: string;
   user: {
     name: string;
-    email: string;
+    displayEmail: string;
     location: string;
     title: string;
   };
