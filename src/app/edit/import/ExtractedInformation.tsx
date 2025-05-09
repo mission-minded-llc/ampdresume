@@ -11,6 +11,7 @@ import { UpdateWithConfirmation } from "../components/UpdateWithConfirmation";
 import { saveExtractedResumeData } from "@/graphql/saveExtractedResumeData";
 import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 interface ExtractedInformationProps {
   data: ParsedResumeData | null;
@@ -20,11 +21,39 @@ interface ExtractedInformationProps {
 const ExtractedInformationContent = () => {
   const { data: session } = useSession();
   const { data, error } = useExtractedData();
+  const [validationError, setValidationError] = useState<string | null>(null);
+
+  const validateRequiredFields = () => {
+    if (!data) return null;
+    // Validate education.dateAwarded
+    for (const edu of data.education) {
+      if (!edu.dateAwarded) {
+        return "All education entries must have a Date Awarded.";
+      }
+    }
+    // Validate companies and positions startDate
+    for (const company of data.companies) {
+      if (!company.startDate) {
+        return `Company '${company.name || "(Unnamed)"}' is missing a Start Date.`;
+      }
+      for (const position of company.positions) {
+        if (!position.startDate) {
+          return `Position '${position.title || "(Untitled)"}' at '${company.name || "(Unnamed)"}' is missing a Start Date.`;
+        }
+      }
+    }
+    return null;
+  };
 
   const saveMutation = useMutation({
     mutationFn: async () => {
       if (!data || !session?.user.id) return;
-
+      const validationMsg = validateRequiredFields();
+      if (validationMsg) {
+        setValidationError(validationMsg);
+        throw new Error(validationMsg);
+      }
+      setValidationError(null);
       await saveExtractedResumeData({
         userId: session.user.id,
         user: {
@@ -37,7 +66,6 @@ const ExtractedInformationContent = () => {
         companies: data.companies,
         education: data.education,
       });
-
       window.location.href = "/edit/experience";
     },
   });
@@ -72,13 +100,27 @@ const ExtractedInformationContent = () => {
             <ExtractedWorkExperience companies={data.companies} />
             <ExtractedEducation education={data.education} />
             <ExtractedSkills skills={data.skills} />
-            <UpdateWithConfirmation
-              onConfirmUpdate={() => saveMutation.mutate()}
-              buttonLabel={saveMutation.isPending ? "Saving..." : "Save All"}
-              dialogTitle="Confirm Save"
-              dialogMessage="Are you sure you want to save? This will update your resume with the extracted information."
-              disabled={saveMutation.isPending}
-            />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              {validationError && (
+                <Typography color="error" sx={{ mb: 2 }}>
+                  {validationError}
+                </Typography>
+              )}
+              <UpdateWithConfirmation
+                onConfirmUpdate={() => saveMutation.mutate()}
+                buttonLabel={saveMutation.isPending ? "Saving..." : "Save All"}
+                dialogTitle="Confirm Save"
+                dialogMessage="Are you sure you want to save? This will update your resume with the extracted information."
+                disabled={saveMutation.isPending}
+              />
+            </Box>
           </Box>
         ) : (
           <Typography>No data available yet. Please upload a PDF file.</Typography>
