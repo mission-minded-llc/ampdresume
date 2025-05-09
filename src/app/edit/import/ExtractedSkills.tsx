@@ -70,6 +70,7 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
                 color="error"
                 onClick={() => handleDelete(skill.name)}
                 sx={{ p: 0.5 }}
+                data-testid={`trash-icon-${skill.id}`}
               >
                 <DeleteOutlineIcon fontSize="small" />
               </IconButton>

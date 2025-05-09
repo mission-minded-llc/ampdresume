@@ -2,10 +2,10 @@
   "data": {
     "parsedResumeAi": {
       "user": {
-        "name": "Michael R. Dinerstein",
-        "displayEmail": "md@missionmike.dev",
-        "location": "Oregon, U.S.A.",
-        "title": "Software Engineer, Full Stack Web Applications & Data"
+        "name": "John Smith",
+        "displayEmail": "john.smith@example.com",
+        "location": "West Coast, USA",
+        "title": "Senior Software Engineer"
       },
       "skills": [
         {
@@ -161,29 +161,29 @@
       ],
       "companies": [
         {
-          "name": "OpenResume.org",
-          "location": "Newport, OR",
-          "startDate": "2024-09",
+          "name": "Resume Software Company",
+          "location": "West Coast, USA",
+          "startDate": "2024-01",
           "endDate": null,
           "positions": [
             {
-              "title": "Founder, Software Engineer",
-              "startDate": "2024-09",
+              "title": "Software Engineer",
+              "startDate": "2024-01",
               "endDate": null,
               "projects": [
                 {
-                  "name": "Created open-source template repository for web and print resume themes."
+                  "name": "Built template system for resume creation platform"
                 },
                 {
-                  "name": "Integrated AI assistance to optimize resumes for applications."
+                  "name": "Developed AI-powered resume optimization features"
                 }
               ]
             }
           ]
         },
         {
-          "name": "The Real Deal",
-          "location": "New York, NY (Remote)",
+          "name": "TechNews Daily",
+          "location": "Chicago, IL (Remote)",
           "startDate": "2022-02",
           "endDate": "2024-08",
           "positions": [
@@ -193,42 +193,42 @@
               "endDate": "2024-08",
               "projects": [
                 {
-                  "name": "Reduced cloud costs by 10% by solving complex caching issues with images, Next.js, CloudFront and Kubernetes."
+                  "name": "Increased developer productivity by 50% through implementation of VS Code Dev Containers and documentation improvements"
                 },
                 {
-                  "name": "Increased confidence in deployments by instilling continuous integration workflows for repositories."
+                  "name": "Engineered robust data validation system achieving 95% accuracy for user-submitted information"
                 },
                 {
-                  "name": "Enhanced quality and reliability by improving team development practices and code review processes."
+                  "name": "Optimized cloud infrastructure resulting in 15% cost reduction across AWS services"
                 },
                 {
-                  "name": "Reduced developer onboarding time from hours to minutes with VS Code Dev Containers and improved docs."
+                  "name": "Established CI/CD pipelines reducing deployment time from hours to minutes"
                 },
                 {
-                  "name": "Streamlined debugging and troubleshooting processes by enabling visibility in all layers of the stack with Sentry."
+                  "name": "Enhanced system observability by implementing comprehensive logging and monitoring with Datadog"
                 },
                 {
-                  "name": "Improved stability and performance of the company website with 3+ million monthly visitors."
+                  "name": "Scaled main platform to handle 5M+ monthly active users while maintaining sub-second response times"
                 },
                 {
-                  "name": "Increased address data accuracy to 90% by engineering a robust geocoding solution."
+                  "name": "Developed internal API gateway enabling secure cross-team data access"
                 },
                 {
-                  "name": "Fostered cross-team collaboration by developing an internal API to share secure access to data stores."
+                  "name": "Automated test coverage reaching 80% through containerized test suites"
                 },
                 {
-                  "name": "Reduced manual testing steps by containerizing automated test suites for use within GitHub Actions."
+                  "name": "Led architecture redesign reducing page load times by 40%"
                 },
                 {
-                  "name": "Pinpointed performance bottlenecks by configuring containerized JMeter test suites with reporting."
+                  "name": "Mentored junior developers and established code review best practices"
                 }
               ]
             }
           ]
         },
         {
-          "name": "RRFC",
-          "location": "Los Angeles, CA (Remote)",
+          "name": "EdTech Solutions",
+          "location": "Boston, MA (Remote)",
           "startDate": "2014-01",
           "endDate": "2022-02",
           "positions": [
@@ -238,28 +238,28 @@
               "endDate": "2022-02",
               "projects": [
                 {
-                  "name": "Enhanced productivity for all departments by upgrading Salesforce in partnership with vendors."
+                  "name": "Integrated CRM system with third-party vendors increasing operational efficiency by 35%"
                 },
                 {
-                  "name": "Modernized accounting workflows between learning management systems, Salesforce and QuickBooks."
+                  "name": "Built custom payment processing system handling $2M+ in annual transactions"
                 },
                 {
-                  "name": "Improved website performance and fixed technical SEO issues across multiple websites."
+                  "name": "Improved site performance metrics achieving 95+ PageSpeed scores"
                 },
                 {
-                  "name": "Streamlined student payments and reduced friction via customized payment portal integrated with Salesforce."
+                  "name": "Developed automated workflow system reducing manual tasks by 60%"
                 },
                 {
-                  "name": "Prioritized deliverables and managed project timelines by overseeing contract work from vendors."
+                  "name": "Managed vendor relationships and coordinated deliverables across multiple projects"
                 },
                 {
-                  "name": "Ensured knowledge redundancy by training up and mentoring other developers and designers."
+                  "name": "Created comprehensive training program for new technical team members"
                 },
                 {
-                  "name": "Increased growth and rate of deployments for new student curriculum."
+                  "name": "Implemented new deployment pipeline reducing release cycles by 50%"
                 },
                 {
-                  "name": "Optimized funnels in Salesforce via geo-targeted tier systems and automated workflows."
+                  "name": "Designed data-driven marketing funnels increasing conversion rates by 25%"
                 }
               ]
             },
@@ -269,35 +269,35 @@
               "endDate": "2018-07",
               "projects": [
                 {
-                  "name": "Innovated custom learning management systems to tailor the experience to a unique model of education."
+                  "name": "Built custom LMS platform serving 10,000+ active students"
                 },
                 {
-                  "name": "Optimized websites with shared content via proprietary internal API and robust caching mechanism."
+                  "name": "Developed content distribution API with advanced caching layer"
                 },
                 {
-                  "name": "Organized development processes by utilizing version control in GitHub."
+                  "name": "Implemented version control and deployment strategies"
                 }
               ]
             },
             {
-              "title": "Junior Graphic Designer",
+              "title": "Junior Designer",
               "startDate": "2014-01",
               "endDate": "2016-01",
               "projects": [
                 {
-                  "name": "Digitized print curriculum and modernized the student experience with interactive eBook programming."
+                  "name": "Created interactive digital learning materials increasing student engagement by 40%"
                 },
                 {
-                  "name": "Improved student engagement with custom interactive web exercises (canvas, web audio)."
+                  "name": "Developed multimedia web applications for enhanced learning experience"
                 }
               ]
             }
           ]
         },
         {
-          "name": "Self-Employed / Freelance",
-          "location": "Los Angeles, CA (Remote)",
-          "startDate": null,
+          "name": "Independent Consultant",
+          "location": "Seattle, WA (Remote)",
+          "startDate": "2011-01",
           "endDate": null,
           "positions": [
             {
@@ -306,7 +306,7 @@
               "endDate": null,
               "projects": [
                 {
-                  "name": "Bridged the gap between business needs and tech solutions for clients in a variety of verticals including motorsports, legal, beauty, real estate, entertainment, places of worship, television, photography, film, audio engineering, construction, ecommerce, and education."
+                  "name": "Delivered custom software solutions across diverse industries including healthcare, finance, retail, education, and media, focusing on scalable architecture and optimal user experience"
                 }
               ]
             }

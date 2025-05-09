@@ -37,6 +37,7 @@ const UserField = memo(
     return (
       <TextField
         label={label}
+        name={label.toLowerCase().replace(/\s+/g, "-")}
         value={localValue}
         onChange={handleChange}
         onBlur={handleBlur}
