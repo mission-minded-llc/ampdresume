@@ -31,7 +31,7 @@ describe("ExtractedEducation", () => {
   const mockInitialData = {
     user: {
       name: "",
-      email: "",
+      displayEmail: "",
       location: "",
       title: "",
     },

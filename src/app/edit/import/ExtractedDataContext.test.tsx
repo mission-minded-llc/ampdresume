@@ -17,7 +17,7 @@ const TestComponent = () => {
         onClick={() =>
           updateUser({
             name: "John Doe",
-            email: "john@example.com",
+            displayEmail: "john@example.com",
             location: "New York",
             title: "Software Engineer",
           })
@@ -81,7 +81,7 @@ describe("ExtractedDataContext", () => {
   const mockInitialData: ParsedResumeData = {
     user: {
       name: "Initial User",
-      email: "",
+      displayEmail: "",
       location: "",
       title: "",
     },
