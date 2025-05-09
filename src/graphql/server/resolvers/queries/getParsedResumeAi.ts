@@ -1,7 +1,6 @@
 import * as Sentry from "@sentry/node";
 
 import OpenAI from "openai";
-import { isFeatureEnabledForUser } from "@/lib/flagsmith";
 import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "../../util";
 
@@ -14,12 +13,6 @@ export const getParsedResumeAi = async (
   { userId, text }: { userId: string; text: string },
 ) => {
   await verifySessionOwnership(userId);
-
-  const enabled = await isFeatureEnabledForUser("import_pdf_ai");
-
-  if (!enabled) {
-    throw new Error("PDF Import is not enabled for your account.");
-  }
 
   try {
     const response = await openai.chat.completions.create({
