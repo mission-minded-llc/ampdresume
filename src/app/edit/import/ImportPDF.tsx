@@ -96,7 +96,7 @@ export const ImportPDF = () => {
         fullText += pageText;
       }
 
-      // Ensure the text's maximum length is 10000 characters.
+      // Ensure the text's maximum length is 20000 characters.
       fullText = fullText.slice(0, 10000);
 
       setExtractedText(fullText);

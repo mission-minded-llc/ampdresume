@@ -1,4 +1,4 @@
-import { ExtractedCompany, ExtractedEducation, ExtractedUser } from "@/app/edit/import/types";
+import { ExtractedCompany, ExtractedEducation } from "@/app/edit/import/types";
 
 import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "@/graphql/server/util";
@@ -8,13 +8,18 @@ export const saveExtractedResumeData = async (
   {
     userId,
     user,
-    skills,
+    skillIds,
     companies,
     education,
   }: {
     userId: string;
-    user: ExtractedUser;
-    skills: string[];
+    user: {
+      name: string;
+      email: string;
+      location: string;
+      title: string;
+    };
+    skillIds: string[];
     companies: ExtractedCompany[];
     education: ExtractedEducation[];
   },
@@ -77,23 +82,21 @@ export const saveExtractedResumeData = async (
       where: { id: userId },
       data: {
         name: user.name,
-        email: user.email,
+        displayEmail: user.email,
         location: user.location,
         title: user.title,
       },
     });
 
     // Add skills
-    for (const skillName of skills) {
+    for (const id of skillIds) {
       // Find or create skill
-      let skill = await tx.skill.findFirst({
-        where: { name: skillName },
+      const skill = await tx.skill.findFirst({
+        where: { id },
       });
 
       if (!skill) {
-        skill = await tx.skill.create({
-          data: { name: skillName },
-        });
+        throw new Error(`Skill with id ${id} not found`);
       }
 
       // Add skill for user
@@ -102,7 +105,6 @@ export const saveExtractedResumeData = async (
           userId,
           skillId: skill.id,
           yearStarted: new Date().getFullYear(),
-          totalYears: 1,
         },
       });
     }

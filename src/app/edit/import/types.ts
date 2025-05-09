@@ -55,3 +55,7 @@ export interface ParsedResumeData {
     dateAwarded: string;
   }[];
 }
+
+export type ParsedResumeDataSubmission = Omit<ParsedResumeData, "skills"> & {
+  skillIds: string[];
+};

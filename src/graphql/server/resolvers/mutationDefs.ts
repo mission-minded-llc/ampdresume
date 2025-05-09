@@ -21,7 +21,7 @@ export const mutationDefs = gql`
     saveExtractedResumeData(
       userId: ID!
       user: UserInput!
-      skills: [String!]!
+      skillIds: [ID!]!
       companies: [CompanyInput!]!
       education: [EducationInput!]!
     ): Boolean!
