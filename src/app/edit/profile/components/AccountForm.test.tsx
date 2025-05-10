@@ -40,7 +40,7 @@ describe("AccountForm", () => {
     const { container, getByLabelText } = render(<AccountForm {...mockProps} />);
 
     expect(getByLabelText("Full Name")).toBeInTheDocument();
-    expect(getByLabelText("URL Slug")).toBeInTheDocument();
+    expect(getByLabelText("URL Name")).toBeInTheDocument();
     expect(getByLabelText("Display Email")).toBeInTheDocument();
     expect(getByLabelText("Title")).toBeInTheDocument();
     expect(getByLabelText("Location")).toBeInTheDocument();
@@ -51,7 +51,7 @@ describe("AccountForm", () => {
   it("handles input changes and validation", async () => {
     const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
 
-    const slugInput = getByLabelText("URL Slug");
+    const slugInput = getByLabelText("URL Name");
     fireEvent.change(slugInput, { target: { value: "invalid slug" } });
     fireEvent.blur(slugInput);
     await waitFor(() => {
@@ -72,7 +72,7 @@ describe("AccountForm", () => {
     const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
 
     fireEvent.change(getByLabelText("Full Name"), { target: { value: "Jane Doe" } });
-    fireEvent.change(getByLabelText("URL Slug"), { target: { value: "jane-doe" } });
+    fireEvent.change(getByLabelText("URL Name"), { target: { value: "jane-doe" } });
     fireEvent.change(getByLabelText("Display Email"), { target: { value: "jane@example.com" } });
 
     fireEvent.click(getByText("Save"));
@@ -93,7 +93,7 @@ describe("AccountForm", () => {
     const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
 
     fireEvent.change(getByLabelText("Full Name"), { target: { value: "Jane Doe" } });
-    fireEvent.change(getByLabelText("URL Slug"), { target: { value: "jane-doe" } });
+    fireEvent.change(getByLabelText("URL Name"), { target: { value: "jane-doe" } });
     fireEvent.change(getByLabelText("Display Email"), { target: { value: "jane@example.com" } });
 
     fireEvent.click(getByText("Save"));
@@ -117,7 +117,7 @@ describe("AccountForm", () => {
   it("displays error message on form submission failure for invalid slug", async () => {
     const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
 
-    fireEvent.change(getByLabelText("URL Slug"), { target: { value: "   " } });
+    fireEvent.change(getByLabelText("URL Name"), { target: { value: "   " } });
     fireEvent.click(getByText("Save"));
 
     await waitFor(() => {

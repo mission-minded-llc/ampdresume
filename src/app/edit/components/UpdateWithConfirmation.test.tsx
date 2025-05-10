@@ -19,9 +19,7 @@ describe("UpdateWithConfirmation", () => {
 
     expect(getByRole("dialog")).toBeInTheDocument();
     expect(getByText("Confirm Update")).toBeInTheDocument();
-    expect(
-      getByText("Are you sure you want to update? This will overwrite your current resume."),
-    ).toBeInTheDocument();
+    expect(getByText("Are you sure you want to update?")).toBeInTheDocument();
   });
 
   it("calls onConfirmUpdate when the confirm button is clicked", async () => {
