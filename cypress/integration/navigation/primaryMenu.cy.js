@@ -32,6 +32,9 @@ describe("Primary Nav Menu", () => {
   it("should show protected links when logged in", () => {
     cy.loginWithMagicLink();
 
+    // If this runs brefore the user populated a slug, this popup will appear.
+    cy.closeMessageDialog({ required: false });
+
     // Wait for the menu icon to be visible and click it
     cy.get("[data-test-id=NavPrimaryMenuIcon]").should("be.visible").click();
 
