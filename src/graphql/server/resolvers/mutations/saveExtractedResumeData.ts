@@ -26,9 +26,8 @@ export const saveExtractedResumeData = async (
 ) => {
   await verifySessionOwnership(userId);
 
-  // Start a transaction to ensure all operations succeed or fail together
+  // Transaction 1: Clean up existing data
   await prisma.$transaction(async (tx) => {
-    // Delete existing data
     await tx.skillForProject.deleteMany({
       where: {
         project: {
@@ -76,7 +75,10 @@ export const saveExtractedResumeData = async (
         userId,
       },
     });
+  });
 
+  // Transaction 2: Update user and add skills
+  await prisma.$transaction(async (tx) => {
     // Update user data
     await tx.user.update({
       where: { id: userId },
@@ -90,7 +92,6 @@ export const saveExtractedResumeData = async (
 
     // Add skills
     for (const id of skillIds) {
-      // Find or create skill
       const skill = await tx.skill.findFirst({
         where: { id },
       });
@@ -99,7 +100,6 @@ export const saveExtractedResumeData = async (
         throw new Error(`Skill with id ${id} not found`);
       }
 
-      // Add skill for user
       await tx.skillForUser.create({
         data: {
           userId,
@@ -108,8 +108,10 @@ export const saveExtractedResumeData = async (
         },
       });
     }
+  });
 
-    // Add companies and their positions/projects
+  // Transaction 3: Add companies, positions, and projects
+  await prisma.$transaction(async (tx) => {
     for (const company of companies) {
       const newCompany = await tx.company.create({
         data: {
@@ -142,8 +144,10 @@ export const saveExtractedResumeData = async (
         }
       }
     }
+  });
 
-    // Add education
+  // Transaction 4: Add education
+  await prisma.$transaction(async (tx) => {
     for (const edu of education) {
       await tx.education.create({
         data: {
