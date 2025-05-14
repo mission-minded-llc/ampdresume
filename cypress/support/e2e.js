@@ -35,20 +35,14 @@ Cypress.Commands.add("closeMessageDialog", ({ required = false } = {}) => {
     cy.get("[data-test-id=MessageDialog]").should("be.visible");
     cy.get("[data-test-id=MessageDialog]").contains("OK").click();
   } else {
-    // Close any message dialog that may appear
-    cy.get("[data-test-id=MessageDialog]", { timeout: 1000, failOnStatusCode: false }).then(
-      ($dialog) => {
-        if ($dialog && $dialog.length > 0) {
-          cy.wrap($dialog).should("be.visible");
-          cy.wrap($dialog).contains("OK").click();
-        } else {
-          // Handle case where element is not found within timeout
-          // This could include logging, handling, or asserting as needed
-          cy.log("Message dialog not found within timeout.");
-          // Optionally, fail the test or proceed depending on your needs
-          // cy.fail("Message dialog not found within timeout."); // Example to fail the test
-        }
-      },
-    );
+    cy.get("body", { timeout: 1000 }).then(($body) => {
+      const $dialog = $body.find("[data-test-id=MessageDialog]");
+      if ($dialog.length) {
+        cy.wrap($dialog).should("be.visible");
+        cy.wrap($dialog).contains("OK").click();
+      } else {
+        cy.log("Message dialog not found — continuing");
+      }
+    });
   }
 });
