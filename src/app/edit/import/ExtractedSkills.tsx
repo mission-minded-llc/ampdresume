@@ -1,6 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material";
 
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import React from "react";
 import { Skill } from "@openresume/theme";
 import { SkillItem } from "../skills/SkillItem";
 import { useExtractedData } from "./ExtractedDataContext";
@@ -10,7 +11,23 @@ interface ExtractedSkillsProps {
   skills: Skill[];
 }
 
-export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
+// Custom comparison function for React.memo
+const areSkillsEqual = (prevProps: ExtractedSkillsProps, nextProps: ExtractedSkillsProps) => {
+  if (prevProps.skills.length !== nextProps.skills.length) {
+    return false;
+  }
+
+  return prevProps.skills.every((prevSkill, index) => {
+    const nextSkill = nextProps.skills[index];
+    return (
+      prevSkill.id === nextSkill.id &&
+      prevSkill.name === nextSkill.name &&
+      prevSkill.icon === nextSkill.icon
+    );
+  });
+};
+
+const ExtractedSkillsComponent = ({ skills }: ExtractedSkillsProps) => {
   const { updateSkills } = useExtractedData();
   const { data: session } = useSession();
 
@@ -81,3 +98,5 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
     </Box>
   );
 };
+
+export const ExtractedSkills = React.memo(ExtractedSkillsComponent, areSkillsEqual);
