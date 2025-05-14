@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 
 import { DatePicker } from "@mui/x-date-pickers";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -73,6 +73,12 @@ const EducationFields = memo(
     onDateChange: (index: number, date: string) => void;
     onDelete: (index: number) => void;
   }) => {
+    const [dateError, setDateError] = useState(false);
+
+    useEffect(() => {
+      setDateError(!education.dateAwarded);
+    }, [education.dateAwarded]);
+
     return (
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <Box sx={{ flex: 1, mr: 2 }}>
@@ -92,6 +98,12 @@ const EducationFields = memo(
             label="Date Awarded"
             value={education.dateAwarded ? dayjs(education.dateAwarded) : null}
             onChange={(date) => onDateChange(index, date?.toISOString() || "")}
+            slotProps={{
+              textField: {
+                error: dateError,
+                helperText: dateError ? "Date awarded is required" : "",
+              },
+            }}
           />
         </Box>
         <IconButton onClick={() => onDelete(index)} size="small" color="error">
@@ -144,6 +156,19 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
     [education, updateEducation],
   );
 
+  // Check for any education entries with missing dateAwarded
+  const hasDateErrors = education.some((edu) => !edu.dateAwarded);
+
+  // Expand the first accordion with an error if there are any errors
+  useEffect(() => {
+    if (hasDateErrors) {
+      const firstErrorIndex = education.findIndex((edu) => !edu.dateAwarded);
+      if (firstErrorIndex !== -1) {
+        setExpandedEducation(`education-${firstErrorIndex}`);
+      }
+    }
+  }, [hasDateErrors, education]);
+
   return (
     <Box>
       <Typography variant="h5" sx={{ mb: 2 }}>
@@ -152,6 +177,7 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
       {education?.map((edu, index) => {
         const educationId = `education-${index}`;
         const isExpanded = expandedEducation === educationId;
+        const hasError = !edu.dateAwarded;
 
         return (
           <Accordion
@@ -165,6 +191,7 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
               sx={{
                 bgcolor: "background.default",
                 mb: isExpanded ? 2 : 0,
+                borderLeft: hasError ? "4px solid #d32f2f" : "none",
               }}
             >
               <Typography sx={{ display: "flex", width: "100%" }}>
@@ -180,8 +207,8 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
                   }}
                 >
                   <span>{edu.degree || ""}</span>
-                  <span style={{ marginRight: 24 }}>
-                    {edu.dateAwarded ? dayjs(edu.dateAwarded).format("MMM YYYY") : ""}
+                  <span style={{ marginRight: 24, color: hasError ? "#d32f2f" : "inherit" }}>
+                    {edu.dateAwarded ? dayjs(edu.dateAwarded).format("MMM YYYY") : "Required"}
                   </span>
                 </span>
               </Typography>

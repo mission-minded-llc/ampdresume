@@ -4,7 +4,7 @@ import { ExtractedDataProvider, useExtractedData } from "./ExtractedDataContext"
 import { ExtractedEducation } from "./ExtractedEducation";
 import { ExtractedSkills } from "./ExtractedSkills";
 import { ExtractedUser } from "./ExtractedUser";
-import { ExtractedWorkExperience } from "./ExtractedWorkExperience";
+import { ExtractedWorkExperience } from "./experience/ExtractedWorkExperience";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { ParsedResumeData } from "./types";
 import { UpdateWithConfirmation } from "../components/UpdateWithConfirmation";
