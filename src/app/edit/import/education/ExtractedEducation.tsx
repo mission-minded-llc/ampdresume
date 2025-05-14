@@ -5,10 +5,8 @@ import { EducationFields } from "./EducationFields";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ExtractedEducationProps } from "./types";
 import dayjs from "dayjs";
-import { useExtractedData } from "../ExtractedDataContext";
 
-export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
-  const { updateEducation } = useExtractedData();
+export const ExtractedEducation = ({ education, updateEducation }: ExtractedEducationProps) => {
   const [expandedEducation, setExpandedEducation] = useState<string | false>(false);
 
   const handleEducationChange =
@@ -51,25 +49,24 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
   // Check for any education entries with missing dateAwarded
   const hasDateErrors = education.some((edu) => !edu.dateAwarded);
 
-  // Expand the first accordion with an error if there are any errors
+  // Expand the first education entry with a missing dateAwarded
   useEffect(() => {
     if (hasDateErrors) {
-      const firstErrorIndex = education.findIndex((edu) => !edu.dateAwarded);
-      if (firstErrorIndex !== -1) {
-        setExpandedEducation(`education-${firstErrorIndex}`);
+      const index = education.findIndex((edu) => !edu.dateAwarded);
+      if (index !== -1) {
+        setExpandedEducation(`education-${index}`);
       }
     }
-  }, [hasDateErrors, education]);
+  }, [education, hasDateErrors]);
 
   return (
-    <Box>
+    <Box sx={{ mb: 4 }}>
       <Typography variant="h5" sx={{ mb: 2 }}>
         Education
       </Typography>
-      {education?.map((edu, index) => {
+      {education.map((edu, index) => {
         const educationId = `education-${index}`;
         const isExpanded = expandedEducation === educationId;
-        const hasError = !edu.dateAwarded;
 
         return (
           <Accordion
@@ -83,11 +80,10 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
               sx={{
                 bgcolor: "background.default",
                 mb: isExpanded ? 2 : 0,
-                borderLeft: hasError ? "4px solid #d32f2f" : "none",
               }}
             >
               <Typography sx={{ display: "flex", width: "100%" }}>
-                <strong>{edu.school || "Unnamed Institution"}</strong>
+                <strong>{edu.school || "Unnamed School"}</strong>
                 <span
                   style={{
                     opacity: !isExpanded ? 1 : 0,
@@ -98,9 +94,9 @@ export const ExtractedEducation = ({ education }: ExtractedEducationProps) => {
                     marginLeft: 24,
                   }}
                 >
-                  <span>{edu.degree || ""}</span>
-                  <span style={{ marginRight: 24, color: hasError ? "#d32f2f" : "inherit" }}>
-                    {edu.dateAwarded ? dayjs(edu.dateAwarded).format("MMM YYYY") : "Required"}
+                  <span>{edu.degree ? edu.degree : ""}</span>
+                  <span style={{ marginRight: 24 }}>
+                    {edu.dateAwarded ? dayjs(edu.dateAwarded).format("MMM YYYY") : ""}
                   </span>
                 </span>
               </Typography>

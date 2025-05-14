@@ -20,19 +20,29 @@ interface ExtractedInformationProps {
 
 const ExtractedInformationContent = () => {
   const { data: session } = useSession();
-  const { data, error } = useExtractedData();
+  const {
+    user,
+    skills,
+    companies,
+    education,
+    error,
+    setUser,
+    setSkills,
+    setCompanies,
+    setEducation,
+  } = useExtractedData();
   const [validationError, setValidationError] = useState<string | null>(null);
 
   const validateRequiredFields = () => {
-    if (!data) return null;
+    if (!user) return null;
     // Validate education.dateAwarded
-    for (const edu of data.education) {
+    for (const edu of education) {
       if (!edu.dateAwarded) {
         return "All education entries must have a Date Awarded.";
       }
     }
     // Validate companies and positions startDate
-    for (const company of data.companies) {
+    for (const company of companies) {
       if (!company.startDate) {
         return `Company '${company.name || "(Unnamed)"}' is missing a Start Date.`;
       }
@@ -47,7 +57,7 @@ const ExtractedInformationContent = () => {
 
   const saveMutation = useMutation({
     mutationFn: async () => {
-      if (!data || !session?.user.id) return;
+      if (!user || !session?.user.id) return;
       const validationMsg = validateRequiredFields();
       if (validationMsg) {
         setValidationError(validationMsg);
@@ -57,14 +67,14 @@ const ExtractedInformationContent = () => {
       await saveExtractedResumeData({
         userId: session.user.id,
         user: {
-          name: data.user.name,
-          displayEmail: data.user.displayEmail,
-          location: data.user.location,
-          title: data.user.title,
+          name: user.name,
+          displayEmail: user.displayEmail,
+          location: user.location,
+          title: user.title,
         },
-        skillIds: data.skills.map((skill) => skill.id),
-        companies: data.companies,
-        education: data.education,
+        skillIds: skills.map((skill) => skill.id),
+        companies: companies,
+        education: education,
       });
       window.location.href = "/edit/experience";
     },
@@ -80,7 +90,7 @@ const ExtractedInformationContent = () => {
       }}
     >
       <LoadingOverlay open={saveMutation.isPending} message="Saving Resume..." />
-      {!data && <Typography variant="h6">Extracted Information</Typography>}
+      {!user && <Typography variant="h6">Extracted Information</Typography>}
       <Box
         sx={(theme) => ({
           display: "flex",
@@ -94,12 +104,12 @@ const ExtractedInformationContent = () => {
       >
         {error ? (
           <Typography color="error">{error}</Typography>
-        ) : data ? (
+        ) : user ? (
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <ExtractedUser user={data.user} />
-            <ExtractedWorkExperience companies={data.companies} />
-            <ExtractedEducation education={data.education} />
-            <ExtractedSkills skills={data.skills} />
+            <ExtractedUser user={user} updateUser={setUser} />
+            <ExtractedWorkExperience companies={companies} updateCompanies={setCompanies} />
+            <ExtractedEducation education={education} updateEducation={setEducation} />
+            <ExtractedSkills skills={skills} updateSkills={setSkills} />
             <Box
               sx={{
                 display: "flex",

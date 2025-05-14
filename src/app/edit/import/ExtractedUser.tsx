@@ -1,8 +1,6 @@
 import { Box, TextField, Typography } from "@mui/material";
 import { memo, useState } from "react";
 
-import { useExtractedData } from "./ExtractedDataContext";
-
 interface ExtractedUserProps {
   user: {
     name: string;
@@ -10,6 +8,7 @@ interface ExtractedUserProps {
     location: string;
     title: string;
   };
+  updateUser: (user: ExtractedUserProps["user"]) => void;
 }
 
 const UserField = memo(
@@ -48,9 +47,7 @@ const UserField = memo(
 );
 UserField.displayName = "UserField";
 
-export const ExtractedUser = ({ user }: ExtractedUserProps) => {
-  const { updateUser } = useExtractedData();
-
+export const ExtractedUser = ({ user, updateUser }: ExtractedUserProps) => {
   const handleFieldChange = (field: keyof typeof user) => (value: string) => {
     updateUser({
       ...user,

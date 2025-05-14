@@ -7,14 +7,16 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { PositionFields } from "./PositionFields";
 import { ProjectField } from "./ProjectField";
 import dayjs from "dayjs";
-import { useExtractedData } from "../ExtractedDataContext";
 
 interface ExtractedWorkExperienceProps {
   companies: Company[];
+  updateCompanies: (companies: Company[]) => void;
 }
 
-export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperienceProps) => {
-  const { updateCompanies } = useExtractedData();
+export const ExtractedWorkExperience = ({
+  companies,
+  updateCompanies,
+}: ExtractedWorkExperienceProps) => {
   const [expandedCompany, setExpandedCompany] = useState<string | false>(false);
   const [expandedPosition, setExpandedPosition] = useState<string | false>(false);
 

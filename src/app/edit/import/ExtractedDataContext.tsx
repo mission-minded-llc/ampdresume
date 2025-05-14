@@ -4,12 +4,15 @@ import { ParsedResumeData } from "./types";
 import { Skill } from "@openresume/theme";
 
 interface ExtractedDataContextType {
-  data: ParsedResumeData | null;
+  user: ParsedResumeData["user"] | null;
+  skills: Skill[];
+  companies: ParsedResumeData["companies"];
+  education: ParsedResumeData["education"];
   error: string | null;
-  updateUser: (user: ParsedResumeData["user"]) => void;
-  updateSkills: (skills: Skill[]) => void;
-  updateCompanies: (companies: ParsedResumeData["companies"]) => void;
-  updateEducation: (education: ParsedResumeData["education"]) => void;
+  setUser: (user: ParsedResumeData["user"]) => void;
+  setSkills: (skills: Skill[]) => void;
+  setCompanies: (companies: ParsedResumeData["companies"]) => void;
+  setEducation: (education: ParsedResumeData["education"]) => void;
 }
 
 const ExtractedDataContext = createContext<ExtractedDataContextType | null>(null);
@@ -33,48 +36,28 @@ export const ExtractedDataProvider = ({
   initialError,
   children,
 }: ExtractedDataProviderProps) => {
-  const [data, setData] = useState<ParsedResumeData | null>(initialData);
+  const [user, setUser] = useState<ParsedResumeData["user"] | null>(initialData?.user || null);
+  const [skills, setSkills] = useState<Skill[]>(initialData?.skills || []);
+  const [companies, setCompanies] = useState<ParsedResumeData["companies"]>(
+    initialData?.companies || [],
+  );
+  const [education, setEducation] = useState<ParsedResumeData["education"]>(
+    initialData?.education || [],
+  );
 
-  const updateUser = (user: ParsedResumeData["user"]) => {
-    setData((prev) => {
-      if (!prev) return null;
-      return { ...prev, user };
-    });
-  };
-
-  const updateSkills = (skills: Skill[]) => {
-    setData((prev) => {
-      if (!prev) return null;
-      return { ...prev, skills };
-    });
-  };
-
-  const updateCompanies = (companies: ParsedResumeData["companies"]) => {
-    setData((prev) => {
-      if (!prev) return null;
-      return { ...prev, companies };
-    });
-  };
-
-  const updateEducation = (education: ParsedResumeData["education"]) => {
-    setData((prev) => {
-      if (!prev) return null;
-      return { ...prev, education };
-    });
+  const contextValue = {
+    user,
+    skills,
+    companies,
+    education,
+    error: initialError,
+    setUser,
+    setSkills,
+    setCompanies,
+    setEducation,
   };
 
   return (
-    <ExtractedDataContext.Provider
-      value={{
-        data,
-        error: initialError,
-        updateUser,
-        updateSkills,
-        updateCompanies,
-        updateEducation,
-      }}
-    >
-      {children}
-    </ExtractedDataContext.Provider>
+    <ExtractedDataContext.Provider value={contextValue}>{children}</ExtractedDataContext.Provider>
   );
 };

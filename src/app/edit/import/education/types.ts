@@ -26,4 +26,5 @@ export interface EducationFieldsProps {
 
 export interface ExtractedEducationProps {
   education: Education[];
+  updateEducation: (education: Education[]) => void;
 }

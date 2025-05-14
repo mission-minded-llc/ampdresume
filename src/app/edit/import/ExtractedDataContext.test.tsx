@@ -6,16 +6,17 @@ import React from "react";
 
 // Test component that uses the context
 const TestComponent = () => {
-  const { data, updateUser, updateSkills, updateCompanies, updateEducation } = useExtractedData();
+  const { user, skills, companies, education, setUser, setSkills, setCompanies, setEducation } =
+    useExtractedData();
   return (
     <div>
-      <div data-testid="user-name">{data?.user?.name}</div>
-      <div data-testid="skills-count">{data?.skills?.length}</div>
-      <div data-testid="companies-count">{data?.companies?.length}</div>
-      <div data-testid="education-count">{data?.education?.length}</div>
+      <div data-testid="user-name">{user?.name}</div>
+      <div data-testid="skills-count">{skills.length}</div>
+      <div data-testid="companies-count">{companies.length}</div>
+      <div data-testid="education-count">{education.length}</div>
       <button
         onClick={() =>
-          updateUser({
+          setUser({
             name: "John Doe",
             displayEmail: "john@example.com",
             location: "New York",
@@ -27,7 +28,7 @@ const TestComponent = () => {
       </button>
       <button
         onClick={() =>
-          updateSkills([
+          setSkills([
             {
               id: "1",
               name: "React",
@@ -40,7 +41,7 @@ const TestComponent = () => {
       </button>
       <button
         onClick={() =>
-          updateCompanies([
+          setCompanies([
             {
               name: "Test Company",
               location: "Test Location",
@@ -62,7 +63,7 @@ const TestComponent = () => {
       </button>
       <button
         onClick={() =>
-          updateEducation([
+          setEducation([
             {
               school: "Test University",
               degree: "Bachelor",
