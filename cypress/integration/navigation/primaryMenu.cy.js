@@ -32,6 +32,8 @@ describe("Primary Nav Menu", () => {
   it("should show protected links when logged in", () => {
     cy.loginWithMagicLink();
 
+    cy.wait(1000); // It can take a second for the dialog to appear.
+
     // If this runs brefore the user populated a slug, this popup will appear.
     cy.closeMessageDialog({ required: false });
 
