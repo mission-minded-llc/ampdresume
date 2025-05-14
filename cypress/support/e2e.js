@@ -36,10 +36,10 @@ Cypress.Commands.add("closeMessageDialog", ({ required = false } = {}) => {
     cy.get("[data-test-id=MessageDialog]").contains("OK").click();
   } else {
     // Close any message dialog that may appear
-    cy.get("[data-test-id=MessageDialog]").then(($dialog) => {
-      if ($dialog.length) {
-        cy.wrap($dialog).should("be.visible");
-        cy.wrap($dialog).contains("OK").click();
+    cy.get("body").then(($body) => {
+      if ($body.find("[data-test-id=MessageDialog]").length) {
+        cy.get("[data-test-id=MessageDialog]").should("be.visible");
+        cy.get("[data-test-id=MessageDialog]").contains("OK").click();
       }
     });
   }
