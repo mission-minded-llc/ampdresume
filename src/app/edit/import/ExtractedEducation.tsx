@@ -14,6 +14,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import dayjs from "dayjs";
 import { useExtractedData } from "./ExtractedDataContext";
+import { validateAndConvertDate } from "@/lib/dateUtils";
 
 interface ExtractedEducationProps {
   education: {
@@ -97,7 +98,7 @@ const EducationFields = memo(
           <DatePicker
             label="Date Awarded"
             value={education.dateAwarded ? dayjs(education.dateAwarded) : null}
-            onChange={(date) => onDateChange(index, date?.toISOString() || "")}
+            onChange={(date) => onDateChange(index, validateAndConvertDate(date))}
             slotProps={{
               textField: {
                 error: dateError,

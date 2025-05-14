@@ -5,6 +5,7 @@ import { Company } from "./types";
 import { DatePicker } from "@mui/x-date-pickers";
 import DeleteIcon from "@mui/icons-material/Delete";
 import dayjs from "dayjs";
+import { validateAndConvertDate } from "@/lib/dateUtils";
 
 interface CompanyFieldsProps {
   company: Company;
@@ -78,7 +79,7 @@ export const CompanyFields = memo(
               label="Start Date"
               value={company.startDate ? dayjs(company.startDate) : null}
               onChange={(date) =>
-                onDateChange(companyIndex, undefined, "startDate", date?.toISOString() || "")
+                onDateChange(companyIndex, undefined, "startDate", validateAndConvertDate(date))
               }
               sx={{ flex: 1 }}
               slotProps={{
@@ -93,7 +94,7 @@ export const CompanyFields = memo(
               label="End Date"
               value={company.endDate ? dayjs(company.endDate) : null}
               onChange={(date) =>
-                onDateChange(companyIndex, undefined, "endDate", date?.toISOString() || "")
+                onDateChange(companyIndex, undefined, "endDate", validateAndConvertDate(date))
               }
               sx={{ flex: 1 }}
             />
