@@ -12,6 +12,7 @@ import { deleteProject } from "./mutations/deleteProject";
 import { deleteSkillForProject } from "./mutations/deleteSkillForProject";
 import { deleteSkillForUser } from "./mutations/deleteSkillForUser";
 import { deleteSocial } from "./mutations/deleteSocial";
+import { saveExtractedResumeData } from "./mutations/saveExtractedResumeData";
 import { updateCompany } from "./mutations/updateCompany";
 import { updateEducation } from "./mutations/updateEducation";
 import { updatePosition } from "./mutations/updatePosition";
@@ -29,6 +30,9 @@ export const mutationResolvers = {
   addSocial,
   deleteSocial,
   updateSocial,
+
+  // Save all extracted resume data at once
+  saveExtractedResumeData,
 
   // Company specific mutations.
   addCompany,

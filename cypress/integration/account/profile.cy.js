@@ -18,6 +18,8 @@ describe("Profile Section", () => {
   it("should populate profile data and save", () => {
     cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/profile`);
 
+    cy.closeMessageDialog({ required: true });
+
     const fields = [
       { name: "name", value: " Test User" },
       { name: "slug", value: "test-user" },

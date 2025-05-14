@@ -17,6 +17,15 @@ export const mutationDefs = gql`
     updateSocial(userId: ID!, id: ID!, ref: String!): Social!
     deleteSocial(userId: ID!, id: ID!): Social
 
+    # Save all extracted resume data at once
+    saveExtractedResumeData(
+      userId: ID!
+      user: UserInput!
+      skillIds: [ID!]!
+      companies: [CompanyInput!]!
+      education: [EducationInput!]!
+    ): Boolean!
+
     # Company specific mutations.
     addCompany(
       userId: ID!

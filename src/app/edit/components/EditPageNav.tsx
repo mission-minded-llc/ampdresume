@@ -11,6 +11,7 @@ export const EditPageNav = () => {
 
   const sections = [
     { title: "Profile", href: "/edit/profile" },
+    { title: "Import", href: "/edit/import" },
     { title: "Skills", href: "/edit/skills" },
     { title: "Work Experience", href: "/edit/experience" },
     { title: "Education", href: "/edit/education" },

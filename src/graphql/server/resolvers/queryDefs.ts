@@ -4,6 +4,7 @@ export const queryDefs = gql`
   type Query {
     # General queries.
     skills: [Skill!]!
+    skillsFuzzyMatch(skills: [String!]!): [Skill!]!
 
     # User-specific queries.
     user(slug: String!): User
@@ -24,5 +25,6 @@ export const queryDefs = gql`
 
     # AI queries.
     companiesAi(userId: ID!, jobDescription: String!): [Company!]!
+    parsedResumeAi(userId: ID!, text: String!): ParsedResume!
   }
 `;

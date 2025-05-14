@@ -1,8 +1,6 @@
-import { FeatureFlagProvider } from "./components/FeatureFlagProvider";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Layout } from "./components/Layout";
 import { ThemeAppearanceProvider } from "./components/ThemeContext";
-import flagsmith from "flagsmith/isomorphic";
 import localFont from "next/font/local";
 
 const geistSans = localFont({
@@ -22,12 +20,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await flagsmith.init({
-    environmentID: process.env.FLAGSMITH_ENVIRONMENT_ID || "",
-    // Add optional identity, traits if needed.
-  });
-  const serverState = flagsmith.getState();
-
   return (
     <html lang="en">
       <head>
@@ -35,11 +27,9 @@ export default async function RootLayout({
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <FeatureFlagProvider serverState={serverState}>
-          <ThemeAppearanceProvider>
-            <Layout>{children}</Layout>
-          </ThemeAppearanceProvider>
-        </FeatureFlagProvider>
+        <ThemeAppearanceProvider>
+          <Layout>{children}</Layout>
+        </ThemeAppearanceProvider>
       </body>
     </html>
   );
