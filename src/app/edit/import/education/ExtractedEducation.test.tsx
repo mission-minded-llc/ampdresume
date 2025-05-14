@@ -1,14 +1,14 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { ExtractedDataProvider } from "./ExtractedDataContext";
+import { ExtractedDataProvider } from "../ExtractedDataContext";
 import { ExtractedEducation } from "./ExtractedEducation";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 
 // Mock the ExtractedDataContext
-jest.mock("./ExtractedDataContext", () => ({
-  ...jest.requireActual("./ExtractedDataContext"),
+jest.mock("../ExtractedDataContext", () => ({
+  ...jest.requireActual("../ExtractedDataContext"),
   useExtractedData: () => ({
     updateEducation: jest.fn(),
   }),

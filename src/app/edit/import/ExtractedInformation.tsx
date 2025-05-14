@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { ExtractedDataProvider, useExtractedData } from "./ExtractedDataContext";
 
-import { ExtractedEducation } from "./ExtractedEducation";
+import { ExtractedEducation } from "./education";
 import { ExtractedSkills } from "./ExtractedSkills";
 import { ExtractedUser } from "./ExtractedUser";
 import { ExtractedWorkExperience } from "./experience/ExtractedWorkExperience";
