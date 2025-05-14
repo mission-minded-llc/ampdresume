@@ -60,6 +60,33 @@ const EducationField = memo(
 );
 EducationField.displayName = "EducationField";
 
+const EducationDateField = memo(
+  ({
+    value,
+    onChange,
+    hasError,
+  }: {
+    value: string;
+    onChange: (date: string) => void;
+    hasError: boolean;
+  }) => {
+    return (
+      <DatePicker
+        label="Date Awarded"
+        value={value ? dayjs(value) : null}
+        onChange={(date) => onChange(validateAndConvertDate(date))}
+        slotProps={{
+          textField: {
+            error: hasError,
+            helperText: hasError ? "Date awarded is required" : "",
+          },
+        }}
+      />
+    );
+  },
+);
+EducationDateField.displayName = "EducationDateField";
+
 const EducationFields = memo(
   ({
     education,
@@ -95,16 +122,10 @@ const EducationFields = memo(
               onChange={(value) => onFieldChange(index, "degree", value)}
             />
           </Box>
-          <DatePicker
-            label="Date Awarded"
-            value={education.dateAwarded ? dayjs(education.dateAwarded) : null}
-            onChange={(date) => onDateChange(index, validateAndConvertDate(date))}
-            slotProps={{
-              textField: {
-                error: dateError,
-                helperText: dateError ? "Date awarded is required" : "",
-              },
-            }}
+          <EducationDateField
+            value={education.dateAwarded}
+            onChange={(date) => onDateChange(index, date)}
+            hasError={dateError}
           />
         </Box>
         <IconButton onClick={() => onDelete(index)} size="small" color="error">
