@@ -7,14 +7,21 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { PositionFields } from "./PositionFields";
 import { ProjectField } from "./ProjectField";
 import dayjs from "dayjs";
-import { useExtractedData } from "../ExtractedDataContext";
 
-interface ExtractedWorkExperienceProps {
+/**
+ * The component for the extracted work experience.
+ *
+ * @param companies - The companies to display.
+ * @param setCompanies - The function to set the companies.
+ * @returns The extracted work experience component.
+ */
+export const ExtractedWorkExperience = ({
+  companies,
+  setCompanies,
+}: {
   companies: Company[];
-}
-
-export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperienceProps) => {
-  const { updateCompanies } = useExtractedData();
+  setCompanies: React.Dispatch<React.SetStateAction<Company[]>>;
+}) => {
   const [expandedCompany, setExpandedCompany] = useState<string | false>(false);
   const [expandedPosition, setExpandedPosition] = useState<string | false>(false);
 
@@ -68,17 +75,17 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
           [field]: date,
         };
       }
-      updateCompanies(updatedCompanies);
+      setCompanies(updatedCompanies);
     },
-    [companies, updateCompanies],
+    [companies, setCompanies],
   );
 
   const handleDeleteCompany = useCallback(
     (companyIndex: number) => {
       const updatedCompanies = companies.filter((_, i) => i !== companyIndex);
-      updateCompanies(updatedCompanies);
+      setCompanies(updatedCompanies);
     },
-    [companies, updateCompanies],
+    [companies, setCompanies],
   );
 
   const handleDeletePosition = useCallback(
@@ -91,39 +98,62 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
         ...updatedCompanies[companyIndex],
         positions: updatedPositions,
       };
-      updateCompanies(updatedCompanies);
+      setCompanies(updatedCompanies);
     },
-    [companies, updateCompanies],
+    [companies, setCompanies],
   );
 
-  const handleFieldChange = useCallback(
+  const handleDeleteProject = useCallback(
+    (companyIndex: number, positionIndex: number, projectIndex: number) => {
+      const updatedCompanies = [...companies];
+      updatedCompanies[companyIndex].positions[positionIndex].projects = updatedCompanies[
+        companyIndex
+      ].positions[positionIndex].projects.filter((_, i) => i !== projectIndex);
+      setCompanies(updatedCompanies);
+    },
+    [companies, setCompanies],
+  );
+
+  const handleCompanyFieldChange = useCallback(
+    (companyIndex: number, field: string, value: string) => {
+      const updatedCompanies = [...companies];
+      updatedCompanies[companyIndex] = {
+        ...updatedCompanies[companyIndex],
+        [field]: value,
+      };
+      setCompanies(updatedCompanies);
+    },
+    [companies, setCompanies],
+  );
+
+  const handlePositionFieldChange = useCallback(
+    (companyIndex: number, positionIndex: number, field: string, value: string) => {
+      const updatedCompanies = [...companies];
+      updatedCompanies[companyIndex].positions[positionIndex] = {
+        ...updatedCompanies[companyIndex].positions[positionIndex],
+        [field]: value,
+      };
+      setCompanies(updatedCompanies);
+    },
+    [companies, setCompanies],
+  );
+
+  const handleProjectFieldChange = useCallback(
     (
       companyIndex: number,
-      positionIndex: number | undefined,
-      projectIndex: number | undefined,
+      positionIndex: number,
+      projectIndex: number,
       field: string,
       value: string,
     ) => {
       const updatedCompanies = [...companies];
-      if (projectIndex !== undefined) {
-        updatedCompanies[companyIndex].positions[positionIndex!].projects[projectIndex] = {
-          ...updatedCompanies[companyIndex].positions[positionIndex!].projects[projectIndex],
-          [field]: value,
-        };
-      } else if (positionIndex !== undefined) {
-        updatedCompanies[companyIndex].positions[positionIndex] = {
-          ...updatedCompanies[companyIndex].positions[positionIndex],
-          [field]: value,
-        };
-      } else {
-        updatedCompanies[companyIndex] = {
-          ...updatedCompanies[companyIndex],
-          [field]: value,
-        };
-      }
-      updateCompanies(updatedCompanies);
+      updatedCompanies[companyIndex].positions[positionIndex].projects[projectIndex] = {
+        ...updatedCompanies[companyIndex].positions[positionIndex].projects[projectIndex],
+        [field]: value,
+      };
+      setCompanies(updatedCompanies);
     },
-    [companies, updateCompanies],
+    [companies, setCompanies],
   );
 
   return (
@@ -177,7 +207,9 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
               <CompanyFields
                 company={company}
                 companyIndex={index}
-                onFieldChange={handleFieldChange}
+                onFieldChange={(companyIndex, field, value) =>
+                  handleCompanyFieldChange(companyIndex, field, value)
+                }
                 onDateChange={handleDateChange}
                 onDelete={handleDeleteCompany}
               />
@@ -224,18 +256,35 @@ export const ExtractedWorkExperience = ({ companies }: ExtractedWorkExperiencePr
                         position={position}
                         companyIndex={index}
                         positionIndex={positionIndex}
-                        onFieldChange={handleFieldChange}
+                        onFieldChange={(companyIndex, positionIndex, field, value) =>
+                          handlePositionFieldChange(companyIndex, positionIndex, field, value)
+                        }
                         onDateChange={handleDateChange}
                         onDelete={handleDeletePosition}
                       />
                       {position.projects.map((project, projectIndex) => (
                         <ProjectField
-                          key={projectIndex}
+                          key={`${project.name}`}
                           project={project}
                           companyIndex={index}
                           positionIndex={positionIndex}
                           projectIndex={projectIndex}
-                          onFieldChange={handleFieldChange}
+                          onFieldChange={(
+                            companyIndex,
+                            positionIndex,
+                            projectIndex,
+                            field,
+                            value,
+                          ) =>
+                            handleProjectFieldChange(
+                              companyIndex,
+                              positionIndex,
+                              projectIndex,
+                              field,
+                              value,
+                            )
+                          }
+                          onDelete={handleDeleteProject}
                         />
                       ))}
                     </AccordionDetails>

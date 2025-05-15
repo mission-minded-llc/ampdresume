@@ -99,7 +99,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
         <div
           aria-hidden="true"
           class="MuiBackdrop-root css-qn1782-MuiBackdrop-root"
-          data-test-id="LoadingOverlay"
+          data-testid="LoadingOverlay"
           style="opacity: 0; visibility: hidden;"
         >
           <div
@@ -799,7 +799,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
               <div
                 aria-hidden="true"
                 class="MuiBackdrop-root css-qn1782-MuiBackdrop-root"
-                data-test-id="LoadingOverlay"
+                data-testid="LoadingOverlay"
                 style="opacity: 0; visibility: hidden;"
               >
                 <div
@@ -865,7 +865,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
           >
             <button
               class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-h3ppl6-MuiButtonBase-root-MuiButton-root"
-              data-test-id="AccountFormSaveButton"
+              data-testid="AccountFormSaveButton"
               tabindex="0"
               type="button"
             >

@@ -398,7 +398,7 @@ const AccountForm = ({
             sx={{
               maxWidth: "400px",
             }}
-            data-test-id="AccountFormSaveButton"
+            data-testid="AccountFormSaveButton"
           >
             Save
           </Button>

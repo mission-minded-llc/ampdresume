@@ -360,7 +360,7 @@ exports[`SkillItemEdit handles delete 2`] = `
       <div
         aria-hidden="true"
         class="MuiBackdrop-root css-qn1782-MuiBackdrop-root"
-        data-test-id="LoadingOverlay"
+        data-testid="LoadingOverlay"
         style="opacity: 0; visibility: hidden;"
       >
         <div

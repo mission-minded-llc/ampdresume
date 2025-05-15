@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { ExtractedDataProvider, useExtractedData } from "./ExtractedDataContext";
 
-import { ExtractedEducation } from "./ExtractedEducation";
+import { ExtractedEducation } from "./education/ExtractedEducation";
 import { ExtractedSkills } from "./ExtractedSkills";
 import { ExtractedUser } from "./ExtractedUser";
 import { ExtractedWorkExperience } from "./experience/ExtractedWorkExperience";
@@ -13,59 +13,83 @@ import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
-interface ExtractedInformationProps {
-  data: ParsedResumeData | null;
-  error: string | null;
-}
-
+/**
+ * The main component for the extracted information page. This component
+ * relies on the wrapping context provider to provide the extracted data,
+ * hence its extraction from the component hierarchy.
+ *
+ * @returns The extracted information page.
+ */
 const ExtractedInformationContent = () => {
   const { data: session } = useSession();
-  const { data, error } = useExtractedData();
+
+  const {
+    user,
+    skills,
+    companies,
+    education,
+    error,
+    setUser,
+    setSkills,
+    setCompanies,
+    setEducation,
+  } = useExtractedData();
+
   const [validationError, setValidationError] = useState<string | null>(null);
 
   const validateRequiredFields = () => {
-    if (!data) return null;
-    // Validate education.dateAwarded
-    for (const edu of data.education) {
+    if (!user) return null; // No user, no validation errors.
+
+    for (const edu of education) {
       if (!edu.dateAwarded) {
         return "All education entries must have a Date Awarded.";
       }
     }
-    // Validate companies and positions startDate
-    for (const company of data.companies) {
+
+    for (const company of companies) {
       if (!company.startDate) {
         return `Company '${company.name || "(Unnamed)"}' is missing a Start Date.`;
       }
+
       for (const position of company.positions) {
         if (!position.startDate) {
           return `Position '${position.title || "(Untitled)"}' at '${company.name || "(Unnamed)"}' is missing a Start Date.`;
         }
       }
     }
-    return null;
+
+    return null; // No validation errors.
   };
 
+  /**
+   * Save the extracted information to the database.
+   */
   const saveMutation = useMutation({
     mutationFn: async () => {
-      if (!data || !session?.user.id) return;
+      if (!user || !session?.user.id) return;
+
       const validationMsg = validateRequiredFields();
       if (validationMsg) {
         setValidationError(validationMsg);
         throw new Error(validationMsg);
       }
+
       setValidationError(null);
+
       await saveExtractedResumeData({
         userId: session.user.id,
         user: {
-          name: data.user.name,
-          displayEmail: data.user.displayEmail,
-          location: data.user.location,
-          title: data.user.title,
+          name: user.name,
+          displayEmail: user.displayEmail,
+          location: user.location,
+          title: user.title,
         },
-        skillIds: data.skills.map((skill) => skill.id),
-        companies: data.companies,
-        education: data.education,
+        skillIds: skills.map((skill) => skill.id),
+        companies: companies,
+        education: education,
       });
+
+      // Redirect to the experience page on successful save.
       window.location.href = "/edit/experience";
     },
   });
@@ -80,7 +104,7 @@ const ExtractedInformationContent = () => {
       }}
     >
       <LoadingOverlay open={saveMutation.isPending} message="Saving Resume..." />
-      {!data && <Typography variant="h6">Extracted Information</Typography>}
+      {!user && <Typography variant="h6">Extracted Information</Typography>}
       <Box
         sx={(theme) => ({
           display: "flex",
@@ -94,12 +118,12 @@ const ExtractedInformationContent = () => {
       >
         {error ? (
           <Typography color="error">{error}</Typography>
-        ) : data ? (
+        ) : user ? (
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <ExtractedUser user={data.user} />
-            <ExtractedWorkExperience companies={data.companies} />
-            <ExtractedEducation education={data.education} />
-            <ExtractedSkills skills={data.skills} />
+            <ExtractedUser user={user} setUser={setUser} />
+            <ExtractedWorkExperience companies={companies} setCompanies={setCompanies} />
+            <ExtractedEducation education={education} setEducation={setEducation} />
+            <ExtractedSkills skills={skills} setSkills={setSkills} />
             <Box
               sx={{
                 display: "flex",
@@ -130,7 +154,18 @@ const ExtractedInformationContent = () => {
   );
 };
 
-export const ExtractedInformation = ({ data, error }: ExtractedInformationProps) => {
+/**
+ * The main component for the extracted information page.
+ *
+ * @returns The extracted information page.
+ */
+export const ExtractedInformation = ({
+  data,
+  error,
+}: {
+  data: ParsedResumeData | null;
+  error: string | null;
+}) => {
   return (
     <ExtractedDataProvider initialData={data} initialError={error}>
       <ExtractedInformationContent />

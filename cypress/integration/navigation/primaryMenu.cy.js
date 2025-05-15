@@ -2,20 +2,20 @@ describe("Primary Nav Menu", () => {
   it("should navigate to login page from nav", () => {
     cy.visit(Cypress.env("BASE_URL") || "/");
 
-    cy.get("[data-test-id=NavPrimaryMenuLogin]").should("not.exist");
-    cy.get("[data-test-id=NavPrimaryMenuIcon]").click();
-    cy.get("[data-test-id=NavPrimaryMenuLogin]").should("be.visible");
-    cy.get("[data-test-id=NavPrimaryMenuLogin]").click();
+    cy.get("[data-testid=NavPrimaryMenuLogin]").should("not.exist");
+    cy.get("[data-testid=NavPrimaryMenuIcon]").click();
+    cy.get("[data-testid=NavPrimaryMenuLogin]").should("be.visible");
+    cy.get("[data-testid=NavPrimaryMenuLogin]").click();
     cy.url().should("include", "/login");
   });
 
   it("should navigate to homepage from nav", () => {
     cy.visit(Cypress.env("BASE_URL") + "/login" || "/login");
 
-    cy.get("[data-test-id=NavPrimaryMenuHome]").should("not.exist");
-    cy.get("[data-test-id=NavPrimaryMenuIcon]").click();
-    cy.get("[data-test-id=NavPrimaryMenuHome]").should("be.visible");
-    cy.get("[data-test-id=NavPrimaryMenuHome]").click();
+    cy.get("[data-testid=NavPrimaryMenuHome]").should("not.exist");
+    cy.get("[data-testid=NavPrimaryMenuIcon]").click();
+    cy.get("[data-testid=NavPrimaryMenuHome]").should("be.visible");
+    cy.get("[data-testid=NavPrimaryMenuHome]").click();
 
     cy.url().should("eq", Cypress.env("BASE_URL") + "/");
   });
@@ -23,10 +23,10 @@ describe("Primary Nav Menu", () => {
   it("should NOT show protected links when NOT logged in", () => {
     cy.visit(Cypress.env("BASE_URL") || "/");
 
-    cy.get("[data-test-id=NavPrimaryMenuIcon]").click();
-    cy.get("[data-test-id=NavPrimaryMenuViewResume]").should("not.exist");
-    cy.get("[data-test-id=NavPrimaryMenuEditResume]").should("not.exist");
-    cy.get("[data-test-id=NavPrimaryMenuLogout]").should("not.exist");
+    cy.get("[data-testid=NavPrimaryMenuIcon]").click();
+    cy.get("[data-testid=NavPrimaryMenuViewResume]").should("not.exist");
+    cy.get("[data-testid=NavPrimaryMenuEditResume]").should("not.exist");
+    cy.get("[data-testid=NavPrimaryMenuLogout]").should("not.exist");
   });
 
   it("should show protected links when logged in", () => {
@@ -38,10 +38,10 @@ describe("Primary Nav Menu", () => {
     cy.closeMessageDialog({ required: false });
 
     // Wait for the menu icon to be visible and click it
-    cy.get("[data-test-id=NavPrimaryMenuIcon]").should("be.visible").click();
+    cy.get("[data-testid=NavPrimaryMenuIcon]").should("be.visible").click();
 
     // Wait for the menu to be visible before checking for protected links
-    cy.get("[data-test-id=NavPrimaryMenuEditResume]").should("be.visible");
-    cy.get("[data-test-id=NavPrimaryMenuLogout]").should("be.visible");
+    cy.get("[data-testid=NavPrimaryMenuEditResume]").should("be.visible");
+    cy.get("[data-testid=NavPrimaryMenuLogout]").should("be.visible");
   });
 });

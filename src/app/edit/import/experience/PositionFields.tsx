@@ -5,27 +5,19 @@ import { DatePicker } from "@mui/x-date-pickers";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Position } from "./types";
 import dayjs from "dayjs";
+import { validateAndConvertDate } from "@/lib/dateUtils";
 
-interface PositionFieldsProps {
-  position: Position;
-  companyIndex: number;
-  positionIndex: number;
-  onFieldChange: (
-    companyIndex: number,
-    positionIndex: number,
-    projectIndex: number | undefined,
-    field: string,
-    value: string,
-  ) => void;
-  onDateChange: (
-    companyIndex: number,
-    positionIndex: number,
-    field: "startDate" | "endDate",
-    date: string,
-  ) => void;
-  onDelete: (companyIndex: number, positionIndex: number) => void;
-}
-
+/**
+ * The component for the position fields.
+ *
+ * @param position - The position to display.
+ * @param companyIndex - The index of the company.
+ * @param positionIndex - The index of the position.
+ * @param onFieldChange - The function to call when the value changes.
+ * @param onDateChange - The function to call when the date changes.
+ * @param onDelete - The function to call when the delete button is clicked.
+ * @returns The position fields component.
+ */
 export const PositionFields = memo(
   ({
     position,
@@ -34,7 +26,24 @@ export const PositionFields = memo(
     onFieldChange,
     onDateChange,
     onDelete,
-  }: PositionFieldsProps) => {
+  }: {
+    position: Position;
+    companyIndex: number;
+    positionIndex: number;
+    onFieldChange: (
+      companyIndex: number,
+      positionIndex: number,
+      field: string,
+      value: string,
+    ) => void;
+    onDateChange: (
+      companyIndex: number,
+      positionIndex: number,
+      field: "startDate" | "endDate",
+      date: string,
+    ) => void;
+    onDelete: (companyIndex: number, positionIndex: number) => void;
+  }) => {
     const [localTitle, setLocalTitle] = useState(position.title || "");
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +52,7 @@ export const PositionFields = memo(
 
     const handleTitleBlur = () => {
       if (localTitle !== position.title) {
-        onFieldChange(companyIndex, positionIndex, undefined, "title", localTitle);
+        onFieldChange(companyIndex, positionIndex, "title", localTitle);
       }
     };
 
@@ -63,7 +72,7 @@ export const PositionFields = memo(
               label="Start Date"
               value={position.startDate ? dayjs(position.startDate) : null}
               onChange={(date) =>
-                onDateChange(companyIndex, positionIndex, "startDate", date?.toISOString() || "")
+                onDateChange(companyIndex, positionIndex, "startDate", validateAndConvertDate(date))
               }
               sx={{ flex: 1 }}
               slotProps={{
@@ -78,7 +87,7 @@ export const PositionFields = memo(
               label="End Date"
               value={position.endDate ? dayjs(position.endDate) : null}
               onChange={(date) =>
-                onDateChange(companyIndex, positionIndex, "endDate", date?.toISOString() || "")
+                onDateChange(companyIndex, positionIndex, "endDate", validateAndConvertDate(date))
               }
               sx={{ flex: 1 }}
             />

@@ -1,23 +1,33 @@
 import { Box, IconButton, Typography } from "@mui/material";
+import React, { useCallback } from "react";
 
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Skill } from "@openresume/theme";
 import { SkillItem } from "../skills/SkillItem";
-import { useExtractedData } from "./ExtractedDataContext";
 import { useSession } from "next-auth/react";
 
-interface ExtractedSkillsProps {
+/**
+ * The component for the extracted skills page.
+ *
+ * @param skills - The skills to display.
+ * @param setSkills - The function to set the skills.
+ * @returns The extracted skills page.
+ */
+const ExtractedSkillsComponent = ({
+  skills,
+  setSkills,
+}: {
   skills: Skill[];
-}
-
-export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
-  const { updateSkills } = useExtractedData();
+  setSkills: React.Dispatch<React.SetStateAction<Skill[]>>;
+}) => {
   const { data: session } = useSession();
-
-  const handleDelete = (skillToDelete: string) => {
-    const filteredMatches = skills?.filter((skill) => skill.name !== skillToDelete) || [];
-    updateSkills(filteredMatches);
-  };
+  const handleDelete = useCallback(
+    (skillId: string) => {
+      const updatedSkills = skills.filter((skill) => skill.id !== skillId);
+      setSkills(updatedSkills);
+    },
+    [skills, setSkills],
+  );
 
   if (!session) {
     return <Typography>Please sign in to continue</Typography>;
@@ -30,54 +40,61 @@ export const ExtractedSkills = ({ skills }: ExtractedSkillsProps) => {
       </Typography>
       <Box
         sx={{
-          p: 2,
-          border: 1,
-          borderColor: "divider",
-          borderRadius: 1,
-          bgcolor: "background.default",
           display: "flex",
-          flexWrap: "wrap",
-          flexDirection: "row",
+          flexDirection: "column",
           gap: 2,
+          bgcolor: "background.default",
+          p: 2,
+          borderRadius: 2,
         }}
       >
-        {skills?.map((skill, index) => {
-          const skillId = `skill-${index}`;
-
-          const skillForUser = {
-            skill,
-            id: skill.id,
-            icon: null,
-            userId: session.user.id,
-          };
-
-          return (
-            <Box
-              key={skillId}
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                gap: 1,
-                border: 1,
-                borderColor: "divider",
-                borderRadius: 1,
-                bgcolor: "background.paper",
-              }}
-            >
-              <SkillItem skill={skillForUser} />
-              <IconButton
-                size="small"
-                color="error"
-                onClick={() => handleDelete(skill.name)}
-                sx={{ p: 0.5 }}
-                data-testid={`trash-icon-${skill.id}`}
+        {skills.length === 0 ? (
+          <Typography>No skills found.</Typography>
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 1,
+            }}
+          >
+            {skills.map((skill) => (
+              <Box
+                key={skill.id}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 0.5,
+                }}
               >
-                <DeleteOutlineIcon fontSize="small" />
-              </IconButton>
-            </Box>
-          );
-        })}
+                <SkillItem
+                  skill={{
+                    skill,
+                    id: skill.id,
+                    userId: session.user.id,
+                    icon: null,
+                  }}
+                />
+                <IconButton
+                  size="small"
+                  onClick={() => handleDelete(skill.id)}
+                  sx={{
+                    p: 0.5,
+                    "&:hover": {
+                      color: "error.main",
+                    },
+                  }}
+                  data-testid={`trash-icon-${skill.id}`}
+                >
+                  <DeleteOutlineIcon fontSize="small" />
+                </IconButton>
+              </Box>
+            ))}
+          </Box>
+        )}
       </Box>
     </Box>
   );
 };
+
+export const ExtractedSkills = React.memo(ExtractedSkillsComponent);

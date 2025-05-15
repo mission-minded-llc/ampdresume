@@ -1,17 +1,15 @@
 import { Box, TextField, Typography } from "@mui/material";
 import { memo, useState } from "react";
 
-import { useExtractedData } from "./ExtractedDataContext";
+import { ParsedResumeData } from "./types";
 
-interface ExtractedUserProps {
-  user: {
-    name: string;
-    displayEmail: string;
-    location: string;
-    title: string;
-  };
-}
-
+/**
+ * The component for the user field.
+ *
+ * @param label - The label of the field.
+ * @param value - The value of the field.
+ * @param onChange - The function to call when the value changes.
+ */
 const UserField = memo(
   ({
     label,
@@ -48,11 +46,21 @@ const UserField = memo(
 );
 UserField.displayName = "UserField";
 
-export const ExtractedUser = ({ user }: ExtractedUserProps) => {
-  const { updateUser } = useExtractedData();
-
+/**
+ * The component for the user information page.
+ *
+ * @param user - The user to display.
+ * @param setUser - The function to set the user.
+ */
+export const ExtractedUser = ({
+  user,
+  setUser,
+}: {
+  user: ParsedResumeData["user"];
+  setUser: React.Dispatch<React.SetStateAction<ParsedResumeData["user"] | null>>;
+}) => {
   const handleFieldChange = (field: keyof typeof user) => (value: string) => {
-    updateUser({
+    setUser({
       ...user,
       [field]: value,
     });
