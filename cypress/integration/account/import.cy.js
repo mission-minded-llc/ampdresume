@@ -79,6 +79,7 @@ describe("Import Section", () => {
     // Get the last skill name.
     const lastSkill = skills[skills.length - 1];
     cy.contains(lastSkill.name).should("be.visible");
+
     // Click the trash icon next to the last skill.
     cy.get(`[data-test-id="trash-icon-${lastSkill.id}"]`).click();
 
