@@ -2,12 +2,24 @@ import { Box, IconButton } from "@mui/material";
 import { memo, useEffect, useState } from "react";
 
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Education } from "./types";
 import { EducationDateField } from "./EducationDateField";
 import { EducationField } from "./EducationField";
-import { EducationFieldsProps } from "./types";
 
 export const EducationFields = memo(
-  ({ education, index, onFieldChange, onDateChange, onDelete }: EducationFieldsProps) => {
+  ({
+    education,
+    index,
+    onFieldChange,
+    onDateChange,
+    onDelete,
+  }: {
+    education: Education;
+    index: number;
+    onFieldChange: (index: number, field: string, value: string) => void;
+    onDateChange: (index: number, date: string) => void;
+    onDelete: (index: number) => void;
+  }) => {
     const [dateError, setDateError] = useState(false);
 
     useEffect(() => {

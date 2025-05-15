@@ -2,11 +2,13 @@ import { Box, Typography } from "@mui/material";
 
 import { FileUploadEvent } from "./types";
 
-interface UploadPDFProps {
-  onFileUpload: (event: FileUploadEvent) => void;
-}
-
-export const UploadPDF = ({ onFileUpload }: UploadPDFProps) => {
+/**
+ * The component for the upload PDF page.
+ *
+ * @param onFileUpload - The function to call when the file is uploaded.
+ * @returns The upload PDF page.
+ */
+export const UploadPDF = ({ onFileUpload }: { onFileUpload: (event: FileUploadEvent) => void }) => {
   return (
     <Box
       sx={{

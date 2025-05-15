@@ -6,19 +6,27 @@ import { Skill } from "@openresume/theme";
 import { SkillItem } from "../skills/SkillItem";
 import { useSession } from "next-auth/react";
 
-interface ExtractedSkillsProps {
+/**
+ * The component for the extracted skills page.
+ *
+ * @param skills - The skills to display.
+ * @param setSkills - The function to set the skills.
+ * @returns The extracted skills page.
+ */
+const ExtractedSkillsComponent = ({
+  skills,
+  setSkills,
+}: {
   skills: Skill[];
-  updateSkills: (skills: Skill[]) => void;
-}
-
-const ExtractedSkillsComponent = ({ skills, updateSkills }: ExtractedSkillsProps) => {
+  setSkills: React.Dispatch<React.SetStateAction<Skill[]>>;
+}) => {
   const { data: session } = useSession();
   const handleDelete = useCallback(
     (skillId: string) => {
       const updatedSkills = skills.filter((skill) => skill.id !== skillId);
-      updateSkills(updatedSkills);
+      setSkills(updatedSkills);
     },
-    [skills, updateSkills],
+    [skills, setSkills],
   );
 
   if (!session) {

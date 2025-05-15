@@ -1,12 +1,18 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 
+import { Education } from "./types";
 import { EducationFields } from "./EducationFields";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { ExtractedEducationProps } from "./types";
 import dayjs from "dayjs";
 
-export const ExtractedEducation = ({ education, updateEducation }: ExtractedEducationProps) => {
+export const ExtractedEducation = ({
+  education,
+  setEducation,
+}: {
+  education: Education[];
+  setEducation: React.Dispatch<React.SetStateAction<Education[]>>;
+}) => {
   const [expandedEducation, setExpandedEducation] = useState<string | false>(false);
 
   const handleEducationChange =
@@ -21,17 +27,17 @@ export const ExtractedEducation = ({ education, updateEducation }: ExtractedEduc
         ...updatedEducation[index],
         dateAwarded: date,
       };
-      updateEducation(updatedEducation);
+      setEducation(updatedEducation);
     },
-    [education, updateEducation],
+    [education, setEducation],
   );
 
   const handleDeleteEducation = useCallback(
     (index: number) => {
       const updatedEducation = education.filter((_, i) => i !== index);
-      updateEducation(updatedEducation);
+      setEducation(updatedEducation);
     },
-    [education, updateEducation],
+    [education, setEducation],
   );
 
   const handleFieldChange = useCallback(
@@ -41,9 +47,9 @@ export const ExtractedEducation = ({ education, updateEducation }: ExtractedEduc
         ...updatedEducation[index],
         [field]: value,
       };
-      updateEducation(updatedEducation);
+      setEducation(updatedEducation);
     },
-    [education, updateEducation],
+    [education, setEducation],
   );
 
   // Check for any education entries with missing dateAwarded

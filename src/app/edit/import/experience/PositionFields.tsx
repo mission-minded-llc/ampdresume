@@ -7,26 +7,17 @@ import { Position } from "./types";
 import dayjs from "dayjs";
 import { validateAndConvertDate } from "@/lib/dateUtils";
 
-interface PositionFieldsProps {
-  position: Position;
-  companyIndex: number;
-  positionIndex: number;
-  onFieldChange: (
-    companyIndex: number,
-    positionIndex: number,
-    projectIndex: number | undefined,
-    field: string,
-    value: string,
-  ) => void;
-  onDateChange: (
-    companyIndex: number,
-    positionIndex: number,
-    field: "startDate" | "endDate",
-    date: string,
-  ) => void;
-  onDelete: (companyIndex: number, positionIndex: number) => void;
-}
-
+/**
+ * The component for the position fields.
+ *
+ * @param position - The position to display.
+ * @param companyIndex - The index of the company.
+ * @param positionIndex - The index of the position.
+ * @param onFieldChange - The function to call when the value changes.
+ * @param onDateChange - The function to call when the date changes.
+ * @param onDelete - The function to call when the delete button is clicked.
+ * @returns The position fields component.
+ */
 export const PositionFields = memo(
   ({
     position,
@@ -35,7 +26,25 @@ export const PositionFields = memo(
     onFieldChange,
     onDateChange,
     onDelete,
-  }: PositionFieldsProps) => {
+  }: {
+    position: Position;
+    companyIndex: number;
+    positionIndex: number;
+    onFieldChange: (
+      companyIndex: number,
+      positionIndex: number,
+      projectIndex: number | undefined,
+      field: string,
+      value: string,
+    ) => void;
+    onDateChange: (
+      companyIndex: number,
+      positionIndex: number,
+      field: "startDate" | "endDate",
+      date: string,
+    ) => void;
+    onDelete: (companyIndex: number, positionIndex: number) => void;
+  }) => {
     const [localTitle, setLocalTitle] = useState(position.title || "");
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

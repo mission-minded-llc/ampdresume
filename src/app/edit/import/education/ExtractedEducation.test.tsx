@@ -88,9 +88,9 @@ describe("ExtractedEducation", () => {
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 
-  it("displays 'Unnamed Institution' for education entries without school name", () => {
+  it("displays 'Unnamed School' for education entries without school name", () => {
     renderComponent([{ school: "", degree: "Test Degree", dateAwarded: "" }]);
 
-    expect(screen.getByText("Unnamed Institution")).toBeInTheDocument();
+    expect(screen.getByText("Unnamed School")).toBeInTheDocument();
   });
 });

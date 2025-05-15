@@ -10,12 +10,12 @@ import dayjs from "dayjs";
 
 interface ExtractedWorkExperienceProps {
   companies: Company[];
-  updateCompanies: (companies: Company[]) => void;
+  setCompanies: React.Dispatch<React.SetStateAction<Company[]>>;
 }
 
 export const ExtractedWorkExperience = ({
   companies,
-  updateCompanies,
+  setCompanies,
 }: ExtractedWorkExperienceProps) => {
   const [expandedCompany, setExpandedCompany] = useState<string | false>(false);
   const [expandedPosition, setExpandedPosition] = useState<string | false>(false);
@@ -70,17 +70,17 @@ export const ExtractedWorkExperience = ({
           [field]: date,
         };
       }
-      updateCompanies(updatedCompanies);
+      setCompanies(updatedCompanies);
     },
-    [companies, updateCompanies],
+    [companies, setCompanies],
   );
 
   const handleDeleteCompany = useCallback(
     (companyIndex: number) => {
       const updatedCompanies = companies.filter((_, i) => i !== companyIndex);
-      updateCompanies(updatedCompanies);
+      setCompanies(updatedCompanies);
     },
-    [companies, updateCompanies],
+    [companies, setCompanies],
   );
 
   const handleDeletePosition = useCallback(
@@ -93,9 +93,9 @@ export const ExtractedWorkExperience = ({
         ...updatedCompanies[companyIndex],
         positions: updatedPositions,
       };
-      updateCompanies(updatedCompanies);
+      setCompanies(updatedCompanies);
     },
-    [companies, updateCompanies],
+    [companies, setCompanies],
   );
 
   const handleFieldChange = useCallback(
@@ -123,9 +123,9 @@ export const ExtractedWorkExperience = ({
           [field]: value,
         };
       }
-      updateCompanies(updatedCompanies);
+      setCompanies(updatedCompanies);
     },
-    [companies, updateCompanies],
+    [companies, setCompanies],
   );
 
   return (
