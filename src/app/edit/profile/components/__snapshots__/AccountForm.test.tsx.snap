@@ -25,7 +25,7 @@ exports[`AccountForm renders correctly 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-              data-test-id="AccountBoxIcon"
+              data-testid="AccountBoxIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -98,7 +98,7 @@ exports[`AccountForm renders correctly 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-              data-test-id="LinkIcon"
+              data-testid="LinkIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -191,7 +191,7 @@ exports[`AccountForm renders correctly 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-              data-test-id="MailOutlineIcon"
+              data-testid="MailOutlineIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -264,7 +264,7 @@ exports[`AccountForm renders correctly 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-              data-test-id="BadgeIcon"
+              data-testid="BadgeIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -337,7 +337,7 @@ exports[`AccountForm renders correctly 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-              data-test-id="LocationOnIcon"
+              data-testid="LocationOnIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -426,7 +426,7 @@ exports[`AccountForm renders correctly 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-              data-test-id="LanguageIcon"
+              data-testid="LanguageIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -487,7 +487,7 @@ exports[`AccountForm renders correctly 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-              data-test-id="TocIcon"
+              data-testid="TocIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -600,7 +600,7 @@ exports[`AccountForm renders correctly 1`] = `
               <svg
                 aria-hidden="true"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-                data-test-id="ImageIcon"
+                data-testid="ImageIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
               >
@@ -623,7 +623,7 @@ exports[`AccountForm renders correctly 1`] = `
       >
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-h3ppl6-MuiButtonBase-root-MuiButton-root"
-          data-test-id="AccountFormSaveButton"
+          data-testid="AccountFormSaveButton"
           tabindex="0"
           type="button"
         >

@@ -1,6 +1,6 @@
 describe("Profile Section", () => {
   const testEmail = "test@openresume.org";
-  const saveButton = "[data-test-id='AccountFormSaveButton']";
+  const saveButton = "[data-testid='AccountFormSaveButton']";
 
   before(() => {
     cy.loginWithMagicLink();
@@ -36,7 +36,7 @@ describe("Profile Section", () => {
         .type(field.value, { force: true, delay: 25 });
     });
 
-    const saveButton = "[data-test-id='AccountFormSaveButton']";
+    const saveButton = "[data-testid='AccountFormSaveButton']";
     cy.get(saveButton).click();
 
     cy.wait(1000); // Give it a second to save.

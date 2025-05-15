@@ -93,7 +93,7 @@ exports[`EditSkills renders skills when fetched successfully 1`] = `
       <svg
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-120dh41-MuiSvgIcon-root"
-        data-test-id="InfoOutlinedIcon"
+        data-testid="InfoOutlinedIcon"
         focusable="false"
         viewBox="0 0 24 24"
       >

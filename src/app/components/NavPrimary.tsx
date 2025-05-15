@@ -59,7 +59,7 @@ export const NavPrimary = () => {
         onClick={() => {
           setIsOpen(false);
         }}
-        {...(dataTestId && { "data-test-id": dataTestId })}
+        {...(dataTestId && { "data-testid": dataTestId })}
       >
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={text} />
@@ -74,7 +74,7 @@ export const NavPrimary = () => {
         color="inherit"
         aria-label="menu"
         onClick={toggleDrawer(true)}
-        data-test-id="NavPrimaryMenuIcon"
+        data-testid="NavPrimaryMenuIcon"
         sx={(theme) => ({
           mt: 1,
           ml: 1,

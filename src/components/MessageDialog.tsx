@@ -36,7 +36,7 @@ export const MessageDialog = ({
       aria-describedby="alert-dialog-description"
       maxWidth="xs"
       fullWidth
-      data-test-id="MessageDialog"
+      data-testid="MessageDialog"
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>

@@ -7,7 +7,7 @@ import { render } from "@testing-library/react";
 
 function TestChild() {
   const { themeAppearance } = useContext(ThemeAppearanceContext);
-  return <div data-test-id="current-theme">{themeAppearance}</div>;
+  return <div data-testid="current-theme">{themeAppearance}</div>;
 }
 
 describe("ThemeAppearanceProvider", () => {

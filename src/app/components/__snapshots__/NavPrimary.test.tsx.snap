@@ -8,14 +8,14 @@ exports[`NavPrimary Component matches snapshot when logged in 1`] = `
     <button
       aria-label="menu"
       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-1egyfog-MuiButtonBase-root-MuiIconButton-root"
-      data-test-id="NavPrimaryMenuIcon"
+      data-testid="NavPrimaryMenuIcon"
       tabindex="0"
       type="button"
     >
       <svg
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-uks7c6-MuiSvgIcon-root"
-        data-test-id="MenuIcon"
+        data-testid="MenuIcon"
         focusable="false"
         viewBox="0 0 24 24"
       >
@@ -36,14 +36,14 @@ exports[`NavPrimary Component matches snapshot when not logged in 1`] = `
     <button
       aria-label="menu"
       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-1egyfog-MuiButtonBase-root-MuiIconButton-root"
-      data-test-id="NavPrimaryMenuIcon"
+      data-testid="NavPrimaryMenuIcon"
       tabindex="0"
       type="button"
     >
       <svg
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-uks7c6-MuiSvgIcon-root"
-        data-test-id="MenuIcon"
+        data-testid="MenuIcon"
         focusable="false"
         viewBox="0 0 24 24"
       >

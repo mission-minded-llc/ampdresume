@@ -128,7 +128,7 @@ exports[`SkillItemEdit handles delete 1`] = `
         class="MuiBox-root css-1fil4yh"
       >
         <div
-          data-test-id="icon-selector"
+          data-testid="icon-selector"
         >
           IconSelector
         </div>
@@ -326,7 +326,7 @@ exports[`SkillItemEdit handles delete 2`] = `
         class="MuiBox-root css-1fil4yh"
       >
         <div
-          data-test-id="icon-selector"
+          data-testid="icon-selector"
         >
           IconSelector
         </div>
@@ -360,7 +360,7 @@ exports[`SkillItemEdit handles delete 2`] = `
       <div
         aria-hidden="true"
         class="MuiBackdrop-root css-qn1782-MuiBackdrop-root"
-        data-test-id="LoadingOverlay"
+        data-testid="LoadingOverlay"
         style="opacity: 0; visibility: hidden;"
       >
         <div
@@ -557,7 +557,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
         class="MuiBox-root css-1fil4yh"
       >
         <div
-          data-test-id="icon-selector"
+          data-testid="icon-selector"
         >
           IconSelector
         </div>
@@ -753,7 +753,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
         class="MuiBox-root css-1fil4yh"
       >
         <div
-          data-test-id="icon-selector"
+          data-testid="icon-selector"
         >
           IconSelector
         </div>
@@ -949,7 +949,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
         class="MuiBox-root css-1fil4yh"
       >
         <div
-          data-test-id="icon-selector"
+          data-testid="icon-selector"
         >
           IconSelector
         </div>
@@ -1145,7 +1145,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
         class="MuiBox-root css-1fil4yh"
       >
         <div
-          data-test-id="icon-selector"
+          data-testid="icon-selector"
         >
           IconSelector
         </div>
@@ -1341,7 +1341,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
         class="MuiBox-root css-1fil4yh"
       >
         <div
-          data-test-id="icon-selector"
+          data-testid="icon-selector"
         >
           IconSelector
         </div>

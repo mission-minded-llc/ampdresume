@@ -32,11 +32,11 @@ Cypress.Commands.add("setNextAuthCookies", () => {
 
 Cypress.Commands.add("closeMessageDialog", ({ required = false } = {}) => {
   if (required) {
-    cy.get("[data-test-id=MessageDialog]").should("be.visible");
-    cy.get("[data-test-id=MessageDialog]").contains("OK").click();
+    cy.get("[data-testid=MessageDialog]").should("be.visible");
+    cy.get("[data-testid=MessageDialog]").contains("OK").click();
   } else {
     cy.get("body", { timeout: 1000 }).then(($body) => {
-      const $dialog = $body.find("[data-test-id=MessageDialog]");
+      const $dialog = $body.find("[data-testid=MessageDialog]");
       if ($dialog.length) {
         cy.wrap($dialog).should("be.visible");
         cy.wrap($dialog).contains("OK").click();

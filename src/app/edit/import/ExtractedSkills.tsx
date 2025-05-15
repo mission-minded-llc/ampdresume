@@ -84,7 +84,7 @@ const ExtractedSkillsComponent = ({
                       color: "error.main",
                     },
                   }}
-                  data-test-id={`trash-icon-${skill.id}`}
+                  data-testid={`trash-icon-${skill.id}`}
                 >
                   <DeleteOutlineIcon fontSize="small" />
                 </IconButton>

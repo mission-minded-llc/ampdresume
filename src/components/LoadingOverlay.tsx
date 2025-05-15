@@ -22,7 +22,7 @@ export const LoadingOverlay = ({
         backgroundColor: "rgba(0, 0, 0, 0.6)",
       }}
       open={open}
-      data-test-id="LoadingOverlay"
+      data-testid="LoadingOverlay"
     >
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
         <CircularProgress color="inherit" />
