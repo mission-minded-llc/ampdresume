@@ -44,7 +44,7 @@ describe("ExtractedEducation", () => {
     return render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <ExtractedDataProvider initialData={mockInitialData} initialError={null}>
-          <ExtractedEducation education={education} updateEducation={jest.fn()} />
+          <ExtractedEducation education={education} setEducation={jest.fn()} />
         </ExtractedDataProvider>
       </LocalizationProvider>,
     );
