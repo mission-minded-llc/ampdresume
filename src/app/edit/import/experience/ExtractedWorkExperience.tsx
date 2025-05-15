@@ -8,15 +8,20 @@ import { PositionFields } from "./PositionFields";
 import { ProjectField } from "./ProjectField";
 import dayjs from "dayjs";
 
-interface ExtractedWorkExperienceProps {
-  companies: Company[];
-  setCompanies: React.Dispatch<React.SetStateAction<Company[]>>;
-}
-
+/**
+ * The component for the extracted work experience.
+ *
+ * @param companies - The companies to display.
+ * @param setCompanies - The function to set the companies.
+ * @returns The extracted work experience component.
+ */
 export const ExtractedWorkExperience = ({
   companies,
   setCompanies,
-}: ExtractedWorkExperienceProps) => {
+}: {
+  companies: Company[];
+  setCompanies: React.Dispatch<React.SetStateAction<Company[]>>;
+}) => {
   const [expandedCompany, setExpandedCompany] = useState<string | false>(false);
   const [expandedPosition, setExpandedPosition] = useState<string | false>(false);
 
@@ -93,6 +98,17 @@ export const ExtractedWorkExperience = ({
         ...updatedCompanies[companyIndex],
         positions: updatedPositions,
       };
+      setCompanies(updatedCompanies);
+    },
+    [companies, setCompanies],
+  );
+
+  const handleDeleteProject = useCallback(
+    (companyIndex: number, positionIndex: number, projectIndex: number) => {
+      const updatedCompanies = [...companies];
+      updatedCompanies[companyIndex].positions[positionIndex].projects = updatedCompanies[
+        companyIndex
+      ].positions[positionIndex].projects.filter((_, i) => i !== projectIndex);
       setCompanies(updatedCompanies);
     },
     [companies, setCompanies],
@@ -248,7 +264,7 @@ export const ExtractedWorkExperience = ({
                       />
                       {position.projects.map((project, projectIndex) => (
                         <ProjectField
-                          key={projectIndex}
+                          key={`${project.name}`}
                           project={project}
                           companyIndex={index}
                           positionIndex={positionIndex}
@@ -268,6 +284,7 @@ export const ExtractedWorkExperience = ({
                               value,
                             )
                           }
+                          onDelete={handleDeleteProject}
                         />
                       ))}
                     </AccordionDetails>

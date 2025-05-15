@@ -1,6 +1,7 @@
-import { Box, TextField } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
 import { memo, useState } from "react";
 
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Project } from "./types";
 
 /**
@@ -11,6 +12,8 @@ import { Project } from "./types";
  * @param positionIndex - The index of the position.
  * @param projectIndex - The index of the project.
  * @param onFieldChange - The function to call when the value changes.
+ * @param onDelete - The function to call when the delete button is clicked.
+ * @returns The project field component.
  */
 export const ProjectField = memo(
   ({
@@ -19,6 +22,7 @@ export const ProjectField = memo(
     positionIndex,
     projectIndex,
     onFieldChange,
+    onDelete,
   }: {
     project: Project;
     companyIndex: number;
@@ -31,6 +35,7 @@ export const ProjectField = memo(
       field: string,
       value: string,
     ) => void;
+    onDelete: (companyIndex: number, positionIndex: number, projectIndex: number) => void;
   }) => {
     const [localValue, setLocalValue] = useState(project.name || "");
 
@@ -61,6 +66,13 @@ export const ProjectField = memo(
             },
           }}
         />
+        <IconButton
+          onClick={() => onDelete(companyIndex, positionIndex, projectIndex)}
+          size="small"
+          sx={{ mt: 1 }}
+        >
+          <DeleteIcon />
+        </IconButton>
       </Box>
     );
   },
