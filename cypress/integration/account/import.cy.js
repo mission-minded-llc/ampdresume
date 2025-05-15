@@ -80,7 +80,7 @@ describe("Import Section", () => {
     const lastSkill = skills[skills.length - 1];
     cy.contains(lastSkill.name).should("be.visible");
     // Click the trash icon next to the last skill.
-    cy.get(`[data-testid="trash-icon-${lastSkill.id}"]`).click();
+    cy.get(`[data-test-id="trash-icon-${lastSkill.id}"]`).click();
 
     // Check that the skill is deleted.
     cy.contains(lastSkill.name).should("not.exist");

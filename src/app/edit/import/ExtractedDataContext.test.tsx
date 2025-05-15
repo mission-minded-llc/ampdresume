@@ -10,10 +10,10 @@ const TestComponent = () => {
     useExtractedData();
   return (
     <div>
-      <div data-testid="user-name">{user?.name}</div>
-      <div data-testid="skills-count">{skills.length}</div>
-      <div data-testid="companies-count">{companies.length}</div>
-      <div data-testid="education-count">{education.length}</div>
+      <div data-test-id="user-name">{user?.name}</div>
+      <div data-test-id="skills-count">{skills.length}</div>
+      <div data-test-id="companies-count">{companies.length}</div>
+      <div data-test-id="education-count">{education.length}</div>
       <button
         onClick={() =>
           setUser({

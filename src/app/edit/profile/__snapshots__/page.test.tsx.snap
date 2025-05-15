@@ -151,7 +151,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-                  data-testid="AccountBoxIcon"
+                  data-test-id="AccountBoxIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -224,7 +224,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-                  data-testid="LinkIcon"
+                  data-test-id="LinkIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -317,7 +317,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-                  data-testid="MailOutlineIcon"
+                  data-test-id="MailOutlineIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -390,7 +390,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-                  data-testid="BadgeIcon"
+                  data-test-id="BadgeIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -463,7 +463,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-                  data-testid="LocationOnIcon"
+                  data-test-id="LocationOnIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -553,7 +553,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                   <svg
                     aria-hidden="true"
                     class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-120dh41-MuiSvgIcon-root"
-                    data-testid="InfoOutlinedIcon"
+                    data-test-id="InfoOutlinedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -633,7 +633,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-                  data-testid="LanguageIcon"
+                  data-test-id="LanguageIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -694,7 +694,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-                  data-testid="TocIcon"
+                  data-test-id="TocIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -842,7 +842,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                   <svg
                     aria-hidden="true"
                     class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-                    data-testid="ImageIcon"
+                    data-test-id="ImageIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >

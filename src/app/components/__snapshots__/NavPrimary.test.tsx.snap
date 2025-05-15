@@ -15,7 +15,7 @@ exports[`NavPrimary Component matches snapshot when logged in 1`] = `
       <svg
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-uks7c6-MuiSvgIcon-root"
-        data-testid="MenuIcon"
+        data-test-id="MenuIcon"
         focusable="false"
         viewBox="0 0 24 24"
       >
@@ -43,7 +43,7 @@ exports[`NavPrimary Component matches snapshot when not logged in 1`] = `
       <svg
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-uks7c6-MuiSvgIcon-root"
-        data-testid="MenuIcon"
+        data-test-id="MenuIcon"
         focusable="false"
         viewBox="0 0 24 24"
       >

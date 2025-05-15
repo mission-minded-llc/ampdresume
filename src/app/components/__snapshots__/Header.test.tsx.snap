@@ -18,7 +18,7 @@ exports[`Header component matches snapshot 1`] = `
         <svg
           aria-hidden="true"
           class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-uks7c6-MuiSvgIcon-root"
-          data-testid="MenuIcon"
+          data-test-id="MenuIcon"
           focusable="false"
           viewBox="0 0 24 24"
         >

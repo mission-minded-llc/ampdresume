@@ -28,7 +28,7 @@ jest.mock("@/graphql/updateSkillForUser", () => ({
 
 jest.mock("@/components/IconSelector", () => ({
   IconSelector: ({ setIcon }: { setIcon: (icon: string) => void }) => (
-    <div data-testid="icon-selector" onClick={() => setIcon("new-icon")}>
+    <div data-test-id="icon-selector" onClick={() => setIcon("new-icon")}>
       IconSelector
     </div>
   ),
