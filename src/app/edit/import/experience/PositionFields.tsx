@@ -33,7 +33,6 @@ export const PositionFields = memo(
     onFieldChange: (
       companyIndex: number,
       positionIndex: number,
-      projectIndex: number | undefined,
       field: string,
       value: string,
     ) => void;
@@ -53,7 +52,7 @@ export const PositionFields = memo(
 
     const handleTitleBlur = () => {
       if (localTitle !== position.title) {
-        onFieldChange(companyIndex, positionIndex, undefined, "title", localTitle);
+        onFieldChange(companyIndex, positionIndex, "title", localTitle);
       }
     };
 

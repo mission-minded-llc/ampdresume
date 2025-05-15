@@ -98,31 +98,43 @@ export const ExtractedWorkExperience = ({
     [companies, setCompanies],
   );
 
-  const handleFieldChange = useCallback(
+  const handleCompanyFieldChange = useCallback(
+    (companyIndex: number, field: string, value: string) => {
+      const updatedCompanies = [...companies];
+      updatedCompanies[companyIndex] = {
+        ...updatedCompanies[companyIndex],
+        [field]: value,
+      };
+      setCompanies(updatedCompanies);
+    },
+    [companies, setCompanies],
+  );
+
+  const handlePositionFieldChange = useCallback(
+    (companyIndex: number, positionIndex: number, field: string, value: string) => {
+      const updatedCompanies = [...companies];
+      updatedCompanies[companyIndex].positions[positionIndex] = {
+        ...updatedCompanies[companyIndex].positions[positionIndex],
+        [field]: value,
+      };
+      setCompanies(updatedCompanies);
+    },
+    [companies, setCompanies],
+  );
+
+  const handleProjectFieldChange = useCallback(
     (
       companyIndex: number,
-      positionIndex: number | undefined,
-      projectIndex: number | undefined,
+      positionIndex: number,
+      projectIndex: number,
       field: string,
       value: string,
     ) => {
       const updatedCompanies = [...companies];
-      if (projectIndex !== undefined) {
-        updatedCompanies[companyIndex].positions[positionIndex!].projects[projectIndex] = {
-          ...updatedCompanies[companyIndex].positions[positionIndex!].projects[projectIndex],
-          [field]: value,
-        };
-      } else if (positionIndex !== undefined) {
-        updatedCompanies[companyIndex].positions[positionIndex] = {
-          ...updatedCompanies[companyIndex].positions[positionIndex],
-          [field]: value,
-        };
-      } else {
-        updatedCompanies[companyIndex] = {
-          ...updatedCompanies[companyIndex],
-          [field]: value,
-        };
-      }
+      updatedCompanies[companyIndex].positions[positionIndex].projects[projectIndex] = {
+        ...updatedCompanies[companyIndex].positions[positionIndex].projects[projectIndex],
+        [field]: value,
+      };
       setCompanies(updatedCompanies);
     },
     [companies, setCompanies],
@@ -179,7 +191,9 @@ export const ExtractedWorkExperience = ({
               <CompanyFields
                 company={company}
                 companyIndex={index}
-                onFieldChange={handleFieldChange}
+                onFieldChange={(companyIndex, field, value) =>
+                  handleCompanyFieldChange(companyIndex, field, value)
+                }
                 onDateChange={handleDateChange}
                 onDelete={handleDeleteCompany}
               />
@@ -226,7 +240,9 @@ export const ExtractedWorkExperience = ({
                         position={position}
                         companyIndex={index}
                         positionIndex={positionIndex}
-                        onFieldChange={handleFieldChange}
+                        onFieldChange={(companyIndex, positionIndex, field, value) =>
+                          handlePositionFieldChange(companyIndex, positionIndex, field, value)
+                        }
                         onDateChange={handleDateChange}
                         onDelete={handleDeletePosition}
                       />
@@ -237,7 +253,21 @@ export const ExtractedWorkExperience = ({
                           companyIndex={index}
                           positionIndex={positionIndex}
                           projectIndex={projectIndex}
-                          onFieldChange={handleFieldChange}
+                          onFieldChange={(
+                            companyIndex,
+                            positionIndex,
+                            projectIndex,
+                            field,
+                            value,
+                          ) =>
+                            handleProjectFieldChange(
+                              companyIndex,
+                              positionIndex,
+                              projectIndex,
+                              field,
+                              value,
+                            )
+                          }
                         />
                       ))}
                     </AccordionDetails>

@@ -7,27 +7,25 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import dayjs from "dayjs";
 import { validateAndConvertDate } from "@/lib/dateUtils";
 
-interface CompanyFieldsProps {
-  company: Company;
-  companyIndex: number;
-  onFieldChange: (
-    companyIndex: number,
-    positionIndex: number | undefined,
-    projectIndex: number | undefined,
-    field: string,
-    value: string,
-  ) => void;
-  onDateChange: (
-    companyIndex: number,
-    positionIndex: number | undefined,
-    field: "startDate" | "endDate",
-    date: string,
-  ) => void;
-  onDelete: (companyIndex: number) => void;
-}
-
 export const CompanyFields = memo(
-  ({ company, companyIndex, onFieldChange, onDateChange, onDelete }: CompanyFieldsProps) => {
+  ({
+    company,
+    companyIndex,
+    onFieldChange,
+    onDateChange,
+    onDelete,
+  }: {
+    company: Company;
+    companyIndex: number;
+    onFieldChange: (companyIndex: number, field: string, value: string) => void;
+    onDateChange: (
+      companyIndex: number,
+      positionIndex: number | undefined,
+      field: "startDate" | "endDate",
+      date: string,
+    ) => void;
+    onDelete: (companyIndex: number) => void;
+  }) => {
     const [localName, setLocalName] = useState(company.name || "");
     const [localLocation, setLocalLocation] = useState(company.location || "");
 
@@ -41,13 +39,13 @@ export const CompanyFields = memo(
 
     const handleNameBlur = () => {
       if (localName !== company.name) {
-        onFieldChange(companyIndex, undefined, undefined, "name", localName);
+        onFieldChange(companyIndex, "name", localName);
       }
     };
 
     const handleLocationBlur = () => {
       if (localLocation !== company.location) {
-        onFieldChange(companyIndex, undefined, undefined, "location", localLocation);
+        onFieldChange(companyIndex, "location", localLocation);
       }
     };
 
