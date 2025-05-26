@@ -5,4 +5,4 @@
 
 */
 -- CreateIndex
-CREATE UNIQUE INDEX "Social_userId_platform_ref_key" ON "openresume"."Social"("userId", "platform", "ref");
+CREATE UNIQUE INDEX "Social_userId_platform_ref_key" ON "ampdresume"."Social"("userId", "platform", "ref");

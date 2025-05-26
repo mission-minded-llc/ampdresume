@@ -1,5 +1,5 @@
 describe("Profile Section", () => {
-  const testEmail = "test@openresume.org";
+  const testEmail = "test@ampdresume.com";
   const saveButton = "[data-testid='AccountFormSaveButton']";
 
   before(() => {

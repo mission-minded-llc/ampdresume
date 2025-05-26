@@ -13,7 +13,7 @@ const jestConfig: JestConfigWithTsJest = {
     "^.+\\.tsx?$": ["ts-jest", { tsconfig: "./tsconfig.jest.json", isolatedModules: true }],
   },
   transformIgnorePatterns: ["node_modules"],
-  testPathIgnorePatterns: ["/node_modules/", "/openresume-theme/"],
+  testPathIgnorePatterns: ["/node_modules/", "/openresume-theme/", "/ampdresume-theme/"],
 
   // Coverage settings.
   collectCoverageFrom: [

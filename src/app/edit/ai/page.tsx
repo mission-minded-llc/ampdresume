@@ -18,7 +18,7 @@ export default async function Page() {
       <EditPageLayout>
         <p>
           AI Assist is not enabled for your account. To request access, please email{" "}
-          <MuiLink href="mailto:mail@openresume.org">mail@openresume.org</MuiLink>
+          <MuiLink href="mailto:mail@ampdresume.com">mail@ampdresume.com</MuiLink>
         </p>
       </EditPageLayout>
     );

@@ -6,6 +6,7 @@
 
   "mounts": [
     "source=${env:HOME}/.aws,target=/root/.aws,type=bind",
+    "source=${localWorkspaceFolder}/../ampdresume-theme,target=/workspace/ampdresume-theme,type=bind",
     "source=${localWorkspaceFolder}/../openresume-theme,target=/workspace/openresume-theme,type=bind"
   ],
 
