@@ -12,7 +12,7 @@ export async function seedCompanies() {
 
   const companies = [
     {
-      name: "Ampd Resume",
+      name: "Amp'd Resume",
       location: "Los Angeles, CA",
       startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
       endDate: null,
