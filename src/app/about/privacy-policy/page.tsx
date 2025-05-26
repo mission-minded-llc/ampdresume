@@ -23,9 +23,9 @@ export default function PrivacyPolicy() {
       </Typography>
 
       <Typography variant="body1">
-        Welcome to <strong>Amp'd Resume</strong>! We are committed to protecting your privacy and
-        ensuring the security of your personal information. By using our services and providing your
-        personal information, you agree to the practices described in this Privacy Policy.
+        Welcome to <strong>Amp&apos;d Resume</strong>! We are committed to protecting your privacy
+        and ensuring the security of your personal information. By using our services and providing
+        your personal information, you agree to the practices described in this Privacy Policy.
       </Typography>
 
       <Box my={3}>
@@ -36,9 +36,9 @@ export default function PrivacyPolicy() {
           <ListItem sx={{ display: "block" }}>
             <Subtitle>Personal Information</Subtitle>
             <Typography variant="body2">
-              When you sign up on <strong>Amp'd Resume</strong>, we collect your email address at
-              signup. You can optionally add your location, skills, work history, education history,
-              references, and letters.
+              When you sign up on <strong>Amp&apos;d Resume</strong>, we collect your email address
+              at signup. You can optionally add your location, skills, work history, education
+              history, references, and letters.
             </Typography>
           </ListItem>
           <ListItem sx={{ display: "block" }}>

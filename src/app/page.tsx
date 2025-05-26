@@ -100,7 +100,7 @@ export default async function HomePage() {
         }}
       >
         <Typography component="h1" sx={{ mb: 2, typography: { sm: "h1", xs: "h4" } }}>
-          Amp'd Resume
+          Amp&apos;d Resume
         </Typography>
         <Typography
           component="h2"
@@ -134,11 +134,11 @@ export default async function HomePage() {
       </Box>
       <Box>
         <Divider />
-        <Heading>What is Amp'd Resume?</Heading>
+        <Heading>What is Amp&apos;d Resume?</Heading>
         <Paragraph>
-          <strong>Amp'd Resume</strong> is an interactive resume builder that allows you to build
-          your resume and host it <em>at no cost.</em> You can also download your resume as a PDF to
-          use in job applications!
+          <strong>Amp&apos;d Resume</strong> is an interactive resume builder that allows you to
+          build your resume and host it <em>at no cost.</em> You can also download your resume as a
+          PDF to use in job applications!
         </Paragraph>
         <Paragraph>
           Your resume is made up of sections. Each section can be edited to include your own
@@ -165,13 +165,13 @@ export default async function HomePage() {
           ></iframe>
         </Box>
         <Paragraph sx={{ textAlign: "center" }}>
-          Check out the Amp'd Resume founder&apos;s resume{" "}
+          Check out the Amp&apos;d Resume founder&apos;s resume{" "}
           <MuiLink href="/r/michael-dinerstein" target="_blank">
             here
           </MuiLink>
           .
         </Paragraph>
-        <Heading>Who is Amp'd Resume For?</Heading>
+        <Heading>Who is Amp&apos;d Resume For?</Heading>
         <Paragraph>
           Have you ever applied for a job online, and encountered the field that asks for a website
           URL?
@@ -185,9 +185,9 @@ export default async function HomePage() {
           />
         </Box>
         <Paragraph>
-          Not everyone has the means or time to maintain their own personal website. Amp'd Resume is
-          for anyone who wants to have a professional online presence without the hassle of
-          maintaining a website.
+          Not everyone has the means or time to maintain their own personal website. Amp&apos;d
+          Resume is for anyone who wants to have a professional online presence without the hassle
+          of maintaining a website.
         </Paragraph>
         <Paragraph>Think of it as a multi-purpose web presence:</Paragraph>
         <Box>
@@ -199,8 +199,8 @@ export default async function HomePage() {
             </ListItem>
             <ListItem sx={{ display: "list-item" }}>
               <ListItemText>
-                Your Amp'd Resume is <strong>interactive</strong> and <strong>engaging</strong> for
-                reviewers.
+                Your Amp&apos;d Resume is <strong>interactive</strong> and <strong>engaging</strong>{" "}
+                for reviewers.
               </ListItemText>
             </ListItem>
             <ListItem sx={{ display: "list-item" }}>
@@ -212,8 +212,8 @@ export default async function HomePage() {
         </Box>
         <Heading>New Features</Heading>
         <Paragraph>
-          Amp'd Resume is constantly being updated with new features. Some of the features that are
-          coming soon include:
+          Amp&apos;d Resume is constantly being updated with new features. Some of the features that
+          are coming soon include:
         </Paragraph>
         <Box>
           <List sx={{ listStyleType: "disc" }}>
