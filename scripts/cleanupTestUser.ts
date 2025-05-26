@@ -3,7 +3,7 @@ import { exit } from "process";
 import { prisma } from "@/lib/prisma";
 
 // This is the test email used for Cypress.
-const email = "test@openresume.org";
+const email = "test@ampdresume.com";
 
 const user = await prisma.user.findFirst({
   where: { email },

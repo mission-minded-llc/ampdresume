@@ -1,13 +1,13 @@
 # Define local variables for bucket names and environments
 locals {
   region       = "us-west-2"
-  domain       = "openresume.org"
+  domain       = "ampdresume.com"
   environments = ["local", "test", "production"]
 }
 
 terraform {
   backend "s3" {
-    bucket         = "openresume-terraform-state"
+    bucket         = "ampdresume-terraform-state"
     key            = "state/terraform.tfstate"
     region         = "us-west-2"
     dynamodb_table = "terraform-locks"

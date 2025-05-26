@@ -23,7 +23,7 @@ export default function TermsOfService() {
       </Typography>
 
       <Typography variant="body1" paragraph>
-        Welcome to <strong>OpenResume</strong>! By accessing or using our website and services, you
+        Welcome to <strong>Ampd Resume</strong>! By accessing or using our website and services, you
         agree to comply with and be bound by the following Terms of Service. Please read them
         carefully.
       </Typography>
@@ -37,7 +37,8 @@ export default function TermsOfService() {
             <Subtitle>Eligibility</Subtitle>
             <Typography variant="body2">
               You must be at least 18 years old to use our services. By using{" "}
-              <strong>OpenResume</strong>, you represent and warrant that you meet this requirement.
+              <strong>Ampd Resume</strong>, you represent and warrant that you meet this
+              requirement.
             </Typography>
           </ListItem>
           <ListItem sx={{ display: "block" }}>
@@ -51,7 +52,7 @@ export default function TermsOfService() {
             <Subtitle>Prohibited Activities</Subtitle>
             <Typography variant="body2">
               You agree not to use our services for any unlawful purpose or in any way that could
-              harm <strong>OpenResume</strong> or others.
+              harm <strong>Ampd Resume</strong> or others.
             </Typography>
           </ListItem>
         </List>
@@ -61,8 +62,8 @@ export default function TermsOfService() {
         <Typography variant="h5" gutterBottom>
           User Content
         </Typography>
-        <Typography variant="body1" paragraph>
-          By submitting content to <strong>OpenResume</strong>, you grant us a non-exclusive,
+        <Typography variant="body1">
+          By submitting content to <strong>Ampd Resume</strong>, you grant us a non-exclusive,
           worldwide, royalty-free license to use, reproduce, and distribute your content for the
           purposes of providing our services.
         </Typography>
@@ -72,10 +73,10 @@ export default function TermsOfService() {
         <Typography variant="h5" gutterBottom>
           Data Usage and Privacy
         </Typography>
-        <Typography variant="body1" paragraph>
+        <Typography variant="body1">
           Your use of our services is also governed by our{" "}
           <Link href="/about/privacy-policy">Privacy Policy</Link>. By using{" "}
-          <strong>OpenResume</strong>, you consent to the collection and use of your information as
+          <strong>Ampd Resume</strong>, you consent to the collection and use of your information as
           outlined in the Privacy Policy.
         </Typography>
       </Box>
@@ -84,8 +85,8 @@ export default function TermsOfService() {
         <Typography variant="h5" gutterBottom>
           Limitation of Liability
         </Typography>
-        <Typography variant="body1" paragraph>
-          <strong>OpenResume</strong> is not liable for any indirect, incidental, or consequential
+        <Typography variant="body1">
+          <strong>Ampd Resume</strong> is not liable for any indirect, incidental, or consequential
           damages arising out of your use of our services. We do not guarantee that our services
           will be uninterrupted or error-free.
         </Typography>
@@ -95,8 +96,8 @@ export default function TermsOfService() {
         <Typography variant="h5" gutterBottom>
           Indemnification
         </Typography>
-        <Typography variant="body1" paragraph>
-          You agree to indemnify and hold harmless <strong>OpenResume</strong>, its affiliates, and
+        <Typography variant="body1">
+          You agree to indemnify and hold harmless <strong>Ampd Resume</strong>, its affiliates, and
           its employees from any claims, damages, or expenses arising from your use of our services
           or violation of these Terms.
         </Typography>
@@ -106,10 +107,10 @@ export default function TermsOfService() {
         <Typography variant="h5" gutterBottom>
           Termination
         </Typography>
-        <Typography variant="body1" paragraph>
+        <Typography variant="body1">
           We reserve the right to suspend or terminate your access to our services at any time,
           without notice, for conduct that we believe violates these Terms or is harmful to other
-          users of <strong>OpenResume</strong>.
+          users of <strong>Ampd Resume</strong>.
         </Typography>
       </Box>
 
@@ -117,7 +118,7 @@ export default function TermsOfService() {
         <Typography variant="h5" gutterBottom>
           Changes to Terms
         </Typography>
-        <Typography variant="body1" paragraph>
+        <Typography variant="body1">
           We may update these Terms of Service from time to time. We will notify you of any changes
           by posting the new Terms of Service on this page.
         </Typography>
@@ -127,9 +128,9 @@ export default function TermsOfService() {
         <Typography variant="h5" gutterBottom>
           Governing Law
         </Typography>
-        <Typography variant="body1" paragraph>
+        <Typography variant="body1">
           These Terms of Service are governed by and construed in accordance with the laws of the
-          jurisdiction in which <strong>OpenResume</strong> operates.
+          jurisdiction in which <strong>Ampd Resume</strong> operates.
         </Typography>
       </Box>
 
@@ -137,9 +138,9 @@ export default function TermsOfService() {
         <Typography variant="h5" gutterBottom>
           Contact Us
         </Typography>
-        <Typography variant="body1" paragraph>
+        <Typography variant="body1">
           If you have any questions about these Terms of Service, please contact us at{" "}
-          <Link href="mailto:mail@openresume.org">mail@openresume.org</Link>.
+          <Link href="mailto:mail@ampdresume.com">mail@ampdresume.com</Link>.
         </Typography>
       </Box>
     </Container>

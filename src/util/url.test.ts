@@ -19,6 +19,6 @@ describe("getBaseUrl", () => {
 
   it("should return the default URL if NEXT_PUBLIC_BASE_URL is not set", () => {
     delete process.env.NEXT_PUBLIC_BASE_URL;
-    expect(getBaseUrl()).toBe("https://www.openresume.org");
+    expect(getBaseUrl()).toBe("https://www.ampdresume.com");
   });
 });

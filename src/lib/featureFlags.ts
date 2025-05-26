@@ -3,7 +3,7 @@ import { getSession } from "@/lib/auth";
 type FeatureFlagName = "ai_assist";
 
 const featurePerUser = {
-  ai_assist: ["missionmiked@gmail.com", "md@missionmike.dev", "test@openresume.org"],
+  ai_assist: ["missionmiked@gmail.com", "md@missionmike.dev", "test@ampdresume.com"],
 };
 
 /**

@@ -1,2 +1,2 @@
 -- AlterTable
-ALTER TABLE "openresume"."User" ADD COLUMN     "image" TEXT;
+ALTER TABLE "ampdresume"."User" ADD COLUMN     "image" TEXT;

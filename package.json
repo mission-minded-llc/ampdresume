@@ -1,5 +1,5 @@
 {
-  "name": "openresume",
+  "name": "ampdresume",
   "version": "1.0.0",
   "description": "Uniform standard for resume data.",
   "private": true,
@@ -10,7 +10,7 @@
   "author": "Michael R. Dinerstein",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/missionmike/openresume/issues"
+    "url": "https://github.com/missionmike/ampdresume/issues"
   },
   "scripts": {
     "dev": "next dev",

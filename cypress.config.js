@@ -57,7 +57,7 @@ const config = {
     baseUrl: "http://localhost:3000",
     env: {
       BASE_URL: process.env.CYPRESS_BASE_URL || "http://localhost:3000",
-      TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@openresume.org",
+      TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@ampdresume.com",
     },
     chromeWebSecurity: false,
     specPattern: "./cypress/**/*.cy.js",

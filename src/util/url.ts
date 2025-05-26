@@ -3,7 +3,7 @@
  *
  * @returns {string} The base URL for the application.
  */
-export const getBaseUrl = () => process?.env?.NEXT_PUBLIC_BASE_URL || "https://www.openresume.org";
+export const getBaseUrl = () => process?.env?.NEXT_PUBLIC_BASE_URL || "https://www.ampdresume.com";
 
 /**
  * Helper function to get the environment name.
