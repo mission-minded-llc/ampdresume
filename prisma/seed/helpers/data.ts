@@ -5,7 +5,7 @@ export const testUsers = [
     slug: "john-doe",
     displayEmail: "johnny.doe@ampdresume.com",
     location: "Los Angeles, CA",
-    siteTitle: "John Doe's OpenResume",
+    siteTitle: "John Doe's Ampd Resume",
     title: "Designer",
   },
   {
@@ -14,7 +14,7 @@ export const testUsers = [
     slug: "jane-doe",
     displayEmail: "jane.doe@ampdresume.com",
     location: "New York, NY",
-    siteTitle: "Jane Doe's OpenResume",
+    siteTitle: "Jane Doe's Ampd Resume",
     title: "Senior Software Engineer",
   },
 ];

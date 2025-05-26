@@ -165,7 +165,7 @@ export default async function HomePage() {
           ></iframe>
         </Box>
         <Paragraph sx={{ textAlign: "center" }}>
-          Check out the OpenResume founder&apos;s resume{" "}
+          Check out the Ampd Resume founder&apos;s resume{" "}
           <MuiLink href="/r/michael-dinerstein" target="_blank">
             here
           </MuiLink>
@@ -220,7 +220,7 @@ export default async function HomePage() {
             <ListItem sx={{ display: "list-item" }}>
               <ListItemText>
                 <strong>More Open-Source Templates!</strong> - To contribute, check out the{" "}
-                <MuiLink href="https://github.com/missionmike/openresume-theme">
+                <MuiLink href="https://github.com/mission-minded-llc/ampdresume-theme">
                   GitHub repo.
                 </MuiLink>
               </ListItemText>

@@ -12,7 +12,7 @@ export async function seedCompanies() {
 
   const companies = [
     {
-      name: "OpenResume, Inc.",
+      name: "Ampd Resume",
       location: "Los Angeles, CA",
       startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
       endDate: null,

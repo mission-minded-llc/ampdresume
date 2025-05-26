@@ -4,9 +4,9 @@ export { SOCIAL_MEDIA_PLATFORMS } from "./social";
  * Global constant values can live here.
  */
 // Default SEO values.
-export const titleSuffix = "| OpenResume";
+export const titleSuffix = "| Ampd Resume";
 export const defaultDescription =
-  "OpenResume is a free interactive resume builder. Sign in and start building your resume today!";
+  "Ampd Resume is a free interactive resume builder. Sign in and start building your resume today!";
 
 // File upload constants.
 export const MAX_USER_IMAGE_SIZE = 1 * 1024 * 1024;
