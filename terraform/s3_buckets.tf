@@ -62,22 +62,3 @@ resource "aws_s3_bucket" "ci" {
     prevent_destroy = true
   }
 }
-
-# Create an /assets/user folder in the buckets if it doesn't exist and set Cache-Control headers
-resource "aws_s3_object" "medialocal_assets_user" {
-  bucket        = aws_s3_bucket.medialocal.bucket
-  key           = "assets/user/"
-  cache_control = "public, max-age=2592000"
-}
-
-resource "aws_s3_object" "mediatest_assets_user" {
-  bucket        = aws_s3_bucket.mediatest.bucket
-  key           = "assets/user/"
-  cache_control = "public, max-age=2592000"
-}
-
-resource "aws_s3_object" "media_assets_user" {
-  bucket        = aws_s3_bucket.media.bucket
-  key           = "assets/user/"
-  cache_control = "public, max-age=2592000"
-}
