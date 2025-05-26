@@ -8,7 +8,7 @@
 
 */
 -- AlterTable
-ALTER TABLE "openresume"."Social" DROP COLUMN "name",
+ALTER TABLE "ampdresume"."Social" DROP COLUMN "name",
 DROP COLUMN "url",
 ADD COLUMN     "platform" TEXT NOT NULL,
 ADD COLUMN     "ref" TEXT NOT NULL;

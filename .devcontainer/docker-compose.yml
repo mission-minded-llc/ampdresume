@@ -24,7 +24,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
-      POSTGRES_DB: openresume
+      POSTGRES_DB: ampdresume
     ports:
       - "5432:5432"
 

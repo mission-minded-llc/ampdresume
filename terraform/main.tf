@@ -1,7 +1,7 @@
 # Define local variables for bucket names and environments
 locals {
   region       = "us-west-2"
-  domain       = "openresume.org"
+  domain       = "ampdresume.com"
   environments = ["local", "test", "production"]
 }
 

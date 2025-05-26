@@ -28,7 +28,7 @@ function getAllFiles(dirPath: string, arrayOfFiles: string[] = []): string[] {
 function uploadScreenshots() {
   const s3 = getS3Client();
 
-  const bucket = "ci.openresume.org";
+  const bucket = "ci.ampdresume.com";
 
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = join(__filename, "..");

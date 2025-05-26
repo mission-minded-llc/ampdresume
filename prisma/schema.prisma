@@ -12,7 +12,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas  = ["openresume"]
+  schemas  = ["ampdresume"]
 }
 
 model Account {
@@ -32,7 +32,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
-  @@schema("openresume")
+  @@schema("ampdresume")
 }
 
 model Session {
@@ -42,7 +42,7 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@schema("openresume")
+  @@schema("ampdresume")
 }
 
 model User {
@@ -67,7 +67,7 @@ model User {
   education       Education[] // One-to-many relationship with Education, education history. Can be multiple schools.
   Social          Social[] // One-to-many relationship with Social, social media links or usernames.
 
-  @@schema("openresume")
+  @@schema("ampdresume")
 }
 
 model VerificationToken {
@@ -76,7 +76,7 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-  @@schema("openresume")
+  @@schema("ampdresume")
 }
 
 // Social media links for a user, e.g. "Twitter", "GitHub", "LinkedIn"
@@ -88,7 +88,7 @@ model Social {
   userId   String
 
   @@unique([userId, platform, ref])
-  @@schema("openresume")
+  @@schema("ampdresume")
 }
 
 // Skill is a general skill that can be used by multiple users, e.g. "HTML", "CSS", "JavaScript"
@@ -99,7 +99,7 @@ model Skill {
   icon         String? // Optional icon, e.g., from Iconify.
   skillForUser SkillForUser[] // One-to-many relationship with SkillForUser
 
-  @@schema("openresume")
+  @@schema("ampdresume")
 }
 
 // SkillForUser is a specific skill that a user has, e.g. "HTML", "CSS", "JavaScript", with additional
@@ -118,7 +118,7 @@ model SkillForUser {
   skillForProject SkillForProject[]
 
   @@unique([userId, skillId]) // Ensures that a user cannot repeat the same skill
-  @@schema("openresume")
+  @@schema("ampdresume")
 }
 
 // SkillForProject is a specific skill that a user has for a specific project, e.g. "HTML", "CSS", "JavaScript",
@@ -133,7 +133,7 @@ model SkillForProject {
   projectId      String
 
   @@unique([skillForUserId, projectId]) // Ensures that a user cannot repeat the same skill for the same project
-  @@schema("openresume")
+  @@schema("ampdresume")
 }
 
 // Project is a project that a user has worked on, e.g. "Personal Portfolio", "Company Website", and is specific
@@ -147,7 +147,7 @@ model Project {
   positionId       String
   sortIndex        Int               @default(0) // Used for sorting projects.
 
-  @@schema("openresume")
+  @@schema("ampdresume")
 }
 
 // Position is a position that a user has worked in, e.g. "Software Engineer", "Product Manager", and is specific
@@ -162,7 +162,7 @@ model Position {
   company   Company?  @relation(fields: [companyId], references: [id])
   companyId String
 
-  @@schema("openresume")
+  @@schema("ampdresume")
 }
 
 // Company is a company that a user has worked at, e.g. "Google", "Facebook", and is specific to the context within
@@ -177,7 +177,7 @@ model Company {
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
 
-  @@schema("openresume")
+  @@schema("ampdresume")
 }
 
 // Education is a school that a user has attended, e.g. "Harvard University", "Stanford University", and is specific
@@ -190,5 +190,5 @@ model Education {
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
 
-  @@schema("openresume")
+  @@schema("ampdresume")
 }

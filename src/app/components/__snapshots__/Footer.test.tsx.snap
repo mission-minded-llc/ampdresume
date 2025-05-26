@@ -13,7 +13,7 @@ exports[`Footer component matches snapshot for regular page 1`] = `
         href="http://localhost:3000"
         target="_self"
       >
-        openresume.org
+        ampdresume.com
       </a>
       <div
         class="MuiBox-root css-0"
@@ -57,7 +57,7 @@ exports[`Footer component matches snapshot for resume page 1`] = `
         href="http://localhost:3000"
         target="_self"
       >
-        openresume.org
+        ampdresume.com
       </a>
       <div
         class="MuiBox-root css-0"

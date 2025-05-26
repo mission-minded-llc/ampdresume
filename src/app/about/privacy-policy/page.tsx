@@ -23,7 +23,7 @@ export default function PrivacyPolicy() {
       </Typography>
 
       <Typography variant="body1">
-        Welcome to <strong>OpenResume</strong>! We are committed to protecting your privacy and
+        Welcome to <strong>Ampd Resume</strong>! We are committed to protecting your privacy and
         ensuring the security of your personal information. By using our services and providing your
         personal information, you agree to the practices described in this Privacy Policy.
       </Typography>
@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
           <ListItem sx={{ display: "block" }}>
             <Subtitle>Personal Information</Subtitle>
             <Typography variant="body2">
-              When you sign up on <strong>OpenResume</strong>, we collect your email address at
+              When you sign up on <strong>Ampd Resume</strong>, we collect your email address at
               signup. You can optionally add your location, skills, work history, education history,
               references, and letters.
             </Typography>
@@ -102,7 +102,7 @@ export default function PrivacyPolicy() {
           &nbsp;
           <br />
           You can request to have your account and all information permanently deleted by emailingy
-          our request to mail@openresume.org from the email address your account is associated with.
+          our request to mail@ampdresume.com from the email address your account is associated with.
         </Typography>
       </Box>
 
@@ -154,7 +154,7 @@ export default function PrivacyPolicy() {
         </Typography>
         <Typography variant="body1">
           If you have any questions about this Privacy Policy, please contact us at{" "}
-          <Link href="mailto:mail@openresume.org">mail@openresume.org</Link>.
+          <Link href="mailto:mail@ampdresume.com">mail@ampdresume.com</Link>.
         </Typography>
       </Box>
     </Container>

@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DATABASE_URL: "${{ secrets.DATABASE_URL_BASE }}openresume_production?schema=openresume"
+      DATABASE_URL: "${{ secrets.DATABASE_URL_BASE }}ampdresume_production?schema=ampdresume"
 
     steps:
       - uses: actions/checkout@v3

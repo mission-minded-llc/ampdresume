@@ -59,7 +59,7 @@ describe("Authentication Configuration", () => {
       const sendMailMock = mockTransport().sendMail as jest.Mock;
 
       await sendVerificationRequest({
-        identifier: "test@openresume.org",
+        identifier: "test@ampdresume.com",
         url: "http://localhost:3000/verify?token=test-token",
         provider: {
           id: "email",
@@ -75,7 +75,7 @@ describe("Authentication Configuration", () => {
 
       expect(sendMailMock).toHaveBeenCalledWith(
         expect.objectContaining({
-          to: "test@openresume.org",
+          to: "test@ampdresume.com",
           subject: expect.stringContaining("Sign in"),
           html: expect.stringContaining("Click the link below to sign in"),
         }),
@@ -96,7 +96,7 @@ describe("Authentication Configuration", () => {
       const mockGetServerSession = getServerSession as jest.Mock;
       const mockSession = {
         user: {
-          email: "test@openresume.org",
+          email: "test@ampdresume.com",
           name: "Test User",
         },
         expires: new Date(Date.now() + 86400000).toISOString(),
@@ -105,7 +105,7 @@ describe("Authentication Configuration", () => {
 
       const session = await getServerSession(authOptions);
       expect(session).toEqual(mockSession);
-      expect(session?.user?.email).toBe("test@openresume.org");
+      expect(session?.user?.email).toBe("test@ampdresume.com");
     });
   });
 
