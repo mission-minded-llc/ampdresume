@@ -242,7 +242,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 <em
                   class="MuiTypography-root MuiTypography-body1 css-aipyd8-MuiTypography-root"
                 >
-                  openresume.org/r/
+                  ampdresume.com/r/
                   <strong>
                     john-doe
                   </strong>

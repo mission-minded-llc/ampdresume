@@ -229,7 +229,7 @@ const AccountForm = ({
                   color: theme.palette.primary.main,
                 })}
               >
-                openresume.org/r/
+                ampdresume.com/r/
                 <strong>
                   {formData?.slug ? formData.slug : "your-custom-slug"}
                 </strong>/
