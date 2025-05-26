@@ -1,0 +1,42 @@
+name: Reset Migrations - Production Environment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  reset-migrations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Drop migrations table and resolve init migration
+        env:
+          DATABASE_URL: "${{ secrets.DATABASE_URL_BASE }}ampdresume_production?schema=ampdresume"
+        run: |
+          # Drop the _prisma_migrations table
+          psql $DATABASE_URL -c 'DROP TABLE IF EXISTS "ampdresume"._prisma_migrations;'
+
+          # Generate migration that matches current schema
+          npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > migration.sql
+
+          # Create migrations directory and move migration
+          mkdir -p prisma/migrations/0_init
+          mv migration.sql prisma/migrations/0_init/migration.sql
+
+          # Mark migration as applied
+          npx prisma migrate resolve --applied 0_init

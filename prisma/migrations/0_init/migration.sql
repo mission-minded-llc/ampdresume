@@ -205,3 +205,4 @@ ALTER TABLE "ampdresume"."Company" ADD CONSTRAINT "Company_userId_fkey" FOREIGN 
 
 -- AddForeignKey
 ALTER TABLE "ampdresume"."Education" ADD CONSTRAINT "Education_userId_fkey" FOREIGN KEY ("userId") REFERENCES "ampdresume"."User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
