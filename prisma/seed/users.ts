@@ -14,7 +14,7 @@ export async function seedUsers() {
   for (const user of testUsers) {
     const existingUser = await prisma.user.findFirst({
       where: {
-        email: user.email,
+        slug: user.slug,
       },
     });
 
