@@ -15,7 +15,7 @@ exports[`PrivacyPolicy Page matches snapshot 1`] = `
     >
       Welcome to 
       <strong>
-        Ampd Resume
+        Amp'd Resume
       </strong>
       ! We are committed to protecting your privacy and ensuring the security of your personal information. By using our services and providing your personal information, you agree to the practices described in this Privacy Policy.
     </p>
@@ -43,7 +43,7 @@ exports[`PrivacyPolicy Page matches snapshot 1`] = `
           >
             When you sign up on 
             <strong>
-              Ampd Resume
+              Amp'd Resume
             </strong>
             , we collect your email address at signup. You can optionally add your location, skills, work history, education history, references, and letters.
           </p>
