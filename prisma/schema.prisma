@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
@@ -15,6 +9,7 @@ datasource db {
   schemas  = ["ampdresume"]
 }
 
+/// Represents a user account from an OAuth provider
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -28,13 +23,13 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@schema("ampdresume")
 }
 
+/// Represents an active session for a user
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
@@ -45,31 +40,41 @@ model Session {
   @@schema("ampdresume")
 }
 
+/// Main user model containing profile information and relationships.
+/// Used for authentication and storing user-specific data.
 model User {
   id              String         @id @default(cuid())
-  name            String?
   email           String?        @unique
+  name            String?
   emailVerified   DateTime?
-  image           String?
   createdAt       DateTime       @default(now())
+  /// Used for profile URL
+  slug            String?        @unique
   updatedAt       DateTime       @default(now()) @updatedAt
-  siteTitle       String? // Used for SEO and open graph tags.
-  siteDescription String? // Used for SEO and open graph tags.
-  siteImage       String? // Used for open graph tags. Should be a URL.
-  slug            String?        @unique // Used for profile URL.
-  title           String? // Used for profile title, e.g. "Senior Software Engineer"
-  displayEmail    String? // Used for contact email, displayed on profile.
-  location        String? // Used for location, displayed on profile. Should be a general value, e.g. City, State.
-  accounts        Account[] // Linked authentication providers.
-  sessions        Session[] // Active sessions.
-  skillForUser    SkillForUser[] // One-to-many relationship with SkillForUser, customized skills per user.
-  company         Company[] // One-to-many relationship with Company, work experience. Can be multiple companies.
-  education       Education[] // One-to-many relationship with Education, education history. Can be multiple schools.
-  Social          Social[] // One-to-many relationship with Social, social media links or usernames.
+  /// Used for contact email, displayed on profile
+  displayEmail    String?
+  /// Used for location, displayed on profile. Should be a general value, e.g. City, State
+  location        String?
+  /// Used for open graph tags. Should be a URL
+  siteImage       String?
+  /// Used for SEO and open graph tags
+  siteTitle       String?
+  /// Used for profile title, e.g. "Senior Software Engineer"
+  title           String?
+  /// Used for SEO and open graph tags
+  siteDescription String?
+  image           String?
+  accounts        Account[]
+  company         Company[]
+  education       Education[]
+  sessions        Session[]
+  skillForUser    SkillForUser[]
+  Social          Social[]
 
   @@schema("ampdresume")
 }
 
+/// Used for email verification tokens
 model VerificationToken {
   identifier String
   token      String   @unique
@@ -79,116 +84,123 @@ model VerificationToken {
   @@schema("ampdresume")
 }
 
-// Social media links for a user, e.g. "Twitter", "GitHub", "LinkedIn"
+/// Social media links for a user, e.g. "Twitter", "GitHub", "LinkedIn"
 model Social {
   id       String @id @default(cuid())
+  userId   String
   platform String
   ref      String
   user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId   String
 
   @@unique([userId, platform, ref])
   @@schema("ampdresume")
 }
 
-// Skill is a general skill that can be used by multiple users, e.g. "HTML", "CSS", "JavaScript"
-// Not limited to technical skills. Can be used for any skill, e.g. "Public Speaking", "Leadership"
+/// Skill is a general skill that can be used by multiple users, e.g. "HTML", "CSS", "JavaScript"
+/// Not limited to technical skills. Can be used for any skill, e.g. "Public Speaking", "Leadership"
 model Skill {
   id           String         @id @default(cuid())
-  name         String         @unique // Ensures skill names are unique
-  icon         String? // Optional icon, e.g., from Iconify.
-  skillForUser SkillForUser[] // One-to-many relationship with SkillForUser
+  /// Ensures skill names are unique
+  name         String         @unique
+  /// Optional icon, e.g., from Iconify
+  icon         String?
+  skillForUser SkillForUser[]
 
   @@schema("ampdresume")
 }
 
-// SkillForUser is a specific skill that a user has, e.g. "HTML", "CSS", "JavaScript", with additional
-// customized information, e.g. description, icon, yearStarted, totalYears. The custom data is specific
-// to the user's resume. The skill itself is a general skill that can be used by multiple users.
+/// SkillForUser is a specific skill that a user has, with additional customized information.
+/// The custom data is specific to the user's resume. The skill itself is a general skill
+/// that can be used by multiple users.
 model SkillForUser {
   id              String            @id @default(cuid())
-  skill           Skill             @relation(fields: [skillId], references: [id], onDelete: Cascade)
   skillId         String
-  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId          String
-  description     String? // Optional meta about the skill for this user.
-  icon            String? // Optional icon, e.g., from Iconify, overrides the icon in Skill if found.
-  yearStarted     Int? // Optional start year of using the skill
-  totalYears      Int? // Optional total years using the skill
+  /// Optional meta about the skill for this user
+  description     String?
+  /// Optional icon, e.g., from Iconify, overrides the icon in Skill if found
+  icon            String?
+  /// Optional start year of using the skill
+  yearStarted     Int?
+  /// Optional total years using the skill
+  totalYears      Int?
   skillForProject SkillForProject[]
+  skill           Skill             @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, skillId]) // Ensures that a user cannot repeat the same skill
+  @@unique([userId, skillId])
   @@schema("ampdresume")
 }
 
-// SkillForProject is a specific skill that a user has for a specific project, e.g. "HTML", "CSS", "JavaScript",
-// with additional customized information, e.g. description. The custom data is specific to the user's resume, within
-// the context of the project. The skill itself is a general skill that can be used by multiple users.
+/// SkillForProject is a specific skill that a user has for a specific project,
+/// with additional customized information. The custom data is specific to the user's resume,
+/// within the context of the project.
 model SkillForProject {
   id             String       @id @default(cuid())
-  skillForUser   SkillForUser @relation(fields: [skillForUserId], references: [id], onDelete: Cascade)
   skillForUserId String
-  description    String? // Optional meta about the skill for this project. Overrides the description in SkillForUser if found.
-  project        Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  /// Optional meta about the skill for this project. Overrides the description in SkillForUser if found
+  description    String?
   projectId      String
+  project        Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  skillForUser   SkillForUser @relation(fields: [skillForUserId], references: [id], onDelete: Cascade)
 
-  @@unique([skillForUserId, projectId]) // Ensures that a user cannot repeat the same skill for the same project
+  @@unique([skillForUserId, projectId])
   @@schema("ampdresume")
 }
 
-// Project is a project that a user has worked on, e.g. "Personal Portfolio", "Company Website", and is specific
-// to the context within the Company. The project can have multiple skills associated with it, e.g. "HTML", "CSS", "JavaScript".
+/// Project is a project that a user has worked on and is specific to the context within the Company.
+/// The project can have multiple skills associated with it.
 model Project {
   id               String            @id @default(cuid())
   name             String
   description      String?
-  skillsForProject SkillForProject[]
-  position         Position          @relation(fields: [positionId], references: [id])
   positionId       String
-  sortIndex        Int               @default(0) // Used for sorting projects.
+  /// Used for sorting projects
+  sortIndex        Int               @default(0)
+  position         Position          @relation(fields: [positionId], references: [id])
+  skillsForProject SkillForProject[]
 
   @@schema("ampdresume")
 }
 
-// Position is a position that a user has worked in, e.g. "Software Engineer", "Product Manager", and is specific
-// to the context within the Company. The position can have multiple projects associated with it, e.g. "Personal Portfolio",
-// "Company Website".
+/// Position is a position that a user has worked in and is specific to the context within the Company.
+/// The position can have multiple projects associated with it.
 model Position {
   id        String    @id @default(cuid())
   title     String
   startDate DateTime
   endDate   DateTime?
-  projects  Project[]
-  company   Company?  @relation(fields: [companyId], references: [id])
   companyId String
+  company   Company   @relation(fields: [companyId], references: [id])
+  projects  Project[]
 
   @@schema("ampdresume")
 }
 
-// Company is a company that a user has worked at, e.g. "Google", "Facebook", and is specific to the context within
-// the user's resume. The company can have multiple positions associated with it, e.g. "Software Engineer", "Product Manager".
+/// Company is a company that a user has worked at and is specific to the context within the user's resume.
+/// The company can have multiple positions associated with it.
 model Company {
   id        String     @id @default(cuid())
   name      String
   location  String
   startDate DateTime
   endDate   DateTime?
-  positions Position[]
-  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  positions Position[]
 
   @@schema("ampdresume")
 }
 
-// Education is a school that a user has attended, e.g. "Harvard University", "Stanford University", and is specific
-// to the context within the user's resume. For multiple degrees from the same school, the user can add multiple education entries.
+/// Education is a school that a user has attended and is specific to the context within the user's resume.
+/// For multiple degrees from the same school, the user can add multiple education entries.
 model Education {
   id          String    @id @default(cuid())
   school      String
   degree      String
   dateAwarded DateTime?
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@schema("ampdresume")
 }
