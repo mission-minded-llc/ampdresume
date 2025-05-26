@@ -1,18 +1,18 @@
 export const testUsers = [
   {
-    email: "john@ampdresume.com",
+    email: "john@openresume.org",
     name: "John Doe",
     slug: "john-doe",
-    displayEmail: "johnny.doe@ampdresume.com",
+    displayEmail: "johnny.doe@openresume.org",
     location: "Los Angeles, CA",
     siteTitle: "John Doe's Ampd Resume",
     title: "Designer",
   },
   {
-    email: "jane@ampdresume.com",
+    email: "jane@openresume.org",
     name: "Jane Doe",
     slug: "jane-doe",
-    displayEmail: "jane.doe@ampdresume.com",
+    displayEmail: "jane.doe@openresume.org",
     location: "New York, NY",
     siteTitle: "Jane Doe's Ampd Resume",
     title: "Senior Software Engineer",
