@@ -1,4 +1,4 @@
-# Ampd Resume GraphQL
+# Amp'd Resume GraphQL
 
 In order to query data via GraphQL, there are a few steps to take for each type of query or
 mutation.

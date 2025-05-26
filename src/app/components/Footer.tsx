@@ -44,7 +44,7 @@ export const Footer = () => {
         <Box>
           <Typography variant="caption" sx={{ textAlign: "center" }}>
             {isDesktop ? (
-              <>&copy; {new Date().getFullYear()} Ampd Resume. All rights reserved. | </>
+              <>&copy; {new Date().getFullYear()} Amp'd Resume. All rights reserved. | </>
             ) : null}
             <MuiLink href="/about/privacy-policy">Privacy Policy</MuiLink> |{" "}
             <MuiLink href="/about/terms-of-service">Terms of Service</MuiLink>
