@@ -1,9 +1,9 @@
 import * as Sentry from "@sentry/react";
 
-import { Company, Education } from "@openresume/theme";
-import { Social, User } from "@openresume/theme";
+import { Company, Education } from "@ampdresume/theme";
+import { Social, User } from "@ampdresume/theme";
 
-import { SkillForUser } from "@openresume/theme";
+import { SkillForUser } from "@ampdresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 

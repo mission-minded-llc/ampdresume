@@ -18,7 +18,7 @@ import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { EditExperienceContext } from "./EditExperience";
 import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { Project } from "@openresume/theme";
+import { Project } from "@ampdresume/theme";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 import { addSkillForProject } from "@/graphql/addSkillForProject";

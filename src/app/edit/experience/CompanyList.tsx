@@ -2,7 +2,7 @@ import { Box, Button, Dialog, DialogContent } from "@mui/material";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Company } from "@openresume/theme";
+import { Company } from "@ampdresume/theme";
 import { CompanyForm } from "./CompanyForm";
 import { CompanyGeneric } from "@/graphql/getExperience";
 import { CompanyItem } from "./CompanyItem";

@@ -1,7 +1,7 @@
 import { Box, Button, Dialog, DialogContent } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { Company } from "@openresume/theme";
+import { Company } from "@ampdresume/theme";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { PositionForm } from "./PositionForm";
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";

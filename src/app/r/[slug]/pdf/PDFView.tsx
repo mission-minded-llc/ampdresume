@@ -1,10 +1,10 @@
 "use client";
 
 import { Box, Button } from "@mui/material";
-import { Company, Education, SkillForUser, ThemeDefaultPDF } from "@openresume/theme";
+import { Company, Education, SkillForUser, ThemeDefaultPDF } from "@ampdresume/theme";
 import { useEffect, useRef, useState } from "react";
 
-import { User } from "@openresume/theme";
+import { User } from "@ampdresume/theme";
 
 interface PDFViewProps {
   user: User;

@@ -6,7 +6,7 @@ import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { IconSelector } from "@/components/IconSelector";
 import { MuiLink } from "@/components/MuiLink";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
-import { SkillForUser } from "@openresume/theme";
+import { SkillForUser } from "@ampdresume/theme";
 import { Tooltip } from "@/components/Tooltip";
 import { TooltipTotalYears } from "@/components/tooltips";
 import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
