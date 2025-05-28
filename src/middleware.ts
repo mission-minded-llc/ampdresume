@@ -1,30 +1,45 @@
+import { NextResponse } from "next/server";
 import { withAuth } from "next-auth/middleware";
 
-export default withAuth({
-  pages: {
-    signIn: "/login", // Redirect if not authenticated
+// Export the middleware with security headers
+export default withAuth(
+  function middleware() {
+    const res = NextResponse.next();
+
+    // Add security headers
+    res.headers.set("X-Frame-Options", "DENY");
+    res.headers.set("Content-Security-Policy", "frame-ancestors 'none';");
+
+    return res;
   },
-  callbacks: {
-    authorized: ({ req }) => {
-      // If the requested path is /api/graphql, skip.
-      if (req.url.includes("/api/graphql")) return true;
+  {
+    pages: {
+      signIn: "/login",
+    },
+    callbacks: {
+      authorized: ({ req }) => {
+        // If the requested path is /api/graphql, skip auth
+        if (req.url.includes("/api/graphql")) return true;
 
-      // Look for the session cookie
-      const session = req.cookies.get("next-auth.session-token")?.value;
+        // For non-protected routes, allow access
+        if (
+          !req.nextUrl.pathname.startsWith("/edit/") &&
+          !req.nextUrl.pathname.startsWith("/api/")
+        ) {
+          return true;
+        }
 
-      return Boolean(session); // Allow access if session exists
-
-      // This is a shallow access check. You should validate the session
-      // to ensure it's not expired or tampered with before allowing access.
+        // For protected routes, check session
+        const session = req.cookies.get("next-auth.session-token")?.value;
+        return Boolean(session);
+      },
     },
   },
-});
+);
 
 export const config = {
   matcher: [
-    // Resume editing pages.
-    "/edit/:path*",
-    // Apply to all API routes.
-    "/api/:path*",
+    // Apply to all paths
+    "/:path*",
   ],
 };
