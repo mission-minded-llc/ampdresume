@@ -1,6 +1,6 @@
 import * as Sentry from "@sentry/react";
 
-import { Position } from "@openresume/theme";
+import { Position } from "@ampdresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 

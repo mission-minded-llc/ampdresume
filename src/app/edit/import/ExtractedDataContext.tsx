@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 
 import { ParsedResumeData } from "./types";
-import { Skill } from "@openresume/theme";
+import { Skill } from "@ampdresume/theme";
 
 /**
  * The context for the extracted data.

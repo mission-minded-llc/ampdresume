@@ -2,7 +2,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import React, { useCallback } from "react";
 
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Skill } from "@openresume/theme";
+import { Skill } from "@ampdresume/theme";
 import { SkillItem } from "../skills/SkillItem";
 import { useSession } from "next-auth/react";
 

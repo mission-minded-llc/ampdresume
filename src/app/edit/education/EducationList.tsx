@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-import { Education } from "@openresume/theme";
+import { Education } from "@ampdresume/theme";
 import { EducationForm } from "./EducationForm";
 import { EducationGeneric } from "@/graphql/getEducation";
 import { EducationItem } from "./EducationItem";
