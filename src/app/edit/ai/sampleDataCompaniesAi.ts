@@ -1,4 +1,4 @@
-import { Company } from "@openresume/theme";
+import { Company } from "@ampdresume/theme";
 
 export const sampleDataCompaniesAi: Company[] = [
   {

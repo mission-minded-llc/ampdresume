@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Position } from "@openresume/theme";
+import { Position } from "@ampdresume/theme";
 import { PositionForm } from "./PositionForm";
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { ProjectsList } from "./ProjectsList";

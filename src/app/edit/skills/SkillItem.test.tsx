@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
 import React from "react";
-import { SkillForUser } from "@openresume/theme";
+import { SkillForUser } from "@ampdresume/theme";
 import { SkillItem } from "./SkillItem";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";

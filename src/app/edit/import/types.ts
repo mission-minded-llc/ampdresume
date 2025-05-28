@@ -1,4 +1,4 @@
-import { Company, Education, Position, Project, Skill, User } from "@openresume/theme";
+import { Company, Education, Position, Project, Skill, User } from "@ampdresume/theme";
 
 /**
  * The file object for a PDF file, used during the initial

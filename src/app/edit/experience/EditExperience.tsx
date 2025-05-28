@@ -7,7 +7,7 @@ import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import React from "react";
 import { SectionTitle } from "../components/SectionTitle";
-import { SkillForUser } from "@openresume/theme";
+import { SkillForUser } from "@ampdresume/theme";
 import { getCompanies } from "@/graphql/getCompanies";
 import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 import { useQuery } from "@tanstack/react-query";

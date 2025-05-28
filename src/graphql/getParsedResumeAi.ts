@@ -1,6 +1,6 @@
 import * as Sentry from "@sentry/react";
 
-import { Company, Education, Skill } from "@openresume/theme";
+import { Company, Education, Skill } from "@ampdresume/theme";
 
 import { ParsedResumeData } from "@/app/edit/import/types";
 import { getApolloClient } from "@/lib/apolloClient";

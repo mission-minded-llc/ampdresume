@@ -8,7 +8,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { Position, Project } from "@openresume/theme";
+import { Position, Project } from "@ampdresume/theme";
 import React, { useEffect, useState } from "react";
 import {
   SortableContext,

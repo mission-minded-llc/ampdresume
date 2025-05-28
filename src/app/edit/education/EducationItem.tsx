@@ -1,7 +1,7 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Education } from "@openresume/theme";
+import { Education } from "@ampdresume/theme";
 import { EducationForm } from "./EducationForm";
 import { EducationGeneric } from "@/graphql/getEducation";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
