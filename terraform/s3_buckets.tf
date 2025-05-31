@@ -62,3 +62,18 @@ resource "aws_s3_bucket" "ci" {
     prevent_destroy = true
   }
 }
+
+resource "aws_s3_bucket" "ci_theme" {
+  provider = aws.us_west_2
+  bucket   = "ci-theme.${local.domain}"
+
+  tags = {
+    Environment = "CI"
+    Project     = "Ampd Resume"
+    ManagedBy   = "Terraform"
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
