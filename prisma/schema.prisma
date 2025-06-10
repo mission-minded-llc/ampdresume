@@ -107,13 +107,12 @@ model Social {
 /// Skill is a general skill that can be used by multiple users, e.g. "HTML", "CSS", "JavaScript"
 /// Not limited to technical skills. Can be used for any skill, e.g. "Public Speaking", "Leadership"
 model Skill {
-  id                      String                    @id @default(cuid())
+  id           String         @id @default(cuid())
   /// Ensures skill names are unique
-  name                    String                    @unique
+  name         String         @unique
   /// Optional icon, e.g., from Iconify
-  icon                    String?
-  skillForUser            SkillForUser[]
-  SkillForFeaturedProject SkillForFeaturedProject[]
+  icon         String?
+  skillForUser SkillForUser[]
 
   @@schema("ampdresume")
 }
@@ -122,20 +121,21 @@ model Skill {
 /// The custom data is specific to the user's resume. The skill itself is a general skill
 /// that can be used by multiple users.
 model SkillForUser {
-  id              String            @id @default(cuid())
-  skillId         String
-  userId          String
+  id                      String                    @id @default(cuid())
+  skillId                 String
+  userId                  String
   /// Optional meta about the skill for this user
-  description     String?
+  description             String?
   /// Optional icon, e.g., from Iconify, overrides the icon in Skill if found
-  icon            String?
+  icon                    String?
   /// Optional start year of using the skill
-  yearStarted     Int?
+  yearStarted             Int?
   /// Optional total years using the skill
-  totalYears      Int?
-  skillForProject SkillForProject[]
-  skill           Skill             @relation(fields: [skillId], references: [id], onDelete: Cascade)
-  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalYears              Int?
+  skillForProject         SkillForProject[]
+  skill                   Skill                     @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  user                    User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  SkillForFeaturedProject SkillForFeaturedProject[]
 
   @@unique([userId, skillId])
   @@schema("ampdresume")
@@ -207,8 +207,8 @@ model Company {
 model SkillForFeaturedProject {
   id                String          @id @default(cuid())
   description       String?
-  skillId           String
-  skill             Skill           @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  skillForUserId    String
+  skillForUser      SkillForUser    @relation(fields: [skillForUserId], references: [id], onDelete: Cascade)
   featuredProjectId String
   featuredProject   FeaturedProject @relation(fields: [featuredProjectId], references: [id], onDelete: Cascade)
 
