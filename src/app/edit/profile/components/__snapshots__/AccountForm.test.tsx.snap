@@ -415,7 +415,7 @@ exports[`AccountForm renders correctly 1`] = `
         <h2
           class="MuiTypography-root MuiTypography-h5 css-xt72g8-MuiTypography-root"
         >
-          Resume Site Information
+          Resume Site Settings
         </h2>
         <div
           class="MuiBox-root css-18mctc4"

@@ -43,14 +43,14 @@ model Session {
 /// Main user model containing profile information and relationships.
 /// Used for authentication and storing user-specific data.
 model User {
-  id              String         @id @default(cuid())
-  email           String?        @unique
+  id              String    @id @default(cuid())
+  email           String?   @unique
   name            String?
   emailVerified   DateTime?
-  createdAt       DateTime       @default(now())
+  createdAt       DateTime  @default(now())
   /// Used for profile URL
-  slug            String?        @unique
-  updatedAt       DateTime       @default(now()) @updatedAt
+  slug            String?   @unique
+  updatedAt       DateTime  @default(now()) @updatedAt
   /// Used for contact email, displayed on profile
   displayEmail    String?
   /// Used for location, displayed on profile. Should be a general value, e.g. City, State
@@ -64,12 +64,20 @@ model User {
   /// Used for SEO and open graph tags
   siteDescription String?
   image           String?
+
+  /// Used for theme name, e.g. "default"
+  webThemeName String?
+  /// Used for PDF theme name, e.g. "default"
+  pdfThemeName String?
+
   accounts        Account[]
   company         Company[]
   education       Education[]
   sessions        Session[]
   skillForUser    SkillForUser[]
   Social          Social[]
+  FeaturedProject FeaturedProject[]
+  Certification   Certification[]
 
   @@schema("ampdresume")
 }
@@ -113,20 +121,21 @@ model Skill {
 /// The custom data is specific to the user's resume. The skill itself is a general skill
 /// that can be used by multiple users.
 model SkillForUser {
-  id              String            @id @default(cuid())
-  skillId         String
-  userId          String
+  id                      String                    @id @default(cuid())
+  skillId                 String
+  userId                  String
   /// Optional meta about the skill for this user
-  description     String?
+  description             String?
   /// Optional icon, e.g., from Iconify, overrides the icon in Skill if found
-  icon            String?
+  icon                    String?
   /// Optional start year of using the skill
-  yearStarted     Int?
+  yearStarted             Int?
   /// Optional total years using the skill
-  totalYears      Int?
-  skillForProject SkillForProject[]
-  skill           Skill             @relation(fields: [skillId], references: [id], onDelete: Cascade)
-  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalYears              Int?
+  skillForProject         SkillForProject[]
+  skill                   Skill                     @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  user                    User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  SkillForFeaturedProject SkillForFeaturedProject[]
 
   @@unique([userId, skillId])
   @@schema("ampdresume")
@@ -188,6 +197,53 @@ model Company {
   userId    String
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   positions Position[]
+
+  @@schema("ampdresume")
+}
+
+/// SkillForFeaturedProject is a specific skill that a user has for a specific featured project,
+/// with additional customized information. The custom data is specific to the user's resume,
+/// within the context of the featured project.
+model SkillForFeaturedProject {
+  id                String          @id @default(cuid())
+  description       String?
+  skillForUserId    String
+  skillForUser      SkillForUser    @relation(fields: [skillForUserId], references: [id], onDelete: Cascade)
+  featuredProjectId String
+  featuredProject   FeaturedProject @relation(fields: [featuredProjectId], references: [id], onDelete: Cascade)
+
+  @@schema("ampdresume")
+}
+
+/// FeaturedProject is a project that a user has featured on their resume.
+/// The project can have multiple skills associated with it. These projects are separate from
+/// the projects associated with a company/position. These featured projects are intended to be
+/// standalone projects that the user wants to highlight.
+model FeaturedProject {
+  id                       String                    @id @default(cuid())
+  name                     String
+  description              String?
+  links                    Json
+  userId                   String
+  user                     User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skillsForFeaturedProject SkillForFeaturedProject[]
+
+  @@schema("ampdresume")
+}
+
+/// Certification is a certification that a user has earned and is specific to the context within the user's resume.
+/// This is different from education in that it may not be from a school, and may not be a degree.
+/// It is more of a credential that the user has earned.
+model Certification {
+  id            String   @id @default(cuid())
+  name          String
+  issuer        String
+  dateAwarded   DateTime
+  credentialUrl String?
+  credentialId  String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@schema("ampdresume")
 }
