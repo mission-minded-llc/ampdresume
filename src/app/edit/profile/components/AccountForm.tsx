@@ -321,7 +321,7 @@ const AccountForm = ({
           <SocialsForm />
         </GridSection>
         <GridSection isDesktop={isDesktop}>
-          <SectionTitle>Resume Site Information</SectionTitle>
+          <SectionTitle>Resume Site Settings</SectionTitle>
           <InputSection>
             <FieldTitle>
               <LanguageIcon /> Resume Site Title
