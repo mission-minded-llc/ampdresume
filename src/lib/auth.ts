@@ -9,6 +9,7 @@ import { AdapterUser } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
 import { JWT } from "next-auth/jwt";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { ThemeName } from "ampdresume-theme/dist/exports";
 import { findUserByNormalizedEmail } from "@/util/email";
 import fs from "fs";
 import { getEnvironmentName } from "@/util/url";
@@ -195,9 +196,9 @@ export const authOptions: NextAuthOptions = {
       token,
       user,
     }: {
-      session: NextAuthSession & { user: { id: string } };
+      session: NextAuthSession;
       token: JWT;
-      user: AdapterUser & { slug?: string };
+      user: AdapterUser & { slug?: string; webThemeName?: ThemeName; pdfThemeName?: ThemeName };
     }) {
       // Add the user ID to the session for easier database operations.
       session.user = { ...session.user, id: user.id, email: user.email };
@@ -205,6 +206,16 @@ export const authOptions: NextAuthOptions = {
       // Add the user slug to the session if it exists.
       if (user.slug) {
         session.user.slug = user.slug;
+      }
+
+      // Add the user web theme name to the session if it exists.
+      if (user.webThemeName) {
+        session.user.webThemeName = user.webThemeName;
+      }
+
+      // Add the user PDF theme name to the session if it exists.
+      if (user.pdfThemeName) {
+        session.user.pdfThemeName = user.pdfThemeName;
       }
 
       return session;

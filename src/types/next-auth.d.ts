@@ -8,6 +8,8 @@ declare module "next-auth" {
       name?: string | null;
       slug?: string | null;
       image?: string | null;
+      webThemeName?: ThemeName;
+      pdfThemeName?: ThemeName;
     } & DefaultSession["user"];
   }
 }
