@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Button } from "@mui/material";
-import { Company, Education, SkillForUser, ThemeDefaultPDF } from "@ampdresume/theme";
+import { Company, Education, SkillForUser, themeDefinitions } from "@ampdresume/theme";
 import { useEffect, useRef, useState } from "react";
 
 import { User } from "@ampdresume/theme";
@@ -45,6 +45,8 @@ export const PDFView = ({ user, skillsForUser, companies, education }: PDFViewPr
       });
   };
 
+  const ThemeDefaultPDF = themeDefinitions.default.pdfComponent;
+
   return (
     <Box sx={{ color: "#000", pb: 12 }}>
       <Box sx={{ display: "flex", justifyContent: "center", mb: 2, mt: 2 }}>
@@ -63,13 +65,16 @@ export const PDFView = ({ user, skillsForUser, companies, education }: PDFViewPr
         }}
       >
         <Box ref={pdfRef}>
-          <ThemeDefaultPDF
-            user={user}
-            skillsForUser={skillsForUser}
-            companies={companies}
-            education={education}
-            themeOptions={{ showSkillsInWorkExperience: false }}
-          />
+          {ThemeDefaultPDF && (
+            <ThemeDefaultPDF
+              themeAppearance="light"
+              user={user}
+              socials={[]}
+              skillsForUser={skillsForUser}
+              companies={companies}
+              education={education}
+            />
+          )}
         </Box>
       </Box>
     </Box>
