@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { ResumeView } from "./ResumeView";
 import { getResume } from "@/graphql/getResume";
+import { getSession } from "@/lib/auth";
 import { getUser } from "@/graphql/getUser";
 import { notFound } from "next/navigation";
 
@@ -43,6 +44,7 @@ export async function generateMetadata({
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const resume = await getResume(slug);
+  const session = await getSession();
 
   if (!resume) notFound();
 
@@ -50,6 +52,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <ResumeView
+      session={session}
+      slug={slug}
       user={user}
       socials={socials}
       skillsForUser={skillsForUser}
