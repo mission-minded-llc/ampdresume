@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { Session } from "next-auth";
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
+import { getEnvironmentName } from "@/util/url";
 
 export const ResumeView = ({
   session,
@@ -30,6 +31,8 @@ export const ResumeView = ({
   const [selectedTheme, setSelectedTheme] = useState<ThemeName>(
     session?.user?.webThemeName ?? "default",
   );
+
+  const isProduction = getEnvironmentName() === "production";
 
   // Check for a cookie with the key "themePreview" and set a boolean value if it's present.
   const [themePreview, setThemePreview] = useState(false);
@@ -71,8 +74,8 @@ export const ResumeView = ({
         <Box
           sx={{
             position: "fixed",
-            top: 100,
-            right: 20,
+            bottom: 30,
+            right: 0,
             minWidth: 200,
             zIndex: 1000,
             padding: 2,
@@ -88,14 +91,18 @@ export const ResumeView = ({
               label="Preview Theme"
               onChange={handleThemeChange}
             >
-              {Object.entries(themeDefinitions).map(([key, value]) => (
-                <MenuItem key={key} value={key} selected={key === session?.user?.webThemeName}>
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                    <Icon icon={value.iconifyIcon} />
-                    {value.name}
-                  </Box>
-                </MenuItem>
-              ))}
+              {Object.entries(themeDefinitions).map(([key, value]) => {
+                if (isProduction && !value.published && !themePreview) return null;
+
+                return (
+                  <MenuItem key={key} value={key} selected={key === session?.user?.webThemeName}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                      <Icon icon={value.iconifyIcon} />
+                      {value.name}
+                    </Box>
+                  </MenuItem>
+                );
+              })}
             </Select>
           </FormControl>
         </Box>
