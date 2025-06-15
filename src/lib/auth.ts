@@ -9,7 +9,7 @@ import { AdapterUser } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
 import { JWT } from "next-auth/jwt";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { ThemeName } from "ampdresume-theme/dist/exports";
+import { ThemeName } from "@ampdresume/theme";
 import { findUserByNormalizedEmail } from "@/util/email";
 import fs from "fs";
 import { getEnvironmentName } from "@/util/url";
