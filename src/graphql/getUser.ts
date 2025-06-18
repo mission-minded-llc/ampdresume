@@ -26,6 +26,7 @@ export const getUser = async (slug: string): Promise<User> => {
           siteImage
           siteTitle
           siteDescription
+          webThemeName
         }
       }
     `,

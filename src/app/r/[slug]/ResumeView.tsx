@@ -1,14 +1,26 @@
 "use client";
 
-import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import * as Sentry from "@sentry/react";
+
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { Company, Education, SkillForUser, ThemeName, themeDefinitions } from "@ampdresume/theme";
-import { Social, User } from "@ampdresume/theme";
 import { useContext, useEffect, useState } from "react";
 
 import { Icon } from "@iconify/react";
 import { Session } from "next-auth";
+import { Social } from "@ampdresume/theme";
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
+import { UserWithTheme } from "@/graphql/getResume";
 import { getEnvironmentName } from "@/util/url";
+import { updateUser } from "@/graphql/updateUser";
 
 export const ResumeView = ({
   session,
@@ -21,16 +33,15 @@ export const ResumeView = ({
 }: {
   session: Session | null;
   slug: string;
-  user: User;
+  user: UserWithTheme;
   socials: Social[];
   skillsForUser: SkillForUser[];
   companies: Company[];
   education: Education[];
 }) => {
   const { themeAppearance } = useContext(ThemeAppearanceContext);
-  const [selectedTheme, setSelectedTheme] = useState<ThemeName>(
-    session?.user?.webThemeName ?? "default",
-  );
+  const [selectedTheme, setSelectedTheme] = useState<ThemeName>(user?.webThemeName ?? "default");
+  const [isSaving, setIsSaving] = useState(false);
 
   const isProduction = getEnvironmentName() === "production";
 
@@ -45,6 +56,23 @@ export const ResumeView = ({
 
   const handleThemeChange = (event: SelectChangeEvent<ThemeName>) => {
     setSelectedTheme(event.target.value as ThemeName);
+  };
+
+  const handleSaveTheme = async () => {
+    if (!session?.user?.id) return;
+
+    setIsSaving(true);
+    try {
+      await updateUser({
+        userId: session.user.id,
+        webThemeName: selectedTheme,
+      });
+      // Theme saved successfully - the session will be updated on next page refresh
+    } catch (error) {
+      Sentry.captureException(error);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const renderTheme = () => {
@@ -105,6 +133,15 @@ export const ResumeView = ({
               })}
             </Select>
           </FormControl>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSaveTheme}
+            disabled={isSaving || !session?.user?.id || selectedTheme === user?.webThemeName}
+            sx={{ mt: 1 }}
+          >
+            {isSaving ? "Saving..." : "Save Theme"}
+          </Button>
         </Box>
       ) : null}
       {renderTheme()}

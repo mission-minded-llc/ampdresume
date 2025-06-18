@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 export const mutationDefs = gql`
   type Mutation {
     # User-specific mutations.
+    updateUser(userId: ID!, webThemeName: String): User!
     addSkillForUser(userId: ID!, skillId: ID!, yearStarted: Int, totalYears: Int): SkillForUser!
     updateSkillForUser(
       id: ID!
