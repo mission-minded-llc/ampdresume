@@ -30,9 +30,6 @@ export default withSentryConfig(nextConfig, {
   // side errors will fail.
   tunnelRoute: "/monitoring",
 
-  // Hides source maps from generated client bundles
-  hideSourceMaps: true,
-
   sourcemaps: {
     // Prevents source maps from being available to users.
     deleteSourcemapsAfterUpload: true,
