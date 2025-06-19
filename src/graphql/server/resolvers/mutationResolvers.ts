@@ -21,9 +21,11 @@ import { updateProjectSortIndexes } from "./mutations/updateProjectSortIndexes";
 import { updateSkillForProject } from "./mutations/updateSkillForProject";
 import { updateSkillForUser } from "./mutations/updateSkillForUser";
 import { updateSocial } from "./mutations/updateSocial";
+import { updateUser } from "./mutations/updateUser";
 
 export const mutationResolvers = {
   // User specific mutations.
+  updateUser,
   addSkillForUser,
   updateSkillForUser,
   deleteSkillForUser,

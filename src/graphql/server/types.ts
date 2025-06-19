@@ -11,6 +11,7 @@ export const types = gql`
     siteTitle: String
     siteDescription: String
     siteImage: String
+    webThemeName: String
   }
 
   type Social {

@@ -1,11 +1,13 @@
 import * as Sentry from "@sentry/react";
 
-import { Company, Education } from "@ampdresume/theme";
+import { Company, Education, ThemeName } from "@ampdresume/theme";
 import { Social, User } from "@ampdresume/theme";
 
 import { SkillForUser } from "@ampdresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
+
+export type UserWithTheme = User & { webThemeName: ThemeName };
 
 export const getResume = async (slug: string) => {
   const client = getApolloClient();
@@ -13,7 +15,7 @@ export const getResume = async (slug: string) => {
   const { data } = await client
     .query<{
       resume: {
-        user: User;
+        user: UserWithTheme;
         socials: Social[];
         skillsForUser: SkillForUser[];
         companies: Company[];
@@ -32,6 +34,7 @@ export const getResume = async (slug: string) => {
               siteTitle
               siteDescription
               siteImage
+              webThemeName
             }
             socials {
               id
