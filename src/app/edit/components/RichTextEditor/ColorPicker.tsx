@@ -1,6 +1,6 @@
 import { Box, IconButton } from "@mui/material";
 
-import { ClickAwayListener } from "@mui/base/ClickAwayListener";
+import { ClickAwayListener } from "@base-ui-components/react";
 import { SketchPicker } from "react-color";
 import { useState } from "react";
 
