@@ -17,6 +17,7 @@ const excludedFiles = [
   "noto.json",
   "twemoji.json",
   "arcticons.json",
+  "emojione-v1.json",
 ];
 
 fs.readdirSync(sourceDir)
