@@ -3,7 +3,7 @@ name: "CI: App"
 on:
   pull_request:
     types: [opened, synchronize]
-    branches: [main]
+    branches: [main, develop]
     paths:
       - "**.ts"
       - "**.tsx"
