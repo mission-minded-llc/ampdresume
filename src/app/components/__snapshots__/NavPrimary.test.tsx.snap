@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`NavPrimary Component matches snapshot when logged in 1`] = `
 <div>
@@ -7,7 +7,7 @@ exports[`NavPrimary Component matches snapshot when logged in 1`] = `
   >
     <button
       aria-label="menu"
-      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-1egyfog-MuiButtonBase-root-MuiIconButton-root"
+      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-1fgoo3o-MuiButtonBase-root-MuiIconButton-root"
       data-testid="NavPrimaryMenuIcon"
       tabindex="0"
       type="button"
@@ -35,7 +35,7 @@ exports[`NavPrimary Component matches snapshot when not logged in 1`] = `
   >
     <button
       aria-label="menu"
-      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-1egyfog-MuiButtonBase-root-MuiIconButton-root"
+      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-1fgoo3o-MuiButtonBase-root-MuiIconButton-root"
       data-testid="NavPrimaryMenuIcon"
       tabindex="0"
       type="button"
