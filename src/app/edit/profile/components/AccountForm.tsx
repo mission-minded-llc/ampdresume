@@ -230,9 +230,7 @@ const AccountForm = ({
                 })}
               >
                 ampdresume.com/r/
-                <strong>
-                  {formData?.slug ? formData.slug : "your-custom-slug"}
-                </strong>/
+                <strong>{formData?.slug ? formData.slug : "your-custom-slug"}</strong>/
               </Typography>
               <br />
               <strong>Important:</strong> If you change this, an automatic redirect will{" "}
