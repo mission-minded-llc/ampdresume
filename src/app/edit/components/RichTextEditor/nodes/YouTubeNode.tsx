@@ -27,7 +27,7 @@ const HEIGHT = "315px";
 const WIDTH = "560px";
 const getYouTubeLink = (id: string) => `https://www.youtube-nocookie.com/embed/${id}`;
 
-export class YouTubeNode extends DecoratorNode<JSX.Element> {
+export class YouTubeNode extends DecoratorNode<React.ReactElement> {
   __id: string;
 
   constructor({ id, key }: { id: string; key?: NodeKey }) {
@@ -45,7 +45,7 @@ export class YouTubeNode extends DecoratorNode<JSX.Element> {
     });
   }
 
-  decorate(): JSX.Element {
+  decorate(): React.ReactElement {
     return <iframe height={HEIGHT} width={WIDTH} src={getYouTubeLink(this.__id)} />;
   }
 

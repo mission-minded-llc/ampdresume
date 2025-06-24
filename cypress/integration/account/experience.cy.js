@@ -23,8 +23,35 @@ describe("Experience Section", () => {
     cy.get("button").contains("Add New Company").click();
     cy.get(".MuiDialog-container input[name='companyName']").type(companyName);
     cy.get(".MuiDialog-container input[name='location']").type(location);
-    cy.get(".MuiDialog-container input[name='dateStarted']").type(startDate);
-    cy.get(".MuiDialog-container input[name='dateEnded']").type(endDate);
+
+    // Fix date picker interactions for start date
+    cy.get(".MuiDialog-container input[name='dateStarted']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Month"]')
+      .click()
+      .clear()
+      .type("February");
+    cy.get(".MuiDialog-container input[name='dateStarted']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Year"]')
+      .click()
+      .clear()
+      .type("2020");
+
+    // Fix date picker interactions for end date
+    cy.get(".MuiDialog-container input[name='dateEnded']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Month"]')
+      .click()
+      .clear()
+      .type("March");
+    cy.get(".MuiDialog-container input[name='dateEnded']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Year"]')
+      .click()
+      .clear()
+      .type("2021");
+
     cy.get(".MuiDialog-container button").contains("Save Company").click();
     cy.get("h3").contains(companyName).should("be.visible");
     cy.get("div").contains(location).should("be.visible");
@@ -41,8 +68,35 @@ describe("Experience Section", () => {
 
     cy.get("h3").contains(companyName).click();
     cy.get(".Mui-expanded input[name='location']").clear().type(location);
-    cy.get(".Mui-expanded input[name='dateStarted']").clear().type(startDate);
-    cy.get(".Mui-expanded input[name='dateEnded']").clear().type(endDate);
+
+    // Fix date picker interactions for start date
+    cy.get(".Mui-expanded input[name='dateStarted']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Month"]')
+      .click()
+      .clear()
+      .type("February");
+    cy.get(".Mui-expanded input[name='dateStarted']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Year"]')
+      .click()
+      .clear()
+      .type("2021");
+
+    // Fix date picker interactions for end date
+    cy.get(".Mui-expanded input[name='dateEnded']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Month"]')
+      .click()
+      .clear()
+      .type("March");
+    cy.get(".Mui-expanded input[name='dateEnded']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Year"]')
+      .click()
+      .clear()
+      .type("2022");
+
     cy.get(".Mui-expanded button").contains("Save Company").click();
 
     cy.get("div").contains(location).should("be.visible");
@@ -60,8 +114,35 @@ describe("Experience Section", () => {
     cy.get("h3").contains(companyName).click();
     cy.get("button").contains("Add New Position").click();
     cy.get(".position-form input[name='positionTitle']").type(positionTitle);
-    cy.get(".position-form input[name='dateStarted']").type(startDate);
-    cy.get(".position-form input[name='dateEnded']").type(endDate);
+
+    // Fix date picker interactions for start date
+    cy.get(".position-form input[name='dateStarted']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Month"]')
+      .click()
+      .clear()
+      .type("February");
+    cy.get(".position-form input[name='dateStarted']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Year"]')
+      .click()
+      .clear()
+      .type("2020");
+
+    // Fix date picker interactions for end date
+    cy.get(".position-form input[name='dateEnded']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Month"]')
+      .click()
+      .clear()
+      .type("March");
+    cy.get(".position-form input[name='dateEnded']")
+      .parent()
+      .find('[role="spinbutton"][aria-label="Year"]')
+      .click()
+      .clear()
+      .type("2021");
+
     cy.get("button").contains("Save Position").click();
 
     cy.get("h3").contains(positionTitle).should("be.visible");

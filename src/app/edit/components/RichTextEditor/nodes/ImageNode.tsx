@@ -33,7 +33,7 @@ export const $createImageNode = ({
   });
 };
 
-export class ImageNode extends DecoratorNode<JSX.Element> {
+export class ImageNode extends DecoratorNode<React.ReactElement> {
   __src: string;
   __altText: string;
   __width: "inherit" | number;
@@ -63,7 +63,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
     });
   }
 
-  decorate(): JSX.Element {
+  decorate(): React.ReactElement {
     // eslint-disable-next-line @next/next/no-img-element
     return <img src={this.__src} alt={this.__altText} style={{ width: "100%", height: "auto" }} />;
   }
