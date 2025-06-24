@@ -9,21 +9,14 @@ if (!fs.existsSync(targetDir)) {
   fs.mkdirSync(targetDir, { recursive: true });
 }
 
-// Exclude these files, they're too large.
-const excludedFiles = [
-  "fluent.json",
-  "fluent-emoji.json",
-  "fluent-emoji-flat.json",
-  "noto.json",
-  "twemoji.json",
-  "arcticons.json",
-  "emojione-v1.json",
-];
-
 fs.readdirSync(sourceDir)
   .filter((file) => file.endsWith(".json"))
   .forEach((file) => {
-    if (excludedFiles.includes(file)) {
+    const filePath = path.join(sourceDir, file);
+    const stats = fs.statSync(filePath);
+    const fileSizeInMB = stats.size / (1024 * 1024);
+
+    if (fileSizeInMB > 5) {
       return;
     }
 
