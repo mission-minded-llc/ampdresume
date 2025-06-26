@@ -88,7 +88,12 @@ export const EducationForm = ({
             Cancel
           </Button>
         )}
-        <Button variant="outlined" color="primary" onClick={saveHandler} disabled={!isChanged}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={saveHandler}
+          disabled={!isChanged || !school.trim() || !degree.trim() || !dateAwarded?.isValid()}
+        >
           Save Education
         </Button>
       </Box>
