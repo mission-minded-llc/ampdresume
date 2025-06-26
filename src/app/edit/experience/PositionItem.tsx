@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Divider } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Divider, Typography } from "@mui/material";
 import React, { useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -121,11 +121,11 @@ export const PositionItem = ({
         id="panel1a-header"
         onClick={handleExpandClick}
       >
-        <p>
+        <Typography variant="body1">
           <strong>{position.title}&nbsp;-&nbsp;</strong>
           {formatLongDate(position.startDate)} to{" "}
           {position.endDate ? formatLongDate(position?.endDate) : "present"}
-        </p>
+        </Typography>
       </AccordionSummary>
       <AccordionDetails>
         <PositionForm

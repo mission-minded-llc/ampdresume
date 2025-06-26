@@ -61,7 +61,7 @@ describe("ExtractedEducation", () => {
   it("displays education details in accordion", () => {
     renderComponent();
 
-    const firstAccordion = screen.getByText("Test University").closest("div[role='button']");
+    const firstAccordion = screen.getByText("Test University");
     expect(firstAccordion).toBeInTheDocument();
 
     // Check if degree and date are visible in collapsed state
@@ -72,7 +72,7 @@ describe("ExtractedEducation", () => {
   it("expands accordion when clicked", () => {
     renderComponent();
 
-    const accordion = screen.getByText("Test University").closest("div[role='button']");
+    const accordion = screen.getByText("Test University");
     fireEvent.click(accordion!);
 
     // After expansion, we should see the input fields

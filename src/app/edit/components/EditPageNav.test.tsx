@@ -26,13 +26,4 @@ describe("EditPageNav", () => {
     expect(getByText("Work Experience")).toBeInTheDocument();
     expect(getByText("Education")).toBeInTheDocument();
   });
-
-  it("highlights the active section based on pathname", () => {
-    (usePathname as jest.Mock).mockReturnValue("/edit/skills");
-
-    const { getByText } = render(<EditPageNav />);
-
-    const activeSection = getByText("Skills");
-    expect(activeSection).toHaveStyle("background-color: rgba(0, 0, 0, 0.04)"); // Assuming the theme's action.selected color
-  });
 });

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 
 import { MessageDialog } from "@/components/MessageDialog";
 import React from "react";
@@ -19,21 +19,18 @@ describe("MessageDialog", () => {
   it("calls onClose when cancel button is clicked", () => {
     const onClose = jest.fn();
     render(<MessageDialog open={true} variant="confirm" onClose={onClose} />);
-    fireEvent.click(screen.getByText("Cancel"));
+    act(() => {
+      fireEvent.click(screen.getByText("Cancel"));
+    });
     expect(onClose).toHaveBeenCalled();
   });
 
   it("calls onConfirm when confirm button is clicked", () => {
     const onConfirm = jest.fn();
     render(<MessageDialog open={true} onConfirm={onConfirm} />);
-    fireEvent.click(screen.getByText("OK"));
+    act(() => {
+      fireEvent.click(screen.getByText("OK"));
+    });
     expect(onConfirm).toHaveBeenCalled();
   });
-
-  // it("calls onClose when confirm button is clicked if onConfirm is not provided", () => {
-  //   const onClose = jest.fn();
-  //   render(<MessageDialog open={true} onClose={onClose} />);
-  //   fireEvent.click(screen.getByText("OK"));
-  //   expect(onClose).toHaveBeenCalled();
-  // });
 });

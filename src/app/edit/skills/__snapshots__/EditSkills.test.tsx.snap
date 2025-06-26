@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`EditSkills renders error message when fetching skills fails 1`] = `
 <div>
@@ -85,7 +85,7 @@ exports[`EditSkills renders skills when fetched successfully 1`] = `
      
     <button
       aria-label="Click on a skill to edit or remove it."
-      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1mikb9b-MuiButtonBase-root-MuiIconButton-root"
+      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-lk7kvc-MuiButtonBase-root-MuiIconButton-root"
       data-mui-internal-clone-element="true"
       tabindex="0"
       type="button"
