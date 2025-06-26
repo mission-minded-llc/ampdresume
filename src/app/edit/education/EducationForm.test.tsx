@@ -46,7 +46,7 @@ describe("EducationForm", () => {
   });
 
   it("handles input changes and enables save button", () => {
-    const { getByLabelText, getByText, getByRole } = render(
+    const { getByLabelText, getByText } = render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <EducationForm
           education={mockEducation}
