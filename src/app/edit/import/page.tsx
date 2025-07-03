@@ -1,4 +1,3 @@
-import { EditPageLayout } from "../components/EditPageLayout";
 import { ImportPDF } from "./ImportPDF";
 import { titleSuffix } from "@/constants";
 
@@ -9,9 +8,5 @@ export function generateMetadata() {
 }
 
 export default function Page() {
-  return (
-    <EditPageLayout>
-      <ImportPDF />
-    </EditPageLayout>
-  );
+  return <ImportPDF />;
 }

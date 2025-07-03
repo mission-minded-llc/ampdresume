@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
 import { AccountForm } from "./components/AccountForm";
-import { EditPageLayout } from "../components/EditPageLayout";
 import { SectionTitle } from "../components/SectionTitle";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -26,28 +25,26 @@ const Page = async () => {
   });
 
   return (
-    <EditPageLayout>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "left",
-          width: "100%",
-        }}
-      >
-        <SectionTitle title="Profile" />
-        <AccountForm
-          name={user?.name || ""}
-          slug={user?.slug || ""}
-          displayEmail={user?.displayEmail || ""}
-          title={user?.title || ""}
-          location={user?.location || ""}
-          siteTitle={user?.siteTitle || ""}
-          siteDescription={user?.siteDescription || ""}
-          siteImage={user?.siteImage || ""}
-        />
-      </Box>
-    </EditPageLayout>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "left",
+        width: "100%",
+      }}
+    >
+      <SectionTitle title="Profile" />
+      <AccountForm
+        name={user?.name || ""}
+        slug={user?.slug || ""}
+        displayEmail={user?.displayEmail || ""}
+        title={user?.title || ""}
+        location={user?.location || ""}
+        siteTitle={user?.siteTitle || ""}
+        siteDescription={user?.siteDescription || ""}
+        siteImage={user?.siteImage || ""}
+      />
+    </Box>
   );
 };
 
