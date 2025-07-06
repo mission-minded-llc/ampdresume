@@ -98,6 +98,7 @@ export const NavPrimary = () => {
         color="inherit"
         aria-label="menu"
         onClick={toggleDrawer(true)}
+        onMouseEnter={toggleDrawer(true)}
         data-testid="NavPrimaryMenuIcon"
         sx={(theme) => ({
           mt: 1,
@@ -182,7 +183,7 @@ export const NavPrimary = () => {
                   dataTestId="NavPrimaryMenuEditAI"
                 />
                 <NavItem
-                  text="Import"
+                  text="Import PDF"
                   icon="fluent-color:slide-text-sparkle-48"
                   href="/edit/import"
                   dataTestId="NavPrimaryMenuEditImport"
