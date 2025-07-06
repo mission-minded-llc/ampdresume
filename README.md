@@ -15,16 +15,15 @@ presence with interactive features to showcase their work.
 
 --
 
-## 💼 License
+## 📄 License
 
-This project is licensed under the **Business Source License 1.1 (BSL)**.
+This project is licensed under the **Amp’d Community License 1.0**.
 
-- ✅ You can view and modify the source code.
-- ✅ You can fork the project and experiment for non-commercial, non-production use.
-- ❌ You **cannot** use this software for commercial purposes or host it as a service without a
-  separate commercial license.
-- ❌ You **cannot** relicense, sublicense, or sell any portion of this project.
+- ✅ You can view, fork, and modify the source code for non-commercial, personal, and educational
+  use.
+- ❌ You **may not** use this project or its derivatives in a commercial product or service.
+- ❌ You **may not** host it in a production environment or monetize it in any way.
 
 To inquire about commercial use or extended rights, please contact: contact@missionminded.net
 
-Learn more about the BSL here: https://mariadb.com/bsl11
+See the full license in [LICENSE](./LICENSE).

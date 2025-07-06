@@ -1,52 +1,57 @@
-Business Source License 1.1
+Amp’d Community License 1.0
 
-Licensor: Michael Dinerstein, Amp'd Resume, Mission Minded LLC
+Licensor: Michael Dinerstein, Amp’d Resume, Mission Minded LLC Licensed Work: Amp’d Resume
+(https://www.ampdresume.com), including source code and all related materials.
 
-Licensed Work: Amp'd Resume, an interactive online resume platform.
+Effective Date: [Insert Date]
 
-The Licensed Work is made available under the terms of this Business Source License (this
-“License”). Any use of the Licensed Work not permitted under this License is expressly prohibited.
+1. Grant of Use
 
-Change Date: None
+The Licensor grants you a limited, non-exclusive, non-transferable, royalty-free license to:
 
-Change License: None
+- View, download, and modify the source code of the Licensed Work,
+- Use it for personal, non-commercial, and non-production purposes,
+- Create forks and derivative works for experimentation, education, or evaluation.
 
-1. Grant of Rights
+2. Restrictions
 
-   Effective on the date the Licensed Work is first made available under this License, the Licensor
-   grants you the right to use, copy, modify, create derivative works, and make non-commercial,
-   non-production use of the Licensed Work. You may share source code modifications with others for
-   non-commercial use.
+You may not:
 
-   You may not use the Licensed Work for any commercial purpose, including but not limited to
-   hosting, selling, or offering the Licensed Work or derivative works to others as a service or
-   product, without a separate commercial license from the Licensor.
+- Use the Licensed Work or derivatives in a commercial product or service,
+- Sell, sublicense, or monetize the Licensed Work or any modified versions,
+- Use the Licensed Work to build a product that competes with the Licensor's offerings,
+- Host the Licensed Work in production environments, even if access is free,
+- Remove or obscure this License or copyright attribution.
 
-2. Limitations
-   - You may not use the Licensed Work in production.
-   - You may not sell, license, or offer it as a service.
-   - You may not remove or modify this License notice.
+3. Contributions
 
-3. Additional Use Grant (Optional)
+By submitting contributions (e.g., code, documentation), you agree:
 
-   If you contribute back improvements or bug fixes, the Licensor may choose to merge them into the
-   Licensed Work and grant you limited additional use rights under a commercial agreement.
+- You have the right to submit your contribution,
+- Your contribution is provided under the same terms as this License,
+- The Licensor may use, modify, and relicense your contributions as part of the Licensed Work.
 
-4. Change License
+4. Intellectual Property
 
-   On the Change Date (if specified), the Licensed Work will automatically be relicensed under the
-   Change License.
+This License does not transfer any ownership of the Licensed Work. All rights not explicitly granted
+are reserved by the Licensor.
 
-5. Disclaimer of Warranty
+5. Termination
 
-   The Licensed Work is provided “as-is,” without warranty of any kind. The Licensor disclaims all
-   warranties, express or implied.
+This license terminates automatically if you breach any of its terms. Upon termination, you must
+cease all use and delete all copies of the Licensed Work.
 
-6. Limitation of Liability
+6. Disclaimer
 
-   In no event will the Licensor be liable for any damages arising out of the use or inability to
-   use the Licensed Work.
+The Licensed Work is provided “as-is,” without warranties of any kind. The Licensor disclaims all
+warranties, express or implied.
+
+7. Limitation of Liability
+
+To the extent permitted by law, the Licensor is not liable for any damages arising out of the use or
+inability to use the Licensed Work.
 
 ---
 
-This License is based on the Business Source License 1.1, available at: https://mariadb.com/bsl11
+This is a source-available license intended to support community contributions while protecting the
+commercial integrity of the Amp’d Resume platform.
