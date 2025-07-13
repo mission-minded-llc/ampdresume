@@ -4,6 +4,7 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 
 import { AccountForm } from "./AccountForm";
 import React from "react";
+import { SessionProvider } from "next-auth/react";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 jest.mock("@/hooks/useIsDesktop", () => ({
@@ -19,6 +20,30 @@ jest.mock("./SocialsForm", () => ({
   SocialsForm: () => <div>SocialsForm</div>,
 }));
 
+jest.mock("@/graphql/deleteUser", () => ({
+  deleteUser: jest.fn(),
+}));
+
+jest.mock("next-auth/react", () => ({
+  ...jest.requireActual("next-auth/react"),
+  useSession: () => ({
+    data: {
+      user: {
+        id: "test-user-id",
+        email: "test@example.com",
+      },
+    },
+    status: "authenticated",
+  }),
+  signOut: jest.fn(),
+}));
+
+jest.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+}));
+
 const mockProps = {
   name: "John Doe",
   slug: "john-doe",
@@ -30,6 +55,10 @@ const mockProps = {
   siteImage: "https://example.com/image.png",
 };
 
+const renderWithSession = (component: React.ReactElement) => {
+  return render(<SessionProvider>{component}</SessionProvider>);
+};
+
 describe("AccountForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -37,7 +66,7 @@ describe("AccountForm", () => {
   });
 
   it("renders correctly", () => {
-    const { container, getByLabelText } = render(<AccountForm {...mockProps} />);
+    const { container, getByLabelText } = renderWithSession(<AccountForm {...mockProps} />);
 
     expect(getByLabelText("Full Name")).toBeInTheDocument();
     expect(getByLabelText("URL Name")).toBeInTheDocument();
@@ -49,7 +78,7 @@ describe("AccountForm", () => {
   });
 
   it("handles input changes and validation", async () => {
-    const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     const slugInput = getByLabelText("URL Name");
     fireEvent.change(slugInput, { target: { value: "invalid slug" } });
@@ -69,7 +98,7 @@ describe("AccountForm", () => {
       }),
     ) as jest.Mock;
 
-    const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     fireEvent.change(getByLabelText("Full Name"), { target: { value: "Jane Doe" } });
     fireEvent.change(getByLabelText("URL Name"), { target: { value: "jane-doe" } });
@@ -90,7 +119,7 @@ describe("AccountForm", () => {
       }),
     ) as jest.Mock;
 
-    const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     fireEvent.change(getByLabelText("Full Name"), { target: { value: "Jane Doe" } });
     fireEvent.change(getByLabelText("URL Name"), { target: { value: "jane-doe" } });
@@ -104,7 +133,7 @@ describe("AccountForm", () => {
   });
 
   it("displays error message on form submission failure for invalid name", async () => {
-    const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     fireEvent.change(getByLabelText("Full Name"), { target: { value: "   " } });
     fireEvent.click(getByText("Save"));
@@ -115,7 +144,7 @@ describe("AccountForm", () => {
   });
 
   it("displays error message on form submission failure for invalid slug", async () => {
-    const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     fireEvent.change(getByLabelText("URL Name"), { target: { value: "   " } });
     fireEvent.click(getByText("Save"));
@@ -126,7 +155,7 @@ describe("AccountForm", () => {
   });
 
   it("displays error message on form submission failure for invalid email", async () => {
-    const { getByLabelText, getByText } = render(<AccountForm {...mockProps} />);
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     const emailInput = getByLabelText("Display Email");
     fireEvent.change(emailInput, { target: { value: "invalid-email" } });

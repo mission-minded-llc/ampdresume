@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import BadgeIcon from "@mui/icons-material/Badge";
+import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
 import LanguageIcon from "@mui/icons-material/Language";
 import LinkIcon from "@mui/icons-material/Link";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
@@ -15,7 +16,11 @@ import { MessageDialog } from "@/components/MessageDialog";
 import { SocialsForm } from "./SocialsForm";
 import TocIcon from "@mui/icons-material/Toc";
 import { UserAssetInput } from "../../components/UserAssetInput";
+import { deleteUser } from "@/graphql/deleteUser";
+import { signOut } from "next-auth/react";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const AccountForm = ({
   name,
@@ -50,8 +55,11 @@ const AccountForm = ({
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [showSlugPopup, setShowSlugPopup] = useState(slug.length === 0);
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const isDesktop = useIsDesktop();
   const slugInputRef = React.useRef<HTMLInputElement>(null);
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const [siteImageUrl, setSiteImageUrl] = useState(siteImage);
 
@@ -161,6 +169,28 @@ const AccountForm = ({
     setTimeout(() => slugInputRef.current?.focus(), 100);
   };
 
+  const handleDeleteAccount = async () => {
+    if (!session?.user?.id) {
+      setMessage("You need to be signed in to delete your account.");
+      return;
+    }
+
+    setIsDeletingAccount(true);
+    setLoading(true);
+
+    try {
+      await deleteUser({ userId: session.user.id });
+
+      // Clear auth and redirect to homepage
+      await signOut({ callbackUrl: "/" });
+      router.push("/");
+    } catch {
+      setMessage("Failed to delete account. Please try again.");
+      setIsDeletingAccount(false);
+      setLoading(false);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -168,7 +198,10 @@ const AccountForm = ({
         flexDirection: "column",
       }}
     >
-      <LoadingOverlay open={loading} message="Saving..." />
+      <LoadingOverlay
+        open={loading}
+        message={isDeletingAccount ? "Deleting account..." : "Saving..."}
+      />
       <MessageDialog
         open={message?.length > 0}
         message={message}
@@ -400,6 +433,40 @@ const AccountForm = ({
           >
             Save
           </Button>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            padding: "32px 0",
+            borderTop: "1px solid",
+            borderColor: "divider",
+          }}
+        >
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            Danger Zone
+          </Typography>
+          <DeleteWithConfirmation
+            onConfirmDelete={handleDeleteAccount}
+            buttonLabel="Delete Account"
+            tooltip="Permanently delete your account and all data"
+            dialogTitle="Delete Account"
+            dialogMessage={
+              <Typography>
+                Are you sure you want to delete your account? This action cannot be undone and will
+                permanently remove:
+                <br />• Your profile and all personal information
+                <br />• All your skills, projects, work experience, and education
+                <br />• Your authentication history
+                <br />• All associated data
+              </Typography>
+            }
+            confirmLabel="Yes, Delete My Account"
+            cancelLabel="Cancel"
+            disabled={isDeletingAccount}
+          />
         </Box>
       </Box>
     </Box>
