@@ -3,7 +3,7 @@ Amp’d Community License 1.0
 Licensor: Michael Dinerstein, Amp’d Resume, Mission Minded LLC Licensed Work: Amp’d Resume
 (https://www.ampdresume.com), including source code and all related materials.
 
-Effective Date: [Insert Date]
+Effective Date: October 1, 2024
 
 1. Grant of Use
 
