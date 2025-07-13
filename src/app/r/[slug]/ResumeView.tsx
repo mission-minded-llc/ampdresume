@@ -43,6 +43,7 @@ export const ResumeView = ({
   const [selectedTheme, setSelectedTheme] = useState<ThemeName>(user?.webThemeName ?? "default");
   const [isSaving, setIsSaving] = useState(false);
 
+  // Used to hide unpublished themes in the theme selector.
   const isProduction = getEnvironmentName() === "production";
 
   // Check for a cookie with the key "themePreview" and set a boolean value if it's present.
@@ -104,7 +105,8 @@ export const ResumeView = ({
             position: "fixed",
             bottom: 30,
             right: 0,
-            minWidth: 200,
+            minWidth: 250,
+            maxWidth: "100%",
             zIndex: 1000,
             padding: 2,
             borderRadius: 1,
@@ -137,7 +139,7 @@ export const ResumeView = ({
             variant="contained"
             color="primary"
             onClick={handleSaveTheme}
-            disabled={isSaving || !session?.user?.id || selectedTheme === user?.webThemeName}
+            disabled={isSaving || !session?.user?.id}
             sx={{ mt: 1 }}
           >
             {isSaving ? "Saving..." : "Save Theme"}

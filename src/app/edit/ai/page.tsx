@@ -1,5 +1,4 @@
 import { AiAssist } from "./AiAssist";
-import { EditPageLayout } from "../components/EditPageLayout";
 import { MuiLink } from "@/components/MuiLink";
 import { isFeatureEnabledForUser } from "@/lib/featureFlags";
 import { titleSuffix } from "@/constants";
@@ -15,18 +14,12 @@ export default async function Page() {
 
   if (!enabled) {
     return (
-      <EditPageLayout>
-        <p>
-          AI Assist is not enabled for your account. To request access, please email{" "}
-          <MuiLink href="mailto:mail@ampdresume.com">mail@ampdresume.com</MuiLink>
-        </p>
-      </EditPageLayout>
+      <p>
+        AI Assist is not enabled for your account. To request access, please email{" "}
+        <MuiLink href="mailto:mail@ampdresume.com">mail@ampdresume.com</MuiLink>
+      </p>
     );
   }
 
-  return (
-    <EditPageLayout>
-      <AiAssist />
-    </EditPageLayout>
-  );
+  return <AiAssist />;
 }

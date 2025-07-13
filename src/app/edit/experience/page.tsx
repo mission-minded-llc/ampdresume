@@ -1,5 +1,4 @@
 import { EditExperience } from "./EditExperience";
-import { EditPageLayout } from "../components/EditPageLayout";
 import { titleSuffix } from "@/constants";
 
 export function generateMetadata() {
@@ -9,9 +8,5 @@ export function generateMetadata() {
 }
 
 export default function Page() {
-  return (
-    <EditPageLayout>
-      <EditExperience />
-    </EditPageLayout>
-  );
+  return <EditExperience />;
 }

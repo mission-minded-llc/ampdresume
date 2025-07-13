@@ -2,11 +2,8 @@ import React, { useState } from "react";
 
 import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
-import { Edit } from "@mui/icons-material";
-import ExitIcon from "@mui/icons-material/ExitToApp";
-import HomeIcon from "@mui/icons-material/Home";
+import { Icon } from "@iconify/react";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -14,7 +11,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import { MuiLink } from "@/components/MuiLink";
-import PersonIcon from "@mui/icons-material/Person";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 import Typography from "@mui/material/Typography";
 import { getBaseUrl } from "@/util/url";
@@ -40,6 +36,19 @@ export const NavPrimary = () => {
     setIsOpen(open);
   };
 
+  const NavItemTitle = ({ text }: { text: string }) => (
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: 2,
+      }}
+    >
+      <Typography variant="h6">{text}</Typography>
+    </Box>
+  );
+
   const NavItem = ({
     text,
     icon,
@@ -48,20 +57,35 @@ export const NavPrimary = () => {
     dataTestId = "",
   }: {
     text: string;
-    icon: React.ReactNode;
+    icon: string;
     href: string;
     target?: "_self" | "_blank";
     dataTestId?: string;
   }) => (
-    <MuiLink href={href} target={target}>
+    <MuiLink
+      href={href}
+      target={target}
+      sx={{
+        textDecoration: "none",
+      }}
+    >
       <ListItem
         component="div"
         onClick={() => {
           setIsOpen(false);
         }}
+        sx={(theme) => ({
+          "&:hover": {
+            backgroundColor: "black",
+            color: "white",
+            borderRight: `4px solid ${theme.palette.secondary.main}`,
+          },
+        })}
         {...(dataTestId && { "data-testid": dataTestId })}
       >
-        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemIcon>
+          <Icon icon={icon} width={36} height={36} />
+        </ListItemIcon>
         <ListItemText primary={text} />
       </ListItem>
     </MuiLink>
@@ -74,6 +98,7 @@ export const NavPrimary = () => {
         color="inherit"
         aria-label="menu"
         onClick={toggleDrawer(true)}
+        onMouseEnter={toggleDrawer(true)}
         data-testid="NavPrimaryMenuIcon"
         sx={(theme) => ({
           mt: 1,
@@ -98,20 +123,12 @@ export const NavPrimary = () => {
             flexDirection: "column",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: 2,
-              borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
-            }}
-          >
-            <Typography variant="h6">Menu</Typography>
+          <Box sx={{ position: "absolute", top: 12, right: 12 }}>
             <IconButton edge="end" color="inherit" aria-label="close" onClick={toggleDrawer(false)}>
               <CloseIcon />
             </IconButton>
           </Box>
+          <NavItemTitle text="Menu" />
 
           <List
             sx={{
@@ -119,25 +136,62 @@ export const NavPrimary = () => {
               paddingTop: 2,
             }}
           >
+            <NavItem
+              text="Home"
+              icon="fluent-color:home-16"
+              href={baseUrl}
+              dataTestId="NavPrimaryMenuHome"
+            />
             {isLoggedIn ? (
               <>
                 {session?.data?.user?.slug ? (
                   <NavItem
                     text="View Resume"
-                    icon={<PersonIcon />}
+                    icon="fluent-color:person-16"
                     href={`/r/${session.data.user.slug}`}
                     dataTestId="NavPrimaryMenuViewResume"
                   />
                 ) : null}
+                <NavItemTitle text="Edit Resume" />
                 <NavItem
-                  text="Edit Resume"
-                  icon={<Edit />}
+                  text="Resume Profile"
+                  icon="fluent-color:scan-person-48"
                   href="/edit/profile"
                   dataTestId="NavPrimaryMenuEditResume"
                 />
                 <NavItem
+                  text="Your Skills"
+                  icon="fluent-color:data-pie-20"
+                  href="/edit/skills"
+                  dataTestId="NavPrimaryMenuEditSkills"
+                />
+                <NavItem
+                  text="Work Experience"
+                  icon="fluent-color:data-bar-vertical-ascending-16"
+                  href="/edit/experience"
+                />
+                <NavItem
+                  text="Education"
+                  icon="fluent-color:certificate-16"
+                  href="/edit/education"
+                />
+                <NavItemTitle text="Tools" />
+                <NavItem
+                  text="AI Assist"
+                  icon="fluent-color:bot-sparkle-16"
+                  href="/edit/ai"
+                  dataTestId="NavPrimaryMenuEditAI"
+                />
+                <NavItem
+                  text="Import PDF"
+                  icon="fluent-color:slide-text-sparkle-48"
+                  href="/edit/import"
+                  dataTestId="NavPrimaryMenuEditImport"
+                />
+                <NavItemTitle text="Account" />
+                <NavItem
                   text="Logout"
-                  icon={<ExitIcon />}
+                  icon="flat-color-icons:export"
                   href="/api/auth/signout"
                   dataTestId="NavPrimaryMenuLogout"
                 />
@@ -145,23 +199,11 @@ export const NavPrimary = () => {
             ) : (
               <NavItem
                 text="Login"
-                icon={<PersonIcon />}
+                icon="fluent-color:shield-checkmark-16"
                 href="/login"
                 dataTestId="NavPrimaryMenuLogin"
               />
             )}
-            <Divider
-              sx={{
-                marginTop: 2,
-                marginBottom: 2,
-              }}
-            />
-            <NavItem
-              text="Home"
-              icon={<HomeIcon />}
-              href={baseUrl}
-              dataTestId="NavPrimaryMenuHome"
-            />
           </List>
           <Box
             sx={{

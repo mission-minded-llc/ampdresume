@@ -1,3 +1,5 @@
+import { SxProps, Theme } from "@mui/material";
+
 import Link from "@mui/material/Link";
 import NextLink from "next/link";
 
@@ -5,12 +7,14 @@ export const MuiLink = ({
   children,
   href,
   target = "_self",
+  sx,
 }: {
   children: React.ReactNode;
   href: string;
   target?: "_self" | "_blank";
+  sx?: SxProps<Theme>;
 }) => (
-  <Link href={href} component={NextLink} target={target}>
+  <Link href={href} component={NextLink} target={target} sx={sx}>
     {children}
   </Link>
 );
