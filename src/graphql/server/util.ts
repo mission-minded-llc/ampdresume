@@ -61,8 +61,9 @@ export const filterUserData = (
 ): User | FilteredUserData | null => {
   if (!user) return null;
 
-  // For unauthenticated users, return only public fields
-  if (!context.isAuthenticated) {
+  // For unauthenticated users, or if the user.id does not match the session user ID,
+  // return only public fields.
+  if (!context.isAuthenticated || user.id !== context.session?.user?.id) {
     return {
       id: user.id,
       name: user.name,
