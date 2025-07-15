@@ -14,7 +14,7 @@ export async function generateMetadata({
   const user = await getUser(slug);
 
   const siteTitleDefault =
-    user?.name && user?.title ? `Resume of ${user.name}, ${user.title}` : "OpenResume";
+    user?.name && user?.title ? `Resume of ${user.name}, ${user.title}` : "Amp'd Resume";
 
   const title = user?.siteTitle ? user.siteTitle : siteTitleDefault;
   const description = user?.siteDescription ? user.siteDescription : "";
@@ -24,7 +24,7 @@ export async function generateMetadata({
     description,
     authors: [
       {
-        name: user?.name ? user.name : "OpenResume",
+        name: user?.name ? user.name : "Amp'd Resume",
       },
     ],
     openGraph: {

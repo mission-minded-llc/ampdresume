@@ -257,10 +257,18 @@ exports[`Page renders correctly for authenticated users 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
             >
-              Your display email is publicly visible on your resume!
+              Your display email is 
+              <strong>
+                publicly visible
+              </strong>
+               on your resume! This is not required. If you 
+              <em>
+                do
+              </em>
+               want to display an email, it is recommended to set up a separate new email for this purpose, or use an email alias. Expect spam.
             </p>
             <div
-              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-17kgwbn-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"
             >
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
