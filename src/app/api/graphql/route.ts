@@ -16,7 +16,8 @@ const yoga = createYoga<NextRequest>({
       userId: session?.user?.id,
     };
   },
-  // Add some basic security measures
+
+  // Add some basic security measures to prevent CORS issues.
   cors: {
     origin:
       process.env.NODE_ENV === "production"
