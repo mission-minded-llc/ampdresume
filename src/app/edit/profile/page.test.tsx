@@ -7,9 +7,14 @@ import Page from "./page";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
+}));
+
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(),
 }));
 
 jest.mock("@tanstack/react-query", () => ({
@@ -50,6 +55,7 @@ describe("Page", () => {
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: [] });
     (useMutation as jest.Mock).mockReturnValue({ mutate: jest.fn() });
     (useQueryClient as jest.Mock).mockReturnValue({ invalidateQueries: jest.fn() });
+    (useRouter as jest.Mock).mockReturnValue({ push: jest.fn() });
 
     (getSession as jest.Mock).mockResolvedValue({
       user: { id: "user-id" },

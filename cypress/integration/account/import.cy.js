@@ -30,8 +30,8 @@ describe("Import Section", () => {
     // Upload a PDF file
     cy.get('input[type="file"]').selectFile("cypress/fixtures/test-resume-1.pdf");
 
-    // Wait for the intercepted request to complete
-    cy.wait("@getParsedResumeAi");
+    // Wait for the intercepted request to complete, with a 10 second timeout
+    cy.wait("@getParsedResumeAi", { timeout: 10000 });
 
     // Check that the import was successful and the page rendered correctly
     // Start by checking that the page has the correct content for Personal Information.

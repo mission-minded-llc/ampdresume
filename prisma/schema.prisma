@@ -166,7 +166,7 @@ model Project {
   positionId       String
   /// Used for sorting projects
   sortIndex        Int               @default(0)
-  position         Position          @relation(fields: [positionId], references: [id])
+  position         Position          @relation(fields: [positionId], references: [id], onDelete: Cascade)
   skillsForProject SkillForProject[]
 
   @@schema("ampdresume")
@@ -180,7 +180,7 @@ model Position {
   startDate DateTime
   endDate   DateTime?
   companyId String
-  company   Company   @relation(fields: [companyId], references: [id])
+  company   Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
   projects  Project[]
 
   @@schema("ampdresume")

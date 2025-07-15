@@ -4,7 +4,7 @@ export const types = gql`
   type User {
     id: ID!
     name: String!
-    email: String!
+    email: String
     displayEmail: String
     location: String
     title: String

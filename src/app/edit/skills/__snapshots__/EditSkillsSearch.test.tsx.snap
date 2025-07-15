@@ -120,7 +120,12 @@ exports[`EditSkillsSearch filters and displays skills based on search term 2`] =
           <div
             class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
           >
-            <span />
+            <span
+              data-icon="icon-js"
+              data-testid="icon"
+              height="24"
+              width="24"
+            />
           </div>
           <div
             class="MuiListItemText-root css-cfq8qh-MuiListItemText-root"
@@ -193,7 +198,12 @@ exports[`EditSkillsSearch filters and displays skills based on search term 3`] =
           <div
             class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
           >
-            <span />
+            <span
+              data-icon="icon-js"
+              data-testid="icon"
+              height="24"
+              width="24"
+            />
           </div>
           <div
             class="MuiListItemText-root css-cfq8qh-MuiListItemText-root"
@@ -312,7 +322,12 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 2`] = `
           <div
             class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
           >
-            <span />
+            <span
+              data-icon="icon-js"
+              data-testid="icon"
+              height="24"
+              width="24"
+            />
           </div>
           <div
             class="MuiListItemText-root css-cfq8qh-MuiListItemText-root"
@@ -387,7 +402,12 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 3`] = `
           <div
             class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
           >
-            <span />
+            <span
+              data-icon="icon-js"
+              data-testid="icon"
+              height="24"
+              width="24"
+            />
           </div>
           <div
             class="MuiListItemText-root css-cfq8qh-MuiListItemText-root"

@@ -81,4 +81,35 @@ describe("Profile Section", () => {
     cy.get(saveButton).click();
     cy.contains("Invalid email address").should("not.exist");
   });
+
+  it("should successfully delete account and redirect to homepage", () => {
+    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/profile`);
+
+    cy.contains("Profile").should("be.visible");
+    cy.contains("General Information").should("be.visible");
+
+    cy.closeMessageDialog();
+
+    cy.contains("Danger Zone").should("be.visible");
+
+    cy.get("button")
+      .contains("Delete Account")
+      .should("not.be.disabled")
+      .should("be.visible")
+      .click({ force: true });
+
+    // Check all the required checkboxes to delete the account.
+    cy.get("input[type='checkbox']").check({ force: true });
+
+    cy.get("button").contains("Yes, Delete My Account").should("not.be.disabled").click();
+
+    cy.contains("Deleting account...").should("be.visible");
+
+    // Deleting the account will redirect to the homepage.
+    cy.url().should("eq", `${Cypress.env("BASE_URL") || ""}/`);
+
+    // Verify the user is no longer authenticated by trying to access a protected route.
+    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/profile`);
+    cy.url().should("not.include", "/edit/profile");
+  });
 });

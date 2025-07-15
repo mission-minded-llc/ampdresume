@@ -1,5 +1,7 @@
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import { GraphQLContext } from "@/types/graphql";
+import { User } from "@prisma/client";
 
 /**
  * The purpose of this function is to verify that the session user ID matches the user ID being verified.
@@ -26,4 +28,60 @@ export const verifySessionOwnership = async (userId: string) => {
   }
 
   return true;
+};
+
+/**
+ * Type for the filtered user data returned to unauthenticated users
+ */
+type FilteredUserData = {
+  id: string;
+  name: string | null;
+  title: string | null;
+  location: string | null;
+  siteTitle: string | null;
+  siteDescription: string | null;
+  siteImage: string | null;
+  webThemeName: string | null;
+  displayEmail: string | null;
+  email: null;
+};
+
+/**
+ * Filters user data based on authentication status.
+ * Returns only public fields for unauthenticated users.
+ * Returns full user data for authenticated users.
+ *
+ * @param {User | null} user The full user object from the database
+ * @param {GraphQLContext} context The GraphQL context containing authentication info
+ * @returns {User | FilteredUserData | null} Filtered user object
+ */
+export const filterUserData = (
+  user: User | null,
+  context: GraphQLContext,
+): User | FilteredUserData | null => {
+  if (!user) return null;
+
+  // For unauthenticated users, or if the user.id does not match the session user ID,
+  // return only public fields.
+  if (!context.isAuthenticated || user.id !== context.session?.user?.id) {
+    return {
+      id: user.id,
+      name: user.name,
+      title: user.title,
+      location: user.location,
+      siteTitle: user.siteTitle,
+      siteDescription: user.siteDescription,
+      siteImage: user.siteImage,
+      webThemeName: user.webThemeName,
+
+      // TODO: Put displayEmail behind a CAPTCHA check.
+      displayEmail: user.displayEmail,
+
+      // Explicitly set sensitive fields to null for unauthenticated users
+      email: null,
+    };
+  }
+
+  // For authenticated users, return full user data
+  return user;
 };

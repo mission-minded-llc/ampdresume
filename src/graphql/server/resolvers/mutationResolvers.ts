@@ -12,6 +12,7 @@ import { deleteProject } from "./mutations/deleteProject";
 import { deleteSkillForProject } from "./mutations/deleteSkillForProject";
 import { deleteSkillForUser } from "./mutations/deleteSkillForUser";
 import { deleteSocial } from "./mutations/deleteSocial";
+import { deleteUser } from "./mutations/deleteUser";
 import { saveExtractedResumeData } from "./mutations/saveExtractedResumeData";
 import { updateCompany } from "./mutations/updateCompany";
 import { updateEducation } from "./mutations/updateEducation";
@@ -26,6 +27,7 @@ import { updateUser } from "./mutations/updateUser";
 export const mutationResolvers = {
   // User specific mutations.
   updateUser,
+  deleteUser,
   addSkillForUser,
   updateSkillForUser,
   deleteSkillForUser,

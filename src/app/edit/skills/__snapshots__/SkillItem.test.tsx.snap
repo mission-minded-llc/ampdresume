@@ -7,7 +7,10 @@ exports[`SkillItem closes the dialog when the close button is clicked 1`] = `
     tabindex="0"
     type="button"
   >
-    <span />
+    <span
+      data-icon="icon-js"
+      data-testid="icon"
+    />
     JavaScript
   </button>
 </div>
@@ -22,7 +25,10 @@ exports[`SkillItem closes the dialog when the close button is clicked 2`] = `
     tabindex="0"
     type="button"
   >
-    <span />
+    <span
+      data-icon="icon-js"
+      data-testid="icon"
+    />
     JavaScript
   </button>
 </div>
@@ -35,7 +41,10 @@ exports[`SkillItem closes the dialog when the close button is clicked 3`] = `
     tabindex="0"
     type="button"
   >
-    <span />
+    <span
+      data-icon="icon-js"
+      data-testid="icon"
+    />
     JavaScript
   </button>
 </div>
