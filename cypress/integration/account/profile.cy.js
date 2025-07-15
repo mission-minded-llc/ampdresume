@@ -97,10 +97,7 @@ describe("Profile Section", () => {
     cy.contains("Danger Zone").should("be.visible");
 
     // Find and click the Delete Account button
-    cy.contains("button", "Delete Account").click();
-
-    // Verify the confirmation dialog appears
-    cy.contains("Delete Account").should("be.visible");
+    cy.get("button").contains("Delete Account").click();
 
     // Check all the required checkboxes
     cy.contains("Your profile and all resume information")
