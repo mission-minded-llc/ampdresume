@@ -443,6 +443,9 @@ const AccountForm = ({
             padding: "32px 0",
             borderTop: "1px solid",
             borderColor: "divider",
+            marginTop: "2rem",
+            marginBottom: "2rem",
+            backgroundColor: "rgba(255, 0, 0, 0.1)",
           }}
         >
           <Typography variant="h6" sx={{ mb: 2 }}>
@@ -453,16 +456,13 @@ const AccountForm = ({
             buttonLabel="Delete Account"
             tooltip="Permanently delete your account and all data"
             dialogTitle="Delete Account"
-            dialogMessage={
-              <Typography>
-                Are you sure you want to delete your account? This action cannot be undone and will
-                permanently remove:
-                <br />• Your profile and all personal information
-                <br />• All your skills, projects, work experience, and education
-                <br />• Your authentication history
-                <br />• All associated data
-              </Typography>
-            }
+            dialogMessage="Are you sure you want to delete your account? This action cannot be undone and will permanently remove:"
+            showCheckboxes={true}
+            checkboxItems={[
+              "Your profile and all resume information",
+              "Your authentication history",
+              "All associated data",
+            ]}
             confirmLabel="Yes, Delete My Account"
             cancelLabel="Cancel"
             disabled={isDeletingAccount}
