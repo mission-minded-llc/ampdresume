@@ -93,7 +93,6 @@ const AccountForm = ({
           hasEmptyFields = true;
           if (key === "name") newErrors.name = "Name is required";
           if (key === "slug") newErrors.slug = "Slug is required";
-          if (key === "displayEmail") newErrors.displayEmail = "Email is required";
         }
       }
     });
@@ -293,7 +292,9 @@ const AccountForm = ({
               <MailOutlineIcon /> Display Email
             </FieldTitle>
             <FieldDescription>
-              Your display email is publicly visible on your resume!
+              Your display email is <strong>publicly visible</strong> on your resume! This is not
+              required. If you <em>do</em> want to display an email, it is recommended to set up a
+              separate new email for this purpose, or use an email alias. Expect spam.
             </FieldDescription>
             <TextField
               label="Display Email"
@@ -305,11 +306,6 @@ const AccountForm = ({
               fullWidth
               sx={{
                 marginTop: "auto",
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: !formData.displayEmail.trim() ? "error.main" : undefined,
-                  },
-                },
               }}
             />
           </InputSection>

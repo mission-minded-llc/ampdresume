@@ -26,7 +26,7 @@ export async function generateMetadata({
     description,
     authors: [
       {
-        name: user?.name ? user.name : "OpenResume",
+        name: user?.name ? user.name : "Amp'd Resume",
       },
     ],
     openGraph: {
