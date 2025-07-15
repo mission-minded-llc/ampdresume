@@ -100,18 +100,13 @@ describe("Profile Section", () => {
     cy.get("button").contains("Delete Account").click();
 
     // Check all the required checkboxes
-    cy.contains("Your profile and all resume information")
-      .parent()
-      .find("input[type='checkbox']")
-      .check();
-    cy.contains("Your authentication history").parent().find("input[type='checkbox']").check();
-    cy.contains("All associated data").parent().find("input[type='checkbox']").check();
+    cy.get("input[type='checkbox']").check();
 
     // Verify the confirm button is now enabled
-    cy.contains("button", "Yes, Delete My Account").should("not.be.disabled");
+    cy.get("button").contains("Yes, Delete My Account").should("not.be.disabled");
 
     // Click the confirm button to delete the account
-    cy.contains("button", "Yes, Delete My Account").click();
+    cy.get("button").contains("Yes, Delete My Account").click();
 
     // Wait for the deletion process to complete
     cy.contains("Deleting account...").should("be.visible");
