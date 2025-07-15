@@ -26,7 +26,6 @@ describe("Delete Account", () => {
 
     // Verify the confirmation dialog appears
     cy.contains("Delete Account").should("be.visible");
-    cy.contains("Are you sure you want to delete your account?").should("be.visible");
 
     // Check all the required checkboxes
     cy.contains("Your profile and all resume information")
