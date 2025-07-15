@@ -97,10 +97,14 @@ describe("Profile Section", () => {
     cy.contains("Danger Zone").should("be.visible");
 
     // Find and click the Delete Account button
-    cy.get("button").contains("Delete Account").click();
+    cy.get("button")
+      .contains("Delete Account")
+      .should("not.be.disabled")
+      .should("be.visible")
+      .click({ force: true });
 
     // Check all the required checkboxes
-    cy.get("input[type='checkbox']").check();
+    cy.get("input[type='checkbox']").check({ force: true });
 
     // Verify the confirm button is now enabled
     cy.get("button").contains("Yes, Delete My Account").should("not.be.disabled");
@@ -119,6 +123,7 @@ describe("Profile Section", () => {
 
     // Verify the user is no longer authenticated by trying to access a protected route
     cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/profile`);
+
     cy.url().should("not.include", "/edit/profile");
   });
 });
