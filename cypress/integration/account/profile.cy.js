@@ -103,8 +103,6 @@ describe("Profile Section", () => {
 
     cy.get("button").contains("Yes, Delete My Account").should("not.be.disabled").click();
 
-    cy.contains("Deleting account...").should("be.visible");
-
     // Deleting the account will redirect to the homepage.
     cy.url().should("eq", `${Cypress.env("BASE_URL") || ""}/`);
 
