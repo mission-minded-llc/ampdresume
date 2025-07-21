@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor, act } from "@testing-library/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import React from "react";
@@ -94,37 +94,69 @@ describe("SkillItemEdit", () => {
       <SkillItemEdit skill={mockSkill} handleClose={() => {}} />,
     );
 
-    expect(getByLabelText("Year Started")).toBeInTheDocument();
+    // By default, autoCalculate is false if totalYears > 0, so only 'Total Years' is shown
     expect(getByLabelText("Total Years")).toBeInTheDocument();
+    expect(() => getByLabelText("Year Started")).toThrow();
     expect(getByText("RichTextEditor")).toBeInTheDocument();
     expect(getByText("IconSelector")).toBeInTheDocument();
     expect(getByText("Delete Skill")).toBeInTheDocument();
-    expect(getByText("Save")).toBeInTheDocument();
+    expect(getByText("Save Changes")).toBeInTheDocument();
     expect(getByText("Save & Close")).toBeInTheDocument();
     expect(container).toMatchSnapshot();
+  });
+
+  it("shows 'Year Started' when auto-calculate is enabled", () => {
+    const { getByLabelText, getByText } = render(
+      <SkillItemEdit skill={{ ...mockSkill, totalYears: 0 }} handleClose={() => {}} />,
+    );
+    // With totalYears 0, autoCalculate defaults to true
+    expect(getByLabelText("Year Started")).toBeInTheDocument();
+    expect(() => getByLabelText("Total Years")).toThrow();
+    expect(getByText("RichTextEditor")).toBeInTheDocument();
+    expect(getByText("IconSelector")).toBeInTheDocument();
+  });
+
+  it("toggles auto-calculate and switches between fields", () => {
+    const { getByLabelText } = render(
+      <SkillItemEdit skill={{ ...mockSkill, totalYears: 0 }} handleClose={() => {}} />,
+    );
+    // Initially, autoCalculate is true, so 'Year Started' is shown
+    expect(getByLabelText("Year Started")).toBeInTheDocument();
+    // Toggle auto-calculate off
+    const autoCalcCheckbox = getByLabelText(/auto-calculate/i);
+    act(() => {
+      fireEvent.click(autoCalcCheckbox);
+    });
+    expect(getByLabelText("Total Years")).toBeInTheDocument();
+    expect(() => getByLabelText("Year Started")).toThrow();
+    // Toggle auto-calculate on again
+    act(() => {
+      fireEvent.click(autoCalcCheckbox);
+    });
+    expect(getByLabelText("Year Started")).toBeInTheDocument();
+    expect(() => getByLabelText("Total Years")).toThrow();
   });
 
   it("updates fields and handles save", async () => {
     const handleCloseMock = jest.fn();
     const { container, getByLabelText, getByText } = render(
-      <SkillItemEdit skill={mockSkill} handleClose={handleCloseMock} />,
+      <SkillItemEdit skill={mockSkill} handleClose={handleCloseMock} />, // autoCalculate false, so 'Total Years' is shown
     );
     expect(container).toMatchSnapshot();
 
-    const yearStartedInput = getByLabelText("Year Started");
     const totalYearsInput = getByLabelText("Total Years");
+    act(() => {
+      fireEvent.change(totalYearsInput, { target: { value: "3" } });
+    });
 
-    fireEvent.change(yearStartedInput, { target: { value: "2021" } });
-    fireEvent.change(totalYearsInput, { target: { value: "3" } });
-
-    fireEvent.click(getByText("Save"));
+    fireEvent.click(getByText("Save Changes"));
 
     await waitFor(() => {
       expect(updateSkillForUser).toHaveBeenCalledWith({
         id: "1",
         userId: "user-id",
         description: "Skill description",
-        yearStarted: 2021,
+        yearStarted: 2020,
         totalYears: 3,
         icon: "icon-name",
       });

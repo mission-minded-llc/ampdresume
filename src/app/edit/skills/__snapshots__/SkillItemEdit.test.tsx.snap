@@ -6,48 +6,10 @@ exports[`SkillItemEdit handles delete 1`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xz8vlv"
+      class="MuiBox-root css-1xw0jqp"
     >
       <div
-        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
-      >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
-          data-shrink="true"
-          for="«rc»"
-          id="«rc»-label"
-        >
-          Year Started
-        </label>
-        <div
-          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
-        >
-          <input
-            aria-invalid="false"
-            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-            id="«rc»"
-            max="2025"
-            min="1900"
-            name="yearStarted"
-            type="number"
-            value="2020"
-          />
-          <fieldset
-            aria-hidden="true"
-            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
-          >
-            <legend
-              class="css-w1u3ce"
-            >
-              <span>
-                Year Started
-              </span>
-            </legend>
-          </fieldset>
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-yd8sa2"
       >
         <div
           class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
@@ -55,8 +17,8 @@ exports[`SkillItemEdit handles delete 1`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rd»"
-            id="«rd»-label"
+            for="«rk»"
+            id="«rk»-label"
           >
             Total Years
           </label>
@@ -66,7 +28,7 @@ exports[`SkillItemEdit handles delete 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rd»"
+              id="«rk»"
               max="100"
               min="0"
               name="totalYears"
@@ -75,10 +37,10 @@ exports[`SkillItemEdit handles delete 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+              class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
             >
               <legend
-                class="css-w1u3ce"
+                class="css-ex8a5f-MuiNotchedOutlined-root"
               >
                 <span>
                   Total Years
@@ -86,42 +48,6 @@ exports[`SkillItemEdit handles delete 1`] = `
               </legend>
             </fieldset>
           </div>
-        </div>
-        <div>
-          <p>
-            Enter the year you 
-            <strong>
-              started
-            </strong>
-             using this skill or the
-             
-            <strong>
-              total years
-            </strong>
-             of experience.
-          </p>
-          <p>
-            If you enter the 
-            <strong>
-              year started
-            </strong>
-            , the 
-            <strong>
-              total years
-            </strong>
-             will be calculated for you automatically.
-          </p>
-          <p>
-            If you enter a 
-            <strong>
-              total years
-            </strong>
-             value, it will override the calculated value. Leave "0" for automatic calculation based on 
-            <strong>
-              year started
-            </strong>
-            .
-          </p>
         </div>
       </div>
       <div
@@ -132,28 +58,132 @@ exports[`SkillItemEdit handles delete 1`] = `
         >
           IconSelector
         </div>
-        <div>
-          Enter a valid icon name from
-           
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
-            href="https://icon-sets.iconify.design/"
-            target="_blank"
-          >
-            iconify
-          </a>
-          .
+        <div
+          class="MuiBox-root css-1yuhvjn"
+        >
+          <div>
+            Enter a valid icon name from
+             
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+              href="https://icon-sets.iconify.design/"
+              target="_blank"
+            >
+              iconify
+            </a>
+            .
+          </div>
         </div>
       </div>
     </div>
-    <hr
-      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
-    />
     <div
-      class="MuiBox-root css-1qm1lh"
+      class="MuiBox-root css-1jrajof"
     >
-      <div>
-        RichTextEditor
+      <label
+        class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
+      >
+        <span
+          class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-vuhw6e-MuiButtonBase-root-MuiSwitchBase-root-MuiCheckbox-root"
+        >
+          <input
+            class="PrivateSwitchBase-input css-12xagqm-MuiSwitchBase-root"
+            data-indeterminate="false"
+            name="autoCalculate"
+            type="checkbox"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+            data-testid="CheckBoxOutlineBlankIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1vrgacq-MuiTypography-root"
+        >
+          Auto-calculate 
+          <strong>
+            years of experience
+          </strong>
+           based on year started.
+        </p>
+      </label>
+    </div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+    >
+      <h3
+        class="MuiAccordion-heading css-cy7rkm-MuiAccordion-heading"
+      >
+        <button
+          aria-expanded="false"
+          class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-1f1pi2l-MuiButtonBase-root-MuiAccordionSummary-root"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+            >
+              Description
+            </p>
+          </span>
+          <span
+            class="MuiAccordionSummary-expandIconWrapper css-1wqf3nl-MuiAccordionSummary-expandIconWrapper"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              data-testid="ExpandMoreIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </svg>
+          </span>
+        </button>
+      </h3>
+      <div
+        class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-cwrbtg-MuiCollapse-root"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper MuiCollapse-vertical css-1x6hinx-MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner MuiCollapse-vertical css-1i4ywhz-MuiCollapse-wrapperInner"
+          >
+            <div
+              class="MuiAccordion-region"
+              role="region"
+            >
+              <div
+                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+              >
+                <div>
+                  RichTextEditor
+                </div>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -177,13 +207,6 @@ exports[`SkillItemEdit handles delete 1`] = `
         class="MuiBox-root css-10egq61"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Save
-        </button>
-        <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-74d805-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
@@ -204,48 +227,10 @@ exports[`SkillItemEdit handles delete 2`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xz8vlv"
+      class="MuiBox-root css-1xw0jqp"
     >
       <div
-        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
-      >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
-          data-shrink="true"
-          for="«rc»"
-          id="«rc»-label"
-        >
-          Year Started
-        </label>
-        <div
-          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
-        >
-          <input
-            aria-invalid="false"
-            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-            id="«rc»"
-            max="2025"
-            min="1900"
-            name="yearStarted"
-            type="number"
-            value="2020"
-          />
-          <fieldset
-            aria-hidden="true"
-            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
-          >
-            <legend
-              class="css-w1u3ce"
-            >
-              <span>
-                Year Started
-              </span>
-            </legend>
-          </fieldset>
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-yd8sa2"
       >
         <div
           class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
@@ -253,8 +238,8 @@ exports[`SkillItemEdit handles delete 2`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rd»"
-            id="«rd»-label"
+            for="«rk»"
+            id="«rk»-label"
           >
             Total Years
           </label>
@@ -264,7 +249,7 @@ exports[`SkillItemEdit handles delete 2`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rd»"
+              id="«rk»"
               max="100"
               min="0"
               name="totalYears"
@@ -273,10 +258,10 @@ exports[`SkillItemEdit handles delete 2`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+              class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
             >
               <legend
-                class="css-w1u3ce"
+                class="css-ex8a5f-MuiNotchedOutlined-root"
               >
                 <span>
                   Total Years
@@ -284,42 +269,6 @@ exports[`SkillItemEdit handles delete 2`] = `
               </legend>
             </fieldset>
           </div>
-        </div>
-        <div>
-          <p>
-            Enter the year you 
-            <strong>
-              started
-            </strong>
-             using this skill or the
-             
-            <strong>
-              total years
-            </strong>
-             of experience.
-          </p>
-          <p>
-            If you enter the 
-            <strong>
-              year started
-            </strong>
-            , the 
-            <strong>
-              total years
-            </strong>
-             will be calculated for you automatically.
-          </p>
-          <p>
-            If you enter a 
-            <strong>
-              total years
-            </strong>
-             value, it will override the calculated value. Leave "0" for automatic calculation based on 
-            <strong>
-              year started
-            </strong>
-            .
-          </p>
         </div>
       </div>
       <div
@@ -330,28 +279,132 @@ exports[`SkillItemEdit handles delete 2`] = `
         >
           IconSelector
         </div>
-        <div>
-          Enter a valid icon name from
-           
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
-            href="https://icon-sets.iconify.design/"
-            target="_blank"
-          >
-            iconify
-          </a>
-          .
+        <div
+          class="MuiBox-root css-1yuhvjn"
+        >
+          <div>
+            Enter a valid icon name from
+             
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+              href="https://icon-sets.iconify.design/"
+              target="_blank"
+            >
+              iconify
+            </a>
+            .
+          </div>
         </div>
       </div>
     </div>
-    <hr
-      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
-    />
     <div
-      class="MuiBox-root css-1qm1lh"
+      class="MuiBox-root css-1jrajof"
     >
-      <div>
-        RichTextEditor
+      <label
+        class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
+      >
+        <span
+          class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-vuhw6e-MuiButtonBase-root-MuiSwitchBase-root-MuiCheckbox-root"
+        >
+          <input
+            class="PrivateSwitchBase-input css-12xagqm-MuiSwitchBase-root"
+            data-indeterminate="false"
+            name="autoCalculate"
+            type="checkbox"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+            data-testid="CheckBoxOutlineBlankIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1vrgacq-MuiTypography-root"
+        >
+          Auto-calculate 
+          <strong>
+            years of experience
+          </strong>
+           based on year started.
+        </p>
+      </label>
+    </div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+    >
+      <h3
+        class="MuiAccordion-heading css-cy7rkm-MuiAccordion-heading"
+      >
+        <button
+          aria-expanded="false"
+          class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-1f1pi2l-MuiButtonBase-root-MuiAccordionSummary-root"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+            >
+              Description
+            </p>
+          </span>
+          <span
+            class="MuiAccordionSummary-expandIconWrapper css-1wqf3nl-MuiAccordionSummary-expandIconWrapper"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              data-testid="ExpandMoreIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </svg>
+          </span>
+        </button>
+      </h3>
+      <div
+        class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-cwrbtg-MuiCollapse-root"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper MuiCollapse-vertical css-1x6hinx-MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner MuiCollapse-vertical css-1i4ywhz-MuiCollapse-wrapperInner"
+          >
+            <div
+              class="MuiAccordion-region"
+              role="region"
+            >
+              <div
+                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+              >
+                <div>
+                  RichTextEditor
+                </div>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -410,13 +463,6 @@ exports[`SkillItemEdit handles delete 2`] = `
         class="MuiBox-root css-10egq61"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Save
-        </button>
-        <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-74d805-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
@@ -435,48 +481,10 @@ exports[`SkillItemEdit handles save and close 1`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xz8vlv"
+      class="MuiBox-root css-1xw0jqp"
     >
       <div
-        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
-      >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
-          data-shrink="true"
-          for="«rl»"
-          id="«rl»-label"
-        >
-          Year Started
-        </label>
-        <div
-          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
-        >
-          <input
-            aria-invalid="false"
-            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-            id="«rl»"
-            max="2025"
-            min="1900"
-            name="yearStarted"
-            type="number"
-            value="2020"
-          />
-          <fieldset
-            aria-hidden="true"
-            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
-          >
-            <legend
-              class="css-w1u3ce"
-            >
-              <span>
-                Year Started
-              </span>
-            </legend>
-          </fieldset>
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-yd8sa2"
       >
         <div
           class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
@@ -484,8 +492,8 @@ exports[`SkillItemEdit handles save and close 1`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rm»"
-            id="«rm»-label"
+            for="«rs»"
+            id="«rs»-label"
           >
             Total Years
           </label>
@@ -495,7 +503,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rm»"
+              id="«rs»"
               max="100"
               min="0"
               name="totalYears"
@@ -504,10 +512,10 @@ exports[`SkillItemEdit handles save and close 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+              class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
             >
               <legend
-                class="css-w1u3ce"
+                class="css-ex8a5f-MuiNotchedOutlined-root"
               >
                 <span>
                   Total Years
@@ -515,42 +523,6 @@ exports[`SkillItemEdit handles save and close 1`] = `
               </legend>
             </fieldset>
           </div>
-        </div>
-        <div>
-          <p>
-            Enter the year you 
-            <strong>
-              started
-            </strong>
-             using this skill or the
-             
-            <strong>
-              total years
-            </strong>
-             of experience.
-          </p>
-          <p>
-            If you enter the 
-            <strong>
-              year started
-            </strong>
-            , the 
-            <strong>
-              total years
-            </strong>
-             will be calculated for you automatically.
-          </p>
-          <p>
-            If you enter a 
-            <strong>
-              total years
-            </strong>
-             value, it will override the calculated value. Leave "0" for automatic calculation based on 
-            <strong>
-              year started
-            </strong>
-            .
-          </p>
         </div>
       </div>
       <div
@@ -561,28 +533,132 @@ exports[`SkillItemEdit handles save and close 1`] = `
         >
           IconSelector
         </div>
-        <div>
-          Enter a valid icon name from
-           
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
-            href="https://icon-sets.iconify.design/"
-            target="_blank"
-          >
-            iconify
-          </a>
-          .
+        <div
+          class="MuiBox-root css-1yuhvjn"
+        >
+          <div>
+            Enter a valid icon name from
+             
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+              href="https://icon-sets.iconify.design/"
+              target="_blank"
+            >
+              iconify
+            </a>
+            .
+          </div>
         </div>
       </div>
     </div>
-    <hr
-      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
-    />
     <div
-      class="MuiBox-root css-1qm1lh"
+      class="MuiBox-root css-1jrajof"
     >
-      <div>
-        RichTextEditor
+      <label
+        class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
+      >
+        <span
+          class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-vuhw6e-MuiButtonBase-root-MuiSwitchBase-root-MuiCheckbox-root"
+        >
+          <input
+            class="PrivateSwitchBase-input css-12xagqm-MuiSwitchBase-root"
+            data-indeterminate="false"
+            name="autoCalculate"
+            type="checkbox"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+            data-testid="CheckBoxOutlineBlankIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1vrgacq-MuiTypography-root"
+        >
+          Auto-calculate 
+          <strong>
+            years of experience
+          </strong>
+           based on year started.
+        </p>
+      </label>
+    </div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+    >
+      <h3
+        class="MuiAccordion-heading css-cy7rkm-MuiAccordion-heading"
+      >
+        <button
+          aria-expanded="false"
+          class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-1f1pi2l-MuiButtonBase-root-MuiAccordionSummary-root"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+            >
+              Description
+            </p>
+          </span>
+          <span
+            class="MuiAccordionSummary-expandIconWrapper css-1wqf3nl-MuiAccordionSummary-expandIconWrapper"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              data-testid="ExpandMoreIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </svg>
+          </span>
+        </button>
+      </h3>
+      <div
+        class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-cwrbtg-MuiCollapse-root"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper MuiCollapse-vertical css-1x6hinx-MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner MuiCollapse-vertical css-1i4ywhz-MuiCollapse-wrapperInner"
+          >
+            <div
+              class="MuiAccordion-region"
+              role="region"
+            >
+              <div
+                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+              >
+                <div>
+                  RichTextEditor
+                </div>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -605,13 +681,6 @@ exports[`SkillItemEdit handles save and close 1`] = `
       <div
         class="MuiBox-root css-10egq61"
       >
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Save
-        </button>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-74d805-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
@@ -631,48 +700,10 @@ exports[`SkillItemEdit handles save and close 2`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xz8vlv"
+      class="MuiBox-root css-1xw0jqp"
     >
       <div
-        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
-      >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
-          data-shrink="true"
-          for="«rl»"
-          id="«rl»-label"
-        >
-          Year Started
-        </label>
-        <div
-          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
-        >
-          <input
-            aria-invalid="false"
-            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-            id="«rl»"
-            max="2025"
-            min="1900"
-            name="yearStarted"
-            type="number"
-            value="2020"
-          />
-          <fieldset
-            aria-hidden="true"
-            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
-          >
-            <legend
-              class="css-w1u3ce"
-            >
-              <span>
-                Year Started
-              </span>
-            </legend>
-          </fieldset>
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-yd8sa2"
       >
         <div
           class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
@@ -680,8 +711,8 @@ exports[`SkillItemEdit handles save and close 2`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rm»"
-            id="«rm»-label"
+            for="«rs»"
+            id="«rs»-label"
           >
             Total Years
           </label>
@@ -691,7 +722,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rm»"
+              id="«rs»"
               max="100"
               min="0"
               name="totalYears"
@@ -700,10 +731,10 @@ exports[`SkillItemEdit handles save and close 2`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+              class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
             >
               <legend
-                class="css-w1u3ce"
+                class="css-ex8a5f-MuiNotchedOutlined-root"
               >
                 <span>
                   Total Years
@@ -711,42 +742,6 @@ exports[`SkillItemEdit handles save and close 2`] = `
               </legend>
             </fieldset>
           </div>
-        </div>
-        <div>
-          <p>
-            Enter the year you 
-            <strong>
-              started
-            </strong>
-             using this skill or the
-             
-            <strong>
-              total years
-            </strong>
-             of experience.
-          </p>
-          <p>
-            If you enter the 
-            <strong>
-              year started
-            </strong>
-            , the 
-            <strong>
-              total years
-            </strong>
-             will be calculated for you automatically.
-          </p>
-          <p>
-            If you enter a 
-            <strong>
-              total years
-            </strong>
-             value, it will override the calculated value. Leave "0" for automatic calculation based on 
-            <strong>
-              year started
-            </strong>
-            .
-          </p>
         </div>
       </div>
       <div
@@ -757,28 +752,132 @@ exports[`SkillItemEdit handles save and close 2`] = `
         >
           IconSelector
         </div>
-        <div>
-          Enter a valid icon name from
-           
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
-            href="https://icon-sets.iconify.design/"
-            target="_blank"
-          >
-            iconify
-          </a>
-          .
+        <div
+          class="MuiBox-root css-1yuhvjn"
+        >
+          <div>
+            Enter a valid icon name from
+             
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+              href="https://icon-sets.iconify.design/"
+              target="_blank"
+            >
+              iconify
+            </a>
+            .
+          </div>
         </div>
       </div>
     </div>
-    <hr
-      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
-    />
     <div
-      class="MuiBox-root css-1qm1lh"
+      class="MuiBox-root css-1jrajof"
     >
-      <div>
-        RichTextEditor
+      <label
+        class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
+      >
+        <span
+          class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-vuhw6e-MuiButtonBase-root-MuiSwitchBase-root-MuiCheckbox-root"
+        >
+          <input
+            class="PrivateSwitchBase-input css-12xagqm-MuiSwitchBase-root"
+            data-indeterminate="false"
+            name="autoCalculate"
+            type="checkbox"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+            data-testid="CheckBoxOutlineBlankIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1vrgacq-MuiTypography-root"
+        >
+          Auto-calculate 
+          <strong>
+            years of experience
+          </strong>
+           based on year started.
+        </p>
+      </label>
+    </div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+    >
+      <h3
+        class="MuiAccordion-heading css-cy7rkm-MuiAccordion-heading"
+      >
+        <button
+          aria-expanded="false"
+          class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-1f1pi2l-MuiButtonBase-root-MuiAccordionSummary-root"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+            >
+              Description
+            </p>
+          </span>
+          <span
+            class="MuiAccordionSummary-expandIconWrapper css-1wqf3nl-MuiAccordionSummary-expandIconWrapper"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              data-testid="ExpandMoreIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </svg>
+          </span>
+        </button>
+      </h3>
+      <div
+        class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-cwrbtg-MuiCollapse-root"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper MuiCollapse-vertical css-1x6hinx-MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner MuiCollapse-vertical css-1i4ywhz-MuiCollapse-wrapperInner"
+          >
+            <div
+              class="MuiAccordion-region"
+              role="region"
+            >
+              <div
+                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+              >
+                <div>
+                  RichTextEditor
+                </div>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -801,13 +900,6 @@ exports[`SkillItemEdit handles save and close 2`] = `
       <div
         class="MuiBox-root css-10egq61"
       >
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Save
-        </button>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-74d805-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
@@ -827,48 +919,10 @@ exports[`SkillItemEdit renders correctly 1`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xz8vlv"
+      class="MuiBox-root css-1xw0jqp"
     >
       <div
-        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
-      >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
-          data-shrink="true"
-          for="«r0»"
-          id="«r0»-label"
-        >
-          Year Started
-        </label>
-        <div
-          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
-        >
-          <input
-            aria-invalid="false"
-            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-            id="«r0»"
-            max="2025"
-            min="1900"
-            name="yearStarted"
-            type="number"
-            value="2020"
-          />
-          <fieldset
-            aria-hidden="true"
-            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
-          >
-            <legend
-              class="css-w1u3ce"
-            >
-              <span>
-                Year Started
-              </span>
-            </legend>
-          </fieldset>
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-yd8sa2"
       >
         <div
           class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
@@ -876,8 +930,8 @@ exports[`SkillItemEdit renders correctly 1`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«r1»"
-            id="«r1»-label"
+            for="«r0»"
+            id="«r0»-label"
           >
             Total Years
           </label>
@@ -887,7 +941,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«r1»"
+              id="«r0»"
               max="100"
               min="0"
               name="totalYears"
@@ -896,10 +950,10 @@ exports[`SkillItemEdit renders correctly 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+              class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
             >
               <legend
-                class="css-w1u3ce"
+                class="css-ex8a5f-MuiNotchedOutlined-root"
               >
                 <span>
                   Total Years
@@ -907,42 +961,6 @@ exports[`SkillItemEdit renders correctly 1`] = `
               </legend>
             </fieldset>
           </div>
-        </div>
-        <div>
-          <p>
-            Enter the year you 
-            <strong>
-              started
-            </strong>
-             using this skill or the
-             
-            <strong>
-              total years
-            </strong>
-             of experience.
-          </p>
-          <p>
-            If you enter the 
-            <strong>
-              year started
-            </strong>
-            , the 
-            <strong>
-              total years
-            </strong>
-             will be calculated for you automatically.
-          </p>
-          <p>
-            If you enter a 
-            <strong>
-              total years
-            </strong>
-             value, it will override the calculated value. Leave "0" for automatic calculation based on 
-            <strong>
-              year started
-            </strong>
-            .
-          </p>
         </div>
       </div>
       <div
@@ -953,28 +971,132 @@ exports[`SkillItemEdit renders correctly 1`] = `
         >
           IconSelector
         </div>
-        <div>
-          Enter a valid icon name from
-           
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
-            href="https://icon-sets.iconify.design/"
-            target="_blank"
-          >
-            iconify
-          </a>
-          .
+        <div
+          class="MuiBox-root css-1yuhvjn"
+        >
+          <div>
+            Enter a valid icon name from
+             
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+              href="https://icon-sets.iconify.design/"
+              target="_blank"
+            >
+              iconify
+            </a>
+            .
+          </div>
         </div>
       </div>
     </div>
-    <hr
-      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
-    />
     <div
-      class="MuiBox-root css-1qm1lh"
+      class="MuiBox-root css-1jrajof"
     >
-      <div>
-        RichTextEditor
+      <label
+        class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
+      >
+        <span
+          class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-vuhw6e-MuiButtonBase-root-MuiSwitchBase-root-MuiCheckbox-root"
+        >
+          <input
+            class="PrivateSwitchBase-input css-12xagqm-MuiSwitchBase-root"
+            data-indeterminate="false"
+            name="autoCalculate"
+            type="checkbox"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+            data-testid="CheckBoxOutlineBlankIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1vrgacq-MuiTypography-root"
+        >
+          Auto-calculate 
+          <strong>
+            years of experience
+          </strong>
+           based on year started.
+        </p>
+      </label>
+    </div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+    >
+      <h3
+        class="MuiAccordion-heading css-cy7rkm-MuiAccordion-heading"
+      >
+        <button
+          aria-expanded="false"
+          class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-1f1pi2l-MuiButtonBase-root-MuiAccordionSummary-root"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+            >
+              Description
+            </p>
+          </span>
+          <span
+            class="MuiAccordionSummary-expandIconWrapper css-1wqf3nl-MuiAccordionSummary-expandIconWrapper"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              data-testid="ExpandMoreIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </svg>
+          </span>
+        </button>
+      </h3>
+      <div
+        class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-cwrbtg-MuiCollapse-root"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper MuiCollapse-vertical css-1x6hinx-MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner MuiCollapse-vertical css-1i4ywhz-MuiCollapse-wrapperInner"
+          >
+            <div
+              class="MuiAccordion-region"
+              role="region"
+            >
+              <div
+                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+              >
+                <div>
+                  RichTextEditor
+                </div>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -997,13 +1119,6 @@ exports[`SkillItemEdit renders correctly 1`] = `
       <div
         class="MuiBox-root css-10egq61"
       >
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Save
-        </button>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-74d805-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
@@ -1023,48 +1138,10 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xz8vlv"
+      class="MuiBox-root css-1xw0jqp"
     >
       <div
-        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
-      >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
-          data-shrink="true"
-          for="«r6»"
-          id="«r6»-label"
-        >
-          Year Started
-        </label>
-        <div
-          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
-        >
-          <input
-            aria-invalid="false"
-            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-            id="«r6»"
-            max="2025"
-            min="1900"
-            name="yearStarted"
-            type="number"
-            value="2020"
-          />
-          <fieldset
-            aria-hidden="true"
-            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
-          >
-            <legend
-              class="css-w1u3ce"
-            >
-              <span>
-                Year Started
-              </span>
-            </legend>
-          </fieldset>
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-yd8sa2"
       >
         <div
           class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
@@ -1072,8 +1149,8 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«r7»"
-            id="«r7»-label"
+            for="«rf»"
+            id="«rf»-label"
           >
             Total Years
           </label>
@@ -1083,7 +1160,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«r7»"
+              id="«rf»"
               max="100"
               min="0"
               name="totalYears"
@@ -1092,10 +1169,10 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+              class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
             >
               <legend
-                class="css-w1u3ce"
+                class="css-ex8a5f-MuiNotchedOutlined-root"
               >
                 <span>
                   Total Years
@@ -1103,42 +1180,6 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
               </legend>
             </fieldset>
           </div>
-        </div>
-        <div>
-          <p>
-            Enter the year you 
-            <strong>
-              started
-            </strong>
-             using this skill or the
-             
-            <strong>
-              total years
-            </strong>
-             of experience.
-          </p>
-          <p>
-            If you enter the 
-            <strong>
-              year started
-            </strong>
-            , the 
-            <strong>
-              total years
-            </strong>
-             will be calculated for you automatically.
-          </p>
-          <p>
-            If you enter a 
-            <strong>
-              total years
-            </strong>
-             value, it will override the calculated value. Leave "0" for automatic calculation based on 
-            <strong>
-              year started
-            </strong>
-            .
-          </p>
         </div>
       </div>
       <div
@@ -1149,28 +1190,132 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
         >
           IconSelector
         </div>
-        <div>
-          Enter a valid icon name from
-           
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
-            href="https://icon-sets.iconify.design/"
-            target="_blank"
-          >
-            iconify
-          </a>
-          .
+        <div
+          class="MuiBox-root css-1yuhvjn"
+        >
+          <div>
+            Enter a valid icon name from
+             
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+              href="https://icon-sets.iconify.design/"
+              target="_blank"
+            >
+              iconify
+            </a>
+            .
+          </div>
         </div>
       </div>
     </div>
-    <hr
-      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
-    />
     <div
-      class="MuiBox-root css-1qm1lh"
+      class="MuiBox-root css-1jrajof"
     >
-      <div>
-        RichTextEditor
+      <label
+        class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
+      >
+        <span
+          class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-vuhw6e-MuiButtonBase-root-MuiSwitchBase-root-MuiCheckbox-root"
+        >
+          <input
+            class="PrivateSwitchBase-input css-12xagqm-MuiSwitchBase-root"
+            data-indeterminate="false"
+            name="autoCalculate"
+            type="checkbox"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+            data-testid="CheckBoxOutlineBlankIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1vrgacq-MuiTypography-root"
+        >
+          Auto-calculate 
+          <strong>
+            years of experience
+          </strong>
+           based on year started.
+        </p>
+      </label>
+    </div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+    >
+      <h3
+        class="MuiAccordion-heading css-cy7rkm-MuiAccordion-heading"
+      >
+        <button
+          aria-expanded="false"
+          class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-1f1pi2l-MuiButtonBase-root-MuiAccordionSummary-root"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+            >
+              Description
+            </p>
+          </span>
+          <span
+            class="MuiAccordionSummary-expandIconWrapper css-1wqf3nl-MuiAccordionSummary-expandIconWrapper"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              data-testid="ExpandMoreIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </svg>
+          </span>
+        </button>
+      </h3>
+      <div
+        class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-cwrbtg-MuiCollapse-root"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper MuiCollapse-vertical css-1x6hinx-MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner MuiCollapse-vertical css-1i4ywhz-MuiCollapse-wrapperInner"
+          >
+            <div
+              class="MuiAccordion-region"
+              role="region"
+            >
+              <div
+                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+              >
+                <div>
+                  RichTextEditor
+                </div>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -1193,13 +1338,6 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
       <div
         class="MuiBox-root css-10egq61"
       >
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Save
-        </button>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-74d805-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
@@ -1219,48 +1357,10 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xz8vlv"
+      class="MuiBox-root css-1xw0jqp"
     >
       <div
-        class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
-      >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
-          data-shrink="true"
-          for="«r6»"
-          id="«r6»-label"
-        >
-          Year Started
-        </label>
-        <div
-          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root"
-        >
-          <input
-            aria-invalid="false"
-            class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-            id="«r6»"
-            max="2025"
-            min="1900"
-            name="yearStarted"
-            type="number"
-            value="2021"
-          />
-          <fieldset
-            aria-hidden="true"
-            class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
-          >
-            <legend
-              class="css-w1u3ce"
-            >
-              <span>
-                Year Started
-              </span>
-            </legend>
-          </fieldset>
-        </div>
-      </div>
-      <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-yd8sa2"
       >
         <div
           class="MuiFormControl-root MuiTextField-root css-1xp5r68-MuiFormControl-root-MuiTextField-root"
@@ -1268,8 +1368,8 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«r7»"
-            id="«r7»-label"
+            for="«rf»"
+            id="«rf»-label"
           >
             Total Years
           </label>
@@ -1279,7 +1379,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«r7»"
+              id="«rf»"
               max="100"
               min="0"
               name="totalYears"
@@ -1288,10 +1388,10 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+              class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
             >
               <legend
-                class="css-w1u3ce"
+                class="css-ex8a5f-MuiNotchedOutlined-root"
               >
                 <span>
                   Total Years
@@ -1299,42 +1399,6 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
               </legend>
             </fieldset>
           </div>
-        </div>
-        <div>
-          <p>
-            Enter the year you 
-            <strong>
-              started
-            </strong>
-             using this skill or the
-             
-            <strong>
-              total years
-            </strong>
-             of experience.
-          </p>
-          <p>
-            If you enter the 
-            <strong>
-              year started
-            </strong>
-            , the 
-            <strong>
-              total years
-            </strong>
-             will be calculated for you automatically.
-          </p>
-          <p>
-            If you enter a 
-            <strong>
-              total years
-            </strong>
-             value, it will override the calculated value. Leave "0" for automatic calculation based on 
-            <strong>
-              year started
-            </strong>
-            .
-          </p>
         </div>
       </div>
       <div
@@ -1345,28 +1409,132 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
         >
           IconSelector
         </div>
-        <div>
-          Enter a valid icon name from
-           
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
-            href="https://icon-sets.iconify.design/"
-            target="_blank"
-          >
-            iconify
-          </a>
-          .
+        <div
+          class="MuiBox-root css-1yuhvjn"
+        >
+          <div>
+            Enter a valid icon name from
+             
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
+              href="https://icon-sets.iconify.design/"
+              target="_blank"
+            >
+              iconify
+            </a>
+            .
+          </div>
         </div>
       </div>
     </div>
-    <hr
-      class="MuiDivider-root MuiDivider-fullWidth css-zzw4lh-MuiDivider-root"
-    />
     <div
-      class="MuiBox-root css-1qm1lh"
+      class="MuiBox-root css-1jrajof"
     >
-      <div>
-        RichTextEditor
+      <label
+        class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
+      >
+        <span
+          class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-vuhw6e-MuiButtonBase-root-MuiSwitchBase-root-MuiCheckbox-root"
+        >
+          <input
+            class="PrivateSwitchBase-input css-12xagqm-MuiSwitchBase-root"
+            data-indeterminate="false"
+            name="autoCalculate"
+            type="checkbox"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+            data-testid="CheckBoxOutlineBlankIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-1vrgacq-MuiTypography-root"
+        >
+          Auto-calculate 
+          <strong>
+            years of experience
+          </strong>
+           based on year started.
+        </p>
+      </label>
+    </div>
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+    >
+      <h3
+        class="MuiAccordion-heading css-cy7rkm-MuiAccordion-heading"
+      >
+        <button
+          aria-expanded="false"
+          class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-1f1pi2l-MuiButtonBase-root-MuiAccordionSummary-root"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+            >
+              Description
+            </p>
+          </span>
+          <span
+            class="MuiAccordionSummary-expandIconWrapper css-1wqf3nl-MuiAccordionSummary-expandIconWrapper"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              data-testid="ExpandMoreIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </svg>
+          </span>
+        </button>
+      </h3>
+      <div
+        class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-cwrbtg-MuiCollapse-root"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper MuiCollapse-vertical css-1x6hinx-MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner MuiCollapse-vertical css-1i4ywhz-MuiCollapse-wrapperInner"
+          >
+            <div
+              class="MuiAccordion-region"
+              role="region"
+            >
+              <div
+                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+              >
+                <div>
+                  RichTextEditor
+                </div>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -1389,13 +1557,6 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
       <div
         class="MuiBox-root css-10egq61"
       >
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Save
-        </button>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-74d805-MuiButtonBase-root-MuiButton-root"
           tabindex="0"

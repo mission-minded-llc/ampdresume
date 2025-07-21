@@ -118,10 +118,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 />
                 <fieldset
                   aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-w1u3ce"
+                    class="css-ex8a5f-MuiNotchedOutlined-root"
                   >
                     <span>
                       Full Name
@@ -211,10 +211,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 />
                 <fieldset
                   aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-w1u3ce"
+                    class="css-ex8a5f-MuiNotchedOutlined-root"
                   >
                     <span>
                       URL Name
@@ -292,10 +292,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 />
                 <fieldset
                   aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-w1u3ce"
+                    class="css-ex8a5f-MuiNotchedOutlined-root"
                   >
                     <span>
                       Display Email
@@ -365,10 +365,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 />
                 <fieldset
                   aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-w1u3ce"
+                    class="css-ex8a5f-MuiNotchedOutlined-root"
                   >
                     <span>
                       Title
@@ -443,10 +443,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 />
                 <fieldset
                   aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-w1u3ce"
+                    class="css-ex8a5f-MuiNotchedOutlined-root"
                   >
                     <span>
                       Location
@@ -527,10 +527,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 />
                 <fieldset
                   aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-81qg8w"
+                    class="css-1n64csd-MuiNotchedOutlined-root"
                   >
                     <span>
                       Social URL
@@ -607,10 +607,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 />
                 <fieldset
                   aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-w1u3ce"
+                    class="css-ex8a5f-MuiNotchedOutlined-root"
                   >
                     <span>
                       Site Title
@@ -668,10 +668,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 />
                 <fieldset
                   aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-w1u3ce"
+                    class="css-ex8a5f-MuiNotchedOutlined-root"
                   >
                     <span>
                       Site Description
@@ -719,10 +719,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 />
                 <fieldset
                   aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-w1u3ce"
+                    class="css-ex8a5f-MuiNotchedOutlined-root"
                   >
                     <span>
                       Image URL
