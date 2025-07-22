@@ -36,6 +36,12 @@ export const addSkill = async ({
       return { data: null };
     });
 
-  if (!data?.addSkill) throw new Error("Failed to add skill");
+  if (!data?.addSkill) {
+    const addSkillError = new Error("Failed to add skill: " + name);
+
+    Sentry.captureException(addSkillError);
+    throw addSkillError;
+  }
+
   return data.addSkill;
 };
