@@ -14,7 +14,7 @@ export const addSkill = async (
   if (existingSkill) return existingSkill;
 
   const skill = await prisma.skill.create({
-    data: { name, icon },
+    data: { name, icon, published: false },
   });
 
   await prisma.skillContribution.create({

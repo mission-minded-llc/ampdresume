@@ -122,7 +122,7 @@ model Skill {
   /// because it's already vetted. Only published skills are visible in the skill search selector.
   published   Boolean   @default(true)
   /// The date the skill was published.
-  publishDate DateTime?
+  publishDate DateTime? @default(now())
   /// The date the skill was last updated.
   updateDate  DateTime  @default(now()) @updatedAt
 
