@@ -100,9 +100,17 @@ describe("SkillItemEdit", () => {
     expect(getByText("RichTextEditor")).toBeInTheDocument();
     expect(getByText("IconSelector")).toBeInTheDocument();
     expect(getByText("Delete Skill")).toBeInTheDocument();
-    expect(getByText("Save Changes")).toBeInTheDocument();
     expect(getByText("Save & Close")).toBeInTheDocument();
     expect(container).toMatchSnapshot();
+  });
+
+  it("shows 'Save Changes' when the accordion is expanded", async () => {
+    const { getByText } = render(<SkillItemEdit skill={mockSkill} handleClose={() => {}} />);
+
+    fireEvent.click(getByText("Click to describe your experience with this skill..."));
+    await waitFor(() => {
+      expect(getByText("Save Changes")).toBeInTheDocument();
+    });
   });
 
   it("shows 'Year Started' when auto-calculate is enabled", () => {
@@ -149,6 +157,7 @@ describe("SkillItemEdit", () => {
       fireEvent.change(totalYearsInput, { target: { value: "3" } });
     });
 
+    fireEvent.click(getByText("Click to describe your experience with this skill..."));
     fireEvent.click(getByText("Save Changes"));
 
     await waitFor(() => {

@@ -15,14 +15,13 @@ import {
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "lexical";
-import { $isCodeNode, getDefaultCodeLanguage } from "@lexical/code";
+
 import { $isListNode, ListNode } from "@lexical/list";
 import { Box, Divider, IconButton, MenuItem, Select } from "@mui/material";
 import { HEADINGS, LOW_PRIORIRTY, RICH_TEXT_OPTIONS, RichTextAction } from "./constants";
 import { useEffect, useState } from "react";
 
 import { $wrapNodes } from "@lexical/selection";
-import { CodeBlockPlugin } from "./CodeBlockPlugin";
 import { ColorPlugin } from "./ColorPlugin";
 import { Icon } from "@iconify/react";
 import { ImageNode } from "../nodes/ImageNode";
@@ -48,7 +47,6 @@ export const ToolbarPlugin = () => {
   });
   const [selectionMap, setSelectionMap] = useState<{ [id: string]: boolean }>({});
   const [blockType, setBlockType] = useState("paragraph");
-  const [codeLanguage, setCodeLanguage] = useState(getDefaultCodeLanguage());
   const [selectedElementKey, setSelectedElementKey] = useState("");
 
   const updateToolbarSelectionText = (selection: RangeSelection) => {
@@ -56,12 +54,8 @@ export const ToolbarPlugin = () => {
       [RichTextAction.Bold]: selection.hasFormat("bold"),
       [RichTextAction.Italics]: selection.hasFormat("italic"),
       [RichTextAction.Underline]: selection.hasFormat("underline"),
-      [RichTextAction.Highlight]: selection.hasFormat("highlight"),
-      [RichTextAction.Strikethrough]: selection.hasFormat("strikethrough"),
       [RichTextAction.Superscript]: selection.hasFormat("superscript"),
       [RichTextAction.Subscript]: selection.hasFormat("subscript"),
-      [RichTextAction.Code]: selection.hasFormat("code"),
-      // TODO: Figure this out:
       // [RichTextAction.LeftAlign]: selection.hasFormat("left"),
       // [RichTextAction.CenterAlign]: selection.hasFormat("center"),
       // [RichTextAction.RightAlign]: selection.hasFormat("right"),
@@ -87,10 +81,6 @@ export const ToolbarPlugin = () => {
     } else {
       const type = $isHeadingNode(element) ? element.getTag() : element.getType();
       setBlockType(type);
-
-      if ($isCodeNode(element)) {
-        setCodeLanguage(element.getLanguage() || getDefaultCodeLanguage());
-      }
     }
   };
 
@@ -173,20 +163,11 @@ export const ToolbarPlugin = () => {
       case RichTextAction.Underline:
         editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
         break;
-      case RichTextAction.Highlight:
-        editor.dispatchCommand(FORMAT_TEXT_COMMAND, "highlight");
-        break;
-      case RichTextAction.Strikethrough:
-        editor.dispatchCommand(FORMAT_TEXT_COMMAND, "strikethrough");
-        break;
       case RichTextAction.Superscript:
         editor.dispatchCommand(FORMAT_TEXT_COMMAND, "superscript");
         break;
       case RichTextAction.Subscript:
         editor.dispatchCommand(FORMAT_TEXT_COMMAND, "subscript");
-        break;
-      case RichTextAction.Code:
-        editor.dispatchCommand(FORMAT_TEXT_COMMAND, "code");
         break;
       case RichTextAction.LeftAlign:
         editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "left");
@@ -239,8 +220,6 @@ export const ToolbarPlugin = () => {
           flexWrap: "wrap",
           gap: 0.3,
           width: "100%",
-          pointerEvents: blockType === "code" ? "none" : "auto",
-          opacity: blockType === "code" ? 0.5 : 1,
           alignItems: "center",
         }}
       >
@@ -248,7 +227,7 @@ export const ToolbarPlugin = () => {
           onChange={(e) => {
             updateHeading(e.target.value as HeadingTagType);
           }}
-          value="h1"
+          value={blockType === "paragraph" ? "h1" : blockType}
           sx={{ p: 0 }}
         >
           {HEADINGS.map((heading) => (
@@ -278,27 +257,8 @@ export const ToolbarPlugin = () => {
         <ColorPlugin />
         <ListPlugin blockType={blockType} />
         <TablePlugin />
-      </Box>
-      <Divider flexItem />
-      <Box sx={{ display: "flex", gap: 1 }}>
-        <CodeBlockPlugin
-          blockType={blockType}
-          selectedElementKey={selectedElementKey}
-          codeLanguage={codeLanguage}
-        />
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 1,
-            width: "100%",
-            pointerEvents: blockType === "code" ? "none" : "auto",
-            opacity: blockType === "code" ? 0.5 : 1,
-          }}
-        >
-          <ImagePlugin />
-          <YoutubePlugin />
-        </Box>
+        <ImagePlugin />
+        <YoutubePlugin />
       </Box>
     </Box>
   );

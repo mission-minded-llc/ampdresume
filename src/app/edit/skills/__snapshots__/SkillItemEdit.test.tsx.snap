@@ -17,8 +17,8 @@ exports[`SkillItemEdit handles delete 1`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rk»"
-            id="«rk»-label"
+            for="«rm»"
+            id="«rm»-label"
           >
             Total Years
           </label>
@@ -28,7 +28,7 @@ exports[`SkillItemEdit handles delete 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rk»"
+              id="«rm»"
               max="100"
               min="0"
               name="totalYears"
@@ -115,7 +115,7 @@ exports[`SkillItemEdit handles delete 1`] = `
       </label>
     </div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1o9vypq-MuiPaper-root-MuiAccordion-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
       <h3
@@ -131,9 +131,9 @@ exports[`SkillItemEdit handles delete 1`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
             >
-              Description
+              Click to describe your experience with this skill...
             </p>
           </span>
           <span
@@ -173,13 +173,9 @@ exports[`SkillItemEdit handles delete 1`] = `
                 <div>
                   RichTextEditor
                 </div>
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  Save Changes
-                </button>
+                <div
+                  class="MuiBox-root css-1l4w6pd"
+                />
               </div>
             </div>
           </div>
@@ -238,8 +234,8 @@ exports[`SkillItemEdit handles delete 2`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rk»"
-            id="«rk»-label"
+            for="«rm»"
+            id="«rm»-label"
           >
             Total Years
           </label>
@@ -249,7 +245,7 @@ exports[`SkillItemEdit handles delete 2`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rk»"
+              id="«rm»"
               max="100"
               min="0"
               name="totalYears"
@@ -336,7 +332,7 @@ exports[`SkillItemEdit handles delete 2`] = `
       </label>
     </div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1o9vypq-MuiPaper-root-MuiAccordion-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
       <h3
@@ -352,9 +348,9 @@ exports[`SkillItemEdit handles delete 2`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
             >
-              Description
+              Click to describe your experience with this skill...
             </p>
           </span>
           <span
@@ -394,13 +390,9 @@ exports[`SkillItemEdit handles delete 2`] = `
                 <div>
                   RichTextEditor
                 </div>
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  Save Changes
-                </button>
+                <div
+                  class="MuiBox-root css-1l4w6pd"
+                />
               </div>
             </div>
           </div>
@@ -492,8 +484,8 @@ exports[`SkillItemEdit handles save and close 1`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rs»"
-            id="«rs»-label"
+            for="«rt»"
+            id="«rt»-label"
           >
             Total Years
           </label>
@@ -503,7 +495,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rs»"
+              id="«rt»"
               max="100"
               min="0"
               name="totalYears"
@@ -590,7 +582,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
       </label>
     </div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1o9vypq-MuiPaper-root-MuiAccordion-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
       <h3
@@ -606,9 +598,9 @@ exports[`SkillItemEdit handles save and close 1`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
             >
-              Description
+              Click to describe your experience with this skill...
             </p>
           </span>
           <span
@@ -648,13 +640,9 @@ exports[`SkillItemEdit handles save and close 1`] = `
                 <div>
                   RichTextEditor
                 </div>
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  Save Changes
-                </button>
+                <div
+                  class="MuiBox-root css-1l4w6pd"
+                />
               </div>
             </div>
           </div>
@@ -711,8 +699,8 @@ exports[`SkillItemEdit handles save and close 2`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rs»"
-            id="«rs»-label"
+            for="«rt»"
+            id="«rt»-label"
           >
             Total Years
           </label>
@@ -722,7 +710,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rs»"
+              id="«rt»"
               max="100"
               min="0"
               name="totalYears"
@@ -809,7 +797,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
       </label>
     </div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1o9vypq-MuiPaper-root-MuiAccordion-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
       <h3
@@ -825,9 +813,9 @@ exports[`SkillItemEdit handles save and close 2`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
             >
-              Description
+              Click to describe your experience with this skill...
             </p>
           </span>
           <span
@@ -867,13 +855,9 @@ exports[`SkillItemEdit handles save and close 2`] = `
                 <div>
                   RichTextEditor
                 </div>
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  Save Changes
-                </button>
+                <div
+                  class="MuiBox-root css-1l4w6pd"
+                />
               </div>
             </div>
           </div>
@@ -1028,7 +1012,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
       </label>
     </div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1o9vypq-MuiPaper-root-MuiAccordion-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
       <h3
@@ -1044,9 +1028,9 @@ exports[`SkillItemEdit renders correctly 1`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
             >
-              Description
+              Click to describe your experience with this skill...
             </p>
           </span>
           <span
@@ -1086,13 +1070,9 @@ exports[`SkillItemEdit renders correctly 1`] = `
                 <div>
                   RichTextEditor
                 </div>
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  Save Changes
-                </button>
+                <div
+                  class="MuiBox-root css-1l4w6pd"
+                />
               </div>
             </div>
           </div>
@@ -1149,8 +1129,8 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rf»"
-            id="«rf»-label"
+            for="«rh»"
+            id="«rh»-label"
           >
             Total Years
           </label>
@@ -1160,7 +1140,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rf»"
+              id="«rh»"
               max="100"
               min="0"
               name="totalYears"
@@ -1247,7 +1227,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
       </label>
     </div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1o9vypq-MuiPaper-root-MuiAccordion-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
       <h3
@@ -1263,9 +1243,9 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
             >
-              Description
+              Click to describe your experience with this skill...
             </p>
           </span>
           <span
@@ -1305,13 +1285,9 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
                 <div>
                   RichTextEditor
                 </div>
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  Save Changes
-                </button>
+                <div
+                  class="MuiBox-root css-1l4w6pd"
+                />
               </div>
             </div>
           </div>
@@ -1368,8 +1344,8 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rf»"
-            id="«rf»-label"
+            for="«rh»"
+            id="«rh»-label"
           >
             Total Years
           </label>
@@ -1379,7 +1355,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rf»"
+              id="«rh»"
               max="100"
               min="0"
               name="totalYears"
@@ -1466,29 +1442,29 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
       </label>
     </div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1s17i05-MuiPaper-root-MuiAccordion-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded Mui-expanded MuiAccordion-gutters css-1o9vypq-MuiPaper-root-MuiAccordion-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
       <h3
         class="MuiAccordion-heading css-cy7rkm-MuiAccordion-heading"
       >
         <button
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-1f1pi2l-MuiButtonBase-root-MuiAccordionSummary-root"
+          aria-expanded="true"
+          class="MuiButtonBase-root MuiAccordionSummary-root Mui-expanded MuiAccordionSummary-gutters css-1f1pi2l-MuiButtonBase-root-MuiAccordionSummary-root"
           tabindex="0"
           type="button"
         >
           <span
-            class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
+            class="MuiAccordionSummary-content Mui-expanded MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
               class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
             >
-              Description
+              Write a description of your experience with this skill below.
             </p>
           </span>
           <span
-            class="MuiAccordionSummary-expandIconWrapper css-1wqf3nl-MuiAccordionSummary-expandIconWrapper"
+            class="MuiAccordionSummary-expandIconWrapper Mui-expanded css-1wqf3nl-MuiAccordionSummary-expandIconWrapper"
           >
             <svg
               aria-hidden="true"
@@ -1505,8 +1481,8 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
         </button>
       </h3>
       <div
-        class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-cwrbtg-MuiCollapse-root"
-        style="min-height: 0px;"
+        class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-qr6njo-MuiCollapse-root"
+        style="min-height: 0px; height: auto; transition-duration: 0ms; transition-timing-function: undefined;"
       >
         <div
           class="MuiCollapse-wrapper MuiCollapse-vertical css-1x6hinx-MuiCollapse-wrapper"
@@ -1524,13 +1500,9 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
                 <div>
                   RichTextEditor
                 </div>
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
-                  tabindex="0"
-                  type="button"
-                >
-                  Save Changes
-                </button>
+                <div
+                  class="MuiBox-root css-1l4w6pd"
+                />
               </div>
             </div>
           </div>
@@ -1557,6 +1529,13 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
       <div
         class="MuiBox-root css-10egq61"
       >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Save Changes
+        </button>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-74d805-MuiButtonBase-root-MuiButton-root"
           tabindex="0"

@@ -15,6 +15,7 @@ export const ALLOWED_USER_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif"]
 // Temporary list of allowed users, for alpha testing and access to test subdomains.
 export const ALLOWED_USER_EMAILS = [
   "test@ampdresume.com",
+  "jesttest@ampdresume.com",
   "missionmiked@gmail.com",
   "md@missionmike.dev",
   "leonardo@petruc.ci",

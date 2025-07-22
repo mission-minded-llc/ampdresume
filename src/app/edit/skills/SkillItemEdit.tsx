@@ -178,13 +178,13 @@ export const SkillItemEdit = ({
       </Box>
 
       <Accordion
-        sx={{ mb: 2 }}
+        sx={{ mb: 4 }}
         expanded={isAccordionExpanded}
         onChange={(event, expanded) => setIsAccordionExpanded(expanded)}
       >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           {isAccordionExpanded ? (
-            <Typography>Description:</Typography>
+            <Typography>Write a description of your experience with this skill below.</Typography>
           ) : (
             <Typography sx={{ textDecoration: "underline" }}>
               Click to describe your experience with this skill...
