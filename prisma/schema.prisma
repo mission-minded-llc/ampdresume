@@ -70,14 +70,16 @@ model User {
   /// Used for PDF theme name, e.g. "default"
   pdfThemeName String?
 
-  accounts        Account[]
-  company         Company[]
-  education       Education[]
-  sessions        Session[]
-  skillForUser    SkillForUser[]
-  Social          Social[]
-  FeaturedProject FeaturedProject[]
-  Certification   Certification[]
+  /// All the relations to the user:
+  accounts          Account[]
+  company           Company[]
+  education         Education[]
+  sessions          Session[]
+  skillForUser      SkillForUser[]
+  Social            Social[]
+  FeaturedProject   FeaturedProject[]
+  Certification     Certification[]
+  SkillContribution SkillContribution[]
 
   @@schema("ampdresume")
 }
@@ -95,10 +97,12 @@ model VerificationToken {
 /// Social media links for a user, e.g. "Twitter", "GitHub", "LinkedIn"
 model Social {
   id       String @id @default(cuid())
-  userId   String
   platform String
   ref      String
-  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  /// The relation to the user that this social is associated with.
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, platform, ref])
   @@schema("ampdresume")
@@ -107,12 +111,45 @@ model Social {
 /// Skill is a general skill that can be used by multiple users, e.g. "HTML", "CSS", "JavaScript"
 /// Not limited to technical skills. Can be used for any skill, e.g. "Public Speaking", "Leadership"
 model Skill {
-  id           String         @id @default(cuid())
+  id   String  @id @default(cuid())
   /// Ensures skill names are unique
-  name         String         @unique
+  name String  @unique
   /// Optional icon, e.g., from Iconify
-  icon         String?
-  skillForUser SkillForUser[]
+  icon String?
+
+  /// Whether the skill is published to the public. When a user creates a skill, we will set it to
+  /// false initially. However, a new skill inserted via migration script will be set to true,
+  /// because it's already vetted. Only published skills are visible in the skill search selector.
+  published   Boolean   @default(true)
+  /// The date the skill was published.
+  publishDate DateTime? @default(now())
+  /// The date the skill was last updated.
+  updateDate  DateTime  @default(now()) @updatedAt
+
+  /// Used for skills that a user has, with additional customized information.
+  /// The custom data is specific to the user's resume. The skill itself is a general skill
+  /// that can be used by multiple users.
+  skillForUser      SkillForUser[]
+  /// Used for skills that a user has contributed to, e.g. "John Doe"
+  SkillContribution SkillContribution[]
+
+  @@schema("ampdresume")
+}
+
+/// SkillContribution is the record of a user contributing a new skill to the database.
+model SkillContribution {
+  id String @id @default(cuid())
+
+  /// The date the skill contribution was submitted.
+  submitDate DateTime @default(now())
+
+  /// The skill that the user has contributed.
+  skillId String
+  skill   Skill  @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  /// The user that has contributed the skill.
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@schema("ampdresume")
 }
@@ -121,20 +158,26 @@ model Skill {
 /// The custom data is specific to the user's resume. The skill itself is a general skill
 /// that can be used by multiple users.
 model SkillForUser {
-  id                      String                    @id @default(cuid())
-  skillId                 String
-  userId                  String
+  id          String  @id @default(cuid())
   /// Optional meta about the skill for this user
-  description             String?
+  description String?
   /// Optional icon, e.g., from Iconify, overrides the icon in Skill if found
-  icon                    String?
+  icon        String?
   /// Optional start year of using the skill
-  yearStarted             Int?
+  yearStarted Int?
   /// Optional total years using the skill
-  totalYears              Int?
+  totalYears  Int?
+
+  /// The parent skill record.
+  skillId String
+  skill   Skill  @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  /// The user that has the skill.
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  /// The relation to the projects that the user has worked on.
   skillForProject         SkillForProject[]
-  skill                   Skill                     @relation(fields: [skillId], references: [id], onDelete: Cascade)
-  user                    User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// The relation to the featured projects that the user has worked on, where this skill is used.
   SkillForFeaturedProject SkillForFeaturedProject[]
 
   @@unique([userId, skillId])
@@ -145,12 +188,16 @@ model SkillForUser {
 /// with additional customized information. The custom data is specific to the user's resume,
 /// within the context of the project.
 model SkillForProject {
-  id             String       @id @default(cuid())
-  skillForUserId String
+  id          String  @id @default(cuid())
   /// Optional meta about the skill for this project. Overrides the description in SkillForUser if found
-  description    String?
-  projectId      String
-  project        Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  description String?
+
+  /// The relation to the project that this skill is associated with.
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  /// The relation to the skill that this project has.  
+  skillForUserId String
   skillForUser   SkillForUser @relation(fields: [skillForUserId], references: [id], onDelete: Cascade)
 
   @@unique([skillForUserId, projectId])
@@ -166,7 +213,9 @@ model Project {
   positionId       String
   /// Used for sorting projects
   sortIndex        Int               @default(0)
+  /// The relation to the position that this project is associated with.
   position         Position          @relation(fields: [positionId], references: [id], onDelete: Cascade)
+  /// The relation to the skills that this project has.
   skillsForProject SkillForProject[]
 
   @@schema("ampdresume")
@@ -180,7 +229,9 @@ model Position {
   startDate DateTime
   endDate   DateTime?
   companyId String
+  /// The relation to the company that this position is associated with.
   company   Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  /// The relation to the projects that this position has.
   projects  Project[]
 
   @@schema("ampdresume")
@@ -195,7 +246,9 @@ model Company {
   startDate DateTime
   endDate   DateTime?
   userId    String
+  /// The relation to the user that this company is associated with.
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// The relation to the positions that this company has.
   positions Position[]
 
   @@schema("ampdresume")
@@ -205,10 +258,14 @@ model Company {
 /// with additional customized information. The custom data is specific to the user's resume,
 /// within the context of the featured project.
 model SkillForFeaturedProject {
-  id                String          @id @default(cuid())
-  description       String?
-  skillForUserId    String
-  skillForUser      SkillForUser    @relation(fields: [skillForUserId], references: [id], onDelete: Cascade)
+  id          String  @id @default(cuid())
+  description String?
+
+  /// The relation to the skill that this featured project has.
+  skillForUserId String
+  skillForUser   SkillForUser @relation(fields: [skillForUserId], references: [id], onDelete: Cascade)
+
+  /// The relation to the featured project that this skill is associated with.
   featuredProjectId String
   featuredProject   FeaturedProject @relation(fields: [featuredProjectId], references: [id], onDelete: Cascade)
 
@@ -224,8 +281,10 @@ model FeaturedProject {
   name                     String
   description              String?
   links                    Json
+  /// The relation to the user that this featured project is associated with.
   userId                   String
   user                     User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// The relation to the skills that this featured project has.
   skillsForFeaturedProject SkillForFeaturedProject[]
 
   @@schema("ampdresume")
@@ -242,6 +301,7 @@ model Certification {
   credentialUrl String?
   credentialId  String?
 
+  /// The relation to the user that this certification is associated with.
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -255,8 +315,10 @@ model Education {
   school      String
   degree      String
   dateAwarded DateTime?
-  userId      String
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  /// The relation to the user that this education is associated with.
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@schema("ampdresume")
 }

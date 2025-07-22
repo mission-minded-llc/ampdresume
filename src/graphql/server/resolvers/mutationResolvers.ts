@@ -2,6 +2,7 @@ import { addCompany } from "./mutations/addCompany";
 import { addEducation } from "./mutations/addEducation";
 import { addPosition } from "./mutations/addPosition";
 import { addProject } from "./mutations/addProject";
+import { addSkill } from "./mutations/addSkill";
 import { addSkillForProject } from "./mutations/addSkillForProject";
 import { addSkillForUser } from "./mutations/addSkillForUser";
 import { addSocial } from "./mutations/addSocial";
@@ -28,6 +29,7 @@ export const mutationResolvers = {
   // User specific mutations.
   updateUser,
   deleteUser,
+  addSkill,
   addSkillForUser,
   updateSkillForUser,
   deleteSkillForUser,

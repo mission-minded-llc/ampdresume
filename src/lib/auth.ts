@@ -62,6 +62,9 @@ export const sendVerificationRequest = async ({
     const filePath = path.join(tempDir, `magic-link-${safeEmail}.txt`);
 
     fs.writeFileSync(filePath, url);
+
+    // Return early to prevent the email from being sent.
+    return;
   }
 
   await transport.sendMail({

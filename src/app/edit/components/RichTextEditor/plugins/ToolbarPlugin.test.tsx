@@ -1,5 +1,4 @@
 import { AutoLinkNode, LinkNode } from "@lexical/link";
-import { CodeHighlightNode, CodeNode } from "@lexical/code";
 import { ListItemNode, ListNode } from "@lexical/list";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 
@@ -17,8 +16,6 @@ const initialConfig = {
   },
   nodes: [
     HeadingNode,
-    CodeNode,
-    CodeHighlightNode,
     LinkNode,
     AutoLinkNode,
     ListNode,

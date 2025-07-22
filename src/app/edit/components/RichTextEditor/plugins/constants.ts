@@ -2,11 +2,8 @@ export enum RichTextAction {
   Bold = "bold",
   Italics = "italics",
   Underline = "underline",
-  Strikethrough = "strikethrough",
   Superscript = "superscript",
   Subscript = "subscript",
-  Highlight = "highlight",
-  Code = "code",
   LeftAlign = "leftAlign",
   CenterAlign = "centerAlign",
   RightAlign = "rightAlign",
@@ -24,17 +21,6 @@ export const RICH_TEXT_OPTIONS = [
   { id: RichTextAction.Underline, icon: "gridicons:underline", label: "Underline" },
   { id: RichTextAction.Divider },
   {
-    id: RichTextAction.Highlight,
-    icon: "pajamas:highlight",
-    label: "Highlight",
-    fontSize: 10,
-  },
-  {
-    id: RichTextAction.Strikethrough,
-    icon: "gridicons:strikethrough",
-    label: "Strikethrough",
-  },
-  {
     id: RichTextAction.Superscript,
     icon: "material-symbols:superscript",
     label: "Superscript",
@@ -43,11 +29,6 @@ export const RICH_TEXT_OPTIONS = [
     id: RichTextAction.Subscript,
     icon: "material-symbols:subscript",
     label: "Subscript",
-  },
-  {
-    id: RichTextAction.Code,
-    icon: "gridicons:code",
-    label: "Code",
   },
   { id: RichTextAction.Divider },
   {
@@ -85,4 +66,4 @@ export const RICH_TEXT_OPTIONS = [
 ];
 
 export const LOW_PRIORIRTY = 1;
-export const HEADINGS = ["h1", "h2", "h3", "h4", "h5", "h6"];
+export const HEADINGS = ["h1", "h2", "h3", "h4"];
