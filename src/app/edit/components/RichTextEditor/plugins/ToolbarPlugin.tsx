@@ -204,6 +204,9 @@ export const ToolbarPlugin = () => {
     });
   };
 
+  const selectedHeadingValue =
+    blockType === "paragraph" ? "h1" : HEADINGS.includes(blockType) ? blockType : "h1";
+
   return (
     <Box
       sx={{
@@ -227,7 +230,7 @@ export const ToolbarPlugin = () => {
           onChange={(e) => {
             updateHeading(e.target.value as HeadingTagType);
           }}
-          value={blockType === "paragraph" ? "h1" : blockType}
+          value={selectedHeadingValue}
           sx={{ p: 0 }}
         >
           {HEADINGS.map((heading) => (
