@@ -30,8 +30,8 @@ exports[`EditSkillsSearch filters and displays skills based on search term 1`] =
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="false"
-        for="«r2»"
-        id="«r2»-label"
+        for="«r3»"
+        id="«r3»-label"
       >
         Search Skills to Add
       </label>
@@ -41,7 +41,7 @@ exports[`EditSkillsSearch filters and displays skills based on search term 1`] =
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r2»"
+          id="«r3»"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -76,8 +76,8 @@ exports[`EditSkillsSearch filters and displays skills based on search term 2`] =
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for="«r2»"
-        id="«r2»-label"
+        for="«r3»"
+        id="«r3»-label"
       >
         Search Skills to Add
       </label>
@@ -87,7 +87,7 @@ exports[`EditSkillsSearch filters and displays skills based on search term 2`] =
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r2»"
+          id="«r3»"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -134,6 +134,32 @@ exports[`EditSkillsSearch filters and displays skills based on search term 2`] =
               class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-rizt0-MuiTypography-root"
             >
               JavaScript
+            </span>
+          </div>
+        </li>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth css-1jpc804-MuiDivider-root"
+        />
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1pl8jsc-MuiListItem-root"
+        >
+          <div
+            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+          >
+            <span
+              data-icon="mdi:plus"
+              data-testid="icon"
+              height="24"
+              width="24"
+            />
+          </div>
+          <div
+            class="MuiListItemText-root css-cfq8qh-MuiListItemText-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-rizt0-MuiTypography-root"
+            >
+              Add a new skill: Java
             </span>
           </div>
         </li>
@@ -154,8 +180,8 @@ exports[`EditSkillsSearch filters and displays skills based on search term 3`] =
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for="«r2»"
-        id="«r2»-label"
+        for="«r3»"
+        id="«r3»-label"
       >
         Search Skills to Add
       </label>
@@ -165,7 +191,7 @@ exports[`EditSkillsSearch filters and displays skills based on search term 3`] =
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r2»"
+          id="«r3»"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -215,6 +241,32 @@ exports[`EditSkillsSearch filters and displays skills based on search term 3`] =
             </span>
           </div>
         </li>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth css-1jpc804-MuiDivider-root"
+        />
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1pl8jsc-MuiListItem-root"
+        >
+          <div
+            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+          >
+            <span
+              data-icon="mdi:plus"
+              data-testid="icon"
+              height="24"
+              width="24"
+            />
+          </div>
+          <div
+            class="MuiListItemText-root css-cfq8qh-MuiListItemText-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-rizt0-MuiTypography-root"
+            >
+              Add a new skill: Java
+            </span>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
@@ -232,8 +284,8 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 1`] = `
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="false"
-        for="«r4»"
-        id="«r4»-label"
+        for="«r6»"
+        id="«r6»-label"
       >
         Search Skills to Add
       </label>
@@ -243,7 +295,7 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 1`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r4»"
+          id="«r6»"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -278,8 +330,8 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 2`] = `
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for="«r4»"
-        id="«r4»-label"
+        for="«r6»"
+        id="«r6»-label"
       >
         Search Skills to Add
       </label>
@@ -289,7 +341,7 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 2`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r4»"
+          id="«r6»"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -339,6 +391,32 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 2`] = `
             </span>
           </div>
         </li>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth css-1jpc804-MuiDivider-root"
+        />
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1pl8jsc-MuiListItem-root"
+        >
+          <div
+            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+          >
+            <span
+              data-icon="mdi:plus"
+              data-testid="icon"
+              height="24"
+              width="24"
+            />
+          </div>
+          <div
+            class="MuiListItemText-root css-cfq8qh-MuiListItemText-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-rizt0-MuiTypography-root"
+            >
+              Add a new skill: Java
+            </span>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
@@ -358,8 +436,8 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 3`] = `
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for="«r4»"
-        id="«r4»-label"
+        for="«r6»"
+        id="«r6»-label"
       >
         Search Skills to Add
       </label>
@@ -369,7 +447,7 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 3`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r4»"
+          id="«r6»"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -416,6 +494,32 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 3`] = `
               class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-rizt0-MuiTypography-root"
             >
               JavaScript
+            </span>
+          </div>
+        </li>
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth css-1jpc804-MuiDivider-root"
+        />
+        <li
+          class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1pl8jsc-MuiListItem-root"
+        >
+          <div
+            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+          >
+            <span
+              data-icon="mdi:plus"
+              data-testid="icon"
+              height="24"
+              width="24"
+            />
+          </div>
+          <div
+            class="MuiListItemText-root css-cfq8qh-MuiListItemText-root"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-rizt0-MuiTypography-root"
+            >
+              Add a new skill: Java
             </span>
           </div>
         </li>

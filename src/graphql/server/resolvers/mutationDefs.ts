@@ -5,6 +5,7 @@ export const mutationDefs = gql`
     # User-specific mutations.
     updateUser(userId: ID!, webThemeName: String): User!
     deleteUser(userId: ID!): Boolean!
+    addSkill(userId: ID!, name: String!, icon: String!): Skill!
     addSkillForUser(userId: ID!, skillId: ID!, yearStarted: Int, totalYears: Int): SkillForUser!
     updateSkillForUser(
       id: ID!

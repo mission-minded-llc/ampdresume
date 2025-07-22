@@ -6,6 +6,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  Divider,
   List,
   ListItem,
   ListItemIcon,
@@ -13,6 +14,8 @@ import {
   Paper,
   TextField,
   Typography,
+  Checkbox,
+  FormControlLabel,
 } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -26,22 +29,34 @@ import { addSkillForUser } from "@/graphql/addSkillForUser";
 import { getSkills } from "@/graphql/getSkills";
 import { removeLeadingZero } from "@/lib/format";
 import { useSession } from "next-auth/react";
+import { addSkill } from "@/graphql/addSkill";
+import { IconSelector } from "@/components/IconSelector";
 
 export const EditSkillsSearch = () => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isAddExistingSkillDialogOpen, setIsAddExistingSkillDialogOpen] = useState(false);
+  const [isAddNewSkillDialogOpen, setIsAddNewSkillDialogOpen] = useState(false);
+  const [newSkillName, setNewSkillName] = useState("");
   const [selectedSkillId, setSelectedSkillId] = useState<string | null>(null);
   const [yearStarted, setYearStarted] = useState(new Date().getFullYear());
   const [totalYears, setTotalYears] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
+  const [icon, setIcon] = useState<string | null>(null);
+
+  // Add state for auto-calculate
+  const hasTotalYears = totalYears && totalYears > 0;
+  const defaultAutoCalculate = !hasTotalYears;
+  const [autoCalculate, setAutoCalculate] = useState(defaultAutoCalculate);
 
   // When the search term is at least this length, the search will trigger
   // and show the list of skills. Pressing "Esc" will clear the search term.
   const minCharsForSearch = 2;
 
   useEffect(() => {
+    setNewSkillName(searchTerm);
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setSearchTerm("");
     };
@@ -59,7 +74,7 @@ export const EditSkillsSearch = () => {
     queryFn: async () => await getSkills(),
   });
 
-  const mutation = useMutation({
+  const addExistingSkillMutation = useMutation({
     mutationFn: async ({
       skillId,
       yearStarted,
@@ -75,6 +90,24 @@ export const EditSkillsSearch = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["skillsForUser"] });
+    },
+  });
+
+  const addNewSkillMutation = useMutation({
+    mutationFn: async ({ name, icon }: { name: string; icon: string }) => {
+      if (!session?.user?.id) return;
+      // addSkill now returns the new skill object with its ID
+      return await addSkill({ userId: session.user.id, name, icon });
+    },
+    onSuccess: (data) => {
+      // data is the new skill object
+      if (data?.id) {
+        setSelectedSkillId(data.id);
+        setIsAddExistingSkillDialogOpen(true);
+        setIsAddNewSkillDialogOpen(false);
+        setNewSkillName("");
+        setIcon(null);
+      }
     },
   });
 
@@ -104,23 +137,30 @@ export const EditSkillsSearch = () => {
   const handleSkillSelection = (skillId: string) => {
     // Open dialog to get proficiency level
     setSelectedSkillId(skillId);
-    setIsOpen(true);
+    setIsAddExistingSkillDialogOpen(true);
   };
 
-  const handleAddSkill = () => {
+  const handleAddExistingSkill = () => {
     if (selectedSkillId) {
-      mutation.mutate({
+      addExistingSkillMutation.mutate({
         skillId: selectedSkillId,
         yearStarted: yearStarted,
         totalYears: totalYears,
       });
 
       // Close dialog and reset states
-      setIsOpen(false);
+      setIsAddExistingSkillDialogOpen(false);
       setSelectedSkillId(null);
       setYearStarted(new Date().getFullYear());
       setTotalYears(0);
       setSearchTerm("");
+    }
+  };
+
+  const handleAddNewSkill = () => {
+    // Only call mutate if icon is a string (not null)
+    if (newSkillName && icon) {
+      addNewSkillMutation.mutate({ name: newSkillName, icon });
     }
   };
 
@@ -162,58 +202,136 @@ export const EditSkillsSearch = () => {
                 <ListItemText primary="No matching skills found" />
               </ListItem>
             )}
+            <Divider />
+            <ListItem
+              sx={{ cursor: "pointer", backgroundColor: "action.hover" }}
+              onClick={() => setIsAddNewSkillDialogOpen(true)}
+            >
+              <ListItemIcon>
+                <Icon icon="mdi:plus" width={24} height={24} />
+              </ListItemIcon>
+              <ListItemText primary={`Add a new skill: ${searchTerm}`} />
+            </ListItem>
           </List>
         </Paper>
       )}
 
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md">
-        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
+      <Dialog
+        open={isAddExistingSkillDialogOpen}
+        onClose={() => setIsAddExistingSkillDialogOpen(false)}
+        maxWidth="md"
+      >
+        <CustomDialogTitle closeHandler={() => setIsAddExistingSkillDialogOpen(false)}>
           Enter Proficiency Level
           <Tooltip message={<TooltipTotalYears />} />
         </CustomDialogTitle>
 
         <DialogContent>
-          <Typography>Enter year started, and/or total years experience below.</Typography>
-          <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
-            <TextField
-              autoFocus
-              margin="dense"
-              type="number"
-              fullWidth
-              variant="outlined"
-              value={yearStarted}
-              label="Year Started"
-              name="yearStarted"
-              onInput={(e) => {
-                const target = e.target as HTMLInputElement;
-                target.value = removeLeadingZero(target.value);
-              }}
-              onChange={(e) => setYearStarted(Number(e.target.value))}
-              slotProps={{ htmlInput: { min: 1900, max: new Date().getFullYear() } }}
-            />
-            <TextField
-              margin="dense"
-              type="number"
-              fullWidth
-              variant="outlined"
-              value={totalYears}
-              label="Total Years"
-              name="totalYears"
-              onInput={(e) => {
-                const target = e.target as HTMLInputElement;
-                target.value = Math.max(
-                  0,
-                  Math.min(parseInt(removeLeadingZero(target.value)), 100),
-                ).toString();
-              }}
-              onChange={(e) => setTotalYears(Number(e.target.value))}
-              slotProps={{ htmlInput: { min: 0, max: 100 } }}
-            />
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
+            <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
+              {autoCalculate ? (
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  type="number"
+                  fullWidth
+                  variant="outlined"
+                  value={yearStarted}
+                  label="Year Started"
+                  name="yearStarted"
+                  onInput={(e) => {
+                    const target = e.target as HTMLInputElement;
+                    target.value = removeLeadingZero(target.value);
+                  }}
+                  onChange={(e) => setYearStarted(Number(e.target.value))}
+                  slotProps={{ htmlInput: { min: 1900, max: new Date().getFullYear() } }}
+                />
+              ) : (
+                <TextField
+                  margin="dense"
+                  type="number"
+                  fullWidth
+                  variant="outlined"
+                  value={totalYears}
+                  label="Total Years"
+                  name="totalYears"
+                  onInput={(e) => {
+                    const target = e.target as HTMLInputElement;
+                    target.value = Math.max(
+                      0,
+                      Math.min(parseInt(removeLeadingZero(target.value)), 100),
+                    ).toString();
+                  }}
+                  onChange={(e) => setTotalYears(Number(e.target.value))}
+                  slotProps={{ htmlInput: { min: 0, max: 100 } }}
+                />
+              )}
+            </Box>
+            <Box sx={{ ml: 1, mt: 2, mb: 2 }}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={autoCalculate}
+                    onChange={(event) => {
+                      const checked = event.target.checked;
+                      setAutoCalculate(checked);
+                      if (checked) {
+                        setTotalYears(0);
+                      }
+                    }}
+                    name="autoCalculate"
+                  />
+                }
+                label={
+                  <Typography variant="body2" sx={{ fontSize: "0.8rem", fontStyle: "italic" }}>
+                    Auto-calculate <strong>years of experience</strong> based on year started.
+                  </Typography>
+                }
+              />
+            </Box>
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setIsOpen(false)}>Cancel</Button>
-          <Button onClick={handleAddSkill}>Add Skill</Button>
+          <Button onClick={() => setIsAddExistingSkillDialogOpen(false)}>Cancel</Button>
+          <Button onClick={handleAddExistingSkill}>Add Skill</Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={isAddNewSkillDialogOpen}
+        onClose={() => setIsAddNewSkillDialogOpen(false)}
+        maxWidth="lg"
+      >
+        <CustomDialogTitle closeHandler={() => setIsAddNewSkillDialogOpen(false)}>
+          Add a New Skill
+        </CustomDialogTitle>
+        <DialogContent sx={{ minHeight: "300px" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+              width: "100%",
+            }}
+          >
+            <TextField
+              fullWidth
+              variant="outlined"
+              label="Skill Name"
+              value={newSkillName}
+              onChange={(e) => setNewSkillName(e.target.value)}
+              sx={{ mt: 2 }}
+            />
+            <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
+              <IconSelector setIcon={setIcon} value={icon} limit={20} />
+            </Box>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setIsAddNewSkillDialogOpen(false)}>Cancel</Button>
+          <Button onClick={handleAddNewSkill} disabled={!newSkillName || !icon}>
+            Add Skill
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>
