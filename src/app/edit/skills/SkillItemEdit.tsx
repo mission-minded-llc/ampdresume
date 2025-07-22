@@ -144,7 +144,7 @@ export const SkillItemEdit = ({
           )}
         </Box>
         <Box sx={{ display: "grid", gridTemplateColumns: "80% 1fr" }}>
-          <IconSelector setIcon={setIcon} value={icon ?? ""} />
+          <IconSelector setIcon={setIcon} value={icon} />
           <Box sx={{ mt: 2 }}>
             <Tooltip
               message={

@@ -7,10 +7,10 @@ import { Icon } from "@iconify/react";
 
 interface IconSelectorProps {
   setIcon: (icon: string) => void;
-  value: string;
+  value?: string | null;
 }
 
-export const IconSelector: React.FC<IconSelectorProps> = ({ setIcon, value }) => {
+export const IconSelector: React.FC<IconSelectorProps> = ({ setIcon, value = null }) => {
   const [query, setQuery] = useState("");
   const [icons, setIcons] = useState<string[]>([]);
   const [selectedIcon, setSelectedIcon] = useState<string | null>(value);
