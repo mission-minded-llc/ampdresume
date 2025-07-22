@@ -44,6 +44,7 @@ export const SkillItemEdit = ({
   const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 0);
   const [icon, setIcon] = useState(skill?.icon ? skill.icon : skill?.skill?.icon);
   const [autoCalculate, setAutoCalculate] = useState(defaultAutoCalculate);
+  const [isAccordionExpanded, setIsAccordionExpanded] = useState(false);
 
   const updateSkillForUserMutation = useMutation({
     mutationFn: async ({
@@ -93,7 +94,7 @@ export const SkillItemEdit = ({
 
     if (checked) {
       // When enabling auto-calculate, clear the total years
-      setTotalYears(0);
+      setTotalYears(totalYears ?? 0);
     }
   };
 
@@ -143,7 +144,7 @@ export const SkillItemEdit = ({
           )}
         </Box>
         <Box sx={{ display: "grid", gridTemplateColumns: "80% 1fr" }}>
-          <IconSelector setIcon={setIcon} />
+          <IconSelector setIcon={setIcon} value={icon ?? ""} />
           <Box sx={{ mt: 2 }}>
             <Tooltip
               message={
@@ -176,9 +177,19 @@ export const SkillItemEdit = ({
         />
       </Box>
 
-      <Accordion sx={{ mb: 2 }}>
+      <Accordion
+        sx={{ mb: 2 }}
+        expanded={isAccordionExpanded}
+        onChange={(event, expanded) => setIsAccordionExpanded(expanded)}
+      >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Description</Typography>
+          {isAccordionExpanded ? (
+            <Typography>Description:</Typography>
+          ) : (
+            <Typography sx={{ textDecoration: "underline" }}>
+              Click to describe your experience with this skill...
+            </Typography>
+          )}
         </AccordionSummary>
         <AccordionDetails>
           <RichTextEditor
@@ -186,11 +197,10 @@ export const SkillItemEdit = ({
             editorStateRef={editorStateRef}
             value={skill?.description ?? ""}
           />
-          <Button variant="outlined" color="primary" onClick={() => handleSave()}>
-            Save Changes
-          </Button>
+          <Box sx={{ display: "flex", justifyContent: "center" }}></Box>
         </AccordionDetails>
       </Accordion>
+
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <DeleteWithConfirmation
           buttonLabel="Delete Skill"
@@ -198,6 +208,11 @@ export const SkillItemEdit = ({
           tooltip="Deleting this skill will also remove it from all projects! (No undo!)"
         />
         <Box sx={{ display: "flex", gap: 2 }}>
+          {isAccordionExpanded && (
+            <Button variant="outlined" color="primary" onClick={() => handleSave()}>
+              Save Changes
+            </Button>
+          )}
           <Button
             variant="contained"
             color="primary"
