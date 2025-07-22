@@ -65,10 +65,10 @@ exports[`AccountForm renders correctly 1`] = `
               />
               <fieldset
                 aria-hidden="true"
-                class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
               >
                 <legend
-                  class="css-w1u3ce"
+                  class="css-ex8a5f-MuiNotchedOutlined-root"
                 >
                   <span>
                     Full Name
@@ -158,10 +158,10 @@ exports[`AccountForm renders correctly 1`] = `
               />
               <fieldset
                 aria-hidden="true"
-                class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
               >
                 <legend
-                  class="css-w1u3ce"
+                  class="css-ex8a5f-MuiNotchedOutlined-root"
                 >
                   <span>
                     URL Name
@@ -239,10 +239,10 @@ exports[`AccountForm renders correctly 1`] = `
               />
               <fieldset
                 aria-hidden="true"
-                class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
               >
                 <legend
-                  class="css-w1u3ce"
+                  class="css-ex8a5f-MuiNotchedOutlined-root"
                 >
                   <span>
                     Display Email
@@ -312,10 +312,10 @@ exports[`AccountForm renders correctly 1`] = `
               />
               <fieldset
                 aria-hidden="true"
-                class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
               >
                 <legend
-                  class="css-w1u3ce"
+                  class="css-ex8a5f-MuiNotchedOutlined-root"
                 >
                   <span>
                     Title
@@ -390,10 +390,10 @@ exports[`AccountForm renders correctly 1`] = `
               />
               <fieldset
                 aria-hidden="true"
-                class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
               >
                 <legend
-                  class="css-w1u3ce"
+                  class="css-ex8a5f-MuiNotchedOutlined-root"
                 >
                   <span>
                     Location
@@ -473,10 +473,10 @@ exports[`AccountForm renders correctly 1`] = `
               />
               <fieldset
                 aria-hidden="true"
-                class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
               >
                 <legend
-                  class="css-w1u3ce"
+                  class="css-ex8a5f-MuiNotchedOutlined-root"
                 >
                   <span>
                     Site Title
@@ -534,10 +534,10 @@ exports[`AccountForm renders correctly 1`] = `
               />
               <fieldset
                 aria-hidden="true"
-                class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
               >
                 <legend
-                  class="css-w1u3ce"
+                  class="css-ex8a5f-MuiNotchedOutlined-root"
                 >
                   <span>
                     Site Description
@@ -585,10 +585,10 @@ exports[`AccountForm renders correctly 1`] = `
               />
               <fieldset
                 aria-hidden="true"
-                class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
               >
                 <legend
-                  class="css-w1u3ce"
+                  class="css-ex8a5f-MuiNotchedOutlined-root"
                 >
                   <span>
                     Image URL

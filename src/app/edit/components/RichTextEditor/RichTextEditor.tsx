@@ -6,7 +6,7 @@ import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
 import { $getRoot, EditorThemeClasses, LexicalEditor } from "lexical";
 import { AutoLinkNode, LinkNode } from "@lexical/link";
 import { AutoLinkPlugin, createLinkMatcherWithRegExp } from "@lexical/react/LexicalAutoLinkPlugin";
-import { CodeHighlightNode, CodeNode } from "@lexical/code";
+
 import { ListItemNode, ListNode } from "@lexical/list";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 import { URL_REGEX, validateUrl } from "@/util/url";
@@ -34,57 +34,19 @@ export const editorTheme: EditorThemeClasses = {
     bold: css({ fontWeight: "bold" }),
     italic: css({ fontStyle: "italic" }),
     underline: css({ textDecoration: "underline" }),
-    strikethrough: css({ textDecoration: "line-through" }),
-    underlineStrikethrough: css({ textDecoration: "underline line-through" }),
-    highlight: css({ backgroundColor: "#ff0" }),
     superscript: css({ verticalAlign: "super" }),
     subscript: css({ verticalAlign: "sub" }),
-    code: css({ fontFamily: "monospace", padding: 4 }),
   },
   table: css({ marginTop: "4px" }),
   tableCell: css({ border: "1px solid #bbb", paddingLeft: "6px", minWidth: "100px" }),
   tableCellHeader: css({}),
-  code: "editorCode",
   link: "editorLink",
-  codeHighlight: {
-    atrule: "editorTokenAttr",
-    attr: "editorTokenAttr",
-    boolean: "editorTokenProperty",
-    builtin: "editorTokenSelector",
-    cdata: "editorTokenComment",
-    char: "editorTokenSelector",
-    class: "editorTokenFunction", // class constructor
-    comment: "editorTokenComment", // comment
-    constant: "editorTokenProperty",
-    deleted: "editorTokenProperty",
-    doctype: "editorTokenComment",
-    entity: "editorTokenOperator",
-    function: "editorTokenFunction", // es5 function
-    important: "editorTokenVariable",
-    inserted: "editorTokenSelector",
-    keyword: "editorTokenAttr", // variable keyword like const/let
-    namespace: "editorTokenVariable",
-    number: "editorTokenProperty", // number values
-    operator: "editorTokenOperator", // operator like +/*-
-    prolog: "editorTokenComment",
-    property: "editorTokenProperty",
-    punctuation: "editorTokenPunctuation", // brackets of array, object
-    regex: "editorTokenVariable",
-    selector: "editorTokenSelector",
-    string: "editorTokenSelector", // string values
-    symbol: "editorTokenProperty",
-    tag: "editorTokenProperty",
-    url: "editorTokenOperator",
-    variable: "editorTokenVariable",
-  },
 };
 
 export const supportedEditorNodes = [
   HeadingNode,
   ImageNode,
   YouTubeNode,
-  CodeNode,
-  CodeHighlightNode,
   LinkNode,
   AutoLinkNode,
   ListNode,

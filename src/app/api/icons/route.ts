@@ -11,7 +11,7 @@ interface IconifyJSON {
   icons: Record<string, unknown>;
 }
 
-async function searchIcons(searchTerm: string): Promise<string[]> {
+async function searchIcons(searchTerm: string, limit: number = 50): Promise<string[]> {
   // Get all JSON files from @iconify/json/json directory
   const iconifyPath =
     process.env.NODE_ENV === "production"
@@ -33,7 +33,7 @@ async function searchIcons(searchTerm: string): Promise<string[]> {
 
       // Find matching icons and add them with their prefix
       icons.forEach((iconName) => {
-        if (results.length >= 50) {
+        if (results.length >= limit) {
           return;
         }
 
@@ -42,7 +42,7 @@ async function searchIcons(searchTerm: string): Promise<string[]> {
         }
       });
 
-      if (results.length >= 50) {
+      if (results.length >= limit) {
         break;
       }
     }
@@ -54,6 +54,7 @@ async function searchIcons(searchTerm: string): Promise<string[]> {
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("q");
+  const limit = searchParams.get("limit") ? parseInt(searchParams.get("limit")!) : 50;
 
   if (!query || query.length < 3) {
     return NextResponse.json(
@@ -63,7 +64,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const results = await searchIcons(query);
+    const results = await searchIcons(query, limit);
     return NextResponse.json({ icons: results });
   } catch (error) {
     Sentry.captureException(error);

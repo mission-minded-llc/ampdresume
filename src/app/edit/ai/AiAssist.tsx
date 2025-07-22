@@ -13,10 +13,6 @@ import { SectionTitle } from "../components/SectionTitle";
 import { Tooltip } from "@/components/Tooltip";
 import { getCompaniesAi } from "@/graphql/getCompaniesAi";
 import { getResume } from "@/graphql/getResume";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { sampleDataCompanies } from "./sampleDataCompanies";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { sampleDataCompaniesAi } from "./sampleDataCompaniesAi";
 import { useSession } from "next-auth/react";
 
 export const AiAssist = () => {

@@ -1,5 +1,5 @@
 {
-  "name": "Node.js & PostgreSQL Development",
+  "name": "Amp'd Resume",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspace",
@@ -39,7 +39,7 @@
 
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
-      "version": "20"
+      "version": "22"
     },
     "ghcr.io/devcontainers/features/git:1": {
       "version": "latest"

@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor, act } from "@testing-library/react";
 
 import { DeleteWithConfirmation } from "./DeleteWithConfirmation";
 import React from "react";
@@ -11,15 +11,17 @@ describe("DeleteWithConfirmation", () => {
     expect(getByText("Delete")).toBeInTheDocument();
   });
 
-  it("opens the confirmation dialog when the delete button is clicked", () => {
+  it("opens the confirmation dialog when the delete button is clicked", async () => {
     const { getByText, getByRole } = render(<DeleteWithConfirmation onConfirmDelete={() => {}} />);
     const deleteButton = getByText("Delete");
 
     fireEvent.click(deleteButton);
 
-    expect(getByRole("dialog")).toBeInTheDocument();
-    expect(getByText("Are you sure?")).toBeInTheDocument();
-    expect(getByText("This cannot be undone!")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByRole("dialog")).toBeInTheDocument();
+      expect(getByText("Are you sure?")).toBeInTheDocument();
+      expect(getByText("This cannot be undone!")).toBeInTheDocument();
+    });
   });
 
   it("calls onConfirmDelete when the confirm button is clicked", async () => {
@@ -36,7 +38,9 @@ describe("DeleteWithConfirmation", () => {
     });
 
     const confirmButton = getByText("Yes, Delete");
-    fireEvent.click(confirmButton);
+    act(() => {
+      fireEvent.click(confirmButton);
+    });
 
     expect(onConfirmDeleteMock).toHaveBeenCalledTimes(1);
   });
@@ -47,14 +51,18 @@ describe("DeleteWithConfirmation", () => {
     );
     const deleteButton = getByText("Delete");
 
-    fireEvent.click(deleteButton);
+    act(() => {
+      fireEvent.click(deleteButton);
+    });
 
     await waitFor(() => {
       expect(getByRole("dialog")).toBeInTheDocument();
     });
 
     const cancelButton = getByText("Cancel");
-    fireEvent.click(cancelButton);
+    act(() => {
+      fireEvent.click(cancelButton);
+    });
 
     await waitFor(() => {
       expect(queryByRole("dialog")).not.toBeInTheDocument();

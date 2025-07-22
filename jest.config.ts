@@ -10,7 +10,7 @@ const jestConfig: JestConfigWithTsJest = {
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   transform: {
-    "^.+\\.tsx?$": ["ts-jest", { tsconfig: "./tsconfig.jest.json", isolatedModules: true }],
+    "^.+\\.tsx?$": ["ts-jest", { tsconfig: "./tsconfig.jest.json" }],
   },
   transformIgnorePatterns: ["node_modules"],
   testPathIgnorePatterns: ["/node_modules/", "/ampdresume-theme/"],

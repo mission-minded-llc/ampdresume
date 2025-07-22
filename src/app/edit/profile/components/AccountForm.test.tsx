@@ -59,20 +59,57 @@ const renderWithSession = (component: React.ReactElement) => {
   return render(<SessionProvider>{component}</SessionProvider>);
 };
 
+beforeEach(() => {
+  global.fetch = jest.fn((url) => {
+    if (url === "/api/auth/session") {
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        statusText: "OK",
+        headers: new Headers(),
+        redirected: false,
+        url: String(url),
+        json: () =>
+          Promise.resolve({
+            user: { id: "test-user-id", email: "test@example.com" },
+          }),
+        text: () =>
+          Promise.resolve(
+            JSON.stringify({
+              user: { id: "test-user-id", email: "test@example.com" },
+            }),
+          ),
+      } as Response);
+    }
+    return Promise.resolve({
+      ok: true,
+      status: 200,
+      statusText: "OK",
+      headers: new Headers(),
+      redirected: false,
+      url: String(url),
+      json: () => Promise.resolve({}),
+      text: () => Promise.resolve(JSON.stringify({})),
+    } as Response);
+  });
+});
+
 describe("AccountForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     (useIsDesktop as jest.Mock).mockReturnValue(true);
   });
 
-  it("renders correctly", () => {
+  it("renders correctly", async () => {
     const { container, getByLabelText } = renderWithSession(<AccountForm {...mockProps} />);
 
-    expect(getByLabelText("Full Name")).toBeInTheDocument();
-    expect(getByLabelText("URL Name")).toBeInTheDocument();
-    expect(getByLabelText("Display Email")).toBeInTheDocument();
-    expect(getByLabelText("Title")).toBeInTheDocument();
-    expect(getByLabelText("Location")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByLabelText("Full Name")).toBeInTheDocument();
+      expect(getByLabelText("URL Name")).toBeInTheDocument();
+      expect(getByLabelText("Display Email")).toBeInTheDocument();
+      expect(getByLabelText("Title")).toBeInTheDocument();
+      expect(getByLabelText("Location")).toBeInTheDocument();
+    });
 
     expect(container).toMatchSnapshot();
   });
@@ -91,12 +128,38 @@ describe("AccountForm", () => {
   });
 
   it("handles form submission", async () => {
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
+    global.fetch = jest.fn((url) => {
+      if (url === "/api/auth/session") {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          statusText: "OK",
+          headers: new Headers(),
+          redirected: false,
+          url: String(url),
+          json: () =>
+            Promise.resolve({
+              user: { id: "test-user-id", email: "test@example.com" },
+            }),
+          text: () =>
+            Promise.resolve(
+              JSON.stringify({
+                user: { id: "test-user-id", email: "test@example.com" },
+              }),
+            ),
+        } as Response);
+      }
+      return Promise.resolve({
         ok: true,
+        status: 200,
+        statusText: "OK",
+        headers: new Headers(),
+        redirected: false,
+        url: String(url),
         json: () => Promise.resolve({}),
-      }),
-    ) as jest.Mock;
+        text: () => Promise.resolve(JSON.stringify({})),
+      } as Response);
+    });
 
     const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
@@ -112,12 +175,38 @@ describe("AccountForm", () => {
   });
 
   it("displays error message on form submission failure", async () => {
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
+    global.fetch = jest.fn((url) => {
+      if (url === "/api/auth/session") {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          statusText: "OK",
+          headers: new Headers(),
+          redirected: false,
+          url: String(url),
+          json: () =>
+            Promise.resolve({
+              user: { id: "test-user-id", email: "test@example.com" },
+            }),
+          text: () =>
+            Promise.resolve(
+              JSON.stringify({
+                user: { id: "test-user-id", email: "test@example.com" },
+              }),
+            ),
+        } as Response);
+      }
+      return Promise.resolve({
         ok: false,
+        status: 400,
+        statusText: "Bad Request",
+        headers: new Headers(),
+        redirected: false,
+        url: String(url),
         json: () => Promise.resolve({ error: "Submission failed" }),
-      }),
-    ) as jest.Mock;
+        text: () => Promise.resolve(JSON.stringify({ error: "Submission failed" })),
+      } as Response);
+    });
 
     const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
