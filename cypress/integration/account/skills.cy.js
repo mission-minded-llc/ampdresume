@@ -36,6 +36,9 @@ describe("Skills Section", () => {
     cy.get("button").contains(skill).click();
     cy.get("h2").contains(skill).should("be.visible");
 
+    // Uncheck the "Auto-calculate" checkbox.
+    cy.get("input[name='autoCalculate']").uncheck();
+
     // When editing, the yearStarted field is a number input, so we need to clear
     // the field before typing in the new year. This results in a "0" being the first
     // character in the field, which gets pushed back when Cypress types.
