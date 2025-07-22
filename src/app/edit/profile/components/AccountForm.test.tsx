@@ -60,7 +60,7 @@ const renderWithSession = (component: React.ReactElement) => {
 };
 
 beforeEach(() => {
-  global.fetch = jest.fn((url, ...args) => {
+  global.fetch = jest.fn((url) => {
     if (url === "/api/auth/session") {
       return Promise.resolve({
         ok: true,
@@ -128,7 +128,7 @@ describe("AccountForm", () => {
   });
 
   it("handles form submission", async () => {
-    global.fetch = jest.fn((url, ...args) => {
+    global.fetch = jest.fn((url) => {
       if (url === "/api/auth/session") {
         return Promise.resolve({
           ok: true,
@@ -175,7 +175,7 @@ describe("AccountForm", () => {
   });
 
   it("displays error message on form submission failure", async () => {
-    global.fetch = jest.fn((url, ...args) => {
+    global.fetch = jest.fn((url) => {
       if (url === "/api/auth/session") {
         return Promise.resolve({
           ok: true,

@@ -47,7 +47,6 @@ export const ToolbarPlugin = () => {
   });
   const [selectionMap, setSelectionMap] = useState<{ [id: string]: boolean }>({});
   const [blockType, setBlockType] = useState("paragraph");
-  const [selectedElementKey, setSelectedElementKey] = useState("");
 
   const updateToolbarSelectionText = (selection: RangeSelection) => {
     const newSelectionMap = {
@@ -69,7 +68,6 @@ export const ToolbarPlugin = () => {
     const element =
       anchorNode.getKey() === "root" ? anchorNode : anchorNode.getTopLevelElementOrThrow();
     const elementKey = element.getKey();
-    setSelectedElementKey(elementKey);
     const elementDOM = editor.getElementByKey(elementKey);
 
     if (!elementDOM) return;

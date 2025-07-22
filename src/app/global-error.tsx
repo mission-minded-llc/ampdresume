@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Box, Typography, Container } from "@mui/material";
 import { ThemeAwareImage } from "./components/ThemeAwareImage";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Link from "next/link";
 
 export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
   useEffect(() => {
@@ -19,6 +20,9 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
 
   return (
     <html>
+      <head>
+        <title>Amp&apos;d Resume | Error</title>
+      </head>
       <body style={{ backgroundColor: darkTheme.palette.background.default }}>
         <ThemeProvider theme={darkTheme}>
           <Container
@@ -59,7 +63,7 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
                 .
               </Typography>
               <Typography sx={{ color: "white" }}>
-                <a
+                <Link
                   href="/"
                   style={{
                     border: "1px solid white",
@@ -70,7 +74,7 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
                   }}
                 >
                   Return Home
-                </a>
+                </Link>
               </Typography>
             </Box>
           </Container>

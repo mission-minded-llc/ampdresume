@@ -42,7 +42,7 @@ export const IconSelector: React.FC<IconSelectorProps> = ({
     } else {
       setIcons([]);
     }
-  }, [query]);
+  }, [query, limit]);
 
   useEffect(() => {
     if (selectedIcon) {
