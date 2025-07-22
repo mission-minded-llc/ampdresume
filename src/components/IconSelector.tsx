@@ -8,9 +8,14 @@ import { Icon } from "@iconify/react";
 interface IconSelectorProps {
   setIcon: (icon: string) => void;
   value?: string | null;
+  limit?: number;
 }
 
-export const IconSelector: React.FC<IconSelectorProps> = ({ setIcon, value = null }) => {
+export const IconSelector: React.FC<IconSelectorProps> = ({
+  setIcon,
+  value = null,
+  limit = 50,
+}) => {
   const [query, setQuery] = useState("");
   const [icons, setIcons] = useState<string[]>([]);
   const [selectedIcon, setSelectedIcon] = useState<string | null>(value);
@@ -21,7 +26,7 @@ export const IconSelector: React.FC<IconSelectorProps> = ({ setIcon, value = nul
       setLoading(true);
 
       const debounceFetch = setTimeout(() => {
-        fetch(`/api/icons?q=${query}`)
+        fetch(`/api/icons?q=${query}&limit=${limit}`)
           .then((response) => response.json())
           .then((data) => {
             setIcons(data.icons);
