@@ -13,8 +13,8 @@ describe("IconSelector", () => {
   });
 
   it("renders correctly", () => {
-    const { getByLabelText } = render(<IconSelector setIcon={() => {}} />);
-    expect(getByLabelText("Search Icons")).toBeInTheDocument();
+    const { getByTestId } = render(<IconSelector setIcon={() => {}} icon="test" />);
+    expect(getByTestId("icon-selector-input")).toBeInTheDocument();
   });
 
   it("displays loading indicator when searching", async () => {
@@ -22,10 +22,10 @@ describe("IconSelector", () => {
       json: async () => ({ icons: [] }),
     });
 
-    const { getByLabelText, getByRole } = render(<IconSelector setIcon={() => {}} />);
-    const input = getByLabelText("Search Icons");
-
-    fireEvent.change(input, { target: { value: "test" } });
+    const { getByTestId, getByRole } = render(<IconSelector setIcon={() => {}} />);
+    const input = getByTestId("icon-selector-input").querySelector("input");
+    expect(input).not.toBeNull();
+    fireEvent.change(input!, { target: { value: "test" } });
 
     await waitFor(() => {
       expect(getByRole("progressbar")).toBeInTheDocument();
