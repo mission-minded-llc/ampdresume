@@ -11,13 +11,24 @@ interface IconSelectorProps {
   limit?: number;
 }
 
+/**
+ * IconSelector component for selecting icons from the Iconify API. A reduced-size
+ * version of the available icons is fetched from a local API to reduce the overhead.
+ * If users want to see more icons, they can search for them in the Iconify website.
+ *
+ * @param setIcon - function to set the selected icon
+ * @param value - the value of the selected icon
+ * @param limit - the limit of icons to fetch
+ *
+ * @returns IconSelector component
+ */
 export const IconSelector: React.FC<IconSelectorProps> = ({
   setIcon,
   value = null,
   limit = 50,
 }) => {
   const [query, setQuery] = useState("");
-  const [icons, setIcons] = useState<string[]>([]);
+  const [iconSearchResults, setIconSearchResults] = useState<string[]>([]);
   const [selectedIcon, setSelectedIcon] = useState<string | null>(value);
   const [loading, setLoading] = useState(false);
 
@@ -29,7 +40,7 @@ export const IconSelector: React.FC<IconSelectorProps> = ({
         fetch(`/api/icons?q=${query}&limit=${limit}`)
           .then((response) => response.json())
           .then((data) => {
-            setIcons(data.icons);
+            setIconSearchResults(data.icons);
             setLoading(false);
           })
           .catch((error) => {
@@ -40,15 +51,9 @@ export const IconSelector: React.FC<IconSelectorProps> = ({
 
       return () => clearTimeout(debounceFetch);
     } else {
-      setIcons([]);
+      setIconSearchResults([]);
     }
   }, [query, limit]);
-
-  useEffect(() => {
-    if (selectedIcon) {
-      setQuery("");
-    }
-  }, [selectedIcon]);
 
   const handleIconSelect = (icon: string) => {
     setSelectedIcon(icon);
@@ -58,12 +63,14 @@ export const IconSelector: React.FC<IconSelectorProps> = ({
 
   return (
     <Box sx={{ position: "relative" }}>
-      <TextField
-        label="Search Icons"
-        value={query || selectedIcon || ""}
-        onChange={(e) => setQuery(e.target.value)}
-        fullWidth
-      />
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        <TextField
+          value={query}
+          placeholder={selectedIcon || "Search icons…"}
+          onChange={(e) => setQuery(e.target.value)}
+          fullWidth
+        />
+      </Box>
       {query ? (
         <Box
           sx={(theme) => ({
@@ -98,8 +105,8 @@ export const IconSelector: React.FC<IconSelectorProps> = ({
               padding: "1rem",
             }}
           >
-            {icons.map((iconName) => (
-              <Box key={iconName} onClick={() => handleIconSelect(iconName)}>
+            {iconSearchResults.map((iconName) => (
+              <Box key={iconName} onClick={() => handleIconSelect(iconName)} title={iconName}>
                 <Icon icon={iconName} width={32} height={32} />
               </Box>
             ))}

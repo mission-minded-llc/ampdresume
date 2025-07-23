@@ -21,30 +21,45 @@ async function searchIcons(searchTerm: string, limit: number = 50): Promise<stri
   const files = await fs.readdir(iconifyPath);
   const results: string[] = [];
 
-  // Search through each icon set
-  for (const file of files) {
-    if (file.endsWith(".json")) {
-      const filePath = path.join(iconifyPath, file);
-      const content = await fs.readFile(filePath, "utf8");
-      const iconSet: IconifyJSON = JSON.parse(content);
+  const searchTermWithoutPrefix = searchTerm.includes(":")
+    ? searchTerm.split(":")?.[1]
+    : searchTerm;
 
-      const prefix = iconSet.prefix;
-      const icons = Object.keys(iconSet.icons || {});
+  const searchTermPrefix = searchTerm.includes(":") ? searchTerm.split(":")?.[0] : "";
 
-      // Find matching icons and add them with their prefix
-      icons.forEach((iconName) => {
-        if (results.length >= limit) {
-          return;
-        }
+  // If a prefix is provided, only search its file
+  let filesToSearch: string[] = files;
 
-        if (iconName.includes(searchTerm)) {
-          results.push(`${prefix}:${iconName}`);
-        }
-      });
+  if (searchTermPrefix) {
+    const prefixedFile = `${searchTermPrefix}.json`;
+    if (files.includes(prefixedFile)) {
+      filesToSearch = [prefixedFile];
+    }
+  }
 
+  for (const file of filesToSearch) {
+    if (!file.endsWith(".json")) continue;
+
+    const filePath = path.join(iconifyPath, file);
+    const content = await fs.readFile(filePath, "utf8");
+    const iconSet: IconifyJSON = JSON.parse(content);
+
+    const prefix = iconSet.prefix;
+    const icons = Object.keys(iconSet.icons || {});
+
+    // Find matching icons and add them with their prefix
+    icons.forEach((iconName) => {
       if (results.length >= limit) {
-        break;
+        return;
       }
+
+      if (iconName.includes(searchTermWithoutPrefix)) {
+        results.push(`${prefix}:${iconName}`);
+      }
+    });
+
+    if (results.length >= limit) {
+      break;
     }
   }
 
