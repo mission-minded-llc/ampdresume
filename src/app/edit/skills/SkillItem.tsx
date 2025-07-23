@@ -14,6 +14,9 @@ export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [icon, setIcon] = useState<string | null | undefined>(
+    skill?.icon || skill?.skill?.icon || null,
+  );
 
   const userCanEdit =
     skill?.userId &&
@@ -23,12 +26,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
 
   const buttonDisabled = !(skill?.description || userCanEdit);
 
-  const SkillIcon = () =>
-    skill?.icon ? (
-      <Icon icon={skill.icon} />
-    ) : skill?.skill?.icon ? (
-      <Icon icon={skill.skill.icon} />
-    ) : null;
+  const SkillIcon = () => (icon ? <Icon icon={icon} /> : null);
 
   return (
     <React.Fragment>
@@ -64,7 +62,11 @@ export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
           </Box>
         </CustomDialogTitle>
         <DialogContent>
-          <SkillItemEdit skill={skill} handleClose={() => setIsOpen(false)} />
+          <SkillItemEdit
+            skill={skill}
+            handleClose={() => setIsOpen(false)}
+            setIconCallback={setIcon}
+          />
         </DialogContent>
       </Dialog>
     </React.Fragment>

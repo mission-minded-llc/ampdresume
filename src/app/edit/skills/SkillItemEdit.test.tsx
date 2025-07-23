@@ -91,7 +91,7 @@ describe("SkillItemEdit", () => {
 
   it("renders correctly", () => {
     const { container, getByLabelText, getByText } = render(
-      <SkillItemEdit skill={mockSkill} handleClose={() => {}} />,
+      <SkillItemEdit skill={mockSkill} handleClose={() => {}} setIconCallback={() => {}} />,
     );
 
     // By default, autoCalculate is false if totalYears > 0, so only 'Total Years' is shown
@@ -105,7 +105,9 @@ describe("SkillItemEdit", () => {
   });
 
   it("shows 'Save Changes' when the accordion is expanded", async () => {
-    const { getByText } = render(<SkillItemEdit skill={mockSkill} handleClose={() => {}} />);
+    const { getByText } = render(
+      <SkillItemEdit skill={mockSkill} handleClose={() => {}} setIconCallback={() => {}} />,
+    );
 
     fireEvent.click(getByText("Click to describe your experience with this skill..."));
     await waitFor(() => {
@@ -115,7 +117,11 @@ describe("SkillItemEdit", () => {
 
   it("shows 'Year Started' when auto-calculate is enabled", () => {
     const { getByLabelText, getByText } = render(
-      <SkillItemEdit skill={{ ...mockSkill, totalYears: 0 }} handleClose={() => {}} />,
+      <SkillItemEdit
+        skill={{ ...mockSkill, totalYears: 0 }}
+        handleClose={() => {}}
+        setIconCallback={() => {}}
+      />,
     );
     // With totalYears 0, autoCalculate defaults to true
     expect(getByLabelText("Year Started")).toBeInTheDocument();
@@ -126,7 +132,11 @@ describe("SkillItemEdit", () => {
 
   it("toggles auto-calculate and switches between fields", () => {
     const { getByLabelText } = render(
-      <SkillItemEdit skill={{ ...mockSkill, totalYears: 0 }} handleClose={() => {}} />,
+      <SkillItemEdit
+        skill={{ ...mockSkill, totalYears: 0 }}
+        handleClose={() => {}}
+        setIconCallback={() => {}}
+      />,
     );
     // Initially, autoCalculate is true, so 'Year Started' is shown
     expect(getByLabelText("Year Started")).toBeInTheDocument();
@@ -148,7 +158,7 @@ describe("SkillItemEdit", () => {
   it("updates fields and handles save", async () => {
     const handleCloseMock = jest.fn();
     const { container, getByLabelText, getByText } = render(
-      <SkillItemEdit skill={mockSkill} handleClose={handleCloseMock} />, // autoCalculate false, so 'Total Years' is shown
+      <SkillItemEdit skill={mockSkill} handleClose={handleCloseMock} setIconCallback={() => {}} />, // autoCalculate false, so 'Total Years' is shown
     );
     expect(container).toMatchSnapshot();
 
@@ -178,7 +188,7 @@ describe("SkillItemEdit", () => {
 
   it("handles delete", async () => {
     const { container, getByText } = render(
-      <SkillItemEdit skill={mockSkill} handleClose={() => {}} />,
+      <SkillItemEdit skill={mockSkill} handleClose={() => {}} setIconCallback={() => {}} />,
     );
     expect(container).toMatchSnapshot();
 
@@ -200,7 +210,7 @@ describe("SkillItemEdit", () => {
   it("handles save and close", async () => {
     const handleCloseMock = jest.fn();
     const { container, getByText } = render(
-      <SkillItemEdit skill={mockSkill} handleClose={handleCloseMock} />,
+      <SkillItemEdit skill={mockSkill} handleClose={handleCloseMock} setIconCallback={() => {}} />,
     );
     expect(container).toMatchSnapshot();
 

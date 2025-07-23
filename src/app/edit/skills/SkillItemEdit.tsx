@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { IconSelector } from "@/components/IconSelector";
@@ -27,9 +27,11 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 export const SkillItemEdit = ({
   skill,
   handleClose,
+  setIconCallback,
 }: {
   skill: SkillForUser;
   handleClose: VoidFunction;
+  setIconCallback: React.Dispatch<React.SetStateAction<string | null | undefined>>;
 }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
@@ -114,6 +116,10 @@ export const SkillItemEdit = ({
     if (saveAndClose) handleClose();
   };
 
+  useEffect(() => {
+    setIconCallback(icon);
+  }, [icon]);
+
   return (
     <Box sx={{ mt: 1 }}>
       <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
@@ -144,7 +150,7 @@ export const SkillItemEdit = ({
           )}
         </Box>
         <Box sx={{ display: "grid", gridTemplateColumns: "80% 1fr" }}>
-          <IconSelector setIcon={setIcon} value={icon} />
+          <IconSelector setIcon={setIcon} icon={icon} />
           <Box sx={{ mt: 2 }}>
             <Tooltip
               message={

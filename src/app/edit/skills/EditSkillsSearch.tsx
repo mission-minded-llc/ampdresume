@@ -323,7 +323,7 @@ export const EditSkillsSearch = () => {
               sx={{ mt: 2 }}
             />
             <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
-              <IconSelector setIcon={setIcon} value={icon} limit={20} />
+              <IconSelector setIcon={setIcon} icon={icon} limit={20} />
             </Box>
           </Box>
         </DialogContent>
