@@ -205,7 +205,7 @@ export const ProjectItem = ({
             display: "flex",
             alignItems: "flex-start",
             flexWrap: "wrap",
-            gap: "4px",
+            gap: "8px",
             paddingBottom: 0,
             borderBottom: "none",
             marginBottom: 0,
@@ -320,7 +320,12 @@ export const ProjectItem = ({
                 mt: { xs: 0, sm: 2 },
               }}
             >
-              <DeleteWithConfirmation onConfirmDelete={handleDelete} />
+              <DeleteWithConfirmation
+                onConfirmDelete={handleDelete}
+                buttonLabel="Delete Project"
+                dialogTitle="Delete Project?"
+                dialogMessage="Are you sure you want to delete this project? (No undo!)"
+              />
               <Box
                 sx={{
                   display: "flex",
