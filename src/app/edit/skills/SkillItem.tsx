@@ -61,7 +61,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
             {skill.skill.name}
           </Box>
         </CustomDialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ padding: { xs: 2, sm: 3 } }}>
           <SkillItemEdit
             skill={skill}
             handleClose={() => setIsOpen(false)}

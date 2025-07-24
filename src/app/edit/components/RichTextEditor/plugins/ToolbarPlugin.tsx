@@ -219,7 +219,7 @@ export const ToolbarPlugin = () => {
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          gap: 0.3,
+          gap: { xs: 1, sm: 0.3 },
           width: "100%",
           alignItems: "center",
         }}
@@ -247,6 +247,7 @@ export const ToolbarPlugin = () => {
               onClick={() => onAction(id)}
               sx={{
                 borderRadius: 0,
+                padding: { xs: 0.5, sm: 1 },
               }}
               disabled={disableMap[id]}
               color={getSelectedButtonColor(selectionMap[id])}
