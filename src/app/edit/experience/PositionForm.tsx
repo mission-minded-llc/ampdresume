@@ -55,7 +55,7 @@ export const PositionForm = ({
           mb: 2,
           display: "grid",
           gap: 2,
-          gridTemplateColumns: "50% 50%",
+          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
           alignItems: "center",
         }}
         className="position-form"
@@ -73,7 +73,7 @@ export const PositionForm = ({
           />
           {!positionTitleValid && <FormHelperText>Position title is required.</FormHelperText>}
         </FormControl>
-        <FormControl error={!startDateValid}>
+        <FormControl error={!startDateValid} sx={{ gridColumn: { xs: "span 2", sm: "span 1" } }}>
           <DatePicker
             label="Date Started"
             value={startDate}
@@ -88,7 +88,7 @@ export const PositionForm = ({
             {startDateValid ? "Start date is required." : "Please select a valid date."}
           </FormHelperText>
         </FormControl>
-        <FormControl>
+        <FormControl sx={{ gridColumn: { xs: "span 2", sm: "span 1" } }}>
           <DatePicker
             label="Date Ended"
             value={endDate}
@@ -104,7 +104,8 @@ export const PositionForm = ({
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: { xs: "flex-end", sm: "space-between" },
+          flexDirection: { xs: "column", sm: "row" },
           gap: 2,
           mt: 2,
         }}

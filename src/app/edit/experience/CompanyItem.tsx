@@ -1,11 +1,4 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import React, { useRef } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -126,7 +119,7 @@ export const CompanyItem = ({
       }}
     >
       <strong>{company.name}</strong>
-      <Divider sx={{ width: "100%", margin: "10px 0" }} />
+      <br />
       {company?.location ? company.location : ""}
       <br />
       <em>
@@ -155,7 +148,7 @@ export const CompanyItem = ({
           "&:hover": { backgroundColor: theme.palette.primary.light },
         })}
       >
-        <Box sx={{ display: expanded === company.id ? "none" : "flex" }}>
+        <Box sx={{ display: expanded === company.id ? "none" : "flex", width: "90%" }}>
           <SummaryContentDesktop />
           <SummaryContentMobile />
         </Box>
