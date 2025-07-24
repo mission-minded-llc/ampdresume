@@ -1,4 +1,11 @@
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Divider,
+  Typography,
+} from "@mui/material";
 import React, { useRef } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -95,6 +102,40 @@ export const CompanyItem = ({
     deleteMutation.mutate({ userId: session.user.id, id: company.id });
   };
 
+  const SummaryContentDesktop = () => (
+    <Typography
+      component="p"
+      variant="body1"
+      sx={{ display: { xs: "none", sm: "block" }, fontSize: { xs: "1rem", sm: "1.25rem" } }}
+    >
+      <strong>{company.name}&nbsp;-&nbsp;</strong>
+      {company?.location ? ` (${company.location}) ` : " "}
+      {formatLongDate(company.startDate)} to{" "}
+      {company.endDate ? formatLongDate(company?.endDate) : "present"}
+    </Typography>
+  );
+
+  const SummaryContentMobile = () => (
+    <Typography
+      component="p"
+      variant="body1"
+      sx={{
+        display: { xs: "block", sm: "none" },
+        fontSize: { xs: "1rem", sm: "1.25rem" },
+        width: "100%",
+      }}
+    >
+      <strong>{company.name}</strong>
+      <Divider sx={{ width: "100%", margin: "10px 0" }} />
+      {company?.location ? company.location : ""}
+      <br />
+      <em>
+        {formatLongDate(company.startDate)} to{" "}
+        {company.endDate ? formatLongDate(company?.endDate) : "present"}
+      </em>
+    </Typography>
+  );
+
   return (
     <Accordion
       expanded={expanded === company.id}
@@ -114,15 +155,13 @@ export const CompanyItem = ({
           "&:hover": { backgroundColor: theme.palette.primary.light },
         })}
       >
-        <Typography component="p" variant="body1">
-          <strong>{company.name}&nbsp;-&nbsp;</strong>
-          {company?.location ? ` (${company.location}) ` : " "}
-          {formatLongDate(company.startDate)} to{" "}
-          {company.endDate ? formatLongDate(company?.endDate) : "present"}
-        </Typography>
+        <Box sx={{ display: expanded === company.id ? "none" : "flex" }}>
+          <SummaryContentDesktop />
+          <SummaryContentMobile />
+        </Box>
       </AccordionSummary>
 
-      <AccordionDetails>
+      <AccordionDetails sx={{ padding: { xs: 1, sm: 2 }, border: "none" }}>
         <CompanyForm
           company={company}
           handler={handleEditCompany}

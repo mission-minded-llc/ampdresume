@@ -54,7 +54,14 @@ export const CompanyForm = ({
 
   return (
     <>
-      <Box sx={{ mb: 2, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+      <Box
+        sx={{
+          mb: 2,
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+          gap: { xs: 1, sm: 2 },
+        }}
+      >
         <FormControl error={!companyNameValid}>
           <TextField
             margin="dense"
@@ -81,7 +88,14 @@ export const CompanyForm = ({
           onChange={(e) => setLocation(e.target.value)}
         />
       </Box>
-      <Box sx={{ mb: 2, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+      <Box
+        sx={{
+          mb: 2,
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+          gap: { xs: 1, sm: 2 },
+        }}
+      >
         <FormControl error={!startDateValid} sx={{ flex: 1 }}>
           <DatePicker
             label="Date Started"
@@ -117,7 +131,8 @@ export const CompanyForm = ({
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: { xs: "flex-end", sm: "space-between" },
+          flexDirection: { xs: "column", sm: "row" },
           gap: 2,
           mt: 2,
         }}
