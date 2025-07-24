@@ -10,6 +10,9 @@ import {
   MenuItem,
   Select,
   TextField,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from "@mui/material";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -27,6 +30,7 @@ import { deleteProject } from "@/graphql/deleteProject";
 import { getSkillsForProject } from "@/graphql/getSkillsForProject";
 import { updateProject } from "@/graphql/updateProject";
 import { useSession } from "next-auth/react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 // Memoized version of SkillItemForProjectEdit
 const MemoizedSkillItemForProjectEdit = React.memo(SkillItemForProjectEdit);
@@ -51,6 +55,7 @@ export const ProjectItem = ({
   const [isOpen, setIsOpen] = useState(false);
   const [projectName, setProjectName] = useState(project.name);
   const [selectedSkillId, setSelectedSkillId] = useState<string>("");
+  const [isAccordionExpanded, setIsAccordionExpanded] = useState(false);
 
   const isAuthenticatedUser = status === "authenticated" && !!session?.user.id;
 
@@ -228,7 +233,7 @@ export const ProjectItem = ({
         }}
       >
         <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Edit Project</CustomDialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ padding: { xs: 1, sm: 3 } }}>
           <Box sx={{ mt: 2, mb: 4 }}>
             <TextField
               type="text"
@@ -238,11 +243,15 @@ export const ProjectItem = ({
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
               fullWidth
+              sx={{
+                "& .MuiInputBase-input": { fontSize: "1rem" },
+                "& .MuiInputLabel-root": { fontSize: "1rem" },
+              }}
             />
           </Box>
-          <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 2 }}>
             <FormControl fullWidth>
-              <InputLabel>Add Your Skills to Project</InputLabel>
+              <InputLabel sx={{ fontSize: "1rem" }}>Add Your Skills to Project</InputLabel>
               <Select
                 value={selectedSkillId}
                 onChange={(e) => {
@@ -286,16 +295,50 @@ export const ProjectItem = ({
             </Box>
           </Box>
           <Box sx={{ mt: 4 }}>
-            <Box>
-              <RichTextEditor
-                name="skill-description"
-                editorStateRef={editorStateRef}
-                value={project?.description ?? ""}
-              />
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
+            <Accordion
+              sx={{ mb: 4 }}
+              expanded={isAccordionExpanded}
+              onChange={(event, expanded) => setIsAccordionExpanded(expanded)}
+            >
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                {isAccordionExpanded ? (
+                  <Typography variant="body1" sx={{ fontSize: "1rem" }}>
+                    Write a description below.
+                  </Typography>
+                ) : (
+                  <Typography
+                    variant="body1"
+                    sx={{ textDecoration: "underline", fontSize: "1rem" }}
+                  >
+                    Write more about this project...
+                  </Typography>
+                )}
+              </AccordionSummary>
+              <AccordionDetails sx={{ padding: { xs: 0, sm: 2 }, border: "none" }}>
+                <RichTextEditor
+                  name="skill-description"
+                  editorStateRef={editorStateRef}
+                  value={project?.description ?? ""}
+                />
+              </AccordionDetails>
+            </Accordion>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column-reverse", sm: "row" },
+                justifyContent: "space-between",
+                mt: { xs: 0, sm: 2 },
+              }}
+            >
               <DeleteWithConfirmation onConfirmDelete={handleDelete} />
-              <Box sx={{ display: "flex", gap: 2 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  gap: 2,
+                  mb: { xs: 2, sm: 0 },
+                }}
+              >
                 <Button variant="outlined" color="primary" onClick={handleSave}>
                   Save
                 </Button>
