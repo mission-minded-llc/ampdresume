@@ -6,7 +6,7 @@ exports[`SkillItemEdit handles delete 1`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xw0jqp"
+      class="MuiBox-root css-c7fp9u"
     >
       <div
         class="MuiBox-root css-yd8sa2"
@@ -51,7 +51,7 @@ exports[`SkillItemEdit handles delete 1`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-1uo6lhb"
       >
         <div
           data-testid="icon-selector"
@@ -59,7 +59,7 @@ exports[`SkillItemEdit handles delete 1`] = `
           IconSelector
         </div>
         <div
-          class="MuiBox-root css-1yuhvjn"
+          class="MuiBox-root css-130f8nx"
         >
           <div>
             Enter a valid icon name from
@@ -77,7 +77,7 @@ exports[`SkillItemEdit handles delete 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-1jrajof"
+      class="MuiBox-root css-x1wltp"
     >
       <label
         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
@@ -131,7 +131,7 @@ exports[`SkillItemEdit handles delete 1`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-tdjacw-MuiTypography-root"
             >
               Click to describe your experience with this skill...
             </p>
@@ -168,7 +168,7 @@ exports[`SkillItemEdit handles delete 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+                class="MuiAccordionDetails-root css-1c5n9vj-MuiAccordionDetails-root"
               >
                 <div>
                   RichTextEditor
@@ -183,7 +183,7 @@ exports[`SkillItemEdit handles delete 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-gg4vpm"
+      class="MuiBox-root css-1o9f1gx"
     >
       <div
         class="MuiBox-root css-0"
@@ -195,9 +195,6 @@ exports[`SkillItemEdit handles delete 1`] = `
         >
           Delete Skill
         </button>
-        <div>
-          Deleting this skill will also remove it from all projects! (No undo!)
-        </div>
       </div>
       <div
         class="MuiBox-root css-10egq61"
@@ -223,7 +220,7 @@ exports[`SkillItemEdit handles delete 2`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xw0jqp"
+      class="MuiBox-root css-c7fp9u"
     >
       <div
         class="MuiBox-root css-yd8sa2"
@@ -268,7 +265,7 @@ exports[`SkillItemEdit handles delete 2`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-1uo6lhb"
       >
         <div
           data-testid="icon-selector"
@@ -276,7 +273,7 @@ exports[`SkillItemEdit handles delete 2`] = `
           IconSelector
         </div>
         <div
-          class="MuiBox-root css-1yuhvjn"
+          class="MuiBox-root css-130f8nx"
         >
           <div>
             Enter a valid icon name from
@@ -294,7 +291,7 @@ exports[`SkillItemEdit handles delete 2`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-1jrajof"
+      class="MuiBox-root css-x1wltp"
     >
       <label
         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
@@ -348,7 +345,7 @@ exports[`SkillItemEdit handles delete 2`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-tdjacw-MuiTypography-root"
             >
               Click to describe your experience with this skill...
             </p>
@@ -385,7 +382,7 @@ exports[`SkillItemEdit handles delete 2`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+                class="MuiAccordionDetails-root css-1c5n9vj-MuiAccordionDetails-root"
               >
                 <div>
                   RichTextEditor
@@ -400,7 +397,7 @@ exports[`SkillItemEdit handles delete 2`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-gg4vpm"
+      class="MuiBox-root css-1o9f1gx"
     >
       <div
         aria-hidden="true"
@@ -447,9 +444,6 @@ exports[`SkillItemEdit handles delete 2`] = `
         >
           Delete Skill
         </button>
-        <div>
-          Deleting this skill will also remove it from all projects! (No undo!)
-        </div>
       </div>
       <div
         class="MuiBox-root css-10egq61"
@@ -473,7 +467,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xw0jqp"
+      class="MuiBox-root css-c7fp9u"
     >
       <div
         class="MuiBox-root css-yd8sa2"
@@ -518,7 +512,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-1uo6lhb"
       >
         <div
           data-testid="icon-selector"
@@ -526,7 +520,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
           IconSelector
         </div>
         <div
-          class="MuiBox-root css-1yuhvjn"
+          class="MuiBox-root css-130f8nx"
         >
           <div>
             Enter a valid icon name from
@@ -544,7 +538,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-1jrajof"
+      class="MuiBox-root css-x1wltp"
     >
       <label
         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
@@ -598,7 +592,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-tdjacw-MuiTypography-root"
             >
               Click to describe your experience with this skill...
             </p>
@@ -635,7 +629,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+                class="MuiAccordionDetails-root css-1c5n9vj-MuiAccordionDetails-root"
               >
                 <div>
                   RichTextEditor
@@ -650,7 +644,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-gg4vpm"
+      class="MuiBox-root css-1o9f1gx"
     >
       <div
         class="MuiBox-root css-0"
@@ -662,9 +656,6 @@ exports[`SkillItemEdit handles save and close 1`] = `
         >
           Delete Skill
         </button>
-        <div>
-          Deleting this skill will also remove it from all projects! (No undo!)
-        </div>
       </div>
       <div
         class="MuiBox-root css-10egq61"
@@ -688,7 +679,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xw0jqp"
+      class="MuiBox-root css-c7fp9u"
     >
       <div
         class="MuiBox-root css-yd8sa2"
@@ -733,7 +724,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-1uo6lhb"
       >
         <div
           data-testid="icon-selector"
@@ -741,7 +732,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
           IconSelector
         </div>
         <div
-          class="MuiBox-root css-1yuhvjn"
+          class="MuiBox-root css-130f8nx"
         >
           <div>
             Enter a valid icon name from
@@ -759,7 +750,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-1jrajof"
+      class="MuiBox-root css-x1wltp"
     >
       <label
         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
@@ -813,7 +804,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-tdjacw-MuiTypography-root"
             >
               Click to describe your experience with this skill...
             </p>
@@ -850,7 +841,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+                class="MuiAccordionDetails-root css-1c5n9vj-MuiAccordionDetails-root"
               >
                 <div>
                   RichTextEditor
@@ -865,7 +856,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-gg4vpm"
+      class="MuiBox-root css-1o9f1gx"
     >
       <div
         class="MuiBox-root css-0"
@@ -877,9 +868,6 @@ exports[`SkillItemEdit handles save and close 2`] = `
         >
           Delete Skill
         </button>
-        <div>
-          Deleting this skill will also remove it from all projects! (No undo!)
-        </div>
       </div>
       <div
         class="MuiBox-root css-10egq61"
@@ -903,7 +891,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xw0jqp"
+      class="MuiBox-root css-c7fp9u"
     >
       <div
         class="MuiBox-root css-yd8sa2"
@@ -948,7 +936,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-1uo6lhb"
       >
         <div
           data-testid="icon-selector"
@@ -956,7 +944,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
           IconSelector
         </div>
         <div
-          class="MuiBox-root css-1yuhvjn"
+          class="MuiBox-root css-130f8nx"
         >
           <div>
             Enter a valid icon name from
@@ -974,7 +962,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-1jrajof"
+      class="MuiBox-root css-x1wltp"
     >
       <label
         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
@@ -1028,7 +1016,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-tdjacw-MuiTypography-root"
             >
               Click to describe your experience with this skill...
             </p>
@@ -1065,7 +1053,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+                class="MuiAccordionDetails-root css-1c5n9vj-MuiAccordionDetails-root"
               >
                 <div>
                   RichTextEditor
@@ -1080,7 +1068,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-gg4vpm"
+      class="MuiBox-root css-1o9f1gx"
     >
       <div
         class="MuiBox-root css-0"
@@ -1092,9 +1080,6 @@ exports[`SkillItemEdit renders correctly 1`] = `
         >
           Delete Skill
         </button>
-        <div>
-          Deleting this skill will also remove it from all projects! (No undo!)
-        </div>
       </div>
       <div
         class="MuiBox-root css-10egq61"
@@ -1118,7 +1103,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xw0jqp"
+      class="MuiBox-root css-c7fp9u"
     >
       <div
         class="MuiBox-root css-yd8sa2"
@@ -1163,7 +1148,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-1uo6lhb"
       >
         <div
           data-testid="icon-selector"
@@ -1171,7 +1156,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
           IconSelector
         </div>
         <div
-          class="MuiBox-root css-1yuhvjn"
+          class="MuiBox-root css-130f8nx"
         >
           <div>
             Enter a valid icon name from
@@ -1189,7 +1174,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-1jrajof"
+      class="MuiBox-root css-x1wltp"
     >
       <label
         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
@@ -1243,7 +1228,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
             class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-4xtcw2-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-tdjacw-MuiTypography-root"
             >
               Click to describe your experience with this skill...
             </p>
@@ -1280,7 +1265,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+                class="MuiAccordionDetails-root css-1c5n9vj-MuiAccordionDetails-root"
               >
                 <div>
                   RichTextEditor
@@ -1295,7 +1280,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-gg4vpm"
+      class="MuiBox-root css-1o9f1gx"
     >
       <div
         class="MuiBox-root css-0"
@@ -1307,9 +1292,6 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
         >
           Delete Skill
         </button>
-        <div>
-          Deleting this skill will also remove it from all projects! (No undo!)
-        </div>
       </div>
       <div
         class="MuiBox-root css-10egq61"
@@ -1333,7 +1315,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
     class="MuiBox-root css-164r41r"
   >
     <div
-      class="MuiBox-root css-1xw0jqp"
+      class="MuiBox-root css-c7fp9u"
     >
       <div
         class="MuiBox-root css-yd8sa2"
@@ -1378,7 +1360,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
         </div>
       </div>
       <div
-        class="MuiBox-root css-1fil4yh"
+        class="MuiBox-root css-1uo6lhb"
       >
         <div
           data-testid="icon-selector"
@@ -1386,7 +1368,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
           IconSelector
         </div>
         <div
-          class="MuiBox-root css-1yuhvjn"
+          class="MuiBox-root css-130f8nx"
         >
           <div>
             Enter a valid icon name from
@@ -1404,7 +1386,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-1jrajof"
+      class="MuiBox-root css-x1wltp"
     >
       <label
         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
@@ -1458,7 +1440,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
             class="MuiAccordionSummary-content Mui-expanded MuiAccordionSummary-contentGutters css-yfrx4k-MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-1lair6c-MuiTypography-root"
             >
               Write a description of your experience with this skill below.
             </p>
@@ -1495,7 +1477,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root css-1lj39kh-MuiAccordionDetails-root"
+                class="MuiAccordionDetails-root css-1c5n9vj-MuiAccordionDetails-root"
               >
                 <div>
                   RichTextEditor
@@ -1510,7 +1492,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root css-gg4vpm"
+      class="MuiBox-root css-1o9f1gx"
     >
       <div
         class="MuiBox-root css-0"
@@ -1522,15 +1504,12 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
         >
           Delete Skill
         </button>
-        <div>
-          Deleting this skill will also remove it from all projects! (No undo!)
-        </div>
       </div>
       <div
         class="MuiBox-root css-10egq61"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-1blvszr-MuiButtonBase-root-MuiButton-root"
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-tfkfyu-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
         >

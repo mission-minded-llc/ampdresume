@@ -7,6 +7,7 @@ const StyledDialogTitle = styled(MuiDialogTitle)(() => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+  fontSize: "1.25rem",
 }));
 
 export const CustomDialogTitle = ({

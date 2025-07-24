@@ -122,7 +122,13 @@ export const SkillItemEdit = ({
 
   return (
     <Box sx={{ mt: 1 }}>
-      <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+          gap: 2,
+        }}
+      >
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           {autoCalculate ? (
             <TextField
@@ -149,9 +155,16 @@ export const SkillItemEdit = ({
             />
           )}
         </Box>
-        <Box sx={{ display: "grid", gridTemplateColumns: "80% 1fr" }}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", sm: "80% 1fr" },
+            gap: 1,
+            alignItems: "center",
+          }}
+        >
           <IconSelector setIcon={setIcon} icon={icon} />
-          <Box sx={{ mt: 2 }}>
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
             <Tooltip
               message={
                 <>
@@ -166,7 +179,7 @@ export const SkillItemEdit = ({
           </Box>
         </Box>
       </Box>
-      <Box sx={{ ml: 1, mt: 2, mb: 2 }}>
+      <Box sx={{ ml: 1, mt: { xs: 1, sm: 2 }, mb: 2 }}>
         <FormControlLabel
           control={
             <Checkbox
@@ -190,14 +203,16 @@ export const SkillItemEdit = ({
       >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           {isAccordionExpanded ? (
-            <Typography>Write a description of your experience with this skill below.</Typography>
+            <Typography variant="body1" sx={{ fontSize: "1rem" }}>
+              Write a description of your experience with this skill below.
+            </Typography>
           ) : (
-            <Typography sx={{ textDecoration: "underline" }}>
+            <Typography variant="body1" sx={{ textDecoration: "underline", fontSize: "1rem" }}>
               Click to describe your experience with this skill...
             </Typography>
           )}
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{ padding: { xs: 0, sm: 2 }, border: "none" }}>
           <RichTextEditor
             name="user"
             editorStateRef={editorStateRef}
@@ -207,15 +222,27 @@ export const SkillItemEdit = ({
         </AccordionDetails>
       </Accordion>
 
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 2,
+        }}
+      >
         <DeleteWithConfirmation
           buttonLabel="Delete Skill"
           onConfirmDelete={handleDelete}
-          tooltip="Deleting this skill will also remove it from all projects! (No undo!)"
+          dialogMessage="Deleting this skill will also remove it from all projects! (No undo!)"
         />
         <Box sx={{ display: "flex", gap: 2 }}>
           {isAccordionExpanded && (
-            <Button variant="outlined" color="primary" onClick={() => handleSave()}>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => handleSave()}
+              sx={{ display: { xs: "none", sm: "block" } }}
+            >
               Save Changes
             </Button>
           )}
