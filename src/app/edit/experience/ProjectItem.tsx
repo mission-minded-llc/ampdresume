@@ -5,6 +5,7 @@ import {
   DialogContent,
   FormControl,
   IconButton,
+  Typography,
   InputLabel,
   MenuItem,
   Select,
@@ -159,15 +160,10 @@ export const ProjectItem = ({
           width: "100%",
           textAlign: "left",
           display: "grid",
-          gridTemplateColumns: "60% 1fr",
+          gridTemplateColumns: { xs: "1fr", sm: "60% 1fr" },
           alignItems: "center",
-          gap: "20px",
-          padding: "10px 40px 10px 20px",
-          "@media screen and (max-width: 600px)": {
-            gridTemplateColumns: "1fr",
-            gap: "10px",
-            padding: "10px",
-          },
+          gap: { xs: "10px", sm: "20px" },
+          padding: { xs: "10px", sm: "10px 40px 10px 20px" },
           backgroundColor: theme.palette.background.paper,
           borderLeft: "4px solid",
           borderBottom: "1px solid white",
@@ -188,7 +184,16 @@ export const ProjectItem = ({
             <Icon icon="mdi:pencil" />
           </IconButton>
 
-          {project.name}
+          <Typography
+            component="p"
+            variant="body1"
+            sx={{
+              fontSize: "1rem",
+              width: { xs: "100%", sm: "auto" },
+            }}
+          >
+            {project.name}
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -196,10 +201,9 @@ export const ProjectItem = ({
             alignItems: "flex-start",
             flexWrap: "wrap",
             gap: "4px",
-            "@media screen and (max-width: 600px)": {
-              paddingBottom: "16px",
-              borderBottom: "1px solid lightgray",
-            },
+            paddingBottom: 0,
+            borderBottom: "none",
+            marginBottom: 0,
           }}
         >
           {skillsForProject?.map((skillForProject) => (
