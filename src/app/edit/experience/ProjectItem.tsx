@@ -221,17 +221,7 @@ export const ProjectItem = ({
         </Box>
       </Box>
 
-      <Dialog
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        maxWidth="md"
-        fullWidth
-        PaperProps={{
-          style: {
-            height: "80vh",
-          },
-        }}
-      >
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
         <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Edit Project</CustomDialogTitle>
         <DialogContent sx={{ padding: { xs: 1, sm: 3 } }}>
           <Box sx={{ mt: 2, mb: 4 }}>
