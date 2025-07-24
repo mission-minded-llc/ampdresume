@@ -78,6 +78,36 @@ export const EducationItem = ({
     deleteMutation.mutate({ userId: session.user.id, id: education.id });
   };
 
+  const SummaryContentDesktop = () => (
+    <Typography
+      component="p"
+      variant="body1"
+      sx={{ display: { xs: "none", sm: "block" }, fontSize: { xs: "1rem", sm: "1.25rem" } }}
+    >
+      <strong>{education.school}&nbsp;-&nbsp;</strong>
+      {education?.degree ? ` (${education.degree}) ` : " "}
+      {formatLongDate(education.dateAwarded)}
+    </Typography>
+  );
+
+  const SummaryContentMobile = () => (
+    <Typography
+      component="p"
+      variant="body1"
+      sx={{
+        display: { xs: "block", sm: "none" },
+        fontSize: { xs: "1rem", sm: "1.25rem" },
+        width: "100%",
+      }}
+    >
+      <strong>{education.school}</strong>
+      <br />
+      {education?.degree ? education.degree : ""}
+      <br />
+      <em>{formatLongDate(education.dateAwarded)}</em>
+    </Typography>
+  );
+
   return (
     <Accordion expanded={expanded === education.id} sx={{ mb: 2 }}>
       <AccordionSummary
@@ -92,11 +122,10 @@ export const EducationItem = ({
           "&:hover": { backgroundColor: theme.palette.primary.light },
         })}
       >
-        <Typography component="p" variant="body1">
-          <strong>{education.school}&nbsp;-&nbsp;</strong>
-          {education?.degree ? ` (${education.degree}) ` : " "}
-          {formatLongDate(education.dateAwarded)}
-        </Typography>
+        <div style={{ width: "90%", display: expanded === education.id ? "none" : "flex" }}>
+          <SummaryContentDesktop />
+          <SummaryContentMobile />
+        </div>
       </AccordionSummary>
 
       <AccordionDetails>

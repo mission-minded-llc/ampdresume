@@ -40,7 +40,9 @@ export const EducationForm = ({
 
   return (
     <>
-      <Box sx={{ mb: 2, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+      <Box
+        sx={{ mb: 2, display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 2 }}
+      >
         <TextField
           margin="dense"
           fullWidth
@@ -59,8 +61,15 @@ export const EducationForm = ({
           onChange={(e) => setDegree(e.target.value)}
         />
       </Box>
-      <Box sx={{ mb: 2, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
-        <div></div>
+      <Box
+        sx={{
+          mb: 2,
+          mt: { xs: 3, sm: 0 },
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+          gap: 2,
+        }}
+      >
         <DatePicker
           label="Date Awarded"
           value={dateAwarded}
@@ -71,6 +80,7 @@ export const EducationForm = ({
       <Box
         sx={{
           display: "flex",
+          flexDirection: { xs: "column-reverse", sm: "row" },
           justifyContent: "space-between",
           gap: 2,
           mt: 2,
@@ -79,8 +89,8 @@ export const EducationForm = ({
         {education && deleteHandler && (
           <DeleteWithConfirmation
             buttonLabel="Delete Education"
-            tooltip="No undo!"
             onConfirmDelete={() => deleteHandler(education)}
+            dialogMessage="Are you sure you want to delete this education? (No undo!)"
           />
         )}
         {onCancel && (
