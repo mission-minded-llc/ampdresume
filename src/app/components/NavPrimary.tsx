@@ -106,8 +106,9 @@ export const NavPrimary = () => {
           backgroundColor: theme.palette.background.paper,
           borderRadius: 0,
           [theme.breakpoints.down("sm")]: {
-            mt: 0,
-            mr: 0,
+            mt: 1,
+            mr: 1,
+            backgroundColor: theme.palette.background.default,
           },
         })}
       >

@@ -78,6 +78,8 @@ export const SkillItemForProjectEdit = ({
           },
           textTransform: "none",
           gap: "8px",
+          padding: { xs: "2px 8px" },
+          fontSize: { xs: "0.85rem", sm: "1rem" },
         })}
       >
         <SkillIcon />
@@ -85,13 +87,23 @@ export const SkillItemForProjectEdit = ({
       </Button>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md">
         <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
-          <Typography sx={{ fontWeight: "bolder" }}>Edit Project Skill</Typography>
-          <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
+          <Typography sx={{ display: { xs: "none", sm: "block" }, fontWeight: "bolder" }}>
+            Edit Project Skill
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              fontSize: { xs: "1rem", sm: "1.25rem" },
+              fontWeight: { xs: "bold", sm: "normal" },
+            }}
+          >
             <SkillIcon />
             {skillForProject.skillForUser.skill.name}
           </Box>
         </CustomDialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ padding: { xs: 2, sm: 3 } }}>
           <Box>
             <Box sx={{ mb: 2 }}>
               <RichTextEditor
@@ -100,18 +112,23 @@ export const SkillItemForProjectEdit = ({
                 value={skillForProject?.description ?? ""}
               />
             </Box>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column-reverse", sm: "row" },
+                justifyContent: "space-between",
+              }}
+            >
               <DeleteWithConfirmation
                 buttonLabel="Delete from Project"
                 onConfirmDelete={handleDelete}
                 dialogTitle="Delete Skill from Project?"
                 dialogMessage={
                   <>
-                    <p>Are you sure you want to delete this skill from the project?</p>
-                    <p>
-                      This skill will remain in your resume under the Skills section, however this
-                      custom project-specific description will be lost.
-                    </p>
+                    Are you sure you want to delete this skill from the project?
+                    <br />
+                    This skill will remain in your resume under the Skills section, however this
+                    custom project-specific description will be lost.
                   </>
                 }
                 tooltip={
@@ -121,7 +138,14 @@ export const SkillItemForProjectEdit = ({
                   </>
                 }
               />
-              <Box sx={{ display: "flex", gap: 2 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  gap: 2,
+                  mb: { xs: 2, sm: 0 },
+                }}
+              >
                 <Button variant="outlined" color="primary" onClick={handleSave}>
                   Save
                 </Button>

@@ -1,4 +1,11 @@
-import { Accordion, AccordionDetails, AccordionSummary, Divider, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Divider,
+  Typography,
+} from "@mui/material";
 import React, { useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -105,6 +112,35 @@ export const PositionItem = ({
     deleteMutation.mutate({ userId: session.user.id, id: position.id });
   };
 
+  const SummaryContentDesktop = () => (
+    <Typography
+      component="p"
+      variant="body1"
+      sx={{ display: { xs: "none", sm: "block" }, fontSize: { xs: "1rem", sm: "1.25rem" } }}
+    >
+      <strong>{position.title}&nbsp;-&nbsp;</strong>
+      {formatLongDate(position.startDate)} to{" "}
+      {position.endDate ? formatLongDate(position?.endDate) : "present"}
+    </Typography>
+  );
+
+  const SummaryContentMobile = () => (
+    <Typography
+      component="p"
+      variant="body1"
+      sx={{
+        display: { xs: "block", sm: "none" },
+        fontSize: { xs: "1rem", sm: "1.25rem" },
+        width: "100%",
+      }}
+    >
+      <strong>{position.title}</strong>
+      <br />
+      {formatLongDate(position.startDate)} to{" "}
+      {position.endDate ? formatLongDate(position?.endDate) : "present"}
+    </Typography>
+  );
+
   return (
     <Accordion
       expanded={expanded === position.id}
@@ -121,11 +157,10 @@ export const PositionItem = ({
         id="panel1a-header"
         onClick={handleExpandClick}
       >
-        <Typography variant="body1">
-          <strong>{position.title}&nbsp;-&nbsp;</strong>
-          {formatLongDate(position.startDate)} to{" "}
-          {position.endDate ? formatLongDate(position?.endDate) : "present"}
-        </Typography>
+        <Box sx={{ display: expanded === position.id ? "none" : "flex", width: "90%" }}>
+          <SummaryContentDesktop />
+          <SummaryContentMobile />
+        </Box>
       </AccordionSummary>
       <AccordionDetails>
         <PositionForm

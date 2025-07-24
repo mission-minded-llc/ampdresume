@@ -83,7 +83,7 @@ export const DeleteWithConfirmation = ({
           variant="outlined"
           color="secondary"
           onClick={handleOpenConfirm}
-          sx={{ marginRight: "auto" }}
+          sx={{ marginRight: "auto", width: { xs: "100%", sm: "auto" } }}
           disabled={disabled}
         >
           {buttonLabel}

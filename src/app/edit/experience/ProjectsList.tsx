@@ -188,7 +188,7 @@ export const ProjectsList = ({
 
   return (
     <>
-      <Box sx={{ display: "flex", justifyContent: "space-between", gap: 1 }}>
+      <Box sx={{ display: { xs: "block", sm: "flex" }, justifyContent: "space-between", gap: 1 }}>
         <TextField
           label="Project"
           fullWidth
@@ -200,7 +200,7 @@ export const ProjectsList = ({
         <Button
           variant="outlined"
           color="secondary"
-          sx={{ mt: 2 }}
+          sx={{ mt: 2, width: { xs: "80%", sm: "auto" } }}
           onClick={handleAddProject}
           disabled={projectValue.trim().length < 10}
         >
