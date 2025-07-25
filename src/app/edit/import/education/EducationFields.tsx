@@ -1,10 +1,10 @@
-import { Box, IconButton } from "@mui/material";
+import { Box } from "@mui/material";
 import { memo, useEffect, useState } from "react";
 
-import DeleteIcon from "@mui/icons-material/Delete";
 import { Education } from "./types";
 import { EducationDateField } from "./EducationDateField";
 import { EducationField } from "./EducationField";
+import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
 
 export const EducationFields = memo(
   ({
@@ -28,8 +28,8 @@ export const EducationFields = memo(
 
     return (
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-        <Box sx={{ flex: 1, mr: 2 }}>
-          <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+        <Box sx={{ mr: { xs: 0, sm: 2 }, width: "100%" }}>
+          <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, mb: 2 }}>
             <EducationField
               label="Institution"
               value={education.school || ""}
@@ -46,10 +46,13 @@ export const EducationFields = memo(
             onChange={(date) => onDateChange(index, date)}
             hasError={dateError}
           />
+          <DeleteWithConfirmation
+            onConfirmDelete={() => onDelete(index)}
+            buttonLabel="Delete Education"
+            dialogTitle="Delete Education?"
+            dialogMessage="Are you sure you want to delete this education? (No undo!)"
+          />
         </Box>
-        <IconButton onClick={() => onDelete(index)} size="small" color="error">
-          <DeleteIcon />
-        </IconButton>
       </Box>
     );
   },

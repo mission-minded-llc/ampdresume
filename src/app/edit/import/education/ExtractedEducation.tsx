@@ -5,6 +5,7 @@ import { Education } from "./types";
 import { EducationFields } from "./EducationFields";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import dayjs from "dayjs";
+import { AccordionSummaryContent } from "../../components/AccordionSummaryContent";
 
 export const ExtractedEducation = ({
   education,
@@ -87,25 +88,13 @@ export const ExtractedEducation = ({
                 bgcolor: "background.default",
                 mb: isExpanded ? 2 : 0,
               }}
+              data-testid={`education-accordion-${index}`}
             >
-              <Typography sx={{ display: "flex", width: "100%" }}>
-                <strong>{edu.school || "Unnamed School"}</strong>
-                <span
-                  style={{
-                    opacity: !isExpanded ? 1 : 0,
-                    transition: "opacity 0.3s ease-in-out",
-                    display: "flex",
-                    flex: 1,
-                    justifyContent: "space-between",
-                    marginLeft: 24,
-                  }}
-                >
-                  <span>{edu.degree ? edu.degree : ""}</span>
-                  <span style={{ marginRight: 24 }}>
-                    {edu.dateAwarded ? dayjs(edu.dateAwarded).format("MMM YYYY") : ""}
-                  </span>
-                </span>
-              </Typography>
+              <AccordionSummaryContent
+                primary={edu.school || "Unnamed School"}
+                secondary={edu.degree || undefined}
+                dateRange={edu.dateAwarded ? dayjs(edu.dateAwarded).format("MMM YYYY") : ""}
+              />
             </AccordionSummary>
             <AccordionDetails>
               <EducationFields

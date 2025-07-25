@@ -6,6 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Position } from "./types";
 import dayjs from "dayjs";
 import { validateAndConvertDate } from "@/lib/dateUtils";
+import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
 
 /**
  * The component for the position fields.
@@ -57,8 +58,15 @@ export const PositionFields = memo(
     };
 
     return (
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-        <Box sx={{ flex: 1, mr: 2 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          gap: 2,
+          mb: 2,
+        }}
+      >
+        <Box sx={{ mr: { xs: 0, sm: 2 }, width: "100%" }}>
           <TextField
             fullWidth
             label="Position"
@@ -67,7 +75,7 @@ export const PositionFields = memo(
             onBlur={handleTitleBlur}
             sx={{ mb: 2 }}
           />
-          <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+          <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, mb: 2 }}>
             <DatePicker
               label="Start Date"
               value={position.startDate ? dayjs(position.startDate) : null}
@@ -92,14 +100,13 @@ export const PositionFields = memo(
               sx={{ flex: 1 }}
             />
           </Box>
+          <DeleteWithConfirmation
+            onConfirmDelete={() => onDelete(companyIndex, positionIndex)}
+            buttonLabel="Delete Position"
+            dialogTitle="Delete Position?"
+            dialogMessage="Are you sure you want to delete this position? (No undo!)"
+          />
         </Box>
-        <IconButton
-          onClick={() => onDelete(companyIndex, positionIndex)}
-          size="small"
-          color="error"
-        >
-          <DeleteIcon />
-        </IconButton>
       </Box>
     );
   },

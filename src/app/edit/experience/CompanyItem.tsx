@@ -11,6 +11,7 @@ import { deleteCompany } from "@/graphql/deleteCompany";
 import { formatLongDate } from "@/lib/format";
 import { updateCompany } from "@/graphql/updateCompany";
 import { useSession } from "next-auth/react";
+import { AccordionSummaryContent } from "../components/AccordionSummaryContent";
 
 export const CompanyItem = ({
   company,
@@ -95,40 +96,6 @@ export const CompanyItem = ({
     deleteMutation.mutate({ userId: session.user.id, id: company.id });
   };
 
-  const SummaryContentDesktop = () => (
-    <Typography
-      component="p"
-      variant="body1"
-      sx={{ display: { xs: "none", sm: "block" }, fontSize: { xs: "1rem", sm: "1.25rem" } }}
-    >
-      <strong>{company.name}&nbsp;-&nbsp;</strong>
-      {company?.location ? ` (${company.location}) ` : " "}
-      {formatLongDate(company.startDate)} to{" "}
-      {company.endDate ? formatLongDate(company?.endDate) : "present"}
-    </Typography>
-  );
-
-  const SummaryContentMobile = () => (
-    <Typography
-      component="p"
-      variant="body1"
-      sx={{
-        display: { xs: "block", sm: "none" },
-        fontSize: { xs: "1rem", sm: "1.25rem" },
-        width: "100%",
-      }}
-    >
-      <strong>{company.name}</strong>
-      <br />
-      {company?.location ? company.location : ""}
-      <br />
-      <em>
-        {formatLongDate(company.startDate)} to{" "}
-        {company.endDate ? formatLongDate(company?.endDate) : "present"}
-      </em>
-    </Typography>
-  );
-
   return (
     <Accordion
       expanded={expanded === company.id}
@@ -149,8 +116,11 @@ export const CompanyItem = ({
         })}
       >
         <Box sx={{ display: expanded === company.id ? "none" : "flex", width: "90%" }}>
-          <SummaryContentDesktop />
-          <SummaryContentMobile />
+          <AccordionSummaryContent
+            primary={company.name}
+            secondary={company.location}
+            dateRange={`${formatLongDate(company.startDate)} to ${company.endDate ? formatLongDate(company.endDate) : "present"}`}
+          />
         </Box>
       </AccordionSummary>
 

@@ -111,7 +111,7 @@ const ExtractedInformationContent = () => {
           flexDirection: "column",
           gap: 2,
           borderRadius: 2,
-          padding: 3,
+          padding: { xs: 1, sm: 3 },
           backgroundColor: theme.palette.background.paper,
           boxShadow: 1,
         })}
