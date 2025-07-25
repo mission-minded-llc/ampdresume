@@ -1,8 +1,7 @@
-import { Box, IconButton, TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { memo, useState } from "react";
 
 import { DatePicker } from "@mui/x-date-pickers";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { Position } from "./types";
 import dayjs from "dayjs";
 import { validateAndConvertDate } from "@/lib/dateUtils";

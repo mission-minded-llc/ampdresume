@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Education } from "@ampdresume/theme";

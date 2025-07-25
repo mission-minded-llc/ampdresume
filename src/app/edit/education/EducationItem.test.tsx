@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-import { fireEvent, getByTestId, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
