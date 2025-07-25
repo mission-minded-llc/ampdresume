@@ -24,6 +24,7 @@ export const EducationDateField = memo(
             helperText: hasError ? "Date awarded is required" : "",
           },
         }}
+        sx={{ width: "100%" }}
       />
     );
   },

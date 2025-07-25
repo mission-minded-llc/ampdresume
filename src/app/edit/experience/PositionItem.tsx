@@ -1,11 +1,4 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Divider } from "@mui/material";
 import React, { useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -19,6 +12,7 @@ import { formatLongDate } from "@/lib/format";
 import { getProjects } from "@/graphql/getProjects";
 import { updatePosition } from "@/graphql/updatePosition";
 import { useSession } from "next-auth/react";
+import { AccordionSummaryContent } from "../components/AccordionSummaryContent";
 
 export const PositionItem = ({
   position,
@@ -112,35 +106,6 @@ export const PositionItem = ({
     deleteMutation.mutate({ userId: session.user.id, id: position.id });
   };
 
-  const SummaryContentDesktop = () => (
-    <Typography
-      component="p"
-      variant="body1"
-      sx={{ display: { xs: "none", sm: "block" }, fontSize: { xs: "1rem", sm: "1.25rem" } }}
-    >
-      <strong>{position.title}&nbsp;-&nbsp;</strong>
-      {formatLongDate(position.startDate)} to{" "}
-      {position.endDate ? formatLongDate(position?.endDate) : "present"}
-    </Typography>
-  );
-
-  const SummaryContentMobile = () => (
-    <Typography
-      component="p"
-      variant="body1"
-      sx={{
-        display: { xs: "block", sm: "none" },
-        fontSize: { xs: "1rem", sm: "1.25rem" },
-        width: "100%",
-      }}
-    >
-      <strong>{position.title}</strong>
-      <br />
-      {formatLongDate(position.startDate)} to{" "}
-      {position.endDate ? formatLongDate(position?.endDate) : "present"}
-    </Typography>
-  );
-
   return (
     <Accordion
       expanded={expanded === position.id}
@@ -158,8 +123,10 @@ export const PositionItem = ({
         onClick={handleExpandClick}
       >
         <Box sx={{ display: expanded === position.id ? "none" : "flex", width: "90%" }}>
-          <SummaryContentDesktop />
-          <SummaryContentMobile />
+          <AccordionSummaryContent
+            primary={position.title}
+            dateRange={`${formatLongDate(position.startDate)} to ${position.endDate ? formatLongDate(position.endDate) : "present"}`}
+          />
         </Box>
       </AccordionSummary>
       <AccordionDetails>

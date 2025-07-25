@@ -53,17 +53,18 @@ describe("EducationItem", () => {
   });
 
   it("renders correctly", async () => {
-    const { getByRole } = render(
+    const { getByTestId } = render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <EducationItem education={mockEducation} expanded={false} setExpanded={mockSetExpanded} />
       </LocalizationProvider>,
     );
 
     await waitFor(() => {
-      const paragraph = getByRole("paragraph");
-      expect(paragraph).toHaveTextContent("Test University");
-      expect(paragraph).toHaveTextContent("Bachelor of Science");
-      expect(paragraph).toHaveTextContent("January 2022");
+      const accordion = getByTestId(`education-accordion-${mockEducation.id}`);
+      expect(accordion).toBeInTheDocument();
+      expect(accordion).toHaveTextContent("Test University");
+      expect(accordion).toHaveTextContent("Bachelor of Science");
+      expect(accordion).toHaveTextContent("January 2022");
     });
   });
 

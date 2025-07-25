@@ -7,6 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { PositionFields } from "./PositionFields";
 import { ProjectField } from "./ProjectField";
 import dayjs from "dayjs";
+import { AccordionSummaryContent } from "../../components/AccordionSummaryContent";
 
 /**
  * The component for the extracted work experience.
@@ -158,7 +159,16 @@ export const ExtractedWorkExperience = ({
 
   return (
     <Box sx={{ mb: 4 }}>
-      <Typography variant="h5" sx={{ mb: 2 }}>
+      <Typography
+        variant="h5"
+        sx={{
+          mt: 0,
+          mb: { xs: 1, sm: 2 },
+          padding: { xs: 1, sm: 0 },
+          fontSize: "1.25rem",
+          fontWeight: "bold",
+        }}
+      >
         Work Experience
       </Typography>
       {companies.map((company, index) => {
@@ -170,7 +180,7 @@ export const ExtractedWorkExperience = ({
             key={companyId}
             expanded={isCompanyExpanded}
             onChange={handleCompanyChange(companyId)}
-            sx={{ mb: 2 }}
+            sx={{ mb: 2, width: "100%", padding: 1 }}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -179,31 +189,17 @@ export const ExtractedWorkExperience = ({
                 mb: isCompanyExpanded ? 2 : 0,
               }}
             >
-              <Typography sx={{ display: "flex", width: "100%" }}>
-                <strong>{company.name || "Unnamed Company"}</strong>
-                <span
-                  style={{
-                    opacity: !isCompanyExpanded ? 1 : 0,
-                    transition: "opacity 0.3s ease-in-out",
-                    display: "flex",
-                    flex: 1,
-                    justifyContent: "space-between",
-                    marginLeft: 24,
-                  }}
-                >
-                  <span>{company.location ? company.location : ""}</span>
-                  <span style={{ marginRight: 24 }}>
-                    {company.startDate ? `${dayjs(company.startDate).format("MMM YYYY")}` : ""}
-                    {company.endDate
-                      ? ` - ${dayjs(company.endDate).format("MMM YYYY")}`
-                      : company.startDate
-                        ? " - Present"
-                        : ""}
-                  </span>
-                </span>
-              </Typography>
+              <AccordionSummaryContent
+                primary={company.name || "Unnamed Company"}
+                secondary={company.location || undefined}
+                dateRange={
+                  company.startDate
+                    ? `${dayjs(company.startDate).format("MMM YYYY")}${company.endDate ? ` - ${dayjs(company.endDate).format("MMM YYYY")}` : " - Present"}`
+                    : ""
+                }
+              />
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{ width: "100%", padding: 1 }}>
               <CompanyFields
                 company={company}
                 companyIndex={index}
@@ -213,6 +209,7 @@ export const ExtractedWorkExperience = ({
                 onDateChange={handleDateChange}
                 onDelete={handleDeleteCompany}
               />
+
               {company.positions.map((position, positionIndex) => {
                 const positionId = `position-${index}-${positionIndex}`;
                 const isPositionExpanded = expandedPosition === positionId;
@@ -222,7 +219,7 @@ export const ExtractedWorkExperience = ({
                     key={positionId}
                     expanded={isPositionExpanded}
                     onChange={handlePositionChange(positionId)}
-                    sx={{ mb: 1 }}
+                    sx={{ mb: 1, width: "100%" }}
                   >
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
@@ -231,25 +228,14 @@ export const ExtractedWorkExperience = ({
                         mb: isPositionExpanded ? 2 : 0,
                       }}
                     >
-                      <Typography>
-                        {position.title || "Unnamed Position"}
-                        <span
-                          style={{
-                            opacity: !isPositionExpanded ? 1 : 0,
-                            transition: "opacity 0.3s ease-in-out",
-                          }}
-                        >
-                          {position.startDate && position.endDate && (
-                            <Typography component="span" color="text.secondary" sx={{ ml: 1 }}>
-                              ({dayjs(position.startDate).format("MMM YYYY")} -{" "}
-                              {position.endDate
-                                ? dayjs(position.endDate).format("MMM YYYY")
-                                : "Present"}
-                              )
-                            </Typography>
-                          )}
-                        </span>
-                      </Typography>
+                      <AccordionSummaryContent
+                        primary={position.title || "Unnamed Position"}
+                        dateRange={
+                          position.startDate && position.endDate
+                            ? `${dayjs(position.startDate).format("MMM YYYY")}${position.endDate ? ` - ${dayjs(position.endDate).format("MMM YYYY")}` : " - Present"}`
+                            : ""
+                        }
+                      />
                     </AccordionSummary>
                     <AccordionDetails>
                       <PositionFields
@@ -262,6 +248,18 @@ export const ExtractedWorkExperience = ({
                         onDateChange={handleDateChange}
                         onDelete={handleDeletePosition}
                       />
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          mt: 2,
+                          mb: 2,
+                          fontStyle: "italic",
+                          fontSize: "1rem",
+                        }}
+                      >
+                        <strong>Note:</strong> Projects can be reordered by dragging and dropping
+                        after saving.
+                      </Typography>
                       {position.projects.map((project, projectIndex) => (
                         <ProjectField
                           key={`${project.name}`}

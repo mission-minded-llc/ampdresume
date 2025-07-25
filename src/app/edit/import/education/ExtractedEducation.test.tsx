@@ -54,14 +54,14 @@ describe("ExtractedEducation", () => {
     renderComponent();
 
     expect(screen.getByText("Education")).toBeInTheDocument();
-    expect(screen.getByText("Test University")).toBeInTheDocument();
-    expect(screen.getByText("Another University")).toBeInTheDocument();
+    expect(screen.getAllByTestId("education-accordion-0")[0]).toBeInTheDocument();
+    expect(screen.getAllByTestId("education-accordion-1")[0]).toBeInTheDocument();
   });
 
   it("displays education details in accordion", () => {
     renderComponent();
 
-    const firstAccordion = screen.getByText("Test University");
+    const firstAccordion = screen.getAllByTestId("education-accordion-0")[0];
     expect(firstAccordion).toBeInTheDocument();
 
     // Check if degree and date are visible in collapsed state
@@ -72,7 +72,7 @@ describe("ExtractedEducation", () => {
   it("expands accordion when clicked", () => {
     renderComponent();
 
-    const accordion = screen.getByText("Test University");
+    const accordion = screen.getAllByTestId("education-accordion-0")[0];
     fireEvent.click(accordion!);
 
     // After expansion, we should see the input fields
@@ -91,6 +91,6 @@ describe("ExtractedEducation", () => {
   it("displays 'Unnamed School' for education entries without school name", () => {
     renderComponent([{ school: "", degree: "Test Degree", dateAwarded: "" }]);
 
-    expect(screen.getByText("Unnamed School")).toBeInTheDocument();
+    expect(screen.getAllByText("Unnamed School").length).toBeGreaterThan(0);
   });
 });

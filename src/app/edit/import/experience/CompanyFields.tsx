@@ -1,11 +1,11 @@
-import { Box, IconButton, TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { memo, useState } from "react";
 
 import { Company } from "./types";
 import { DatePicker } from "@mui/x-date-pickers";
-import DeleteIcon from "@mui/icons-material/Delete";
 import dayjs from "dayjs";
 import { validateAndConvertDate } from "@/lib/dateUtils";
+import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
 
 export const CompanyFields = memo(
   ({
@@ -51,56 +51,69 @@ export const CompanyFields = memo(
 
     return (
       <Box
-        sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", mb: 2 }}
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          mb: 2,
+        }}
       >
-        <Box sx={{ flex: 1, mr: 2 }}>
-          <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
-            <TextField
-              fullWidth
-              label="Company"
-              value={localName}
-              onChange={handleNameChange}
-              onBlur={handleNameBlur}
-              sx={{ mb: 1 }}
-            />
-            <TextField
-              fullWidth
-              label="Location"
-              value={localLocation}
-              onChange={handleLocationChange}
-              onBlur={handleLocationBlur}
-              sx={{ mb: 1 }}
-            />
-          </Box>
-          <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
-            <DatePicker
-              label="Start Date"
-              value={company.startDate ? dayjs(company.startDate) : null}
-              onChange={(date) =>
-                onDateChange(companyIndex, undefined, "startDate", validateAndConvertDate(date))
-              }
-              sx={{ flex: 1 }}
-              slotProps={{
-                textField: {
-                  required: true,
-                  error: !company.startDate,
-                  helperText: !company.startDate ? "Start date is required" : "",
-                },
-              }}
-            />
-            <DatePicker
-              label="End Date"
-              value={company.endDate ? dayjs(company.endDate) : null}
-              onChange={(date) =>
-                onDateChange(companyIndex, undefined, "endDate", validateAndConvertDate(date))
-              }
-              sx={{ flex: 1 }}
-            />
-          </Box>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+            gap: 2,
+            mb: 2,
+            width: "100%",
+          }}
+        >
+          <TextField
+            fullWidth
+            label="Company"
+            value={localName}
+            onChange={handleNameChange}
+            onBlur={handleNameBlur}
+            sx={{ mb: 1 }}
+          />
+          <TextField
+            fullWidth
+            label="Location"
+            value={localLocation}
+            onChange={handleLocationChange}
+            onBlur={handleLocationBlur}
+            sx={{ mb: 1 }}
+          />
+          <DatePicker
+            label="Start Date"
+            value={company.startDate ? dayjs(company.startDate) : null}
+            onChange={(date) =>
+              onDateChange(companyIndex, undefined, "startDate", validateAndConvertDate(date))
+            }
+            sx={{ flex: 1 }}
+            slotProps={{
+              textField: {
+                required: true,
+                error: !company.startDate,
+                helperText: !company.startDate ? "Start date is required" : "",
+              },
+            }}
+          />
+          <DatePicker
+            label="End Date"
+            value={company.endDate ? dayjs(company.endDate) : null}
+            onChange={(date) =>
+              onDateChange(companyIndex, undefined, "endDate", validateAndConvertDate(date))
+            }
+            sx={{ flex: 1 }}
+          />
+          <DeleteWithConfirmation
+            onConfirmDelete={() => onDelete(companyIndex)}
+            buttonLabel="Delete Company"
+            dialogTitle="Delete Company?"
+            dialogMessage="Are you sure you want to delete this company? This will also delete all positions under this company. (No undo!)"
+          />
         </Box>
-        <IconButton onClick={() => onDelete(companyIndex)} size="small" color="error">
-          <DeleteIcon />
-        </IconButton>
       </Box>
     );
   },

@@ -64,6 +64,9 @@ export const ProjectField = memo(
               border: "none",
               borderBottom: "1px solid #e0e0e0",
             },
+            "& .MuiInputBase-input": {
+              fontSize: "1rem",
+            },
           }}
         />
         <IconButton

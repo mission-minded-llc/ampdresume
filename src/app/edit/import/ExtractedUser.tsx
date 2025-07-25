@@ -40,6 +40,10 @@ const UserField = memo(
         onChange={handleChange}
         onBlur={handleBlur}
         fullWidth
+        sx={{
+          "& .MuiInputBase-input": { fontSize: "1rem" },
+          "& .MuiInputLabel-root": { fontSize: "1rem" },
+        }}
       />
     );
   },
@@ -67,8 +71,16 @@ export const ExtractedUser = ({
   };
 
   return (
-    <Box sx={{ mb: 4 }}>
-      <Typography variant="h5" sx={{ mb: 2 }}>
+    <Box sx={{ mb: { xs: 0, sm: 4 } }}>
+      <Typography
+        variant="h5"
+        sx={{
+          mb: { xs: 1, sm: 2 },
+          padding: { xs: 1, sm: 0 },
+          fontSize: "1.25rem",
+          fontWeight: "bold",
+        }}
+      >
         Personal Information
       </Typography>
       <Box

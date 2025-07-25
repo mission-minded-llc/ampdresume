@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Education } from "@ampdresume/theme";
@@ -10,6 +10,7 @@ import { deleteEducation } from "@/graphql/deleteEducation";
 import { formatLongDate } from "@/lib/format";
 import { updateEducation } from "@/graphql/updateEducation";
 import { useSession } from "next-auth/react";
+import { AccordionSummaryContent } from "../components/AccordionSummaryContent";
 
 export const EducationItem = ({
   education,
@@ -91,12 +92,15 @@ export const EducationItem = ({
           pb: 1,
           "&:hover": { backgroundColor: theme.palette.primary.light },
         })}
+        data-testid={`education-accordion-${education.id}`}
       >
-        <Typography component="p" variant="body1">
-          <strong>{education.school}&nbsp;-&nbsp;</strong>
-          {education?.degree ? ` (${education.degree}) ` : " "}
-          {formatLongDate(education.dateAwarded)}
-        </Typography>
+        <div style={{ width: "90%", display: expanded === education.id ? "none" : "flex" }}>
+          <AccordionSummaryContent
+            primary={education.school}
+            secondary={education.degree}
+            dateRange={formatLongDate(education.dateAwarded)}
+          />
+        </div>
       </AccordionSummary>
 
       <AccordionDetails>
