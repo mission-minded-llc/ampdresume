@@ -24,27 +24,70 @@ Running the app locally requires a few steps and local environment variable valu
 To start, copy `.env.example` to `.env` and update the "Required" variable values. These are
 documented in the file comments.
 
-### Dev Container
+### Development Environment
 
-Next, within VS Code or Cursor, enter the command palette (`Cmd+Shift+P` on Mac, or `Ctrl+Shift+P`
-on Windows), then select "Rebuild and Reopen in Container"
+This project uses Docker Compose for local development. The development environment expects Node.js
+(see `.nvmrc` for version), and includes containers for:
 
-To learn more about dev containers, read up here:
-https://code.visualstudio.com/docs/devcontainers/containers
+- PostgreSQL 16
 
-### Running the Dev Server
+#### Starting the Development Environment
 
-After the containers have started and you're working inside the Dev Container, you should be able to
-access the database locally on port 5432 using the username/password saved in
-`.devcontainer/docker-compose.yml`.
+1. **Setup Dependencies**
 
-You can run the local dev server via `npm run dev`. You should be able to access the app at
-http://localhost:3000/
+   ```bash
+   sh ./scripts/setup-dev.sh
+   ```
+
+2. **Start the containers:**
+
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Setup Database**
+
+   First time only, or when resetting your local database.
+
+   ```bash
+   npm run prisma:migrate && npm run prisma:seed
+   ```
+
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+The app will be available at http://localhost:3000/
+
+#### VS Code Integration
+
+This project includes recommended VS Code extensions and settings. When you open the project in VS
+Code, you'll be prompted to install the recommended extensions for the best development experience.
+
+#### Database Access
+
+The PostgreSQL database is accessible on port 5432 with the following credentials:
+
+- Username: `postgres`
+- Password: `postgres`
+- Database: `ampdresume`
 
 ## Infrastructure
 
 Amp'd Resume is currently hosted on Vercel. The database is hosted by DigitalOcean. Media assets are
 hosted on AWS S3.
+
+For local development, no changes are needed for the database references. However, if you want to
+test file upload ability, you'll need to set up an S3 bucket and provide the values for S3 settings
+in your local `.env`:
+
+```
+# AWS S3 bucket for storing user uploaded files.
+AWS_S3_BUCKET_NAME=[your publicly-accessible bucket name]
+AWS_S3_USER_ACCESS_KEY_ID=[use your key id]
+AWS_S3_USER_SECRET_ACCESS_KEY=[use your secret access key]
+```
 
 ## 📄 License
 
