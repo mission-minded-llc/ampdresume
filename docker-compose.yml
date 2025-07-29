@@ -1,21 +1,8 @@
 version: "3.8"
 
-services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        USER_UID: 1000
-        USER_GID: 1000
-    volumes:
-      - ..:/workspace:cached
-    command: sleep infinity
-    network_mode: service:db
-    env_file:
-      - ../.env
-    user: node
+name: ampdresume-dev
 
+services:
   db:
     image: postgres:16-alpine
     restart: unless-stopped

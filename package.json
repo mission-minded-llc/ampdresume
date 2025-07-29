@@ -10,9 +10,10 @@
   "author": "Michael R. Dinerstein",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/missionmike/ampdresume/issues"
+    "url": "https://github.com/mission-minded-llc/ampdresume/issues"
   },
   "scripts": {
+    "init": "sh ./scripts/localSetup.sh",
     "dev": "next dev",
     "prebuild": "tsx scripts/generateRobotsTxt.ts && tsx scripts/copyIconifyJson.ts",
     "build": "prisma generate && next build",

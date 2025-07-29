@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "graphql.vscode-graphql-syntax",
+    "GraphQL.vscode-graphql",
+    "ms-azuretools.vscode-docker",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-pg",
+    "Prisma.prisma",
+    "github.copilot",
+    "github.copilot-chat",
+    "amatiasq.sort-imports",
+    "HashiCorp.terraform",
+    "ms-azuretools.vscode-azureterraform",
+    "matheusq94.TFS",
+    "AmazonWebServices.aws-toolkit-vscode"
+  ]
+}
