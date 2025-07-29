@@ -50,7 +50,7 @@ This project uses Docker Compose for local development. The development environm
    First time only, or when resetting your local database.
 
    ```bash
-   npm run prisma:migrate && npm run prisma:seed
+   sh ./scrips/localSetup.sh
    ```
 
 4. **Start the development server:**
