@@ -52,6 +52,23 @@ This project uses Docker Compose for local development. The development environm
 
 The app will be available at http://localhost:3000/
 
+#### Local Sign-in
+
+Most of this application is behind authentication. The current authentication providers include:
+
+- Email Magic Link
+- Google OAuth
+- LinkedIn OAuth
+
+You are welcome to set up your own credentials for an SMTP email server or OAuth provider.
+**However**, it is possible to sign in locally _without_ doing this!
+
+To sign in locally without using a provider, you'll need to use the `test@ampdresume.com` email.
+This email is specific to testing and is used by Cypress integration tests. When you use this email
+address within the email input and sign in, you should be able to find the magic link in your local
+`./.cypress-temp/magic-link-test_ampdresume_com.txt` file. If you open that URL in the browser, you
+should be signed in as the `test` user.
+
 #### VS Code Integration
 
 This project includes recommended VS Code extensions and settings. When you open the project in VS
