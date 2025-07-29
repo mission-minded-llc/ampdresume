@@ -33,27 +33,19 @@ This project uses Docker Compose for local development. The development environm
 
 #### Starting the Development Environment
 
-1. **Setup Dependencies**
-
-   ```bash
-   sh ./scripts/setup-dev.sh
-   ```
-
-2. **Start the containers:**
+1. **Start the containers:**
 
    ```bash
    docker-compose up -d
    ```
 
-3. **Setup Database**
-
-   First time only, or when resetting your local database.
+2. **Setup Dependencies and Database**
 
    ```bash
-   sh ./scrips/localSetup.sh
+   npm run init
    ```
 
-4. **Start the development server:**
+3. **Start the development server:**
    ```bash
    npm run dev
    ```
