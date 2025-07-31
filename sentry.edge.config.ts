@@ -5,9 +5,9 @@
 
 import * as Sentry from "@sentry/nextjs";
 
-if (process?.env?.SENTRY_DSN) {
+if (process?.env?.NEXT_PUBLIC_SENTRY_DSN) {
   Sentry.init({
-    dsn: process.env.SENTRY_DSN,
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
     environment: process.env?.NEXT_PUBLIC_ENVIRONMENT_NAME || "local",
 
@@ -18,5 +18,5 @@ if (process?.env?.SENTRY_DSN) {
     debug: false,
   });
 } else {
-  console.log("SENTRY_DSN is not set, skipping Sentry initialization for edge");
+  console.log("NEXT_PUBLIC_SENTRY_DSN is not set, skipping Sentry initialization for edge");
 }
