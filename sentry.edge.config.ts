@@ -5,14 +5,18 @@
 
 import * as Sentry from "@sentry/nextjs";
 
-Sentry.init({
-  dsn: "https://e5b3b2c17a8c50fd1d9b739f88e879a9@o466695.ingest.us.sentry.io/4508610237169664",
+if (process?.env?.NEXT_PUBLIC_SENTRY_DSN) {
+  Sentry.init({
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
-  environment: process.env?.NEXT_PUBLIC_ENVIRONMENT_NAME || "local",
+    environment: process.env?.NEXT_PUBLIC_ENVIRONMENT_NAME || "local",
 
-  // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
-  tracesSampleRate: 1,
+    // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
+    tracesSampleRate: 1,
 
-  // Setting this option to true will print useful information to the console while you're setting up Sentry.
-  debug: false,
-});
+    // Setting this option to true will print useful information to the console while you're setting up Sentry.
+    debug: false,
+  });
+} else {
+  console.log("NEXT_PUBLIC_SENTRY_DSN is not set, skipping Sentry initialization for edge");
+}
