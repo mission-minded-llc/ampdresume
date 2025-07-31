@@ -109,4 +109,4 @@ This project is licensed under the **Amp’d Community License 1.0**.
 
 To inquire about commercial use or extended rights, please contact: contact@missionminded.net
 
-See the full license in [LICENSE](./LICENSE).
+See the full license in [LICENSE.md](./LICENSE.md).
