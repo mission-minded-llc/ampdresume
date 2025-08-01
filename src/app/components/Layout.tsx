@@ -1,18 +1,18 @@
 "use client";
 
 import { Box, Container, ThemeProvider } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme } from "@mui/material/styles";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { SessionProvider } from "next-auth/react";
 import React, { useContext } from "react";
 
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import CssBaseline from "@mui/material/CssBaseline";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { SessionProvider } from "next-auth/react";
 import { TanstackQueryProvider } from "./TanstackContext";
 import { ThemeAppearanceContext } from "./ThemeContext";
-import { createTheme } from "@mui/material/styles";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { themeAppearance } = useContext(ThemeAppearanceContext);

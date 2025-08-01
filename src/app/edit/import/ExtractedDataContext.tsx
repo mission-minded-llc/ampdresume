@@ -1,11 +1,8 @@
+import { Skill } from "@ampdresume/theme";
 import React, { createContext, useContext, useState } from "react";
 
 import { ParsedResumeData } from "./types";
-import { Skill } from "@ampdresume/theme";
 
-/**
- * The context for the extracted data.
- */
 const ExtractedDataContext = createContext<{
   user: ParsedResumeData["user"] | null;
   skills: Skill[];

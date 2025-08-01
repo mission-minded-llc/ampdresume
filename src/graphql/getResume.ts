@@ -1,11 +1,8 @@
+import { Company, Education, ThemeName, Social, User, SkillForUser } from "@ampdresume/theme";
+import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 
-import { Company, Education, ThemeName } from "@ampdresume/theme";
-import { Social, User } from "@ampdresume/theme";
-
-import { SkillForUser } from "@ampdresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
-import { gql } from "@apollo/client";
 
 export type UserWithTheme = User & { webThemeName: ThemeName };
 

@@ -1,11 +1,12 @@
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
+import dayjs from "dayjs";
 import { useCallback, useEffect, useState } from "react";
 
-import { Education } from "./types";
-import { EducationFields } from "./EducationFields";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import dayjs from "dayjs";
 import { AccordionSummaryContent } from "../../components/AccordionSummaryContent";
+
+import { EducationFields } from "./EducationFields";
+import { Education } from "./types";
 
 export const ExtractedEducation = ({
   education,

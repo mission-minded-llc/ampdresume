@@ -1,11 +1,12 @@
+import { Company } from "@ampdresume/theme";
 import { Box, Button, FormControl, FormHelperText, TextField } from "@mui/material";
-import React, { useState } from "react";
+import { DatePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
+import React, { useState } from "react";
+
+import { CompanyGeneric } from "@/graphql/getExperience";
 import { formatLongDate, formatShortDate, timestampToDate } from "@/lib/format";
 
-import { Company } from "@ampdresume/theme";
-import { CompanyGeneric } from "@/graphql/getExperience";
-import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 
 export const CompanyForm = ({

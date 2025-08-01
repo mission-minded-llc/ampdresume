@@ -1,3 +1,11 @@
+/**
+ * This script is used to copy the Iconify JSON files from the `node_modules/@iconify/json/json`
+ * directory to the `data/iconify` directory.
+ *
+ * This is used to ensure that the Iconify JSON files are available to the application. It excludes
+ * files that are larger than 5MB to stay within the limits of Vercel's hosting.
+ */
+
 import fs from "fs";
 import path from "path";
 

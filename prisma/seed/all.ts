@@ -8,6 +8,10 @@ import { seedSkillsForUser } from "./skillsForUser";
 import { seedSocials } from "./social";
 import { seedUsers } from "./users";
 
+/**
+ * Seed the database with sample data,
+ * sequentially.
+ */
 async function seed() {
   await seedUsers();
   await seedSocials();

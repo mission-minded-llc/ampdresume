@@ -1,11 +1,16 @@
-import { Box, Switch } from "@mui/material";
-
 import { Icon } from "@iconify/react";
-import { ThemeAppearanceContext } from "./ThemeContext";
+import { Box, Switch } from "@mui/material";
 import { useContext } from "react";
+
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useIsResumePage } from "@/hooks/useIsResumePage";
 
+import { ThemeAppearanceContext } from "./ThemeContext";
+
+/**
+ * The theme appearance toggle component in all its glory,
+ * with the ability to toggle between light and dark mode like a champ.
+ */
 export const ThemeAppearanceToggle = () => {
   const { themeAppearance, setThemeAppearance } = useContext(ThemeAppearanceContext);
   const isDesktop = useIsDesktop();

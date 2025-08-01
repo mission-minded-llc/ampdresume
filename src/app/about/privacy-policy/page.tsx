@@ -1,6 +1,6 @@
 import { Box, Container, Link, List, ListItem, Typography } from "@mui/material";
-
 import React from "react";
+
 import { titleSuffix } from "@/constants";
 
 export function generateMetadata() {
@@ -38,14 +38,15 @@ export default function PrivacyPolicy() {
             <Typography variant="body2">
               When you sign up on <strong>Amp&apos;d Resume</strong>, we collect your email address
               at signup. You can optionally add your location, skills, work history, education
-              history, references, and letters.
+              history, projects, certifications and references.
             </Typography>
           </ListItem>
           <ListItem sx={{ display: "block" }}>
             <Subtitle>Usage Data</Subtitle>
             <Typography variant="body2">
               We may also collect information about how you interact with our website, such as IP
-              addresses, browser types, and pages visited.
+              addresses, browser types, and pages visited. We use Google Analytics to collect this
+              information.
             </Typography>
           </ListItem>
         </List>
@@ -101,8 +102,9 @@ export default function PrivacyPolicy() {
           <br />
           &nbsp;
           <br />
-          You can request to have your account and all information permanently deleted by emailingy
-          our request to mail@ampdresume.com from the email address your account is associated with.
+          You can request to have your account and all information permanently deleted by emailing
+          us at mail@ampdresume.com from the email address your account is associated with.
+          Alternatively, you can delete your own account from the account settings page.
         </Typography>
       </Box>
 
@@ -121,10 +123,14 @@ export default function PrivacyPolicy() {
           Future Use
         </Typography>
         <Typography variant="body1">
-          In the future, we may sell access to aggregated and anonymized user information to
+          In the future, we may sell <strong>access</strong> to aggregated user information to
           recruiting companies and other entities for analytics and recruitment purposes. You will
           be notified if this becomes the case, and given the option to opt out by deleting your
           data.
+          <br />
+          &nbsp;
+          <br />
+          We will not sell your personal information to any third party for any purpose.
         </Typography>
       </Box>
 

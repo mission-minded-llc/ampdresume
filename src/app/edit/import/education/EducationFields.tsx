@@ -1,10 +1,11 @@
 import { Box } from "@mui/material";
 import { memo, useEffect, useState } from "react";
 
-import { Education } from "./types";
+import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
+
 import { EducationDateField } from "./EducationDateField";
 import { EducationField } from "./EducationField";
-import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
+import { Education } from "./types";
 
 export const EducationFields = memo(
   ({

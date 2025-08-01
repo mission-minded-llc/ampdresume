@@ -1,27 +1,29 @@
+import { Social } from "@ampdresume/theme";
+import { Icon } from "@iconify/react";
 import { Box, Button, Dialog, DialogContent, List, TextField, Typography } from "@mui/material";
-import { FieldDescription, FieldTitle, InputSection, SectionTitle } from "./sections";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
+
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
+import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { MuiLink } from "@/components/MuiLink";
+import { Tooltip } from "@/components/Tooltip";
+import { SOCIAL_MEDIA_PLATFORMS } from "@/constants";
+import { addSocial } from "@/graphql/addSocial";
+import { deleteSocial } from "@/graphql/deleteSocial";
+import { getSocials } from "@/graphql/getSocials";
+import { updateSocial } from "@/graphql/updateSocial";
 import {
   generateSocialUrl,
   getSocialIcon,
   getSocialMediaPlatformByHostname,
   getSocialMediaPlatformByPlatformName,
 } from "@/util/social";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
-import { Icon } from "@iconify/react";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { MuiLink } from "@/components/MuiLink";
-import { SOCIAL_MEDIA_PLATFORMS } from "@/constants";
-import { Social } from "@ampdresume/theme";
-import { Tooltip } from "@/components/Tooltip";
-import { addSocial } from "@/graphql/addSocial";
-import { deleteSocial } from "@/graphql/deleteSocial";
-import { getSocials } from "@/graphql/getSocials";
-import { updateSocial } from "@/graphql/updateSocial";
-import { useSession } from "next-auth/react";
-import { useState } from "react";
+
+import { FieldDescription, FieldTitle, InputSection, SectionTitle } from "./sections";
 
 export const SocialsForm = () => {
   const { status, data: session } = useSession();

@@ -1,21 +1,21 @@
-import * as Sentry from "@sentry/nextjs";
+import fs from "fs";
+import path from "path";
 
-import EmailProvider, { EmailConfig } from "next-auth/providers/email";
-import LinkedInProvider, { LinkedInProfile } from "next-auth/providers/linkedin";
+import { ThemeName } from "@ampdresume/theme";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import * as Sentry from "@sentry/nextjs";
 import { NextAuthOptions, Session as NextAuthSession, getServerSession } from "next-auth";
+import { AdapterUser } from "next-auth/adapters";
+import { JWT } from "next-auth/jwt";
+import EmailProvider, { EmailConfig } from "next-auth/providers/email";
+import GoogleProvider from "next-auth/providers/google";
+import LinkedInProvider, { LinkedInProfile } from "next-auth/providers/linkedin";
+import nodemailer from "nodemailer";
 
 import { ALLOWED_USER_EMAILS } from "@/constants";
-import { AdapterUser } from "next-auth/adapters";
-import GoogleProvider from "next-auth/providers/google";
-import { JWT } from "next-auth/jwt";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { ThemeName } from "@ampdresume/theme";
-import { findUserByNormalizedEmail } from "@/util/email";
-import fs from "fs";
-import { getEnvironmentName } from "@/util/url";
-import nodemailer from "nodemailer";
-import path from "path";
 import { prisma } from "@/lib/prisma";
+import { findUserByNormalizedEmail } from "@/util/email";
+import { getEnvironmentName } from "@/util/url";
 
 /**
  * The custom email sending function for the email provider.

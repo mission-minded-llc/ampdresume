@@ -8,6 +8,7 @@ const jestConfig: JestConfigWithTsJest = {
     "^@/(.*)$": "<rootDir>/src/$1",
     "\\.(css|less|scss)$": "identity-obj-proxy",
   },
+  setupFiles: ["dotenv/config"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   transform: {
     "^.+\\.tsx?$": ["ts-jest", { tsconfig: "./tsconfig.jest.json" }],

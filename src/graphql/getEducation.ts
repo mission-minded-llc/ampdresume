@@ -1,8 +1,8 @@
+import { Education } from "@ampdresume/theme";
+import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 
-import { Education } from "@ampdresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
-import { gql } from "@apollo/client";
 
 export type EducationGeneric = Omit<Education, "id" | "userId">;
 

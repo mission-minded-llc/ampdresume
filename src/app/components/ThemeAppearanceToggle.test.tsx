@@ -1,11 +1,11 @@
 import "@testing-library/jest-dom";
 
 import { fireEvent, render } from "@testing-library/react";
-
-import React from "react";
-import { ThemeAppearanceContext } from "./ThemeContext";
-import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 import { usePathname } from "next/navigation";
+import React from "react";
+
+import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
+import { ThemeAppearanceContext } from "./ThemeContext";
 
 jest.mock("next/navigation");
 

@@ -1,3 +1,6 @@
+/**
+ * The homepage is currently pretty light. Not much to test here.
+ */
 describe("Homepage", () => {
   it("should load the homepage", () => {
     cy.visit(Cypress.env("BASE_URL") || "/");

@@ -1,4 +1,7 @@
 name: "CI: App"
+description:
+  "Run tests and checks on the application code. Should be run when any code changes are merged,
+  excluding infrastructure and documentation changes."
 
 on:
   pull_request:

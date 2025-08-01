@@ -1,12 +1,13 @@
+import { Education } from "@ampdresume/theme";
 import { Box, Button, TextField } from "@mui/material";
-import React, { useState } from "react";
+import { DatePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
+import React, { useState } from "react";
+
+import { EducationGeneric } from "@/graphql/getEducation";
 import { formatLongDate, timestampToDate } from "@/lib/format";
 
-import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
-import { Education } from "@ampdresume/theme";
-import { EducationGeneric } from "@/graphql/getEducation";
 
 export const EducationForm = ({
   education,

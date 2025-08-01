@@ -3,10 +3,9 @@
 import { Box, Typography } from "@mui/material";
 
 import { MuiLink } from "@/components/MuiLink";
-import React from "react";
-import { getBaseUrl } from "@/util/url";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useIsResumePage } from "@/hooks/useIsResumePage";
+import { getBaseUrl } from "@/util/url";
 
 export const Footer = () => {
   const baseUrl = getBaseUrl();

@@ -1,13 +1,13 @@
-import { Box, Dialog, DialogContent } from "@mui/material";
-import React, { useState } from "react";
-
-import Button from "@mui/material/Button";
-import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-import { Icon } from "@iconify/react";
 import { SkillForUser } from "@ampdresume/theme";
-import { SkillItemEdit } from "@/app/edit/skills/SkillItemEdit";
+import { Icon } from "@iconify/react";
+import { Box, Dialog, DialogContent } from "@mui/material";
+import Button from "@mui/material/Button";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import React, { useState } from "react";
+
+import { SkillItemEdit } from "@/app/edit/skills/SkillItemEdit";
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 
 export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
   const { data: session, status } = useSession();

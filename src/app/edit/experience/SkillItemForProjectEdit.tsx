@@ -1,15 +1,16 @@
-import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
 import { Project, SkillForProject } from "@ampdresume/theme";
-import React, { useRef, useState } from "react";
+import { Icon } from "@iconify/react";
+import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import React, { useRef, useState } from "react";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
-import { Icon } from "@iconify/react";
-import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 import { deleteSkillForProject } from "@/graphql/deleteSkillForProject";
 import { updateSkillForProject } from "@/graphql/updateSkillForProject";
-import { useSession } from "next-auth/react";
+
+import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
+import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 
 export const SkillItemForProjectEdit = ({
   skillForProject,

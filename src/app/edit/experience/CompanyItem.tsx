@@ -1,17 +1,19 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box } from "@mui/material";
-import React, { useRef } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { Company } from "@ampdresume/theme";
-import { CompanyForm } from "./CompanyForm";
-import { CompanyGeneric } from "@/graphql/getExperience";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { PositionsList } from "./PositionsList";
-import { deleteCompany } from "@/graphql/deleteCompany";
-import { formatLongDate } from "@/lib/format";
-import { updateCompany } from "@/graphql/updateCompany";
+import { Accordion, AccordionDetails, AccordionSummary, Box } from "@mui/material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+import React, { useRef } from "react";
+
+import { deleteCompany } from "@/graphql/deleteCompany";
+import { CompanyGeneric } from "@/graphql/getExperience";
+import { updateCompany } from "@/graphql/updateCompany";
+import { formatLongDate } from "@/lib/format";
+
 import { AccordionSummaryContent } from "../components/AccordionSummaryContent";
+
+import { CompanyForm } from "./CompanyForm";
+import { PositionsList } from "./PositionsList";
 
 export const CompanyItem = ({
   company,

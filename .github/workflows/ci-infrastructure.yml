@@ -1,4 +1,7 @@
 name: "CI: Infrastructure"
+description:
+  "Run tests and checks on the infrastructure code. Should be run when any infrastructure changes
+  are pending in the Terraform code. Does not deploy the infrastructure."
 
 on:
   pull_request:

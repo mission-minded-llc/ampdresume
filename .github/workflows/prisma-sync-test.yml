@@ -1,4 +1,7 @@
 name: "Prisma Sync - Test Environment"
+description:
+  "Sync the Prisma schema with the test database. Should only be run when the Prisma schema changes
+  or sample data changes are merged to the `develop` branch."
 
 on:
   push:

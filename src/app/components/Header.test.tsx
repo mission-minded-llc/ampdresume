@@ -1,9 +1,10 @@
 import "@testing-library/jest-dom";
 
-import { Header } from "./Header";
-import React from "react";
 import { render } from "@testing-library/react";
 import { useSession } from "next-auth/react";
+import React from "react";
+
+import { Header } from "./Header";
 
 jest.mock("next-auth/react");
 

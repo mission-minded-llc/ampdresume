@@ -1,5 +1,6 @@
-import { SignIn } from "./SignIn";
 import { titleSuffix } from "@/constants";
+
+import { SignIn } from "./SignIn";
 
 export function generateMetadata() {
   return {

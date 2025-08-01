@@ -1,8 +1,9 @@
 "use client";
 
 import { Box, Typography, Container } from "@mui/material";
-import { ThemeAwareImage } from "./components/ThemeAwareImage";
 import Link from "next/link";
+
+import { ThemeAwareImage } from "./components/ThemeAwareImage";
 
 export default function NotFound() {
   return (

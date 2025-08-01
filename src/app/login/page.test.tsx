@@ -1,8 +1,9 @@
 import "@testing-library/jest-dom";
 
-import React from "react";
-import SignInPage from "./page";
 import { render } from "@testing-library/react";
+import React from "react";
+
+import SignInPage from "./page";
 
 jest.mock("./SignIn", () => ({
   SignIn: jest.fn(() => <div>Mocked SignIn Component</div>),

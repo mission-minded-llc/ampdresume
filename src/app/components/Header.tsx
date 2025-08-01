@@ -1,10 +1,11 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { NavPrimary } from "./NavPrimary";
-import React from "react";
-import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
+
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+
+import { NavPrimary } from "./NavPrimary";
+import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 
 export const Header = () => {
   const isDesktop = useIsDesktop();

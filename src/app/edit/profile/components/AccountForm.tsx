@@ -1,26 +1,27 @@
 "use client";
 
-import { Box, Button, TextField, Typography } from "@mui/material";
-import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
-import React, { useEffect, useState } from "react";
-
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import BadgeIcon from "@mui/icons-material/Badge";
-import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
 import LanguageIcon from "@mui/icons-material/Language";
 import LinkIcon from "@mui/icons-material/Link";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { MessageDialog } from "@/components/MessageDialog";
-import { SocialsForm } from "./SocialsForm";
 import TocIcon from "@mui/icons-material/Toc";
-import { UserAssetInput } from "../../components/UserAssetInput";
-import { deleteUser } from "@/graphql/deleteUser";
-import { signOut } from "next-auth/react";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
+
+import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { MessageDialog } from "@/components/MessageDialog";
+import { deleteUser } from "@/graphql/deleteUser";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+
+import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
+import { UserAssetInput } from "../../components/UserAssetInput";
+
+import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
+import { SocialsForm } from "./SocialsForm";
 
 const AccountForm = ({
   name,

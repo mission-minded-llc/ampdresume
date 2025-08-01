@@ -1,8 +1,8 @@
+import { Social } from "@ampdresume/theme";
+import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 
-import { Social } from "@ampdresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
-import { gql } from "@apollo/client";
 
 export const getSocials = async (userId: string | undefined): Promise<Social[] | undefined> => {
   if (!userId) return;

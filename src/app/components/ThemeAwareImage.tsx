@@ -1,9 +1,15 @@
 "use client";
 
-import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
+import Image from "next/image";
 
-interface ThemeAwareImageProps {
+/**
+ * The theme aware image component for the application. This component
+ * is used to display an image that is aware of the theme; e.g., it will
+ * display a light-mode-specific image when the theme is light and a
+ * dark-mode-specific image when the theme is dark.
+ */
+export const ThemeAwareImage: React.FC<{
   lightSrc: string;
   darkSrc: string;
   alt: string;
@@ -12,18 +18,7 @@ interface ThemeAwareImageProps {
   sizes?: string;
   style?: React.CSSProperties;
   ariaLabel?: string;
-}
-
-export const ThemeAwareImage: React.FC<ThemeAwareImageProps> = ({
-  lightSrc,
-  darkSrc,
-  alt,
-  width = 0,
-  height = 0,
-  sizes = "100vw",
-  style,
-  ariaLabel,
-}) => {
+}> = ({ lightSrc, darkSrc, alt, width = 0, height = 0, sizes = "100vw", style, ariaLabel }) => {
   const theme = useTheme();
 
   return (

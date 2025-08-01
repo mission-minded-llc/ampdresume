@@ -1,10 +1,8 @@
 "use client";
 
+import { Company, Education, SkillForUser, themeDefinitions, User } from "@ampdresume/theme";
 import { Box, Button } from "@mui/material";
-import { Company, Education, SkillForUser, themeDefinitions } from "@ampdresume/theme";
 import { useEffect, useRef, useState } from "react";
-
-import { User } from "@ampdresume/theme";
 
 interface PDFViewProps {
   user: User;

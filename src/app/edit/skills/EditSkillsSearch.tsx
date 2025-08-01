@@ -1,5 +1,6 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import {
   Box,
   Button,
@@ -17,20 +18,19 @@ import {
   Checkbox,
   FormControlLabel,
 } from "@mui/material";
-import React, { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-import { Icon } from "@iconify/react";
+import { IconSelector } from "@/components/IconSelector";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Tooltip } from "@/components/Tooltip";
 import { TooltipTotalYears } from "@/components/tooltips";
+import { addSkill } from "@/graphql/addSkill";
 import { addSkillForUser } from "@/graphql/addSkillForUser";
 import { getSkills } from "@/graphql/getSkills";
 import { removeLeadingZero } from "@/lib/format";
-import { useSession } from "next-auth/react";
-import { addSkill } from "@/graphql/addSkill";
-import { IconSelector } from "@/components/IconSelector";
 
 export const EditSkillsSearch = () => {
   const { data: session, status } = useSession();

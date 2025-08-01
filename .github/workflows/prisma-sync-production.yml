@@ -1,4 +1,7 @@
 name: "Prisma Sync - Production Environment"
+description:
+  "Sync the Prisma schema with the production database. Should only be run when the Prisma schema
+  changes or sample data changes are merged to the `main` branch."
 
 on:
   push:

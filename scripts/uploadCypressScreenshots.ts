@@ -1,14 +1,15 @@
-/* eslint-disable no-console */
 /**
- * Helper script to upload cypress screenshots to S3.
+ * Helper script to upload cypress screenshots to S3. Used during
+ * CI/CD to ensure that the screenshots are available for review.
  */
 
+/* eslint-disable no-console */
 import { readFileSync, readdirSync, statSync } from "fs";
 
 import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { join } from "path";
 import { fileURLToPath } from "url";
 import { getS3Client } from "../src/lib/s3";
-import { join } from "path";
 
 function getAllFiles(dirPath: string, arrayOfFiles: string[] = []): string[] {
   const files = readdirSync(dirPath);

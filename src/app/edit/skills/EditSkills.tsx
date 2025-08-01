@@ -1,16 +1,18 @@
 "use client";
 
-import { Box, IconButton, Tooltip, Typography } from "@mui/material";
-
-import { EditSkillsSearch } from "./EditSkillsSearch";
 import { InfoOutlined } from "@mui/icons-material";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { MuiLink } from "@/components/MuiLink";
-import { SectionTitle } from "../components/SectionTitle";
-import { SkillsExperience } from "./SkillsExperience";
-import { getSkillsForUser } from "@/graphql/getSkillsForUser";
+import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+
+import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { MuiLink } from "@/components/MuiLink";
+import { getSkillsForUser } from "@/graphql/getSkillsForUser";
+
+import { SectionTitle } from "../components/SectionTitle";
+
+import { EditSkillsSearch } from "./EditSkillsSearch";
+import { SkillsExperience } from "./SkillsExperience";
 
 export const EditSkills = () => {
   const { data: session, status } = useSession();

@@ -10,7 +10,8 @@ agree to the following terms:
    - Your contribution does not violate any third-party rights (e.g., copyright, patent),
    - You agree to license your contribution under the same terms as the Amp’d Community License 1.0.
 
-2. You grant the Licensor (Michael Dinerstein / Mission Minded LLC) the irrevocable right to:
+2. You grant the Licensor (Michael Dinerstein / Mission Minded LLC / Amp'd Resume) the irrevocable
+   right to:
    - Use, reproduce, modify, display, distribute, and sublicense your contribution,
    - Include your contribution in commercial or open-source releases of the project.
 

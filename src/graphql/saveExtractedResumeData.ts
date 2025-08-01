@@ -1,8 +1,8 @@
+import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 
 import { ParsedResumeDataSubmission } from "@/app/edit/import/types";
 import { getApolloClient } from "@/lib/apolloClient";
-import { gql } from "@apollo/client";
 
 export const saveExtractedResumeData = async ({
   userId,

@@ -1,14 +1,15 @@
+import { Education } from "@ampdresume/theme";
 import { Box, Button, Dialog, DialogContent } from "@mui/material";
-import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import React, { useState } from "react";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-import { Education } from "@ampdresume/theme";
-import { EducationForm } from "./EducationForm";
-import { EducationGeneric } from "@/graphql/getEducation";
-import { EducationItem } from "./EducationItem";
 import { addEducation } from "@/graphql/addEducation";
-import { useSession } from "next-auth/react";
+import { EducationGeneric } from "@/graphql/getEducation";
+
+import { EducationForm } from "./EducationForm";
+import { EducationItem } from "./EducationItem";
 
 export const EducationList = ({ education }: { education: Education[] }) => {
   const { data: session } = useSession();

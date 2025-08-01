@@ -2,15 +2,22 @@
 
 // Use Prisma to seed data from ./skills.csv into the Skills table.
 
-import { fileURLToPath } from "url";
-import fs from "fs";
-import { logTitle } from "./helpers/util";
-import path from "path";
 import { prisma } from "@/lib/prisma";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { logTitle } from "./helpers/util";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * Seed the database with predefined skills. The skills are defined in the `skills.csv` file.
+ *
+ * The skills are defined as a list of name, icon pairs. The name is the name of the skill and the
+ * icon is the icon to display for the skill. The name value is a unique identifier for the skill,
+ * so there should be no duplicate names.
+ */
 export async function seedSkills() {
   logTitle("Seeding Predefined Skills");
 

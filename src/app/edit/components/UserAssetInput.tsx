@@ -1,3 +1,4 @@
+import ImageIcon from "@mui/icons-material/Image";
 import {
   Box,
   Button,
@@ -10,7 +11,6 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-import ImageIcon from "@mui/icons-material/Image";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MAX_USER_IMAGE_SIZE } from "@/constants";
 import { uploadUserAsset } from "@/util/userAsset";

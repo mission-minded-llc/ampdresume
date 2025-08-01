@@ -1,9 +1,9 @@
 import "@testing-library/jest-dom";
 
 import { fireEvent, render, waitFor } from "@testing-library/react";
+import React from "react";
 
 import { IconSelector } from "./IconSelector";
-import React from "react";
 
 global.fetch = jest.fn();
 

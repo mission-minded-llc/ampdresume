@@ -1,9 +1,10 @@
 import "@testing-library/jest-dom";
 
-import LogoutPage from "./page";
-import React from "react";
 import { render } from "@testing-library/react";
 import { signOut } from "next-auth/react";
+import React from "react";
+
+import LogoutPage from "./page";
 
 jest.mock("next-auth/react", () => ({
   signOut: jest.fn(),

@@ -1,7 +1,8 @@
-import { authOptions } from "@/lib/auth";
-import { getServerSession } from "next-auth";
-import { GraphQLContext } from "@/types/graphql";
 import { User } from "@prisma/client";
+import { getServerSession } from "next-auth";
+
+import { authOptions } from "@/lib/auth";
+import { GraphQLContext } from "@/types/graphql";
 
 /**
  * The purpose of this function is to verify that the session user ID matches the user ID being verified.
@@ -73,8 +74,6 @@ export const filterUserData = (
       siteDescription: user.siteDescription,
       siteImage: user.siteImage,
       webThemeName: user.webThemeName,
-
-      // TODO: Put displayEmail behind a CAPTCHA check.
       displayEmail: user.displayEmail,
 
       // Explicitly set sensitive fields to null for unauthenticated users

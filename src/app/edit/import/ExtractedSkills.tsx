@@ -1,17 +1,13 @@
+import { Skill } from "@ampdresume/theme";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Box, IconButton, Typography } from "@mui/material";
+import { useSession } from "next-auth/react";
 import React, { useCallback } from "react";
 
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Skill } from "@ampdresume/theme";
 import { SkillItem } from "../skills/SkillItem";
-import { useSession } from "next-auth/react";
 
 /**
  * The component for the extracted skills page.
- *
- * @param skills - The skills to display.
- * @param setSkills - The function to set the skills.
- * @returns The extracted skills page.
  */
 const ExtractedSkillsComponent = ({
   skills,

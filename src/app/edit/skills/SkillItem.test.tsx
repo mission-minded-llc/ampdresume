@@ -1,12 +1,12 @@
 import "@testing-library/jest-dom";
 
-import { fireEvent, render, waitFor } from "@testing-library/react";
-
-import React from "react";
 import { SkillForUser } from "@ampdresume/theme";
-import { SkillItem } from "./SkillItem";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import React from "react";
+
+import { SkillItem } from "./SkillItem";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),

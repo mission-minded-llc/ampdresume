@@ -1,3 +1,6 @@
+import { Project } from "@ampdresume/theme";
+import { Icon } from "@iconify/react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   Box,
   Button,
@@ -14,23 +17,22 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
-import { EditExperienceContext } from "./EditExperience";
-import { Icon } from "@iconify/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { Project } from "@ampdresume/theme";
-import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
-import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 import { addSkillForProject } from "@/graphql/addSkillForProject";
 import { deleteProject } from "@/graphql/deleteProject";
 import { getSkillsForProject } from "@/graphql/getSkillsForProject";
 import { updateProject } from "@/graphql/updateProject";
-import { useSession } from "next-auth/react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
+import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
+
+import { EditExperienceContext } from "./EditExperience";
+import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 
 // Memoized version of SkillItemForProjectEdit
 const MemoizedSkillItemForProjectEdit = React.memo(SkillItemForProjectEdit);

@@ -1,8 +1,8 @@
+import { Skill } from "@ampdresume/theme";
+import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 
-import { Skill } from "@ampdresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
-import { gql } from "@apollo/client";
 
 /**
  * Used to fetch all skills as part of a search/selector.

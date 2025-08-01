@@ -1,22 +1,27 @@
-import React, { useState } from "react";
-
-import Box from "@mui/material/Box";
-import CloseIcon from "@mui/icons-material/Close";
-import Drawer from "@mui/material/Drawer";
 import { Icon } from "@iconify/react";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
-import { MuiLink } from "@/components/MuiLink";
-import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 import Typography from "@mui/material/Typography";
-import { getBaseUrl } from "@/util/url";
-import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 import { useSession } from "next-auth/react";
+import React, { useState } from "react";
 
+import { MuiLink } from "@/components/MuiLink";
+import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
+import { getBaseUrl } from "@/util/url";
+
+import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
+
+/**
+ * The primary navigation component for the application. This nav is shared
+ * between the desktop and mobile views.
+ */
 export const NavPrimary = () => {
   const session = useSession();
   const isLoggedIn = useIsLoggedIn();

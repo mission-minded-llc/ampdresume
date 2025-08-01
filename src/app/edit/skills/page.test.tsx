@@ -1,8 +1,9 @@
 import "@testing-library/jest-dom";
 
-import Page from "./page";
-import React from "react";
 import { render } from "@testing-library/react";
+import React from "react";
+
+import Page from "./page";
 
 jest.mock("./EditSkills", () => ({
   EditSkills: () => <div>EditSkills Component</div>,

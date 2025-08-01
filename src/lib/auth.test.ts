@@ -1,7 +1,7 @@
-import { authOptions, sendVerificationRequest } from "@/lib/auth";
-
 import { getServerSession } from "next-auth/next";
 import nodemailer from "nodemailer";
+
+import { authOptions, sendVerificationRequest } from "@/lib/auth";
 
 // Mock dependencies
 jest.mock("@prisma/client", () => ({

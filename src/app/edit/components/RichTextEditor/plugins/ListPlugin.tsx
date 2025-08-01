@@ -3,11 +3,10 @@ import {
   INSERT_UNORDERED_LIST_COMMAND,
   REMOVE_LIST_COMMAND,
 } from "@lexical/list";
-
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 import { IconButton } from "@mui/material";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 interface ListPluginProps {
   blockType: string;

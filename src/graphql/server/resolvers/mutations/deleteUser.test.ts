@@ -1,7 +1,9 @@
-import { deleteUser } from "./deleteUser";
-import { prisma } from "@/lib/prisma";
-import { verifySessionOwnership } from "@/graphql/server/util";
 import type { User } from "@prisma/client";
+
+import { verifySessionOwnership } from "@/graphql/server/util";
+import { prisma } from "@/lib/prisma";
+
+import { deleteUser } from "./deleteUser";
 
 // Mock dependencies
 jest.mock("@/lib/prisma", () => ({

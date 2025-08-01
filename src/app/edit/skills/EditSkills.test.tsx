@@ -1,12 +1,12 @@
 import "@testing-library/jest-dom";
 
-import { render, waitFor } from "@testing-library/react";
-
-import { EditSkills } from "./EditSkills";
-import React from "react";
 import { Skill } from "@ampdresume/theme";
 import { useQuery } from "@tanstack/react-query";
+import { render, waitFor } from "@testing-library/react";
 import { useSession } from "next-auth/react";
+import React from "react";
+
+import { EditSkills } from "./EditSkills";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),

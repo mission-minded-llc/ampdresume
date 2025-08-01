@@ -1,5 +1,10 @@
 # Migration Reset Steps
 
+Sometimes the migration history can be corrupted, in which case it's important to know how to reset
+the migration table from the latest schema.
+
+Follow the steps below to reset the migration history.
+
 1. Point `DATABASE_URL` to the correct env.
 1. Remove migrations table:
    `psql $DATABASE_URL -c 'DROP TABLE IF EXISTS "ampdresume"._prisma_migrations;'`

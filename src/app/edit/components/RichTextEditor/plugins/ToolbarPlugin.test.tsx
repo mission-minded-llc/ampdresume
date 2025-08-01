@@ -1,12 +1,12 @@
 import { AutoLinkNode, LinkNode } from "@lexical/link";
 import { ListItemNode, ListNode } from "@lexical/list";
-import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
-
-import { HeadingNode } from "@lexical/rich-text";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { HeadingNode } from "@lexical/rich-text";
+import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
+import { render } from "@testing-library/react";
+
 import { RICH_TEXT_OPTIONS } from "./constants";
 import { ToolbarPlugin } from "./ToolbarPlugin";
-import { render } from "@testing-library/react";
 
 const initialConfig = {
   namespace: "TestEditor",

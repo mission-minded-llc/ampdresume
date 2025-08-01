@@ -1,4 +1,7 @@
 name: Integration Test
+description:
+  "Run integration tests on the application code. Should only be run when any code changes are
+  proposed to the `main` or `develop` branches. Does not deploy the application."
 
 on:
   pull_request:
@@ -30,7 +33,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_S3_BUCKET_NAME: medialocal.ampdresume.com
   # Used by Sentry for error tracking.
-  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+  NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
   # Specific for the integration test.
   CYPRESS_TEST_EMAIL: test@ampdresume.com
   # For all AI integrations.

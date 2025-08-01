@@ -1,13 +1,14 @@
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
+import dayjs from "dayjs";
 import { useCallback, useEffect, useState } from "react";
 
-import { Company } from "./types";
+import { AccordionSummaryContent } from "../../components/AccordionSummaryContent";
+
 import { CompanyFields } from "./CompanyFields";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { PositionFields } from "./PositionFields";
 import { ProjectField } from "./ProjectField";
-import dayjs from "dayjs";
-import { AccordionSummaryContent } from "../../components/AccordionSummaryContent";
+import { Company } from "./types";
 
 /**
  * The component for the extracted work experience.

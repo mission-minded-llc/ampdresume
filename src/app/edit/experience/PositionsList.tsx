@@ -1,15 +1,16 @@
+import { Company } from "@ampdresume/theme";
 import { Box, Button, Dialog, DialogContent } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-import { Company } from "@ampdresume/theme";
-import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-import { PositionForm } from "./PositionForm";
-import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
-import { PositionItem } from "./PositionItem";
-import { addPosition } from "@/graphql/addPosition";
-import { getPositions } from "@/graphql/getPositions";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
+import { addPosition } from "@/graphql/addPosition";
+import { getPositions } from "@/graphql/getPositions";
+import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
+
+import { PositionForm } from "./PositionForm";
+import { PositionItem } from "./PositionItem";
 
 export const PositionsList = ({ company }: { company: Company }) => {
   const { data: session, status } = useSession();

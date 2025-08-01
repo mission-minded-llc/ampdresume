@@ -1,17 +1,19 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
-
-import { CompanyList } from "./CompanyList";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { MuiLink } from "@/components/MuiLink";
-import React from "react";
-import { SectionTitle } from "../components/SectionTitle";
 import { SkillForUser } from "@ampdresume/theme";
-import { getCompanies } from "@/graphql/getCompanies";
-import { getSkillsForUser } from "@/graphql/getSkillsForUser";
+import { Box, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+import React from "react";
+
+import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { MuiLink } from "@/components/MuiLink";
+import { getCompanies } from "@/graphql/getCompanies";
+import { getSkillsForUser } from "@/graphql/getSkillsForUser";
+
+import { SectionTitle } from "../components/SectionTitle";
+
+import { CompanyList } from "./CompanyList";
 
 export const EditExperienceContext = React.createContext<{
   skillsForUser: SkillForUser[];

@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-
 import { Box } from "@mui/system";
+import { useEffect, useMemo, useState } from "react";
 
 export const AnimatedTextTransition = ({ text = "" }: { text: string }) => {
   const [sentence, setSentence] = useState(text);

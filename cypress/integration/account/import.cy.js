@@ -1,5 +1,8 @@
 import getParsedResumeAiResponse from "./data/getParsedResumeAiResponse.json";
 
+/**
+ * The Import section is a simple section that allows users to import a resume from a PDF file.
+ */
 describe("Import Section", () => {
   before(() => {
     cy.loginWithMagicLink();
@@ -35,9 +38,6 @@ describe("Import Section", () => {
 
     // Check that the import was successful and the page rendered correctly
     // Start by checking that the page has the correct content for Personal Information.
-    cy.contains("Personal Information").should("be.visible");
-
-    // Ensure the Personal Information section is visible and has the correct content
     cy.contains("Personal Information").should("be.visible");
     cy.contains("Name").should("be.visible");
     cy.contains("Email").should("be.visible");

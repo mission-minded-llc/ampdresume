@@ -1,5 +1,6 @@
-import { EditSkills } from "./EditSkills";
 import { titleSuffix } from "@/constants";
+
+import { EditSkills } from "./EditSkills";
 
 export function generateMetadata() {
   return {

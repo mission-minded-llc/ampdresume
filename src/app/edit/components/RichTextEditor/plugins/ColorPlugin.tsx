@@ -1,13 +1,14 @@
-import { $getSelection, $isRangeSelection, SELECTION_CHANGE_COMMAND } from "lexical";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $getSelectionStyleValueForProperty, $patchStyleText } from "@lexical/selection";
+import { mergeRegister } from "@lexical/utils";
+import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
+import TypeSpecimenIcon from "@mui/icons-material/TypeSpecimen";
+import { $getSelection, $isRangeSelection, SELECTION_CHANGE_COMMAND } from "lexical";
 import { useEffect, useState } from "react";
 
 import { ColorPicker } from "../ColorPicker";
-import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
+
 import { LOW_PRIORIRTY } from "./constants";
-import TypeSpecimenIcon from "@mui/icons-material/TypeSpecimen";
-import { mergeRegister } from "@lexical/utils";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 export const ColorPlugin = () => {
   const [editor] = useLexicalComposerContext();
