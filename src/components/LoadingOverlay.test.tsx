@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
+import React from "react";
 
 import { LoadingOverlay } from "@/components/LoadingOverlay";
-import React from "react";
 
 describe("LoadingOverlay", () => {
   test("renders with default props", () => {

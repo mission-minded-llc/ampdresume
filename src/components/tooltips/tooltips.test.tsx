@@ -1,8 +1,9 @@
 import "@testing-library/jest-dom";
 
-import React from "react";
-import { TooltipTotalYears } from "./";
 import { render } from "@testing-library/react";
+import React from "react";
+
+import { TooltipTotalYears } from "./";
 
 describe("TooltipTotalYears", () => {
   it("matches snapshot", () => {

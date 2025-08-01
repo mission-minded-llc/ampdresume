@@ -1,11 +1,13 @@
 "use client";
 
-import * as Sentry from "@sentry/nextjs";
-import { useEffect } from "react";
 import { Box, Typography, Container } from "@mui/material";
-import { ThemeAwareImage } from "./components/ThemeAwareImage";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import * as Sentry from "@sentry/nextjs";
 import Link from "next/link";
+import { useEffect } from "react";
+
+import { ThemeAwareImage } from "./components/ThemeAwareImage";
+
 
 export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
   useEffect(() => {

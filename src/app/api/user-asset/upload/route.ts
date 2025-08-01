@@ -1,9 +1,9 @@
-import { ALLOWED_USER_IMAGE_TYPES, MAX_USER_IMAGE_SIZE } from "@/constants";
 import { NextRequest, NextResponse } from "next/server";
-
-import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import sharp from "sharp";
+
+import { ALLOWED_USER_IMAGE_TYPES, MAX_USER_IMAGE_SIZE } from "@/constants";
+import { authOptions } from "@/lib/auth";
 import { uploadObject } from "@/lib/s3";
 
 export const config = {

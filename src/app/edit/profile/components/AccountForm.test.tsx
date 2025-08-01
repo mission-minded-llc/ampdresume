@@ -1,11 +1,12 @@
 import "@testing-library/jest-dom";
 
 import { fireEvent, render, waitFor } from "@testing-library/react";
+import { SessionProvider } from "next-auth/react";
+import React from "react";
+
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 import { AccountForm } from "./AccountForm";
-import React from "react";
-import { SessionProvider } from "next-auth/react";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 jest.mock("@/hooks/useIsDesktop", () => ({
   useIsDesktop: jest.fn(),

@@ -1,11 +1,12 @@
 import "@testing-library/jest-dom";
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-
-import React from "react";
-import { SocialsForm } from "./SocialsForm";
 import { render } from "@testing-library/react";
 import { useSession } from "next-auth/react";
+import React from "react";
+
+import { SocialsForm } from "./SocialsForm";
+
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),

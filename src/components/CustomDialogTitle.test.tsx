@@ -1,9 +1,9 @@
 import "@testing-library/jest-dom";
 
 import { fireEvent, render } from "@testing-library/react";
+import React from "react";
 
 import { CustomDialogTitle } from "./CustomDialogTitle";
-import React from "react";
 
 describe("CustomDialogTitle", () => {
   it("renders correctly with children", () => {

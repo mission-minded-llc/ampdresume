@@ -1,11 +1,12 @@
 import "@testing-library/jest-dom";
 
-import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { fireEvent, render, waitFor } from "@testing-library/react";
+import { useSession } from "next-auth/react";
+import React from "react";
 
 import { EditSkillsSearch } from "./EditSkillsSearch";
-import React from "react";
-import { useSession } from "next-auth/react";
+
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),

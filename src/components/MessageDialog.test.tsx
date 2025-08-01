@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import React from "react";
 
 import { MessageDialog } from "@/components/MessageDialog";
-import React from "react";
 
 describe("MessageDialog", () => {
   it("renders with default props", async () => {

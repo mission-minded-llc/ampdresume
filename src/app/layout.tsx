@@ -1,7 +1,8 @@
 import { GoogleTagManager } from "@next/third-parties/google";
+import localFont from "next/font/local";
+
 import { Layout } from "./components/Layout";
 import { ThemeAppearanceProvider } from "./components/ThemeContext";
-import localFont from "next/font/local";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

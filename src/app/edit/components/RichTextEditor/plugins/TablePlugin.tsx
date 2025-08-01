@@ -1,11 +1,12 @@
-import { Box, Button, Dialog, DialogContent, IconButton, TextField } from "@mui/material";
-
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $createTableNodeWithDimensions } from "@lexical/table";
 import { $insertNodeToNearestRoot } from "@lexical/utils";
-import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import TableChartIcon from "@mui/icons-material/TableChart";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { Box, Button, Dialog, DialogContent, IconButton, TextField } from "@mui/material";
 import { useState } from "react";
+
+import { CustomDialogTitle } from "@/components/CustomDialogTitle";
+
 
 export const TablePlugin = () => {
   const [editor] = useLexicalComposerContext();

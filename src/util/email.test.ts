@@ -1,6 +1,6 @@
+import { prisma } from "@/lib/prisma";
 import { findUserByNormalizedEmail, normalizeEmail } from "@/util/email";
 
-import { prisma } from "@/lib/prisma";
 
 jest.mock("@/lib/prisma", () => ({
   prisma: {

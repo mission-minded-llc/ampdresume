@@ -1,14 +1,17 @@
-import { Box, Button, Dialog, DialogContent } from "@mui/material";
-import React, { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { Company } from "@ampdresume/theme";
-import { CompanyForm } from "./CompanyForm";
-import { CompanyGeneric } from "@/graphql/getExperience";
-import { CompanyItem } from "./CompanyItem";
+import { Box, Button, Dialog, DialogContent } from "@mui/material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import React, { useState } from "react";
+
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { addCompany } from "@/graphql/addCompany";
-import { useSession } from "next-auth/react";
+import { CompanyGeneric } from "@/graphql/getExperience";
+
+import { CompanyForm } from "./CompanyForm";
+import { CompanyItem } from "./CompanyItem";
+
+
 
 export const CompanyList = ({ companies }: { companies: Company[] }) => {
   const { data: session } = useSession();

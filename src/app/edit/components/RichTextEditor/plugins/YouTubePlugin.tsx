@@ -1,11 +1,12 @@
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Box, Button, Dialog, DialogContent, IconButton, TextField } from "@mui/material";
+import { $insertNodes } from "lexical";
 import React, { useState } from "react";
 
-import { $createYouTubeNode } from "../nodes/YouTubeNode";
-import { $insertNodes } from "lexical";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+
+import { $createYouTubeNode } from "../nodes/YouTubeNode";
 
 export default function YoutubePlugin() {
   const [isOpen, setIsOpen] = useState(false);

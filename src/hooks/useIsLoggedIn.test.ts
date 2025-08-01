@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
-import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 import { useSession } from "next-auth/react";
+
+import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 
 // Mock the useSession hook
 jest.mock("next-auth/react");

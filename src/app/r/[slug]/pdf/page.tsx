@@ -1,9 +1,11 @@
 import { Metadata } from "next";
-import { PDFView } from "./PDFView";
+import { notFound } from "next/navigation";
+
+import { titleSuffix } from "@/constants";
 import { getResume } from "@/graphql/getResume";
 import { getUser } from "@/graphql/getUser";
-import { notFound } from "next/navigation";
-import { titleSuffix } from "@/constants";
+
+import { PDFView } from "./PDFView";
 
 export async function generateMetadata({
   params,

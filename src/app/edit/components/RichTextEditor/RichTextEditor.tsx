@@ -2,32 +2,32 @@
 
 import "./editor.css";
 
+import { css } from "@emotion/css";
 import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
-import { $getRoot, EditorThemeClasses, LexicalEditor } from "lexical";
 import { AutoLinkNode, LinkNode } from "@lexical/link";
-import { AutoLinkPlugin, createLinkMatcherWithRegExp } from "@lexical/react/LexicalAutoLinkPlugin";
-
 import { ListItemNode, ListNode } from "@lexical/list";
-import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
-import { URL_REGEX, validateUrl } from "@/util/url";
-
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import { Box } from "@mui/material";
-import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { EMAIL_REGEX } from "@/util/email";
-import { HeadingNode } from "@lexical/rich-text";
-import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import { ImageNode } from "./nodes/ImageNode";
+import { AutoLinkPlugin, createLinkMatcherWithRegExp } from "@lexical/react/LexicalAutoLinkPlugin";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
+import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import React from "react";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import { ToolbarPlugin } from "./plugins/ToolbarPlugin";
+import { HeadingNode } from "@lexical/rich-text";
+import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
+import { Box } from "@mui/material";
+import { $getRoot, EditorThemeClasses, LexicalEditor } from "lexical";
+import React from "react";
+
+import { EMAIL_REGEX } from "@/util/email";
+import { URL_REGEX, validateUrl } from "@/util/url";
+
+import { ImageNode } from "./nodes/ImageNode";
 import { YouTubeNode } from "./nodes/YouTubeNode";
-import { css } from "@emotion/css";
+import { ToolbarPlugin } from "./plugins/ToolbarPlugin";
 
 export const editorTheme: EditorThemeClasses = {
   text: {

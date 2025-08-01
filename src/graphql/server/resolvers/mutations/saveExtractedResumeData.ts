@@ -1,7 +1,6 @@
 import { ExtractedCompany, ExtractedEducation } from "@/app/edit/import/types";
-
-import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "@/graphql/server/util";
+import { prisma } from "@/lib/prisma";
 
 export const saveExtractedResumeData = async (
   _: string,

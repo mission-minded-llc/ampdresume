@@ -1,11 +1,11 @@
-import { KEY_ENTER_COMMAND, LexicalEditor, createEditor } from "lexical";
 import {
   LexicalComposerContext,
   LexicalComposerContextType,
 } from "@lexical/react/LexicalComposerContext";
+import { renderHook } from "@testing-library/react";
+import { KEY_ENTER_COMMAND, LexicalEditor, createEditor } from "lexical";
 
 import { RichTextAction } from "@/app/edit/components/RichTextEditor/plugins/constants";
-import { renderHook } from "@testing-library/react";
 import { useKeyBindings } from "@/app/edit/components/RichTextEditor/useKeyBindings";
 
 describe("useKeyBindings", () => {

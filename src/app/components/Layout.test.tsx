@@ -1,10 +1,11 @@
 import "@testing-library/jest-dom";
 
-import { Layout } from "./Layout";
-import React from "react";
 import { render } from "@testing-library/react";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import React from "react";
+
+import { Layout } from "./Layout";
 
 jest.mock("next-auth/react");
 jest.mock("next/navigation");

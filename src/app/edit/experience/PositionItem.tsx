@@ -1,18 +1,24 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Divider } from "@mui/material";
-import React, { useRef } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Position } from "@ampdresume/theme";
-import { PositionForm } from "./PositionForm";
-import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
-import { ProjectsList } from "./ProjectsList";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Divider } from "@mui/material";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import React, { useRef } from "react";
+
+
 import { deletePosition } from "@/graphql/deletePosition";
-import { formatLongDate } from "@/lib/format";
+import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { getProjects } from "@/graphql/getProjects";
 import { updatePosition } from "@/graphql/updatePosition";
-import { useSession } from "next-auth/react";
+import { formatLongDate } from "@/lib/format";
+
 import { AccordionSummaryContent } from "../components/AccordionSummaryContent";
+
+import { PositionForm } from "./PositionForm";
+import { ProjectsList } from "./ProjectsList";
+
+
+
 
 export const PositionItem = ({
   position,

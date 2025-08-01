@@ -1,13 +1,15 @@
 import "@testing-library/jest-dom";
 
-import { render, waitFor } from "@testing-library/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { render, waitFor } from "@testing-library/react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
-import Page from "./page";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+
+import Page from "./page";
+
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),

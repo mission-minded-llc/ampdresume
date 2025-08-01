@@ -1,16 +1,19 @@
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Education } from "@ampdresume/theme";
-import { EducationForm } from "./EducationForm";
-import { EducationGeneric } from "@/graphql/getEducation";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import React from "react";
-import { deleteEducation } from "@/graphql/deleteEducation";
-import { formatLongDate } from "@/lib/format";
-import { updateEducation } from "@/graphql/updateEducation";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+import React from "react";
+
+import { deleteEducation } from "@/graphql/deleteEducation";
+import { EducationGeneric } from "@/graphql/getEducation";
+import { updateEducation } from "@/graphql/updateEducation";
+import { formatLongDate } from "@/lib/format";
+
 import { AccordionSummaryContent } from "../components/AccordionSummaryContent";
+
+import { EducationForm } from "./EducationForm";
 
 export const EducationItem = ({
   education,

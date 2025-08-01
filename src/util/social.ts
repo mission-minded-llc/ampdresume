@@ -1,5 +1,6 @@
-import { SOCIAL_MEDIA_PLATFORMS } from "@/constants";
 import { Social } from "@ampdresume/theme";
+
+import { SOCIAL_MEDIA_PLATFORMS } from "@/constants";
 
 export const getSocialMediaPlatformByHostname = (hostname: string) => {
   for (const [key, value] of Object.entries(SOCIAL_MEDIA_PLATFORMS)) {

@@ -1,5 +1,6 @@
-import { ImportPDF } from "./ImportPDF";
 import { titleSuffix } from "@/constants";
+
+import { ImportPDF } from "./ImportPDF";
 
 export function generateMetadata() {
   return {

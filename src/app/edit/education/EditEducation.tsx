@@ -1,14 +1,16 @@
 "use client";
 
 import { Box, Typography } from "@mui/material";
-
-import { EducationList } from "./EducationList";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { MuiLink } from "@/components/MuiLink";
-import { SectionTitle } from "../components/SectionTitle";
-import { getEducation } from "@/graphql/getEducation";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+
+import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { MuiLink } from "@/components/MuiLink";
+import { getEducation } from "@/graphql/getEducation";
+
+import { SectionTitle } from "../components/SectionTitle";
+
+import { EducationList } from "./EducationList";
 
 export const EditEducation = () => {
   const { data: session, status } = useSession();

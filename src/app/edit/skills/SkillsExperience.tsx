@@ -1,9 +1,9 @@
 "use client";
 
 import { SkillForUser, groupSkillsForUserByYearExperience } from "@ampdresume/theme";
-
 import { Box } from "@mui/material";
 import React from "react";
+
 import { SkillItem } from "./SkillItem";
 
 export const SkillsExperience = ({ skills }: { skills: SkillForUser[] }) => {

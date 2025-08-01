@@ -1,10 +1,12 @@
-import { Box, Switch } from "@mui/material";
 
 import { Icon } from "@iconify/react";
-import { ThemeAppearanceContext } from "./ThemeContext";
+import { Box, Switch } from "@mui/material";
 import { useContext } from "react";
+
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useIsResumePage } from "@/hooks/useIsResumePage";
+
+import { ThemeAppearanceContext } from "./ThemeContext";
 
 export const ThemeAppearanceToggle = () => {
   const { themeAppearance, setThemeAppearance } = useContext(ThemeAppearanceContext);

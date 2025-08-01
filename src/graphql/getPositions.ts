@@ -1,8 +1,9 @@
+import { Position } from "@ampdresume/theme";
+import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 
-import { Position } from "@ampdresume/theme";
 import { getApolloClient } from "@/lib/apolloClient";
-import { gql } from "@apollo/client";
+
 
 export const getPositions = async (companyId: string): Promise<Position[] | null> => {
   if (!companyId) return null;

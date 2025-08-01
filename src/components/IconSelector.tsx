@@ -1,9 +1,7 @@
-import * as Sentry from "@sentry/react";
-
-import { Box, CircularProgress, TextField, Portal } from "@mui/material";
-import React, { useEffect, useState, useRef } from "react";
-
 import { Icon } from "@iconify/react";
+import { Box, CircularProgress, TextField, Portal } from "@mui/material";
+import * as Sentry from "@sentry/react";
+import React, { useEffect, useState, useRef } from "react";
 
 interface IconSelectorProps {
   setIcon: (icon: string) => void;

@@ -1,7 +1,7 @@
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Box, IconButton, TextField } from "@mui/material";
 import { memo, useState } from "react";
 
-import DeleteIcon from "@mui/icons-material/Delete";
 import { Project } from "./types";
 
 /**

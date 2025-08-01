@@ -1,11 +1,12 @@
 import { Box, TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
 import { memo, useState } from "react";
 
-import { DatePicker } from "@mui/x-date-pickers";
-import { Position } from "./types";
-import dayjs from "dayjs";
-import { validateAndConvertDate } from "@/lib/dateUtils";
 import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
+import { validateAndConvertDate } from "@/lib/dateUtils";
+
+import { Position } from "./types";
 
 /**
  * The component for the position fields.

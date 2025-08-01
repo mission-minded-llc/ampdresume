@@ -3,11 +3,13 @@
  * @see https://the-guild.dev/graphql/yoga-server/docs/integrations/integration-with-nextjs
  */
 
+import { createYoga } from "graphql-yoga";
+import { NextRequest } from "next/server";
+import { getServerSession } from "next-auth";
+
 import { schema } from "@/graphql/server/schema";
 import { authOptions } from "@/lib/auth";
-import { createYoga } from "graphql-yoga";
-import { getServerSession } from "next-auth";
-import { NextRequest } from "next/server";
+
 
 const yoga = createYoga<NextRequest>({
   schema,

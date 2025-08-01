@@ -1,17 +1,22 @@
 import { Box, Typography } from "@mui/material";
-import { ExtractedDataProvider, useExtractedData } from "./ExtractedDataContext";
-
-import { ExtractedEducation } from "./education/ExtractedEducation";
-import { ExtractedSkills } from "./ExtractedSkills";
-import { ExtractedUser } from "./ExtractedUser";
-import { ExtractedWorkExperience } from "./experience/ExtractedWorkExperience";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { ParsedResumeData } from "./types";
-import { UpdateWithConfirmation } from "../components/UpdateWithConfirmation";
-import { saveExtractedResumeData } from "@/graphql/saveExtractedResumeData";
 import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+
+import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { saveExtractedResumeData } from "@/graphql/saveExtractedResumeData";
+
+import { UpdateWithConfirmation } from "../components/UpdateWithConfirmation";
+
+import { ExtractedEducation } from "./education/ExtractedEducation";
+import { ExtractedWorkExperience } from "./experience/ExtractedWorkExperience";
+import { ExtractedDataProvider, useExtractedData } from "./ExtractedDataContext";
+import { ExtractedSkills } from "./ExtractedSkills";
+import { ExtractedUser } from "./ExtractedUser";
+import { ParsedResumeData } from "./types";
+
+
+
 
 /**
  * The main component for the extracted information page. This component

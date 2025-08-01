@@ -1,9 +1,13 @@
 import { Metadata } from "next";
-import { ResumeView } from "./ResumeView";
-import { getResume } from "@/graphql/getResume";
-import { getSession } from "@/lib/auth";
-import { getUser } from "@/graphql/getUser";
 import { notFound } from "next/navigation";
+
+import { getResume } from "@/graphql/getResume";
+import { getUser } from "@/graphql/getUser";
+import { getSession } from "@/lib/auth";
+
+import { ResumeView } from "./ResumeView";
+
+
 
 export async function generateMetadata({
   params,

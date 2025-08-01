@@ -1,14 +1,16 @@
 import "@testing-library/jest-dom";
 
-import { fireEvent, render, waitFor } from "@testing-library/react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { EducationItem } from "./EducationItem";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import React from "react";
-import { updateEducation } from "@/graphql/updateEducation";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useSession } from "next-auth/react";
+import React from "react";
+
+import { updateEducation } from "@/graphql/updateEducation";
+
+import { EducationItem } from "./EducationItem";
+
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),

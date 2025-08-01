@@ -1,13 +1,13 @@
 "use client";
 
-import * as Sentry from "@sentry/react";
-
+import { Icon } from "@iconify/react";
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
+import * as Sentry from "@sentry/react";
+import { signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { Icon } from "@iconify/react";
-import { signIn } from "next-auth/react";
+
 
 export function SignIn() {
   const [email, setEmail] = useState("");

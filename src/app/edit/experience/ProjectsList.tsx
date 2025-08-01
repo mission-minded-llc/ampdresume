@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Position, Project } from "@ampdresume/theme";
 import {
   DndContext,
   DragEndEvent,
@@ -8,8 +8,6 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { Position, Project } from "@ampdresume/theme";
-import React, { useEffect, useState } from "react";
 import {
   SortableContext,
   arrayMove,
@@ -17,14 +15,17 @@ import {
   useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { CSS } from "@dnd-kit/utilities";
-import { ProjectItem } from "./ProjectItem";
+import { Box, Button, TextField } from "@mui/material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
+
 import { Tooltip } from "@/components/Tooltip";
 import { addProject } from "@/graphql/addProject";
 import { updateProjectSortIndexes } from "@/graphql/updateProjectSortIndexes";
-import { useSession } from "next-auth/react";
+
+import { ProjectItem } from "./ProjectItem";
 
 const MemoizedProjectItem = React.memo(ProjectItem);
 

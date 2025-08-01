@@ -1,13 +1,14 @@
 import "@testing-library/jest-dom";
 
-import { fireEvent, render, waitFor, act } from "@testing-library/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
+import { fireEvent, render, waitFor, act } from "@testing-library/react";
+import { useSession } from "next-auth/react";
 import React from "react";
-import { SkillItemEdit } from "./SkillItemEdit";
+
 import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
 import { updateSkillForUser } from "@/graphql/updateSkillForUser";
-import { useSession } from "next-auth/react";
+
+import { SkillItemEdit } from "./SkillItemEdit";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),

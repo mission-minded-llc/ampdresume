@@ -7,13 +7,14 @@ import {
   Typography,
   TypographyOwnProps,
 } from "@mui/material";
-
-import Image from "next/image";
 import { Metadata } from "next";
+import Image from "next/image";
+
 import { MuiLink } from "@/components/MuiLink";
-import { ThemeAwareImage } from "./components/ThemeAwareImage";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+
+import { ThemeAwareImage } from "./components/ThemeAwareImage";
 
 const title = "Amp'd Resume | Build Your Free Interactive Resume";
 const description =

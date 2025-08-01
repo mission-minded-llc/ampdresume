@@ -1,18 +1,20 @@
 "use client";
 
-import * as Sentry from "@sentry/react";
-
-import { FileUploadEvent, PDFFile, TextItem } from "./types";
-import { useEffect, useState } from "react";
-
-import { ExtractedInformation } from "./ExtractedInformation";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
-import { PageHeading } from "./PageHeading";
 import { Typography } from "@mui/material";
-import { UploadPDF } from "./UploadPDF";
-import { getParsedResumeAi } from "@/graphql/getParsedResumeAi";
+import * as Sentry from "@sentry/react";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+
+import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { getParsedResumeAi } from "@/graphql/getParsedResumeAi";
+
+import { ExtractedInformation } from "./ExtractedInformation";
+import { PageHeading } from "./PageHeading";
+import { FileUploadEvent, PDFFile, TextItem } from "./types";
+import { UploadPDF } from "./UploadPDF";
+
+
 
 let pdfjsLib: typeof import("pdfjs-dist") | null = null;
 

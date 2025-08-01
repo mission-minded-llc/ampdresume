@@ -1,7 +1,7 @@
 "use client";
 
-import * as Sentry from "@sentry/react";
-
+import { Company, Education, SkillForUser, ThemeName, themeDefinitions , Social } from "@ampdresume/theme";
+import { Icon } from "@iconify/react";
 import {
   Box,
   Button,
@@ -11,16 +11,14 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { Company, Education, SkillForUser, ThemeName, themeDefinitions } from "@ampdresume/theme";
+import * as Sentry from "@sentry/react";
+import { Session } from "next-auth";
 import { useContext, useEffect, useState } from "react";
 
-import { Icon } from "@iconify/react";
-import { Session } from "next-auth";
-import { Social } from "@ampdresume/theme";
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
 import { UserWithTheme } from "@/graphql/getResume";
-import { getEnvironmentName } from "@/util/url";
 import { updateUser } from "@/graphql/updateUser";
+import { getEnvironmentName } from "@/util/url";
 
 export const ResumeView = ({
   session,

@@ -1,9 +1,10 @@
 import "@testing-library/jest-dom";
 
-import { NavPrimary } from "./NavPrimary";
-import React from "react";
 import { render } from "@testing-library/react";
 import { useSession } from "next-auth/react";
+import React from "react";
+
+import { NavPrimary } from "./NavPrimary";
 
 jest.mock("next-auth/react", () => ({
   // Preserve other exports

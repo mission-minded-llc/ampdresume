@@ -1,28 +1,29 @@
+import { SkillForUser } from "@ampdresume/theme";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
-  Box,
-  Button,
-  TextField,
-  FormControlLabel,
-  Checkbox,
+  Accordion,
   AccordionDetails,
   AccordionSummary,
-  Accordion,
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  TextField,
   Typography,
 } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import React, { useEffect, useRef, useState } from "react";
 
-import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { IconSelector } from "@/components/IconSelector";
 import { MuiLink } from "@/components/MuiLink";
-import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
-import { SkillForUser } from "@ampdresume/theme";
 import { Tooltip } from "@/components/Tooltip";
 import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
-import { removeLeadingZero } from "@/lib/format";
 import { updateSkillForUser } from "@/graphql/updateSkillForUser";
-import { useSession } from "next-auth/react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { removeLeadingZero } from "@/lib/format";
+
+import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
+import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 
 export const SkillItemEdit = ({
   skill,
@@ -118,7 +119,7 @@ export const SkillItemEdit = ({
 
   useEffect(() => {
     setIconCallback(icon);
-  }, [icon]);
+  }, [icon, setIconCallback]);
 
   return (
     <Box sx={{ mt: 1 }}>

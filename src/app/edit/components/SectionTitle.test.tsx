@@ -1,8 +1,9 @@
 import "@testing-library/jest-dom";
 
-import React from "react";
-import { SectionTitle } from "./SectionTitle";
 import { render } from "@testing-library/react";
+import React from "react";
+
+import { SectionTitle } from "./SectionTitle";
 
 describe("SectionTitle", () => {
   it("renders correctly with the provided title", () => {

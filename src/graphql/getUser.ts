@@ -1,6 +1,7 @@
-import { User } from "@prisma/client";
-import { getApolloClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
+import { User } from "@prisma/client";
+
+import { getApolloClient } from "@/lib/apolloClient";
 
 /**
  * Used to get a user by their slug.

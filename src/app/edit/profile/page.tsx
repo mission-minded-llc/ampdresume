@@ -1,10 +1,12 @@
 import { Box, Typography } from "@mui/material";
 
-import { AccountForm } from "./components/AccountForm";
-import { SectionTitle } from "../components/SectionTitle";
+import { titleSuffix } from "@/constants";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { titleSuffix } from "@/constants";
+
+import { SectionTitle } from "../components/SectionTitle";
+
+import { AccountForm } from "./components/AccountForm";
 
 export function generateMetadata() {
   return {

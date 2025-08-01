@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
+import Image from "next/image";
 
 interface ThemeAwareImageProps {
   lightSrc: string;

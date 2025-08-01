@@ -1,19 +1,22 @@
 "use client";
 
-import { Box, Button, Dialog, TextareaAutosize, Typography } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-
-import { AnimatedTextTransition } from "./AnimatedTextTransition";
 import { Company } from "@ampdresume/theme";
+import { Box, Button, Dialog, TextareaAutosize, Typography } from "@mui/material";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import { useEffect, useRef, useState } from "react";
+
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
-import { SectionTitle } from "../components/SectionTitle";
 import { Tooltip } from "@/components/Tooltip";
 import { getCompaniesAi } from "@/graphql/getCompaniesAi";
 import { getResume } from "@/graphql/getResume";
-import { useSession } from "next-auth/react";
+
+import { SectionTitle } from "../components/SectionTitle";
+
+import { AnimatedTextTransition } from "./AnimatedTextTransition";
+
 
 export const AiAssist = () => {
   const { data: session, status } = useSession();
