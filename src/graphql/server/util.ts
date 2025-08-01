@@ -74,8 +74,6 @@ export const filterUserData = (
       siteDescription: user.siteDescription,
       siteImage: user.siteImage,
       webThemeName: user.webThemeName,
-
-      // TODO: Put displayEmail behind a CAPTCHA check.
       displayEmail: user.displayEmail,
 
       // Explicitly set sensitive fields to null for unauthenticated users

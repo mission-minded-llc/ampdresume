@@ -9,19 +9,8 @@ export const defaultDescription =
 export const MAX_USER_IMAGE_SIZE = 1 * 1024 * 1024;
 export const ALLOWED_USER_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif"];
 
-// Temporary list of allowed users, for alpha testing and access to test subdomains.
-export const ALLOWED_USER_EMAILS = [
-  "test@ampdresume.com",
-  "jesttest@ampdresume.com",
-  "missionmiked@gmail.com",
-  "md@missionmike.dev",
-  "leonardo@petruc.ci",
-  "mattgreaneyonline@gmail.com",
-  "blythenorton@outlook.com",
-  "xocopalan@gmail.com",
-  "acockrell37@gmail.com", // https://www.linkedin.com/in/acockrell37/
-  "shawaz@shawaz.org", // https://www.linkedin.com/in/shawazi/
-  "alex@unjumbl.me", // https://www.linkedin.com/in/alexandru-stan-8b78a723/
-  "timothy.partee@gmail.com", // https://www.linkedin.com/in/timothypartee/
-  "wenyanw@gmail.com", // https://www.linkedin.com/in/wenyan-w-8ab1482/
-];
+// List of allowed users for alpha testing and access to test subdomains.
+// Comma-separated list of email addresses from environment variable.
+export const ALLOWED_USER_EMAILS = process.env.ALLOWED_USER_EMAILS
+  ? process.env.ALLOWED_USER_EMAILS.split(",").map((email) => email.trim())
+  : ["test@ampdresume.com", "jesttest@ampdresume.com"];
