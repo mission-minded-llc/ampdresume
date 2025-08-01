@@ -8,10 +8,6 @@ import { SkillItem } from "../skills/SkillItem";
 
 /**
  * The component for the extracted skills page.
- *
- * @param skills - The skills to display.
- * @param setSkills - The function to set the skills.
- * @returns The extracted skills page.
  */
 const ExtractedSkillsComponent = ({
   skills,

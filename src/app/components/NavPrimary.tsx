@@ -18,6 +18,10 @@ import { getBaseUrl } from "@/util/url";
 
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 
+/**
+ * The primary navigation component for the application. This nav is shared
+ * between the desktop and mobile views.
+ */
 export const NavPrimary = () => {
   const session = useSession();
   const isLoggedIn = useIsLoggedIn();

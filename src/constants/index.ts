@@ -1,8 +1,5 @@
 export { SOCIAL_MEDIA_PLATFORMS } from "./social";
 
-/**
- * Global constant values can live here.
- */
 // Default SEO values.
 export const titleSuffix = "| Amp'd Resume";
 export const defaultDescription =

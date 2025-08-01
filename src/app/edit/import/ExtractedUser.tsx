@@ -5,10 +5,6 @@ import { ParsedResumeData } from "./types";
 
 /**
  * The component for the user field.
- *
- * @param label - The label of the field.
- * @param value - The value of the field.
- * @param onChange - The function to call when the value changes.
  */
 const UserField = memo(
   ({
@@ -52,9 +48,6 @@ UserField.displayName = "UserField";
 
 /**
  * The component for the user information page.
- *
- * @param user - The user to display.
- * @param setUser - The function to set the user.
  */
 export const ExtractedUser = ({
   user,

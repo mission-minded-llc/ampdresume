@@ -3,9 +3,6 @@ import React, { createContext, useContext, useState } from "react";
 
 import { ParsedResumeData } from "./types";
 
-/**
- * The context for the extracted data.
- */
 const ExtractedDataContext = createContext<{
   user: ParsedResumeData["user"] | null;
   skills: Skill[];
