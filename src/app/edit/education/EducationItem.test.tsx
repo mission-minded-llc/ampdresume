@@ -33,7 +33,7 @@ describe("EducationItem", () => {
     userId: "user-id",
     school: "Test University",
     degree: "Bachelor of Science",
-    dateAwarded: "2022-01-01T00:00:00.000Z",
+    dateAwarded: "2022-01-02T00:00:00.000Z",
   };
 
   const mockSession = {

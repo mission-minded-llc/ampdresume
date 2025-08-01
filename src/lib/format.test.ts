@@ -8,7 +8,7 @@ describe("formatDate", () => {
   });
 
   it("should format the timestamp correctly", () => {
-    const timestamp = "1633046400000"; // October 1, 2021
+    const timestamp = "1633132800000"; // October 2, 2021
     expect(formatLongDate(timestamp)).toBe("October 2021");
   });
 
@@ -18,7 +18,7 @@ describe("formatDate", () => {
   });
 
   it("should format a numeric string correctly", () => {
-    const timestamp = "1633046400000"; // October 1, 2021
+    const timestamp = "1633132800000"; // October 2, 2021
     expect(formatLongDate(timestamp)).toBe("October 2021");
   });
 
