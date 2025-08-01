@@ -1,7 +1,12 @@
+/**
+ * Account management endpoint - kept as REST API due to:
+ * - Complex validation logic (slug format, uniqueness checks)
+ * - Session-based user updates (not typical GraphQL pattern)
+ * - Distinct from resume data management (GraphQL's primary focus)
+ */
+
 import * as Sentry from "@sentry/node";
-
 import { NextRequest, NextResponse } from "next/server";
-
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";

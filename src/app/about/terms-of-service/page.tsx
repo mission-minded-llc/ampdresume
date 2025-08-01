@@ -1,7 +1,7 @@
 import { Box, Container, Link, List, ListItem, Typography } from "@mui/material";
 
-import React from "react";
 import { titleSuffix } from "@/constants";
+import React from "react";
 
 export function generateMetadata() {
   return {

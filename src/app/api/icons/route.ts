@@ -1,8 +1,11 @@
+/**
+ * This is the API endpoint for icon search.
+ * It is used to search for icons in the Iconify JSON files.
+ */
+
 import * as Sentry from "@sentry/nextjs";
-
-import { NextRequest, NextResponse } from "next/server";
-
 import { promises as fs } from "fs";
+import { NextRequest, NextResponse } from "next/server";
 import path from "path";
 
 // Types for better type safety

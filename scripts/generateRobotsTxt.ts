@@ -10,9 +10,7 @@
 import * as fs from "fs";
 
 const productionRobotsTxt = `User-agent: *\nAllow: /`;
-
 const testRobotsTxt = `User-agent: *\nDisallow: /`;
-
 const envName = process.env.NEXT_PUBLIC_ENVIRONMENT_NAME;
 
 if (!envName) {

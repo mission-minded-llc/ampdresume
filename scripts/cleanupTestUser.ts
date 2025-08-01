@@ -5,10 +5,10 @@
  * this every time, but rather only when you encounter issues with the test runs due to
  * data issues.
  */
-
-import { exit } from "process";
 /* eslint-disable no-console */
+
 import { prisma } from "@/lib/prisma";
+import { exit } from "process";
 
 // This is the test email used for Cypress.
 const email = "test@ampdresume.com";

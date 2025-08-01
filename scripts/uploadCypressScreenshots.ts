@@ -7,9 +7,9 @@
 import { readFileSync, readdirSync, statSync } from "fs";
 
 import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { join } from "path";
 import { fileURLToPath } from "url";
 import { getS3Client } from "../src/lib/s3";
-import { join } from "path";
 
 function getAllFiles(dirPath: string, arrayOfFiles: string[] = []): string[] {
   const files = readdirSync(dirPath);
