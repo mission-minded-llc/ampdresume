@@ -1,3 +1,10 @@
+/**
+ * This script is used to copy the PDF.js distribution files from the `node_modules/pdfjs-dist`
+ * directory to the `public` directory.
+ *
+ * This is used to ensure that the PDF.js distribution files are available to the application.
+ */
+
 import { copyFileSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";

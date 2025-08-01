@@ -6,6 +6,7 @@
  *
  * This is run as part of the build process via prebuild script in package.json
  */
+
 import * as fs from "fs";
 
 const productionRobotsTxt = `User-agent: *\nAllow: /`;

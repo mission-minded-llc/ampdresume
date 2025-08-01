@@ -1,8 +1,9 @@
-/* eslint-disable no-console */
 /**
- * Helper script to upload cypress screenshots to S3.
+ * Helper script to upload cypress screenshots to S3. Used during
+ * CI/CD to ensure that the screenshots are available for review.
  */
 
+/* eslint-disable no-console */
 import { readFileSync, readdirSync, statSync } from "fs";
 
 import { PutObjectCommand } from "@aws-sdk/client-s3";

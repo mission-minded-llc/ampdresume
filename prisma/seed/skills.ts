@@ -11,6 +11,13 @@ import { prisma } from "@/lib/prisma";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * Seed the database with predefined skills. The skills are defined in the `skills.csv` file.
+ *
+ * The skills are defined as a list of name, icon pairs. The name is the name of the skill and the
+ * icon is the icon to display for the skill. The name value is a unique identifier for the skill,
+ * so there should be no duplicate names.
+ */
 export async function seedSkills() {
   logTitle("Seeding Predefined Skills");
 

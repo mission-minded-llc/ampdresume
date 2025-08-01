@@ -1,3 +1,11 @@
+/**
+ * This script is used to cleanup the test user data from the database. Run this via
+ * `npm run cypress:cleanup` prior to running Cypress tests, to help ensure that there
+ * is no conflicting orphan data left over from previous test runs. There's no need to run
+ * this every time, but rather only when you encounter issues with the test runs due to
+ * data issues.
+ */
+
 import { exit } from "process";
 /* eslint-disable no-console */
 import { prisma } from "@/lib/prisma";
