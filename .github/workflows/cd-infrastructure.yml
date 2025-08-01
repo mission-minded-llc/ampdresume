@@ -1,4 +1,6 @@
 name: "CD: Infrastructure"
+description:
+  "Deploy the infrastructure to AWS. Should only be run when Terraform changes are merged."
 
 on:
   push:

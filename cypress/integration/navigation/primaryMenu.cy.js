@@ -1,3 +1,7 @@
+/**
+ * The primary navigation menu is the top navigation menu that appears on every page. It contains
+ * links to the homepage, login, and logout, etc. Should be tested for all pages.
+ */
 describe("Primary Nav Menu", () => {
   it("should navigate to login page from nav", () => {
     cy.visit(Cypress.env("BASE_URL") || "/");

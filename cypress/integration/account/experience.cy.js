@@ -1,3 +1,7 @@
+/**
+ * The Experience section is a complex section that allows users to add, edit, and delete companies
+ * and positions within those companies. It also allows users to add projects to positions.
+ */
 describe("Experience Section", () => {
   before(() => {
     cy.loginWithMagicLink();
@@ -17,14 +21,12 @@ describe("Experience Section", () => {
 
     const companyName = "Acme Corp";
     const location = "Springfield, USA";
-    const startDate = "Feb 2020";
-    const endDate = "Mar 2021";
 
     cy.get("button").contains("Add New Company").click();
     cy.get(".MuiDialog-container input[name='companyName']").type(companyName);
     cy.get(".MuiDialog-container input[name='location']").type(location);
 
-    // Fix date picker interactions for start date
+    // Select the start date.
     cy.get(".MuiDialog-container input[name='dateStarted']")
       .parent()
       .find('[role="spinbutton"][aria-label="Month"]')
@@ -38,7 +40,7 @@ describe("Experience Section", () => {
       .clear()
       .type("2020");
 
-    // Fix date picker interactions for end date
+    // Select the end date.
     cy.get(".MuiDialog-container input[name='dateEnded']")
       .parent()
       .find('[role="spinbutton"][aria-label="Month"]')
@@ -63,13 +65,11 @@ describe("Experience Section", () => {
 
     const companyName = "Acme Corp";
     const location = "New Place, USA";
-    const startDate = "Feb 2021";
-    const endDate = "Mar 2022";
 
     cy.get("h3").contains(companyName).click();
     cy.get(".Mui-expanded input[name='location']").clear().type(location);
 
-    // Fix date picker interactions for start date
+    // Select the start date.
     cy.get(".Mui-expanded input[name='dateStarted']")
       .parent()
       .find('[role="spinbutton"][aria-label="Month"]')
@@ -83,7 +83,7 @@ describe("Experience Section", () => {
       .clear()
       .type("2021");
 
-    // Fix date picker interactions for end date
+    // Select the end date.
     cy.get(".Mui-expanded input[name='dateEnded']")
       .parent()
       .find('[role="spinbutton"][aria-label="Month"]')
@@ -108,14 +108,12 @@ describe("Experience Section", () => {
 
     const companyName = "Acme Corp";
     const positionTitle = "Software Engineer";
-    const startDate = "Feb 2020";
-    const endDate = "Mar 2021";
 
     cy.get("h3").contains(companyName).click();
     cy.get("button").contains("Add New Position").click();
     cy.get(".position-form input[name='positionTitle']").type(positionTitle);
 
-    // Fix date picker interactions for start date
+    // Select the start date.
     cy.get(".position-form input[name='dateStarted']")
       .parent()
       .find('[role="spinbutton"][aria-label="Month"]')
@@ -129,7 +127,7 @@ describe("Experience Section", () => {
       .clear()
       .type("2020");
 
-    // Fix date picker interactions for end date
+    // Select the end date.
     cy.get(".position-form input[name='dateEnded']")
       .parent()
       .find('[role="spinbutton"][aria-label="Month"]')

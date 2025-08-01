@@ -1,6 +1,6 @@
 Amp’d Community License 1.0
 
-Licensor: Michael Dinerstein, Amp’d Resume, Mission Minded LLC
+Licensor: Michael Dinerstein, Mission Minded LLC, Amp’d Resume
 
 Licensed Work: Amp’d Resume (https://www.ampdresume.com), including source code and all related
 materials.
