@@ -1,5 +1,7 @@
 # Amp'd Resume
 
+[![codecov](https://codecov.io/gh/mission-minded-llc/ampdresume/graph/badge.svg?token=MHMQ1EHZO1)](https://codecov.io/gh/mission-minded-llc/ampdresume)
+
 Amp'd Resume is an interactive resume platform where job-seekers can manager their own public resume
 presence with interactive features to showcase their skills, work history, and education.
 
