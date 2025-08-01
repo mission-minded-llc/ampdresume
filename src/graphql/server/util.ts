@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { GraphQLContext } from "@/types/graphql";
 
-
 /**
  * The purpose of this function is to verify that the session user ID matches the user ID being verified.
  * When a client-side mutation is performed, the session user ID is passed to the server-side mutation.

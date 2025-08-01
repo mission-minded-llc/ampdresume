@@ -17,8 +17,6 @@ import { prisma } from "@/lib/prisma";
 import { findUserByNormalizedEmail } from "@/util/email";
 import { getEnvironmentName } from "@/util/url";
 
-
-
 /**
  * The custom email sending function for the email provider.
  * This email template can be styled to match the app.

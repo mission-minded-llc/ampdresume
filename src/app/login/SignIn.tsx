@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 
-
 export function SignIn() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);

@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 import { LOW_PRIORIRTY, RichTextAction } from "./plugins/constants";
 
-
 export const useKeyBindings = ({ onAction }: { onAction: (id: RichTextAction) => void }) => {
   const [editor] = useLexicalComposerContext();
 

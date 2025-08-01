@@ -8,7 +8,6 @@ import { useEffect } from "react";
 
 import { ThemeAwareImage } from "./components/ThemeAwareImage";
 
-
 export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
   useEffect(() => {
     Sentry.captureException(error);

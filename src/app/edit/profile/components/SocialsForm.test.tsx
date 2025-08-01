@@ -7,7 +7,6 @@ import React from "react";
 
 import { SocialsForm } from "./SocialsForm";
 
-
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
 }));

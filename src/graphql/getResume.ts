@@ -1,5 +1,4 @@
-
-import { Company, Education, ThemeName , Social, User , SkillForUser } from "@ampdresume/theme";
+import { Company, Education, ThemeName, Social, User, SkillForUser } from "@ampdresume/theme";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 

@@ -15,9 +15,6 @@ import { AccordionSummaryContent } from "../components/AccordionSummaryContent";
 import { CompanyForm } from "./CompanyForm";
 import { PositionsList } from "./PositionsList";
 
-
-
-
 export const CompanyItem = ({
   company,
   expanded,

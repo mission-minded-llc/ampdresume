@@ -7,8 +7,6 @@ import { getSession } from "@/lib/auth";
 
 import { ResumeView } from "./ResumeView";
 
-
-
 export async function generateMetadata({
   params,
 }: {

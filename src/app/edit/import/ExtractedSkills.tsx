@@ -4,9 +4,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import { useSession } from "next-auth/react";
 import React, { useCallback } from "react";
 
-
 import { SkillItem } from "../skills/SkillItem";
-
 
 /**
  * The component for the extracted skills page.

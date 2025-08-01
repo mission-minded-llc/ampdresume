@@ -1,7 +1,6 @@
 import { TextField } from "@mui/material";
 import { memo, useState } from "react";
 
-
 export const EducationField = memo(
   ({
     label,

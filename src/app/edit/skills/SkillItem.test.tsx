@@ -8,7 +8,6 @@ import React from "react";
 
 import { SkillItem } from "./SkillItem";
 
-
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
 }));

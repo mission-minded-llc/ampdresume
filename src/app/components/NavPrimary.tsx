@@ -1,4 +1,3 @@
-
 import { Icon } from "@iconify/react";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -18,8 +17,6 @@ import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 import { getBaseUrl } from "@/util/url";
 
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
-
-
 
 export const NavPrimary = () => {
   const session = useSession();

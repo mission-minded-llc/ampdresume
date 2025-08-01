@@ -5,7 +5,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import React, { useRef } from "react";
 
-
 import { deletePosition } from "@/graphql/deletePosition";
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { getProjects } from "@/graphql/getProjects";
@@ -16,9 +15,6 @@ import { AccordionSummaryContent } from "../components/AccordionSummaryContent";
 
 import { PositionForm } from "./PositionForm";
 import { ProjectsList } from "./ProjectsList";
-
-
-
 
 export const PositionItem = ({
   position,

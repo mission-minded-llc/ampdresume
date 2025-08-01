@@ -1,7 +1,6 @@
 import { Box } from "@mui/system";
 import { useEffect, useMemo, useState } from "react";
 
-
 export const AnimatedTextTransition = ({ text = "" }: { text: string }) => {
   const [sentence, setSentence] = useState(text);
   const [prevSentence, setPrevSentence] = useState(text); // Initialize with the same text to avoid initial color differences

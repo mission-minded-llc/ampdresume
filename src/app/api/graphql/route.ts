@@ -10,7 +10,6 @@ import { getServerSession } from "next-auth";
 import { schema } from "@/graphql/server/schema";
 import { authOptions } from "@/lib/auth";
 
-
 const yoga = createYoga<NextRequest>({
   schema,
   graphqlEndpoint: "/api/graphql",

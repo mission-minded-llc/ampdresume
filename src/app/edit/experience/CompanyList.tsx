@@ -11,8 +11,6 @@ import { CompanyGeneric } from "@/graphql/getExperience";
 import { CompanyForm } from "./CompanyForm";
 import { CompanyItem } from "./CompanyItem";
 
-
-
 export const CompanyList = ({ companies }: { companies: Company[] }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();

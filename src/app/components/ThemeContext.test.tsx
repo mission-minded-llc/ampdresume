@@ -5,7 +5,6 @@ import React, { useContext } from "react";
 
 import { ThemeAppearanceContext, ThemeAppearanceProvider } from "./ThemeContext";
 
-
 function TestChild() {
   const { themeAppearance } = useContext(ThemeAppearanceContext);
   return <div data-testid="current-theme">{themeAppearance}</div>;

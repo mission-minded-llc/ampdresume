@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 
 import { parseDateString, validateAndConvertDate } from "./dateUtils";
 
-
 describe("dateUtils", () => {
   describe("validateAndConvertDate", () => {
     it("should convert a valid date to ISO string", () => {

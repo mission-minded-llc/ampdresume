@@ -1,6 +1,5 @@
 "use client";
 
-
 import { SkillForUser } from "@ampdresume/theme";
 import { Box, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";

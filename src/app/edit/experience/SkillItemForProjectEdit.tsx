@@ -12,8 +12,6 @@ import { updateSkillForProject } from "@/graphql/updateSkillForProject";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 
-
-
 export const SkillItemForProjectEdit = ({
   skillForProject,
   project,

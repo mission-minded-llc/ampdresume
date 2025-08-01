@@ -7,7 +7,6 @@ import React from "react";
 
 import { SignIn } from "./SignIn";
 
-
 jest.mock("next-auth/react", () => ({
   signIn: jest.fn(),
 }));

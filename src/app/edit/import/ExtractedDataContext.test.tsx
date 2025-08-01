@@ -4,7 +4,6 @@ import React from "react";
 import { ExtractedDataProvider, useExtractedData } from "./ExtractedDataContext";
 import { ParsedResumeData } from "./types";
 
-
 // Test component that uses the context
 const TestComponent = () => {
   const { user, skills, companies, education, setUser, setSkills, setCompanies, setEducation } =

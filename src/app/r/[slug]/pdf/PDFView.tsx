@@ -1,6 +1,6 @@
 "use client";
 
-import { Company, Education, SkillForUser, themeDefinitions , User } from "@ampdresume/theme";
+import { Company, Education, SkillForUser, themeDefinitions, User } from "@ampdresume/theme";
 import { Box, Button } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 

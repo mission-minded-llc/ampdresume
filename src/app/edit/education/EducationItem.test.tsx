@@ -11,7 +11,6 @@ import { updateEducation } from "@/graphql/updateEducation";
 
 import { EducationItem } from "./EducationItem";
 
-
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
 }));

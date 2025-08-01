@@ -34,7 +34,6 @@ import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 import { EditExperienceContext } from "./EditExperience";
 import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 
-
 // Memoized version of SkillItemForProjectEdit
 const MemoizedSkillItemForProjectEdit = React.memo(SkillItemForProjectEdit);
 

@@ -35,9 +35,6 @@ import { ListPlugin } from "./ListPlugin";
 import { TablePlugin } from "./TablePlugin";
 import YoutubePlugin from "./YouTubePlugin";
 
-
-
-
 const $isCustomImageNode = (node: LexicalNode): boolean => node instanceof ImageNode;
 
 const $isCustomNode = (node: LexicalNode): boolean =>

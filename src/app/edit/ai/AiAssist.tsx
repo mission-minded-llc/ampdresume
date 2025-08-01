@@ -17,7 +17,6 @@ import { SectionTitle } from "../components/SectionTitle";
 
 import { AnimatedTextTransition } from "./AnimatedTextTransition";
 
-
 export const AiAssist = () => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();

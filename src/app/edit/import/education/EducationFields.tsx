@@ -7,7 +7,6 @@ import { EducationDateField } from "./EducationDateField";
 import { EducationField } from "./EducationField";
 import { Education } from "./types";
 
-
 export const EducationFields = memo(
   ({
     education,

@@ -13,7 +13,6 @@ import { deleteUserAsset, undeleteUserAsset } from "@/util/userAsset";
 
 import { $createImageNode, SerializedImageNode } from "../nodes/ImageNode";
 
-
 export const ImagePlugin = () => {
   const [url, setUrl] = useState("");
   const [editor] = useLexicalComposerContext();

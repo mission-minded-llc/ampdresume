@@ -7,7 +7,6 @@ import React, { useState } from "react";
 import { CompanyGeneric } from "@/graphql/getExperience";
 import { formatLongDate, formatShortDate, timestampToDate } from "@/lib/format";
 
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 
 export const CompanyForm = ({

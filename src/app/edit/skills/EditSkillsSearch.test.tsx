@@ -7,7 +7,6 @@ import React from "react";
 
 import { EditSkillsSearch } from "./EditSkillsSearch";
 
-
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
 }));

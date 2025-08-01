@@ -1,4 +1,3 @@
-
 import { Education } from "@ampdresume/theme";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";

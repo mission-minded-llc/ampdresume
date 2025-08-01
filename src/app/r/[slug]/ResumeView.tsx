@@ -1,6 +1,13 @@
 "use client";
 
-import { Company, Education, SkillForUser, ThemeName, themeDefinitions , Social } from "@ampdresume/theme";
+import {
+  Company,
+  Education,
+  SkillForUser,
+  ThemeName,
+  themeDefinitions,
+  Social,
+} from "@ampdresume/theme";
 import { Icon } from "@iconify/react";
 import {
   Box,

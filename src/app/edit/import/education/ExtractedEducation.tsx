@@ -8,7 +8,6 @@ import { AccordionSummaryContent } from "../../components/AccordionSummaryConten
 import { EducationFields } from "./EducationFields";
 import { Education } from "./types";
 
-
 export const ExtractedEducation = ({
   education,
   setEducation,

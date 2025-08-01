@@ -7,7 +7,6 @@ import { useState } from "react";
 
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 
-
 export const TablePlugin = () => {
   const [editor] = useLexicalComposerContext();
 

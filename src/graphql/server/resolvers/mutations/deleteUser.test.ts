@@ -5,7 +5,6 @@ import { prisma } from "@/lib/prisma";
 
 import { deleteUser } from "./deleteUser";
 
-
 // Mock dependencies
 jest.mock("@/lib/prisma", () => ({
   prisma: {

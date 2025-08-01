@@ -12,8 +12,6 @@ import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { PositionForm } from "./PositionForm";
 import { PositionItem } from "./PositionItem";
 
-
-
 export const PositionsList = ({ company }: { company: Company }) => {
   const { data: session, status } = useSession();
 

@@ -8,9 +8,7 @@ import { useEffect, useState } from "react";
 
 import { ColorPicker } from "../ColorPicker";
 
-
 import { LOW_PRIORIRTY } from "./constants";
-
 
 export const ColorPlugin = () => {
   const [editor] = useLexicalComposerContext();

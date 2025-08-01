@@ -8,7 +8,6 @@ import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { NavPrimary } from "./NavPrimary";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 
-
 export const Header = () => {
   const isDesktop = useIsDesktop();
 

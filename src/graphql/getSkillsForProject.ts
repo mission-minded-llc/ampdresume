@@ -4,7 +4,6 @@ import * as Sentry from "@sentry/react";
 
 import { getApolloClient } from "@/lib/apolloClient";
 
-
 export const getSkillsForProject = async (
   projectId: string | undefined,
 ): Promise<SkillForProject[] | undefined> => {

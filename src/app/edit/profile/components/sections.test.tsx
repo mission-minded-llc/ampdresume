@@ -5,7 +5,6 @@ import React from "react";
 
 import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
 
-
 describe("sections components", () => {
   it("renders InputSection correctly", () => {
     const { container } = render(

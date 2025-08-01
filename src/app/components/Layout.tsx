@@ -9,12 +9,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { SessionProvider } from "next-auth/react";
 import React, { useContext } from "react";
 
-
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { TanstackQueryProvider } from "./TanstackContext";
 import { ThemeAppearanceContext } from "./ThemeContext";
-
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { themeAppearance } = useContext(ThemeAppearanceContext);

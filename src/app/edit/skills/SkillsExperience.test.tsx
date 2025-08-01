@@ -6,7 +6,6 @@ import React from "react";
 
 import { SkillsExperience } from "./SkillsExperience";
 
-
 jest.mock("@ampdresume/theme", () => ({
   groupSkillsForUserByYearExperience: jest.fn(),
 }));

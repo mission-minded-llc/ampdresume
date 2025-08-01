@@ -7,7 +7,6 @@ import React from "react";
 
 import { EducationForm } from "./EducationForm";
 
-
 describe("EducationForm", () => {
   const mockEducation = {
     id: "1",

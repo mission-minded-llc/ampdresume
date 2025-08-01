@@ -4,7 +4,6 @@ import * as Sentry from "@sentry/react";
 
 import { getApolloClient } from "@/lib/apolloClient";
 
-
 export type CompanyGeneric = Omit<Company, "id" | "userId">;
 
 export const getExperience = async (userId: string | undefined): Promise<Company[] | undefined> => {

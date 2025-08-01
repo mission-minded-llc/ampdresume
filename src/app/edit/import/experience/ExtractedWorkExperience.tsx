@@ -10,8 +10,6 @@ import { PositionFields } from "./PositionFields";
 import { ProjectField } from "./ProjectField";
 import { Company } from "./types";
 
-
-
 /**
  * The component for the extracted work experience.
  *

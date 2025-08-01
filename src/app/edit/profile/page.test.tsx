@@ -10,7 +10,6 @@ import { prisma } from "@/lib/prisma";
 
 import Page from "./page";
 
-
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
 }));

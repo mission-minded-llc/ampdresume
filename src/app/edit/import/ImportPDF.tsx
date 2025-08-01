@@ -14,8 +14,6 @@ import { PageHeading } from "./PageHeading";
 import { FileUploadEvent, PDFFile, TextItem } from "./types";
 import { UploadPDF } from "./UploadPDF";
 
-
-
 let pdfjsLib: typeof import("pdfjs-dist") | null = null;
 
 export const ImportPDF = () => {

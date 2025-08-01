@@ -4,7 +4,6 @@ import * as Sentry from "@sentry/react";
 
 import { getApolloClient } from "@/lib/apolloClient";
 
-
 /**
  * Used to fetch all skills as part of a search/selector.
  *

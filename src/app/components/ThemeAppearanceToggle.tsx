@@ -1,4 +1,3 @@
-
 import { Icon } from "@iconify/react";
 import { Box, Switch } from "@mui/material";
 import { useContext } from "react";

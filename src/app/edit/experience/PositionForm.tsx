@@ -7,9 +7,7 @@ import React, { useState } from "react";
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { formatLongDate, timestampToDate } from "@/lib/format";
 
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
-
 
 export const PositionForm = ({
   position,

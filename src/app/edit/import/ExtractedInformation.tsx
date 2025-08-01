@@ -15,9 +15,6 @@ import { ExtractedSkills } from "./ExtractedSkills";
 import { ExtractedUser } from "./ExtractedUser";
 import { ParsedResumeData } from "./types";
 
-
-
-
 /**
  * The main component for the extracted information page. This component
  * relies on the wrapping context provider to provide the extracted data,

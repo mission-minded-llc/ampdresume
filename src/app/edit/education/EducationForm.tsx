@@ -7,9 +7,7 @@ import React, { useState } from "react";
 import { EducationGeneric } from "@/graphql/getEducation";
 import { formatLongDate, timestampToDate } from "@/lib/format";
 
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
-
 
 export const EducationForm = ({
   education,

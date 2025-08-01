@@ -14,8 +14,6 @@ import { SectionTitle } from "../components/SectionTitle";
 import { EditSkillsSearch } from "./EditSkillsSearch";
 import { SkillsExperience } from "./SkillsExperience";
 
-
-
 export const EditSkills = () => {
   const { data: session, status } = useSession();
 

@@ -1,6 +1,5 @@
 "use client";
 
-
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import BadgeIcon from "@mui/icons-material/Badge";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -10,7 +9,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import TocIcon from "@mui/icons-material/Toc";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { signOut , useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
 import { LoadingOverlay } from "@/components/LoadingOverlay";

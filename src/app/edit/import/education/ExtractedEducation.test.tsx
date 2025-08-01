@@ -7,7 +7,6 @@ import { ExtractedDataProvider } from "../ExtractedDataContext";
 
 import { ExtractedEducation } from "./ExtractedEducation";
 
-
 // Mock the ExtractedDataContext
 jest.mock("../ExtractedDataContext", () => ({
   ...jest.requireActual("../ExtractedDataContext"),

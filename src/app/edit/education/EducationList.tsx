@@ -11,8 +11,6 @@ import { EducationGeneric } from "@/graphql/getEducation";
 import { EducationForm } from "./EducationForm";
 import { EducationItem } from "./EducationItem";
 
-
-
 export const EducationList = ({ education }: { education: Education[] }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();

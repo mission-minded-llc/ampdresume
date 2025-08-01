@@ -1,6 +1,5 @@
 import "@testing-library/jest-dom";
 
-
 import { Education } from "@ampdresume/theme";
 import { useQuery } from "@tanstack/react-query";
 import { render, waitFor } from "@testing-library/react";

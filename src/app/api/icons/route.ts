@@ -9,7 +9,6 @@ import path from "path";
 import * as Sentry from "@sentry/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
-
 // Types for better type safety
 interface IconifyJSON {
   prefix: string;
