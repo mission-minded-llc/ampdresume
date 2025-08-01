@@ -1,3 +1,7 @@
+/**
+ * This is the GraphQL API endpoint for the application.
+ * @see https://the-guild.dev/graphql/yoga-server/docs/integrations/integration-with-nextjs
+ */
 import { NextRequest } from "next/server";
 import { createYoga } from "graphql-yoga";
 import { schema } from "@/graphql/server/schema";
