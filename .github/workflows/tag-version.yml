@@ -1,6 +1,8 @@
 name: Tag Version
 
 on:
+  pull_request:
+    types: [closed]
   push:
     branches:
       - main
@@ -9,6 +11,8 @@ on:
 jobs:
   tag-version:
     runs-on: ubuntu-latest
+    # Only run on push if it's not from a merged PR (to avoid duplicate runs)
+    if: github.event_name != 'push' || github.event.head_commit.message !~ /^Merge pull request/
     permissions:
       contents: write # This allows pushing tags and commits
     steps:
