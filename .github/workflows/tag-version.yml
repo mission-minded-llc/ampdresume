@@ -17,8 +17,6 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: ./.github/actions/setup-dependencies
-
       - name: Get latest version from tags
         id: current-version
         run: |
