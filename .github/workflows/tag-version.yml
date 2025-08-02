@@ -1,16 +1,13 @@
 name: Tag Version
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - main
   workflow_dispatch:
 
 jobs:
   tag-version:
-    # Only run when PR is merged (not just closed).
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -43,7 +40,7 @@ jobs:
       - name: Calculate new version
         id: new-version
         run: |
-          CURRENT_VERSION="${{ steps.current-version.outputs.current-version }}"
+          CURRENT_VERSION="${{ steps.current-version.outputs.current_version }}"
           # Split version into parts
           IFS='.' read -ra VERSION_PARTS <<< "$CURRENT_VERSION"
           MAJOR="${VERSION_PARTS[0]}"
