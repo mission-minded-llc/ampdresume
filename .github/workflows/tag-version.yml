@@ -1,0 +1,116 @@
+name: Tag Version
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  tag-version:
+    # Only run when PR is merged (not just closed).
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: ./.github/actions/setup-dependencies
+
+      - name: Get latest version from tags
+        id: current-version
+        run: |
+          # Get the latest version tag, defaulting to 0.0.0 if no tags exist
+          LATEST_TAG=$(git tag --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1)
+
+          if [ -z "$LATEST_TAG" ]; then
+            CURRENT_VERSION="0.0.0"
+            echo "No version tags found, starting with 0.0.0"
+          else
+            # Remove the 'v' prefix to get just the version number
+            CURRENT_VERSION="${LATEST_TAG#v}"
+            echo "Latest version tag: $LATEST_TAG"
+          fi
+
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $CURRENT_VERSION"
+
+      - name: Calculate new version
+        id: new-version
+        run: |
+          CURRENT_VERSION="${{ steps.current-version.outputs.current-version }}"
+          # Split version into parts
+          IFS='.' read -ra VERSION_PARTS <<< "$CURRENT_VERSION"
+          MAJOR="${VERSION_PARTS[0]}"
+          MINOR="${VERSION_PARTS[1]}"
+          PATCH="${VERSION_PARTS[2]}"
+
+          # Increment patch version
+          NEW_PATCH=$((PATCH + 1))
+          NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
+
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "New version: $NEW_VERSION"
+
+      - name: Update package.json version
+        run: |
+          NEW_VERSION="${{ steps.new-version.outputs.new-version }}"
+          npm version $NEW_VERSION --no-git-tag-version
+          echo "Updated package.json to version $NEW_VERSION"
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Commit and push changes
+        run: |
+          git add package.json package-lock.json
+          git commit -m "Bump version to ${{ steps.new-version.outputs.new-version }} [skip ci]"
+          git push origin main
+
+      - name: Create and push tag
+        run: |
+          NEW_VERSION="${{ steps.new-version.outputs.new-version }}"
+          git tag -a "v$NEW_VERSION" -m "Release version $NEW_VERSION"
+          git push origin "v$NEW_VERSION"
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.new-version.outputs.new-version }}
+          release_name: Release v${{ steps.new-version.outputs.new-version }}
+          body: |
+            ## What's Changed
+
+            This release includes changes from merged pull request #${{ github.event.pull_request.number }}.
+
+            ### Changes
+            ${{ github.event.pull_request.title }}
+
+            ${{ github.event.pull_request.body }}
+          draft: false
+          prerelease: false
+
+      - name: Merge main back to develop
+        run: |
+          # Check if develop branch exists
+          if git ls-remote --heads origin develop | grep -q develop; then
+            echo "Develop branch exists, merging main into develop..."
+            
+            git fetch origin
+            git checkout develop
+            git merge origin/main --no-edit
+            git push origin develop
+            
+            echo "Successfully merged main into develop"
+          else
+            echo "Develop branch does not exist, skipping merge"
+          fi
