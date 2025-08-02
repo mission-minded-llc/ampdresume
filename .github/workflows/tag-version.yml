@@ -91,12 +91,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ steps.new-version.outputs.new_version }}
-          release_name: Release v${{ steps.new-version.outputs.new_version }}
+          name: Release v${{ steps.new-version.outputs.new_version }}
           body: |
             ## What's Changed
 
@@ -110,6 +108,8 @@ jobs:
             ) || '' }}
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge main back to develop
         run: |
