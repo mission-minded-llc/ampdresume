@@ -107,7 +107,7 @@ jobs:
             Version ${{ steps.new-version.outputs.new_version }} includes the following changes:
 
             ${{ github.event_name == 'pull_request' && format(
-              'This release includes changes from merged pull request #{0}.\n\n### Changes\n{1}\n\n{2}',
+              "This release includes changes from merged pull request #{0}.\n\n### Changes\n{1}\n\n{2}",
               github.event.pull_request.number,
               github.event.pull_request.title,
               github.event.pull_request.body
