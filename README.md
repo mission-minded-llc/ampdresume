@@ -5,6 +5,18 @@
 Amp'd Resume is an interactive resume platform where job-seekers can manager their own public resume
 presence with interactive features to showcase their skills, work history, and education.
 
+## Environments
+
+- **Production**: https://www.ampdresume.com
+- **Staging**: https://test.ampdresume.com
+
+## GraphQL API
+
+[![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://www.postman.com/ampdresume/amp-d-resume/overview)
+
+Explore the GraphQL and REST API endpoints on
+[Postman](https://www.postman.com/ampdresume/amp-d-resume/overview)!
+
 ## The Stack
 
 This product is a Next.js full stack web application, currently hosted on Vercel.
