@@ -54,7 +54,7 @@ jobs:
 
       - name: Update package.json version
         run: |
-          NEW_VERSION="${{ steps.new-version.outputs.new-version }}"
+          NEW_VERSION="${{ steps.new-version.outputs.new_version }}"
           npm version $NEW_VERSION --no-git-tag-version
           echo "Updated package.json to version $NEW_VERSION"
 
@@ -66,12 +66,12 @@ jobs:
       - name: Commit and push changes
         run: |
           git add package.json package-lock.json
-          git commit -m "Bump version to ${{ steps.new-version.outputs.new-version }} [skip ci]"
+          git commit -m "Bump version to ${{ steps.new-version.outputs.new_version }} [skip ci]"
           git push origin main
 
       - name: Create and push tag
         run: |
-          NEW_VERSION="${{ steps.new-version.outputs.new-version }}"
+          NEW_VERSION="${{ steps.new-version.outputs.new_version }}"
           git tag -a "v$NEW_VERSION" -m "Release version $NEW_VERSION"
           git push origin "v$NEW_VERSION"
 
@@ -80,17 +80,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.new-version.outputs.new-version }}
-          release_name: Release v${{ steps.new-version.outputs.new-version }}
+          tag_name: v${{ steps.new-version.outputs.new_version }}
+          release_name: Release v${{ steps.new-version.outputs.new_version }}
           body: |
             ## What's Changed
 
-            This release includes changes from merged pull request #${{ github.event.pull_request.number }}.
+            Version ${{ steps.new-version.outputs.new_version }} includes the following changes:
 
-            ### Changes
-            ${{ github.event.pull_request.title }}
-
-            ${{ github.event.pull_request.body }}
+            ${{ github.event_name == 'pull_request' && format(
+              'This release includes changes from merged pull request #{0}.\n\n### Changes\n{1}\n\n{2}',
+              github.event.pull_request.number,
+              github.event.pull_request.title,
+              github.event.pull_request.body
+            ) || '' }}
           draft: false
           prerelease: false
 
