@@ -20,15 +20,7 @@ const description =
   "Amp'd Resume is a free interactive resume builder. Sign in and start building your resume today!";
 
 const Heading = ({ children }: { children: React.ReactNode }) => (
-  <Typography
-    component="h3"
-    sx={{
-      typography: { sm: "h4", xs: "h6" },
-      textAlign: "center",
-      mt: 10,
-      mb: 5,
-    }}
-  >
+  <Typography component="h3" sx={{ typography: { sm: "h5", xs: "h6" }, pt: 4, fontWeight: "bold" }}>
     {children}
   </Typography>
 );
@@ -115,12 +107,10 @@ export default async function HomePage() {
         <Typography
           component="h2"
           sx={{
-            mt: 4,
-            mb: 4,
-            pt: 2,
-            pb: 2,
             width: "100%",
-            typography: { sm: "h4", xs: "h5" },
+            typography: { sm: "h4", xs: "p" },
+            fontWeight: "bold",
+            letterSpacing: 0,
           }}
         >
           Free Interactive Resume Builder
@@ -139,13 +129,8 @@ export default async function HomePage() {
             </Typography>
           </Box>
         ) : (
-          <Typography
-            sx={{
-              fontSize: "1.25rem",
-              mt: "2rem",
-            }}
-          >
-            <MuiLink href="/login">Sign in</MuiLink> and start building your resume today!
+          <Typography sx={{ mt: 1, fontSize: { xs: "1rem", sm: "1.25rem" } }} variant="body1">
+            <MuiLink href="/login">Sign in</MuiLink> and start building your resume!
           </Typography>
         )}
       </Box>
