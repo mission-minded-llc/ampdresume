@@ -32,7 +32,7 @@ export const ThemeAwareLogo = () => {
           d="M514.572 173.459L587.5 194.276L506.574 233.003L428 202.505L514.572 173.459Z"
           fill={backgroundColor3}
           stroke={borderColor}
-          stroke-width={theme.palette.mode === "light" ? "2" : "0"}
+          strokeWidth={theme.palette.mode === "light" ? "2" : "0"}
         />
         <path
           d="M514.572 165.714L587.5 186.53L506.574 225.258L428 194.76L514.572 165.714Z"
