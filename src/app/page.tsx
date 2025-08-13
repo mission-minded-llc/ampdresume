@@ -10,26 +10,17 @@ import {
 import { Metadata } from "next";
 import Image from "next/image";
 
+import { ThemeAwareLogo } from "@/app/components/ThemeAwareLogo";
 import { MuiLink } from "@/components/MuiLink";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-
-import { ThemeAwareImage } from "./components/ThemeAwareImage";
 
 const title = "Amp'd Resume | Build Your Free Interactive Resume";
 const description =
   "Amp'd Resume is a free interactive resume builder. Sign in and start building your resume today!";
 
 const Heading = ({ children }: { children: React.ReactNode }) => (
-  <Typography
-    component="h3"
-    sx={{
-      typography: { sm: "h4", xs: "h6" },
-      textAlign: "center",
-      mt: 10,
-      mb: 5,
-    }}
-  >
+  <Typography component="h3" sx={{ typography: { sm: "h5", xs: "h6" }, pt: 4, fontWeight: "bold" }}>
     {children}
   </Typography>
 );
@@ -100,20 +91,7 @@ export default async function HomePage() {
           textAlign: "center",
         }}
       >
-        <ThemeAwareImage
-          lightSrc="/images/ampd-resume-logo.png"
-          darkSrc="/images/ampd-resume-dark-mode-logo.png"
-          alt="Amp'd Resume Logo"
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{
-            width: "100%",
-            height: "auto",
-            maxWidth: "700px",
-          }}
-          ariaLabel="Amp'd Resume"
-        />
+        <ThemeAwareLogo />
         <Typography
           component="h1"
           sx={{
@@ -129,12 +107,10 @@ export default async function HomePage() {
         <Typography
           component="h2"
           sx={{
-            mt: 4,
-            mb: 4,
-            pt: 2,
-            pb: 2,
             width: "100%",
-            typography: { sm: "h4", xs: "h5" },
+            typography: { sm: "h4", xs: "body1" },
+            fontWeight: "bold",
+            letterSpacing: 0,
           }}
         >
           Free Interactive Resume Builder
@@ -153,13 +129,8 @@ export default async function HomePage() {
             </Typography>
           </Box>
         ) : (
-          <Typography
-            sx={{
-              fontSize: "1.25rem",
-              mt: "2rem",
-            }}
-          >
-            <MuiLink href="/login">Sign in</MuiLink> and start building your resume today!
+          <Typography sx={{ mt: 1, fontSize: { xs: "1rem", sm: "1.25rem" } }} variant="body1">
+            <MuiLink href="/login">Sign in</MuiLink> and start building your resume!
           </Typography>
         )}
       </Box>

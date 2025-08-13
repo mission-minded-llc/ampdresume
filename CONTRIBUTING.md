@@ -181,18 +181,24 @@ npm run cypress:cleanup
 
 ### Before Submitting
 
-1. **Ensure tests pass**
+1. **Sign the Contributor License Agreement (CLA)**
+   - Before opening a pull request, you must sign our Contributor License Agreement.
+   - Visit [CLA Assistant](https://cla-assistant.io/) to sign the CLA.
+   - The CLA will be automatically checked when you create a pull request.
+   - Your PR cannot be merged until the CLA is signed.
+
+2. **Ensure tests pass**
 
    ```bash
    npm run check  # Runs lint, type check, and tests.
    ```
 
-2. **Update documentation**
+3. **Update documentation**
    - Update README.md if needed.
    - Add JSDoc comments for new functions.
    - Update API documentation if applicable.
 
-3. **Check for security issues**
+4. **Check for security issues**
    - Validate all user inputs.
    - Use existing authentication patterns.
    - Follow security best practices.
