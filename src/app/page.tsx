@@ -108,7 +108,7 @@ export default async function HomePage() {
           component="h2"
           sx={{
             width: "100%",
-            typography: { sm: "h4", xs: "p" },
+            typography: { sm: "h4", xs: "body1" },
             fontWeight: "bold",
             letterSpacing: 0,
           }}
