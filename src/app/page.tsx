@@ -101,8 +101,8 @@ export default async function HomePage() {
         }}
       >
         <ThemeAwareImage
-          lightSrc="/images/ampd-resume-logo.png"
-          darkSrc="/images/ampd-resume-dark-mode-logo.png"
+          lightSrc="/images/ampd-resume-logo.svg"
+          darkSrc="/images/ampd-resume-dark-mode-logo.svg"
           alt="Amp'd Resume Logo"
           width={0}
           height={0}
