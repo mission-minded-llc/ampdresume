@@ -10,11 +10,10 @@ import {
 import { Metadata } from "next";
 import Image from "next/image";
 
+import { ThemeAwareLogo } from "@/app/components/ThemeAwareLogo";
 import { MuiLink } from "@/components/MuiLink";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-
-import { ThemeAwareImage } from "./components/ThemeAwareImage";
 
 const title = "Amp'd Resume | Build Your Free Interactive Resume";
 const description =
@@ -100,20 +99,7 @@ export default async function HomePage() {
           textAlign: "center",
         }}
       >
-        <ThemeAwareImage
-          lightSrc="/images/ampd-resume-logo.svg"
-          darkSrc="/images/ampd-resume-dark-mode-logo.svg"
-          alt="Amp'd Resume Logo"
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{
-            width: "100%",
-            height: "auto",
-            maxWidth: "700px",
-          }}
-          ariaLabel="Amp'd Resume"
-        />
+        <ThemeAwareLogo />
         <Typography
           component="h1"
           sx={{

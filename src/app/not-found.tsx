@@ -3,7 +3,7 @@
 import { Box, Typography, Container } from "@mui/material";
 import Link from "next/link";
 
-import { ThemeAwareImage } from "./components/ThemeAwareImage";
+import { ThemeAwareLogo } from "./components/ThemeAwareLogo";
 
 export default function NotFound() {
   return (
@@ -23,15 +23,7 @@ export default function NotFound() {
           }}
         >
           <Box sx={{ textAlign: "center", mt: 8 }}>
-            <ThemeAwareImage
-              lightSrc="/images/ampd-resume-logo.png"
-              darkSrc="/images/ampd-resume-dark-mode-logo.png"
-              alt="Amp'd Resume Logo"
-              width={300}
-              height={180}
-              style={{ marginBottom: 32, width: "100%", height: "auto" }}
-              ariaLabel="Amp'd Resume"
-            />
+            <ThemeAwareLogo />
             <Typography variant="h5" sx={{ mb: 2, color: "secondary.main" }}>
               Sorry, we couldn&apos;t find that page.
             </Typography>

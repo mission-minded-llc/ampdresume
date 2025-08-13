@@ -6,7 +6,7 @@ import * as Sentry from "@sentry/nextjs";
 import Link from "next/link";
 import { useEffect } from "react";
 
-import { ThemeAwareImage } from "./components/ThemeAwareImage";
+import { ThemeAwareLogo } from "./components/ThemeAwareLogo";
 
 export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
   useEffect(() => {
@@ -37,15 +37,7 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
             }}
           >
             <Box sx={{ textAlign: "center", mt: 8 }}>
-              <ThemeAwareImage
-                lightSrc="/images/ampd-resume-logo.png"
-                darkSrc="/images/ampd-resume-dark-mode-logo.png"
-                alt="Amp'd Resume Logo"
-                width={300}
-                height={180}
-                style={{ marginBottom: 32, width: "100%", height: "auto" }}
-                ariaLabel="Amp'd Resume"
-              />
+              <ThemeAwareLogo />
               <Typography variant="h2" sx={{ fontWeight: 700, mb: 2, color: "white" }}>
                 Yikes.
               </Typography>
