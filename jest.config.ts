@@ -3,7 +3,7 @@ import type { JestConfigWithTsJest } from "ts-jest";
 const jestConfig: JestConfigWithTsJest = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
-  moduleDirectories: ["node_modules", __dirname],
+  moduleDirectories: ["node_modules", "<rootDir>"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
     "\\.(css|less|scss)$": "identity-obj-proxy",
