@@ -18,6 +18,7 @@ export const getCompanies = async (userId: string): Promise<Company[] | null> =>
           companies(userId: $userId, sort: [{ field: "endDate", direction: DESC }]) {
             id
             name
+            description
             location
             startDate
             endDate

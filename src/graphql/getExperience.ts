@@ -19,6 +19,7 @@ export const getExperience = async (userId: string | undefined): Promise<Company
             id
             name
             location
+            description
             startDate
             endDate
             positions {

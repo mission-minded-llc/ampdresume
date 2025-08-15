@@ -240,16 +240,17 @@ model Position {
 /// Company is a company that a user has worked at and is specific to the context within the user's resume.
 /// The company can have multiple positions associated with it.
 model Company {
-  id        String     @id @default(cuid())
-  name      String
-  location  String
-  startDate DateTime
-  endDate   DateTime?
-  userId    String
+  id          String     @id @default(cuid())
+  name        String
+  description String?
+  location    String
+  startDate   DateTime
+  endDate     DateTime?
+  userId      String
   /// The relation to the user that this company is associated with.
-  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   /// The relation to the positions that this company has.
-  positions Position[]
+  positions   Position[]
 
   @@schema("ampdresume")
 }

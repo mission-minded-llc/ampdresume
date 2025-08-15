@@ -2,7 +2,7 @@ import { Company } from "@ampdresume/theme";
 import { Box, Button, FormControl, FormHelperText, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { CompanyGeneric } from "@/graphql/getExperience";
 import { formatLongDate, formatShortDate, timestampToDate } from "@/lib/format";
@@ -24,6 +24,7 @@ export const CompanyForm = ({
   const [companyNameValid, setCompanyNameValid] = useState(true);
 
   const [location, setLocation] = useState(company?.location || "");
+  const [description, setDescription] = useState(company?.description || "");
 
   const [startDate, setStartDate] = useState<Dayjs | null>(
     company?.startDate ? dayjs(timestampToDate(company.startDate)) : null,
@@ -44,6 +45,7 @@ export const CompanyForm = ({
       location,
       startDate: formatShortDate(startDate),
       endDate: formatShortDate(endDate),
+      description,
     });
   };
 
@@ -51,7 +53,8 @@ export const CompanyForm = ({
     companyName !== company?.name ||
     location !== company?.location ||
     formatLongDate(startDate) !== formatLongDate(company?.startDate) ||
-    formatLongDate(endDate) !== formatLongDate(company?.endDate);
+    formatLongDate(endDate) !== formatLongDate(company?.endDate) ||
+    description !== company?.description;
 
   return (
     <>
@@ -129,6 +132,16 @@ export const CompanyForm = ({
           <FormHelperText>Leave blank if current.</FormHelperText>
         </FormControl>
       </Box>
+      <TextField
+        fullWidth
+        variant="outlined"
+        multiline
+        rows={4}
+        label="Description"
+        name="description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
       <Box
         sx={{
           display: "flex",

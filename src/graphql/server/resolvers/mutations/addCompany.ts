@@ -9,7 +9,15 @@ export const addCompany = async (
     location,
     startDate,
     endDate,
-  }: { userId: string; name: string; location: string; startDate: string; endDate: string },
+    description,
+  }: {
+    userId: string;
+    name: string;
+    location: string;
+    startDate: string;
+    endDate: string;
+    description: string;
+  },
 ) => {
   await verifySessionOwnership(userId);
 
@@ -24,6 +32,7 @@ export const addCompany = async (
       location,
       startDate: startDateTimestamp,
       endDate: endDateTimestamp,
+      description,
     },
   });
 

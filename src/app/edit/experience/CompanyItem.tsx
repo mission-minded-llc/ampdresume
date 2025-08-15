@@ -41,12 +41,14 @@ export const CompanyItem = ({
     mutationFn: async ({
       id,
       name,
+      description,
       location,
       startDate,
       endDate,
     }: {
       id: string;
       name: string;
+      description: string;
       location: string;
       startDate: string;
       endDate: string;
@@ -57,6 +59,7 @@ export const CompanyItem = ({
         id,
         userId: session.user.id,
         name,
+        description,
         location,
         startDate,
         endDate,
@@ -79,6 +82,7 @@ export const CompanyItem = ({
 
   const handleEditCompany = (companyGeneric: CompanyGeneric) => {
     company.name = companyGeneric.name;
+    company.description = companyGeneric.description;
     company.location = companyGeneric.location;
     company.startDate = companyGeneric.startDate;
     company.endDate = companyGeneric.endDate;
@@ -86,6 +90,7 @@ export const CompanyItem = ({
     saveMutation.mutate({
       id: company.id,
       name: company.name,
+      description: company.description || "",
       location: company.location,
       startDate: company.startDate,
       endDate: company.endDate || "",
