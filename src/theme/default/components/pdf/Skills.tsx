@@ -7,6 +7,8 @@ import { fontSize, Section, SectionTitle } from "./styled";
 export const Skills = ({ skillsForUser }: { skillsForUser: SkillForUser[] }) => {
   const skillsForUserBySkill = groupSkillsForUserByYearExperience(skillsForUser);
 
+  if (skillsForUserBySkill.length === 0) return null;
+
   return (
     <Section>
       <SectionTitle>Skills</SectionTitle>

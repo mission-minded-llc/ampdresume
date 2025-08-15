@@ -14,6 +14,8 @@ export const Education = ({ education }: { education: EducationType[] }) => {
       : [edu];
   });
 
+  if (Object.keys(educationGroupedBySchool).length === 0) return null;
+
   return (
     <Section>
       <SectionTitle>Education</SectionTitle>
