@@ -9,7 +9,7 @@ export const updateUser = async (
   }: {
     userId: string;
     webThemeName?: string;
-  }
+  },
 ) => {
   await verifySessionOwnership(userId);
 

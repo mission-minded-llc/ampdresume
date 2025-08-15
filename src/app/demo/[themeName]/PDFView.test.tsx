@@ -31,9 +31,7 @@ describe("PDFView", () => {
   it("renders the default theme template", () => {
     render(<PDFView themeName="default" />);
     // Check for some content from the default theme template
-    expect(
-      screen.getByText(themeDefaultSampleData.data.resume.user.name!)
-    ).toBeInTheDocument();
+    expect(screen.getByText(themeDefaultSampleData.data.resume.user.name!)).toBeInTheDocument();
   });
 
   it("generates PDF when clicking the Generate PDF button", () => {
@@ -49,8 +47,6 @@ describe("PDFView", () => {
   it("handles different theme names correctly", () => {
     render(<PDFView themeName="default" />);
     // Even with a non-default theme name, it should fall back to default theme
-    expect(
-      screen.getByText(themeDefaultSampleData.data.resume.user.name!)
-    ).toBeInTheDocument();
+    expect(screen.getByText(themeDefaultSampleData.data.resume.user.name!)).toBeInTheDocument();
   });
 });

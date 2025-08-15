@@ -5,12 +5,7 @@ import {
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
-import {
-  flagForDeletion,
-  objectExists,
-  revertFlagForDeletion,
-  uploadObject,
-} from "./s3";
+import { flagForDeletion, objectExists, revertFlagForDeletion, uploadObject } from "./s3";
 
 jest.mock("@aws-sdk/client-s3", () => {
   return {
@@ -46,9 +41,7 @@ describe("s3 utility functions", () => {
 
     it("returns false when the object is not found", async () => {
       // Simulate a NotFound error
-      sendMock.mockRejectedValueOnce(
-        new NotFound({ message: "Object not found", $metadata: {} })
-      );
+      sendMock.mockRejectedValueOnce(new NotFound({ message: "Object not found", $metadata: {} }));
       const exists = await objectExists("missing-key");
       expect(exists).toBe(false);
     });

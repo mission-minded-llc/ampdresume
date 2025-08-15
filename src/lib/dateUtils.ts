@@ -21,9 +21,7 @@ export const validateAndConvertDate = (date: Dayjs | null): string => {
  * @param dateString The date string to convert
  * @returns A Dayjs object if the date is valid, null otherwise
  */
-export const parseDateString = (
-  dateString: string | null | undefined
-): Dayjs | null => {
+export const parseDateString = (dateString: string | null | undefined): Dayjs | null => {
   if (!dateString) return null;
 
   // Try parsing with different formats

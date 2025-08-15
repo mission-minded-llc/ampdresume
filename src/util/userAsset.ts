@@ -11,9 +11,7 @@ export type UploadUserAssetResponse = {
  * @param {File} file - The file to upload.
  * @returns {Promise<{ status: number; src?: string; error?: string }>}
  */
-export const uploadUserAsset = async (
-  file: File
-): Promise<UploadUserAssetResponse> => {
+export const uploadUserAsset = async (file: File): Promise<UploadUserAssetResponse> => {
   const formData = new FormData();
   formData.append("file", file);
 
@@ -38,10 +36,7 @@ export const uploadUserAsset = async (
  * @param src the S3 URL of the image to manage
  * @param action the action to perform ('delete' or 'undelete')
  */
-export const manageUserAsset = async (
-  src: string,
-  action: "delete" | "undelete"
-) => {
+export const manageUserAsset = async (src: string, action: "delete" | "undelete") => {
   try {
     const response = await fetch(`/api/user-asset/${action}`, {
       method: "POST",
@@ -61,5 +56,4 @@ export const manageUserAsset = async (
 };
 
 export const deleteUserAsset = (src: string) => manageUserAsset(src, "delete");
-export const undeleteUserAsset = (src: string) =>
-  manageUserAsset(src, "undelete");
+export const undeleteUserAsset = (src: string) => manageUserAsset(src, "undelete");

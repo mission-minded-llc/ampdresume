@@ -6,12 +6,7 @@ export const mutationDefs = gql`
     updateUser(userId: ID!, webThemeName: String): User!
     deleteUser(userId: ID!): Boolean!
     addSkill(userId: ID!, name: String!, icon: String!): Skill!
-    addSkillForUser(
-      userId: ID!
-      skillId: ID!
-      yearStarted: Int
-      totalYears: Int
-    ): SkillForUser!
+    addSkillForUser(userId: ID!, skillId: ID!, yearStarted: Int, totalYears: Int): SkillForUser!
     updateSkillForUser(
       id: ID!
       userId: ID!
@@ -74,37 +69,19 @@ export const mutationDefs = gql`
 
     # Project specific mutations.
     addProject(userId: ID!, positionId: ID!, name: String!): Project!
-    updateProject(
-      userId: ID!
-      id: ID!
-      projectName: String!
-      description: String
-    ): Project!
+    updateProject(userId: ID!, id: ID!, projectName: String!, description: String): Project!
     deleteProject(userId: ID!, id: ID!): Project!
     updateProjectSortIndexes(
       userId: ID!
       positionId: ID!
       projectSortIndexes: [ProjectSortIndexInput!]!
     ): Boolean!
-    addSkillForProject(
-      userId: ID!
-      projectId: ID!
-      skillForUserId: ID!
-    ): SkillForProject!
-    updateSkillForProject(
-      userId: ID!
-      id: ID!
-      description: String
-    ): SkillForProject!
+    addSkillForProject(userId: ID!, projectId: ID!, skillForUserId: ID!): SkillForProject!
+    updateSkillForProject(userId: ID!, id: ID!, description: String): SkillForProject!
     deleteSkillForProject(userId: ID!, id: ID!): SkillForProject!
 
     # Education specific mutations.
-    addEducation(
-      userId: ID!
-      school: String!
-      degree: String!
-      dateAwarded: String!
-    ): Education!
+    addEducation(userId: ID!, school: String!, degree: String!, dateAwarded: String!): Education!
     updateEducation(
       id: ID!
       userId: ID!

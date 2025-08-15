@@ -24,13 +24,8 @@ export const getSocialMediaPlatformByPlatformName = (platform: string) => {
 export const generateSocialUrl = (social: Social) => {
   if (social.platform === "website") return social.ref;
 
-  const socialPlatformdetails = getSocialMediaPlatformByPlatformName(
-    social.platform
-  );
-  const socialUrl = socialPlatformdetails.urlFormat?.replace(
-    "{username}",
-    social.ref
-  );
+  const socialPlatformdetails = getSocialMediaPlatformByPlatformName(social.platform);
+  const socialUrl = socialPlatformdetails.urlFormat?.replace("{username}", social.ref);
 
   if (!socialUrl) return social.ref;
 

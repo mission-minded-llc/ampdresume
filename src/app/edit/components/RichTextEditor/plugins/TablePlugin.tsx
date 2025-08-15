@@ -3,14 +3,7 @@ import { $createTableNodeWithDimensions } from "@lexical/table";
 import { $insertNodeToNearestRoot } from "@lexical/utils";
 import { useState } from "react";
 import TableChartIcon from "@mui/icons-material/TableChart";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogContent,
-  IconButton,
-  TextField,
-} from "@mui/material";
+import { Box, Button, Dialog, DialogContent, IconButton, TextField } from "@mui/material";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 
 export const TablePlugin = () => {
@@ -36,9 +29,7 @@ export const TablePlugin = () => {
   return (
     <>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
-          Add Table
-        </CustomDialogTitle>
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Add Table</CustomDialogTitle>
         <DialogContent
           sx={{
             width: "400px",

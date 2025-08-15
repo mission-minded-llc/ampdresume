@@ -23,9 +23,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        {process.env?.GTM_ID ? (
-          <GoogleTagManager gtmId={process.env.GTM_ID} />
-        ) : null}
+        {process.env?.GTM_ID ? <GoogleTagManager gtmId={process.env.GTM_ID} /> : null}
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="icon" href="/images/ampd-resume-favicon.png" />
       </head>

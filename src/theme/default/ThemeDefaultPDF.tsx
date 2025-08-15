@@ -1,12 +1,7 @@
 "use client";
 
 import { Box } from "@mui/material";
-import {
-  Company,
-  Education as EducationType,
-  SkillForUser,
-  User,
-} from "@/types";
+import { Company, Education as EducationType, SkillForUser, User } from "@/types";
 import { Education } from "./components/pdf/Education";
 import { Header } from "./components/pdf/Header";
 import { Skills } from "./components/pdf/Skills";
@@ -51,10 +46,7 @@ export const ThemeDefaultPDF = ({
       >
         <Header user={user} />
         <Skills skillsForUser={skillsForUser} />
-        <WorkExperience
-          companies={companies}
-          showSkills={options.showSkillsInWorkExperience}
-        />
+        <WorkExperience companies={companies} showSkills={options.showSkillsInWorkExperience} />
         <Education education={education} />
       </Box>
     </MUIThemeProvider>

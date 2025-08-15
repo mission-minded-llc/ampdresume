@@ -23,12 +23,7 @@ export const LoadingOverlay = ({
       open={open}
       data-testid="LoadingOverlay"
     >
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-      >
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
         <CircularProgress color="inherit" />
         <Typography
           variant="body1"

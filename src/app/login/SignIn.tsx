@@ -25,20 +25,16 @@ export function SignIn() {
 
     e.preventDefault();
 
-    await signIn("email", { email, callbackUrl: "/edit/profile" }).catch(
-      (error) => {
-        Sentry.captureException(error);
-        setError(error.message);
-        setIsSubmitting(false);
-      }
-    );
+    await signIn("email", { email, callbackUrl: "/edit/profile" }).catch((error) => {
+      Sentry.captureException(error);
+      setError(error.message);
+      setIsSubmitting(false);
+    });
   };
 
   return (
     <>
-      {isSubmitting ? (
-        <LoadingOverlay open={isSubmitting} message="Signing in..." />
-      ) : null}
+      {isSubmitting ? <LoadingOverlay open={isSubmitting} message="Signing in..." /> : null}
       <Box
         sx={{
           display: "flex",
@@ -82,9 +78,7 @@ export function SignIn() {
             variant="contained"
             color="primary"
             fullWidth
-            disabled={
-              !email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)
-            }
+            disabled={!email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)}
           >
             Sign in with Email
           </Button>
@@ -118,12 +112,7 @@ export function SignIn() {
             fullWidth
             onClick={() => signIn("linkedin", { callbackUrl: "/edit/profile" })}
           >
-            <Icon
-              icon="devicon:linkedin"
-              width={24}
-              height={24}
-              style={{ marginRight: 8 }}
-            />
+            <Icon icon="devicon:linkedin" width={24} height={24} style={{ marginRight: 8 }} />
             LinkedIn
           </Button>
         </Box>

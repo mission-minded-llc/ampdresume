@@ -1,10 +1,7 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
 
-export const deleteCompany = async (
-  _: string,
-  { userId, id }: { userId: string; id: string }
-) => {
+export const deleteCompany = async (_: string, { userId, id }: { userId: string; id: string }) => {
   await verifySessionOwnership(userId);
 
   const existingCompany = await prisma.company.findFirst({

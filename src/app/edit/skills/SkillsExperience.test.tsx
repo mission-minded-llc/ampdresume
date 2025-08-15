@@ -9,9 +9,7 @@ jest.mock("@/util/structure", () => ({
 }));
 
 jest.mock("./SkillItem", () => ({
-  SkillItem: ({ skill }: { skill: SkillForUser }) => (
-    <div>{skill.skill.name}</div>
-  ),
+  SkillItem: ({ skill }: { skill: SkillForUser }) => <div>{skill.skill.name}</div>,
 }));
 
 describe("SkillsExperience", () => {
@@ -48,9 +46,7 @@ describe("SkillsExperience", () => {
       ["4", [mockSkills[1]]],
     ]);
 
-    const { container, getByText } = render(
-      <SkillsExperience skills={mockSkills} />
-    );
+    const { container, getByText } = render(<SkillsExperience skills={mockSkills} />);
 
     expect(getByText("6 years:")).toBeInTheDocument();
     expect(getByText("JavaScript")).toBeInTheDocument();

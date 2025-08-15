@@ -21,11 +21,7 @@ export const SkillsContextProvider = ({
 }: {
   skillType: SkillType;
   children: React.ReactNode;
-}) => (
-  <SkillsContext.Provider value={{ skillType }}>
-    {children}
-  </SkillsContext.Provider>
-);
+}) => <SkillsContext.Provider value={{ skillType }}>{children}</SkillsContext.Provider>;
 
 export const Skills = ({
   skillType,
@@ -34,9 +30,7 @@ export const Skills = ({
   skillType: SkillType;
   skillsForUser: SkillForUser[];
 }) => {
-  const [skillsLayout, setSkillsLayout] = useState<"experience" | "cloud">(
-    "experience"
-  );
+  const [skillsLayout, setSkillsLayout] = useState<"experience" | "cloud">("experience");
 
   const toggleSkillsLayout = (e: MouseEvent<HTMLButtonElement>) => {
     const target = e.target;

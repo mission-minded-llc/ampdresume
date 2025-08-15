@@ -21,7 +21,7 @@ export const EducationForm = ({
   const [school, setSchool] = useState(education?.school || "");
   const [degree, setDegree] = useState(education?.degree || "");
   const [dateAwarded, setDateAwarded] = useState<Dayjs | null>(
-    dayjs(timestampToDate(education?.dateAwarded))
+    dayjs(timestampToDate(education?.dateAwarded)),
   );
 
   const saveHandler = () => {
@@ -106,12 +106,7 @@ export const EducationForm = ({
           variant="outlined"
           color="primary"
           onClick={saveHandler}
-          disabled={
-            !isChanged ||
-            !school.trim() ||
-            !degree.trim() ||
-            !dateAwarded?.isValid()
-          }
+          disabled={!isChanged || !school.trim() || !degree.trim() || !dateAwarded?.isValid()}
         >
           Save Education
         </Button>

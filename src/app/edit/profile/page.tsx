@@ -14,11 +14,7 @@ export function generateMetadata() {
 const Page = async () => {
   const session = await getSession();
   if (!session?.user?.id) {
-    return (
-      <Typography component="p">
-        You need to be signed in to access this page.
-      </Typography>
-    );
+    return <Typography component="p">You need to be signed in to access this page.</Typography>;
   }
 
   const user = await prisma.user.findUnique({

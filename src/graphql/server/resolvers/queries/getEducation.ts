@@ -8,7 +8,7 @@ export const getEducation = async (
   }: {
     userId: string;
     sort: Array<{ field: string; direction: "ASC" | "DESC" }>;
-  }
+  },
 ) => {
   // Map the sort array into Prisma-compatible orderBy
   const orderBy =

@@ -11,13 +11,12 @@ describe("ProjectAccordion", () => {
     return render(
       <ThemeProvider theme={theme}>
         <ProjectAccordion project={project} />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 
   // Using real sample data from the project
-  const sampleProject =
-    sampleData.data.resume.companies[0].positions[0].projects[0];
+  const sampleProject = sampleData.data.resume.companies[0].positions[0].projects[0];
 
   const getAccordionButton = () => {
     return screen.getByRole("button", {
@@ -29,8 +28,8 @@ describe("ProjectAccordion", () => {
     renderWithTheme(sampleProject);
     expect(
       screen.getByText(
-        "Transformed monolithic architecture into scalable microservices for business-critical applications"
-      )
+        "Transformed monolithic architecture into scalable microservices for business-critical applications",
+      ),
     ).toBeInTheDocument();
   });
 
@@ -44,8 +43,8 @@ describe("ProjectAccordion", () => {
     // Check if the description is now visible
     expect(
       screen.getByText(
-        /Spearheaded a transformative initiative to decompose a monolithic application into a robust microservices architecture/
-      )
+        /Spearheaded a transformative initiative to decompose a monolithic application into a robust microservices architecture/,
+      ),
     ).toBeInTheDocument();
   });
 
@@ -71,8 +70,8 @@ describe("ProjectAccordion", () => {
     // Description should still be visible
     expect(
       screen.getByText(
-        /Spearheaded a transformative initiative to decompose a monolithic application into a robust microservices architecture/
-      )
+        /Spearheaded a transformative initiative to decompose a monolithic application into a robust microservices architecture/,
+      ),
     ).toBeInTheDocument();
   });
 

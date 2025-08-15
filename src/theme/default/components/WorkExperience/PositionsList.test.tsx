@@ -57,9 +57,7 @@ describe("PositionsList", () => {
       positions: undefined,
     };
 
-    const { container } = render(
-      <PositionsList company={companyWithoutPositions} />
-    );
+    const { container } = render(<PositionsList company={companyWithoutPositions} />);
     expect(container.firstChild).toBeNull();
   });
 });

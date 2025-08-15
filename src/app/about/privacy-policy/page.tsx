@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Container,
-  Link,
-  List,
-  ListItem,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Link, List, ListItem, Typography } from "@mui/material";
 import { titleSuffix } from "@/constants";
 
 export function generateMetadata() {
@@ -29,11 +22,9 @@ export default function PrivacyPolicy() {
       </Typography>
 
       <Typography variant="body1">
-        Welcome to <strong>Amp&apos;d Resume</strong>! We are committed to
-        protecting your privacy and ensuring the security of your personal
-        information. By using our services and providing your personal
-        information, you agree to the practices described in this Privacy
-        Policy.
+        Welcome to <strong>Amp&apos;d Resume</strong>! We are committed to protecting your privacy
+        and ensuring the security of your personal information. By using our services and providing
+        your personal information, you agree to the practices described in this Privacy Policy.
       </Typography>
 
       <Box my={3}>
@@ -44,18 +35,17 @@ export default function PrivacyPolicy() {
           <ListItem sx={{ display: "block" }}>
             <Subtitle>Personal Information</Subtitle>
             <Typography variant="body2">
-              When you sign up on <strong>Amp&apos;d Resume</strong>, we collect
-              your email address at signup. You can optionally add your
-              location, skills, work history, education history, projects,
-              certifications and references.
+              When you sign up on <strong>Amp&apos;d Resume</strong>, we collect your email address
+              at signup. You can optionally add your location, skills, work history, education
+              history, projects, certifications and references.
             </Typography>
           </ListItem>
           <ListItem sx={{ display: "block" }}>
             <Subtitle>Usage Data</Subtitle>
             <Typography variant="body2">
-              We may also collect information about how you interact with our
-              website, such as IP addresses, browser types, and pages visited.
-              We use Google Analytics to collect this information.
+              We may also collect information about how you interact with our website, such as IP
+              addresses, browser types, and pages visited. We use Google Analytics to collect this
+              information.
             </Typography>
           </ListItem>
         </List>
@@ -69,23 +59,21 @@ export default function PrivacyPolicy() {
           <ListItem sx={{ display: "block" }}>
             <Subtitle>Service Provision</Subtitle>
             <Typography variant="body2">
-              We use your information to provide you with the services you
-              requested, including maintaining your resume information on our
-              platform.
+              We use your information to provide you with the services you requested, including
+              maintaining your resume information on our platform.
             </Typography>
           </ListItem>
           <ListItem sx={{ display: "block" }}>
             <Subtitle>Communication</Subtitle>
             <Typography variant="body2">
-              We may use your email address to communicate with you about our
-              services, updates, and relevant information.
+              We may use your email address to communicate with you about our services, updates, and
+              relevant information.
             </Typography>
           </ListItem>
           <ListItem sx={{ display: "block" }}>
             <Subtitle>Legal Compliance</Subtitle>
             <Typography variant="body2">
-              We may disclose your information as required by law or to protect
-              our rights.
+              We may disclose your information as required by law or to protect our rights.
             </Typography>
           </ListItem>
         </List>
@@ -96,10 +84,9 @@ export default function PrivacyPolicy() {
           Data Security
         </Typography>
         <Typography variant="body1">
-          We implement reasonable security measures to protect your personal
-          information from unauthorized access and use. However, please note
-          that no method of transmission over the internet or electronic storage
-          is 100% secure.
+          We implement reasonable security measures to protect your personal information from
+          unauthorized access and use. However, please note that no method of transmission over the
+          internet or electronic storage is 100% secure.
         </Typography>
       </Box>
 
@@ -108,16 +95,15 @@ export default function PrivacyPolicy() {
           Data Retention
         </Typography>
         <Typography variant="body1">
-          We retain your personal information for as long as necessary to
-          fulfill the purposes outlined in this Privacy Policy, unless a longer
-          retention period is required or permitted by law.
+          We retain your personal information for as long as necessary to fulfill the purposes
+          outlined in this Privacy Policy, unless a longer retention period is required or permitted
+          by law.
           <br />
           &nbsp;
           <br />
-          You can request to have your account and all information permanently
-          deleted by emailing us at mail@ampdresume.com from the email address
-          your account is associated with. Alternatively, you can delete your
-          own account from the account settings page.
+          You can request to have your account and all information permanently deleted by emailing
+          us at mail@ampdresume.com from the email address your account is associated with.
+          Alternatively, you can delete your own account from the account settings page.
         </Typography>
       </Box>
 
@@ -126,9 +112,8 @@ export default function PrivacyPolicy() {
           Third-Party Disclosure
         </Typography>
         <Typography variant="body1">
-          We do not sell, trade, or otherwise transfer your personal information
-          to outside parties except as outlined in this Privacy Policy or with
-          your consent.
+          We do not sell, trade, or otherwise transfer your personal information to outside parties
+          except as outlined in this Privacy Policy or with your consent.
         </Typography>
       </Box>
 
@@ -137,15 +122,14 @@ export default function PrivacyPolicy() {
           Future Use
         </Typography>
         <Typography variant="body1">
-          In the future, we may sell <strong>access</strong> to aggregated user
-          information to recruiting companies and other entities for analytics
-          and recruitment purposes. You will be notified if this becomes the
-          case, and given the option to opt out by deleting your data.
+          In the future, we may sell <strong>access</strong> to aggregated user information to
+          recruiting companies and other entities for analytics and recruitment purposes. You will
+          be notified if this becomes the case, and given the option to opt out by deleting your
+          data.
           <br />
           &nbsp;
           <br />
-          We will not sell your personal information to any third party for any
-          purpose.
+          We will not sell your personal information to any third party for any purpose.
         </Typography>
       </Box>
 
@@ -154,8 +138,8 @@ export default function PrivacyPolicy() {
           Your Consent
         </Typography>
         <Typography variant="body1">
-          By using our services, you consent to the collection, use, and storage
-          of your information as described in this Privacy Policy.
+          By using our services, you consent to the collection, use, and storage of your information
+          as described in this Privacy Policy.
         </Typography>
       </Box>
 
@@ -164,8 +148,8 @@ export default function PrivacyPolicy() {
           Changes to this Privacy Policy
         </Typography>
         <Typography variant="body1">
-          We may update this Privacy Policy from time to time. We will notify
-          you of any changes by posting the new Privacy Policy on this page.
+          We may update this Privacy Policy from time to time. We will notify you of any changes by
+          posting the new Privacy Policy on this page.
         </Typography>
       </Box>
 
@@ -174,8 +158,8 @@ export default function PrivacyPolicy() {
           Contact Us
         </Typography>
         <Typography variant="body1">
-          If you have any questions about this Privacy Policy, please contact us
-          at <Link href="mailto:mail@ampdresume.com">mail@ampdresume.com</Link>.
+          If you have any questions about this Privacy Policy, please contact us at{" "}
+          <Link href="mailto:mail@ampdresume.com">mail@ampdresume.com</Link>.
         </Typography>
       </Box>
     </Container>

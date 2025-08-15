@@ -27,7 +27,7 @@ export const EducationDateField = memo(
         sx={{ width: "100%" }}
       />
     );
-  }
+  },
 );
 
 EducationDateField.displayName = "EducationDateField";

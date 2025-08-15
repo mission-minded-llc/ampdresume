@@ -36,13 +36,9 @@ jest.mock("@/components/LoadingOverlay", () => ({
 }));
 
 jest.mock("@/components/MuiLink", () => ({
-  MuiLink: ({
-    href,
-    children,
-  }: {
-    href: string;
-    children: React.ReactNode;
-  }) => <a href={href}>{children}</a>,
+  MuiLink: ({ href, children }: { href: string; children: React.ReactNode }) => (
+    <a href={href}>{children}</a>
+  ),
 }));
 
 describe("EditEducation", () => {

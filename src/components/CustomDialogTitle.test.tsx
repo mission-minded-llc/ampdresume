@@ -8,7 +8,7 @@ describe("CustomDialogTitle", () => {
     const { getByText } = render(
       <CustomDialogTitle closeHandler={() => {}}>
         <span>Dialog Title</span>
-      </CustomDialogTitle>
+      </CustomDialogTitle>,
     );
     expect(getByText("Dialog Title")).toBeInTheDocument();
   });
@@ -18,7 +18,7 @@ describe("CustomDialogTitle", () => {
     const { getByLabelText } = render(
       <CustomDialogTitle closeHandler={handleClose}>
         <span>Dialog Title</span>
-      </CustomDialogTitle>
+      </CustomDialogTitle>,
     );
     const closeButton = getByLabelText("close");
 

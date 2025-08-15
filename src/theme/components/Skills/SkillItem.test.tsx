@@ -1,10 +1,5 @@
 import { createTheme, ThemeProvider } from "@mui/material";
-import {
-  fireEvent,
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { fireEvent, render, screen, waitForElementToBeRemoved } from "@testing-library/react";
 import { SkillForProject, SkillForUser } from "@/types";
 import { SkillItem } from "./SkillItem";
 import { SkillsContext } from "./Skills";
@@ -42,14 +37,14 @@ describe("SkillItem", () => {
 
   const renderWithTheme = (
     skill: SkillForUser | SkillForProject,
-    skillType: "user" | "project" = "user"
+    skillType: "user" | "project" = "user",
   ) => {
     return render(
       <ThemeProvider theme={theme}>
         <SkillsContext.Provider value={{ skillType }}>
           <SkillItem skill={skill} />
         </SkillsContext.Provider>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 
@@ -99,9 +94,7 @@ describe("SkillItem", () => {
       fireEvent.click(button);
 
       if (sampleProjectSkill.description) {
-        expect(
-          screen.getByText(sampleProjectSkill.description)
-        ).toBeInTheDocument();
+        expect(screen.getByText(sampleProjectSkill.description)).toBeInTheDocument();
       }
     });
   });

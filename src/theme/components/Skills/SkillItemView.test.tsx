@@ -11,7 +11,7 @@ describe("SkillItemView", () => {
     return render(
       <ThemeProvider theme={theme}>
         <SkillItemView skill={skill} />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 
@@ -31,8 +31,6 @@ describe("SkillItemView", () => {
 
   it("should render with correct CSS class", () => {
     renderWithTheme(reactSkill);
-    expect(screen.getByText(reactSkill.description!).parentElement).toHaveClass(
-      "skillDescription"
-    );
+    expect(screen.getByText(reactSkill.description!).parentElement).toHaveClass("skillDescription");
   });
 });

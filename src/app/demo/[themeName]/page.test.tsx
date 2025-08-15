@@ -20,11 +20,9 @@ describe("Theme Page", () => {
       const metadata = await generateMetadata({ params });
 
       expect(metadata.title).toBe(`Theme: ${themeName} ${titleSuffix}`);
-      expect(metadata.description).toBe(
-        themeDefinitions[themeName].description
-      );
+      expect(metadata.description).toBe(themeDefinitions[themeName].description);
       expect(Array.isArray(metadata.authors) && metadata.authors[0]?.name).toBe(
-        themeDefinitions.default.authors[0].name
+        themeDefinitions.default.authors[0].name,
       );
       expect(metadata.openGraph).toEqual({
         title: `Theme: ${themeName} ${titleSuffix}`,
@@ -41,9 +39,7 @@ describe("Theme Page", () => {
       const expectedAuthor =
         themeDefinitions[customThemeName as ThemeName]?.authors[0].name ||
         themeDefinitions.default.authors[0].name;
-      expect(Array.isArray(metadata.authors) && metadata.authors[0]?.name).toBe(
-        expectedAuthor
-      );
+      expect(Array.isArray(metadata.authors) && metadata.authors[0]?.name).toBe(expectedAuthor);
     });
   });
 

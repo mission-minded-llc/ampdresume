@@ -2,11 +2,7 @@ import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 import { getApolloClient } from "@/lib/apolloClient";
 
-export const deleteUser = async ({
-  userId,
-}: {
-  userId: string;
-}): Promise<boolean> => {
+export const deleteUser = async ({ userId }: { userId: string }): Promise<boolean> => {
   const client = getApolloClient();
 
   try {

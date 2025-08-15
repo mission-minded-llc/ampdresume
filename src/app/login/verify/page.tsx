@@ -24,8 +24,8 @@ export default function Verify() {
       </Typography>
       <br />
       <Typography component="p" textAlign="center">
-        We&apos;ve sent you a sign in link to your email address. Click the link
-        in your email to sign in.
+        We&apos;ve sent you a sign in link to your email address. Click the link in your email to
+        sign in.
       </Typography>
     </Box>
   );

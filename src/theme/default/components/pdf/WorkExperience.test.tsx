@@ -22,9 +22,7 @@ describe("WorkExperience", () => {
 
     // Check if project details are rendered
     expect(
-      screen.getByText(
-        /Transformed monolithic architecture into scalable microservices/
-      )
+      screen.getByText(/Transformed monolithic architecture into scalable microservices/),
     ).toBeInTheDocument();
   });
 

@@ -7,7 +7,7 @@ export const addSkillForProject = async (
     userId,
     projectId,
     skillForUserId,
-  }: { userId: string; projectId: string; skillForUserId: string }
+  }: { userId: string; projectId: string; skillForUserId: string },
 ) => {
   await verifySessionOwnership(userId);
 

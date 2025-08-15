@@ -15,13 +15,7 @@ describe("PositionSingle", () => {
   const samplePosition = sampleCompany.positions[0];
 
   it("renders position title and company details correctly", () => {
-    render(
-      <PositionSingle
-        position={samplePosition}
-        company={sampleCompany}
-        showDates={true}
-      />
-    );
+    render(<PositionSingle position={samplePosition} company={sampleCompany} showDates={true} />);
 
     // Check if position title is rendered
     expect(screen.getByText(samplePosition.title)).toBeInTheDocument();
@@ -31,26 +25,14 @@ describe("PositionSingle", () => {
   });
 
   it("renders dates when showDates is true", () => {
-    render(
-      <PositionSingle
-        position={samplePosition}
-        company={sampleCompany}
-        showDates={true}
-      />
-    );
+    render(<PositionSingle position={samplePosition} company={sampleCompany} showDates={true} />);
 
     // Since the sample position has a start date but no end date, it should show "Present"
     expect(screen.getByText(/to Present/)).toBeInTheDocument();
   });
 
   it("does not render dates when showDates is false", () => {
-    render(
-      <PositionSingle
-        position={samplePosition}
-        company={sampleCompany}
-        showDates={false}
-      />
-    );
+    render(<PositionSingle position={samplePosition} company={sampleCompany} showDates={false} />);
 
     // Verify that dates are not rendered
     expect(screen.queryByText(/to Present/)).not.toBeInTheDocument();
@@ -61,17 +43,9 @@ describe("PositionSingle", () => {
       throw new Error("Sample data is missing required project data");
     }
 
-    render(
-      <PositionSingle
-        position={samplePosition}
-        company={sampleCompany}
-        showDates={true}
-      />
-    );
+    render(<PositionSingle position={samplePosition} company={sampleCompany} showDates={true} />);
 
     // Check if the first project is rendered
-    expect(
-      screen.getByText(samplePosition.projects[0].name)
-    ).toBeInTheDocument();
+    expect(screen.getByText(samplePosition.projects[0].name)).toBeInTheDocument();
   });
 });

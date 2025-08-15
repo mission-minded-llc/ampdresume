@@ -3,9 +3,7 @@ import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 import { getApolloClient } from "@/lib/apolloClient";
 
-export const getSocials = async (
-  userId: string | undefined
-): Promise<Social[] | undefined> => {
+export const getSocials = async (userId: string | undefined): Promise<Social[] | undefined> => {
   if (!userId) return;
 
   const client = getApolloClient();

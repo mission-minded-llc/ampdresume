@@ -3,9 +3,7 @@ import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 import { getApolloClient } from "@/lib/apolloClient";
 
-export const getProjects = async (
-  positionId: string
-): Promise<Project[] | null> => {
+export const getProjects = async (positionId: string): Promise<Project[] | null> => {
   if (!positionId) return null;
 
   const client = getApolloClient();

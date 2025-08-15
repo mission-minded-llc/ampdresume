@@ -55,39 +55,22 @@ export const EducationList = ({ education }: { education: Education[] }) => {
   return (
     <Box sx={{ mb: 4 }}>
       {education.map((edu) => (
-        <EducationItem
-          key={edu.id}
-          education={edu}
-          expanded={expanded}
-          setExpanded={setExpanded}
-        />
+        <EducationItem key={edu.id} education={edu} expanded={expanded} setExpanded={setExpanded} />
       ))}
 
       {expanded === false ? (
         <>
           <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => setIsOpen(true)}
-            >
+            <Button variant="outlined" color="secondary" onClick={() => setIsOpen(true)}>
               Add Education
             </Button>
           </Box>
-          <Dialog
-            open={isOpen}
-            onClose={() => setIsOpen(false)}
-            maxWidth="md"
-            fullWidth
-          >
+          <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
             <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
               Add New Education
             </CustomDialogTitle>
             <DialogContent>
-              <EducationForm
-                handler={handleAddEducation}
-                onCancel={() => setIsOpen(false)}
-              />
+              <EducationForm handler={handleAddEducation} onCancel={() => setIsOpen(false)} />
             </DialogContent>
           </Dialog>
         </>

@@ -44,9 +44,7 @@ describe("Page", () => {
     const { getByText } = render(await Page());
 
     await waitFor(() => {
-      expect(
-        getByText("You need to be signed in to access this page.")
-      ).toBeInTheDocument();
+      expect(getByText("You need to be signed in to access this page.")).toBeInTheDocument();
     });
   });
 
@@ -84,12 +82,8 @@ describe("Page", () => {
       expect(getByLabelText("Title")).toHaveValue("Software Engineer");
       expect(getByLabelText("Location")).toHaveValue("San Francisco, CA");
       expect(getByLabelText("Site Title")).toHaveValue("John's Resume");
-      expect(getByLabelText("Site Description")).toHaveValue(
-        "This is John's resume."
-      );
-      expect(getByLabelText("Image URL")).toHaveValue(
-        "https://example.com/image.png"
-      );
+      expect(getByLabelText("Site Description")).toHaveValue("This is John's resume.");
+      expect(getByLabelText("Image URL")).toHaveValue("https://example.com/image.png");
     });
 
     expect(container).toMatchSnapshot();

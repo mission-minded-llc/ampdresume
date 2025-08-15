@@ -13,10 +13,7 @@ interface IconifyJSON {
   icons: Record<string, unknown>;
 }
 
-async function searchIcons(
-  searchTerm: string,
-  limit: number = 50
-): Promise<string[]> {
+async function searchIcons(searchTerm: string, limit: number = 50): Promise<string[]> {
   // Get all JSON files from @iconify/json/json directory
   const iconifyPath =
     process.env.NODE_ENV === "production"
@@ -30,9 +27,7 @@ async function searchIcons(
     ? searchTerm.split(":")?.[1]
     : searchTerm;
 
-  const searchTermPrefix = searchTerm.includes(":")
-    ? searchTerm.split(":")?.[0]
-    : "";
+  const searchTermPrefix = searchTerm.includes(":") ? searchTerm.split(":")?.[0] : "";
 
   // If a prefix is provided, only search its file
   let filesToSearch: string[] = files;
@@ -76,14 +71,12 @@ async function searchIcons(
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("q");
-  const limit = searchParams.get("limit")
-    ? parseInt(searchParams.get("limit")!)
-    : 50;
+  const limit = searchParams.get("limit") ? parseInt(searchParams.get("limit")!) : 50;
 
   if (!query || query.length < 3) {
     return NextResponse.json(
       { error: "Search term must be at least 3 characters long" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -92,9 +85,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ icons: results });
   } catch (error) {
     Sentry.captureException(error);
-    return NextResponse.json(
-      { error: "Failed to search icons" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to search icons" }, { status: 500 });
   }
 }

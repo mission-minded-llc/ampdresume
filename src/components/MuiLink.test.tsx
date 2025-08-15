@@ -6,7 +6,7 @@ describe("MuiLink", () => {
     const { getByText } = render(
       <MuiLink href="https://example.com" target="_blank">
         Example
-      </MuiLink>
+      </MuiLink>,
     );
     const linkElement = getByText("Example");
     expect(linkElement).toBeInTheDocument();
@@ -15,9 +15,7 @@ describe("MuiLink", () => {
   });
 
   it("renders with default target _self", () => {
-    const { getByText } = render(
-      <MuiLink href="https://example.com">Example</MuiLink>
-    );
+    const { getByText } = render(<MuiLink href="https://example.com">Example</MuiLink>);
     const linkElement = getByText("Example");
     expect(linkElement).toBeInTheDocument();
     expect(linkElement).toHaveAttribute("target", "_self");

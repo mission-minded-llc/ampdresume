@@ -72,7 +72,7 @@ describe("SkillItem", () => {
 
   it("closes the dialog when the close button is clicked", async () => {
     const { container, getByText, getByRole, queryByRole } = render(
-      <SkillItem skill={mockSkill} />
+      <SkillItem skill={mockSkill} />,
     );
     const button = getByText("JavaScript");
     expect(container).toMatchSnapshot();

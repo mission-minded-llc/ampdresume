@@ -6,14 +6,7 @@ import { ResumeView } from "./ResumeView";
 // Mock the ThemeDefault component
 jest.mock("@/theme", () => ({
   ThemeDefault: jest.fn(
-    ({
-      themeAppearance,
-      user,
-      socials,
-      skillsForUser,
-      companies,
-      education,
-    }) => (
+    ({ themeAppearance, user, socials, skillsForUser, companies, education }) => (
       <div data-testid="theme-default">
         <div data-testid="theme-appearance">{themeAppearance}</div>
         <div data-testid="user-name">{user.name}</div>
@@ -22,7 +15,7 @@ jest.mock("@/theme", () => ({
         <div data-testid="companies-count">{companies.length}</div>
         <div data-testid="education-count">{education.length}</div>
       </div>
-    )
+    ),
   ),
 }));
 
@@ -41,7 +34,7 @@ describe("ResumeView", () => {
         }}
       >
         <ResumeView {...props} />
-      </ThemeAppearanceContext.Provider>
+      </ThemeAppearanceContext.Provider>,
     );
   };
 
@@ -49,23 +42,21 @@ describe("ResumeView", () => {
     renderComponent();
 
     expect(screen.getByTestId("theme-default")).toBeInTheDocument();
-    expect(screen.getByTestId("theme-appearance")).toHaveTextContent(
-      mockThemeAppearance || ""
-    );
+    expect(screen.getByTestId("theme-appearance")).toHaveTextContent(mockThemeAppearance || "");
     expect(screen.getByTestId("user-name")).toHaveTextContent(
-      themeDefaultSampleData.data.resume.user.name || ""
+      themeDefaultSampleData.data.resume.user.name || "",
     );
     expect(screen.getByTestId("socials-count")).toHaveTextContent(
-      String(themeDefaultSampleData.data.resume.socials.length)
+      String(themeDefaultSampleData.data.resume.socials.length),
     );
     expect(screen.getByTestId("skills-count")).toHaveTextContent(
-      String(themeDefaultSampleData.data.resume.skillsForUser.length)
+      String(themeDefaultSampleData.data.resume.skillsForUser.length),
     );
     expect(screen.getByTestId("companies-count")).toHaveTextContent(
-      String(themeDefaultSampleData.data.resume.companies.length)
+      String(themeDefaultSampleData.data.resume.companies.length),
     );
     expect(screen.getByTestId("education-count")).toHaveTextContent(
-      String(themeDefaultSampleData.data.resume.education.length)
+      String(themeDefaultSampleData.data.resume.education.length),
     );
   });
 

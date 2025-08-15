@@ -18,7 +18,7 @@ export type ParsedResumeAi = {
 
 export const getParsedResumeAi = async (
   userId: string,
-  text: string
+  text: string,
 ): Promise<ParsedResumeData | null> => {
   const client = getApolloClient();
 

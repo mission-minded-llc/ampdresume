@@ -11,9 +11,7 @@ describe("IconSelector", () => {
   });
 
   it("renders correctly", () => {
-    const { getByTestId } = render(
-      <IconSelector setIcon={() => {}} icon="test" />
-    );
+    const { getByTestId } = render(<IconSelector setIcon={() => {}} icon="test" />);
     expect(getByTestId("icon-selector-input")).toBeInTheDocument();
   });
 
@@ -22,9 +20,7 @@ describe("IconSelector", () => {
       json: async () => ({ icons: [] }),
     });
 
-    const { getByTestId, getByRole } = render(
-      <IconSelector setIcon={() => {}} />
-    );
+    const { getByTestId, getByRole } = render(<IconSelector setIcon={() => {}} />);
     const input = getByTestId("icon-selector-input").querySelector("input");
     expect(input).not.toBeNull();
     fireEvent.change(input!, { target: { value: "test" } });

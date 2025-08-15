@@ -9,7 +9,7 @@ describe("ResumeTitle", () => {
     return render(
       <ThemeProvider theme={theme}>
         <ResumeTitle>{children}</ResumeTitle>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 

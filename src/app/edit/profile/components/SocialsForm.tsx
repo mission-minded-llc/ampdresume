@@ -1,15 +1,7 @@
 import { Social } from "@/types";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogContent,
-  List,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Dialog, DialogContent, List, TextField, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
@@ -28,12 +20,7 @@ import {
   getSocialMediaPlatformByPlatformName,
 } from "@/util/social";
 import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
-import {
-  FieldDescription,
-  FieldTitle,
-  InputSection,
-  SectionTitle,
-} from "./sections";
+import { FieldDescription, FieldTitle, InputSection, SectionTitle } from "./sections";
 
 export const SocialsForm = () => {
   const { status, data: session } = useSession();
@@ -58,13 +45,7 @@ export const SocialsForm = () => {
   });
 
   const mutationAddSocial = useMutation({
-    mutationFn: async ({
-      platform,
-      ref,
-    }: {
-      platform: string;
-      ref: string;
-    }) => {
+    mutationFn: async ({ platform, ref }: { platform: string; ref: string }) => {
       if (!session?.user.id) return null;
 
       await addSocial({
@@ -103,9 +84,7 @@ export const SocialsForm = () => {
     },
   });
 
-  const handleSocialUrlChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleSocialUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let url = event.target.value;
 
     // Prefix URL with https:// if it does not have a protocol.
@@ -160,8 +139,7 @@ export const SocialsForm = () => {
     }
   };
 
-  if (status === "loading")
-    return <LoadingOverlay message="Loading session..." />;
+  if (status === "loading") return <LoadingOverlay message="Loading session..." />;
   if (status === "unauthenticated") return null;
   if (isPending) return <LoadingOverlay message="Loading resume data..." />;
   if (error) return <Box>Error loading socials: {error.message}</Box>;
@@ -188,8 +166,8 @@ export const SocialsForm = () => {
           />
         </FieldTitle>
         <FieldDescription>
-          Paste a link below to add to your socials. Link icons will appear at
-          the top of your resume.
+          Paste a link below to add to your socials. Link icons will appear at the top of your
+          resume.
         </FieldDescription>
         <TextField
           label="Social URL"
@@ -201,12 +179,7 @@ export const SocialsForm = () => {
           error={!!errorMessage}
           helperText={errorMessage}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{ marginTop: 2 }}
-          onClick={addSocialEntry}
-        >
+        <Button variant="contained" color="primary" sx={{ marginTop: 2 }} onClick={addSocialEntry}>
           Add Social
         </Button>
       </InputSection>
@@ -241,14 +214,10 @@ export const SocialsForm = () => {
       </Box>
 
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
-          Edit Social
-        </CustomDialogTitle>
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Edit Social</CustomDialogTitle>
         <DialogContent>
           {editSocial ? (
-            <Box
-              sx={{ p: 2, display: "flex", flexDirection: "column", gap: 2 }}
-            >
+            <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 2 }}>
               <Typography variant="body2" sx={{ mb: 2 }}>
                 View:{" "}
                 <MuiLink target="_blank" href={generateSocialUrl(editSocial)}>
@@ -272,11 +241,7 @@ export const SocialsForm = () => {
                 }}
               >
                 <DeleteWithConfirmation onConfirmDelete={deleteSocialEntry} />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={updateSocialEntry}
-                >
+                <Button variant="contained" color="primary" onClick={updateSocialEntry}>
                   Save
                 </Button>
               </Box>

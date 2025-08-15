@@ -111,8 +111,7 @@ export const ProjectItem = ({
         description,
       });
     },
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ["projects", positionId] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projects", positionId] }),
   });
 
   const deleteProjectMutation = useMutation({
@@ -123,8 +122,7 @@ export const ProjectItem = ({
         userId: session.user.id,
       });
     },
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ["projects", positionId] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projects", positionId] }),
   });
 
   // Memoize the filtered and sorted available skills
@@ -133,14 +131,11 @@ export const ProjectItem = ({
       ? skillsForUser?.filter(
           (skillForUser) =>
             !skillsForProject?.find(
-              (skillForProject) =>
-                skillForProject.skillForUser.id === skillForUser.id
-            )
+              (skillForProject) => skillForProject.skillForUser.id === skillForUser.id,
+            ),
         )
       : [];
-    return filteredSkills.sort((a, b) =>
-      a.skill.name.localeCompare(b.skill.name)
-    );
+    return filteredSkills.sort((a, b) => a.skill.name.localeCompare(b.skill.name));
   }, [skillsForUser, skillsForProject]);
 
   const handleSave = () => {
@@ -159,12 +154,9 @@ export const ProjectItem = ({
     addSkillForProjectMutation.mutate({ skillForUserId });
   };
 
-  if (isPendingSkillsForProject)
-    return <LoadingOverlay message="Loading skills..." />;
+  if (isPendingSkillsForProject) return <LoadingOverlay message="Loading skills..." />;
   if (errorSkillsForProject)
-    return (
-      <Box>Error loading project skills: {errorSkillsForProject.message}</Box>
-    );
+    return <Box>Error loading project skills: {errorSkillsForProject.message}</Box>;
 
   return (
     <>
@@ -230,15 +222,8 @@ export const ProjectItem = ({
         </Box>
       </Box>
 
-      <Dialog
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        maxWidth="md"
-        fullWidth
-      >
-        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
-          Edit Project
-        </CustomDialogTitle>
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Edit Project</CustomDialogTitle>
         <DialogContent sx={{ padding: { xs: 1, sm: 3 } }}>
           <Box sx={{ mt: 2, mb: 4 }}>
             <TextField
@@ -263,9 +248,7 @@ export const ProjectItem = ({
             }}
           >
             <FormControl fullWidth>
-              <InputLabel sx={{ fontSize: "1rem" }}>
-                Add Your Skills to Project
-              </InputLabel>
+              <InputLabel sx={{ fontSize: "1rem" }}>Add Your Skills to Project</InputLabel>
               <Select
                 value={selectedSkillId}
                 onChange={(e) => {
@@ -290,11 +273,7 @@ export const ProjectItem = ({
                       {skillForUser?.icon ? (
                         <Icon icon={skillForUser.icon} width={24} height={24} />
                       ) : skillForUser?.skill?.icon ? (
-                        <Icon
-                          icon={skillForUser.skill.icon}
-                          width={24}
-                          height={24}
-                        />
+                        <Icon icon={skillForUser.skill.icon} width={24} height={24} />
                       ) : null}
                       {skillForUser.skill.name}
                     </Box>
@@ -339,9 +318,7 @@ export const ProjectItem = ({
                   </Typography>
                 )}
               </AccordionSummary>
-              <AccordionDetails
-                sx={{ padding: { xs: 0, sm: 2 }, border: "none" }}
-              >
+              <AccordionDetails sx={{ padding: { xs: 0, sm: 2 }, border: "none" }}>
                 <RichTextEditor
                   name="skill-description"
                   editorStateRef={editorStateRef}

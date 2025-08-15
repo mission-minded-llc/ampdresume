@@ -3,12 +3,9 @@ import { prisma } from "@/lib/prisma";
 import { testUserEmails } from "./data";
 
 const getIds = async (
-  model: keyof Omit<
-    PrismaClient,
-    "$connect" | "$disconnect" | "$on" | "$transaction" | "$use"
-  >,
+  model: keyof Omit<PrismaClient, "$connect" | "$disconnect" | "$on" | "$transaction" | "$use">,
   filter: object,
-  selectField = "id"
+  selectField = "id",
 ) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const results = await (prisma[model] as any).findMany({

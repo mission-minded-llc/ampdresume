@@ -81,29 +81,17 @@ export const PositionsList = ({ company }: { company: Company }) => {
       {expanded === false ? (
         <>
           <Box sx={{ mt: 4, mb: 2, display: "flex", justifyContent: "center" }}>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => setIsOpen(true)}
-            >
+            <Button variant="outlined" color="secondary" onClick={() => setIsOpen(true)}>
               Add New Position
             </Button>
           </Box>
 
-          <Dialog
-            open={isOpen}
-            onClose={() => setIsOpen(false)}
-            maxWidth="md"
-            fullWidth
-          >
+          <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
             <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
               Add Position
             </CustomDialogTitle>
             <DialogContent>
-              <PositionForm
-                handler={handleAddPosition}
-                onCancel={() => setIsOpen(false)}
-              />
+              <PositionForm handler={handleAddPosition} onCancel={() => setIsOpen(false)} />
             </DialogContent>
           </Dialog>
         </>

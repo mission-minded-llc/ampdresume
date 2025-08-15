@@ -67,7 +67,7 @@ export const EducationFields = memo(
         </Box>
       </Box>
     );
-  }
+  },
 );
 
 EducationFields.displayName = "EducationFields";

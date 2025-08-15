@@ -19,10 +19,7 @@ const description =
   "Amp'd Resume is a free interactive resume builder. Sign in and start building your resume today!";
 
 const Heading = ({ children }: { children: React.ReactNode }) => (
-  <Typography
-    component="h3"
-    sx={{ typography: { sm: "h5", xs: "h6" }, pt: 4, fontWeight: "bold" }}
-  >
+  <Typography component="h3" sx={{ typography: { sm: "h5", xs: "h6" }, pt: 4, fontWeight: "bold" }}>
     {children}
   </Typography>
 );
@@ -34,11 +31,7 @@ const Paragraph = ({
   sx?: TypographyOwnProps["sx"];
   children: React.ReactNode;
 }) => (
-  <Typography
-    variant="body1"
-    maxWidth="md"
-    sx={{ m: "2rem auto", lineHeight: 2, ...sx }}
-  >
+  <Typography variant="body1" maxWidth="md" sx={{ m: "2rem auto", lineHeight: 2, ...sx }}>
     {children}
   </Typography>
 );
@@ -123,10 +116,7 @@ export default async function HomePage() {
         </Typography>
         {user ? (
           <Box sx={{ p: 2, width: "100%" }}>
-            <Typography
-              component="h3"
-              sx={{ typography: { sm: "h5", xs: "h6" } }}
-            >
+            <Typography component="h3" sx={{ typography: { sm: "h5", xs: "h6" } }}>
               Welcome back, {user.name}!{" "}
             </Typography>
             <Typography
@@ -138,26 +128,21 @@ export default async function HomePage() {
             </Typography>
           </Box>
         ) : (
-          <Typography
-            sx={{ mt: 1, fontSize: { xs: "1rem", sm: "1.25rem" } }}
-            variant="body1"
-          >
-            <MuiLink href="/login">Sign in</MuiLink> and start building your
-            resume!
+          <Typography sx={{ mt: 1, fontSize: { xs: "1rem", sm: "1.25rem" } }} variant="body1">
+            <MuiLink href="/login">Sign in</MuiLink> and start building your resume!
           </Typography>
         )}
       </Box>
       <Box>
         <Heading>What is Amp&apos;d Resume?</Heading>
         <Paragraph>
-          <strong>Amp&apos;d Resume</strong> is an interactive resume builder
-          that allows you to build your resume and host it <em>at no cost.</em>{" "}
-          You can also download your resume as a PDF to use in job applications.
+          <strong>Amp&apos;d Resume</strong> is an interactive resume builder that allows you to
+          build your resume and host it <em>at no cost.</em> You can also download your resume as a
+          PDF to use in job applications.
         </Paragraph>
         <Paragraph>
-          Your resume is made up of sections. Each section can be edited to
-          include your own information. You can add or remove sections as you
-          like!
+          Your resume is made up of sections. Each section can be edited to include your own
+          information. You can add or remove sections as you like!
         </Paragraph>
         <Paragraph>
           Check out the Amp&apos;d Resume founder&apos;s resume{" "}
@@ -168,12 +153,10 @@ export default async function HomePage() {
         </Paragraph>
         <Heading>Who is Amp&apos;d Resume For?</Heading>
         <Paragraph>
-          Have you ever applied for a job online, and encountered the field that
-          asks for a website URL?
+          Have you ever applied for a job online, and encountered the field that asks for a website
+          URL?
         </Paragraph>
-        <Box
-          sx={{ position: "relative", width: "100%", height: "400px", mt: 3 }}
-        >
+        <Box sx={{ position: "relative", width: "100%", height: "400px", mt: 3 }}>
           <Image
             src="/images/home/form-fields.png"
             alt="Job application form fields"
@@ -182,41 +165,36 @@ export default async function HomePage() {
           />
         </Box>
         <Paragraph>
-          Not everyone has the means or time to maintain their own personal
-          website. Amp&apos;d Resume is for anyone who wants to have a
-          professional online presence without the hassle of maintaining a
-          website.
+          Not everyone has the means or time to maintain their own personal website. Amp&apos;d
+          Resume is for anyone who wants to have a professional online presence without the hassle
+          of maintaining a website.
         </Paragraph>
         <Paragraph>Think of it as a multi-purpose web presence:</Paragraph>
         <List sx={{ listStyleType: "disc" }}>
           <ListItem sx={{ display: "list-item" }}>
+            <ListItemText>The content is based on your real work history and skills.</ListItemText>
+          </ListItem>
+          <ListItem sx={{ display: "list-item" }}>
             <ListItemText>
-              The content is based on your real work history and skills.
+              Your Amp&apos;d Resume is <strong>interactive</strong> and <strong>engaging</strong>{" "}
+              for reviewers.
             </ListItemText>
           </ListItem>
           <ListItem sx={{ display: "list-item" }}>
             <ListItemText>
-              Your Amp&apos;d Resume is <strong>interactive</strong> and{" "}
-              <strong>engaging</strong> for reviewers.
-            </ListItemText>
-          </ListItem>
-          <ListItem sx={{ display: "list-item" }}>
-            <ListItemText>
-              You can maintain your interactive and PDF-version resume in{" "}
-              <em>one place.</em>
+              You can maintain your interactive and PDF-version resume in <em>one place.</em>
             </ListItemText>
           </ListItem>
         </List>
         <Heading>New Features</Heading>
         <Paragraph>
-          Amp&apos;d Resume is constantly being updated with new features. Some
-          of the features that are coming soon include:
+          Amp&apos;d Resume is constantly being updated with new features. Some of the features that
+          are coming soon include:
         </Paragraph>
         <List sx={{ listStyleType: "disc" }}>
           <ListItem sx={{ display: "list-item" }}>
             <ListItemText>
-              <strong>More Open-Source Templates!</strong> - To contribute,
-              check out the{" "}
+              <strong>More Open-Source Templates!</strong> - To contribute, check out the{" "}
               <MuiLink href="https://github.com/mission-minded-llc/ampdresume-theme">
                 GitHub repo.
               </MuiLink>
@@ -224,17 +202,15 @@ export default async function HomePage() {
           </ListItem>
           <ListItem sx={{ display: "list-item" }}>
             <ListItemText>
-              <strong>AI-assisted Revisions</strong> - Want to tailor your
-              resume for a specific job listing? Paste the job listing and get a
-              cusomtized version of <em>your</em> resume targeting the job
-              posting&apos; requirements. This process saves an interactive
+              <strong>AI-assisted Revisions</strong> - Want to tailor your resume for a specific job
+              listing? Paste the job listing and get a cusomtized version of <em>your</em> resume
+              targeting the job posting&apos; requirements. This process saves an interactive
               version as well as a PDF version for a specific job.
             </ListItemText>
           </ListItem>
         </List>
         <Paragraph>
-          <MuiLink href="/login">Sign in</MuiLink> and start building your
-          resume today!
+          <MuiLink href="/login">Sign in</MuiLink> and start building your resume today!
         </Paragraph>
       </Box>
     </Container>

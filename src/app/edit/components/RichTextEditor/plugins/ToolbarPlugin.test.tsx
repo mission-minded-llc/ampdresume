@@ -30,7 +30,7 @@ describe("ToolbarPlugin", () => {
     const { getByLabelText } = render(
       <LexicalComposer initialConfig={initialConfig}>
         <ToolbarPlugin />
-      </LexicalComposer>
+      </LexicalComposer>,
     );
 
     RICH_TEXT_OPTIONS.forEach((option) => {

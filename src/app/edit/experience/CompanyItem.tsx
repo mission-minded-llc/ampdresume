@@ -2,12 +2,7 @@ import { Company } from "@/types";
 import { useSession } from "next-auth/react";
 import React, { useRef } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-} from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCompany } from "@/graphql/deleteCompany";
 import { CompanyGeneric } from "@/graphql/getExperience";

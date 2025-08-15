@@ -18,13 +18,9 @@ describe("Skills", () => {
     const currentYear = new Date().getFullYear();
 
     // Find skills with different years of experience
-    const reactReduxSkill = sampleSkills.find(
-      (s) => s.skill.name === "React Redux"
-    );
-    if (!reactReduxSkill)
-      throw new Error("React Redux skill not found in sample data");
-    const reactReduxYears =
-      currentYear - (reactReduxSkill.yearStarted as number);
+    const reactReduxSkill = sampleSkills.find((s) => s.skill.name === "React Redux");
+    if (!reactReduxSkill) throw new Error("React Redux skill not found in sample data");
+    const reactReduxYears = currentYear - (reactReduxSkill.yearStarted as number);
     const cssSkill = sampleSkills.find((s) => s.skill.name === "CSS");
     if (!cssSkill) throw new Error("CSS skill not found in sample data");
     const cssYears = currentYear - (cssSkill.yearStarted as number);

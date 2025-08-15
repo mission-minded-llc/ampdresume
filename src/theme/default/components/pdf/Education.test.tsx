@@ -16,9 +16,7 @@ describe("Education", () => {
     render(<Education education={sampleEducation} />);
 
     // Get unique schools from sample data
-    const uniqueSchools = [
-      ...new Set(sampleEducation.map((edu) => edu.school)),
-    ];
+    const uniqueSchools = [...new Set(sampleEducation.map((edu) => edu.school))];
 
     // Should show all schools
     uniqueSchools.forEach((school) => {
@@ -58,7 +56,7 @@ describe("Education", () => {
     render(<Education education={educationWithoutSchool} />);
     expect(screen.getByText("Education")).toBeInTheDocument();
     expect(
-      screen.queryByText(new RegExp(educationWithoutSchool[0].degree))
+      screen.queryByText(new RegExp(educationWithoutSchool[0].degree)),
     ).not.toBeInTheDocument();
   });
 });

@@ -34,9 +34,7 @@ describe("Skills", () => {
   });
 
   it("toggles between experience and cloud layouts", () => {
-    render(
-      <Skills skillType="user" skillsForUser={[reactSkill, javascriptSkill]} />
-    );
+    render(<Skills skillType="user" skillsForUser={[reactSkill, javascriptSkill]} />);
 
     // Initially in experience layout
     const cloudButton = screen.getByText("Cloud");
@@ -55,18 +53,13 @@ describe("Skills", () => {
 
   it("returns null when skillsForUser is not provided", () => {
     const { container } = render(
-      <Skills
-        skillType="user"
-        skillsForUser={undefined as unknown as SkillForUser[]}
-      />
+      <Skills skillType="user" skillsForUser={undefined as unknown as SkillForUser[]} />,
     );
     expect(container.firstChild).toBeNull();
   });
 
   it("handles invalid button clicks", () => {
-    render(
-      <Skills skillType="user" skillsForUser={[reactSkill, javascriptSkill]} />
-    );
+    render(<Skills skillType="user" skillsForUser={[reactSkill, javascriptSkill]} />);
 
     // Create a fake click event with an invalid target
     const fakeEvent = {

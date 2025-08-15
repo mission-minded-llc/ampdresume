@@ -1,14 +1,7 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import React, { useState } from "react";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogContent,
-  IconButton,
-  TextField,
-} from "@mui/material";
+import { Box, Button, Dialog, DialogContent, IconButton, TextField } from "@mui/material";
 import { $insertNodes } from "lexical";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { $createYouTubeNode } from "../nodes/YouTubeNode";
@@ -20,8 +13,7 @@ export default function YoutubePlugin() {
   const [editor] = useLexicalComposerContext();
 
   const extractYouTubeId = (url: string) => {
-    const match =
-      /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/.exec(url);
+    const match = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/.exec(url);
 
     return match && match?.[2]?.length === 11 ? match?.[2] : null;
   };
@@ -66,11 +58,7 @@ export default function YoutubePlugin() {
               onChange={(e) => setURL(e.target.value)}
               placeholder="Add Youtube URL"
             />
-            <Button
-              variant="contained"
-              onClick={onEmbed}
-              disabled={!isValidYouTubeURL(url)}
-            >
+            <Button variant="contained" onClick={onEmbed} disabled={!isValidYouTubeURL(url)}>
               Embed
             </Button>
           </Box>

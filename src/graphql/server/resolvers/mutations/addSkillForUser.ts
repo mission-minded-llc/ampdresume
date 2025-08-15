@@ -13,7 +13,7 @@ export const addSkillForUser = async (
     skillId: string;
     yearStarted: number;
     totalYears: number;
-  }
+  },
 ) => {
   await verifySessionOwnership(userId);
 

@@ -13,9 +13,7 @@ export const $createYouTubeNode = ({ id }: { id: string }) => {
 
 const ID_ATTR = "data-lexical-youtube";
 
-const convertYoutubeElement = (
-  domNode: HTMLElement
-): DOMConversionOutput | null => {
+const convertYoutubeElement = (domNode: HTMLElement): DOMConversionOutput | null => {
   const id = domNode?.getAttribute(ID_ATTR);
 
   if (!id) return null;
@@ -27,8 +25,7 @@ const convertYoutubeElement = (
 
 const HEIGHT = "315px";
 const WIDTH = "560px";
-const getYouTubeLink = (id: string) =>
-  `https://www.youtube-nocookie.com/embed/${id}`;
+const getYouTubeLink = (id: string) => `https://www.youtube-nocookie.com/embed/${id}`;
 
 export class YouTubeNode extends DecoratorNode<React.ReactElement> {
   __id: string;
@@ -49,9 +46,7 @@ export class YouTubeNode extends DecoratorNode<React.ReactElement> {
   }
 
   decorate(): React.ReactElement {
-    return (
-      <iframe height={HEIGHT} width={WIDTH} src={getYouTubeLink(this.__id)} />
-    );
+    return <iframe height={HEIGHT} width={WIDTH} src={getYouTubeLink(this.__id)} />;
   }
 
   createDOM(): HTMLElement {

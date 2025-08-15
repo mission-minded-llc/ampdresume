@@ -5,16 +5,12 @@ import { DeleteWithConfirmation } from "./DeleteWithConfirmation";
 
 describe("DeleteWithConfirmation", () => {
   it("renders correctly with default props", () => {
-    const { getByText } = render(
-      <DeleteWithConfirmation onConfirmDelete={() => {}} />
-    );
+    const { getByText } = render(<DeleteWithConfirmation onConfirmDelete={() => {}} />);
     expect(getByText("Delete")).toBeInTheDocument();
   });
 
   it("opens the confirmation dialog when the delete button is clicked", async () => {
-    const { getByText, getByRole } = render(
-      <DeleteWithConfirmation onConfirmDelete={() => {}} />
-    );
+    const { getByText, getByRole } = render(<DeleteWithConfirmation onConfirmDelete={() => {}} />);
     const deleteButton = getByText("Delete");
 
     fireEvent.click(deleteButton);
@@ -29,7 +25,7 @@ describe("DeleteWithConfirmation", () => {
   it("calls onConfirmDelete when the confirm button is clicked", async () => {
     const onConfirmDeleteMock = jest.fn();
     const { getByText, getByRole } = render(
-      <DeleteWithConfirmation onConfirmDelete={onConfirmDeleteMock} />
+      <DeleteWithConfirmation onConfirmDelete={onConfirmDeleteMock} />,
     );
     const deleteButton = getByText("Delete");
 
@@ -49,7 +45,7 @@ describe("DeleteWithConfirmation", () => {
 
   it("closes the confirmation dialog when the cancel button is clicked", async () => {
     const { getByText, getByRole, queryByRole } = render(
-      <DeleteWithConfirmation onConfirmDelete={() => {}} />
+      <DeleteWithConfirmation onConfirmDelete={() => {}} />,
     );
     const deleteButton = getByText("Delete");
 

@@ -12,8 +12,7 @@ export const themeDefinitions: Record<ThemeName, ThemeDefinition> = {
     published: true,
     webComponent: ThemeDefault,
     pdfComponent: ThemeDefaultPDF,
-    description:
-      "The default theme for Amp'd Resume. Single-page resume with expanding sections.",
+    description: "The default theme for Amp'd Resume. Single-page resume with expanding sections.",
     iconifyIcon: "fluent-emoji-flat:high-voltage",
     authors: [
       {
@@ -28,8 +27,7 @@ export const themeDefinitions: Record<ThemeName, ThemeDefinition> = {
     published: true,
     webComponent: ThemeDavids,
     pdfComponent: null,
-    description:
-      "The theme by David Schurer. Multi-page resume with a QR code to share.",
+    description: "The theme by David Schurer. Multi-page resume with a QR code to share.",
     iconifyIcon: "fluent-emoji-flat:memo",
     authors: [
       {

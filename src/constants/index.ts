@@ -7,11 +7,7 @@ export const defaultDescription =
 
 // File upload constants.
 export const MAX_USER_IMAGE_SIZE = 1 * 1024 * 1024;
-export const ALLOWED_USER_IMAGE_TYPES = [
-  "image/jpeg",
-  "image/png",
-  "image/gif",
-];
+export const ALLOWED_USER_IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif"];
 
 // List of allowed users for alpha testing and access to test subdomains.
 // Comma-separated list of email addresses from environment variable.

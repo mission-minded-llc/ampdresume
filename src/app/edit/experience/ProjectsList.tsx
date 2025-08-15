@@ -38,14 +38,7 @@ const SortableProjectItem = ({
   expanded?: boolean;
 }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: project.id,
     disabled: isEditing,
   });
@@ -92,9 +85,7 @@ export const ProjectsList = ({
 
   // Initialize local projects from props when they change
   useEffect(() => {
-    const sorted = [...projects].sort(
-      (a, b) => (a.sortIndex ?? 0) - (b.sortIndex ?? 0)
-    );
+    const sorted = [...projects].sort((a, b) => (a.sortIndex ?? 0) - (b.sortIndex ?? 0));
     setLocalProjects(sorted);
   }, [projects]);
 
@@ -107,17 +98,11 @@ export const ProjectsList = ({
     }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const mutationAddProject = useMutation({
-    mutationFn: async ({
-      name,
-      positionId,
-    }: {
-      name: string;
-      positionId: string;
-    }) => {
+    mutationFn: async ({ name, positionId }: { name: string; positionId: string }) => {
       if (!session?.user?.id) return;
 
       await addProject({
@@ -178,12 +163,8 @@ export const ProjectsList = ({
     }
 
     // Find the indices in our local state array
-    const activeIndex = localProjects.findIndex(
-      (project) => project.id === active.id
-    );
-    const overIndex = localProjects.findIndex(
-      (project) => project.id === over.id
-    );
+    const activeIndex = localProjects.findIndex((project) => project.id === active.id);
+    const overIndex = localProjects.findIndex((project) => project.id === over.id);
 
     if (activeIndex === -1 || overIndex === -1) {
       return; // Safety check
@@ -233,11 +214,7 @@ export const ProjectsList = ({
         <Tooltip message="Project name must be at least 10 characters long. Drag and drop to reorder." />
       </Box>
 
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext
           items={localProjects.map((project) => project.id)}
           strategy={verticalListSortingStrategy}

@@ -45,7 +45,7 @@ export async function seedSocials() {
         },
       });
       console.log(
-        `Created social ${social.platform} for user ${userId} with id: ${createdSocial.id}`
+        `Created social ${social.platform} for user ${userId} with id: ${createdSocial.id}`,
       );
     }
   }

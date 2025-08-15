@@ -11,7 +11,7 @@ export const updateProjectSortIndexes = async (
     userId: string;
     positionId: string;
     projectSortIndexes: Array<{ id: string; sortIndex: number }>;
-  }
+  },
 ) => {
   await verifySessionOwnership(userId);
 
@@ -34,8 +34,8 @@ export const updateProjectSortIndexes = async (
       prisma.project.update({
         where: { id },
         data: { sortIndex },
-      })
-    )
+      }),
+    ),
   );
 
   return true;

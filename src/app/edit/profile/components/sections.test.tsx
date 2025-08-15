@@ -1,13 +1,7 @@
 import "@testing-library/jest-dom";
 import React from "react";
 import { render } from "@testing-library/react";
-import {
-  FieldDescription,
-  FieldTitle,
-  GridSection,
-  InputSection,
-  SectionTitle,
-} from "./sections";
+import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
 
 describe("sections components", () => {
   it("renders InputSection correctly", () => {
@@ -15,7 +9,7 @@ describe("sections components", () => {
       <InputSection>
         <div>Child 1</div>
         <div>Child 2</div>
-      </InputSection>
+      </InputSection>,
     );
     expect(container).toMatchSnapshot();
   });
@@ -25,7 +19,7 @@ describe("sections components", () => {
       <GridSection isDesktop={true}>
         <div>Child 1</div>
         <div>Child 2</div>
-      </GridSection>
+      </GridSection>,
     );
     expect(container).toMatchSnapshot();
   });
@@ -35,7 +29,7 @@ describe("sections components", () => {
       <GridSection isDesktop={false}>
         <div>Child 1</div>
         <div>Child 2</div>
-      </GridSection>
+      </GridSection>,
     );
     expect(container).toMatchSnapshot();
   });
@@ -51,9 +45,7 @@ describe("sections components", () => {
   });
 
   it("renders FieldDescription correctly", () => {
-    const { container } = render(
-      <FieldDescription>Field Description</FieldDescription>
-    );
+    const { container } = render(<FieldDescription>Field Description</FieldDescription>);
     expect(container).toMatchSnapshot();
   });
 });

@@ -13,7 +13,7 @@ export const updateProject = async (
     userId: string;
     projectName: string;
     description: string;
-  }
+  },
 ) => {
   await verifySessionOwnership(userId);
 

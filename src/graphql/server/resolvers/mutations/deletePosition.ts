@@ -1,10 +1,7 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
 
-export const deletePosition = async (
-  _: string,
-  { userId, id }: { userId: string; id: string }
-) => {
+export const deletePosition = async (_: string, { userId, id }: { userId: string; id: string }) => {
   await verifySessionOwnership(userId);
 
   const existingPosition = await prisma.position.findFirst({

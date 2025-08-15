@@ -34,7 +34,7 @@ export default withAuth(
         return Boolean(session);
       },
     },
-  }
+  },
 );
 
 export const config = {

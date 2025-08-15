@@ -21,7 +21,7 @@ const ExtractedSkillsComponent = ({
       const updatedSkills = skills.filter((skill) => skill.id !== skillId);
       setSkills(updatedSkills);
     },
-    [skills, setSkills]
+    [skills, setSkills],
   );
 
   if (!session) {
@@ -35,9 +35,8 @@ const ExtractedSkillsComponent = ({
       </Typography>
       <Typography variant="body1" sx={{ mb: 2, fontSize: "1rem" }}>
         <em>
-          <strong>Note:</strong> Skills can be edited after saving. You can also
-          add new skills by clicking the &quot;Add Skill&quot; button after the
-          import is complete.
+          <strong>Note:</strong> Skills can be edited after saving. You can also add new skills by
+          clicking the &quot;Add Skill&quot; button after the import is complete.
         </em>
       </Typography>
       <Box

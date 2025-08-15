@@ -8,19 +8,12 @@ interface SectionWorkExperienceProps {
   showSkills: boolean;
 }
 
-export const WorkExperience = ({
-  companies,
-  showSkills,
-}: SectionWorkExperienceProps) => {
+export const WorkExperience = ({ companies, showSkills }: SectionWorkExperienceProps) => {
   return (
     <Section>
       <SectionTitle>Work Experience</SectionTitle>
       {companies.map((company, companyIndex) => (
-        <Box
-          key={company.id}
-          sx={{ mb: 2 }}
-          data-testid={`company-${companyIndex}`}
-        >
+        <Box key={company.id} sx={{ mb: 2 }} data-testid={`company-${companyIndex}`}>
           <SectionSubtitle>
             {company.name}
             <span style={{ fontWeight: "normal" }}>
@@ -37,16 +30,10 @@ export const WorkExperience = ({
               >
                 <SectionSubtitle>
                   {position.title}
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    sx={{ fontSize: fontSize.subtitle }}
-                  >
+                  <Typography component="span" variant="body2" sx={{ fontSize: fontSize.subtitle }}>
                     {" "}
                     &mdash; {formatLongDate(position.startDate)} to{" "}
-                    {position?.endDate
-                      ? formatLongDate(position.endDate)
-                      : "present"}
+                    {position?.endDate ? formatLongDate(position.endDate) : "present"}
                   </Typography>
                 </SectionSubtitle>
                 {position?.projects?.map((project, projectIndex) => {
@@ -80,9 +67,7 @@ export const WorkExperience = ({
                               }}
                             >
                               {skill.skillForUser.skill.name}
-                              {skillIndex < project.skillsForProject.length - 1
-                                ? ", "
-                                : ""}
+                              {skillIndex < project.skillsForProject.length - 1 ? ", " : ""}
                             </Typography>
                           ))}
                         </>

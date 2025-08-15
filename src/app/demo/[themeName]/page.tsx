@@ -19,8 +19,7 @@ export async function generateMetadata({
     `This is the ${themeName} theme for Amp'd Resume.`;
 
   const authors =
-    themeDefinitions[themeName as ThemeName]?.authors ||
-    themeDefinitions.default.authors;
+    themeDefinitions[themeName as ThemeName]?.authors || themeDefinitions.default.authors;
 
   return {
     title,
@@ -37,11 +36,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ themeName: ThemeName }>;
-}) {
+export default async function Page({ params }: { params: Promise<{ themeName: ThemeName }> }) {
   const { themeName } = await params;
 
   if (!themeDefinitions[themeName]) {

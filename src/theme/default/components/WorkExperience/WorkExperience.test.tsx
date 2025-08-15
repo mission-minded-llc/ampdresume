@@ -15,9 +15,7 @@ jest.mock("./PositionsList", () => ({
 }));
 
 jest.mock("@/theme/components/ResumeTitle/ResumeTitle", () => ({
-  ResumeTitle: ({ children }: { children: React.ReactNode }) => (
-    <h2>{children}</h2>
-  ),
+  ResumeTitle: ({ children }: { children: React.ReactNode }) => <h2>{children}</h2>,
 }));
 
 describe("WorkExperience", () => {
@@ -41,18 +39,12 @@ describe("WorkExperience", () => {
 
     // Check if dates are rendered correctly
     expect(screen.getByText(/January 2024 to Present/)).toBeInTheDocument();
-    expect(
-      screen.getByText(/January 2023 to January 2024/)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/January 2022 to January 2023/)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/January 2023 to January 2024/)).toBeInTheDocument();
+    expect(screen.getByText(/January 2022 to January 2023/)).toBeInTheDocument();
 
     // Check if positions lists are rendered
     companies.forEach((company) => {
-      expect(
-        screen.getByTestId(`positions-list-${company.id}`)
-      ).toBeInTheDocument();
+      expect(screen.getByTestId(`positions-list-${company.id}`)).toBeInTheDocument();
     });
   });
 

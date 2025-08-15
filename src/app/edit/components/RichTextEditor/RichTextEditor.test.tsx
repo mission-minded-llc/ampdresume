@@ -9,11 +9,7 @@ describe("RichTextEditor", () => {
 
     await act(async () => {
       result = render(
-        <RichTextEditor
-          editorStateRef={editorStateRef}
-          value=""
-          name="test-editor"
-        />
+        <RichTextEditor editorStateRef={editorStateRef} value="" name="test-editor" />,
       );
     });
     expect(result!.container).toBeInTheDocument();
@@ -26,11 +22,7 @@ describe("RichTextEditor", () => {
 
     await act(async () => {
       result = render(
-        <RichTextEditor
-          editorStateRef={editorStateRef}
-          value=""
-          name="test-editor"
-        />
+        <RichTextEditor editorStateRef={editorStateRef} value="" name="test-editor" />,
       );
     });
     expect(result!.getByText(placeholderText)).toBeInTheDocument();

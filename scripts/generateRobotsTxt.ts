@@ -20,11 +20,10 @@ if (!envName) {
   process.exit(1);
 }
 
-const robotsTxt =
-  envName === "production" ? productionRobotsTxt : testRobotsTxt;
+const robotsTxt = envName === "production" ? productionRobotsTxt : testRobotsTxt;
 fs.writeFileSync("public/robots.txt", robotsTxt);
 
 // eslint-disable-next-line no-console
 console.log(
-  `Generated a ${envName === "production" ? "crawlable" : "non-crawlable"} public/robots.txt`
+  `Generated a ${envName === "production" ? "crawlable" : "non-crawlable"} public/robots.txt`,
 );

@@ -10,7 +10,7 @@ import { getApolloClient } from "@/lib/apolloClient";
  * @returns {SkillForUser[]} all skills for the user, including the parent skill.
  */
 export const getSkillsForUser = async (
-  userId: string | undefined
+  userId: string | undefined,
 ): Promise<SkillForUser[] | undefined> => {
   if (!userId) return;
 

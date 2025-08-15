@@ -17,7 +17,7 @@ export const addCompany = async (
     startDate: string;
     endDate: string;
     description: string;
-  }
+  },
 ) => {
   await verifySessionOwnership(userId);
 

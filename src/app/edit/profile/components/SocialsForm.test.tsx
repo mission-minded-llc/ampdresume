@@ -51,9 +51,7 @@ jest.mock("@/components/LoadingOverlay", () => ({
 }));
 
 jest.mock("@/components/MuiLink", () => ({
-  MuiLink: ({ children, ...props }: { children: React.ReactNode }) => (
-    <a {...props}>{children}</a>
-  ),
+  MuiLink: ({ children, ...props }: { children: React.ReactNode }) => <a {...props}>{children}</a>,
 }));
 
 describe("SocialsForm", () => {

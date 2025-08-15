@@ -18,12 +18,7 @@ export const addSkillForUser = async ({
   await client
     .mutate({
       mutation: gql`
-        mutation addSkillForUser(
-          $userId: ID!
-          $skillId: ID!
-          $yearStarted: Int
-          $totalYears: Int
-        ) {
+        mutation addSkillForUser($userId: ID!, $skillId: ID!, $yearStarted: Int, $totalYears: Int) {
           addSkillForUser(
             userId: $userId
             skillId: $skillId

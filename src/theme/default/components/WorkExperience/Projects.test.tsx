@@ -33,7 +33,7 @@ describe("Projects", () => {
     // The first project in sample data has a description
     const projectWithDescription = sampleProjects[0];
     expect(
-      screen.getByTestId(`project-accordion-${projectWithDescription.id}`)
+      screen.getByTestId(`project-accordion-${projectWithDescription.id}`),
     ).toBeInTheDocument();
     expect(screen.getByText(projectWithDescription.name)).toBeInTheDocument();
   });
@@ -50,11 +50,9 @@ describe("Projects", () => {
     render(<Projects projects={projectsWithoutDescription} />);
 
     expect(
-      screen.getByTestId(`project-item-${projectsWithoutDescription[0].id}`)
+      screen.getByTestId(`project-item-${projectsWithoutDescription[0].id}`),
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(projectsWithoutDescription[0].name)
-    ).toBeInTheDocument();
+    expect(screen.getByText(projectsWithoutDescription[0].name)).toBeInTheDocument();
   });
 
   it("renders multiple projects correctly", () => {
@@ -67,14 +65,10 @@ describe("Projects", () => {
     render(<Projects projects={mixedProjects} />);
 
     // First project should be in an accordion
-    expect(
-      screen.getByTestId(`project-accordion-${mixedProjects[0].id}`)
-    ).toBeInTheDocument();
+    expect(screen.getByTestId(`project-accordion-${mixedProjects[0].id}`)).toBeInTheDocument();
 
     // Second project should be a regular item
-    expect(
-      screen.getByTestId(`project-item-${mixedProjects[1].id}`)
-    ).toBeInTheDocument();
+    expect(screen.getByTestId(`project-item-${mixedProjects[1].id}`)).toBeInTheDocument();
   });
 
   it("handles empty projects array", () => {

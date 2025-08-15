@@ -108,9 +108,7 @@ describe("EditSkillsSearch", () => {
       data: { skills: mockSkills },
     });
 
-    const { container, getByLabelText, getByText } = render(
-      <EditSkillsSearch />
-    );
+    const { container, getByLabelText, getByText } = render(<EditSkillsSearch />);
     const searchInput = getByLabelText("Search Skills to Add");
     expect(container).toMatchSnapshot();
 
@@ -136,9 +134,7 @@ describe("EditSkillsSearch", () => {
       data: { skills: mockSkills },
     });
 
-    const { container, getByLabelText, getByText } = render(
-      <EditSkillsSearch />
-    );
+    const { container, getByLabelText, getByText } = render(<EditSkillsSearch />);
     const searchInput = getByLabelText("Search Skills to Add");
     expect(container).toMatchSnapshot();
 

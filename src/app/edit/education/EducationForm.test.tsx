@@ -31,7 +31,7 @@ describe("EducationForm", () => {
           deleteHandler={mockDeleteHandler}
           onCancel={mockOnCancel}
         />
-      </LocalizationProvider>
+      </LocalizationProvider>,
     );
 
     expect(getByLabelText("School *")).toHaveValue("Test University");
@@ -52,7 +52,7 @@ describe("EducationForm", () => {
           deleteHandler={mockDeleteHandler}
           onCancel={mockOnCancel}
         />
-      </LocalizationProvider>
+      </LocalizationProvider>,
     );
 
     fireEvent.change(getByLabelText("School *"), {
@@ -75,7 +75,7 @@ describe("EducationForm", () => {
           deleteHandler={mockDeleteHandler}
           onCancel={mockOnCancel}
         />
-      </LocalizationProvider>
+      </LocalizationProvider>,
     );
 
     fireEvent.click(getByText("Save Education"));
@@ -97,13 +97,11 @@ describe("EducationForm", () => {
           deleteHandler={mockDeleteHandler}
           onCancel={mockOnCancel}
         />
-      </LocalizationProvider>
+      </LocalizationProvider>,
     );
 
     fireEvent.click(getByText("Delete Education"));
-    waitFor(() =>
-      expect(mockDeleteHandler).toHaveBeenCalledWith(mockEducation)
-    );
+    waitFor(() => expect(mockDeleteHandler).toHaveBeenCalledWith(mockEducation));
   });
 
   it("handles cancel action", () => {
@@ -115,7 +113,7 @@ describe("EducationForm", () => {
           deleteHandler={mockDeleteHandler}
           onCancel={mockOnCancel}
         />
-      </LocalizationProvider>
+      </LocalizationProvider>,
     );
 
     fireEvent.click(getByText("Cancel"));

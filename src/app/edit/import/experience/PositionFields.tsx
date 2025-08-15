@@ -33,13 +33,13 @@ export const PositionFields = memo(
       companyIndex: number,
       positionIndex: number,
       field: string,
-      value: string
+      value: string,
     ) => void;
     onDateChange: (
       companyIndex: number,
       positionIndex: number,
       field: "startDate" | "endDate",
-      date: string
+      date: string,
     ) => void;
     onDelete: (companyIndex: number, positionIndex: number) => void;
   }) => {
@@ -85,21 +85,14 @@ export const PositionFields = memo(
               label="Start Date"
               value={position.startDate ? dayjs(position.startDate) : null}
               onChange={(date) =>
-                onDateChange(
-                  companyIndex,
-                  positionIndex,
-                  "startDate",
-                  validateAndConvertDate(date)
-                )
+                onDateChange(companyIndex, positionIndex, "startDate", validateAndConvertDate(date))
               }
               sx={{ flex: 1 }}
               slotProps={{
                 textField: {
                   required: true,
                   error: !position.startDate,
-                  helperText: !position.startDate
-                    ? "Start date is required"
-                    : "",
+                  helperText: !position.startDate ? "Start date is required" : "",
                 },
               }}
             />
@@ -107,12 +100,7 @@ export const PositionFields = memo(
               label="End Date"
               value={position.endDate ? dayjs(position.endDate) : null}
               onChange={(date) =>
-                onDateChange(
-                  companyIndex,
-                  positionIndex,
-                  "endDate",
-                  validateAndConvertDate(date)
-                )
+                onDateChange(companyIndex, positionIndex, "endDate", validateAndConvertDate(date))
               }
               sx={{ flex: 1 }}
             />
@@ -126,7 +114,7 @@ export const PositionFields = memo(
         </Box>
       </Box>
     );
-  }
+  },
 );
 
 PositionFields.displayName = "PositionFields";

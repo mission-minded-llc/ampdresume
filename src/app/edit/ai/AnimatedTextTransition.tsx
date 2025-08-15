@@ -98,13 +98,10 @@ export const AnimatedTextTransition = ({ text = "" }: { text: string }) => {
     <Box sx={{ display: "block", textWrap: "wrap", width: "100%" }}>
       {sentence.split(" ").map((word, index) => {
         // Find the status for this word
-        const wordStatus = orderedWordStatus.find(
-          (status) => status.newIndex === index
-        );
+        const wordStatus = orderedWordStatus.find((status) => status.newIndex === index);
 
         // Only apply colors if changes have occurred, otherwise all words are "unchanged"
-        const status =
-          hasChanged && wordStatus ? wordStatus.status : "unchanged";
+        const status = hasChanged && wordStatus ? wordStatus.status : "unchanged";
 
         return (
           <Box

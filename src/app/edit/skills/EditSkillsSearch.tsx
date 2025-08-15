@@ -35,8 +35,7 @@ export const EditSkillsSearch = () => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
 
-  const [isAddExistingSkillDialogOpen, setIsAddExistingSkillDialogOpen] =
-    useState(false);
+  const [isAddExistingSkillDialogOpen, setIsAddExistingSkillDialogOpen] = useState(false);
   const [isAddNewSkillDialogOpen, setIsAddNewSkillDialogOpen] = useState(false);
   const [newSkillName, setNewSkillName] = useState("");
   const [selectedSkillId, setSelectedSkillId] = useState<string | null>(null);
@@ -122,9 +121,7 @@ export const EditSkillsSearch = () => {
 
     // Sort skills by closest match and limit to top 10
     return data.skills
-      .filter((skill) =>
-        skill.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      .filter((skill) => skill.name.toLowerCase().includes(searchTerm.toLowerCase()))
       .sort((a, b) => {
         if (a.name.toLowerCase() === searchTerm.toLowerCase()) return -1;
         if (b.name.toLowerCase() === searchTerm.toLowerCase()) return 1;
@@ -199,9 +196,7 @@ export const EditSkillsSearch = () => {
                   onClick={() => handleSkillSelection(skill.id)}
                 >
                   <ListItemIcon>
-                    {skill?.icon ? (
-                      <Icon icon={skill.icon} width={24} height={24} />
-                    ) : null}
+                    {skill?.icon ? <Icon icon={skill.icon} width={24} height={24} /> : null}
                   </ListItemIcon>
                   <ListItemText primary={skill.name} />
                 </ListItem>
@@ -230,9 +225,7 @@ export const EditSkillsSearch = () => {
         onClose={() => setIsAddExistingSkillDialogOpen(false)}
         maxWidth="md"
       >
-        <CustomDialogTitle
-          closeHandler={() => setIsAddExistingSkillDialogOpen(false)}
-        >
+        <CustomDialogTitle closeHandler={() => setIsAddExistingSkillDialogOpen(false)}>
           Enter Proficiency Level
           <Tooltip message={<TooltipTotalYears />} />
         </CustomDialogTitle>
@@ -279,7 +272,7 @@ export const EditSkillsSearch = () => {
                     const target = e.target as HTMLInputElement;
                     target.value = Math.max(
                       0,
-                      Math.min(parseInt(removeLeadingZero(target.value)), 100)
+                      Math.min(parseInt(removeLeadingZero(target.value)), 100),
                     ).toString();
                   }}
                   onChange={(e) => setTotalYears(Number(e.target.value))}
@@ -303,12 +296,8 @@ export const EditSkillsSearch = () => {
                   />
                 }
                 label={
-                  <Typography
-                    variant="body2"
-                    sx={{ fontSize: "0.8rem", fontStyle: "italic" }}
-                  >
-                    Auto-calculate <strong>years of experience</strong> based on
-                    year started.
+                  <Typography variant="body2" sx={{ fontSize: "0.8rem", fontStyle: "italic" }}>
+                    Auto-calculate <strong>years of experience</strong> based on year started.
                   </Typography>
                 }
               />
@@ -316,9 +305,7 @@ export const EditSkillsSearch = () => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setIsAddExistingSkillDialogOpen(false)}>
-            Cancel
-          </Button>
+          <Button onClick={() => setIsAddExistingSkillDialogOpen(false)}>Cancel</Button>
           <Button onClick={handleAddExistingSkill}>Add Skill</Button>
         </DialogActions>
       </Dialog>
@@ -328,9 +315,7 @@ export const EditSkillsSearch = () => {
         onClose={() => setIsAddNewSkillDialogOpen(false)}
         maxWidth="lg"
       >
-        <CustomDialogTitle
-          closeHandler={() => setIsAddNewSkillDialogOpen(false)}
-        >
+        <CustomDialogTitle closeHandler={() => setIsAddNewSkillDialogOpen(false)}>
           Add a New Skill
         </CustomDialogTitle>
         <DialogContent sx={{ minHeight: "300px" }}>
@@ -356,9 +341,7 @@ export const EditSkillsSearch = () => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setIsAddNewSkillDialogOpen(false)}>
-            Cancel
-          </Button>
+          <Button onClick={() => setIsAddNewSkillDialogOpen(false)}>Cancel</Button>
           <Button onClick={handleAddNewSkill} disabled={!newSkillName || !icon}>
             Add Skill
           </Button>

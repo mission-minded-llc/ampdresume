@@ -41,9 +41,7 @@ export async function seedCompanies() {
       });
 
       if (existingCompany) {
-        console.log(
-          `Company ${company.name} already exists for user ${userId}`
-        );
+        console.log(`Company ${company.name} already exists for user ${userId}`);
         continue;
       }
 
@@ -54,7 +52,7 @@ export async function seedCompanies() {
         },
       });
       console.log(
-        `Created company ${company.name} for user ${userId} with id: ${createdCompany.id}`
+        `Created company ${company.name} for user ${userId} with id: ${createdCompany.id}`,
       );
     }
   }

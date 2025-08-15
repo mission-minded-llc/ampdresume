@@ -12,9 +12,7 @@ const filePlugin = (on, config) => {
       // Try to read the file
       try {
         if (!fs.existsSync(filePath)) {
-          throw new Error(
-            `Magic link file not found for ${email} at ${filePath}`
-          );
+          throw new Error(`Magic link file not found for ${email} at ${filePath}`);
         }
 
         // Read the magic link from the file
@@ -25,9 +23,7 @@ const filePlugin = (on, config) => {
 
         return magicLink;
       } catch (error) {
-        throw new Error(
-          `Error reading magic link for ${email}: ${error.message}`
-        );
+        throw new Error(`Error reading magic link for ${email}: ${error.message}`);
       }
     },
 

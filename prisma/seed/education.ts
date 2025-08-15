@@ -30,9 +30,7 @@ export async function seedEducation() {
         userId,
       },
     });
-    console.log(
-      `Created education for user ${userId} with id: ${createdEducation.id}`
-    );
+    console.log(`Created education for user ${userId} with id: ${createdEducation.id}`);
   }
 }
 

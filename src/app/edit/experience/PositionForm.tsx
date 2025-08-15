@@ -1,13 +1,7 @@
 import { Position } from "@/types";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
-import {
-  Box,
-  Button,
-  FormControl,
-  FormHelperText,
-  TextField,
-} from "@mui/material";
+import { Box, Button, FormControl, FormHelperText, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { formatLongDate, timestampToDate } from "@/lib/format";
@@ -28,12 +22,12 @@ export const PositionForm = ({
   const [positionTitleValid, setPositionTitleValid] = useState(true);
 
   const [startDate, setStartDate] = useState<Dayjs | null>(
-    position?.startDate ? dayjs(timestampToDate(position?.startDate)) : null
+    position?.startDate ? dayjs(timestampToDate(position?.startDate)) : null,
   );
   const [startDateValid, setStartDateValid] = useState(true);
 
   const [endDate, setEndDate] = useState<Dayjs | null>(
-    position?.endDate ? dayjs(timestampToDate(position?.endDate)) : null
+    position?.endDate ? dayjs(timestampToDate(position?.endDate)) : null,
   );
 
   const saveHandler = () => {
@@ -76,14 +70,9 @@ export const PositionForm = ({
             required
             name="positionTitle"
           />
-          {!positionTitleValid && (
-            <FormHelperText>Position title is required.</FormHelperText>
-          )}
+          {!positionTitleValid && <FormHelperText>Position title is required.</FormHelperText>}
         </FormControl>
-        <FormControl
-          error={!startDateValid}
-          sx={{ gridColumn: { xs: "span 2", sm: "span 1" } }}
-        >
+        <FormControl error={!startDateValid} sx={{ gridColumn: { xs: "span 2", sm: "span 1" } }}>
           <DatePicker
             label="Date Started"
             value={startDate}
@@ -95,9 +84,7 @@ export const PositionForm = ({
             name="dateStarted"
           />
           <FormHelperText>
-            {startDateValid
-              ? "Start date is required."
-              : "Please select a valid date."}
+            {startDateValid ? "Start date is required." : "Please select a valid date."}
           </FormHelperText>
         </FormControl>
         <FormControl sx={{ gridColumn: { xs: "span 2", sm: "span 1" } }}>
@@ -133,9 +120,7 @@ export const PositionForm = ({
             onConfirmDelete={() => {
               deleteHandler(position);
             }}
-            disabled={
-              position?.projectCount ? position?.projectCount > 0 : false
-            }
+            disabled={position?.projectCount ? position?.projectCount > 0 : false}
           />
         )}
         {onCancel && (
@@ -143,12 +128,7 @@ export const PositionForm = ({
             Cancel
           </Button>
         )}
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={saveHandler}
-          disabled={!isChanged}
-        >
+        <Button variant="outlined" color="secondary" onClick={saveHandler} disabled={!isChanged}>
           Save Position
         </Button>
       </Box>

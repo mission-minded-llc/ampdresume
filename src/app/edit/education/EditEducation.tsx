@@ -24,8 +24,7 @@ export const EditEducation = () => {
     queryFn: async () => await getEducation(session?.user.id),
   });
 
-  if (status === "loading")
-    return <LoadingOverlay message="Loading session..." />;
+  if (status === "loading") return <LoadingOverlay message="Loading session..." />;
   if (status === "unauthenticated")
     return (
       <Box>
@@ -42,8 +41,8 @@ export const EditEducation = () => {
 
       <Box sx={{ mb: 4 }}>
         <Typography>
-          Your education is important to show on your resume. It helps potential
-          employers understand your background and qualifications.
+          Your education is important to show on your resume. It helps potential employers
+          understand your background and qualifications.
         </Typography>
       </Box>
 

@@ -156,8 +156,7 @@ exports[`TermsOfService Page matches snapshot 1`] = `
       <p
         class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
       >
-        You agree to indemnify and hold harmless
-         
+        You agree to indemnify and hold harmless 
         <strong>
           Amp'd Resume
         </strong>
@@ -175,8 +174,7 @@ exports[`TermsOfService Page matches snapshot 1`] = `
       <p
         class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
       >
-        We reserve the right to suspend or terminate your access to our services at any time, without notice, for conduct that we believe violates these Terms or is harmful to other users of
-         
+        We reserve the right to suspend or terminate your access to our services at any time, without notice, for conduct that we believe violates these Terms or is harmful to other users of 
         <strong>
           Amp'd Resume
         </strong>
@@ -208,8 +206,7 @@ exports[`TermsOfService Page matches snapshot 1`] = `
       <p
         class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
       >
-        These Terms of Service are governed by and construed in accordance with the laws of the jurisdiction in which
-         
+        These Terms of Service are governed by and construed in accordance with the laws of the jurisdiction in which 
         <strong>
           Amp'd Resume
         </strong>

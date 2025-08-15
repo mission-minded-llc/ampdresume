@@ -75,7 +75,7 @@ beforeEach(() => {
           Promise.resolve(
             JSON.stringify({
               user: { id: "test-user-id", email: "test@example.com" },
-            })
+            }),
           ),
       } as Response);
     }
@@ -99,9 +99,7 @@ describe("AccountForm", () => {
   });
 
   it("renders correctly", async () => {
-    const { container, getByLabelText } = renderWithSession(
-      <AccountForm {...mockProps} />
-    );
+    const { container, getByLabelText } = renderWithSession(<AccountForm {...mockProps} />);
 
     await waitFor(() => {
       expect(getByLabelText("Full Name")).toBeInTheDocument();
@@ -115,16 +113,14 @@ describe("AccountForm", () => {
   });
 
   it("handles input changes and validation", async () => {
-    const { getByLabelText, getByText } = renderWithSession(
-      <AccountForm {...mockProps} />
-    );
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     const slugInput = getByLabelText("URL Name");
     fireEvent.change(slugInput, { target: { value: "invalid slug" } });
     fireEvent.blur(slugInput);
     await waitFor(() => {
       expect(
-        getByText("Slug must be alphanumeric and lowercase. Hyphens allowed.")
+        getByText("Slug must be alphanumeric and lowercase. Hyphens allowed."),
       ).toBeInTheDocument();
     });
   });
@@ -147,7 +143,7 @@ describe("AccountForm", () => {
             Promise.resolve(
               JSON.stringify({
                 user: { id: "test-user-id", email: "test@example.com" },
-              })
+              }),
             ),
         } as Response);
       }
@@ -163,9 +159,7 @@ describe("AccountForm", () => {
       } as Response);
     });
 
-    const { getByLabelText, getByText } = renderWithSession(
-      <AccountForm {...mockProps} />
-    );
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     fireEvent.change(getByLabelText("Full Name"), {
       target: { value: "Jane Doe" },
@@ -180,10 +174,7 @@ describe("AccountForm", () => {
     fireEvent.click(getByText("Save"));
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith(
-        "/api/account",
-        expect.any(Object)
-      );
+      expect(global.fetch).toHaveBeenCalledWith("/api/account", expect.any(Object));
     });
   });
 
@@ -205,7 +196,7 @@ describe("AccountForm", () => {
             Promise.resolve(
               JSON.stringify({
                 user: { id: "test-user-id", email: "test@example.com" },
-              })
+              }),
             ),
         } as Response);
       }
@@ -217,14 +208,11 @@ describe("AccountForm", () => {
         redirected: false,
         url: String(url),
         json: () => Promise.resolve({ error: "Submission failed" }),
-        text: () =>
-          Promise.resolve(JSON.stringify({ error: "Submission failed" })),
+        text: () => Promise.resolve(JSON.stringify({ error: "Submission failed" })),
       } as Response);
     });
 
-    const { getByLabelText, getByText } = renderWithSession(
-      <AccountForm {...mockProps} />
-    );
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     fireEvent.change(getByLabelText("Full Name"), {
       target: { value: "Jane Doe" },
@@ -244,9 +232,7 @@ describe("AccountForm", () => {
   });
 
   it("displays error message on form submission failure for invalid name", async () => {
-    const { getByLabelText, getByText } = renderWithSession(
-      <AccountForm {...mockProps} />
-    );
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     fireEvent.change(getByLabelText("Full Name"), { target: { value: "   " } });
     fireEvent.click(getByText("Save"));
@@ -257,9 +243,7 @@ describe("AccountForm", () => {
   });
 
   it("displays error message on form submission failure for invalid slug", async () => {
-    const { getByLabelText, getByText } = renderWithSession(
-      <AccountForm {...mockProps} />
-    );
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     fireEvent.change(getByLabelText("URL Name"), { target: { value: "   " } });
     fireEvent.click(getByText("Save"));
@@ -270,9 +254,7 @@ describe("AccountForm", () => {
   });
 
   it("displays error message on form submission failure for invalid email", async () => {
-    const { getByLabelText, getByText } = renderWithSession(
-      <AccountForm {...mockProps} />
-    );
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
     const emailInput = getByLabelText("Display Email");
     fireEvent.change(emailInput, { target: { value: "invalid-email" } });

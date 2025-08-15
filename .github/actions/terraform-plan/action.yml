@@ -1,5 +1,6 @@
 name: "Terraform Init and Plan"
-description: "Initialize Terraform and run a plan to ensure the infrastructure will be created as expected"
+description:
+  "Initialize Terraform and run a plan to ensure the infrastructure will be created as expected"
 
 runs:
   using: "composite"

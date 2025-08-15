@@ -3,13 +3,7 @@
 import { Company } from "@/types";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
-import {
-  Box,
-  Button,
-  Dialog,
-  TextareaAutosize,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Dialog, TextareaAutosize, Typography } from "@mui/material";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
@@ -30,16 +24,10 @@ export const AiAssist = () => {
   const [jobDescription, setJobDescription] = useState("");
   const [cleanJobDescription, setCleanJobDescription] = useState("");
 
-  const [companiesOriginalData, setCompaniesOriginalData] = useState<Company[]>(
-    []
-  );
+  const [companiesOriginalData, setCompaniesOriginalData] = useState<Company[]>([]);
   const [companiesAiData, setCompaniesAiData] = useState<Company[]>([]);
-  const [companiesDisplayData, setCompaniesDisplayData] = useState<Company[]>(
-    []
-  );
-  const [activeDisplay, setActiveDisplay] = useState<"original" | "ai">(
-    "original"
-  );
+  const [companiesDisplayData, setCompaniesDisplayData] = useState<Company[]>([]);
+  const [activeDisplay, setActiveDisplay] = useState<"original" | "ai">("original");
 
   const isAuthenticatedUser =
     status === "authenticated" && !!session?.user.id && !!session?.user.slug;
@@ -146,8 +134,7 @@ export const AiAssist = () => {
     }
   }, [activeDisplay, companiesOriginalData, companiesAiData]);
 
-  if (status === "loading")
-    return <LoadingOverlay message="Loading session..." />;
+  if (status === "loading") return <LoadingOverlay message="Loading session..." />;
   if (status === "unauthenticated")
     return (
       <Box>
@@ -156,17 +143,12 @@ export const AiAssist = () => {
     );
 
   if (resumePending) return <LoadingOverlay open={true} />;
-  if (resumeError)
-    return <Box>Error loading resume data: {resumeError.message}</Box>;
-  if (companiesAiError)
-    return <Box>Error loading: {companiesAiError.message}</Box>;
+  if (resumeError) return <Box>Error loading resume data: {resumeError.message}</Box>;
+  if (companiesAiError) return <Box>Error loading: {companiesAiError.message}</Box>;
 
   return (
     <>
-      <LoadingOverlay
-        message="Conferring with bots... [beep boop]"
-        open={companiesAiFetching}
-      />
+      <LoadingOverlay message="Conferring with bots... [beep boop]" open={companiesAiFetching} />
       <SectionTitle title="Tweak Your Resume with AI Assist" />
 
       <Box
@@ -202,10 +184,7 @@ export const AiAssist = () => {
             borderColor: activeDisplay === "ai" ? "green" : "grey.400",
           }}
           onClick={() => setActiveDisplay("ai")}
-          disabled={
-            !companiesAiData?.length ||
-            companiesAiData === companiesOriginalData
-          }
+          disabled={!companiesAiData?.length || companiesAiData === companiesOriginalData}
         >
           View AI-Edited
         </Button>
@@ -242,30 +221,19 @@ export const AiAssist = () => {
                 <Typography variant="h6" sx={{ mt: 4 }}>
                   {company.name}
                 </Typography>
-                <Typography
-                  variant="subtitle1"
-                  sx={{ mb: 1, fontWeight: "bold" }}
-                >
+                <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: "bold" }}>
                   {position.title}
                 </Typography>
                 {position?.projects?.map((project) => (
-                  <AnimatedTextTransition
-                    key={project.id}
-                    text={project.name}
-                  />
+                  <AnimatedTextTransition key={project.id} text={project.name} />
                 ))}
               </Box>
-            ))
+            )),
           )}
         </Box>
       ) : null}
 
-      <Dialog
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        maxWidth="md"
-        fullWidth
-      >
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
         <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
           <span>
             AI Assistance{" "}
@@ -273,13 +241,11 @@ export const AiAssist = () => {
               message={
                 <>
                   <Typography>
-                    AI should not add any skills or experiences not present in
-                    your original resume. It will aim for clarity and
-                    conciseness in bullet point revisions.
+                    AI should not add any skills or experiences not present in your original resume.
+                    It will aim for clarity and conciseness in bullet point revisions.
                   </Typography>
                   <Typography sx={{ mt: 2 }}>
-                    Paste in a job description for your desired role to get
-                    started.
+                    Paste in a job description for your desired role to get started.
                   </Typography>
                 </>
               }
@@ -287,9 +253,7 @@ export const AiAssist = () => {
           </span>
         </CustomDialogTitle>
         <Box p={2}>
-          <Typography sx={{ mb: 2 }}>
-            Paste in the job description below:
-          </Typography>
+          <Typography sx={{ mb: 2 }}>Paste in the job description below:</Typography>
           <TextareaAutosize
             onChange={(e) => setJobDescription(e.target.value)}
             value={jobDescription}

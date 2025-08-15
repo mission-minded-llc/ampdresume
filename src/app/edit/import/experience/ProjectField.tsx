@@ -32,13 +32,9 @@ export const ProjectField = memo(
       positionIndex: number,
       projectIndex: number,
       field: string,
-      value: string
+      value: string,
     ) => void;
-    onDelete: (
-      companyIndex: number,
-      positionIndex: number,
-      projectIndex: number
-    ) => void;
+    onDelete: (companyIndex: number, positionIndex: number, projectIndex: number) => void;
   }) => {
     const [localValue, setLocalValue] = useState(project.name || "");
 
@@ -48,13 +44,7 @@ export const ProjectField = memo(
 
     const handleBlur = () => {
       if (localValue !== project.name) {
-        onFieldChange(
-          companyIndex,
-          positionIndex,
-          projectIndex,
-          "name",
-          localValue
-        );
+        onFieldChange(companyIndex, positionIndex, projectIndex, "name", localValue);
       }
     };
 
@@ -87,7 +77,7 @@ export const ProjectField = memo(
         </IconButton>
       </Box>
     );
-  }
+  },
 );
 
 ProjectField.displayName = "ProjectField";

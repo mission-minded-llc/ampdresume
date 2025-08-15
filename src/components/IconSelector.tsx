@@ -20,11 +20,7 @@ interface IconSelectorProps {
  *
  * @returns IconSelector component
  */
-export const IconSelector: React.FC<IconSelectorProps> = ({
-  setIcon,
-  icon = null,
-  limit = 50,
-}) => {
+export const IconSelector: React.FC<IconSelectorProps> = ({ setIcon, icon = null, limit = 50 }) => {
   const [query, setQuery] = useState("");
   const [iconSearchResults, setIconSearchResults] = useState<string[]>([]);
   const [selectedIcon, setSelectedIcon] = useState<string | null>(icon);
@@ -144,11 +140,7 @@ export const IconSelector: React.FC<IconSelectorProps> = ({
               }}
             >
               {iconSearchResults.map((iconName) => (
-                <Box
-                  key={iconName}
-                  onClick={() => handleIconSelect(iconName)}
-                  title={iconName}
-                >
+                <Box key={iconName} onClick={() => handleIconSelect(iconName)} title={iconName}>
                   <Icon icon={iconName} width={32} height={32} />
                 </Box>
               ))}

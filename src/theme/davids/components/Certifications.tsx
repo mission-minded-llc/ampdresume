@@ -5,9 +5,7 @@ interface CertificationsSectionProps {
   certifications: Certification[];
 }
 
-export const CertificationsSection = ({
-  certifications,
-}: CertificationsSectionProps) => {
+export const CertificationsSection = ({ certifications }: CertificationsSectionProps) => {
   const theme = useTheme();
 
   return (
@@ -20,13 +18,10 @@ export const CertificationsSection = ({
           <Box sx={{ mb: 0.5 }}>
             {cert.issuer}
             {cert.dateAwarded &&
-              ` – ${new Date(Number(cert.dateAwarded)).toLocaleDateString(
-                undefined,
-                {
-                  year: "numeric",
-                  month: "long",
-                }
-              )}`}
+              ` – ${new Date(Number(cert.dateAwarded)).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long",
+              })}`}
           </Box>
           {cert.credentialUrl && (
             <Box>

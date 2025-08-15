@@ -12,7 +12,7 @@ describe("ThemeDefaultPDF", () => {
         skillsForUser={mockData.skillsForUser}
         companies={mockData.companies}
         education={mockData.education}
-      />
+      />,
     );
 
     // Check if user's name is rendered in the header
@@ -28,9 +28,7 @@ describe("ThemeDefaultPDF", () => {
     // Check if skills section is rendered
     mockData.skillsForUser.forEach((skillForUser) => {
       // Use a regex to match the skill name with or without a trailing comma
-      const elements = screen.getAllByText(
-        new RegExp(`^${skillForUser.skill.name}[,]?$`)
-      );
+      const elements = screen.getAllByText(new RegExp(`^${skillForUser.skill.name}[,]?$`));
       expect(elements.length).toBeGreaterThan(0);
     });
 
@@ -54,14 +52,12 @@ describe("ThemeDefaultPDF", () => {
         companies={mockData.companies}
         education={mockData.education}
         themeOptions={{ showSkillsInWorkExperience: true }}
-      />
+      />,
     );
 
     // Get initial count of a skill that appears in work experience
     const skillName = mockData.skillsForUser[0].skill.name;
-    const initialSkillCount = screen.getAllByText(
-      new RegExp(`^${skillName}[,]?$`)
-    ).length;
+    const initialSkillCount = screen.getAllByText(new RegExp(`^${skillName}[,]?$`)).length;
 
     // Rerender with skills hidden
     rerender(
@@ -71,13 +67,11 @@ describe("ThemeDefaultPDF", () => {
         companies={mockData.companies}
         education={mockData.education}
         themeOptions={{ showSkillsInWorkExperience: false }}
-      />
+      />,
     );
 
     // Should find fewer instances of the skill when hidden from work experience
-    const hiddenSkillCount = screen.getAllByText(
-      new RegExp(`^${skillName}[,]?$`)
-    ).length;
+    const hiddenSkillCount = screen.getAllByText(new RegExp(`^${skillName}[,]?$`)).length;
     expect(hiddenSkillCount).toBeLessThan(initialSkillCount);
   });
 });

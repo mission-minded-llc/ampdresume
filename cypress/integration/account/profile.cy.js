@@ -48,16 +48,12 @@ describe("Profile Section", () => {
 
     // Ensure that the fields are populated with the saved data, minus extra leading or trailing spaces.
     fields.forEach((field) => {
-      cy.get(`input[name='${field.name}']`).should(
-        "have.value",
-        field.value.trim()
-      );
+      cy.get(`input[name='${field.name}']`).should("have.value", field.value.trim());
     });
   });
 
   it("should encounter slug validation error", () => {
-    const slugErrorMessage =
-      "Slug must be alphanumeric and lowercase. Hyphens allowed.";
+    const slugErrorMessage = "Slug must be alphanumeric and lowercase. Hyphens allowed.";
 
     cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/profile`);
 
@@ -65,9 +61,7 @@ describe("Profile Section", () => {
     cy.get("input[name='slug']").clear({ force: true }).type("test user");
     cy.get(saveButton).click();
 
-    cy.get("[id='alert-dialog-description']")
-      .contains(slugErrorMessage)
-      .should("be.visible");
+    cy.get("[id='alert-dialog-description']").contains(slugErrorMessage).should("be.visible");
     cy.get("button").contains("OK").click();
 
     cy.get("input[name=slug]").clear({ force: true }).type("test-user");
@@ -111,10 +105,7 @@ describe("Profile Section", () => {
     // Check all the required checkboxes to delete the account.
     cy.get("input[type='checkbox']").check({ force: true });
 
-    cy.get("button")
-      .contains("Yes, Delete My Account")
-      .should("not.be.disabled")
-      .click();
+    cy.get("button").contains("Yes, Delete My Account").should("not.be.disabled").click();
 
     // Deleting the account will redirect to the homepage.
     cy.url().should("eq", `${Cypress.env("BASE_URL") || ""}/`);

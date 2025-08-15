@@ -4,13 +4,8 @@ import { SkillForUser } from "@/types";
 import { groupSkillsForUserByYearExperience } from "@/util/structure";
 import { fontSize, Section, SectionTitle } from "./styled";
 
-export const Skills = ({
-  skillsForUser,
-}: {
-  skillsForUser: SkillForUser[];
-}) => {
-  const skillsForUserBySkill =
-    groupSkillsForUserByYearExperience(skillsForUser);
+export const Skills = ({ skillsForUser }: { skillsForUser: SkillForUser[] }) => {
+  const skillsForUserBySkill = groupSkillsForUserByYearExperience(skillsForUser);
 
   return (
     <Section>
@@ -39,9 +34,7 @@ export const Skills = ({
                   fontSize: fontSize.body,
                 }}
               >
-                {totalYears
-                  ? `${totalYears} year${parseInt(totalYears, 10) > 1 ? "s" : ""}:`
-                  : ""}
+                {totalYears ? `${totalYears} year${parseInt(totalYears, 10) > 1 ? "s" : ""}:` : ""}
               </Box>
               <Box
                 sx={{

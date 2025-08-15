@@ -77,7 +77,7 @@ describe("Authentication Configuration", () => {
           to: "jesttest@ampdresume.com",
           subject: expect.stringContaining("Sign in"),
           html: expect.stringContaining("Click the link below to sign in"),
-        })
+        }),
       );
     });
   });

@@ -22,9 +22,7 @@ describe("Skills Section", () => {
     // The text field defaults to having a "0" when it's cleared, then Cypress
     // begins typing at the beginning, before the "0" which pushes it back. This
     // typing results in a year of "2010"
-    cy.get("input[name='yearStarted']")
-      .clear()
-      .type(yearStarted.substring(0, 3));
+    cy.get("input[name='yearStarted']").clear().type(yearStarted.substring(0, 3));
 
     cy.get("button").contains("Add Skill").click();
     cy.get("button").contains(skill).should("be.visible");

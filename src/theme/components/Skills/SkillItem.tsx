@@ -7,11 +7,7 @@ import { SkillForProject, SkillForUser } from "@/types";
 import { SkillItemView } from "./SkillItemView";
 import { SkillsContext } from "./Skills";
 
-export const SkillItem = ({
-  skill,
-}: {
-  skill: SkillForUser | SkillForProject;
-}) => {
+export const SkillItem = ({ skill }: { skill: SkillForUser | SkillForProject }) => {
   const { skillType } = useContext(SkillsContext);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,12 +33,9 @@ export const SkillItem = ({
         color="primary"
         onClick={() => setIsOpen(true)}
         sx={(theme) => {
-          const color =
-            theme.palette.mode === "dark" ? "#fff" : theme.palette.primary.main;
+          const color = theme.palette.mode === "dark" ? "#fff" : theme.palette.primary.main;
           const backgroundColor =
-            theme.palette.mode === "dark"
-              ? "#333"
-              : theme.palette.primary.light;
+            theme.palette.mode === "dark" ? "#333" : theme.palette.primary.light;
 
           return {
             padding: "2px 10px !important",
@@ -57,9 +50,7 @@ export const SkillItem = ({
             },
             textTransform: "none",
             gap: "8px",
-            borderColor: skill?.description
-              ? "lawngreen"
-              : theme.palette.primary.dark,
+            borderColor: skill?.description ? "lawngreen" : theme.palette.primary.dark,
           };
         }}
       >

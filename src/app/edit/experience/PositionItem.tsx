@@ -2,13 +2,7 @@ import { Position } from "@/types";
 import { useSession } from "next-auth/react";
 import { useRef } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Divider,
-} from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Divider } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deletePosition } from "@/graphql/deletePosition";
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";

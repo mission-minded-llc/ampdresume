@@ -20,7 +20,7 @@ export const ImagePlugin = () => {
   useEffect(() => {
     const findRemovedImages = (
       beforeState: SerializedEditorState<SerializedLexicalNode>,
-      afterState: SerializedEditorState<SerializedLexicalNode>
+      afterState: SerializedEditorState<SerializedLexicalNode>,
     ) => {
       const beforeImages = findImagesInState(beforeState);
       const afterImages = findImagesInState(afterState);
@@ -30,21 +30,17 @@ export const ImagePlugin = () => {
 
     const findAddedImages = (
       beforeState: SerializedEditorState<SerializedLexicalNode>,
-      afterState: SerializedEditorState<SerializedLexicalNode>
+      afterState: SerializedEditorState<SerializedLexicalNode>,
     ) => {
       const beforeImages = findImagesInState(beforeState);
       const afterImages = findImagesInState(afterState);
       return afterImages.filter((img) => !beforeImages.includes(img));
     };
 
-    const findImagesInState = (
-      state: SerializedEditorState<SerializedLexicalNode>
-    ) => {
+    const findImagesInState = (state: SerializedEditorState<SerializedLexicalNode>) => {
       const images: string[] = [];
 
-      const traverse = (
-        node: SerializedLexicalNode & { children?: SerializedLexicalNode[] }
-      ) => {
+      const traverse = (node: SerializedLexicalNode & { children?: SerializedLexicalNode[] }) => {
         if (node.type === "image" && (node as SerializedImageNode).src) {
           images.push((node as SerializedImageNode).src);
         }
@@ -77,7 +73,7 @@ export const ImagePlugin = () => {
 
         return false; // Don't prevent default undo behavior
       },
-      1
+      1,
     );
 
     const unregisterRedo = editor.registerCommand(
@@ -97,15 +93,13 @@ export const ImagePlugin = () => {
 
         return false; // Don't prevent default redo behavior
       },
-      1
+      1,
     );
 
     // Update the previous state whenever the editor changes
-    const unregisterUpdate = editor.registerUpdateListener(
-      ({ editorState }) => {
-        prevEditorState = editorState;
-      }
-    );
+    const unregisterUpdate = editor.registerUpdateListener(({ editorState }) => {
+      prevEditorState = editorState;
+    });
 
     return () => {
       unregisterUndo();

@@ -13,9 +13,11 @@ interface AccordionSummaryContentProps {
  * - secondary: Sub label (e.g., location, degree)
  * - dateRange: Date or date range string
  */
-export const AccordionSummaryContent: React.FC<
-  AccordionSummaryContentProps
-> = ({ primary, secondary, dateRange }) => (
+export const AccordionSummaryContent: React.FC<AccordionSummaryContentProps> = ({
+  primary,
+  secondary,
+  dateRange,
+}) => (
   <>
     {/* Desktop */}
     <Typography

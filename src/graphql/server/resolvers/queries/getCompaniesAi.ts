@@ -11,7 +11,7 @@ export const getCompaniesAi = async (
   }: {
     userId: string;
     jobDescription: string;
-  }
+  },
 ) => {
   await verifySessionOwnership(userId);
 

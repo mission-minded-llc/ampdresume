@@ -52,9 +52,7 @@ export const formatShortDate = (dateStr: Dayjs | string | null | undefined) => {
  * @param {string} timestamp the timestamp to convert.
  * @returns {Date} the date object.
  */
-export const timestampToDate = (
-  timestamp: string | number | null | undefined
-) => {
+export const timestampToDate = (timestamp: string | number | null | undefined) => {
   if (!timestamp) return null;
 
   if (typeof timestamp === "number") return new Date(timestamp);

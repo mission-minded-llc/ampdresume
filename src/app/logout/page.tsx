@@ -22,9 +22,7 @@ export default function LogoutPage() {
       <Typography component="h1" variant="h4">
         Logging out...
       </Typography>
-      <Typography sx={{ mt: "1rem" }}>
-        You will be redirected shortly.
-      </Typography>
+      <Typography sx={{ mt: "1rem" }}>You will be redirected shortly.</Typography>
     </Container>
   );
 }

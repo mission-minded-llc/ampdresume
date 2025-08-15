@@ -12,13 +12,7 @@ describe("MessageDialog", () => {
   });
 
   it("renders with custom title and message", async () => {
-    render(
-      <MessageDialog
-        open={true}
-        title="Custom Title"
-        message="Custom Message"
-      />
-    );
+    render(<MessageDialog open={true} title="Custom Title" message="Custom Message" />);
     await waitFor(() => {
       expect(screen.getByText("Custom Title")).toBeInTheDocument();
       expect(screen.getByText("Custom Message")).toBeInTheDocument();

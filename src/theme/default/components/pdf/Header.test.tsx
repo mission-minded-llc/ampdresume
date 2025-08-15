@@ -21,7 +21,7 @@ describe("Header", () => {
     const contactInfo = screen.getByText(`${sampleUser.location} |`);
     expect(contactInfo).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: sampleUser.displayEmail as string })
+      screen.getByRole("link", { name: sampleUser.displayEmail as string }),
     ).toBeInTheDocument();
   });
 
@@ -30,10 +30,7 @@ describe("Header", () => {
     const emailLink = screen.getByRole("link", {
       name: sampleUser.displayEmail as string,
     });
-    expect(emailLink).toHaveAttribute(
-      "href",
-      `mailto:${sampleUser.displayEmail}`
-    );
+    expect(emailLink).toHaveAttribute("href", `mailto:${sampleUser.displayEmail}`);
   });
 
   it("handles missing location", () => {
@@ -41,7 +38,7 @@ describe("Header", () => {
     render(<Header user={userWithoutLocation} />);
     expect(screen.queryByText(/\|/)).not.toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: sampleUser.displayEmail as string })
+      screen.getByRole("link", { name: sampleUser.displayEmail as string }),
     ).toBeInTheDocument();
   });
 

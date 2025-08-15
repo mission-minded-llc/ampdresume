@@ -16,9 +16,7 @@ describe("Education Component", () => {
     render(<Education education={sampleEducation} />);
 
     // Should show the school
-    expect(
-      screen.getByText("University of California, Berkeley")
-    ).toBeInTheDocument();
+    expect(screen.getByText("University of California, Berkeley")).toBeInTheDocument();
 
     // Should show the degree
     expect(screen.getByText(/B.S. Computer Science/)).toBeInTheDocument();

@@ -108,9 +108,7 @@ export const UserAssetInput = ({
         }}
       />
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
-          Add Image
-        </CustomDialogTitle>
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Add Image</CustomDialogTitle>
         <DialogContent
           sx={{
             width: "400px",

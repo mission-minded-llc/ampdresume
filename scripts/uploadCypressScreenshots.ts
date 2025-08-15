@@ -39,7 +39,7 @@ function uploadScreenshots() {
   console.log("Local screenshots directory:", screenshotsDir);
 
   const files = getAllFiles(screenshotsDir).map((filePath) =>
-    filePath.replace(`${screenshotsDir}/`, "")
+    filePath.replace(`${screenshotsDir}/`, ""),
   );
   console.log("Screenshot files list:", files);
 
@@ -59,7 +59,7 @@ function uploadScreenshots() {
           Key: `${s3dir}/${file}`,
           Body: data,
           ContentType: "image/png",
-        })
+        }),
       )
       .catch((error) => {
         console.error("Error uploading file:", file, error);

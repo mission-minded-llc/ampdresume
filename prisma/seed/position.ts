@@ -41,9 +41,7 @@ export async function seedPositions() {
       };
 
       if (existingPosition) {
-        console.log(
-          `Updating position for user ${userId}, company ${company.id}`
-        );
+        console.log(`Updating position for user ${userId}, company ${company.id}`);
 
         await prisma.position.update({
           where: {
@@ -58,9 +56,7 @@ export async function seedPositions() {
       const createdPosition = await prisma.position.create({
         data: { ...positionData, companyId: company.id },
       });
-      console.log(
-        `Created position for user ${userId} with id: ${createdPosition.id}`
-      );
+      console.log(`Created position for user ${userId} with id: ${createdPosition.id}`);
     }
   }
 }

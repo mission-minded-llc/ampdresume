@@ -91,10 +91,8 @@ export const ThemeDavids = ({
     paper: themeAppearance === "dark" ? COLORS.darkSlate : COLORS.lightBlue,
     primary: themeAppearance === "dark" ? COLORS.brightBlue : COLORS.navyBlue,
     buttonBg: themeAppearance === "dark" ? COLORS.darkBlue : COLORS.lightBlue,
-    buttonHover:
-      themeAppearance === "dark" ? COLORS.darkBlueHover : COLORS.lightBlueHover,
-    buttonBorder:
-      themeAppearance === "dark" ? COLORS.darkBlueBorder : COLORS.navyBlue,
+    buttonHover: themeAppearance === "dark" ? COLORS.darkBlueHover : COLORS.lightBlueHover,
+    buttonBorder: themeAppearance === "dark" ? COLORS.darkBlueBorder : COLORS.navyBlue,
     hoverBg: themeAppearance === "dark" ? "transparent" : COLORS.lightBlueBg,
   };
 
@@ -110,15 +108,11 @@ export const ThemeDavids = ({
   const sections: { label: string; render: React.ReactElement | null }[] = [
     {
       label: "Skills",
-      render: skillsForUser?.length ? (
-        <SkillsSection skillsForUser={skillsForUser} />
-      ) : null,
+      render: skillsForUser?.length ? <SkillsSection skillsForUser={skillsForUser} /> : null,
     },
     {
       label: "Work Experience",
-      render: companies?.length ? (
-        <WorkExperienceSection companies={companies} />
-      ) : null,
+      render: companies?.length ? <WorkExperienceSection companies={companies} /> : null,
     },
     {
       label: "Education",
@@ -151,12 +145,8 @@ export const ThemeDavids = ({
       },
       primary: {
         main: themeColors.primary,
-        dark:
-          themeAppearance === "dark"
-            ? COLORS.brightBlue
-            : COLORS.darkNavyDarker,
-        light:
-          themeAppearance === "dark" ? COLORS.brightBlue : COLORS.lightBlue,
+        dark: themeAppearance === "dark" ? COLORS.brightBlue : COLORS.darkNavyDarker,
+        light: themeAppearance === "dark" ? COLORS.brightBlue : COLORS.lightBlue,
         contrastText: themeAppearance === "dark" ? "#ffffff" : "#000000",
       },
       secondary: {
@@ -204,9 +194,7 @@ export const ThemeDavids = ({
             },
             "&:active": {
               backgroundColor:
-                themeAppearance === "dark"
-                  ? "rgba(255, 255, 255, 0.05)"
-                  : COLORS.lightBlue,
+                themeAppearance === "dark" ? "rgba(255, 255, 255, 0.05)" : COLORS.lightBlue,
               color: `${themeColors.text} !important`,
             },
             "&.Mui-focusVisible": {
@@ -239,10 +227,7 @@ export const ThemeDavids = ({
           <Box component="h1" sx={{ fontSize: "2.5rem", fontWeight: "bold" }}>
             {user?.name}
           </Box>
-          <Box
-            component="span"
-            sx={{ display: "block", fontSize: "1.5rem", mt: 1, pt: 1 }}
-          >
+          <Box component="span" sx={{ display: "block", fontSize: "1.5rem", mt: 1, pt: 1 }}>
             {user?.title}
           </Box>
 
@@ -275,26 +260,14 @@ export const ThemeDavids = ({
           >
             {socials?.map((social) => {
               const platform = social.platform.toLowerCase();
-              const platformConfig =
-                SOCIAL_PLATFORMS[platform as keyof typeof SOCIAL_PLATFORMS];
+              const platformConfig = SOCIAL_PLATFORMS[platform as keyof typeof SOCIAL_PLATFORMS];
 
               const icon = platformConfig?.icon ?? getSocialIcon(social);
-              const url =
-                platformConfig?.url(social.ref) ?? generateSocialUrl(social);
+              const url = platformConfig?.url(social.ref) ?? generateSocialUrl(social);
 
               return (
-                <a
-                  href={url}
-                  key={social.id}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon
-                    icon={icon}
-                    width="30"
-                    height="30"
-                    color={themeColors.text}
-                  />
+                <a href={url} key={social.id} target="_blank" rel="noopener noreferrer">
+                  <Icon icon={icon} width="30" height="30" color={themeColors.text} />
                 </a>
               );
             })}

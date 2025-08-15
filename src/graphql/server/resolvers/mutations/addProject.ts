@@ -3,11 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export const addProject = async (
   _: string,
-  {
-    userId,
-    positionId,
-    name,
-  }: { userId: string; positionId: string; name: string }
+  { userId, positionId, name }: { userId: string; positionId: string; name: string },
 ) => {
   await verifySessionOwnership(userId);
 

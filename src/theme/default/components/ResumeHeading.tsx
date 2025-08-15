@@ -7,13 +7,7 @@ import { MuiLink } from "@/components/MuiLink";
 import { Social, User } from "@/types";
 import { generateSocialUrl, getSocialIcon } from "@/util/social";
 
-export const ResumeHeading = ({
-  user,
-  socials,
-}: {
-  user: User;
-  socials: Social[];
-}) => {
+export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[] }) => {
   const pathname = usePathname();
   const pdfUrl = `${pathname}/pdf`;
 
@@ -82,20 +76,13 @@ export const ResumeHeading = ({
         <Box sx={{ display: "flex", gap: 2 }}>
           {socials
             ? socials.map((social) => (
-                <MuiLink
-                  href={generateSocialUrl(social)}
-                  key={social.id}
-                  target="_blank"
-                >
+                <MuiLink href={generateSocialUrl(social)} key={social.id} target="_blank">
                   <Icon icon={getSocialIcon(social)} width="30" height="30" />
                 </MuiLink>
               ))
             : null}
         </Box>
-        <Typography
-          component="div"
-          sx={{ display: "flex", gap: 2, alignItems: "center" }}
-        >
+        <Typography component="div" sx={{ display: "flex", gap: 2, alignItems: "center" }}>
           <Icon icon="catppuccin:pdf" width="24" height="24" />
           <MuiLink href={pdfUrl} target="_blank">
             View PDF

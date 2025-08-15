@@ -39,9 +39,7 @@ export const MessageDialog = ({
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          {message}
-        </DialogContentText>
+        <DialogContentText id="alert-dialog-description">{message}</DialogContentText>
       </DialogContent>
       <DialogActions>
         {variant === "confirm" && (

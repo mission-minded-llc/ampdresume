@@ -5,10 +5,7 @@ import { themeDefaultSampleData } from "@/theme/sampleData";
 import { Summary } from "./Summary";
 
 // Helper function to render with theme
-const renderWithTheme = (
-  component: React.ReactElement,
-  mode: "light" | "dark" = "light"
-) => {
+const renderWithTheme = (component: React.ReactElement, mode: "light" | "dark" = "light") => {
   const theme = createTheme({
     palette: {
       mode,
@@ -29,17 +26,13 @@ describe("Summary Component", () => {
 
     it("should render nothing when user has no summary", () => {
       const userWithoutSummary = { ...sampleUser, summary: undefined };
-      const { container } = renderWithTheme(
-        <Summary user={userWithoutSummary} />
-      );
+      const { container } = renderWithTheme(<Summary user={userWithoutSummary} />);
       expect(container.firstChild).toBeNull();
     });
 
     it("should render nothing when user summary is only whitespace", () => {
       const userWithWhitespaceSummary = { ...sampleUser, summary: "   " };
-      const { container } = renderWithTheme(
-        <Summary user={userWithWhitespaceSummary} />
-      );
+      const { container } = renderWithTheme(<Summary user={userWithWhitespaceSummary} />);
       expect(container.firstChild).toBeNull();
     });
 

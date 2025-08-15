@@ -24,10 +24,7 @@ describe("normalizeEmail", () => {
 });
 
 describe("findUserByNormalizedEmail", () => {
-  const mockUsers = [
-    { email: "test.email@test.com" },
-    { email: "another.email@test.com" },
-  ];
+  const mockUsers = [{ email: "test.email@test.com" }, { email: "another.email@test.com" }];
 
   beforeEach(() => {
     jest.resetAllMocks();

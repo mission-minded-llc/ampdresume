@@ -15,9 +15,7 @@ export const SkillsCloud = ({ skills }: { skills: SkillForUser[] }) => (
     }}
   >
     {skills.map((skill) =>
-      skill?.skill?.name ? (
-        <SkillItem key={`skill-${skill.skill.name}`} skill={skill} />
-      ) : null
+      skill?.skill?.name ? <SkillItem key={`skill-${skill.skill.name}`} skill={skill} /> : null,
     )}
   </Box>
 );

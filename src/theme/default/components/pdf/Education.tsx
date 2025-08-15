@@ -26,10 +26,7 @@ export const Education = ({ education }: { education: EducationType[] }) => {
               sx={{ fontSize: 14, fontWeight: "bold", mt: 1 }}
             >
               {edu.degree}
-              <Typography
-                component="span"
-                sx={{ fontSize: 14, fontWeight: "normal" }}
-              >
+              <Typography component="span" sx={{ fontSize: 14, fontWeight: "normal" }}>
                 {" "}
                 &mdash; {formatLongDate(edu?.dateAwarded)}
               </Typography>

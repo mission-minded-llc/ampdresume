@@ -37,8 +37,7 @@ export const ImportPDF = () => {
     loadPdfJs();
   }, []);
 
-  const shouldFetchResume =
-    isAuthenticatedUser && !!extractedText && extractedText.length > 200;
+  const shouldFetchResume = isAuthenticatedUser && !!extractedText && extractedText.length > 200;
 
   // Fetch the parsed resume from AI
   const {
@@ -100,9 +99,7 @@ export const ImportPDF = () => {
       setExtractedText(fullText);
     } catch (err: unknown) {
       Sentry.captureException(err);
-      setError(
-        "Error extracting text from PDF. Please try again or use a different file."
-      );
+      setError("Error extracting text from PDF. Please try again or use a different file.");
     }
   };
 

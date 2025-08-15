@@ -56,9 +56,7 @@ describe("SignIn", () => {
 
     await findByText("An error occurred. Please try again later.");
 
-    expect(Sentry.captureException).toHaveBeenCalledWith(
-      new Error("Sign in failed")
-    );
+    expect(Sentry.captureException).toHaveBeenCalledWith(new Error("Sign in failed"));
   });
 
   it("handles social sign-in with Google", async () => {

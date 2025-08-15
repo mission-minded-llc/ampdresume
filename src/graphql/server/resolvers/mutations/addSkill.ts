@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export const addSkill = async (
   _: string,
-  { userId, name, icon }: { userId: string; name: string; icon: string }
+  { userId, name, icon }: { userId: string; name: string; icon: string },
 ) => {
   await verifySessionOwnership(userId);
 

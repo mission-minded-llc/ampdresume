@@ -25,50 +25,37 @@ const renderWithTheme = (component: React.ReactNode) => {
 
 describe("CertificationsSection", () => {
   it("renders all certifications", () => {
-    renderWithTheme(
-      <CertificationsSection certifications={mockCertifications} />
-    );
+    renderWithTheme(<CertificationsSection certifications={mockCertifications} />);
 
     // Check if all certification names are rendered
-    expect(
-      screen.getByText("AWS Certified Solutions Architect")
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("Google Cloud Professional Developer")
-    ).toBeInTheDocument();
+    expect(screen.getByText("AWS Certified Solutions Architect")).toBeInTheDocument();
+    expect(screen.getByText("Google Cloud Professional Developer")).toBeInTheDocument();
 
     // Check if all issuers and dates are rendered together
     expect(
       screen.getByText((content, element) => {
         return element?.textContent === "Amazon Web Services – January 2023";
-      })
+      }),
     ).toBeInTheDocument();
     expect(
       screen.getByText((content, element) => {
         return element?.textContent === "Google Cloud – January 2023";
-      })
+      }),
     ).toBeInTheDocument();
   });
 
   it("renders credential link when credentialUrl is provided", () => {
-    renderWithTheme(
-      <CertificationsSection certifications={mockCertifications} />
-    );
+    renderWithTheme(<CertificationsSection certifications={mockCertifications} />);
 
     const credentialLink = screen.getByText("View Credential");
     expect(credentialLink).toBeInTheDocument();
-    expect(credentialLink).toHaveAttribute(
-      "href",
-      "https://aws.amazon.com/certification/"
-    );
+    expect(credentialLink).toHaveAttribute("href", "https://aws.amazon.com/certification/");
     expect(credentialLink).toHaveAttribute("target", "_blank");
     expect(credentialLink).toHaveAttribute("rel", "noopener noreferrer");
   });
 
   it("does not render credential link when credentialUrl is not provided", () => {
-    renderWithTheme(
-      <CertificationsSection certifications={mockCertifications} />
-    );
+    renderWithTheme(<CertificationsSection certifications={mockCertifications} />);
 
     // The second certification doesn't have a credentialUrl, so there should only be one link
     const credentialLinks = screen.getAllByText("View Credential");

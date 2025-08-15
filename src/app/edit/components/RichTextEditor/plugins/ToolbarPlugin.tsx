@@ -1,10 +1,6 @@
 import { $isListNode, ListNode } from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import {
-  $createHeadingNode,
-  $isHeadingNode,
-  HeadingTagType,
-} from "@lexical/rich-text";
+import { $createHeadingNode, $isHeadingNode, HeadingTagType } from "@lexical/rich-text";
 import { $wrapNodes } from "@lexical/selection";
 import { $getNearestNodeOfType, mergeRegister } from "@lexical/utils";
 import { useEffect, useState } from "react";
@@ -30,19 +26,13 @@ import { ImageNode } from "../nodes/ImageNode";
 import { YouTubeNode } from "../nodes/YouTubeNode";
 import { useKeyBindings } from "../useKeyBindings";
 import { ColorPlugin } from "./ColorPlugin";
-import {
-  HEADINGS,
-  LOW_PRIORIRTY,
-  RICH_TEXT_OPTIONS,
-  RichTextAction,
-} from "./constants";
+import { HEADINGS, LOW_PRIORIRTY, RICH_TEXT_OPTIONS, RichTextAction } from "./constants";
 import { ImagePlugin } from "./ImagePlugin";
 import { ListPlugin } from "./ListPlugin";
 import { TablePlugin } from "./TablePlugin";
 import YoutubePlugin from "./YouTubePlugin";
 
-const $isCustomImageNode = (node: LexicalNode): boolean =>
-  node instanceof ImageNode;
+const $isCustomImageNode = (node: LexicalNode): boolean => node instanceof ImageNode;
 
 const $isCustomNode = (node: LexicalNode): boolean =>
   node instanceof YouTubeNode || $isCustomImageNode(node);
@@ -53,9 +43,7 @@ export const ToolbarPlugin = () => {
     [RichTextAction.Undo]: true,
     [RichTextAction.Redo]: true,
   });
-  const [selectionMap, setSelectionMap] = useState<{ [id: string]: boolean }>(
-    {}
-  );
+  const [selectionMap, setSelectionMap] = useState<{ [id: string]: boolean }>({});
   const [blockType, setBlockType] = useState("paragraph");
 
   const updateToolbarSelectionText = (selection: RangeSelection) => {
@@ -76,9 +64,7 @@ export const ToolbarPlugin = () => {
   const updateToolbarSelectionList = (selection: RangeSelection) => {
     const anchorNode = selection.anchor.getNode();
     const element =
-      anchorNode.getKey() === "root"
-        ? anchorNode
-        : anchorNode.getTopLevelElementOrThrow();
+      anchorNode.getKey() === "root" ? anchorNode : anchorNode.getTopLevelElementOrThrow();
     const elementKey = element.getKey();
     const elementDOM = editor.getElementByKey(elementKey);
 
@@ -89,9 +75,7 @@ export const ToolbarPlugin = () => {
       const type = parentList ? parentList.getTag() : element.getTag();
       setBlockType(type);
     } else {
-      const type = $isHeadingNode(element)
-        ? element.getTag()
-        : element.getType();
+      const type = $isHeadingNode(element) ? element.getTag() : element.getType();
       setBlockType(type);
     }
   };
@@ -118,7 +102,7 @@ export const ToolbarPlugin = () => {
           updateToolbar();
           return false;
         },
-        LOW_PRIORIRTY
+        LOW_PRIORIRTY,
       ),
       editor.registerCommand(
         CAN_UNDO_COMMAND,
@@ -129,7 +113,7 @@ export const ToolbarPlugin = () => {
           }));
           return false;
         },
-        LOW_PRIORIRTY
+        LOW_PRIORIRTY,
       ),
       editor.registerCommand(
         CAN_REDO_COMMAND,
@@ -140,7 +124,7 @@ export const ToolbarPlugin = () => {
           }));
           return false;
         },
-        LOW_PRIORIRTY
+        LOW_PRIORIRTY,
       ),
 
       // Handles deleting custom nodes.
@@ -165,8 +149,8 @@ export const ToolbarPlugin = () => {
           }
           return false;
         },
-        COMMAND_PRIORITY_HIGH
-      )
+        COMMAND_PRIORITY_HIGH,
+      ),
     );
   });
 
@@ -210,8 +194,7 @@ export const ToolbarPlugin = () => {
 
   useKeyBindings({ onAction });
 
-  const getSelectedButtonColor = (isSelected: boolean) =>
-    isSelected ? "secondary" : "default";
+  const getSelectedButtonColor = (isSelected: boolean) => (isSelected ? "secondary" : "default");
 
   const updateHeading = (heading: HeadingTagType) => {
     editor.update(() => {
@@ -224,11 +207,7 @@ export const ToolbarPlugin = () => {
   };
 
   const selectedHeadingValue =
-    blockType === "paragraph"
-      ? "h1"
-      : HEADINGS.includes(blockType)
-        ? blockType
-        : "h1";
+    blockType === "paragraph" ? "h1" : HEADINGS.includes(blockType) ? blockType : "h1";
 
   return (
     <Box
@@ -279,7 +258,7 @@ export const ToolbarPlugin = () => {
             >
               {icon ? <Icon icon={icon} width="20" height="20" /> : label}
             </IconButton>
-          )
+          ),
         )}
         <ColorPlugin />
         <ListPlugin blockType={blockType} />

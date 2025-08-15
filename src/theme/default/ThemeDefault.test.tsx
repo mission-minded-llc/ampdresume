@@ -19,24 +19,17 @@ describe("ThemeDefault", () => {
     // Check if user name is rendered
     const userName = mockProps.user.name;
     if (userName) {
-      expect(
-        screen.getByRole("heading", { name: new RegExp(userName, "i") })
-      ).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: new RegExp(userName, "i") })).toBeInTheDocument();
     }
 
     // Check if skills section is rendered
-    expect(
-      screen.getByRole("heading", { name: /skills/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /skills/i })).toBeInTheDocument();
     expect(screen.getAllByText("CSS").length).toBeGreaterThan(0);
     expect(screen.getAllByText("JavaScript").length).toBeGreaterThan(0);
 
     // Check if work experience section is rendered
     const companyHeading = screen.getByRole("heading", {
-      name: new RegExp(
-        `${mockProps.companies[0].name}.*${mockProps.companies[0].location}`,
-        "i"
-      ),
+      name: new RegExp(`${mockProps.companies[0].name}.*${mockProps.companies[0].location}`, "i"),
     });
     expect(companyHeading).toBeInTheDocument();
 
@@ -46,13 +39,13 @@ describe("ThemeDefault", () => {
         expect(
           screen.getByText("", {
             selector: `a[href="https://github.com/${social.ref}"]`,
-          })
+          }),
         ).toBeInTheDocument();
       } else if (social.platform === "linkedin") {
         expect(
           screen.getByText("", {
             selector: `a[href="https://www.linkedin.com/in/${social.ref}"]`,
-          })
+          }),
         ).toBeInTheDocument();
       }
     });
@@ -69,9 +62,7 @@ describe("ThemeDefault", () => {
     render(<ThemeDefault {...propsWithEmptyData} />);
 
     // Skills section should not be rendered
-    expect(
-      screen.queryByRole("heading", { name: /skills/i })
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: /skills/i })).not.toBeInTheDocument();
     expect(screen.queryByText("CSS")).not.toBeInTheDocument();
 
     // Work experience section should not be rendered

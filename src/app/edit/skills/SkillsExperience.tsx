@@ -33,9 +33,7 @@ export const SkillsExperience = ({ skills }: { skills: SkillForUser[] }) => {
                 textAlign: "right",
               }}
             >
-              {totalYears
-                ? `${totalYears} year${parseInt(totalYears, 10) > 1 ? "s" : ""}:`
-                : ""}
+              {totalYears ? `${totalYears} year${parseInt(totalYears, 10) > 1 ? "s" : ""}:` : ""}
             </Box>
             <Box
               sx={{
@@ -46,10 +44,7 @@ export const SkillsExperience = ({ skills }: { skills: SkillForUser[] }) => {
               }}
             >
               {skillsList.map((skill) => (
-                <SkillItem
-                  key={`skill-${skill.skill.name}`}
-                  skill={skill as SkillForUser}
-                />
+                <SkillItem key={`skill-${skill.skill.name}`} skill={skill as SkillForUser} />
               ))}
             </Box>
           </React.Fragment>

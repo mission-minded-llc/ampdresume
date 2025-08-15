@@ -38,9 +38,7 @@ export const ResumeView = ({
   education: Education[];
 }) => {
   const { themeAppearance } = useContext(ThemeAppearanceContext);
-  const [selectedTheme, setSelectedTheme] = useState<ThemeName>(
-    user?.webThemeName ?? "default"
-  );
+  const [selectedTheme, setSelectedTheme] = useState<ThemeName>(user?.webThemeName ?? "default");
   const [isSaving, setIsSaving] = useState(false);
 
   // Used to hide unpublished themes in the theme selector.
@@ -122,15 +120,10 @@ export const ResumeView = ({
               onChange={handleThemeChange}
             >
               {Object.entries(themeDefinitions).map(([key, value]) => {
-                if (isProduction && !value.published && !themePreview)
-                  return null;
+                if (isProduction && !value.published && !themePreview) return null;
 
                 return (
-                  <MenuItem
-                    key={key}
-                    value={key}
-                    selected={key === session?.user?.webThemeName}
-                  >
+                  <MenuItem key={key} value={key} selected={key === session?.user?.webThemeName}>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       <Icon icon={value.iconifyIcon} />
                       {value.name}

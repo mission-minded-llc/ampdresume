@@ -1,23 +1,12 @@
 import React from "react";
 import { act, render, screen } from "@testing-library/react";
-import {
-  ExtractedDataProvider,
-  useExtractedData,
-} from "./ExtractedDataContext";
+import { ExtractedDataProvider, useExtractedData } from "./ExtractedDataContext";
 import { ParsedResumeData } from "./types";
 
 // Test component that uses the context
 const TestComponent = () => {
-  const {
-    user,
-    skills,
-    companies,
-    education,
-    setUser,
-    setSkills,
-    setCompanies,
-    setEducation,
-  } = useExtractedData();
+  const { user, skills, companies, education, setUser, setSkills, setCompanies, setEducation } =
+    useExtractedData();
   return (
     <div>
       <div data-testid="user-name">{user?.name}</div>
@@ -105,7 +94,7 @@ describe("ExtractedDataContext", () => {
     render(
       <ExtractedDataProvider initialData={mockInitialData} initialError={null}>
         <TestComponent />
-      </ExtractedDataProvider>
+      </ExtractedDataProvider>,
     );
 
     expect(screen.getByTestId("user-name")).toHaveTextContent("Initial User");
@@ -118,7 +107,7 @@ describe("ExtractedDataContext", () => {
     render(
       <ExtractedDataProvider initialData={mockInitialData} initialError={null}>
         <TestComponent />
-      </ExtractedDataProvider>
+      </ExtractedDataProvider>,
     );
 
     act(() => {
@@ -132,7 +121,7 @@ describe("ExtractedDataContext", () => {
     render(
       <ExtractedDataProvider initialData={mockInitialData} initialError={null}>
         <TestComponent />
-      </ExtractedDataProvider>
+      </ExtractedDataProvider>,
     );
 
     act(() => {
@@ -146,7 +135,7 @@ describe("ExtractedDataContext", () => {
     render(
       <ExtractedDataProvider initialData={mockInitialData} initialError={null}>
         <TestComponent />
-      </ExtractedDataProvider>
+      </ExtractedDataProvider>,
     );
 
     act(() => {
@@ -160,7 +149,7 @@ describe("ExtractedDataContext", () => {
     render(
       <ExtractedDataProvider initialData={mockInitialData} initialError={null}>
         <TestComponent />
-      </ExtractedDataProvider>
+      </ExtractedDataProvider>,
     );
 
     act(() => {

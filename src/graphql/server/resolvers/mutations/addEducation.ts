@@ -13,7 +13,7 @@ export const addEducation = async (
     school: string;
     degree: string;
     dateAwarded: string;
-  }
+  },
 ) => {
   await verifySessionOwnership(userId);
 

@@ -24,12 +24,10 @@ if (!user) {
   exit(0);
 }
 
-console.log(
-  `Cleaning up data for user with email: ${email} and id: ${user.id}`
-);
+console.log(`Cleaning up data for user with email: ${email} and id: ${user.id}`);
 
 console.log(
-  `Fetching company, position, project, and skillForUser IDs for user with email: ${email}`
+  `Fetching company, position, project, and skillForUser IDs for user with email: ${email}`,
 );
 const companyIds = await prisma.company.findMany({
   where: { userId: user.id },
@@ -52,12 +50,10 @@ const skillForUserIds = await prisma.skillForUser.findMany({
 });
 
 console.log(
-  `Found ${companyIds.length} companies, ${positionIds.length} positions, ${projectIds.length} projects, and ${skillForUserIds.length} skills for user with email: ${email}`
+  `Found ${companyIds.length} companies, ${positionIds.length} positions, ${projectIds.length} projects, and ${skillForUserIds.length} skills for user with email: ${email}`,
 );
 
-console.log(
-  `Deleting ${skillForUserIds.length} skills for user with email: ${email}`
-);
+console.log(`Deleting ${skillForUserIds.length} skills for user with email: ${email}`);
 await prisma.skillForUser
   .deleteMany({
     where: { userId: user.id },
@@ -71,9 +67,7 @@ await prisma.skillForUser
     exit(1);
   });
 
-console.log(
-  `Deleting ${projectIds.length} projects for user with email: ${email}`
-);
+console.log(`Deleting ${projectIds.length} projects for user with email: ${email}`);
 await prisma.project
   .deleteMany({
     where: { id: { in: projectIds.map((project) => project.id) } },
@@ -87,9 +81,7 @@ await prisma.project
     exit(1);
   });
 
-console.log(
-  `Deleting ${positionIds.length} positions for user with email: ${email}`
-);
+console.log(`Deleting ${positionIds.length} positions for user with email: ${email}`);
 await prisma.position
   .deleteMany({
     where: { id: { in: positionIds.map((position) => position.id) } },
@@ -103,9 +95,7 @@ await prisma.position
     exit(1);
   });
 
-console.log(
-  `Deleting ${companyIds.length} companies for user with email: ${email}`
-);
+console.log(`Deleting ${companyIds.length} companies for user with email: ${email}`);
 await prisma.company
   .deleteMany({
     where: { userId: user.id },

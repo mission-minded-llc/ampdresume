@@ -6,17 +6,12 @@ interface WorkExperienceSectionProps {
   companies: Company[];
 }
 
-export const WorkExperienceSection = ({
-  companies,
-}: WorkExperienceSectionProps) => {
+export const WorkExperienceSection = ({ companies }: WorkExperienceSectionProps) => {
   const theme = useTheme();
 
   return (
     <Box component="section">
-      <Box
-        component="h2"
-        sx={{ fontWeight: "bold", fontSize: "1.5rem", mt: 4, mb: 2 }}
-      >
+      <Box component="h2" sx={{ fontWeight: "bold", fontSize: "1.5rem", mt: 4, mb: 2 }}>
         Work Experience
       </Box>
       {companies.map((company) => (
@@ -31,41 +26,26 @@ export const WorkExperienceSection = ({
             }}
           >
             {company.name}
-            <Box
-              component="div"
-              sx={{ fontWeight: "normal", fontSize: "1rem", mt: 1 }}
-            >
+            <Box component="div" sx={{ fontWeight: "normal", fontSize: "1rem", mt: 1 }}>
               {company?.location ? `${company.location}, ` : ""}
               {company?.startDate
-                ? new Date(Number(company.startDate)).toLocaleDateString(
-                    undefined,
-                    {
-                      year: "numeric",
-                      month: "short",
-                    }
-                  )
+                ? new Date(Number(company.startDate)).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "short",
+                  })
                 : ""}
               {" to "}
               {company?.endDate
-                ? new Date(Number(company.endDate)).toLocaleDateString(
-                    undefined,
-                    {
-                      year: "numeric",
-                      month: "short",
-                    }
-                  )
+                ? new Date(Number(company.endDate)).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "short",
+                  })
                 : "Present"}
             </Box>
           </Box>
           {company.positions?.map((position) => (
-            <Box
-              key={`position-${position.id}`}
-              sx={{ mt: 2, mb: 2, textAlign: "center" }}
-            >
-              <Box
-                component="h4"
-                sx={{ fontWeight: "bold", fontSize: "1.1rem" }}
-              >
+            <Box key={`position-${position.id}`} sx={{ mt: 2, mb: 2, textAlign: "center" }}>
+              <Box component="h4" sx={{ fontWeight: "bold", fontSize: "1.1rem" }}>
                 {position.title}
               </Box>
               <Box
@@ -76,23 +56,17 @@ export const WorkExperienceSection = ({
                 }}
               >
                 {position?.startDate
-                  ? new Date(Number(position.startDate)).toLocaleDateString(
-                      undefined,
-                      {
-                        year: "numeric",
-                        month: "short",
-                      }
-                    )
+                  ? new Date(Number(position.startDate)).toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "short",
+                    })
                   : ""}
                 {" to "}
                 {position?.endDate
-                  ? new Date(Number(position.endDate)).toLocaleDateString(
-                      undefined,
-                      {
-                        year: "numeric",
-                        month: "short",
-                      }
-                    )
+                  ? new Date(Number(position.endDate)).toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "short",
+                    })
                   : "Present"}
               </Box>
               {position.projects?.map((project) => (

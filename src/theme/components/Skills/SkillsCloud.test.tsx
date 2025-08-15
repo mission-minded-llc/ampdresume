@@ -36,13 +36,8 @@ describe("SkillsCloud", () => {
   });
 
   it("handles null or undefined skill objects", () => {
-    const skillsWithNull = [
-      null,
-      undefined,
-      reactSkill,
-      javascriptSkill,
-    ].filter(
-      (skill): skill is SkillForUser => skill !== null && skill !== undefined
+    const skillsWithNull = [null, undefined, reactSkill, javascriptSkill].filter(
+      (skill): skill is SkillForUser => skill !== null && skill !== undefined,
     );
 
     render(<SkillsCloud skills={skillsWithNull} />);

@@ -14,8 +14,7 @@ export const ProjectItem = ({ project }: { project: Project }) => (
       width: "100%",
       textAlign: "left",
       display: "grid",
-      gridTemplateColumns:
-        project?.skillsForProject?.length > 0 ? "60% 1fr" : "1fr",
+      gridTemplateColumns: project?.skillsForProject?.length > 0 ? "60% 1fr" : "1fr",
       alignItems: "center",
       gap: 4,
       padding: 2,

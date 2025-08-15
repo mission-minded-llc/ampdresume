@@ -43,9 +43,7 @@ describe("ResumeHeading", () => {
     sampleSocials.forEach((social) => {
       const expectedUrl = generateSocialUrl(social);
       const links = screen.getAllByRole("link", { name: "" });
-      const link = links.find(
-        (link) => link.getAttribute("href") === expectedUrl
-      );
+      const link = links.find((link) => link.getAttribute("href") === expectedUrl);
       expect(link).toBeInTheDocument();
       expect(link).toHaveAttribute("target", "_blank");
     });
@@ -63,19 +61,17 @@ describe("ResumeHeading", () => {
     render(<ResumeHeading user={userWithoutEmail} socials={sampleSocials} />);
     expect(screen.queryByText("|")).not.toBeInTheDocument();
     const container = screen.getByText((content) =>
-      content.includes(sampleUser.location as string)
+      content.includes(sampleUser.location as string),
     );
     expect(container).toBeInTheDocument();
   });
 
   it("handles missing location", () => {
     const userWithoutLocation = { ...sampleUser, location: null };
-    render(
-      <ResumeHeading user={userWithoutLocation} socials={sampleSocials} />
-    );
+    render(<ResumeHeading user={userWithoutLocation} socials={sampleSocials} />);
     expect(screen.queryByText("|")).not.toBeInTheDocument();
     const container = screen.getByText((content) =>
-      content.includes(sampleUser.displayEmail as string)
+      content.includes(sampleUser.displayEmail as string),
     );
     expect(container).toBeInTheDocument();
   });

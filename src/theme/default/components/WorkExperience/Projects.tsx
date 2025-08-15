@@ -11,9 +11,7 @@ export const Projects = ({ projects }: { projects: Project[] }) =>
     // If the project contains a block description, we'll
     // use an Accordion component to render it.
     if (project?.description)
-      return (
-        <ProjectAccordion key={`project-${project.id}`} project={project} />
-      );
+      return <ProjectAccordion key={`project-${project.id}`} project={project} />;
 
     // Otherwise, show the project overview and skills only.
     return <ProjectItem key={`project-${project.id}`} project={project} />;

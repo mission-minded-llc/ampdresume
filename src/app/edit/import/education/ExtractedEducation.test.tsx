@@ -42,13 +42,10 @@ describe("ExtractedEducation", () => {
   const renderComponent = (education = mockEducation) => {
     return render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <ExtractedDataProvider
-          initialData={mockInitialData}
-          initialError={null}
-        >
+        <ExtractedDataProvider initialData={mockInitialData} initialError={null}>
           <ExtractedEducation education={education} setEducation={jest.fn()} />
         </ExtractedDataProvider>
-      </LocalizationProvider>
+      </LocalizationProvider>,
     );
   };
 
@@ -56,12 +53,8 @@ describe("ExtractedEducation", () => {
     renderComponent();
 
     expect(screen.getByText("Education")).toBeInTheDocument();
-    expect(
-      screen.getAllByTestId("education-accordion-0")[0]
-    ).toBeInTheDocument();
-    expect(
-      screen.getAllByTestId("education-accordion-1")[0]
-    ).toBeInTheDocument();
+    expect(screen.getAllByTestId("education-accordion-0")[0]).toBeInTheDocument();
+    expect(screen.getAllByTestId("education-accordion-1")[0]).toBeInTheDocument();
   });
 
   it("displays education details in accordion", () => {
@@ -72,9 +65,7 @@ describe("ExtractedEducation", () => {
 
     // Check if degree and date are visible in collapsed state
     expect(screen.getByText("Bachelor of Science")).toBeInTheDocument();
-    expect(
-      screen.getByText(dayjs("2020-05-15").format("MMM YYYY"))
-    ).toBeInTheDocument();
+    expect(screen.getByText(dayjs("2020-05-15").format("MMM YYYY"))).toBeInTheDocument();
   });
 
   it("expands accordion when clicked", () => {
@@ -84,9 +75,7 @@ describe("ExtractedEducation", () => {
     fireEvent.click(accordion!);
 
     // After expansion, we should see the input fields
-    expect(
-      screen.getByRole("textbox", { name: "Institution" })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "Institution" })).toBeInTheDocument();
     expect(screen.getByRole("textbox", { name: "Degree" })).toBeInTheDocument();
   });
 

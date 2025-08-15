@@ -12,17 +12,9 @@ export const Section = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <Typography sx={{ mb: 1, fontSize: fontSize.title, fontWeight: "bold" }}>
-    {children}
-  </Typography>
+  <Typography sx={{ mb: 1, fontSize: fontSize.title, fontWeight: "bold" }}>{children}</Typography>
 );
 
-export const SectionSubtitle = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => (
-  <Typography sx={{ fontSize: fontSize.subtitle, fontWeight: "bold" }}>
-    {children}
-  </Typography>
+export const SectionSubtitle = ({ children }: { children: React.ReactNode }) => (
+  <Typography sx={{ fontSize: fontSize.subtitle, fontWeight: "bold" }}>{children}</Typography>
 );

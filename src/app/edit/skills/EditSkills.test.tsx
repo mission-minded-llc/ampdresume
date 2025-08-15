@@ -119,9 +119,7 @@ describe("EditSkills", () => {
 
     await waitFor(() => {
       expect(getByText("Add a Skill")).toBeInTheDocument();
-      expect(
-        getByText("Search for a skill to add to your profile:")
-      ).toBeInTheDocument();
+      expect(getByText("Search for a skill to add to your profile:")).toBeInTheDocument();
       expect(getByText("EditSkillsSearch")).toBeInTheDocument();
       expect(getByText("Your Skills")).toBeInTheDocument();
       expect(getByText("Skill 1")).toBeInTheDocument();

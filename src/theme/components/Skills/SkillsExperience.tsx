@@ -98,9 +98,7 @@ export const SkillsExperience = ({ skills }: { skills: SkillForUser[] }) => {
                 },
               })}
             >
-              {totalYears
-                ? `${totalYears} year${parseInt(totalYears, 10) > 1 ? "s" : ""}:`
-                : ""}
+              {totalYears ? `${totalYears} year${parseInt(totalYears, 10) > 1 ? "s" : ""}:` : ""}
             </Box>
             <Box
               sx={{

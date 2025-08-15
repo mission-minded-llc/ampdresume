@@ -15,9 +15,7 @@ export const javascriptSkill = getSkillByName("JavaScript") as SkillForUser;
 export const typescriptSkill = getSkillByName("TypeScript") as SkillForUser;
 
 // Helper to create a skill with missing/invalid data for edge cases
-export const createInvalidSkill = (
-  overrides: Partial<SkillForUser> = {}
-): SkillForUser => ({
+export const createInvalidSkill = (overrides: Partial<SkillForUser> = {}): SkillForUser => ({
   id: "invalid-skill",
   userId: "user1",
   skill: {

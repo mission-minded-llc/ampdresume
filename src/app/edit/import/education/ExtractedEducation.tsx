@@ -1,13 +1,7 @@
 import dayjs from "dayjs";
 import { useCallback, useEffect, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Typography,
-} from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import { AccordionSummaryContent } from "../../components/AccordionSummaryContent";
 import { EducationFields } from "./EducationFields";
 import { Education } from "./types";
@@ -19,9 +13,7 @@ export const ExtractedEducation = ({
   education: Education[];
   setEducation: React.Dispatch<React.SetStateAction<Education[]>>;
 }) => {
-  const [expandedEducation, setExpandedEducation] = useState<string | false>(
-    false
-  );
+  const [expandedEducation, setExpandedEducation] = useState<string | false>(false);
 
   const handleEducationChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -37,7 +29,7 @@ export const ExtractedEducation = ({
       };
       setEducation(updatedEducation);
     },
-    [education, setEducation]
+    [education, setEducation],
   );
 
   const handleDeleteEducation = useCallback(
@@ -45,7 +37,7 @@ export const ExtractedEducation = ({
       const updatedEducation = education.filter((_, i) => i !== index);
       setEducation(updatedEducation);
     },
-    [education, setEducation]
+    [education, setEducation],
   );
 
   const handleFieldChange = useCallback(
@@ -57,7 +49,7 @@ export const ExtractedEducation = ({
       };
       setEducation(updatedEducation);
     },
-    [education, setEducation]
+    [education, setEducation],
   );
 
   // Check for any education entries with missing dateAwarded
@@ -100,11 +92,7 @@ export const ExtractedEducation = ({
               <AccordionSummaryContent
                 primary={edu.school || "Unnamed School"}
                 secondary={edu.degree || undefined}
-                dateRange={
-                  edu.dateAwarded
-                    ? dayjs(edu.dateAwarded).format("MMM YYYY")
-                    : ""
-                }
+                dateRange={edu.dateAwarded ? dayjs(edu.dateAwarded).format("MMM YYYY") : ""}
               />
             </AccordionSummary>
             <AccordionDetails>

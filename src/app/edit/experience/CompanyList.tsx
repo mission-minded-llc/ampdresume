@@ -75,28 +75,16 @@ export const CompanyList = ({ companies }: { companies: Company[] }) => {
       {expanded === false ? (
         <>
           <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => setIsOpen(true)}
-            >
+            <Button variant="outlined" color="secondary" onClick={() => setIsOpen(true)}>
               Add New Company
             </Button>
           </Box>
-          <Dialog
-            open={isOpen}
-            onClose={() => setIsOpen(false)}
-            maxWidth="md"
-            fullWidth
-          >
+          <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
             <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
               Add New Company
             </CustomDialogTitle>
             <DialogContent>
-              <CompanyForm
-                handler={handleAddCompany}
-                onCancel={() => setIsOpen(false)}
-              />
+              <CompanyForm handler={handleAddCompany} onCancel={() => setIsOpen(false)} />
             </DialogContent>
           </Dialog>
         </>

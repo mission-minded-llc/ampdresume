@@ -54,9 +54,7 @@ export const SkillsSection = ({ skillsForUser }: SkillsSectionProps) => {
         <TextField
           fullWidth
           variant="outlined"
-          placeholder={
-            filterType === "skill" ? "Enter Skill" : "Enter Years of Experience"
-          }
+          placeholder={filterType === "skill" ? "Enter Skill" : "Enter Years of Experience"}
           value={skillFilter}
           onChange={(e) => setSkillFilter(e.target.value)}
           InputProps={{
@@ -72,8 +70,7 @@ export const SkillsSection = ({ skillsForUser }: SkillsSectionProps) => {
             background: theme.palette.background.paper,
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
-                borderColor:
-                  theme.palette.mode === "dark" ? "#475569" : "#d1d5db",
+                borderColor: theme.palette.mode === "dark" ? "#475569" : "#d1d5db",
               },
               "&:hover fieldset": {
                 borderColor: theme.palette.primary.main,
@@ -81,17 +78,9 @@ export const SkillsSection = ({ skillsForUser }: SkillsSectionProps) => {
             },
           }}
         />
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={() => handleDropdownClose()}
-        >
-          <MenuItem onClick={() => handleDropdownClose("skill")}>
-            Skill
-          </MenuItem>
-          <MenuItem onClick={() => handleDropdownClose("years")}>
-            Years of Experience
-          </MenuItem>
+        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleDropdownClose()}>
+          <MenuItem onClick={() => handleDropdownClose("skill")}>Skill</MenuItem>
+          <MenuItem onClick={() => handleDropdownClose("years")}>Years of Experience</MenuItem>
         </Menu>
       </Box>
       <Skills skillType="user" skillsForUser={filteredSkillsForUser} />

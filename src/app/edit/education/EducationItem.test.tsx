@@ -53,12 +53,8 @@ describe("EducationItem", () => {
   it("renders correctly", async () => {
     const { getByTestId } = render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <EducationItem
-          education={mockEducation}
-          expanded={false}
-          setExpanded={mockSetExpanded}
-        />
-      </LocalizationProvider>
+        <EducationItem education={mockEducation} expanded={false} setExpanded={mockSetExpanded} />
+      </LocalizationProvider>,
     );
 
     await waitFor(() => {
@@ -73,18 +69,12 @@ describe("EducationItem", () => {
   it("expands the accordion when clicked", async () => {
     const { getByTestId } = render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <EducationItem
-          education={mockEducation}
-          expanded={false}
-          setExpanded={mockSetExpanded}
-        />
-      </LocalizationProvider>
+        <EducationItem education={mockEducation} expanded={false} setExpanded={mockSetExpanded} />
+      </LocalizationProvider>,
     );
 
     fireEvent.click(getByTestId("ExpandMoreIcon"));
-    await waitFor(() =>
-      expect(mockSetExpanded).toHaveBeenCalledWith(mockEducation.id)
-    );
+    await waitFor(() => expect(mockSetExpanded).toHaveBeenCalledWith(mockEducation.id));
   });
 
   it("collapses the accordion when clicked again", async () => {
@@ -95,7 +85,7 @@ describe("EducationItem", () => {
           expanded={mockEducation.id}
           setExpanded={mockSetExpanded}
         />
-      </LocalizationProvider>
+      </LocalizationProvider>,
     );
 
     fireEvent.click(getByTestId("ExpandMoreIcon"));
@@ -115,12 +105,10 @@ describe("EducationItem", () => {
           expanded={mockEducation.id}
           setExpanded={mockSetExpanded}
         />
-      </LocalizationProvider>
+      </LocalizationProvider>,
     );
 
-    await waitFor(() =>
-      expect(getByText("Save Education")).toBeInTheDocument()
-    );
+    await waitFor(() => expect(getByText("Save Education")).toBeInTheDocument());
 
     // Change a value in the school name.
     fireEvent.change(getByLabelText("School *"), {
@@ -154,7 +142,7 @@ describe("EducationItem", () => {
           expanded={mockEducation.id}
           setExpanded={mockSetExpanded}
         />
-      </LocalizationProvider>
+      </LocalizationProvider>,
     );
 
     fireEvent.click(getByText("Delete Education"));

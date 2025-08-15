@@ -45,7 +45,7 @@ export const objectExists = async (key: string): Promise<boolean> => {
       new HeadObjectCommand({
         Bucket: process.env.AWS_S3_BUCKET_NAME,
         Key: key,
-      })
+      }),
     );
     return true;
   } catch (error) {
@@ -64,11 +64,7 @@ export const objectExists = async (key: string): Promise<boolean> => {
  * @param body the body of the object to upload.
  * @param contentType the content type of the object to upload.
  */
-export const uploadObject = async (
-  key: string,
-  body: Buffer,
-  contentType: string
-) => {
+export const uploadObject = async (key: string, body: Buffer, contentType: string) => {
   const s3Client = getS3Client();
 
   await s3Client.send(
@@ -77,7 +73,7 @@ export const uploadObject = async (
       Key: key,
       Body: body,
       ContentType: contentType,
-    })
+    }),
   );
 };
 
@@ -95,15 +91,13 @@ const updateDeleteFlag = async (key: string, deleteFlag: boolean) => {
     new CopyObjectCommand({
       Bucket: process.env.AWS_S3_BUCKET_NAME,
       Key: sanitizedKey,
-      CopySource: encodeURIComponent(
-        `${process.env.AWS_S3_BUCKET_NAME}/${sanitizedKey}`
-      ),
+      CopySource: encodeURIComponent(`${process.env.AWS_S3_BUCKET_NAME}/${sanitizedKey}`),
       MetadataDirective: "REPLACE",
       Metadata: {
         // AWS will automatically prefix the meta key with "x-amz-meta-"
         delete: deleteFlag.toString(),
       },
-    })
+    }),
   );
 };
 

@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     if (!ALLOWED_USER_IMAGE_TYPES.includes(file.type)) {
       return NextResponse.json(
         { error: "File must be an image (JPEG, PNG, or GIF)" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -48,19 +48,13 @@ export async function POST(req: NextRequest) {
 
       // Check if the file has valid image dimensions
       if (!metadata.width || !metadata.height) {
-        return NextResponse.json(
-          { error: "Invalid image file" },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: "Invalid image file" }, { status: 400 });
       }
 
       // Optional: You can add additional checks here
       // For example, minimum/maximum dimensions:
       if (metadata.width < 10 || metadata.height < 10) {
-        return NextResponse.json(
-          { error: "Image dimensions too small" },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: "Image dimensions too small" }, { status: 400 });
       }
 
       // Verify format matches the claimed mime type
@@ -73,21 +67,18 @@ export async function POST(req: NextRequest) {
       if (metadata.format && formatToMime[metadata.format] !== file.type) {
         return NextResponse.json(
           { error: "Image format doesn't match the declared type" },
-          { status: 400 }
+          { status: 400 },
         );
       }
     } catch (error) {
       return NextResponse.json(
         { error: `Invalid image file: ${(error as Error).message}` },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (file.size > MAX_USER_IMAGE_SIZE) {
-      return NextResponse.json(
-        { error: "File size must be less than 1MB" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "File size must be less than 1MB" }, { status: 400 });
     }
 
     await uploadObject(objectLocation, buffer, file.type);
@@ -96,7 +87,7 @@ export async function POST(req: NextRequest) {
       {
         url: `https://${process.env.AWS_S3_BUCKET_NAME}/${objectLocation}`,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });

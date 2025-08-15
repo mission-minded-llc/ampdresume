@@ -9,19 +9,13 @@ interface ThemeAppearanceProviderProps {
   setThemeAppearance: React.Dispatch<SetStateAction<ThemeAppearance>>;
 }
 
-export const ThemeAppearanceContext =
-  createContext<ThemeAppearanceProviderProps>({
-    themeAppearance: "light",
-    setThemeAppearance: () => {},
-  });
+export const ThemeAppearanceContext = createContext<ThemeAppearanceProviderProps>({
+  themeAppearance: "light",
+  setThemeAppearance: () => {},
+});
 
-export const ThemeAppearanceProvider = ({
-  children,
-}: {
-  children?: React.ReactNode;
-}) => {
-  const [themeAppearance, setThemeAppearance] =
-    useState<ThemeAppearance>("light");
+export const ThemeAppearanceProvider = ({ children }: { children?: React.ReactNode }) => {
+  const [themeAppearance, setThemeAppearance] = useState<ThemeAppearance>("light");
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -44,9 +38,7 @@ export const ThemeAppearanceProvider = ({
   }, []);
 
   return (
-    <ThemeAppearanceContext.Provider
-      value={{ themeAppearance, setThemeAppearance }}
-    >
+    <ThemeAppearanceContext.Provider value={{ themeAppearance, setThemeAppearance }}>
       {children}
     </ThemeAppearanceContext.Provider>
   );

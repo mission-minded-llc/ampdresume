@@ -3,9 +3,7 @@ import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 import { getApolloClient } from "@/lib/apolloClient";
 
-export const getPositions = async (
-  companyId: string
-): Promise<Position[] | null> => {
+export const getPositions = async (companyId: string): Promise<Position[] | null> => {
   if (!companyId) return null;
 
   const client = getApolloClient();
@@ -14,10 +12,7 @@ export const getPositions = async (
     .query<{ positions: Position[] }>({
       query: gql`
         query getPositions($companyId: ID!) {
-          positions(
-            companyId: $companyId
-            sort: [{ field: "endDate", direction: DESC }]
-          ) {
+          positions(companyId: $companyId, sort: [{ field: "endDate", direction: DESC }]) {
             id
             title
             startDate

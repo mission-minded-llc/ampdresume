@@ -11,13 +11,12 @@ describe("ProjectItem", () => {
     return render(
       <ThemeProvider theme={theme}>
         <ProjectItem project={project} />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 
   // Using real sample data from the project
-  const projectWithSkills =
-    sampleData.data.resume.companies[0].positions[0].projects[0];
+  const projectWithSkills = sampleData.data.resume.companies[0].positions[0].projects[0];
   const projectWithoutSkills = {
     id: "test-project-no-skills",
     name: "Project Without Skills",
@@ -30,8 +29,8 @@ describe("ProjectItem", () => {
     renderWithTheme(projectWithSkills);
     expect(
       screen.getByText(
-        "Transformed monolithic architecture into scalable microservices for business-critical applications"
-      )
+        "Transformed monolithic architecture into scalable microservices for business-critical applications",
+      ),
     ).toBeInTheDocument();
   });
 

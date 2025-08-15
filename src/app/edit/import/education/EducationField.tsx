@@ -33,7 +33,7 @@ export const EducationField = memo(
         sx={{ mb: 1 }}
       />
     );
-  }
+  },
 );
 
 EducationField.displayName = "EducationField";

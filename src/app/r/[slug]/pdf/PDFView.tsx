@@ -12,16 +12,9 @@ interface PDFViewProps {
   education: Education[];
 }
 
-export const PDFView = ({
-  user,
-  skillsForUser,
-  companies,
-  education,
-}: PDFViewProps) => {
+export const PDFView = ({ user, skillsForUser, companies, education }: PDFViewProps) => {
   const pdfRef = useRef<HTMLDivElement>(null);
-  const [html2pdf, setHtml2pdf] = useState<typeof import("html2pdf.js") | null>(
-    null
-  );
+  const [html2pdf, setHtml2pdf] = useState<typeof import("html2pdf.js") | null>(null);
 
   useEffect(() => {
     // Dynamically import html2pdf only on the client side
@@ -56,11 +49,7 @@ export const PDFView = ({
   return (
     <Box sx={{ color: "#000", pb: 12 }}>
       <Box sx={{ display: "flex", justifyContent: "center", mb: 2, mt: 2 }}>
-        <Button
-          onClick={handleGeneratePdf}
-          variant="contained"
-          disabled={!html2pdf}
-        >
+        <Button onClick={handleGeneratePdf} variant="contained" disabled={!html2pdf}>
           Generate PDF
         </Button>
       </Box>

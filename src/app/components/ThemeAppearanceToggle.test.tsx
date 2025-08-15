@@ -20,7 +20,7 @@ describe("ThemeAppearanceToggle", () => {
     const { getByRole } = render(
       <ThemeAppearanceContext.Provider value={mockContext}>
         <ThemeAppearanceToggle />
-      </ThemeAppearanceContext.Provider>
+      </ThemeAppearanceContext.Provider>,
     );
 
     const switchButton = getByRole("checkbox");
@@ -40,7 +40,7 @@ describe("ThemeAppearanceToggle", () => {
     const { getByRole } = render(
       <ThemeAppearanceContext.Provider value={mockContext}>
         <ThemeAppearanceToggle />
-      </ThemeAppearanceContext.Provider>
+      </ThemeAppearanceContext.Provider>,
     );
 
     const switchButton = getByRole("checkbox");

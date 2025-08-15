@@ -8,16 +8,10 @@ const ExtractedDataContext = createContext<{
   companies: ParsedResumeData["companies"];
   education: ParsedResumeData["education"];
   error: string | null;
-  setUser: React.Dispatch<
-    React.SetStateAction<ParsedResumeData["user"] | null>
-  >;
+  setUser: React.Dispatch<React.SetStateAction<ParsedResumeData["user"] | null>>;
   setSkills: React.Dispatch<React.SetStateAction<Skill[]>>;
-  setCompanies: React.Dispatch<
-    React.SetStateAction<ParsedResumeData["companies"]>
-  >;
-  setEducation: React.Dispatch<
-    React.SetStateAction<ParsedResumeData["education"]>
-  >;
+  setCompanies: React.Dispatch<React.SetStateAction<ParsedResumeData["companies"]>>;
+  setEducation: React.Dispatch<React.SetStateAction<ParsedResumeData["education"]>>;
 } | null>(null);
 
 /**
@@ -28,9 +22,7 @@ const ExtractedDataContext = createContext<{
 export const useExtractedData = () => {
   const context = useContext(ExtractedDataContext);
   if (!context) {
-    throw new Error(
-      "useExtractedData must be used within an ExtractedDataProvider"
-    );
+    throw new Error("useExtractedData must be used within an ExtractedDataProvider");
   }
 
   return context;
@@ -57,15 +49,13 @@ export const ExtractedDataProvider = ({
    * Extract the separate objects from the parsed resume data, to use as individual
    * state variables.
    */
-  const [user, setUser] = useState<ParsedResumeData["user"] | null>(
-    initialData?.user || null
-  );
+  const [user, setUser] = useState<ParsedResumeData["user"] | null>(initialData?.user || null);
   const [skills, setSkills] = useState<Skill[]>(initialData?.skills || []);
   const [companies, setCompanies] = useState<ParsedResumeData["companies"]>(
-    initialData?.companies || []
+    initialData?.companies || [],
   );
   const [education, setEducation] = useState<ParsedResumeData["education"]>(
-    initialData?.education || []
+    initialData?.education || [],
   );
 
   return (

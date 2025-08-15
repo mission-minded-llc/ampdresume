@@ -1,9 +1,4 @@
-import {
-  deleteUserAsset,
-  manageUserAsset,
-  undeleteUserAsset,
-  uploadUserAsset,
-} from "./userAsset";
+import { deleteUserAsset, manageUserAsset, undeleteUserAsset, uploadUserAsset } from "./userAsset";
 
 global.fetch = jest.fn();
 
@@ -22,10 +17,7 @@ describe("userAsset utilities", () => {
       const file = new File(["test"], "test.png", { type: "image/png" });
       const result = await uploadUserAsset(file);
 
-      expect(global.fetch).toHaveBeenCalledWith(
-        "/api/user-asset/upload",
-        expect.any(Object)
-      );
+      expect(global.fetch).toHaveBeenCalledWith("/api/user-asset/upload", expect.any(Object));
       expect(result.status).toBe(200);
       expect(result.url).toBe("https://example.com/my-file.png");
     });
@@ -67,9 +59,9 @@ describe("userAsset utilities", () => {
         json: async () => ({ error: "Not found" }),
       });
 
-      await expect(
-        manageUserAsset("missing-file.png", "delete")
-      ).rejects.toThrow("Error (400): Not found");
+      await expect(manageUserAsset("missing-file.png", "delete")).rejects.toThrow(
+        "Error (400): Not found",
+      );
     });
   });
 
@@ -81,10 +73,7 @@ describe("userAsset utilities", () => {
       } as Response);
 
       await deleteUserAsset("file.png");
-      expect(spy).toHaveBeenCalledWith(
-        "/api/user-asset/delete",
-        expect.any(Object)
-      );
+      expect(spy).toHaveBeenCalledWith("/api/user-asset/delete", expect.any(Object));
     });
   });
 
@@ -96,10 +85,7 @@ describe("userAsset utilities", () => {
       } as Response);
 
       await undeleteUserAsset("file.png");
-      expect(spy).toHaveBeenCalledWith(
-        "/api/user-asset/undelete",
-        expect.any(Object)
-      );
+      expect(spy).toHaveBeenCalledWith("/api/user-asset/undelete", expect.any(Object));
     });
   });
 });

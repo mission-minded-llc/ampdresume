@@ -1,11 +1,4 @@
-import {
-  Company,
-  Education,
-  SkillForUser,
-  Social,
-  ThemeName,
-  User,
-} from "@/types";
+import { Company, Education, SkillForUser, Social, ThemeName, User } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 import { getApolloClient } from "@/lib/apolloClient";

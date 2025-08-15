@@ -9,7 +9,7 @@ const openai = new OpenAI({
 
 export const getParsedResumeAi = async (
   _: string,
-  { userId, text }: { userId: string; text: string }
+  { userId, text }: { userId: string; text: string },
 ) => {
   await verifySessionOwnership(userId);
 

@@ -41,9 +41,7 @@ export const ThemeDefault = ({
     >
       <ResumeHeading user={user} socials={socials} />
 
-      {skillsForUser?.length ? (
-        <Skills skillType="user" skillsForUser={skillsForUser} />
-      ) : null}
+      {skillsForUser?.length ? <Skills skillType="user" skillsForUser={skillsForUser} /> : null}
       {companies?.length ? <WorkExperience companies={companies} /> : null}
       {education?.length ? <Education education={education} /> : null}
     </Box>

@@ -49,9 +49,7 @@ describe("FeaturedProjects", () => {
   it("renders project description points", () => {
     renderWithTheme(<FeaturedProjects projects={sampleProjects} />);
 
-    expect(
-      screen.getByText(sampleProjects[0].description ?? "")
-    ).toBeInTheDocument();
+    expect(screen.getByText(sampleProjects[0].description ?? "")).toBeInTheDocument();
   });
 
   it("renders project links if provided", () => {
@@ -61,10 +59,7 @@ describe("FeaturedProjects", () => {
     const demoLink = screen.getByText("Demo");
 
     expect(githubLink).toBeInTheDocument();
-    expect(githubLink).toHaveAttribute(
-      "href",
-      "https://github.com/test/project"
-    );
+    expect(githubLink).toHaveAttribute("href", "https://github.com/test/project");
     expect(demoLink).toBeInTheDocument();
     expect(demoLink).toHaveAttribute("href", "https://demo.test.com");
   });

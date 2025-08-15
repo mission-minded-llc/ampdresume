@@ -128,12 +128,7 @@ export const NavPrimary = () => {
           }}
         >
           <Box sx={{ position: "absolute", top: 12, right: 12 }}>
-            <IconButton
-              edge="end"
-              color="inherit"
-              aria-label="close"
-              onClick={toggleDrawer(false)}
-            >
+            <IconButton edge="end" color="inherit" aria-label="close" onClick={toggleDrawer(false)}>
               <CloseIcon />
             </IconButton>
           </Box>

@@ -8,10 +8,7 @@ import { ProjectItem } from "./ProjectItem";
 export const ProjectAccordion = ({ project }: { project: Project }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const handleAccordionChange = (
-    event: SyntheticEvent,
-    isExpanded: boolean
-  ) => {
+  const handleAccordionChange = (event: SyntheticEvent, isExpanded: boolean) => {
     const target = event.target as HTMLElement;
     const isButtonClick = target.closest(".MuiButton-root");
     const isDialogClick = target.closest(".MuiDialog-root");
