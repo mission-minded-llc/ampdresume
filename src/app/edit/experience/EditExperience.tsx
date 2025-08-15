@@ -1,18 +1,15 @@
 "use client";
 
-import { SkillForUser } from "@ampdresume/theme";
-import { Box, Typography } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
+import { SkillForUser } from "@/types";
 import { useSession } from "next-auth/react";
 import React from "react";
-
+import { Box, Typography } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import { getCompanies } from "@/graphql/getCompanies";
 import { getSkillsForUser } from "@/graphql/getSkillsForUser";
-
 import { SectionTitle } from "../components/SectionTitle";
-
 import { CompanyList } from "./CompanyList";
 
 export const EditExperienceContext = React.createContext<{

@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 export const addCompany = async ({
@@ -9,12 +8,14 @@ export const addCompany = async ({
   location,
   startDate,
   endDate,
+  description,
 }: {
   userId: string;
   name: string;
   location: string;
   startDate: string;
   endDate: string;
+  description: string;
 }): Promise<void> => {
   const client = getApolloClient();
 
@@ -27,6 +28,7 @@ export const addCompany = async ({
           $location: String
           $startDate: String!
           $endDate: String
+          $description: String
         ) {
           addCompany(
             userId: $userId
@@ -34,6 +36,7 @@ export const addCompany = async ({
             location: $location
             startDate: $startDate
             endDate: $endDate
+            description: $description
           ) {
             id
           }
@@ -45,6 +48,7 @@ export const addCompany = async ({
         location,
         startDate,
         endDate,
+        description,
       },
     })
     .catch((error) => {

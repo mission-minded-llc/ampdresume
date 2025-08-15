@@ -1,17 +1,15 @@
 import fs from "fs";
 import path from "path";
-
-import { ThemeName } from "@ampdresume/theme";
+import { ThemeName } from "@/types";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import * as Sentry from "@sentry/nextjs";
-import { NextAuthOptions, Session as NextAuthSession, getServerSession } from "next-auth";
+import { getServerSession, NextAuthOptions, Session as NextAuthSession } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
 import { JWT } from "next-auth/jwt";
 import EmailProvider, { EmailConfig } from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
 import LinkedInProvider, { LinkedInProfile } from "next-auth/providers/linkedin";
 import nodemailer from "nodemailer";
-
+import * as Sentry from "@sentry/nextjs";
 import { ALLOWED_USER_EMAILS } from "@/constants";
 import { prisma } from "@/lib/prisma";
 import { findUserByNormalizedEmail } from "@/util/email";
@@ -201,7 +199,11 @@ export const authOptions: NextAuthOptions = {
     }: {
       session: NextAuthSession;
       token: JWT;
-      user: AdapterUser & { slug?: string; webThemeName?: ThemeName; pdfThemeName?: ThemeName };
+      user: AdapterUser & {
+        slug?: string;
+        webThemeName?: ThemeName;
+        pdfThemeName?: ThemeName;
+      };
     }) {
       // Add the user ID to the session for easier database operations.
       session.user = { ...session.user, id: user.id, email: user.email };

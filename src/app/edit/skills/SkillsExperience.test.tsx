@@ -1,12 +1,10 @@
 import "@testing-library/jest-dom";
-
-import { SkillForUser, groupSkillsForUserByYearExperience } from "@ampdresume/theme";
+import { SkillForUser } from "@/types";
+import { groupSkillsForUserByYearExperience } from "@/util/structure";
 import { render } from "@testing-library/react";
-import React from "react";
-
 import { SkillsExperience } from "./SkillsExperience";
 
-jest.mock("@ampdresume/theme", () => ({
+jest.mock("@/util/structure", () => ({
   groupSkillsForUserByYearExperience: jest.fn(),
 }));
 

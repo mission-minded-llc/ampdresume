@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-
 import { SectionTitle } from "../components/SectionTitle";
 
 export const PageHeading = () => (

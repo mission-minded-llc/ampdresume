@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { NextResponse } from "next/server";
-
 import { getEducation } from "@/graphql/getEducation";
 import { getExperience } from "@/graphql/getExperience";
 import { getUser } from "@/graphql/getUser";

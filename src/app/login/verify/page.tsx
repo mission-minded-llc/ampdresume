@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-
 import { titleSuffix } from "@/constants";
 
 export function generateMetadata() {

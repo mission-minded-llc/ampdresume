@@ -1,5 +1,4 @@
 import { ApolloClient } from "@apollo/client";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 describe("getApolloClient", () => {

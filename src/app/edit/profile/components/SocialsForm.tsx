@@ -1,10 +1,9 @@
-import { Social } from "@ampdresume/theme";
-import { Icon } from "@iconify/react";
-import { Box, Button, Dialog, DialogContent, List, TextField, Typography } from "@mui/material";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Social } from "@/types";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-
+import { Box, Button, Dialog, DialogContent, List, TextField, Typography } from "@mui/material";
+import { Icon } from "@iconify/react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
@@ -20,9 +19,7 @@ import {
   getSocialMediaPlatformByHostname,
   getSocialMediaPlatformByPlatformName,
 } from "@/util/social";
-
 import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
-
 import { FieldDescription, FieldTitle, InputSection, SectionTitle } from "./sections";
 
 export const SocialsForm = () => {
@@ -191,7 +188,14 @@ export const SocialsForm = () => {
         {socials && socials?.length > 0 ? (
           <>
             <FieldTitle>Current Socials</FieldTitle>
-            <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 3 }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                gap: 3,
+              }}
+            >
               {socials.map((social) => (
                 <Box
                   key={social.id}

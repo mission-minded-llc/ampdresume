@@ -1,11 +1,10 @@
 "use client";
 
-import { Box, Typography, Container } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import * as Sentry from "@sentry/nextjs";
-import Link from "next/link";
 import { useEffect } from "react";
-
+import Link from "next/link";
+import { Box, Container, Typography } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import * as Sentry from "@sentry/nextjs";
 import { ThemeAwareLogo } from "./components/ThemeAwareLogo";
 
 export default function GlobalError({ error }: { error: Error & { digest?: string } }) {

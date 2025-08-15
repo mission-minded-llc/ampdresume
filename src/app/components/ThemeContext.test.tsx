@@ -1,8 +1,6 @@
 import "@testing-library/jest-dom";
-
-import { render } from "@testing-library/react";
 import React, { useContext } from "react";
-
+import { render } from "@testing-library/react";
 import { ThemeAppearanceContext, ThemeAppearanceProvider } from "./ThemeContext";
 
 function TestChild() {

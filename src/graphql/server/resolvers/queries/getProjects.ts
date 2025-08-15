@@ -4,7 +4,9 @@ export const getProjects = async (_: string, { positionId }: { positionId: strin
   const projects = await prisma.project.findMany({
     where: { positionId },
     include: {
-      skillsForProject: { include: { skillForUser: { include: { skill: true } } } },
+      skillsForProject: {
+        include: { skillForUser: { include: { skill: true } } },
+      },
     },
     orderBy: { sortIndex: "asc" },
   });

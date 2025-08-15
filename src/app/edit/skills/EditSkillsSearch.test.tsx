@@ -1,10 +1,8 @@
 import "@testing-library/jest-dom";
-
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useSession } from "next-auth/react";
 import React from "react";
-
+import { fireEvent, render, waitFor } from "@testing-library/react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { EditSkillsSearch } from "./EditSkillsSearch";
 
 jest.mock("next-auth/react", () => ({
@@ -63,12 +61,18 @@ describe("EditSkillsSearch", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    (useSession as jest.Mock).mockReturnValue({ data: mockSession, status: "authenticated" });
+    (useSession as jest.Mock).mockReturnValue({
+      data: mockSession,
+      status: "authenticated",
+    });
     (useQueryClient as jest.Mock).mockReturnValue(mockQueryClient);
   });
 
   it("renders correctly", () => {
-    (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: { skills: [] } });
+    (useQuery as jest.Mock).mockReturnValue({
+      isPending: false,
+      data: { skills: [] },
+    });
 
     const { container, getByLabelText } = render(<EditSkillsSearch />);
     expect(getByLabelText("Search Skills to Add")).toBeInTheDocument();
@@ -84,7 +88,10 @@ describe("EditSkillsSearch", () => {
   });
 
   it("displays error message when skills fetching fails", () => {
-    (useQuery as jest.Mock).mockReturnValue({ isPending: false, error: { message: "Error" } });
+    (useQuery as jest.Mock).mockReturnValue({
+      isPending: false,
+      error: { message: "Error" },
+    });
 
     const { container, getByText } = render(<EditSkillsSearch />);
     expect(getByText("Error loading skills: Error")).toBeInTheDocument();
@@ -96,7 +103,10 @@ describe("EditSkillsSearch", () => {
       { id: "1", name: "JavaScript", icon: "icon-js" },
       { id: "2", name: "TypeScript", icon: "icon-ts" },
     ];
-    (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: { skills: mockSkills } });
+    (useQuery as jest.Mock).mockReturnValue({
+      isPending: false,
+      data: { skills: mockSkills },
+    });
 
     const { container, getByLabelText, getByText } = render(<EditSkillsSearch />);
     const searchInput = getByLabelText("Search Skills to Add");
@@ -119,7 +129,10 @@ describe("EditSkillsSearch", () => {
 
   it("opens dialog when a skill is selected", async () => {
     const mockSkills = [{ id: "1", name: "JavaScript", icon: "icon-js" }];
-    (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: { skills: mockSkills } });
+    (useQuery as jest.Mock).mockReturnValue({
+      isPending: false,
+      data: { skills: mockSkills },
+    });
 
     const { container, getByLabelText, getByText } = render(<EditSkillsSearch />);
     const searchInput = getByLabelText("Search Skills to Add");

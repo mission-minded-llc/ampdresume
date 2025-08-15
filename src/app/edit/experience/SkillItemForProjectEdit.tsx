@@ -1,14 +1,12 @@
-import { Project, SkillForProject } from "@ampdresume/theme";
-import { Icon } from "@iconify/react";
-import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Project, SkillForProject } from "@/types";
 import { useSession } from "next-auth/react";
 import React, { useRef, useState } from "react";
-
+import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
+import { Icon } from "@iconify/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { deleteSkillForProject } from "@/graphql/deleteSkillForProject";
 import { updateSkillForProject } from "@/graphql/updateSkillForProject";
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 
@@ -35,7 +33,10 @@ export const SkillItemForProjectEdit = ({
         description,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForProject", project.id] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: ["skillsForProject", project.id],
+      }),
   });
 
   const deleteSkillForProjectMutation = useMutation({
@@ -47,7 +48,10 @@ export const SkillItemForProjectEdit = ({
         userId: session.user.id,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForProject", project.id] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: ["skillsForProject", project.id],
+      }),
   });
 
   const handleSave = () =>

@@ -1,8 +1,8 @@
 "use client";
 
-import { Container, Typography } from "@mui/material";
 import { signOut } from "next-auth/react";
 import { useEffect } from "react";
+import { Container, Typography } from "@mui/material";
 
 export default function LogoutPage() {
   useEffect(() => {

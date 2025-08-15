@@ -1,11 +1,9 @@
-import { Box, TextField } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { memo, useState } from "react";
-
+import { Box, TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
 import { validateAndConvertDate } from "@/lib/dateUtils";
-
 import { Position } from "./types";
 
 /**
@@ -75,7 +73,14 @@ export const PositionFields = memo(
             onBlur={handleTitleBlur}
             sx={{ mb: 2 }}
           />
-          <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, mb: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              gap: 2,
+              mb: 2,
+            }}
+          >
             <DatePicker
               label="Start Date"
               value={position.startDate ? dayjs(position.startDate) : null}

@@ -1,16 +1,13 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { InfoOutlined } from "@mui/icons-material";
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import { getSkillsForUser } from "@/graphql/getSkillsForUser";
-
 import { SectionTitle } from "../components/SectionTitle";
-
 import { EditSkillsSearch } from "./EditSkillsSearch";
 import { SkillsExperience } from "./SkillsExperience";
 

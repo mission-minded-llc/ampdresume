@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
 import React from "react";
+import { Typography } from "@mui/material";
 
 interface AccordionSummaryContentProps {
   primary: string;
@@ -23,7 +23,10 @@ export const AccordionSummaryContent: React.FC<AccordionSummaryContentProps> = (
     <Typography
       component="p"
       variant="body1"
-      sx={{ display: { xs: "none", sm: "block" }, fontSize: { xs: "1rem", sm: "1.25rem" } }}
+      sx={{
+        display: { xs: "none", sm: "block" },
+        fontSize: { xs: "1rem", sm: "1.25rem" },
+      }}
     >
       <strong>{primary}</strong>
       {secondary ? (

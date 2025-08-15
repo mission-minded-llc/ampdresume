@@ -1,8 +1,7 @@
 "use client";
 
-import { Box, Typography, Container } from "@mui/material";
 import Link from "next/link";
-
+import { Box, Container, Typography } from "@mui/material";
 import { ThemeAwareLogo } from "./components/ThemeAwareLogo";
 
 export default function NotFound() {

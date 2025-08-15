@@ -1,7 +1,6 @@
 import { MuiLink } from "@/components/MuiLink";
 import { titleSuffix } from "@/constants";
 import { isFeatureEnabledForUser } from "@/lib/featureFlags";
-
 import { AiAssist } from "./AiAssist";
 
 export function generateMetadata() {

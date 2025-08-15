@@ -1,14 +1,12 @@
 "use client";
 
-import { Typography } from "@mui/material";
-import * as Sentry from "@sentry/react";
-import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-
+import { Typography } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import * as Sentry from "@sentry/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { getParsedResumeAi } from "@/graphql/getParsedResumeAi";
-
 import { ExtractedInformation } from "./ExtractedInformation";
 import { PageHeading } from "./PageHeading";
 import { FileUploadEvent, PDFFile, TextItem } from "./types";

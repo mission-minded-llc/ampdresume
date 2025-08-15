@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import { withAuth } from "next-auth/middleware";
+import { NextResponse } from "next/server";
 
 // Export the middleware with security headers
 export default withAuth(

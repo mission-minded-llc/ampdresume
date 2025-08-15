@@ -1,30 +1,28 @@
-import { Position, Project } from "@ampdresume/theme";
+import { Position, Project } from "@/types";
 import {
+  closestCenter,
   DndContext,
   DragEndEvent,
   KeyboardSensor,
   PointerSensor,
-  closestCenter,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
 import {
-  SortableContext,
   arrayMove,
+  SortableContext,
   sortableKeyboardCoordinates,
   useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Box, Button, TextField } from "@mui/material";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
-
+import { Box, Button, TextField } from "@mui/material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Tooltip } from "@/components/Tooltip";
 import { addProject } from "@/graphql/addProject";
 import { updateProjectSortIndexes } from "@/graphql/updateProjectSortIndexes";
-
 import { ProjectItem } from "./ProjectItem";
 
 const MemoizedProjectItem = React.memo(ProjectItem);
@@ -189,7 +187,13 @@ export const ProjectsList = ({
 
   return (
     <>
-      <Box sx={{ display: { xs: "block", sm: "flex" }, justifyContent: "space-between", gap: 1 }}>
+      <Box
+        sx={{
+          display: { xs: "block", sm: "flex" },
+          justifyContent: "space-between",
+          gap: 1,
+        }}
+      >
         <TextField
           label="Project"
           fullWidth

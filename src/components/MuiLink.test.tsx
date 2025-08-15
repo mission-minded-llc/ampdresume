@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-
 import { MuiLink } from "@/components/MuiLink";
 
 describe("MuiLink", () => {

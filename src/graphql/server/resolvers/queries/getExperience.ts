@@ -2,7 +2,13 @@ import { prisma } from "@/lib/prisma";
 
 export const getExperience = async (
   _: string,
-  { userId, sort }: { userId: string; sort: Array<{ field: string; direction: "ASC" | "DESC" }> },
+  {
+    userId,
+    sort,
+  }: {
+    userId: string;
+    sort: Array<{ field: string; direction: "ASC" | "DESC" }>;
+  },
 ) => {
   // Map the sort array into Prisma-compatible orderBy
   const orderBy =
@@ -17,7 +23,9 @@ export const getExperience = async (
         include: {
           projects: {
             include: {
-              skillsForProject: { include: { skillForUser: { include: { skill: true } } } },
+              skillsForProject: {
+                include: { skillForUser: { include: { skill: true } } },
+              },
             },
           },
         },

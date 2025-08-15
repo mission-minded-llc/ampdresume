@@ -1,4 +1,5 @@
-import { Icon } from "@iconify/react";
+import { useSession } from "next-auth/react";
+import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import Box from "@mui/material/Box";
@@ -9,13 +10,10 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
-import { useSession } from "next-auth/react";
-import React, { useState } from "react";
-
+import { Icon } from "@iconify/react";
 import { MuiLink } from "@/components/MuiLink";
 import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 import { getBaseUrl } from "@/util/url";
-
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 
 /**

@@ -1,10 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-
 import { getResume } from "@/graphql/getResume";
 import { getUser } from "@/graphql/getUser";
 import { getSession } from "@/lib/auth";
-
 import { ResumeView } from "./ResumeView";
 
 export async function generateMetadata({

@@ -1,10 +1,8 @@
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { useCallback, useEffect, useState } from "react";
-
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import { AccordionSummaryContent } from "../../components/AccordionSummaryContent";
-
 import { CompanyFields } from "./CompanyFields";
 import { PositionFields } from "./PositionFields";
 import { ProjectField } from "./ProjectField";

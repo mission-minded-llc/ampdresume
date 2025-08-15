@@ -1,11 +1,10 @@
 "use client";
 
-import { Icon } from "@iconify/react";
-import { Box, Button, Divider, TextField, Typography } from "@mui/material";
-import * as Sentry from "@sentry/react";
 import { signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
-
+import { Box, Button, Divider, TextField, Typography } from "@mui/material";
+import { Icon } from "@iconify/react";
+import * as Sentry from "@sentry/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 
 export function SignIn() {

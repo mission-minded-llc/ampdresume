@@ -1,11 +1,8 @@
 import "@testing-library/jest-dom";
-
-import { fireEvent, render, waitFor } from "@testing-library/react";
 import { SessionProvider } from "next-auth/react";
 import React from "react";
-
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-
 import { AccountForm } from "./AccountForm";
 
 jest.mock("@/hooks/useIsDesktop", () => ({
@@ -164,9 +161,15 @@ describe("AccountForm", () => {
 
     const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
-    fireEvent.change(getByLabelText("Full Name"), { target: { value: "Jane Doe" } });
-    fireEvent.change(getByLabelText("URL Name"), { target: { value: "jane-doe" } });
-    fireEvent.change(getByLabelText("Display Email"), { target: { value: "jane@example.com" } });
+    fireEvent.change(getByLabelText("Full Name"), {
+      target: { value: "Jane Doe" },
+    });
+    fireEvent.change(getByLabelText("URL Name"), {
+      target: { value: "jane-doe" },
+    });
+    fireEvent.change(getByLabelText("Display Email"), {
+      target: { value: "jane@example.com" },
+    });
 
     fireEvent.click(getByText("Save"));
 
@@ -211,9 +214,15 @@ describe("AccountForm", () => {
 
     const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
 
-    fireEvent.change(getByLabelText("Full Name"), { target: { value: "Jane Doe" } });
-    fireEvent.change(getByLabelText("URL Name"), { target: { value: "jane-doe" } });
-    fireEvent.change(getByLabelText("Display Email"), { target: { value: "jane@example.com" } });
+    fireEvent.change(getByLabelText("Full Name"), {
+      target: { value: "Jane Doe" },
+    });
+    fireEvent.change(getByLabelText("URL Name"), {
+      target: { value: "jane-doe" },
+    });
+    fireEvent.change(getByLabelText("Display Email"), {
+      target: { value: "jane@example.com" },
+    });
 
     fireEvent.click(getByText("Save"));
 

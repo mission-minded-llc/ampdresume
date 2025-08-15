@@ -2,10 +2,10 @@
 
 // Use Prisma to seed data from ./skills.csv into the Skills table.
 
-import { prisma } from "@/lib/prisma";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { prisma } from "@/lib/prisma";
 import { logTitle } from "./helpers/util";
 
 const __filename = fileURLToPath(import.meta.url);

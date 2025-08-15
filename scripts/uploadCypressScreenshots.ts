@@ -4,11 +4,10 @@
  */
 
 /* eslint-disable no-console */
-import { readFileSync, readdirSync, statSync } from "fs";
-
-import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { readdirSync, readFileSync, statSync } from "fs";
 import { join } from "path";
 import { fileURLToPath } from "url";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getS3Client } from "../src/lib/s3";
 
 function getAllFiles(dirPath: string, arrayOfFiles: string[] = []): string[] {

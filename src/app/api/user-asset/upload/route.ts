@@ -1,7 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import sharp from "sharp";
-
+import { NextRequest, NextResponse } from "next/server";
 import { ALLOWED_USER_IMAGE_TYPES, MAX_USER_IMAGE_SIZE } from "@/constants";
 import { authOptions } from "@/lib/auth";
 import { uploadObject } from "@/lib/s3";

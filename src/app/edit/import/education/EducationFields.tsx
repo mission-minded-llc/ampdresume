@@ -1,8 +1,6 @@
-import { Box } from "@mui/material";
 import { memo, useEffect, useState } from "react";
-
+import { Box } from "@mui/material";
 import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
-
 import { EducationDateField } from "./EducationDateField";
 import { EducationField } from "./EducationField";
 import { Education } from "./types";
@@ -28,9 +26,22 @@ export const EducationFields = memo(
     }, [education.dateAwarded]);
 
     return (
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+        }}
+      >
         <Box sx={{ mr: { xs: 0, sm: 2 }, width: "100%" }}>
-          <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, mb: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              gap: 2,
+              mb: 2,
+            }}
+          >
             <EducationField
               label="Institution"
               value={education.school || ""}

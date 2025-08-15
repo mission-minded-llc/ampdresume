@@ -1,8 +1,6 @@
 import type { User } from "@prisma/client";
-
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
-
 import { deleteUser } from "./deleteUser";
 
 // Mock dependencies

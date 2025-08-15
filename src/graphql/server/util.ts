@@ -1,6 +1,5 @@
 import { User } from "@prisma/client";
 import { getServerSession } from "next-auth";
-
 import { authOptions } from "@/lib/auth";
 import { GraphQLContext } from "@/types/graphql";
 

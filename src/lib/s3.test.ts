@@ -5,7 +5,6 @@ import {
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
-
 import { flagForDeletion, objectExists, revertFlagForDeletion, uploadObject } from "./s3";
 
 jest.mock("@aws-sdk/client-s3", () => {

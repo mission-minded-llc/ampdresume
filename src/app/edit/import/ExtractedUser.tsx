@@ -1,6 +1,5 @@
-import { Box, TextField, Typography } from "@mui/material";
 import { memo, useState } from "react";
-
+import { Box, TextField, Typography } from "@mui/material";
 import { ParsedResumeData } from "./types";
 
 /**

@@ -1,7 +1,6 @@
-import { SkillForUser } from "@ampdresume/theme";
+import { SkillForUser } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 /**

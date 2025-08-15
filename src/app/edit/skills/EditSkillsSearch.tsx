@@ -1,13 +1,16 @@
 "use client";
 
-import { Icon } from "@iconify/react";
+import { useSession } from "next-auth/react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Box,
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   Divider,
+  FormControlLabel,
   List,
   ListItem,
   ListItemIcon,
@@ -15,13 +18,9 @@ import {
   Paper,
   TextField,
   Typography,
-  Checkbox,
-  FormControlLabel,
 } from "@mui/material";
+import { Icon } from "@iconify/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import React, { useEffect, useMemo, useState } from "react";
-
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { IconSelector } from "@/components/IconSelector";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
@@ -86,7 +85,12 @@ export const EditSkillsSearch = () => {
     }) => {
       if (!session?.user?.id) return;
 
-      await addSkillForUser({ userId: session.user.id, skillId, yearStarted, totalYears });
+      await addSkillForUser({
+        userId: session.user.id,
+        skillId,
+        yearStarted,
+        totalYears,
+      });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["skillsForUser"] });
@@ -227,7 +231,14 @@ export const EditSkillsSearch = () => {
         </CustomDialogTitle>
 
         <DialogContent>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+              width: "100%",
+            }}
+          >
             <Box sx={{ display: "flex", gap: 2, width: "100%" }}>
               {autoCalculate ? (
                 <TextField
@@ -244,7 +255,9 @@ export const EditSkillsSearch = () => {
                     target.value = removeLeadingZero(target.value);
                   }}
                   onChange={(e) => setYearStarted(Number(e.target.value))}
-                  slotProps={{ htmlInput: { min: 1900, max: new Date().getFullYear() } }}
+                  slotProps={{
+                    htmlInput: { min: 1900, max: new Date().getFullYear() },
+                  }}
                 />
               ) : (
                 <TextField

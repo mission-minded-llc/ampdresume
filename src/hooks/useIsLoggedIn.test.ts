@@ -1,6 +1,5 @@
-import { renderHook } from "@testing-library/react";
 import { useSession } from "next-auth/react";
-
+import { renderHook } from "@testing-library/react";
 import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 
 // Mock the useSession hook
