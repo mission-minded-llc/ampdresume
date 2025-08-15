@@ -54,6 +54,7 @@ export const getResume = async (slug: string) => {
             companies {
               id
               name
+              description
               location
               startDate
               endDate
