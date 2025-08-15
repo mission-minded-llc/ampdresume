@@ -7,7 +7,7 @@ import type { Education as EducationType } from "@/types";
 export const Education = ({ education }: { education: EducationType[] }) => {
   const educationGroupedBySchool: { [key: string]: EducationType[] } = {};
 
-  education.map((edu) => {
+  education.forEach((edu) => {
     if (!edu?.school) return;
 
     educationGroupedBySchool[edu.school] = educationGroupedBySchool[edu.school]
