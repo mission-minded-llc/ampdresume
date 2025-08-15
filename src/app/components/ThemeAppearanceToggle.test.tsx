@@ -1,16 +1,28 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { usePathname } from "next/navigation";
 import { fireEvent, render } from "@testing-library/react";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 import { ThemeAppearanceContext } from "./ThemeContext";
 
 jest.mock("next/navigation");
+jest.mock("@/hooks/useIsDesktop", () => ({
+  useIsDesktop: jest.fn(),
+}));
+jest.mock("@/hooks/useIsResumePage", () => ({
+  useIsResumePage: jest.fn(),
+}));
+
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useIsResumePage } from "@/hooks/useIsResumePage";
 
 describe("ThemeAppearanceToggle", () => {
-  it("toggles theme appearance when the switch is clicked from light to dark", () => {
+  beforeEach(() => {
     (usePathname as jest.Mock).mockReturnValue("/");
+    (useIsDesktop as jest.Mock).mockReturnValue(true);
+    (useIsResumePage as jest.Mock).mockReturnValue(false);
+  });
 
+  it("toggles theme appearance when the switch is clicked from light to dark", () => {
     const setThemeAppearanceMock = jest.fn();
     const mockContext = {
       themeAppearance: "light" as "light" | "dark",
@@ -23,14 +35,12 @@ describe("ThemeAppearanceToggle", () => {
       </ThemeAppearanceContext.Provider>,
     );
 
-    const switchButton = getByRole("checkbox");
+    const switchButton = getByRole("switch");
     fireEvent.click(switchButton);
     expect(setThemeAppearanceMock).toHaveBeenCalledWith("dark");
   });
 
   it("toggles theme appearance when the switch is clicked from dark to light", () => {
-    (usePathname as jest.Mock).mockReturnValue("/");
-
     const setThemeAppearanceMock = jest.fn();
     const mockContext = {
       themeAppearance: "dark" as "light" | "dark",
@@ -43,7 +53,7 @@ describe("ThemeAppearanceToggle", () => {
       </ThemeAppearanceContext.Provider>,
     );
 
-    const switchButton = getByRole("checkbox");
+    const switchButton = getByRole("switch");
     fireEvent.click(switchButton);
     expect(setThemeAppearanceMock).toHaveBeenCalledWith("light");
   });
