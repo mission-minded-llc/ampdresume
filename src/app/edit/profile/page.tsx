@@ -1,11 +1,8 @@
 import { Box, Typography } from "@mui/material";
-
 import { titleSuffix } from "@/constants";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-
 import { SectionTitle } from "../components/SectionTitle";
-
 import { AccountForm } from "./components/AccountForm";
 
 export function generateMetadata() {
@@ -17,7 +14,11 @@ export function generateMetadata() {
 const Page = async () => {
   const session = await getSession();
   if (!session?.user?.id) {
-    return <Typography component="p">You need to be signed in to access this page.</Typography>;
+    return (
+      <Typography component="p">
+        You need to be signed in to access this page.
+      </Typography>
+    );
   }
 
   const user = await prisma.user.findUnique({

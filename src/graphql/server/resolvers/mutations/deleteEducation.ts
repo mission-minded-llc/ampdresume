@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export const deleteEducation = async (
   _: string,
-  { userId, id }: { userId: string; id: string },
+  { userId, id }: { userId: string; id: string }
 ) => {
   await verifySessionOwnership(userId);
 

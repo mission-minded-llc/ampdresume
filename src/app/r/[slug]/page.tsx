@@ -1,10 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-
 import { getResume } from "@/graphql/getResume";
 import { getUser } from "@/graphql/getUser";
 import { getSession } from "@/lib/auth";
-
 import { ResumeView } from "./ResumeView";
 
 export async function generateMetadata({
@@ -16,7 +14,9 @@ export async function generateMetadata({
   const user = await getUser(slug);
 
   const siteTitleDefault =
-    user?.name && user?.title ? `Resume of ${user.name}, ${user.title}` : "Amp'd Resume";
+    user?.name && user?.title
+      ? `Resume of ${user.name}, ${user.title}`
+      : "Amp'd Resume";
 
   const title = user?.siteTitle ? user.siteTitle : siteTitleDefault;
   const description = user?.siteDescription ? user.siteDescription : "";
@@ -43,7 +43,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const resume = await getResume(slug);
   const session = await getSession();

@@ -1,8 +1,6 @@
-import * as Sentry from "@sentry/node";
 import OpenAI from "openai";
-
+import * as Sentry from "@sentry/node";
 import { prisma } from "@/lib/prisma";
-
 import { verifySessionOwnership } from "../../util";
 
 const openai = new OpenAI({
@@ -11,7 +9,7 @@ const openai = new OpenAI({
 
 export const getParsedResumeAi = async (
   _: string,
-  { userId, text }: { userId: string; text: string },
+  { userId, text }: { userId: string; text: string }
 ) => {
   await verifySessionOwnership(userId);
 

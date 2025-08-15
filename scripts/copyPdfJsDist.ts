@@ -18,5 +18,5 @@ const publicPath = join(__dirname, "..", "public");
 mkdirSync(publicPath, { recursive: true });
 copyFileSync(
   join(pdfjsDistPath, "build", "pdf.worker.min.mjs"),
-  join(publicPath, "pdf.worker.min.mjs"),
+  join(publicPath, "pdf.worker.min.mjs")
 );

@@ -1,6 +1,5 @@
-import { act, render } from "@testing-library/react";
 import React from "react";
-
+import { act, render } from "@testing-library/react";
 import { RichTextEditor } from "./RichTextEditor";
 
 describe("RichTextEditor", () => {
@@ -10,7 +9,11 @@ describe("RichTextEditor", () => {
 
     await act(async () => {
       result = render(
-        <RichTextEditor editorStateRef={editorStateRef} value="" name="test-editor" />,
+        <RichTextEditor
+          editorStateRef={editorStateRef}
+          value=""
+          name="test-editor"
+        />
       );
     });
     expect(result!.container).toBeInTheDocument();
@@ -23,7 +26,11 @@ describe("RichTextEditor", () => {
 
     await act(async () => {
       result = render(
-        <RichTextEditor editorStateRef={editorStateRef} value="" name="test-editor" />,
+        <RichTextEditor
+          editorStateRef={editorStateRef}
+          value=""
+          name="test-editor"
+        />
       );
     });
     expect(result!.getByText(placeholderText)).toBeInTheDocument();

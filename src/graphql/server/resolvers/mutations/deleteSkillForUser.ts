@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export const deleteSkillForUser = async (
   _: string,
-  { userId, id }: { userId: string; id: string },
+  { userId, id }: { userId: string; id: string }
 ) => {
   await verifySessionOwnership(userId);
 
@@ -13,7 +13,8 @@ export const deleteSkillForUser = async (
 
   if (!existingSkill) return null;
 
-  if (existingSkill.userId !== userId) throw new Error("Unauthorized: You do not own this skill");
+  if (existingSkill.userId !== userId)
+    throw new Error("Unauthorized: You do not own this skill");
 
   const skillForUser = await prisma.skillForUser.delete({
     where: {

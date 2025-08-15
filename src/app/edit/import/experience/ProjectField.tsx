@@ -1,7 +1,6 @@
+import { memo, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Box, IconButton, TextField } from "@mui/material";
-import { memo, useState } from "react";
-
 import { Project } from "./types";
 
 /**
@@ -33,9 +32,13 @@ export const ProjectField = memo(
       positionIndex: number,
       projectIndex: number,
       field: string,
-      value: string,
+      value: string
     ) => void;
-    onDelete: (companyIndex: number, positionIndex: number, projectIndex: number) => void;
+    onDelete: (
+      companyIndex: number,
+      positionIndex: number,
+      projectIndex: number
+    ) => void;
   }) => {
     const [localValue, setLocalValue] = useState(project.name || "");
 
@@ -45,7 +48,13 @@ export const ProjectField = memo(
 
     const handleBlur = () => {
       if (localValue !== project.name) {
-        onFieldChange(companyIndex, positionIndex, projectIndex, "name", localValue);
+        onFieldChange(
+          companyIndex,
+          positionIndex,
+          projectIndex,
+          "name",
+          localValue
+        );
       }
     };
 
@@ -78,7 +87,7 @@ export const ProjectField = memo(
         </IconButton>
       </Box>
     );
-  },
+  }
 );
 
 ProjectField.displayName = "ProjectField";

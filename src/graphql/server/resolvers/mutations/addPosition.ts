@@ -9,7 +9,13 @@ export const addPosition = async (
     title,
     startDate,
     endDate,
-  }: { userId: string; companyId: string; title: string; startDate: string; endDate: string },
+  }: {
+    userId: string;
+    companyId: string;
+    title: string;
+    startDate: string;
+    endDate: string;
+  }
 ) => {
   await verifySessionOwnership(userId);
 

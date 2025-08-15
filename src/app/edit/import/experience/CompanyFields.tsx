@@ -1,12 +1,9 @@
-import { Box, TextField } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { memo, useState } from "react";
-
+import { Box, TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 import { validateAndConvertDate } from "@/lib/dateUtils";
-
 import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
-
 import { Company } from "./types";
 
 export const CompanyFields = memo(
@@ -24,7 +21,7 @@ export const CompanyFields = memo(
       companyIndex: number,
       positionIndex: number | undefined,
       field: "startDate" | "endDate",
-      date: string,
+      date: string
     ) => void;
     onDelete: (companyIndex: number) => void;
   }) => {
@@ -90,7 +87,12 @@ export const CompanyFields = memo(
             label="Start Date"
             value={company.startDate ? dayjs(company.startDate) : null}
             onChange={(date) =>
-              onDateChange(companyIndex, undefined, "startDate", validateAndConvertDate(date))
+              onDateChange(
+                companyIndex,
+                undefined,
+                "startDate",
+                validateAndConvertDate(date)
+              )
             }
             sx={{ flex: 1 }}
             slotProps={{
@@ -105,7 +107,12 @@ export const CompanyFields = memo(
             label="End Date"
             value={company.endDate ? dayjs(company.endDate) : null}
             onChange={(date) =>
-              onDateChange(companyIndex, undefined, "endDate", validateAndConvertDate(date))
+              onDateChange(
+                companyIndex,
+                undefined,
+                "endDate",
+                validateAndConvertDate(date)
+              )
             }
             sx={{ flex: 1 }}
           />
@@ -118,7 +125,7 @@ export const CompanyFields = memo(
         </Box>
       </Box>
     );
-  },
+  }
 );
 
 CompanyFields.displayName = "CompanyFields";

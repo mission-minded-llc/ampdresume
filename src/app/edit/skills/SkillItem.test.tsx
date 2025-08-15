@@ -1,11 +1,8 @@
 import "@testing-library/jest-dom";
-
-import { SkillForUser } from "@ampdresume/theme";
-import { fireEvent, render, waitFor } from "@testing-library/react";
-import { usePathname } from "next/navigation";
+import { SkillForUser } from "@/types";
 import { useSession } from "next-auth/react";
-import React from "react";
-
+import { usePathname } from "next/navigation";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { SkillItem } from "./SkillItem";
 
 jest.mock("next-auth/react", () => ({
@@ -49,7 +46,10 @@ describe("SkillItem", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    (useSession as jest.Mock).mockReturnValue({ data: mockSession, status: "authenticated" });
+    (useSession as jest.Mock).mockReturnValue({
+      data: mockSession,
+      status: "authenticated",
+    });
     (usePathname as jest.Mock).mockReturnValue("/edit/skills");
   });
 
@@ -72,7 +72,7 @@ describe("SkillItem", () => {
 
   it("closes the dialog when the close button is clicked", async () => {
     const { container, getByText, getByRole, queryByRole } = render(
-      <SkillItem skill={mockSkill} />,
+      <SkillItem skill={mockSkill} />
     );
     const button = getByText("JavaScript");
     expect(container).toMatchSnapshot();

@@ -1,11 +1,8 @@
 import "@testing-library/jest-dom";
-
-import { Education } from "@ampdresume/theme";
-import { useQuery } from "@tanstack/react-query";
-import { render, waitFor } from "@testing-library/react";
+import { Education } from "@/types";
 import { useSession } from "next-auth/react";
-import React from "react";
-
+import { render, waitFor } from "@testing-library/react";
+import { useQuery } from "@tanstack/react-query";
 import { EditEducation } from "./EditEducation";
 
 jest.mock("next-auth/react", () => ({
@@ -39,9 +36,13 @@ jest.mock("@/components/LoadingOverlay", () => ({
 }));
 
 jest.mock("@/components/MuiLink", () => ({
-  MuiLink: ({ href, children }: { href: string; children: React.ReactNode }) => (
-    <a href={href}>{children}</a>
-  ),
+  MuiLink: ({
+    href,
+    children,
+  }: {
+    href: string;
+    children: React.ReactNode;
+  }) => <a href={href}>{children}</a>,
 }));
 
 describe("EditEducation", () => {
@@ -54,7 +55,10 @@ describe("EditEducation", () => {
   });
 
   it("renders loading state when session is loading", () => {
-    (useSession as jest.Mock).mockReturnValue({ data: null, status: "loading" });
+    (useSession as jest.Mock).mockReturnValue({
+      data: null,
+      status: "loading",
+    });
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: [] });
 
     const { getByText } = render(<EditEducation />);
@@ -62,7 +66,10 @@ describe("EditEducation", () => {
   });
 
   it("renders login prompt when unauthenticated", () => {
-    (useSession as jest.Mock).mockReturnValue({ data: null, status: "unauthenticated" });
+    (useSession as jest.Mock).mockReturnValue({
+      data: null,
+      status: "unauthenticated",
+    });
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: [] });
 
     const { getByText } = render(<EditEducation />);
@@ -71,7 +78,10 @@ describe("EditEducation", () => {
   });
 
   it("renders loading state when fetching education data", () => {
-    (useSession as jest.Mock).mockReturnValue({ data: mockSession, status: "authenticated" });
+    (useSession as jest.Mock).mockReturnValue({
+      data: mockSession,
+      status: "authenticated",
+    });
     (useQuery as jest.Mock).mockReturnValue({ isPending: true });
 
     const { getByText } = render(<EditEducation />);
@@ -79,8 +89,14 @@ describe("EditEducation", () => {
   });
 
   it("renders error message when fetching education data fails", () => {
-    (useSession as jest.Mock).mockReturnValue({ data: mockSession, status: "authenticated" });
-    (useQuery as jest.Mock).mockReturnValue({ isPending: false, error: { message: "Error" } });
+    (useSession as jest.Mock).mockReturnValue({
+      data: mockSession,
+      status: "authenticated",
+    });
+    (useQuery as jest.Mock).mockReturnValue({
+      isPending: false,
+      error: { message: "Error" },
+    });
 
     const { getByText } = render(<EditEducation />);
     expect(getByText("Error loading education: Error")).toBeInTheDocument();
@@ -91,8 +107,14 @@ describe("EditEducation", () => {
       { id: "1", school: "University A" },
       { id: "2", school: "University B" },
     ];
-    (useSession as jest.Mock).mockReturnValue({ data: mockSession, status: "authenticated" });
-    (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: mockEducation });
+    (useSession as jest.Mock).mockReturnValue({
+      data: mockSession,
+      status: "authenticated",
+    });
+    (useQuery as jest.Mock).mockReturnValue({
+      isPending: false,
+      data: mockEducation,
+    });
 
     const { getByText } = render(<EditEducation />);
 
@@ -104,7 +126,10 @@ describe("EditEducation", () => {
   });
 
   it("renders no education message when no education data is found", async () => {
-    (useSession as jest.Mock).mockReturnValue({ data: mockSession, status: "authenticated" });
+    (useSession as jest.Mock).mockReturnValue({
+      data: mockSession,
+      status: "authenticated",
+    });
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: [] });
 
     const { getByText } = render(<EditEducation />);

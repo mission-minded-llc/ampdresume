@@ -15,7 +15,7 @@ export const updateEducation = async (
     school: string;
     degree: string;
     dateAwarded: string;
-  },
+  }
 ) => {
   await verifySessionOwnership(userId);
 

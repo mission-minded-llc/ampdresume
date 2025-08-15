@@ -1,4 +1,8 @@
-import { ApolloClient, InMemoryCache, NormalizedCacheObject } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from "@apollo/client";
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 

@@ -5,7 +5,10 @@ export const getPositions = async (
   {
     companyId,
     sort,
-  }: { companyId: string; sort: Array<{ field: string; direction: "ASC" | "DESC" }> },
+  }: {
+    companyId: string;
+    sort: Array<{ field: string; direction: "ASC" | "DESC" }>;
+  }
 ) => {
   const orderBy =
     sort?.map(({ field, direction }) => ({

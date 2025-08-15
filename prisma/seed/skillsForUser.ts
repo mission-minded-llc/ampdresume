@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
 import { fileURLToPath } from "url";
+import { prisma } from "@/lib/prisma";
 import { getTestUserIds } from "./helpers/ids";
 import { logTitle } from "./helpers/util";
-import { prisma } from "@/lib/prisma";
 
 export async function seedSkillsForUser() {
   logTitle("Seeding Demo Skills for Users");
@@ -41,7 +41,8 @@ export async function seedSkillsForUser() {
     });
 
     for (const skill of skills) {
-      const randomYearInLastDecade = new Date().getFullYear() - Math.floor(Math.random() * 5) - 1;
+      const randomYearInLastDecade =
+        new Date().getFullYear() - Math.floor(Math.random() * 5) - 1;
 
       const createdSkill = await prisma.skillForUser.create({
         data: {
@@ -51,7 +52,9 @@ export async function seedSkillsForUser() {
           yearStarted: randomYearInLastDecade,
         },
       });
-      console.log(`Created skill ${skill.name} for user ${userId} with id: ${createdSkill.id}`);
+      console.log(
+        `Created skill ${skill.name} for user ${userId} with id: ${createdSkill.id}`
+      );
     }
   }
 }

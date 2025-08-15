@@ -9,8 +9,10 @@ export const ThemeAwareLogo = () => {
   // Theme-aware colors
   const textColor = theme.palette.mode === "dark" ? "white" : "black";
   const backgroundColor = theme.palette.mode === "dark" ? "#4B4B4B" : "#F2D7FF";
-  const backgroundColor2 = theme.palette.mode === "dark" ? "#626262" : "#F2D7FF";
-  const backgroundColor3 = theme.palette.mode === "dark" ? "#292929" : "#F2D7FF";
+  const backgroundColor2 =
+    theme.palette.mode === "dark" ? "#626262" : "#F2D7FF";
+  const backgroundColor3 =
+    theme.palette.mode === "dark" ? "#292929" : "#F2D7FF";
   const shadowColor = theme.palette.mode === "dark" ? "#3F3F3F" : "white";
   const borderColor = theme.palette.mode === "dark" ? "none" : "white";
 

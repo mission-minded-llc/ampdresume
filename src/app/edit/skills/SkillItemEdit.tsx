@@ -1,4 +1,6 @@
-import { SkillForUser } from "@ampdresume/theme";
+import { SkillForUser } from "@/types";
+import { useSession } from "next-auth/react";
+import { useEffect, useRef, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   Accordion,
@@ -12,16 +14,12 @@ import {
   Typography,
 } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import React, { useEffect, useRef, useState } from "react";
-
 import { IconSelector } from "@/components/IconSelector";
 import { MuiLink } from "@/components/MuiLink";
 import { Tooltip } from "@/components/Tooltip";
 import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
 import { updateSkillForUser } from "@/graphql/updateSkillForUser";
 import { removeLeadingZero } from "@/lib/format";
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 
@@ -32,7 +30,9 @@ export const SkillItemEdit = ({
 }: {
   skill: SkillForUser;
   handleClose: VoidFunction;
-  setIconCallback: React.Dispatch<React.SetStateAction<string | null | undefined>>;
+  setIconCallback: React.Dispatch<
+    React.SetStateAction<string | null | undefined>
+  >;
 }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
@@ -43,9 +43,13 @@ export const SkillItemEdit = ({
   const hasTotalYears = skill?.totalYears && skill.totalYears > 0;
   const defaultAutoCalculate = !hasTotalYears; // Auto-calculate if no total years set
 
-  const [yearStarted, setYearStarted] = useState(skill?.yearStarted ?? new Date().getFullYear());
+  const [yearStarted, setYearStarted] = useState(
+    skill?.yearStarted ?? new Date().getFullYear()
+  );
   const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 0);
-  const [icon, setIcon] = useState(skill?.icon ? skill.icon : skill?.skill?.icon);
+  const [icon, setIcon] = useState(
+    skill?.icon ? skill.icon : skill?.skill?.icon
+  );
   const [autoCalculate, setAutoCalculate] = useState(defaultAutoCalculate);
   const [isAccordionExpanded, setIsAccordionExpanded] = useState(false);
 
@@ -73,7 +77,8 @@ export const SkillItemEdit = ({
         icon,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForUser"] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["skillsForUser"] }),
   });
 
   const deleteSkillForUserMutation = useMutation({
@@ -85,12 +90,16 @@ export const SkillItemEdit = ({
         userId: session.user.id,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForUser"] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["skillsForUser"] }),
   });
 
-  const handleDelete = () => deleteSkillForUserMutation.mutate({ id: skill.id });
+  const handleDelete = () =>
+    deleteSkillForUserMutation.mutate({ id: skill.id });
 
-  const handleAutoCalculateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAutoCalculateChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const { checked } = event.target;
 
     setAutoCalculate(checked);
@@ -141,7 +150,9 @@ export const SkillItemEdit = ({
                 target.value = removeLeadingZero(target.value);
               }}
               onChange={(e) => setYearStarted(Number(e.target.value))}
-              slotProps={{ htmlInput: { min: 1900, max: new Date().getFullYear() } }}
+              slotProps={{
+                htmlInput: { min: 1900, max: new Date().getFullYear() },
+              }}
               name="yearStarted"
             />
           ) : (
@@ -170,7 +181,10 @@ export const SkillItemEdit = ({
               message={
                 <>
                   Enter a valid icon name from{" "}
-                  <MuiLink href="https://icon-sets.iconify.design/" target="_blank">
+                  <MuiLink
+                    href="https://icon-sets.iconify.design/"
+                    target="_blank"
+                  >
                     iconify
                   </MuiLink>
                   .
@@ -190,8 +204,12 @@ export const SkillItemEdit = ({
             />
           }
           label={
-            <Typography variant="body2" sx={{ fontSize: "0.8rem", fontStyle: "italic" }}>
-              Auto-calculate <strong>years of experience</strong> based on year started.
+            <Typography
+              variant="body2"
+              sx={{ fontSize: "0.8rem", fontStyle: "italic" }}
+            >
+              Auto-calculate <strong>years of experience</strong> based on year
+              started.
             </Typography>
           }
         />
@@ -208,7 +226,10 @@ export const SkillItemEdit = ({
               Write a description of your experience with this skill below.
             </Typography>
           ) : (
-            <Typography variant="body1" sx={{ textDecoration: "underline", fontSize: "1rem" }}>
+            <Typography
+              variant="body1"
+              sx={{ textDecoration: "underline", fontSize: "1rem" }}
+            >
               Click to describe your experience with this skill...
             </Typography>
           )}

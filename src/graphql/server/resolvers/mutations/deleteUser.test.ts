@@ -1,8 +1,6 @@
 import type { User } from "@prisma/client";
-
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
-
 import { deleteUser } from "./deleteUser";
 
 // Mock dependencies
@@ -20,9 +18,10 @@ jest.mock("@/graphql/server/util", () => ({
 
 describe("deleteUser", () => {
   const mockPrisma = prisma as jest.Mocked<typeof prisma>;
-  const mockVerifySessionOwnership = verifySessionOwnership as jest.MockedFunction<
-    typeof verifySessionOwnership
-  >;
+  const mockVerifySessionOwnership =
+    verifySessionOwnership as jest.MockedFunction<
+      typeof verifySessionOwnership
+    >;
   const mockDelete = prisma.user.delete as unknown as jest.Mock;
 
   beforeEach(() => {

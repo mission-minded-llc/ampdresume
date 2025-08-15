@@ -1,14 +1,11 @@
 import "@testing-library/jest-dom";
-
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useSession } from "next-auth/react";
 import React from "react";
-
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { fireEvent, render, waitFor } from "@testing-library/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateEducation } from "@/graphql/updateEducation";
-
 import { EducationItem } from "./EducationItem";
 
 jest.mock("next-auth/react", () => ({
@@ -56,8 +53,12 @@ describe("EducationItem", () => {
   it("renders correctly", async () => {
     const { getByTestId } = render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <EducationItem education={mockEducation} expanded={false} setExpanded={mockSetExpanded} />
-      </LocalizationProvider>,
+        <EducationItem
+          education={mockEducation}
+          expanded={false}
+          setExpanded={mockSetExpanded}
+        />
+      </LocalizationProvider>
     );
 
     await waitFor(() => {
@@ -72,12 +73,18 @@ describe("EducationItem", () => {
   it("expands the accordion when clicked", async () => {
     const { getByTestId } = render(
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <EducationItem education={mockEducation} expanded={false} setExpanded={mockSetExpanded} />
-      </LocalizationProvider>,
+        <EducationItem
+          education={mockEducation}
+          expanded={false}
+          setExpanded={mockSetExpanded}
+        />
+      </LocalizationProvider>
     );
 
     fireEvent.click(getByTestId("ExpandMoreIcon"));
-    await waitFor(() => expect(mockSetExpanded).toHaveBeenCalledWith(mockEducation.id));
+    await waitFor(() =>
+      expect(mockSetExpanded).toHaveBeenCalledWith(mockEducation.id)
+    );
   });
 
   it("collapses the accordion when clicked again", async () => {
@@ -88,7 +95,7 @@ describe("EducationItem", () => {
           expanded={mockEducation.id}
           setExpanded={mockSetExpanded}
         />
-      </LocalizationProvider>,
+      </LocalizationProvider>
     );
 
     fireEvent.click(getByTestId("ExpandMoreIcon"));
@@ -108,13 +115,17 @@ describe("EducationItem", () => {
           expanded={mockEducation.id}
           setExpanded={mockSetExpanded}
         />
-      </LocalizationProvider>,
+      </LocalizationProvider>
     );
 
-    await waitFor(() => expect(getByText("Save Education")).toBeInTheDocument());
+    await waitFor(() =>
+      expect(getByText("Save Education")).toBeInTheDocument()
+    );
 
     // Change a value in the school name.
-    fireEvent.change(getByLabelText("School *"), { target: { value: "New University" } });
+    fireEvent.change(getByLabelText("School *"), {
+      target: { value: "New University" },
+    });
 
     // Expect the Save Education button to be enabled.
     expect(getByText("Save Education")).not.toBeDisabled();
@@ -143,7 +154,7 @@ describe("EducationItem", () => {
           expanded={mockEducation.id}
           setExpanded={mockSetExpanded}
         />
-      </LocalizationProvider>,
+      </LocalizationProvider>
     );
 
     fireEvent.click(getByText("Delete Education"));

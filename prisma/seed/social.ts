@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
 import { fileURLToPath } from "url";
+import { prisma } from "@/lib/prisma";
 import { getTestUserIds } from "./helpers/ids";
 import { logTitle } from "./helpers/util";
-import { prisma } from "@/lib/prisma";
 
 export async function seedSocials() {
   logTitle("Seeding Demo Social Media Links");
@@ -45,7 +45,7 @@ export async function seedSocials() {
         },
       });
       console.log(
-        `Created social ${social.platform} for user ${userId} with id: ${createdSocial.id}`,
+        `Created social ${social.platform} for user ${userId} with id: ${createdSocial.id}`
       );
     }
   }

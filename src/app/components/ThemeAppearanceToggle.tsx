@@ -1,10 +1,8 @@
-import { Icon } from "@iconify/react";
-import { Box, Switch } from "@mui/material";
 import { useContext } from "react";
-
+import { Box, Switch } from "@mui/material";
+import { Icon } from "@iconify/react";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useIsResumePage } from "@/hooks/useIsResumePage";
-
 import { ThemeAppearanceContext } from "./ThemeContext";
 
 /**
@@ -12,7 +10,9 @@ import { ThemeAppearanceContext } from "./ThemeContext";
  * with the ability to toggle between light and dark mode like a champ.
  */
 export const ThemeAppearanceToggle = () => {
-  const { themeAppearance, setThemeAppearance } = useContext(ThemeAppearanceContext);
+  const { themeAppearance, setThemeAppearance } = useContext(
+    ThemeAppearanceContext
+  );
   const isDesktop = useIsDesktop();
   const isResumePage = useIsResumePage();
 
@@ -26,14 +26,19 @@ export const ThemeAppearanceToggle = () => {
         display: "flex",
         alignItems: "center",
         height: "50px",
-        backgroundColor: isResumePage ? "transparent" : theme.palette.background.default,
+        backgroundColor: isResumePage
+          ? "transparent"
+          : theme.palette.background.default,
         marginRight: isDesktop && !isResumePage ? "1em" : 0,
         padding: "0 1em",
         borderRadius: "1em",
       })}
     >
       <Icon icon="solar:sun-bold" />
-      <Switch checked={themeAppearance === "dark"} onChange={toggleThemeAppearance} />
+      <Switch
+        checked={themeAppearance === "dark"}
+        onChange={toggleThemeAppearance}
+      />
       <Icon icon="solar:moon-bold" />
     </Box>
   );

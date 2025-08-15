@@ -1,14 +1,12 @@
-import { Project, SkillForProject } from "@ampdresume/theme";
-import { Icon } from "@iconify/react";
-import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Project, SkillForProject } from "@/types";
 import { useSession } from "next-auth/react";
 import React, { useRef, useState } from "react";
-
+import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
+import { Icon } from "@iconify/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { deleteSkillForProject } from "@/graphql/deleteSkillForProject";
 import { updateSkillForProject } from "@/graphql/updateSkillForProject";
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 
@@ -26,7 +24,13 @@ export const SkillItemForProjectEdit = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const updateSkillForProjectMutation = useMutation({
-    mutationFn: async ({ id, description }: { id: string; description: string | null }) => {
+    mutationFn: async ({
+      id,
+      description,
+    }: {
+      id: string;
+      description: string | null;
+    }) => {
       if (!session?.user?.id) return;
 
       await updateSkillForProject({
@@ -35,7 +39,10 @@ export const SkillItemForProjectEdit = ({
         description,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForProject", project.id] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: ["skillsForProject", project.id],
+      }),
   });
 
   const deleteSkillForProjectMutation = useMutation({
@@ -47,7 +54,10 @@ export const SkillItemForProjectEdit = ({
         userId: session.user.id,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["skillsForProject", project.id] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: ["skillsForProject", project.id],
+      }),
   });
 
   const handleSave = () =>
@@ -56,7 +66,8 @@ export const SkillItemForProjectEdit = ({
       description: editorStateRef.current,
     });
 
-  const handleDelete = () => deleteSkillForProjectMutation.mutate({ id: skillForProject.id });
+  const handleDelete = () =>
+    deleteSkillForProjectMutation.mutate({ id: skillForProject.id });
 
   const SkillIcon = () =>
     skillForProject?.skillForUser?.icon ? (
@@ -88,7 +99,9 @@ export const SkillItemForProjectEdit = ({
       </Button>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md">
         <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
-          <Typography sx={{ display: { xs: "none", sm: "block" }, fontWeight: "bolder" }}>
+          <Typography
+            sx={{ display: { xs: "none", sm: "block" }, fontWeight: "bolder" }}
+          >
             Edit Project Skill
           </Typography>
           <Box
@@ -128,14 +141,16 @@ export const SkillItemForProjectEdit = ({
                   <>
                     Are you sure you want to delete this skill from the project?
                     <br />
-                    This skill will remain in your resume under the Skills section, however this
-                    custom project-specific description will be lost.
+                    This skill will remain in your resume under the Skills
+                    section, however this custom project-specific description
+                    will be lost.
                   </>
                 }
                 tooltip={
                   <>
-                    Deleting this skill will only remove it from this project. The skill will still
-                    be available for other projects. (No undo!)
+                    Deleting this skill will only remove it from this project.
+                    The skill will still be available for other projects. (No
+                    undo!)
                   </>
                 }
               />

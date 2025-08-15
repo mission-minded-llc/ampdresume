@@ -1,8 +1,7 @@
 "use client";
 
-import { Box, Typography, Container } from "@mui/material";
 import Link from "next/link";
-
+import { Box, Container, Typography } from "@mui/material";
 import { ThemeAwareLogo } from "./components/ThemeAwareLogo";
 
 export default function NotFound() {
@@ -28,8 +27,8 @@ export default function NotFound() {
               Sorry, we couldn&apos;t find that page.
             </Typography>
             <Typography variant="body1" sx={{ mb: 4 }}>
-              The page you are looking for might have been removed, had its name changed, or is
-              temporarily unavailable.
+              The page you are looking for might have been removed, had its name
+              changed, or is temporarily unavailable.
             </Typography>
             <Typography>
               <Link

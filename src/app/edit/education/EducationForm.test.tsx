@@ -1,10 +1,8 @@
 import "@testing-library/jest-dom";
-
+import React from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import React from "react";
-
 import { EducationForm } from "./EducationForm";
 
 describe("EducationForm", () => {
@@ -33,7 +31,7 @@ describe("EducationForm", () => {
           deleteHandler={mockDeleteHandler}
           onCancel={mockOnCancel}
         />
-      </LocalizationProvider>,
+      </LocalizationProvider>
     );
 
     expect(getByLabelText("School *")).toHaveValue("Test University");
@@ -54,11 +52,15 @@ describe("EducationForm", () => {
           deleteHandler={mockDeleteHandler}
           onCancel={mockOnCancel}
         />
-      </LocalizationProvider>,
+      </LocalizationProvider>
     );
 
-    fireEvent.change(getByLabelText("School *"), { target: { value: "New University" } });
-    fireEvent.change(getByLabelText("Degree / Award"), { target: { value: "Master of Science" } });
+    fireEvent.change(getByLabelText("School *"), {
+      target: { value: "New University" },
+    });
+    fireEvent.change(getByLabelText("Degree / Award"), {
+      target: { value: "Master of Science" },
+    });
 
     // Test that the save button becomes enabled when form values change
     expect(getByText("Save Education")).not.toBeDisabled();
@@ -73,7 +75,7 @@ describe("EducationForm", () => {
           deleteHandler={mockDeleteHandler}
           onCancel={mockOnCancel}
         />
-      </LocalizationProvider>,
+      </LocalizationProvider>
     );
 
     fireEvent.click(getByText("Save Education"));
@@ -95,11 +97,13 @@ describe("EducationForm", () => {
           deleteHandler={mockDeleteHandler}
           onCancel={mockOnCancel}
         />
-      </LocalizationProvider>,
+      </LocalizationProvider>
     );
 
     fireEvent.click(getByText("Delete Education"));
-    waitFor(() => expect(mockDeleteHandler).toHaveBeenCalledWith(mockEducation));
+    waitFor(() =>
+      expect(mockDeleteHandler).toHaveBeenCalledWith(mockEducation)
+    );
   });
 
   it("handles cancel action", () => {
@@ -111,7 +115,7 @@ describe("EducationForm", () => {
           deleteHandler={mockDeleteHandler}
           onCancel={mockOnCancel}
         />
-      </LocalizationProvider>,
+      </LocalizationProvider>
     );
 
     fireEvent.click(getByText("Cancel"));

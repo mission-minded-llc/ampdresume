@@ -1,5 +1,8 @@
 "use client";
 
+import { signOut, useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import BadgeIcon from "@mui/icons-material/Badge";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -8,19 +11,19 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import TocIcon from "@mui/icons-material/Toc";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
-
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MessageDialog } from "@/components/MessageDialog";
 import { deleteUser } from "@/graphql/deleteUser";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-
 import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
 import { UserAssetInput } from "../../components/UserAssetInput";
-
-import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
+import {
+  FieldDescription,
+  FieldTitle,
+  GridSection,
+  InputSection,
+  SectionTitle,
+} from "./sections";
 import { SocialsForm } from "./SocialsForm";
 
 const AccountForm = ({
@@ -52,7 +55,11 @@ const AccountForm = ({
     siteDescription,
     siteImage,
   });
-  const [errors, setErrors] = useState<{ name?: string; slug?: string; displayEmail?: string }>({});
+  const [errors, setErrors] = useState<{
+    name?: string;
+    slug?: string;
+    displayEmail?: string;
+  }>({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [showSlugPopup, setShowSlugPopup] = useState(slug.length === 0);
@@ -84,7 +91,8 @@ const AccountForm = ({
   };
 
   const validateForm = () => {
-    const newErrors: { name?: string; slug?: string; displayEmail?: string } = {};
+    const newErrors: { name?: string; slug?: string; displayEmail?: string } =
+      {};
     let hasEmptyFields = false;
 
     // Check for empty fields
@@ -131,7 +139,7 @@ const AccountForm = ({
         acc[typedKey] = formData[typedKey].trim();
         return acc;
       },
-      {} as Record<string, string>,
+      {} as Record<string, string>
     );
 
     // Send the form data to the next.js API route to
@@ -230,7 +238,9 @@ const AccountForm = ({
             <FieldTitle>
               <AccountBoxIcon /> Full Name
             </FieldTitle>
-            <FieldDescription>Displayed on your public resume.</FieldDescription>
+            <FieldDescription>
+              Displayed on your public resume.
+            </FieldDescription>
             <TextField
               name="name"
               value={formData.name}
@@ -242,7 +252,9 @@ const AccountForm = ({
                 marginTop: "auto",
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {
-                    borderColor: !formData.name.trim() ? "error.main" : undefined,
+                    borderColor: !formData.name.trim()
+                      ? "error.main"
+                      : undefined,
                   },
                 },
               }}
@@ -263,11 +275,15 @@ const AccountForm = ({
                 })}
               >
                 ampdresume.com/r/
-                <strong>{formData?.slug ? formData.slug : "your-custom-slug"}</strong>/
+                <strong>
+                  {formData?.slug ? formData.slug : "your-custom-slug"}
+                </strong>
+                /
               </Typography>
               <br />
-              <strong>Important:</strong> If you change this, an automatic redirect will{" "}
-              <strong>not</strong> be created, so please update your shared links.
+              <strong>Important:</strong> If you change this, an automatic
+              redirect will <strong>not</strong> be created, so please update
+              your shared links.
             </FieldDescription>
             <TextField
               label="URL Name"
@@ -282,7 +298,9 @@ const AccountForm = ({
                 marginTop: "auto",
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {
-                    borderColor: !formData.slug.trim() ? "error.main" : undefined,
+                    borderColor: !formData.slug.trim()
+                      ? "error.main"
+                      : undefined,
                   },
                 },
               }}
@@ -293,9 +311,10 @@ const AccountForm = ({
               <MailOutlineIcon /> Display Email
             </FieldTitle>
             <FieldDescription>
-              Your display email is <strong>publicly visible</strong> on your resume! This is not
-              required. If you <em>do</em> want to display an email, it is recommended to set up a
-              separate new email for this purpose, or use an email alias. Expect spam.
+              Your display email is <strong>publicly visible</strong> on your
+              resume! This is not required. If you <em>do</em> want to display
+              an email, it is recommended to set up a separate new email for
+              this purpose, or use an email alias. Expect spam.
             </FieldDescription>
             <TextField
               label="Display Email"
@@ -314,7 +333,9 @@ const AccountForm = ({
             <FieldTitle>
               <BadgeIcon /> Position Title
             </FieldTitle>
-            <FieldDescription>Your current job title or what you are looking for.</FieldDescription>
+            <FieldDescription>
+              Your current job title or what you are looking for.
+            </FieldDescription>
             <TextField
               label="Title"
               name="title"
@@ -355,8 +376,8 @@ const AccountForm = ({
               <LanguageIcon /> Resume Site Title
             </FieldTitle>
             <FieldDescription>
-              Your Site Title is the title of your resume page, shown in the browser tab and social
-              media.
+              Your Site Title is the title of your resume page, shown in the
+              browser tab and social media.
             </FieldDescription>
             <TextField
               label="Site Title"
@@ -372,8 +393,9 @@ const AccountForm = ({
               <TocIcon /> Resume Site Description
             </FieldTitle>
             <FieldDescription>
-              Your Site Description is a short description of your resume page. This is used in the
-              meta description tag of your website as well as for social media sharing.
+              Your Site Description is a short description of your resume page.
+              This is used in the meta description tag of your website as well
+              as for social media sharing.
             </FieldDescription>
             <TextField
               label="Site Description"
@@ -387,8 +409,8 @@ const AccountForm = ({
           <InputSection>
             <FieldTitle>Site Image</FieldTitle>
             <FieldDescription>
-              An image that represents your resume. This will be used when your resume is shared on
-              social media.
+              An image that represents your resume. This will be used when your
+              resume is shared on social media.
             </FieldDescription>
             <TextField
               label="Image URL"
@@ -399,7 +421,11 @@ const AccountForm = ({
               fullWidth
               sx={{ marginTop: "auto" }}
             />
-            <UserAssetInput url={siteImageUrl} setUrl={setSiteImageUrl} buttonType="button" />
+            <UserAssetInput
+              url={siteImageUrl}
+              setUrl={setSiteImageUrl}
+              buttonType="button"
+            />
           </InputSection>
         </GridSection>
         <Box

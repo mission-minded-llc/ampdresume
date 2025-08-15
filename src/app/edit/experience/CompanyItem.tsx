@@ -1,17 +1,19 @@
-import { Company } from "@ampdresume/theme";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Accordion, AccordionDetails, AccordionSummary, Box } from "@mui/material";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Company } from "@/types";
 import { useSession } from "next-auth/react";
 import React, { useRef } from "react";
-
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+} from "@mui/material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCompany } from "@/graphql/deleteCompany";
 import { CompanyGeneric } from "@/graphql/getExperience";
 import { updateCompany } from "@/graphql/updateCompany";
 import { formatLongDate } from "@/lib/format";
-
 import { AccordionSummaryContent } from "../components/AccordionSummaryContent";
-
 import { CompanyForm } from "./CompanyForm";
 import { PositionsList } from "./PositionsList";
 
@@ -33,7 +35,10 @@ export const CompanyItem = ({
     setExpanded(isExpanding ? company.id : false);
 
     if (isExpanding) {
-      companyRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      companyRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }
   };
 
@@ -122,7 +127,12 @@ export const CompanyItem = ({
           "&:hover": { backgroundColor: theme.palette.primary.light },
         })}
       >
-        <Box sx={{ display: expanded === company.id ? "none" : "flex", width: "90%" }}>
+        <Box
+          sx={{
+            display: expanded === company.id ? "none" : "flex",
+            width: "90%",
+          }}
+        >
           <AccordionSummaryContent
             primary={company.name}
             secondary={company.location}

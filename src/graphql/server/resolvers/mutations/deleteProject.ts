@@ -1,7 +1,10 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
 
-export const deleteProject = async (_: string, { userId, id }: { userId: string; id: string }) => {
+export const deleteProject = async (
+  _: string,
+  { userId, id }: { userId: string; id: string }
+) => {
   await verifySessionOwnership(userId);
 
   const existingProject = await prisma.project.findFirst({

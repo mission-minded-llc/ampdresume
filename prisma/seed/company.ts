@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
 import { fileURLToPath } from "url";
+import { prisma } from "@/lib/prisma";
 import { getTestUserIds } from "./helpers/ids";
 import { logTitle } from "./helpers/util";
-import { prisma } from "@/lib/prisma";
 
 export async function seedCompanies() {
   logTitle("Seeding Demo Companies");
@@ -41,7 +41,9 @@ export async function seedCompanies() {
       });
 
       if (existingCompany) {
-        console.log(`Company ${company.name} already exists for user ${userId}`);
+        console.log(
+          `Company ${company.name} already exists for user ${userId}`
+        );
         continue;
       }
 
@@ -52,7 +54,7 @@ export async function seedCompanies() {
         },
       });
       console.log(
-        `Created company ${company.name} for user ${userId} with id: ${createdCompany.id}`,
+        `Created company ${company.name} for user ${userId} with id: ${createdCompany.id}`
       );
     }
   }

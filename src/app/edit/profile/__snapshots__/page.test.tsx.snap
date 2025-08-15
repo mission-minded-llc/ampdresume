@@ -179,8 +179,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
               <strong>
                 Important:
               </strong>
-               If you change this, an automatic redirect will
-               
+               If you change this, an automatic redirect will 
               <strong>
                 not
               </strong>

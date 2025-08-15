@@ -1,6 +1,5 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
-
 import { updateSkillForUser } from "./updateSkillForUser";
 
 jest.mock("@/lib/prisma", () => ({
@@ -18,7 +17,9 @@ jest.mock("@/graphql/server/util", () => ({
 
 describe("updateSkillForUser", () => {
   it("throws an error if user is unauthorized for session", async () => {
-    (verifySessionOwnership as jest.Mock).mockRejectedValueOnce(new Error("Unauthorized"));
+    (verifySessionOwnership as jest.Mock).mockRejectedValueOnce(
+      new Error("Unauthorized")
+    );
     await expect(
       updateSkillForUser("", {
         id: "skill-id",
@@ -27,7 +28,7 @@ describe("updateSkillForUser", () => {
         totalYears: 3,
         description: "Test description",
         icon: "icon",
-      }),
+      })
     ).rejects.toThrow("Unauthorized");
   });
 
@@ -55,7 +56,7 @@ describe("updateSkillForUser", () => {
         totalYears: 3,
         description: "Test description",
         icon: "icon",
-      }),
+      })
     ).rejects.toThrow("Unauthorized: User does not own this skill");
   });
 

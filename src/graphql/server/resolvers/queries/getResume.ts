@@ -2,7 +2,11 @@ import { filterUserData } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
 import { GraphQLContext } from "@/types/graphql";
 
-export const getResume = async (_: string, { slug }: { slug: string }, context: GraphQLContext) => {
+export const getResume = async (
+  _: string,
+  { slug }: { slug: string },
+  context: GraphQLContext
+) => {
   const user = await prisma.user.findUnique({
     where: { slug },
   });
@@ -27,7 +31,9 @@ export const getResume = async (_: string, { slug }: { slug: string }, context: 
           projects: {
             orderBy: { sortIndex: "asc" },
             include: {
-              skillsForProject: { include: { skillForUser: { include: { skill: true } } } },
+              skillsForProject: {
+                include: { skillForUser: { include: { skill: true } } },
+              },
             },
           },
         },

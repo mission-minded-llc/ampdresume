@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-
 import { titleSuffix } from "@/constants";
 
 export function generateMetadata() {
@@ -25,8 +24,8 @@ export default function Verify() {
       </Typography>
       <br />
       <Typography component="p" textAlign="center">
-        We&apos;ve sent you a sign in link to your email address. Click the link in your email to
-        sign in.
+        We&apos;ve sent you a sign in link to your email address. Click the link
+        in your email to sign in.
       </Typography>
     </Box>
   );

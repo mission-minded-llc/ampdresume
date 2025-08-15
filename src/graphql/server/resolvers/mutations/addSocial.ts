@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export const addSocial = async (
   _: string,
-  { userId, platform, ref }: { userId: string; platform: string; ref: string },
+  { userId, platform, ref }: { userId: string; platform: string; ref: string }
 ) => {
   await verifySessionOwnership(userId);
 

@@ -1,9 +1,10 @@
 import "@testing-library/jest-dom";
-
-import { render } from "@testing-library/react";
 import React, { useContext } from "react";
-
-import { ThemeAppearanceContext, ThemeAppearanceProvider } from "./ThemeContext";
+import { render } from "@testing-library/react";
+import {
+  ThemeAppearanceContext,
+  ThemeAppearanceProvider,
+} from "./ThemeContext";
 
 function TestChild() {
   const { themeAppearance } = useContext(ThemeAppearanceContext);
@@ -27,7 +28,7 @@ describe("ThemeAppearanceProvider", () => {
     const { getByTestId } = render(
       <ThemeAppearanceProvider>
         <TestChild />
-      </ThemeAppearanceProvider>,
+      </ThemeAppearanceProvider>
     );
     expect(getByTestId("current-theme")).toHaveTextContent("light");
   });
@@ -44,7 +45,7 @@ describe("ThemeAppearanceProvider", () => {
     const { getByTestId } = render(
       <ThemeAppearanceProvider>
         <TestChild />
-      </ThemeAppearanceProvider>,
+      </ThemeAppearanceProvider>
     );
     expect(getByTestId("current-theme")).toHaveTextContent("dark");
   });

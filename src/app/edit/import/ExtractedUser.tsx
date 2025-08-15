@@ -1,6 +1,5 @@
-import { Box, TextField, Typography } from "@mui/material";
 import { memo, useState } from "react";
-
+import { Box, TextField, Typography } from "@mui/material";
 import { ParsedResumeData } from "./types";
 
 /**
@@ -42,7 +41,7 @@ const UserField = memo(
         }}
       />
     );
-  },
+  }
 );
 UserField.displayName = "UserField";
 
@@ -54,7 +53,9 @@ export const ExtractedUser = ({
   setUser,
 }: {
   user: ParsedResumeData["user"];
-  setUser: React.Dispatch<React.SetStateAction<ParsedResumeData["user"] | null>>;
+  setUser: React.Dispatch<
+    React.SetStateAction<ParsedResumeData["user"] | null>
+  >;
 }) => {
   const handleFieldChange = (field: keyof typeof user) => (value: string) => {
     setUser({
@@ -86,7 +87,11 @@ export const ExtractedUser = ({
           borderRadius: 2,
         }}
       >
-        <UserField label="Name" value={user.name} onChange={handleFieldChange("name")} />
+        <UserField
+          label="Name"
+          value={user.name}
+          onChange={handleFieldChange("name")}
+        />
         <UserField
           label="Display Email"
           value={user.displayEmail}
@@ -97,7 +102,11 @@ export const ExtractedUser = ({
           value={user.location}
           onChange={handleFieldChange("location")}
         />
-        <UserField label="Title" value={user.title} onChange={handleFieldChange("title")} />
+        <UserField
+          label="Title"
+          value={user.title}
+          onChange={handleFieldChange("title")}
+        />
       </Box>
     </Box>
   );

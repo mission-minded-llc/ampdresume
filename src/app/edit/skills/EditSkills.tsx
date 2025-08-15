@@ -1,16 +1,13 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { InfoOutlined } from "@mui/icons-material";
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import { getSkillsForUser } from "@/graphql/getSkillsForUser";
-
 import { SectionTitle } from "../components/SectionTitle";
-
 import { EditSkillsSearch } from "./EditSkillsSearch";
 import { SkillsExperience } from "./SkillsExperience";
 
@@ -29,7 +26,8 @@ export const EditSkills = () => {
     queryFn: async () => await getSkillsForUser(session?.user.id),
   });
 
-  if (status === "loading") return <LoadingOverlay message="Loading session..." />;
+  if (status === "loading")
+    return <LoadingOverlay message="Loading session..." />;
   if (status === "unauthenticated")
     return (
       <Box>
@@ -44,7 +42,9 @@ export const EditSkills = () => {
     <>
       <SectionTitle title="Add a Skill" />
 
-      <Typography sx={{ mb: 2 }}>Search for a skill to add to your profile:</Typography>
+      <Typography sx={{ mb: 2 }}>
+        Search for a skill to add to your profile:
+      </Typography>
       <EditSkillsSearch />
 
       {skillsForUser?.length ? (

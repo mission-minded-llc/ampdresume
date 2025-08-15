@@ -1,6 +1,5 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
-
 import { addSkillForUser } from "./addSkillForUser";
 
 // Mock dependencies
@@ -27,15 +26,24 @@ jest.mock("@/graphql/server/util", () => ({
 
 describe("addSkillForUser", () => {
   it("throws an error if user is unauthorized", async () => {
-    (verifySessionOwnership as jest.Mock).mockRejectedValueOnce(new Error("Unauthorized"));
+    (verifySessionOwnership as jest.Mock).mockRejectedValueOnce(
+      new Error("Unauthorized")
+    );
     await expect(
-      addSkillForUser("", { userId: "1", skillId: "2", yearStarted: 2020, totalYears: 3 }),
+      addSkillForUser("", {
+        userId: "1",
+        skillId: "2",
+        yearStarted: 2020,
+        totalYears: 3,
+      })
     ).rejects.toThrow("Unauthorized");
   });
 
   it("returns existing skill if skill is already recorded for user", async () => {
     (verifySessionOwnership as jest.Mock).mockResolvedValueOnce(true);
-    (prisma.skillForUser.findFirst as jest.Mock).mockResolvedValueOnce({ id: "existing-skill" });
+    (prisma.skillForUser.findFirst as jest.Mock).mockResolvedValueOnce({
+      id: "existing-skill",
+    });
     const result = await addSkillForUser("", {
       userId: "1",
       skillId: "2",
@@ -59,7 +67,10 @@ describe("addSkillForUser", () => {
       yearStarted: 2020,
       totalYears: 3,
     });
-    expect(result).toMatchObject({ id: "new-skill", skill: { name: "Test Skill" } });
+    expect(result).toMatchObject({
+      id: "new-skill",
+      skill: { name: "Test Skill" },
+    });
     expect(prisma.skillForUser.create).toHaveBeenCalledWith({
       data: {
         userId: "1",

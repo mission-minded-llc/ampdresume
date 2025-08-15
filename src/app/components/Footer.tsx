@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Typography } from "@mui/material";
-
 import { MuiLink } from "@/components/MuiLink";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useIsResumePage } from "@/hooks/useIsResumePage";
@@ -43,7 +42,10 @@ export const Footer = () => {
         <Box>
           <Typography variant="caption" sx={{ textAlign: "center" }}>
             {isDesktop ? (
-              <>&copy; {new Date().getFullYear()} Amp&apos;d Resume. All rights reserved. | </>
+              <>
+                &copy; {new Date().getFullYear()} Amp&apos;d Resume. All rights
+                reserved. |{" "}
+              </>
             ) : null}
             <MuiLink href="/about/privacy-policy">Privacy Policy</MuiLink> |{" "}
             <MuiLink href="/about/terms-of-service">Terms of Service</MuiLink>

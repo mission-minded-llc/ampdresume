@@ -46,6 +46,8 @@ describe("Primary Nav Menu", () => {
 
     // Wait for the menu to be visible before checking for protected links
     cy.get("[data-testid=NavPrimaryMenuEditResume]").should("be.visible");
-    cy.get("[data-testid=NavPrimaryMenuLogout]").scrollIntoView().should("be.visible");
+    cy.get("[data-testid=NavPrimaryMenuLogout]")
+      .scrollIntoView()
+      .should("be.visible");
   });
 });

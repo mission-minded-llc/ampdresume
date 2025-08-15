@@ -1,7 +1,6 @@
 import { MuiLink } from "@/components/MuiLink";
 import { titleSuffix } from "@/constants";
 import { isFeatureEnabledForUser } from "@/lib/featureFlags";
-
 import { AiAssist } from "./AiAssist";
 
 export function generateMetadata() {
@@ -16,7 +15,8 @@ export default async function Page() {
   if (!enabled) {
     return (
       <p>
-        AI Assist is not enabled for your account. To request access, please email{" "}
+        AI Assist is not enabled for your account. To request access, please
+        email{" "}
         <MuiLink href="mailto:mail@ampdresume.com">mail@ampdresume.com</MuiLink>
       </p>
     );

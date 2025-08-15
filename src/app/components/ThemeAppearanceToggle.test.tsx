@@ -1,9 +1,7 @@
 import "@testing-library/jest-dom";
-
-import { fireEvent, render } from "@testing-library/react";
-import { usePathname } from "next/navigation";
 import React from "react";
-
+import { usePathname } from "next/navigation";
+import { fireEvent, render } from "@testing-library/react";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 import { ThemeAppearanceContext } from "./ThemeContext";
 
@@ -22,7 +20,7 @@ describe("ThemeAppearanceToggle", () => {
     const { getByRole } = render(
       <ThemeAppearanceContext.Provider value={mockContext}>
         <ThemeAppearanceToggle />
-      </ThemeAppearanceContext.Provider>,
+      </ThemeAppearanceContext.Provider>
     );
 
     const switchButton = getByRole("checkbox");
@@ -42,7 +40,7 @@ describe("ThemeAppearanceToggle", () => {
     const { getByRole } = render(
       <ThemeAppearanceContext.Provider value={mockContext}>
         <ThemeAppearanceToggle />
-      </ThemeAppearanceContext.Provider>,
+      </ThemeAppearanceContext.Provider>
     );
 
     const switchButton = getByRole("checkbox");

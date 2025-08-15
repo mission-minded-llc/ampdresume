@@ -17,7 +17,7 @@ export const updatePosition = async (
     title: string;
     startDate: string;
     endDate: string;
-  },
+  }
 ) => {
   await verifySessionOwnership(userId);
 

@@ -1,10 +1,13 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { KEY_ENTER_COMMAND } from "lexical";
 import { useEffect } from "react";
-
+import { KEY_ENTER_COMMAND } from "lexical";
 import { LOW_PRIORIRTY, RichTextAction } from "./plugins/constants";
 
-export const useKeyBindings = ({ onAction }: { onAction: (id: RichTextAction) => void }) => {
+export const useKeyBindings = ({
+  onAction,
+}: {
+  onAction: (id: RichTextAction) => void;
+}) => {
   const [editor] = useLexicalComposerContext();
 
   useEffect(() => {
@@ -29,7 +32,7 @@ export const useKeyBindings = ({ onAction }: { onAction: (id: RichTextAction) =>
 
         return false;
       },
-      LOW_PRIORIRTY,
+      LOW_PRIORIRTY
     );
   });
 };

@@ -1,10 +1,8 @@
 import "@testing-library/jest-dom";
-
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { render } from "@testing-library/react";
 import { useSession } from "next-auth/react";
 import React from "react";
-
+import { render } from "@testing-library/react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { SocialsForm } from "./SocialsForm";
 
 jest.mock("next-auth/react", () => ({
@@ -53,7 +51,9 @@ jest.mock("@/components/LoadingOverlay", () => ({
 }));
 
 jest.mock("@/components/MuiLink", () => ({
-  MuiLink: ({ children, ...props }: { children: React.ReactNode }) => <a {...props}>{children}</a>,
+  MuiLink: ({ children, ...props }: { children: React.ReactNode }) => (
+    <a {...props}>{children}</a>
+  ),
 }));
 
 describe("SocialsForm", () => {
@@ -67,7 +67,10 @@ describe("SocialsForm", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    (useSession as jest.Mock).mockReturnValue({ data: mockSession, status: "authenticated" });
+    (useSession as jest.Mock).mockReturnValue({
+      data: mockSession,
+      status: "authenticated",
+    });
     (useQueryClient as jest.Mock).mockReturnValue(mockQueryClient);
   });
 
@@ -89,7 +92,10 @@ describe("SocialsForm", () => {
   });
 
   it("displays error message when socials fetching fails", () => {
-    (useQuery as jest.Mock).mockReturnValue({ isPending: false, error: { message: "Error" } });
+    (useQuery as jest.Mock).mockReturnValue({
+      isPending: false,
+      error: { message: "Error" },
+    });
 
     const { getByText } = render(<SocialsForm />);
     expect(getByText("Error loading socials: Error")).toBeInTheDocument();

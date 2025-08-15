@@ -1,12 +1,13 @@
-import { Company } from "@ampdresume/theme";
+import { Company } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 export type CompanyGeneric = Omit<Company, "id" | "userId">;
 
-export const getCompanies = async (userId: string): Promise<Company[] | null> => {
+export const getCompanies = async (
+  userId: string
+): Promise<Company[] | null> => {
   if (!userId) return null;
 
   const client = getApolloClient();
@@ -15,7 +16,10 @@ export const getCompanies = async (userId: string): Promise<Company[] | null> =>
     .query<{ companies: Company[] }>({
       query: gql`
         query getCompanies($userId: ID!) {
-          companies(userId: $userId, sort: [{ field: "endDate", direction: DESC }]) {
+          companies(
+            userId: $userId
+            sort: [{ field: "endDate", direction: DESC }]
+          ) {
             id
             name
             description

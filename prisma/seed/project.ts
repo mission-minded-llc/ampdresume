@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 
 import { fileURLToPath } from "url";
-import { getTestPositionIds } from "./helpers/ids";
-import { logTitle } from "./helpers/util";
 import { prisma } from "@/lib/prisma";
 import { randomLoremIpsumDescriptions } from "./helpers/data";
+import { getTestPositionIds } from "./helpers/ids";
+import { logTitle } from "./helpers/util";
 
 export async function seedProjects() {
   logTitle("Seeding Demo Projects");
@@ -14,15 +14,21 @@ export async function seedProjects() {
   const projects = [
     {
       name: "I contributed to project 1 significantly by doing X, Y, and Z.",
-      description: "This is the first project description. " + randomLoremIpsumDescriptions[0],
+      description:
+        "This is the first project description. " +
+        randomLoremIpsumDescriptions[0],
     },
     {
       name: "Expanded the project 2 by adding A, B, and C.",
-      description: "This is the second project description. " + randomLoremIpsumDescriptions[1],
+      description:
+        "This is the second project description. " +
+        randomLoremIpsumDescriptions[1],
     },
     {
       name: "Increased annual sign-ups by 20% in project 3.",
-      description: "This is the third project description. " + randomLoremIpsumDescriptions[2],
+      description:
+        "This is the third project description. " +
+        randomLoremIpsumDescriptions[2],
     },
   ];
 
@@ -42,7 +48,7 @@ export async function seedProjects() {
         },
       });
       console.log(
-        `Created project ${project.name} for position ${positionId} with id: ${createdProject.id}`,
+        `Created project ${project.name} for position ${positionId} with id: ${createdProject.id}`
       );
     }
   }

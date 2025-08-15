@@ -1,17 +1,21 @@
 import fs from "fs";
 import path from "path";
-
-import { ThemeName } from "@ampdresume/theme";
+import { ThemeName } from "@/types";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import * as Sentry from "@sentry/nextjs";
-import { NextAuthOptions, Session as NextAuthSession, getServerSession } from "next-auth";
+import {
+  getServerSession,
+  NextAuthOptions,
+  Session as NextAuthSession,
+} from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
 import { JWT } from "next-auth/jwt";
 import EmailProvider, { EmailConfig } from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
-import LinkedInProvider, { LinkedInProfile } from "next-auth/providers/linkedin";
+import LinkedInProvider, {
+  LinkedInProfile,
+} from "next-auth/providers/linkedin";
 import nodemailer from "nodemailer";
-
+import * as Sentry from "@sentry/nextjs";
 import { ALLOWED_USER_EMAILS } from "@/constants";
 import { prisma } from "@/lib/prisma";
 import { findUserByNormalizedEmail } from "@/util/email";
@@ -45,7 +49,10 @@ export const sendVerificationRequest = async ({
   // Use the matched email if found, otherwise fallback to the original
   const emailToSend = user?.email ? user.email : identifier;
 
-  if (getEnvironmentName() !== "production" && !ALLOWED_USER_EMAILS.includes(emailToSend)) {
+  if (
+    getEnvironmentName() !== "production" &&
+    !ALLOWED_USER_EMAILS.includes(emailToSend)
+  ) {
     Sentry.captureMessage(`Email ${emailToSend} is not allowed to sign in.`);
 
     throw new Error("Email is not allowed to sign in.");
@@ -111,7 +118,8 @@ export const authOptions: NextAuthOptions = {
         email: profile.email,
         image: profile.picture,
       }),
-      wellKnown: "https://www.linkedin.com/oauth/.well-known/openid-configuration",
+      wellKnown:
+        "https://www.linkedin.com/oauth/.well-known/openid-configuration",
       authorization: {
         params: {
           scope: "openid profile email",
@@ -146,7 +154,9 @@ export const authOptions: NextAuthOptions = {
         secure: process.env.NODE_ENV === "production", // Use secure cookies in production
         sameSite: "lax", // or "strict" if needed
         path: "/", // Path where the cookie is available, "/" makes it available site-wide
-        domain: process.env.NEXTAUTH_URL ? new URL(process.env.NEXTAUTH_URL).hostname : undefined, // Set domain to match your site
+        domain: process.env.NEXTAUTH_URL
+          ? new URL(process.env.NEXTAUTH_URL).hostname
+          : undefined, // Set domain to match your site
       },
     },
   },
@@ -157,8 +167,13 @@ export const authOptions: NextAuthOptions = {
       const { user, account, profile } = data;
 
       if (account?.provider === "google" && profile?.email) {
-        if (getEnvironmentName() !== "production" && !ALLOWED_USER_EMAILS.includes(profile.email)) {
-          Sentry.captureMessage(`Email ${profile.email} is not allowed to sign in with Google.`);
+        if (
+          getEnvironmentName() !== "production" &&
+          !ALLOWED_USER_EMAILS.includes(profile.email)
+        ) {
+          Sentry.captureMessage(
+            `Email ${profile.email} is not allowed to sign in with Google.`
+          );
 
           return false; // Prevent sign-in
         }
@@ -201,7 +216,11 @@ export const authOptions: NextAuthOptions = {
     }: {
       session: NextAuthSession;
       token: JWT;
-      user: AdapterUser & { slug?: string; webThemeName?: ThemeName; pdfThemeName?: ThemeName };
+      user: AdapterUser & {
+        slug?: string;
+        webThemeName?: ThemeName;
+        pdfThemeName?: ThemeName;
+      };
     }) {
       // Add the user ID to the session for easier database operations.
       session.user = { ...session.user, id: user.id, email: user.email };

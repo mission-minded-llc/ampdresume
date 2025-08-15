@@ -1,11 +1,9 @@
-import { Box, TextField } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { memo, useState } from "react";
-
+import { Box, TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 import { DeleteWithConfirmation } from "@/app/edit/components/DeleteWithConfirmation";
 import { validateAndConvertDate } from "@/lib/dateUtils";
-
 import { Position } from "./types";
 
 /**
@@ -35,13 +33,13 @@ export const PositionFields = memo(
       companyIndex: number,
       positionIndex: number,
       field: string,
-      value: string,
+      value: string
     ) => void;
     onDateChange: (
       companyIndex: number,
       positionIndex: number,
       field: "startDate" | "endDate",
-      date: string,
+      date: string
     ) => void;
     onDelete: (companyIndex: number, positionIndex: number) => void;
   }) => {
@@ -75,19 +73,33 @@ export const PositionFields = memo(
             onBlur={handleTitleBlur}
             sx={{ mb: 2 }}
           />
-          <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, mb: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              gap: 2,
+              mb: 2,
+            }}
+          >
             <DatePicker
               label="Start Date"
               value={position.startDate ? dayjs(position.startDate) : null}
               onChange={(date) =>
-                onDateChange(companyIndex, positionIndex, "startDate", validateAndConvertDate(date))
+                onDateChange(
+                  companyIndex,
+                  positionIndex,
+                  "startDate",
+                  validateAndConvertDate(date)
+                )
               }
               sx={{ flex: 1 }}
               slotProps={{
                 textField: {
                   required: true,
                   error: !position.startDate,
-                  helperText: !position.startDate ? "Start date is required" : "",
+                  helperText: !position.startDate
+                    ? "Start date is required"
+                    : "",
                 },
               }}
             />
@@ -95,7 +107,12 @@ export const PositionFields = memo(
               label="End Date"
               value={position.endDate ? dayjs(position.endDate) : null}
               onChange={(date) =>
-                onDateChange(companyIndex, positionIndex, "endDate", validateAndConvertDate(date))
+                onDateChange(
+                  companyIndex,
+                  positionIndex,
+                  "endDate",
+                  validateAndConvertDate(date)
+                )
               }
               sx={{ flex: 1 }}
             />
@@ -109,7 +126,7 @@ export const PositionFields = memo(
         </Box>
       </Box>
     );
-  },
+  }
 );
 
 PositionFields.displayName = "PositionFields";

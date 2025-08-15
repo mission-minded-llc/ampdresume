@@ -1,10 +1,8 @@
 import "@testing-library/jest-dom";
-
-import * as Sentry from "@sentry/react";
-import { fireEvent, render, waitFor } from "@testing-library/react";
 import { signIn } from "next-auth/react";
 import React from "react";
-
+import { fireEvent, render, waitFor } from "@testing-library/react";
+import * as Sentry from "@sentry/react";
 import { SignIn } from "./SignIn";
 
 jest.mock("next-auth/react", () => ({
@@ -58,7 +56,9 @@ describe("SignIn", () => {
 
     await findByText("An error occurred. Please try again later.");
 
-    expect(Sentry.captureException).toHaveBeenCalledWith(new Error("Sign in failed"));
+    expect(Sentry.captureException).toHaveBeenCalledWith(
+      new Error("Sign in failed")
+    );
   });
 
   it("handles social sign-in with Google", async () => {
@@ -68,7 +68,9 @@ describe("SignIn", () => {
     fireEvent.click(btn);
 
     await waitFor(() => {
-      expect(signIn).toHaveBeenCalledWith("google", { callbackUrl: "/edit/profile" });
+      expect(signIn).toHaveBeenCalledWith("google", {
+        callbackUrl: "/edit/profile",
+      });
     });
   });
 
@@ -79,7 +81,9 @@ describe("SignIn", () => {
     fireEvent.click(btn);
 
     await waitFor(() => {
-      expect(signIn).toHaveBeenCalledWith("linkedin", { callbackUrl: "/edit/profile" });
+      expect(signIn).toHaveBeenCalledWith("linkedin", {
+        callbackUrl: "/edit/profile",
+      });
     });
   });
 });

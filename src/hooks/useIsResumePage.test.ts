@@ -1,6 +1,5 @@
-import { renderHook } from "@testing-library/react";
 import { usePathname } from "next/navigation";
-
+import { renderHook } from "@testing-library/react";
 import { useIsResumePage } from "@/hooks/useIsResumePage";
 
 // Mock the usePathname hook from next/navigation

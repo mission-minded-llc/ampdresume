@@ -1,6 +1,6 @@
 "use client";
 
-import { SetStateAction, createContext, useEffect, useState } from "react";
+import { createContext, SetStateAction, useEffect, useState } from "react";
 
 export type ThemeAppearance = "dark" | "light";
 
@@ -9,13 +9,19 @@ interface ThemeAppearanceProviderProps {
   setThemeAppearance: React.Dispatch<SetStateAction<ThemeAppearance>>;
 }
 
-export const ThemeAppearanceContext = createContext<ThemeAppearanceProviderProps>({
-  themeAppearance: "light",
-  setThemeAppearance: () => {},
-});
+export const ThemeAppearanceContext =
+  createContext<ThemeAppearanceProviderProps>({
+    themeAppearance: "light",
+    setThemeAppearance: () => {},
+  });
 
-export const ThemeAppearanceProvider = ({ children }: { children?: React.ReactNode }) => {
-  const [themeAppearance, setThemeAppearance] = useState<ThemeAppearance>("light");
+export const ThemeAppearanceProvider = ({
+  children,
+}: {
+  children?: React.ReactNode;
+}) => {
+  const [themeAppearance, setThemeAppearance] =
+    useState<ThemeAppearance>("light");
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -26,7 +32,9 @@ export const ThemeAppearanceProvider = ({ children }: { children?: React.ReactNo
 
     // Detect the current appearance settings immediately.
     if (mediaQuery.matches) {
-      handleMediaQueryChange({ matches: mediaQuery.matches } as MediaQueryListEvent);
+      handleMediaQueryChange({
+        matches: mediaQuery.matches,
+      } as MediaQueryListEvent);
     }
 
     mediaQuery.addEventListener("change", handleMediaQueryChange);
@@ -36,7 +44,9 @@ export const ThemeAppearanceProvider = ({ children }: { children?: React.ReactNo
   }, []);
 
   return (
-    <ThemeAppearanceContext.Provider value={{ themeAppearance, setThemeAppearance }}>
+    <ThemeAppearanceContext.Provider
+      value={{ themeAppearance, setThemeAppearance }}
+    >
       {children}
     </ThemeAppearanceContext.Provider>
   );

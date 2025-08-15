@@ -1,5 +1,4 @@
 import { SOCIAL_MEDIA_PLATFORMS } from "@/constants";
-
 import { getSocialMediaPlatformByPlatformName } from "./social";
 
 describe("getSocialMediaPlatformByPlatformName", () => {

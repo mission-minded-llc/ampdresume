@@ -15,7 +15,8 @@ interface ListPluginProps {
 export const ListPlugin = ({ blockType }: ListPluginProps) => {
   const [editor] = useLexicalComposerContext();
 
-  const getSelectedButtonColor = (isSelected: boolean) => (isSelected ? "secondary" : "default");
+  const getSelectedButtonColor = (isSelected: boolean) =>
+    isSelected ? "secondary" : "default";
 
   return (
     <>

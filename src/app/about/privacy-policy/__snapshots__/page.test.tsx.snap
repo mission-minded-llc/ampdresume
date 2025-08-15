@@ -226,8 +226,7 @@ exports[`PrivacyPolicy Page matches snapshot 1`] = `
       <p
         class="MuiTypography-root MuiTypography-body1 css-rizt0-MuiTypography-root"
       >
-        If you have any questions about this Privacy Policy, please contact us at
-         
+        If you have any questions about this Privacy Policy, please contact us at 
         <a
           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1orsvah-MuiTypography-root-MuiLink-root"
           href="mailto:mail@ampdresume.com"

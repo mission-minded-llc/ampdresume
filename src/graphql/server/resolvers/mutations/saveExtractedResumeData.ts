@@ -21,7 +21,7 @@ export const saveExtractedResumeData = async (
     skillIds: string[];
     companies: ExtractedCompany[];
     education: ExtractedEducation[];
-  },
+  }
 ) => {
   await verifySessionOwnership(userId);
 

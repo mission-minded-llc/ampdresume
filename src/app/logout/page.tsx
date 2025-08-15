@@ -1,8 +1,8 @@
 "use client";
 
-import { Container, Typography } from "@mui/material";
 import { signOut } from "next-auth/react";
 import { useEffect } from "react";
+import { Container, Typography } from "@mui/material";
 
 export default function LogoutPage() {
   useEffect(() => {
@@ -22,7 +22,9 @@ export default function LogoutPage() {
       <Typography component="h1" variant="h4">
         Logging out...
       </Typography>
-      <Typography sx={{ mt: "1rem" }}>You will be redirected shortly.</Typography>
+      <Typography sx={{ mt: "1rem" }}>
+        You will be redirected shortly.
+      </Typography>
     </Container>
   );
 }

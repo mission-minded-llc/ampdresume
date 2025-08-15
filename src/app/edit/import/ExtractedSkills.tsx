@@ -1,9 +1,8 @@
-import { Skill } from "@ampdresume/theme";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Skill } from "@/types";
 import { useSession } from "next-auth/react";
 import React, { useCallback } from "react";
-
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { Box, IconButton, Typography } from "@mui/material";
 import { SkillItem } from "../skills/SkillItem";
 
 /**
@@ -22,7 +21,7 @@ const ExtractedSkillsComponent = ({
       const updatedSkills = skills.filter((skill) => skill.id !== skillId);
       setSkills(updatedSkills);
     },
-    [skills, setSkills],
+    [skills, setSkills]
   );
 
   if (!session) {
@@ -36,8 +35,9 @@ const ExtractedSkillsComponent = ({
       </Typography>
       <Typography variant="body1" sx={{ mb: 2, fontSize: "1rem" }}>
         <em>
-          <strong>Note:</strong> Skills can be edited after saving. You can also add new skills by
-          clicking the &quot;Add Skill&quot; button after the import is complete.
+          <strong>Note:</strong> Skills can be edited after saving. You can also
+          add new skills by clicking the &quot;Add Skill&quot; button after the
+          import is complete.
         </em>
       </Typography>
       <Box

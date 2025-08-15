@@ -7,7 +7,8 @@ exports[`TooltipTotalYears matches snapshot 1`] = `
     <strong>
       year started
     </strong>
-    , the 
+    , the
+     
     <strong>
       total years
     </strong>

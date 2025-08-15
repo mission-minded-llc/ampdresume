@@ -11,7 +11,7 @@ export const updateSkillForProject = async (
     id: string;
     userId: string;
     description: string | null;
-  },
+  }
 ) => {
   await verifySessionOwnership(userId);
 

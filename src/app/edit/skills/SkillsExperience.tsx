@@ -1,9 +1,9 @@
 "use client";
 
-import { SkillForUser, groupSkillsForUserByYearExperience } from "@ampdresume/theme";
-import { Box } from "@mui/material";
+import { SkillForUser } from "@/types";
+import { groupSkillsForUserByYearExperience } from "@/util/structure";
 import React from "react";
-
+import { Box } from "@mui/material";
 import { SkillItem } from "./SkillItem";
 
 export const SkillsExperience = ({ skills }: { skills: SkillForUser[] }) => {
@@ -33,7 +33,9 @@ export const SkillsExperience = ({ skills }: { skills: SkillForUser[] }) => {
                 textAlign: "right",
               }}
             >
-              {totalYears ? `${totalYears} year${parseInt(totalYears, 10) > 1 ? "s" : ""}:` : ""}
+              {totalYears
+                ? `${totalYears} year${parseInt(totalYears, 10) > 1 ? "s" : ""}:`
+                : ""}
             </Box>
             <Box
               sx={{
@@ -44,7 +46,10 @@ export const SkillsExperience = ({ skills }: { skills: SkillForUser[] }) => {
               }}
             >
               {skillsList.map((skill) => (
-                <SkillItem key={`skill-${skill.skill.name}`} skill={skill as SkillForUser} />
+                <SkillItem
+                  key={`skill-${skill.skill.name}`}
+                  skill={skill as SkillForUser}
+                />
               ))}
             </Box>
           </React.Fragment>

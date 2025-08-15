@@ -1,7 +1,6 @@
-import { Company, Education, Skill } from "@ampdresume/theme";
+import { Company, Education, Skill } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { ParsedResumeData } from "@/app/edit/import/types";
 import { getApolloClient } from "@/lib/apolloClient";
 
@@ -19,7 +18,7 @@ export type ParsedResumeAi = {
 
 export const getParsedResumeAi = async (
   userId: string,
-  text: string,
+  text: string
 ): Promise<ParsedResumeData | null> => {
   const client = getApolloClient();
 

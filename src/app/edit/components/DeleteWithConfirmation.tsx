@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -8,8 +9,6 @@ import {
   DialogContentText,
   FormControlLabel,
 } from "@mui/material";
-import { useState, useEffect } from "react";
-
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Tooltip } from "@/components/Tooltip";
@@ -44,7 +43,7 @@ export const DeleteWithConfirmation = ({
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [checkedItems, setCheckedItems] = useState<boolean[]>(
-    new Array(checkboxItems.length).fill(false),
+    new Array(checkboxItems.length).fill(false)
   );
 
   const handleOpenConfirm = () => setConfirmOpen(true);
@@ -66,7 +65,8 @@ export const DeleteWithConfirmation = ({
   };
 
   const allCheckboxesChecked = checkedItems.every((checked) => checked);
-  const isConfirmEnabled = enableDelete && (!showCheckboxes || allCheckboxesChecked);
+  const isConfirmEnabled =
+    enableDelete && (!showCheckboxes || allCheckboxesChecked);
 
   // Reset checkboxes when dialog opens
   useEffect(() => {
@@ -91,12 +91,21 @@ export const DeleteWithConfirmation = ({
         {tooltip ? <Tooltip message={tooltip} /> : null}
       </Box>
 
-      <Dialog open={confirmOpen} onClose={handleCloseConfirm} maxWidth="xs" fullWidth>
-        <CustomDialogTitle closeHandler={handleCloseConfirm}>{dialogTitle}</CustomDialogTitle>
+      <Dialog
+        open={confirmOpen}
+        onClose={handleCloseConfirm}
+        maxWidth="xs"
+        fullWidth
+      >
+        <CustomDialogTitle closeHandler={handleCloseConfirm}>
+          {dialogTitle}
+        </CustomDialogTitle>
         <DialogContent>
           {showCheckboxes && checkboxItems.length > 0 ? (
             <Box>
-              <DialogContentText sx={{ mb: 2 }}>{dialogMessage}</DialogContentText>
+              <DialogContentText sx={{ mb: 2 }}>
+                {dialogMessage}
+              </DialogContentText>
               {checkboxItems.map((item, index) => (
                 <FormControlLabel
                   key={index}
@@ -116,7 +125,9 @@ export const DeleteWithConfirmation = ({
             <DialogContentText>{dialogMessage}</DialogContentText>
           )}
         </DialogContent>
-        <DialogActions sx={{ display: "flex", justifyContent: "space-between" }}>
+        <DialogActions
+          sx={{ display: "flex", justifyContent: "space-between" }}
+        >
           <Button onClick={handleCloseConfirm} color="primary">
             {cancelLabel}
           </Button>

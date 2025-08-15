@@ -69,7 +69,11 @@ export const FieldTitle = ({
   </Typography>
 );
 
-export const FieldDescription = ({ children }: { children: React.ReactNode }) => (
+export const FieldDescription = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
   <Typography variant="body2" color="textSecondary">
     {children}
   </Typography>

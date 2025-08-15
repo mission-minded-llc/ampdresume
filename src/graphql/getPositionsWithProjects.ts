@@ -1,3 +1,3 @@
-import { Position } from "@ampdresume/theme";
+import { Position } from "@/types";
 
 export type PositionGeneric = Omit<Position, "id" | "companyId">;

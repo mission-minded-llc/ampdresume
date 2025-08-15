@@ -1,15 +1,12 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { Box, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import { getEducation } from "@/graphql/getEducation";
-
 import { SectionTitle } from "../components/SectionTitle";
-
 import { EducationList } from "./EducationList";
 
 export const EditEducation = () => {
@@ -27,7 +24,8 @@ export const EditEducation = () => {
     queryFn: async () => await getEducation(session?.user.id),
   });
 
-  if (status === "loading") return <LoadingOverlay message="Loading session..." />;
+  if (status === "loading")
+    return <LoadingOverlay message="Loading session..." />;
   if (status === "unauthenticated")
     return (
       <Box>
@@ -44,8 +42,8 @@ export const EditEducation = () => {
 
       <Box sx={{ mb: 4 }}>
         <Typography>
-          Your education is important to show on your resume. It helps potential employers
-          understand your background and qualifications.
+          Your education is important to show on your resume. It helps potential
+          employers understand your background and qualifications.
         </Typography>
       </Box>
 

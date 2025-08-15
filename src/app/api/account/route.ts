@@ -4,11 +4,9 @@
  * - Session-based user updates (not typical GraphQL pattern)
  * - Distinct from resume data management (GraphQL's primary focus)
  */
-
-import * as Sentry from "@sentry/node";
-import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-
+import { NextRequest, NextResponse } from "next/server";
+import * as Sentry from "@sentry/node";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -19,10 +17,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { name, slug, displayEmail, title, location, siteTitle, siteDescription, siteImage } =
-      await req.json();
+    const {
+      name,
+      slug,
+      displayEmail,
+      title,
+      location,
+      siteTitle,
+      siteDescription,
+      siteImage,
+    } = await req.json();
     if (!name || !slug) {
-      return NextResponse.json({ error: "Name and slug are required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Name and slug are required" },
+        { status: 400 }
+      );
     }
 
     // Ensure the slug is alphanumeric and lowercase, with hyphens for spaces.
@@ -30,7 +39,7 @@ export async function POST(req: NextRequest) {
     if (!slugRegex.test(slug)) {
       return NextResponse.json(
         { error: "Slug must be alphanumeric and lowercase. Hyphens allowed." },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -44,7 +53,10 @@ export async function POST(req: NextRequest) {
     });
 
     if (existingUser && existingUser.id !== session.user.id) {
-      return NextResponse.json({ error: "Slug is already taken" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Slug is already taken" },
+        { status: 400 }
+      );
     }
 
     const data = await prisma.user.update({

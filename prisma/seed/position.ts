@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
 import { fileURLToPath } from "url";
+import { prisma } from "@/lib/prisma";
 import { getTestUserIds } from "./helpers/ids";
 import { logTitle } from "./helpers/util";
-import { prisma } from "@/lib/prisma";
 
 export async function seedPositions() {
   logTitle("Seeding Demo Positions");
@@ -41,7 +41,9 @@ export async function seedPositions() {
       };
 
       if (existingPosition) {
-        console.log(`Updating position for user ${userId}, company ${company.id}`);
+        console.log(
+          `Updating position for user ${userId}, company ${company.id}`
+        );
 
         await prisma.position.update({
           where: {
@@ -56,7 +58,9 @@ export async function seedPositions() {
       const createdPosition = await prisma.position.create({
         data: { ...positionData, companyId: company.id },
       });
-      console.log(`Created position for user ${userId} with id: ${createdPosition.id}`);
+      console.log(
+        `Created position for user ${userId} with id: ${createdPosition.id}`
+      );
     }
   }
 }

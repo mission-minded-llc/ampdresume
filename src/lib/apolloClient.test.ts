@@ -1,5 +1,4 @@
 import { ApolloClient } from "@apollo/client";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 describe("getApolloClient", () => {
@@ -22,7 +21,7 @@ describe("getApolloClient", () => {
         formData: jest.fn(),
         text: jest.fn(),
         bytes: jest.fn(),
-      } as Response),
+      } as Response)
     );
   });
 
@@ -31,6 +30,9 @@ describe("getApolloClient", () => {
     const client = getApolloClient();
     expect(client).toBeInstanceOf(ApolloClient);
     const httpLink = client.link;
-    expect(httpLink).toHaveProperty("options.uri", "http://example.com/graphql");
+    expect(httpLink).toHaveProperty(
+      "options.uri",
+      "http://example.com/graphql"
+    );
   });
 });

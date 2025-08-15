@@ -11,7 +11,7 @@ export const updateSocial = async (
     id: string;
     userId: string;
     ref: string;
-  },
+  }
 ) => {
   await verifySessionOwnership(userId);
 
@@ -21,7 +21,8 @@ export const updateSocial = async (
 
   if (!existingSocial) throw new Error("Social not found");
 
-  if (existingSocial.userId !== userId) throw new Error("Unauthorized: You do not own this social");
+  if (existingSocial.userId !== userId)
+    throw new Error("Unauthorized: You do not own this social");
 
   const social = await prisma.social.update({
     where: { id },

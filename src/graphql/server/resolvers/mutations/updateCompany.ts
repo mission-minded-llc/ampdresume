@@ -19,7 +19,7 @@ export const updateCompany = async (
     location: string;
     startDate: string;
     endDate: string;
-  },
+  }
 ) => {
   await verifySessionOwnership(userId);
 

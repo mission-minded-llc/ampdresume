@@ -1,6 +1,5 @@
 import { getServerSession } from "next-auth/next";
 import nodemailer from "nodemailer";
-
 import { authOptions, sendVerificationRequest } from "@/lib/auth";
 
 // Mock dependencies
@@ -78,7 +77,7 @@ describe("Authentication Configuration", () => {
           to: "jesttest@ampdresume.com",
           subject: expect.stringContaining("Sign in"),
           html: expect.stringContaining("Click the link below to sign in"),
-        }),
+        })
       );
     });
   });

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Box,
   Button,
@@ -6,8 +7,6 @@ import {
   DialogContent,
   DialogContentText,
 } from "@mui/material";
-import { useState } from "react";
-
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Tooltip } from "@/components/Tooltip";
@@ -61,16 +60,30 @@ export const UpdateWithConfirmation = ({
         {tooltip ? <Tooltip message={tooltip} /> : null}
       </Box>
 
-      <Dialog open={confirmOpen} onClose={handleCloseConfirm} maxWidth="xs" fullWidth>
-        <CustomDialogTitle closeHandler={handleCloseConfirm}>{dialogTitle}</CustomDialogTitle>
+      <Dialog
+        open={confirmOpen}
+        onClose={handleCloseConfirm}
+        maxWidth="xs"
+        fullWidth
+      >
+        <CustomDialogTitle closeHandler={handleCloseConfirm}>
+          {dialogTitle}
+        </CustomDialogTitle>
         <DialogContent>
           <DialogContentText>{dialogMessage}</DialogContentText>
         </DialogContent>
-        <DialogActions sx={{ display: "flex", justifyContent: "space-between" }}>
+        <DialogActions
+          sx={{ display: "flex", justifyContent: "space-between" }}
+        >
           <Button onClick={handleCloseConfirm} color="primary">
             {cancelLabel}
           </Button>
-          <Button onClick={handleConfirmUpdate} color="primary" variant="contained" autoFocus>
+          <Button
+            onClick={handleConfirmUpdate}
+            color="primary"
+            variant="contained"
+            autoFocus
+          >
             {confirmLabel}
           </Button>
         </DialogActions>

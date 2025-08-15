@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
 import { fileURLToPath } from "url";
+import { prisma } from "@/lib/prisma";
 import { getTestProjectIds } from "./helpers/ids";
 import { logTitle } from "./helpers/util";
-import { prisma } from "@/lib/prisma";
 
 export async function seedSkillsForProject() {
   logTitle("Seeding Demo Skills for Projects");
@@ -66,7 +66,9 @@ export async function seedSkillsForProject() {
       },
     });
 
-    const randomSkillsForUser = skillsForUser.sort(() => 0.5 - Math.random()).slice(0, 2);
+    const randomSkillsForUser = skillsForUser
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 2);
 
     for (const skillForUser of randomSkillsForUser) {
       try {
@@ -78,7 +80,7 @@ export async function seedSkillsForProject() {
           },
         });
         console.log(
-          `Created skill ${skillForUser.id} for project ${projectId} with id: ${createdSkill.id}`,
+          `Created skill ${skillForUser.id} for project ${projectId} with id: ${createdSkill.id}`
         );
       } catch (e) {
         console.log(e);

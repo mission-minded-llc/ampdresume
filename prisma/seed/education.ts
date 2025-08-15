@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
 import { fileURLToPath } from "url";
+import { prisma } from "@/lib/prisma";
 import { getTestUserIds } from "./helpers/ids";
 import { logTitle } from "./helpers/util";
-import { prisma } from "@/lib/prisma";
 
 export async function seedEducation() {
   logTitle("Seeding Demo Education");
@@ -30,7 +30,9 @@ export async function seedEducation() {
         userId,
       },
     });
-    console.log(`Created education for user ${userId} with id: ${createdEducation.id}`);
+    console.log(
+      `Created education for user ${userId} with id: ${createdEducation.id}`
+    );
   }
 }
 

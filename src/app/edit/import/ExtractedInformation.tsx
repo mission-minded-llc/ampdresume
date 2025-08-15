@@ -1,16 +1,16 @@
-import { Box, Typography } from "@mui/material";
-import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-
+import { Box, Typography } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { saveExtractedResumeData } from "@/graphql/saveExtractedResumeData";
-
 import { UpdateWithConfirmation } from "../components/UpdateWithConfirmation";
-
 import { ExtractedEducation } from "./education/ExtractedEducation";
 import { ExtractedWorkExperience } from "./experience/ExtractedWorkExperience";
-import { ExtractedDataProvider, useExtractedData } from "./ExtractedDataContext";
+import {
+  ExtractedDataProvider,
+  useExtractedData,
+} from "./ExtractedDataContext";
 import { ExtractedSkills } from "./ExtractedSkills";
 import { ExtractedUser } from "./ExtractedUser";
 import { ParsedResumeData } from "./types";
@@ -105,7 +105,10 @@ const ExtractedInformationContent = () => {
         mb: 4,
       }}
     >
-      <LoadingOverlay open={saveMutation.isPending} message="Saving Resume..." />
+      <LoadingOverlay
+        open={saveMutation.isPending}
+        message="Saving Resume..."
+      />
       {!user && <Typography variant="h6">Extracted Information</Typography>}
       <Box
         sx={(theme) => ({
@@ -123,8 +126,14 @@ const ExtractedInformationContent = () => {
         ) : user ? (
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <ExtractedUser user={user} setUser={setUser} />
-            <ExtractedWorkExperience companies={companies} setCompanies={setCompanies} />
-            <ExtractedEducation education={education} setEducation={setEducation} />
+            <ExtractedWorkExperience
+              companies={companies}
+              setCompanies={setCompanies}
+            />
+            <ExtractedEducation
+              education={education}
+              setEducation={setEducation}
+            />
             <ExtractedSkills skills={skills} setSkills={setSkills} />
             <Box
               sx={{
@@ -149,7 +158,9 @@ const ExtractedInformationContent = () => {
             </Box>
           </Box>
         ) : (
-          <Typography>No data available yet. Please upload a PDF file.</Typography>
+          <Typography>
+            No data available yet. Please upload a PDF file.
+          </Typography>
         )}
       </Box>
     </Box>

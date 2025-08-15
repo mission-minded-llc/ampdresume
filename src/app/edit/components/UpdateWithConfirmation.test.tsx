@@ -1,20 +1,22 @@
 import "@testing-library/jest-dom";
-
-import { fireEvent, render, waitFor } from "@testing-library/react";
 import React from "react";
-
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { UpdateWithConfirmation } from "./UpdateWithConfirmation";
 
 describe("UpdateWithConfirmation", () => {
   it("renders correctly with default props", async () => {
-    const { getByText } = render(<UpdateWithConfirmation onConfirmUpdate={() => {}} />);
+    const { getByText } = render(
+      <UpdateWithConfirmation onConfirmUpdate={() => {}} />
+    );
     await waitFor(() => {
       expect(getByText("Update")).toBeInTheDocument();
     });
   });
 
   it("opens the confirmation dialog when the update button is clicked", async () => {
-    const { getByText, getByRole } = render(<UpdateWithConfirmation onConfirmUpdate={() => {}} />);
+    const { getByText, getByRole } = render(
+      <UpdateWithConfirmation onConfirmUpdate={() => {}} />
+    );
     const updateButton = getByText("Update");
 
     fireEvent.click(updateButton);
@@ -29,7 +31,7 @@ describe("UpdateWithConfirmation", () => {
   it("calls onConfirmUpdate when the confirm button is clicked", async () => {
     const onConfirmUpdateMock = jest.fn();
     const { getByText, getByRole } = render(
-      <UpdateWithConfirmation onConfirmUpdate={onConfirmUpdateMock} />,
+      <UpdateWithConfirmation onConfirmUpdate={onConfirmUpdateMock} />
     );
     const updateButton = getByText("Update");
 
@@ -49,7 +51,7 @@ describe("UpdateWithConfirmation", () => {
 
   it("closes the confirmation dialog when the cancel button is clicked", async () => {
     const { getByText, getByRole, queryByRole } = render(
-      <UpdateWithConfirmation onConfirmUpdate={() => {}} />,
+      <UpdateWithConfirmation onConfirmUpdate={() => {}} />
     );
     const updateButton = getByText("Update");
 

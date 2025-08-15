@@ -1,8 +1,6 @@
 import "@testing-library/jest-dom";
-
-import { fireEvent, render } from "@testing-library/react";
 import React from "react";
-
+import { fireEvent, render } from "@testing-library/react";
 import { CustomDialogTitle } from "./CustomDialogTitle";
 
 describe("CustomDialogTitle", () => {
@@ -10,7 +8,7 @@ describe("CustomDialogTitle", () => {
     const { getByText } = render(
       <CustomDialogTitle closeHandler={() => {}}>
         <span>Dialog Title</span>
-      </CustomDialogTitle>,
+      </CustomDialogTitle>
     );
     expect(getByText("Dialog Title")).toBeInTheDocument();
   });
@@ -20,7 +18,7 @@ describe("CustomDialogTitle", () => {
     const { getByLabelText } = render(
       <CustomDialogTitle closeHandler={handleClose}>
         <span>Dialog Title</span>
-      </CustomDialogTitle>,
+      </CustomDialogTitle>
     );
     const closeButton = getByLabelText("close");
 

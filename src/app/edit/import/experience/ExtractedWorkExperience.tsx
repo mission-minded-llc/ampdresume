@@ -1,10 +1,14 @@
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { useCallback, useEffect, useState } from "react";
-
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Typography,
+} from "@mui/material";
 import { AccordionSummaryContent } from "../../components/AccordionSummaryContent";
-
 import { CompanyFields } from "./CompanyFields";
 import { PositionFields } from "./PositionFields";
 import { ProjectField } from "./ProjectField";
@@ -25,11 +29,15 @@ export const ExtractedWorkExperience = ({
   setCompanies: React.Dispatch<React.SetStateAction<Company[]>>;
 }) => {
   const [expandedCompany, setExpandedCompany] = useState<string | false>(false);
-  const [expandedPosition, setExpandedPosition] = useState<string | false>(false);
+  const [expandedPosition, setExpandedPosition] = useState<string | false>(
+    false
+  );
 
   // Add effect to expand accordion when start date is empty
   useEffect(() => {
-    const companyWithEmptyStartDate = companies.findIndex((company) => !company.startDate);
+    const companyWithEmptyStartDate = companies.findIndex(
+      (company) => !company.startDate
+    );
     if (companyWithEmptyStartDate !== -1) {
       setExpandedCompany(`company-${companyWithEmptyStartDate}`);
     }
@@ -39,11 +47,13 @@ export const ExtractedWorkExperience = ({
   useEffect(() => {
     companies.forEach((company, companyIndex) => {
       const positionWithEmptyStartDate = company.positions.findIndex(
-        (position) => !position.startDate,
+        (position) => !position.startDate
       );
       if (positionWithEmptyStartDate !== -1) {
         setExpandedCompany(`company-${companyIndex}`);
-        setExpandedPosition(`position-${companyIndex}-${positionWithEmptyStartDate}`);
+        setExpandedPosition(
+          `position-${companyIndex}-${positionWithEmptyStartDate}`
+        );
       }
     });
   }, [companies]);
@@ -63,7 +73,7 @@ export const ExtractedWorkExperience = ({
       companyIndex: number,
       positionIndex: number | undefined,
       field: "startDate" | "endDate",
-      date: string,
+      date: string
     ) => {
       const updatedCompanies = [...companies];
       if (positionIndex !== undefined) {
@@ -79,7 +89,7 @@ export const ExtractedWorkExperience = ({
       }
       setCompanies(updatedCompanies);
     },
-    [companies, setCompanies],
+    [companies, setCompanies]
   );
 
   const handleDeleteCompany = useCallback(
@@ -87,14 +97,14 @@ export const ExtractedWorkExperience = ({
       const updatedCompanies = companies.filter((_, i) => i !== companyIndex);
       setCompanies(updatedCompanies);
     },
-    [companies, setCompanies],
+    [companies, setCompanies]
   );
 
   const handleDeletePosition = useCallback(
     (companyIndex: number, positionIndex: number) => {
       const updatedCompanies = [...companies];
       const updatedPositions = updatedCompanies[companyIndex].positions.filter(
-        (_, i) => i !== positionIndex,
+        (_, i) => i !== positionIndex
       );
       updatedCompanies[companyIndex] = {
         ...updatedCompanies[companyIndex],
@@ -102,18 +112,19 @@ export const ExtractedWorkExperience = ({
       };
       setCompanies(updatedCompanies);
     },
-    [companies, setCompanies],
+    [companies, setCompanies]
   );
 
   const handleDeleteProject = useCallback(
     (companyIndex: number, positionIndex: number, projectIndex: number) => {
       const updatedCompanies = [...companies];
-      updatedCompanies[companyIndex].positions[positionIndex].projects = updatedCompanies[
-        companyIndex
-      ].positions[positionIndex].projects.filter((_, i) => i !== projectIndex);
+      updatedCompanies[companyIndex].positions[positionIndex].projects =
+        updatedCompanies[companyIndex].positions[positionIndex].projects.filter(
+          (_, i) => i !== projectIndex
+        );
       setCompanies(updatedCompanies);
     },
-    [companies, setCompanies],
+    [companies, setCompanies]
   );
 
   const handleCompanyFieldChange = useCallback(
@@ -125,11 +136,16 @@ export const ExtractedWorkExperience = ({
       };
       setCompanies(updatedCompanies);
     },
-    [companies, setCompanies],
+    [companies, setCompanies]
   );
 
   const handlePositionFieldChange = useCallback(
-    (companyIndex: number, positionIndex: number, field: string, value: string) => {
+    (
+      companyIndex: number,
+      positionIndex: number,
+      field: string,
+      value: string
+    ) => {
       const updatedCompanies = [...companies];
       updatedCompanies[companyIndex].positions[positionIndex] = {
         ...updatedCompanies[companyIndex].positions[positionIndex],
@@ -137,7 +153,7 @@ export const ExtractedWorkExperience = ({
       };
       setCompanies(updatedCompanies);
     },
-    [companies, setCompanies],
+    [companies, setCompanies]
   );
 
   const handleProjectFieldChange = useCallback(
@@ -146,16 +162,20 @@ export const ExtractedWorkExperience = ({
       positionIndex: number,
       projectIndex: number,
       field: string,
-      value: string,
+      value: string
     ) => {
       const updatedCompanies = [...companies];
-      updatedCompanies[companyIndex].positions[positionIndex].projects[projectIndex] = {
-        ...updatedCompanies[companyIndex].positions[positionIndex].projects[projectIndex],
+      updatedCompanies[companyIndex].positions[positionIndex].projects[
+        projectIndex
+      ] = {
+        ...updatedCompanies[companyIndex].positions[positionIndex].projects[
+          projectIndex
+        ],
         [field]: value,
       };
       setCompanies(updatedCompanies);
     },
-    [companies, setCompanies],
+    [companies, setCompanies]
   );
 
   return (
@@ -243,8 +263,18 @@ export const ExtractedWorkExperience = ({
                         position={position}
                         companyIndex={index}
                         positionIndex={positionIndex}
-                        onFieldChange={(companyIndex, positionIndex, field, value) =>
-                          handlePositionFieldChange(companyIndex, positionIndex, field, value)
+                        onFieldChange={(
+                          companyIndex,
+                          positionIndex,
+                          field,
+                          value
+                        ) =>
+                          handlePositionFieldChange(
+                            companyIndex,
+                            positionIndex,
+                            field,
+                            value
+                          )
                         }
                         onDateChange={handleDateChange}
                         onDelete={handleDeletePosition}
@@ -258,8 +288,8 @@ export const ExtractedWorkExperience = ({
                           fontSize: "1rem",
                         }}
                       >
-                        <strong>Note:</strong> Projects can be reordered by dragging and dropping
-                        after saving.
+                        <strong>Note:</strong> Projects can be reordered by
+                        dragging and dropping after saving.
                       </Typography>
                       {position.projects.map((project, projectIndex) => (
                         <ProjectField
@@ -273,14 +303,14 @@ export const ExtractedWorkExperience = ({
                             positionIndex,
                             projectIndex,
                             field,
-                            value,
+                            value
                           ) =>
                             handleProjectFieldChange(
                               companyIndex,
                               positionIndex,
                               projectIndex,
                               field,
-                              value,
+                              value
                             )
                           }
                           onDelete={handleDeleteProject}

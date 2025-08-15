@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from "react";
 import ImageIcon from "@mui/icons-material/Image";
 import {
   Box,
@@ -8,8 +9,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
-
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MAX_USER_IMAGE_SIZE } from "@/constants";
@@ -109,14 +108,24 @@ export const UserAssetInput = ({
         }}
       />
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Add Image</CustomDialogTitle>
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
+          Add Image
+        </CustomDialogTitle>
         <DialogContent
           sx={{
             width: "400px",
             maxWidth: "90vw",
           }}
         >
-          <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 2, zIndex: 100 }}>
+          <Box
+            sx={{
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+              zIndex: 100,
+            }}
+          >
             <TextField
               label="URL"
               placeholder="Add Image URL"

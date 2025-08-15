@@ -1,8 +1,9 @@
 "use client";
 
-import { Company, Education, SkillForUser, themeDefinitions, User } from "@ampdresume/theme";
-import { Box, Button } from "@mui/material";
+import { Company, Education, SkillForUser, User } from "@/types";
+import { themeDefinitions } from "@/theme";
 import { useEffect, useRef, useState } from "react";
+import { Box, Button } from "@mui/material";
 
 interface PDFViewProps {
   user: User;
@@ -11,9 +12,16 @@ interface PDFViewProps {
   education: Education[];
 }
 
-export const PDFView = ({ user, skillsForUser, companies, education }: PDFViewProps) => {
+export const PDFView = ({
+  user,
+  skillsForUser,
+  companies,
+  education,
+}: PDFViewProps) => {
   const pdfRef = useRef<HTMLDivElement>(null);
-  const [html2pdf, setHtml2pdf] = useState<typeof import("html2pdf.js") | null>(null);
+  const [html2pdf, setHtml2pdf] = useState<typeof import("html2pdf.js") | null>(
+    null
+  );
 
   useEffect(() => {
     // Dynamically import html2pdf only on the client side
@@ -48,7 +56,11 @@ export const PDFView = ({ user, skillsForUser, companies, education }: PDFViewPr
   return (
     <Box sx={{ color: "#000", pb: 12 }}>
       <Box sx={{ display: "flex", justifyContent: "center", mb: 2, mt: 2 }}>
-        <Button onClick={handleGeneratePdf} variant="contained" disabled={!html2pdf}>
+        <Button
+          onClick={handleGeneratePdf}
+          variant="contained"
+          disabled={!html2pdf}
+        >
           Generate PDF
         </Button>
       </Box>

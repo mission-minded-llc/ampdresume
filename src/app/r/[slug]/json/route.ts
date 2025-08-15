@@ -1,12 +1,14 @@
 import { notFound } from "next/navigation";
 import { NextResponse } from "next/server";
-
 import { getEducation } from "@/graphql/getEducation";
 import { getExperience } from "@/graphql/getExperience";
 import { getUser } from "@/graphql/getUser";
 import { removeHiddenFields } from "@/util/userData";
 
-export async function GET(request: Request, { params }: { params: { slug: string } }) {
+export async function GET(
+  request: Request,
+  { params }: { params: { slug: string } }
+) {
   const user = await getUser(params.slug);
 
   if (!user) return notFound();

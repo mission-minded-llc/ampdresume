@@ -1,5 +1,5 @@
-import { Backdrop, Box, CircularProgress, Typography } from "@mui/material";
 import React from "react";
+import { Backdrop, Box, CircularProgress, Typography } from "@mui/material";
 
 interface LoadingOverlayProps {
   open?: boolean;
@@ -23,7 +23,12 @@ export const LoadingOverlay = ({
       open={open}
       data-testid="LoadingOverlay"
     >
-      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+      >
         <CircularProgress color="inherit" />
         <Typography
           variant="body1"

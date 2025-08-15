@@ -1,24 +1,40 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $getSelectionStyleValueForProperty, $patchStyleText } from "@lexical/selection";
+import {
+  $getSelectionStyleValueForProperty,
+  $patchStyleText,
+} from "@lexical/selection";
 import { mergeRegister } from "@lexical/utils";
+import { useEffect, useState } from "react";
 import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
 import TypeSpecimenIcon from "@mui/icons-material/TypeSpecimen";
-import { $getSelection, $isRangeSelection, SELECTION_CHANGE_COMMAND } from "lexical";
-import { useEffect, useState } from "react";
-
+import {
+  $getSelection,
+  $isRangeSelection,
+  SELECTION_CHANGE_COMMAND,
+} from "lexical";
 import { ColorPicker } from "../ColorPicker";
-
 import { LOW_PRIORIRTY } from "./constants";
 
 export const ColorPlugin = () => {
   const [editor] = useLexicalComposerContext();
-  const [{ color, bgColor }, setColors] = useState({ color: "#000", bgColor: "#fff" });
+  const [{ color, bgColor }, setColors] = useState({
+    color: "#000",
+    bgColor: "#fff",
+  });
 
   const updateToolbar = () => {
     const selection = $getSelection();
     if ($isRangeSelection(selection)) {
-      const color = $getSelectionStyleValueForProperty(selection, "color", "#000");
-      const bgColor = $getSelectionStyleValueForProperty(selection, "background", "#fff");
+      const color = $getSelectionStyleValueForProperty(
+        selection,
+        "color",
+        "#000"
+      );
+      const bgColor = $getSelectionStyleValueForProperty(
+        selection,
+        "background",
+        "#fff"
+      );
       setColors({ color, bgColor });
     }
   };
@@ -36,8 +52,8 @@ export const ColorPlugin = () => {
           updateToolbar();
           return false;
         },
-        LOW_PRIORIRTY,
-      ),
+        LOW_PRIORIRTY
+      )
     );
   }, [editor]);
 

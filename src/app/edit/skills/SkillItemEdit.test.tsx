@@ -1,13 +1,10 @@
 import "@testing-library/jest-dom";
-
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { fireEvent, render, waitFor, act } from "@testing-library/react";
 import { useSession } from "next-auth/react";
 import React from "react";
-
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
 import { updateSkillForUser } from "@/graphql/updateSkillForUser";
-
 import { SkillItemEdit } from "./SkillItemEdit";
 
 jest.mock("next-auth/react", () => ({
@@ -75,24 +72,30 @@ describe("SkillItemEdit", () => {
   beforeEach(() => {
     (useSession as jest.Mock).mockReturnValue({ data: mockSession });
     (useQueryClient as jest.Mock).mockReturnValue(mockQueryClient);
-    (useMutation as jest.Mock).mockImplementation(({ mutationFn, onSuccess }) => ({
-      mutate: async (variables: {
-        id: string;
-        userId: string;
-        description: string;
-        yearStarted: number;
-        totalYears: number;
-        icon: string;
-      }) => {
-        await mutationFn(variables);
-        onSuccess();
-      },
-    }));
+    (useMutation as jest.Mock).mockImplementation(
+      ({ mutationFn, onSuccess }) => ({
+        mutate: async (variables: {
+          id: string;
+          userId: string;
+          description: string;
+          yearStarted: number;
+          totalYears: number;
+          icon: string;
+        }) => {
+          await mutationFn(variables);
+          onSuccess();
+        },
+      })
+    );
   });
 
   it("renders correctly", () => {
     const { container, getByLabelText, getByText } = render(
-      <SkillItemEdit skill={mockSkill} handleClose={() => {}} setIconCallback={() => {}} />,
+      <SkillItemEdit
+        skill={mockSkill}
+        handleClose={() => {}}
+        setIconCallback={() => {}}
+      />
     );
 
     // By default, autoCalculate is false if totalYears > 0, so only 'Total Years' is shown
@@ -107,10 +110,16 @@ describe("SkillItemEdit", () => {
 
   it("shows 'Save Changes' when the accordion is expanded", async () => {
     const { getByText } = render(
-      <SkillItemEdit skill={mockSkill} handleClose={() => {}} setIconCallback={() => {}} />,
+      <SkillItemEdit
+        skill={mockSkill}
+        handleClose={() => {}}
+        setIconCallback={() => {}}
+      />
     );
 
-    fireEvent.click(getByText("Click to describe your experience with this skill..."));
+    fireEvent.click(
+      getByText("Click to describe your experience with this skill...")
+    );
     await waitFor(() => {
       expect(getByText("Save Changes")).toBeInTheDocument();
     });
@@ -122,7 +131,7 @@ describe("SkillItemEdit", () => {
         skill={{ ...mockSkill, totalYears: 0 }}
         handleClose={() => {}}
         setIconCallback={() => {}}
-      />,
+      />
     );
     // With totalYears 0, autoCalculate defaults to true
     expect(getByLabelText("Year Started")).toBeInTheDocument();
@@ -137,7 +146,7 @@ describe("SkillItemEdit", () => {
         skill={{ ...mockSkill, totalYears: 0 }}
         handleClose={() => {}}
         setIconCallback={() => {}}
-      />,
+      />
     );
     // Initially, autoCalculate is true, so 'Year Started' is shown
     expect(getByLabelText("Year Started")).toBeInTheDocument();
@@ -159,7 +168,11 @@ describe("SkillItemEdit", () => {
   it("updates fields and handles save", async () => {
     const handleCloseMock = jest.fn();
     const { container, getByLabelText, getByText } = render(
-      <SkillItemEdit skill={mockSkill} handleClose={handleCloseMock} setIconCallback={() => {}} />, // autoCalculate false, so 'Total Years' is shown
+      <SkillItemEdit
+        skill={mockSkill}
+        handleClose={handleCloseMock}
+        setIconCallback={() => {}}
+      /> // autoCalculate false, so 'Total Years' is shown
     );
     expect(container).toMatchSnapshot();
 
@@ -168,7 +181,9 @@ describe("SkillItemEdit", () => {
       fireEvent.change(totalYearsInput, { target: { value: "3" } });
     });
 
-    fireEvent.click(getByText("Click to describe your experience with this skill..."));
+    fireEvent.click(
+      getByText("Click to describe your experience with this skill...")
+    );
     fireEvent.click(getByText("Save Changes"));
 
     await waitFor(() => {
@@ -189,7 +204,11 @@ describe("SkillItemEdit", () => {
 
   it("handles delete", async () => {
     const { container, getByText } = render(
-      <SkillItemEdit skill={mockSkill} handleClose={() => {}} setIconCallback={() => {}} />,
+      <SkillItemEdit
+        skill={mockSkill}
+        handleClose={() => {}}
+        setIconCallback={() => {}}
+      />
     );
     expect(container).toMatchSnapshot();
 
@@ -211,7 +230,11 @@ describe("SkillItemEdit", () => {
   it("handles save and close", async () => {
     const handleCloseMock = jest.fn();
     const { container, getByText } = render(
-      <SkillItemEdit skill={mockSkill} handleClose={handleCloseMock} setIconCallback={() => {}} />,
+      <SkillItemEdit
+        skill={mockSkill}
+        handleClose={handleCloseMock}
+        setIconCallback={() => {}}
+      />
     );
     expect(container).toMatchSnapshot();
 

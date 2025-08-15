@@ -1,5 +1,4 @@
 import OpenAI from "openai";
-
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { isFeatureEnabledForUser } from "@/lib/featureFlags";
 import { prisma } from "@/lib/prisma";
@@ -12,7 +11,7 @@ export const getCompaniesAi = async (
   }: {
     userId: string;
     jobDescription: string;
-  },
+  }
 ) => {
   await verifySessionOwnership(userId);
 

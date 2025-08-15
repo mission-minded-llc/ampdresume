@@ -1,5 +1,5 @@
-import { TextField } from "@mui/material";
 import { memo, useState } from "react";
+import { TextField } from "@mui/material";
 
 export const EducationField = memo(
   ({
@@ -33,7 +33,7 @@ export const EducationField = memo(
         sx={{ mb: 1 }}
       />
     );
-  },
+  }
 );
 
 EducationField.displayName = "EducationField";

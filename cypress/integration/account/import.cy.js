@@ -31,7 +31,9 @@ describe("Import Section", () => {
     cy.wait(1000);
 
     // Upload a PDF file
-    cy.get('input[type="file"]').selectFile("cypress/fixtures/test-resume-1.pdf");
+    cy.get('input[type="file"]').selectFile(
+      "cypress/fixtures/test-resume-1.pdf"
+    );
 
     // Wait for the intercepted request to complete, with a 10 second timeout
     cy.wait("@getParsedResumeAi", { timeout: 10000 });
@@ -46,7 +48,10 @@ describe("Import Section", () => {
 
     const user = getParsedResumeAiResponse.data.parsedResumeAi.user;
     cy.get('input[name="name"]').should("have.value", user.name);
-    cy.get('input[name="display-email"]').should("have.value", user.displayEmail);
+    cy.get('input[name="display-email"]').should(
+      "have.value",
+      user.displayEmail
+    );
     cy.get('input[name="location"]').should("have.value", user.location);
     cy.get('input[name="title"]').should("have.value", user.title);
 

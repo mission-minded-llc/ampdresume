@@ -1,14 +1,12 @@
-import { Company } from "@ampdresume/theme";
-import { Box, Button, Dialog, DialogContent } from "@mui/material";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Company } from "@/types";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-
+import { Box, Button, Dialog, DialogContent } from "@mui/material";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { addPosition } from "@/graphql/addPosition";
 import { getPositions } from "@/graphql/getPositions";
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
-
 import { PositionForm } from "./PositionForm";
 import { PositionItem } from "./PositionItem";
 
@@ -83,17 +81,29 @@ export const PositionsList = ({ company }: { company: Company }) => {
       {expanded === false ? (
         <>
           <Box sx={{ mt: 4, mb: 2, display: "flex", justifyContent: "center" }}>
-            <Button variant="outlined" color="secondary" onClick={() => setIsOpen(true)}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => setIsOpen(true)}
+            >
               Add New Position
             </Button>
           </Box>
 
-          <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
+          <Dialog
+            open={isOpen}
+            onClose={() => setIsOpen(false)}
+            maxWidth="md"
+            fullWidth
+          >
             <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
               Add Position
             </CustomDialogTitle>
             <DialogContent>
-              <PositionForm handler={handleAddPosition} onCancel={() => setIsOpen(false)} />
+              <PositionForm
+                handler={handleAddPosition}
+                onCancel={() => setIsOpen(false)}
+              />
             </DialogContent>
           </Dialog>
         </>

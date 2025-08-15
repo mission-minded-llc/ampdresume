@@ -1,14 +1,17 @@
 "use client";
 
-import { Box, Typography, Container } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import * as Sentry from "@sentry/nextjs";
-import Link from "next/link";
 import { useEffect } from "react";
-
+import Link from "next/link";
+import { Box, Container, Typography } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import * as Sentry from "@sentry/nextjs";
 import { ThemeAwareLogo } from "./components/ThemeAwareLogo";
 
-export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
+export default function GlobalError({
+  error,
+}: {
+  error: Error & { digest?: string };
+}) {
   useEffect(() => {
     Sentry.captureException(error);
   }, [error]);
@@ -38,15 +41,18 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
           >
             <Box sx={{ textAlign: "center", mt: 8 }}>
               <ThemeAwareLogo />
-              <Typography variant="h2" sx={{ fontWeight: 700, mb: 2, color: "white" }}>
+              <Typography
+                variant="h2"
+                sx={{ fontWeight: 700, mb: 2, color: "white" }}
+              >
                 Yikes.
               </Typography>
               <Typography variant="h5" sx={{ mb: 2, color: "white" }}>
                 Something broke. Sorry about that.
               </Typography>
               <Typography variant="body1" sx={{ mb: 4, color: "white" }}>
-                We have been notified. Please try again later. If the problem persists, please
-                message{" "}
+                We have been notified. Please try again later. If the problem
+                persists, please message{" "}
                 <a
                   href="mailto:contact@ampdresume.com"
                   style={{ color: "orange", textDecoration: "none" }}

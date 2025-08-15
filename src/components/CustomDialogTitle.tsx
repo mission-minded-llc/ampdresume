@@ -1,7 +1,6 @@
+import React from "react";
 import { DialogTitle as MuiDialogTitle } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import React from "react";
-
 import { CloseButton } from "./CloseButton";
 
 const StyledDialogTitle = styled(MuiDialogTitle)(() => ({

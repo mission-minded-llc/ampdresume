@@ -18,7 +18,11 @@ export enum RichTextAction {
 export const RICH_TEXT_OPTIONS = [
   { id: RichTextAction.Bold, icon: "gridicons:bold", label: "Bold" },
   { id: RichTextAction.Italics, icon: "gridicons:italic", label: "Italics" },
-  { id: RichTextAction.Underline, icon: "gridicons:underline", label: "Underline" },
+  {
+    id: RichTextAction.Underline,
+    icon: "gridicons:underline",
+    label: "Underline",
+  },
   { id: RichTextAction.Divider },
   {
     id: RichTextAction.Superscript,

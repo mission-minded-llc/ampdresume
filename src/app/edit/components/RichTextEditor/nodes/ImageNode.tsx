@@ -1,8 +1,8 @@
 import {
+  DecoratorNode,
   DOMConversionMap,
   DOMConversionOutput,
   DOMExportOutput,
-  DecoratorNode,
   NodeKey,
   SerializedLexicalNode,
 } from "lexical";
@@ -40,7 +40,14 @@ export class ImageNode extends DecoratorNode<React.ReactElement> {
   __maxWidth: number;
   __height: "inherit" | number;
 
-  constructor({ src, altText, width, maxWidth, height, key }: ImageNodeData & { key?: NodeKey }) {
+  constructor({
+    src,
+    altText,
+    width,
+    maxWidth,
+    height,
+    key,
+  }: ImageNodeData & { key?: NodeKey }) {
     super(key);
     this.__src = src;
     this.__altText = altText;
@@ -64,8 +71,14 @@ export class ImageNode extends DecoratorNode<React.ReactElement> {
   }
 
   decorate(): React.ReactElement {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src={this.__src} alt={this.__altText} style={{ width: "100%", height: "auto" }} />;
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={this.__src}
+        alt={this.__altText}
+        style={{ width: "100%", height: "auto" }}
+      />
+    );
   }
 
   createDOM(): HTMLElement {
@@ -91,7 +104,9 @@ export class ImageNode extends DecoratorNode<React.ReactElement> {
     };
   }
 
-  static importJSON(serializedNode: SerializedLexicalNode & ImageNodeData): ImageNode {
+  static importJSON(
+    serializedNode: SerializedLexicalNode & ImageNodeData
+  ): ImageNode {
     const { src, altText, width, maxWidth, height } = serializedNode;
     return $createImageNode({
       src,
@@ -119,7 +134,9 @@ export class ImageNode extends DecoratorNode<React.ReactElement> {
   }
 }
 
-export const convertImageElement = (domNode: HTMLElement): DOMConversionOutput | null => {
+export const convertImageElement = (
+  domNode: HTMLElement
+): DOMConversionOutput | null => {
   if (domNode instanceof HTMLImageElement) {
     const { src, alt, width, height } = domNode;
     const node = $createImageNode({

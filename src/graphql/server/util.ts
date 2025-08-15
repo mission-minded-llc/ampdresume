@@ -1,6 +1,5 @@
 import { User } from "@prisma/client";
 import { getServerSession } from "next-auth";
-
 import { authOptions } from "@/lib/auth";
 import { GraphQLContext } from "@/types/graphql";
 
@@ -25,7 +24,9 @@ export const verifySessionOwnership = async (userId: string) => {
 
   // Session user ID does not match the user ID being verified.
   if (session.user.id !== userId) {
-    throw new Error("Unauthorized: Session user ID does not match the user ID being verified");
+    throw new Error(
+      "Unauthorized: Session user ID does not match the user ID being verified"
+    );
   }
 
   return true;
@@ -58,7 +59,7 @@ type FilteredUserData = {
  */
 export const filterUserData = (
   user: User | null,
-  context: GraphQLContext,
+  context: GraphQLContext
 ): User | FilteredUserData | null => {
   if (!user) return null;
 

@@ -153,7 +153,9 @@ describe("Experience Section", () => {
     const companyName = "Acme Corp";
 
     cy.get("h3").contains(companyName).click();
-    cy.get(".Mui-expanded button").contains("Delete Company").should("be.disabled");
+    cy.get(".Mui-expanded button")
+      .contains("Delete Company")
+      .should("be.disabled");
   });
 
   it("should add a project to the position", () => {
@@ -179,7 +181,9 @@ describe("Experience Section", () => {
 
     cy.get("h3").contains(companyName).click();
     cy.get("h3").contains(positionTitle).click();
-    cy.get(".Mui-expanded button").contains("Delete Position").should("be.disabled");
+    cy.get(".Mui-expanded button")
+      .contains("Delete Position")
+      .should("be.disabled");
   });
 
   it("should delete the project", () => {

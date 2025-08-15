@@ -1,12 +1,16 @@
-import { Company } from "@ampdresume/theme";
-import { Box, Button, FormControl, FormHelperText, TextField } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
+import { Company } from "@/types";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
-
+import {
+  Box,
+  Button,
+  FormControl,
+  FormHelperText,
+  TextField,
+} from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 import { CompanyGeneric } from "@/graphql/getExperience";
 import { formatLongDate, formatShortDate, timestampToDate } from "@/lib/format";
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 
 export const CompanyForm = ({
@@ -27,12 +31,12 @@ export const CompanyForm = ({
   const [description, setDescription] = useState(company?.description || "");
 
   const [startDate, setStartDate] = useState<Dayjs | null>(
-    company?.startDate ? dayjs(timestampToDate(company.startDate)) : null,
+    company?.startDate ? dayjs(timestampToDate(company.startDate)) : null
   );
   const [startDateValid, setStartDateValid] = useState(true);
 
   const [endDate, setEndDate] = useState<Dayjs | null>(
-    company?.endDate ? dayjs(timestampToDate(company.endDate)) : null,
+    company?.endDate ? dayjs(timestampToDate(company.endDate)) : null
   );
 
   const saveHandler = () => {
@@ -80,7 +84,9 @@ export const CompanyForm = ({
             }}
             required
           />
-          {!companyNameValid && <FormHelperText>Company name is required.</FormHelperText>}
+          {!companyNameValid && (
+            <FormHelperText>Company name is required.</FormHelperText>
+          )}
         </FormControl>
         <TextField
           margin="dense"
@@ -115,7 +121,9 @@ export const CompanyForm = ({
             name="dateStarted"
           />
           <FormHelperText>
-            {startDateValid ? "Start date is required." : "Please select a valid date."}
+            {startDateValid
+              ? "Start date is required."
+              : "Please select a valid date."}
           </FormHelperText>
         </FormControl>
         <FormControl>
@@ -160,7 +168,9 @@ export const CompanyForm = ({
                 : ""
             }
             onConfirmDelete={() => deleteHandler(company)}
-            disabled={company?.positionCount ? company.positionCount > 0 : false}
+            disabled={
+              company?.positionCount ? company.positionCount > 0 : false
+            }
           />
         )}
         {onCancel && (
@@ -168,7 +178,12 @@ export const CompanyForm = ({
             Cancel
           </Button>
         )}
-        <Button variant="outlined" color="primary" onClick={saveHandler} disabled={!isChanged}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={saveHandler}
+          disabled={!isChanged}
+        >
           Save Company
         </Button>
       </Box>

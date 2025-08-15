@@ -1,12 +1,13 @@
-import { Company } from "@ampdresume/theme";
+import { Company } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 export type CompanyGeneric = Omit<Company, "id" | "userId">;
 
-export const getExperience = async (userId: string | undefined): Promise<Company[] | undefined> => {
+export const getExperience = async (
+  userId: string | undefined
+): Promise<Company[] | undefined> => {
   if (!userId) return;
 
   const client = getApolloClient();
@@ -15,7 +16,10 @@ export const getExperience = async (userId: string | undefined): Promise<Company
     .query<{ experience: Company[] }>({
       query: gql`
         query getExperience($userId: ID!) {
-          experience(userId: $userId, sort: [{ field: "endDate", direction: DESC }]) {
+          experience(
+            userId: $userId
+            sort: [{ field: "endDate", direction: DESC }]
+          ) {
             id
             name
             location

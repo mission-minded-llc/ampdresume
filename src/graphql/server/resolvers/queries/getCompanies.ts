@@ -2,7 +2,13 @@ import { prisma } from "@/lib/prisma";
 
 export const getCompanies = async (
   _: string,
-  { userId, sort }: { userId: string; sort: Array<{ field: string; direction: "ASC" | "DESC" }> },
+  {
+    userId,
+    sort,
+  }: {
+    userId: string;
+    sort: Array<{ field: string; direction: "ASC" | "DESC" }>;
+  }
 ) => {
   const orderBy =
     sort?.map(({ field, direction }) => ({

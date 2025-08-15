@@ -1,18 +1,21 @@
-import { Position } from "@ampdresume/theme";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Divider } from "@mui/material";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Position } from "@/types";
 import { useSession } from "next-auth/react";
-import React, { useRef } from "react";
-
+import { useRef } from "react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Divider,
+} from "@mui/material";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deletePosition } from "@/graphql/deletePosition";
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { getProjects } from "@/graphql/getProjects";
 import { updatePosition } from "@/graphql/updatePosition";
 import { formatLongDate } from "@/lib/format";
-
 import { AccordionSummaryContent } from "../components/AccordionSummaryContent";
-
 import { PositionForm } from "./PositionForm";
 import { ProjectsList } from "./ProjectsList";
 
@@ -38,7 +41,10 @@ export const PositionItem = ({
     setExpanded(isExpanding ? position.id : false);
 
     if (isExpanding) {
-      positionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      positionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }
   };
 
@@ -124,7 +130,12 @@ export const PositionItem = ({
         id="panel1a-header"
         onClick={handleExpandClick}
       >
-        <Box sx={{ display: expanded === position.id ? "none" : "flex", width: "90%" }}>
+        <Box
+          sx={{
+            display: expanded === position.id ? "none" : "flex",
+            width: "90%",
+          }}
+        >
           <AccordionSummaryContent
             primary={position.title}
             dateRange={`${formatLongDate(position.startDate)} to ${position.endDate ? formatLongDate(position.endDate) : "present"}`}

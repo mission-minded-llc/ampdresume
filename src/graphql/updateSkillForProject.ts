@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 export const updateSkillForProject = async ({
@@ -17,8 +16,16 @@ export const updateSkillForProject = async ({
   await client
     .mutate({
       mutation: gql`
-        mutation updateSkillForProject($id: ID!, $userId: ID!, $description: String) {
-          updateSkillForProject(id: $id, userId: $userId, description: $description) {
+        mutation updateSkillForProject(
+          $id: ID!
+          $userId: ID!
+          $description: String
+        ) {
+          updateSkillForProject(
+            id: $id
+            userId: $userId
+            description: $description
+          ) {
             id
           }
         }

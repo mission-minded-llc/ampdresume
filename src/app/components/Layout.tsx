@@ -1,14 +1,13 @@
 "use client";
 
-import { Box, Container, ThemeProvider } from "@mui/material";
-import CssBaseline from "@mui/material/CssBaseline";
-import { createTheme } from "@mui/material/styles";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { SessionProvider } from "next-auth/react";
 import React, { useContext } from "react";
-
+import { Box, Container, ThemeProvider } from "@mui/material";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme } from "@mui/material/styles";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { TanstackQueryProvider } from "./TanstackContext";
@@ -48,7 +47,13 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         <TanstackQueryProvider>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <ThemeProvider theme={theme}>
-              <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  minHeight: "100vh",
+                }}
+              >
                 <Header />
                 <Container
                   sx={(theme) => ({

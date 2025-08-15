@@ -2,10 +2,10 @@
 
 // Use Prisma to seed data from ./skills.csv into the Skills table.
 
-import { prisma } from "@/lib/prisma";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { prisma } from "@/lib/prisma";
 import { logTitle } from "./helpers/util";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -46,7 +46,10 @@ export async function seedSkills() {
     });
 
     if (existingSkill) {
-      if (existingSkill.name === skill.name && existingSkill.icon === skill.icon) {
+      if (
+        existingSkill.name === skill.name &&
+        existingSkill.icon === skill.icon
+      ) {
         skillsUnchangedCount += 1;
       } else {
         const updatedSkill = await prisma.skill.update({
@@ -55,7 +58,9 @@ export async function seedSkills() {
           },
           data: skill,
         });
-        console.log(`Updated skill ${updatedSkill.name} with id: ${updatedSkill.id}`);
+        console.log(
+          `Updated skill ${updatedSkill.name} with id: ${updatedSkill.id}`
+        );
         skillsUpdated.push(updatedSkill.name);
       }
 
@@ -71,10 +76,12 @@ export async function seedSkills() {
   console.log(`Skills unchanged: ${skillsUnchangedCount}`);
 
   console.log(`Skills updated: ${skillsUpdated.length}`);
-  if (skillsUpdated.length > 0) console.log(`Skills updated: ${skillsUpdated.join(", ")}`);
+  if (skillsUpdated.length > 0)
+    console.log(`Skills updated: ${skillsUpdated.join(", ")}`);
 
   console.log(`Skills created: ${skillsCreated.length}`);
-  if (skillsCreated.length > 0) console.log(`Skills created: ${skillsCreated.join(", ")}`);
+  if (skillsCreated.length > 0)
+    console.log(`Skills created: ${skillsCreated.join(", ")}`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

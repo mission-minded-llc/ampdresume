@@ -30,5 +30,7 @@ if (process?.env?.NEXT_PUBLIC_SENTRY_DSN) {
     debug: false,
   });
 } else {
-  console.log("NEXT_PUBLIC_SENTRY_DSN is not set, skipping Sentry initialization for client");
+  console.log(
+    "NEXT_PUBLIC_SENTRY_DSN is not set, skipping Sentry initialization for client"
+  );
 }

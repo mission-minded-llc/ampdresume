@@ -1,11 +1,10 @@
-import { SkillForUser } from "@ampdresume/theme";
-import { Icon } from "@iconify/react";
+import { SkillForUser } from "@/types";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Box, Dialog, DialogContent } from "@mui/material";
 import Button from "@mui/material/Button";
-import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
-import React, { useState } from "react";
-
+import { Icon } from "@iconify/react";
 import { SkillItemEdit } from "@/app/edit/skills/SkillItemEdit";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 
@@ -15,7 +14,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [icon, setIcon] = useState<string | null | undefined>(
-    skill?.icon || skill?.skill?.icon || null,
+    skill?.icon || skill?.skill?.icon || null
   );
 
   const userCanEdit =
@@ -29,7 +28,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
   const SkillIcon = () => (icon ? <Icon icon={icon} /> : null);
 
   return (
-    <React.Fragment>
+    <>
       <Button
         disabled={buttonDisabled}
         variant="outlined"
@@ -47,14 +46,22 @@ export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
           },
           textTransform: "none",
           gap: "8px",
-          borderColor: userCanEdit && skill?.description ? "lawngreen" : theme.palette.primary.dark,
+          borderColor:
+            userCanEdit && skill?.description
+              ? "lawngreen"
+              : theme.palette.primary.dark,
         })}
       >
         <SkillIcon />
         {skill.skill.name}
       </Button>
 
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)} fullWidth maxWidth="md">
+      <Dialog
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        fullWidth
+        maxWidth="md"
+      >
         <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
           <Box sx={{ display: "flex", alignItems: "center", gap: "1em" }}>
             <SkillIcon />
@@ -69,6 +76,6 @@ export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
           />
         </DialogContent>
       </Dialog>
-    </React.Fragment>
+    </>
   );
 };

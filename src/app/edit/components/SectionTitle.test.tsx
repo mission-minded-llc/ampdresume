@@ -1,13 +1,13 @@
 import "@testing-library/jest-dom";
-
-import { render } from "@testing-library/react";
 import React from "react";
-
+import { render } from "@testing-library/react";
 import { SectionTitle } from "./SectionTitle";
 
 describe("SectionTitle", () => {
   it("renders correctly with the provided title", () => {
-    const { getByText, container } = render(<SectionTitle title="Test Title" />);
+    const { getByText, container } = render(
+      <SectionTitle title="Test Title" />
+    );
     expect(container).toMatchSnapshot();
 
     expect(getByText("Test Title")).toBeInTheDocument();

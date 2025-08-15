@@ -1,7 +1,6 @@
-import { SkillForUser } from "@ampdresume/theme";
+import { SkillForUser } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 /**
@@ -11,7 +10,7 @@ import { getApolloClient } from "@/lib/apolloClient";
  * @returns {SkillForUser[]} all skills for the user, including the parent skill.
  */
 export const getSkillsForUser = async (
-  userId: string | undefined,
+  userId: string | undefined
 ): Promise<SkillForUser[] | undefined> => {
   if (!userId) return;
 

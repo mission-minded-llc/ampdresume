@@ -1,36 +1,33 @@
-import { Project } from "@ampdresume/theme";
-import { Icon } from "@iconify/react";
+import { Project } from "@/types";
+import { useSession } from "next-auth/react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
   Button,
   Dialog,
   DialogContent,
   FormControl,
   IconButton,
-  Typography,
   InputLabel,
   MenuItem,
   Select,
   TextField,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
+  Typography,
 } from "@mui/material";
+import { Icon } from "@iconify/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { addSkillForProject } from "@/graphql/addSkillForProject";
 import { deleteProject } from "@/graphql/deleteProject";
 import { getSkillsForProject } from "@/graphql/getSkillsForProject";
 import { updateProject } from "@/graphql/updateProject";
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
-
 import { EditExperienceContext } from "./EditExperience";
 import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 
@@ -88,7 +85,9 @@ export const ProjectItem = ({
       });
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["skillsForProject", project.id] });
+      await queryClient.invalidateQueries({
+        queryKey: ["skillsForProject", project.id],
+      });
       setSelectedSkillId("");
     },
   });
@@ -112,7 +111,8 @@ export const ProjectItem = ({
         description,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projects", positionId] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["projects", positionId] }),
   });
 
   const deleteProjectMutation = useMutation({
@@ -123,7 +123,8 @@ export const ProjectItem = ({
         userId: session.user.id,
       });
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projects", positionId] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["projects", positionId] }),
   });
 
   // Memoize the filtered and sorted available skills
@@ -132,11 +133,14 @@ export const ProjectItem = ({
       ? skillsForUser?.filter(
           (skillForUser) =>
             !skillsForProject?.find(
-              (skillForProject) => skillForProject.skillForUser.id === skillForUser.id,
-            ),
+              (skillForProject) =>
+                skillForProject.skillForUser.id === skillForUser.id
+            )
         )
       : [];
-    return filteredSkills.sort((a, b) => a.skill.name.localeCompare(b.skill.name));
+    return filteredSkills.sort((a, b) =>
+      a.skill.name.localeCompare(b.skill.name)
+    );
   }, [skillsForUser, skillsForProject]);
 
   const handleSave = () => {
@@ -155,9 +159,12 @@ export const ProjectItem = ({
     addSkillForProjectMutation.mutate({ skillForUserId });
   };
 
-  if (isPendingSkillsForProject) return <LoadingOverlay message="Loading skills..." />;
+  if (isPendingSkillsForProject)
+    return <LoadingOverlay message="Loading skills..." />;
   if (errorSkillsForProject)
-    return <Box>Error loading project skills: {errorSkillsForProject.message}</Box>;
+    return (
+      <Box>Error loading project skills: {errorSkillsForProject.message}</Box>
+    );
 
   return (
     <>
@@ -223,8 +230,15 @@ export const ProjectItem = ({
         </Box>
       </Box>
 
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth="md" fullWidth>
-        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>Edit Project</CustomDialogTitle>
+      <Dialog
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        maxWidth="md"
+        fullWidth
+      >
+        <CustomDialogTitle closeHandler={() => setIsOpen(false)}>
+          Edit Project
+        </CustomDialogTitle>
         <DialogContent sx={{ padding: { xs: 1, sm: 3 } }}>
           <Box sx={{ mt: 2, mb: 4 }}>
             <TextField
@@ -241,9 +255,17 @@ export const ProjectItem = ({
               }}
             />
           </Box>
-          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 2 }}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+              gap: 2,
+            }}
+          >
             <FormControl fullWidth>
-              <InputLabel sx={{ fontSize: "1rem" }}>Add Your Skills to Project</InputLabel>
+              <InputLabel sx={{ fontSize: "1rem" }}>
+                Add Your Skills to Project
+              </InputLabel>
               <Select
                 value={selectedSkillId}
                 onChange={(e) => {
@@ -257,11 +279,22 @@ export const ProjectItem = ({
               >
                 {memoizedAvailableSkills.map((skillForUser) => (
                   <MenuItem key={skillForUser.id} value={skillForUser.id}>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1, padding: 1 }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 1,
+                        padding: 1,
+                      }}
+                    >
                       {skillForUser?.icon ? (
                         <Icon icon={skillForUser.icon} width={24} height={24} />
                       ) : skillForUser?.skill?.icon ? (
-                        <Icon icon={skillForUser.skill.icon} width={24} height={24} />
+                        <Icon
+                          icon={skillForUser.skill.icon}
+                          width={24}
+                          height={24}
+                        />
                       ) : null}
                       {skillForUser.skill.name}
                     </Box>
@@ -306,7 +339,9 @@ export const ProjectItem = ({
                   </Typography>
                 )}
               </AccordionSummary>
-              <AccordionDetails sx={{ padding: { xs: 0, sm: 2 }, border: "none" }}>
+              <AccordionDetails
+                sx={{ padding: { xs: 0, sm: 2 }, border: "none" }}
+              >
                 <RichTextEditor
                   name="skill-description"
                   editorStateRef={editorStateRef}

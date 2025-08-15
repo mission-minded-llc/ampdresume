@@ -1,17 +1,17 @@
 import "@testing-library/jest-dom";
-
-import { SkillForUser, groupSkillsForUserByYearExperience } from "@ampdresume/theme";
+import { SkillForUser } from "@/types";
+import { groupSkillsForUserByYearExperience } from "@/util/structure";
 import { render } from "@testing-library/react";
-import React from "react";
-
 import { SkillsExperience } from "./SkillsExperience";
 
-jest.mock("@ampdresume/theme", () => ({
+jest.mock("@/util/structure", () => ({
   groupSkillsForUserByYearExperience: jest.fn(),
 }));
 
 jest.mock("./SkillItem", () => ({
-  SkillItem: ({ skill }: { skill: SkillForUser }) => <div>{skill.skill.name}</div>,
+  SkillItem: ({ skill }: { skill: SkillForUser }) => (
+    <div>{skill.skill.name}</div>
+  ),
 }));
 
 describe("SkillsExperience", () => {
@@ -48,7 +48,9 @@ describe("SkillsExperience", () => {
       ["4", [mockSkills[1]]],
     ]);
 
-    const { container, getByText } = render(<SkillsExperience skills={mockSkills} />);
+    const { container, getByText } = render(
+      <SkillsExperience skills={mockSkills} />
+    );
 
     expect(getByText("6 years:")).toBeInTheDocument();
     expect(getByText("JavaScript")).toBeInTheDocument();

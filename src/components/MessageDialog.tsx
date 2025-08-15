@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Button,
   Dialog,
@@ -6,7 +7,6 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import React from "react";
 
 export const MessageDialog = ({
   open = false,
@@ -39,7 +39,9 @@ export const MessageDialog = ({
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">{message}</DialogContentText>
+        <DialogContentText id="alert-dialog-description">
+          {message}
+        </DialogContentText>
       </DialogContent>
       <DialogActions>
         {variant === "confirm" && (
