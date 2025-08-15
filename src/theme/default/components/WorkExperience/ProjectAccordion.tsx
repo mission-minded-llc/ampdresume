@@ -69,7 +69,7 @@ export const ProjectAccordion = ({ project }: { project: Project }) => {
           backgroundColor: theme.palette.primary.light,
           padding: "1rem 2rem",
           mt: 0,
-          "@media screen and (max-width: $breakpoint_mobile)": {
+          [theme.breakpoints.down("sm")]: {
             padding: "1rem !important",
           },
           textAlign: "left",

@@ -11,10 +11,8 @@ export const ResumeTitle = ({ children }: { children: React.ReactNode }) => (
       borderTop: "1px solid gray",
       borderBottom: "1px solid gray",
       textAlign: "center",
-      "@media screen and (max-width: $breakpoint_mobile)": {
-        textAlign: "left",
-      },
       [theme.breakpoints.down("sm")]: {
+        textAlign: "left",
         fontSize: "1.5rem",
         margin: "20px 0 10px",
         padding: "10px 0",
