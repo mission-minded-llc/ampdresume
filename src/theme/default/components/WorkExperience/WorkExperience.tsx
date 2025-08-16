@@ -6,6 +6,7 @@ import { formatLongDate } from "@/lib/format";
 import { ResumeTitle } from "@/theme/components/ResumeTitle/ResumeTitle";
 import { Company } from "@/types";
 import { PositionsList } from "./PositionsList";
+import { secureHtmlParserOptions } from "@/lib/secureHtmlParser";
 
 export const WorkExperience = ({ companies }: { companies: Company[] }) => (
   <Box component="section">
@@ -62,7 +63,7 @@ export const WorkExperience = ({ companies }: { companies: Company[] }) => (
                   fontStyle: "italic",
                 }}
               >
-                {parse(company.description)}
+                {parse(company.description, secureHtmlParserOptions)}
               </Typography>
             )}
           </Typography>

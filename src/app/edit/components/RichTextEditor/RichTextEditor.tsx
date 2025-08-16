@@ -22,6 +22,7 @@ import { Box } from "@mui/material";
 import { $getRoot, EditorThemeClasses, LexicalEditor } from "lexical";
 import { EMAIL_REGEX } from "@/util/email";
 import { URL_REGEX, validateUrl } from "@/util/url";
+import { sanitizeHtmlForEditor } from "@/lib/secureHtmlParser";
 import { ImageNode } from "./nodes/ImageNode";
 import { YouTubeNode } from "./nodes/YouTubeNode";
 import { ToolbarPlugin } from "./plugins/ToolbarPlugin";
@@ -76,8 +77,10 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
     onError: () => {},
     nodes: [...supportedEditorNodes],
     editorState: (editor: LexicalEditor) => {
+      // Sanitize HTML before parsing to ensure security
+      const sanitizedHtml = sanitizeHtmlForEditor(value);
       const parser = new DOMParser();
-      const dom = parser.parseFromString(value, "text/html");
+      const dom = parser.parseFromString(sanitizedHtml, "text/html");
       const nodes = $generateNodesFromDOM(editor, dom);
       const root = $getRoot();
       root.clear();
