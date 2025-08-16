@@ -35,9 +35,8 @@ describe("Skills", () => {
   });
 
   it("handles empty skills array", () => {
-    render(<Skills skillsForUser={[]} />);
-    expect(screen.getByText("Skills")).toBeInTheDocument();
-    // Should still render the section title but no skills
+    const { container } = render(<Skills skillsForUser={[]} />);
+    expect(container.firstChild).toBeNull();
   });
 
   it("renders skills in maroon color", () => {

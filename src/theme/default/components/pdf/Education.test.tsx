@@ -40,9 +40,8 @@ describe("Education", () => {
   });
 
   it("handles empty education array", () => {
-    render(<Education education={[]} />);
-    expect(screen.getByText("Education")).toBeInTheDocument();
-    // Should still render the section title but no schools
+    const { container } = render(<Education education={[]} />);
+    expect(container.firstChild).toBeNull();
   });
 
   it("handles education entry without school", () => {
@@ -53,8 +52,8 @@ describe("Education", () => {
       },
     ];
 
-    render(<Education education={educationWithoutSchool} />);
-    expect(screen.getByText("Education")).toBeInTheDocument();
+    const { container } = render(<Education education={educationWithoutSchool} />);
+    expect(container.firstChild).toBeNull();
     expect(
       screen.queryByText(new RegExp(educationWithoutSchool[0].degree)),
     ).not.toBeInTheDocument();
