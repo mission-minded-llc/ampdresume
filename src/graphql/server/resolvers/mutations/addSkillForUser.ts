@@ -8,7 +8,12 @@ export const addSkillForUser = async (
     skillId,
     yearStarted,
     totalYears,
-  }: { userId: string; skillId: string; yearStarted: number; totalYears: number },
+  }: {
+    userId: string;
+    skillId: string;
+    yearStarted: number;
+    totalYears: number;
+  },
 ) => {
   await verifySessionOwnership(userId);
 

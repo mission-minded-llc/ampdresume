@@ -1,5 +1,8 @@
 "use client";
 
+import { signOut, useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import BadgeIcon from "@mui/icons-material/Badge";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -8,18 +11,12 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import TocIcon from "@mui/icons-material/Toc";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
-
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MessageDialog } from "@/components/MessageDialog";
 import { deleteUser } from "@/graphql/deleteUser";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-
 import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
 import { UserAssetInput } from "../../components/UserAssetInput";
-
 import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
 import { SocialsForm } from "./SocialsForm";
 
@@ -52,7 +49,11 @@ const AccountForm = ({
     siteDescription,
     siteImage,
   });
-  const [errors, setErrors] = useState<{ name?: string; slug?: string; displayEmail?: string }>({});
+  const [errors, setErrors] = useState<{
+    name?: string;
+    slug?: string;
+    displayEmail?: string;
+  }>({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [showSlugPopup, setShowSlugPopup] = useState(slug.length === 0);

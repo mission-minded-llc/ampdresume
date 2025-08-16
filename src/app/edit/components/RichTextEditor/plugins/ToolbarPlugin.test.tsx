@@ -4,7 +4,6 @@ import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { HeadingNode } from "@lexical/rich-text";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 import { render } from "@testing-library/react";
-
 import { RICH_TEXT_OPTIONS } from "./constants";
 import { ToolbarPlugin } from "./ToolbarPlugin";
 

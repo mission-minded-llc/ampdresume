@@ -7,8 +7,8 @@
  */
 /* eslint-disable no-console */
 
-import { prisma } from "@/lib/prisma";
 import { exit } from "process";
+import { prisma } from "@/lib/prisma";
 
 // This is the test email used for Cypress.
 const email = "test@ampdresume.com";

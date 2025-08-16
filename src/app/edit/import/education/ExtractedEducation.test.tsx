@@ -1,10 +1,8 @@
+import dayjs from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { fireEvent, render, screen } from "@testing-library/react";
-import dayjs from "dayjs";
-
 import { ExtractedDataProvider } from "../ExtractedDataContext";
-
 import { ExtractedEducation } from "./ExtractedEducation";
 
 // Mock the ExtractedDataContext

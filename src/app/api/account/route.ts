@@ -4,11 +4,9 @@
  * - Session-based user updates (not typical GraphQL pattern)
  * - Distinct from resume data management (GraphQL's primary focus)
  */
-
-import * as Sentry from "@sentry/node";
-import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-
+import { NextRequest, NextResponse } from "next/server";
+import * as Sentry from "@sentry/node";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 

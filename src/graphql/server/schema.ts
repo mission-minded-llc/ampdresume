@@ -1,6 +1,5 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import gql from "graphql-tag";
-
 import { mutationDefs } from "./resolvers/mutationDefs";
 import { mutationResolvers } from "./resolvers/mutationResolvers";
 import { queryDefs } from "./resolvers/queryDefs";

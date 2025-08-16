@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 
 import { fileURLToPath } from "url";
-import { getTestPositionIds } from "./helpers/ids";
-import { logTitle } from "./helpers/util";
 import { prisma } from "@/lib/prisma";
 import { randomLoremIpsumDescriptions } from "./helpers/data";
+import { getTestPositionIds } from "./helpers/ids";
+import { logTitle } from "./helpers/util";
 
 export async function seedProjects() {
   logTitle("Seeding Demo Projects");

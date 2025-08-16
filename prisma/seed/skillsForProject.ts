@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
 import { fileURLToPath } from "url";
+import { prisma } from "@/lib/prisma";
 import { getTestProjectIds } from "./helpers/ids";
 import { logTitle } from "./helpers/util";
-import { prisma } from "@/lib/prisma";
 
 export async function seedSkillsForProject() {
   logTitle("Seeding Demo Skills for Projects");

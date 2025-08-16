@@ -1,12 +1,10 @@
-import { Position } from "@ampdresume/theme";
+import { Position } from "@/types";
+import dayjs, { Dayjs } from "dayjs";
+import { useState } from "react";
 import { Box, Button, FormControl, FormHelperText, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
-import dayjs, { Dayjs } from "dayjs";
-import React, { useState } from "react";
-
 import { PositionGeneric } from "@/graphql/getPositionsWithProjects";
 import { formatLongDate, timestampToDate } from "@/lib/format";
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 
 export const PositionForm = ({

@@ -1,6 +1,6 @@
 "use client";
 
-import { SetStateAction, createContext, useEffect, useState } from "react";
+import { createContext, SetStateAction, useEffect, useState } from "react";
 
 export type ThemeAppearance = "dark" | "light";
 
@@ -26,7 +26,9 @@ export const ThemeAppearanceProvider = ({ children }: { children?: React.ReactNo
 
     // Detect the current appearance settings immediately.
     if (mediaQuery.matches) {
-      handleMediaQueryChange({ matches: mediaQuery.matches } as MediaQueryListEvent);
+      handleMediaQueryChange({
+        matches: mediaQuery.matches,
+      } as MediaQueryListEvent);
     }
 
     mediaQuery.addEventListener("change", handleMediaQueryChange);

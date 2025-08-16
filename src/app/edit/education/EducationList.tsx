@@ -1,13 +1,11 @@
-import { Education } from "@ampdresume/theme";
+import { Education } from "@/types";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 import { Box, Button, Dialog, DialogContent } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import React, { useState } from "react";
-
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { addEducation } from "@/graphql/addEducation";
 import { EducationGeneric } from "@/graphql/getEducation";
-
 import { EducationForm } from "./EducationForm";
 import { EducationItem } from "./EducationItem";
 

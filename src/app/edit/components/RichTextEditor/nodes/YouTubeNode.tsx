@@ -1,8 +1,8 @@
 import {
+  DecoratorNode,
   DOMConversionMap,
   DOMConversionOutput,
   DOMExportOutput,
-  DecoratorNode,
   NodeKey,
   SerializedLexicalNode,
 } from "lexical";

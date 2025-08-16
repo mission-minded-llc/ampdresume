@@ -4,5 +4,9 @@
   "editor.codeActionsOnSave": {
     "source.removeUnusedImports": "explicit",
     "source.fixAll.eslint": "explicit"
+  },
+  "prettier.requireConfig": true,
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
   }
 }

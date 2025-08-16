@@ -1,4 +1,6 @@
-import { SkillForUser } from "@ampdresume/theme";
+import { SkillForUser } from "@/types";
+import { useSession } from "next-auth/react";
+import { useEffect, useRef, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   Accordion,
@@ -12,16 +14,12 @@ import {
   Typography,
 } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import React, { useEffect, useRef, useState } from "react";
-
 import { IconSelector } from "@/components/IconSelector";
 import { MuiLink } from "@/components/MuiLink";
 import { Tooltip } from "@/components/Tooltip";
 import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
 import { updateSkillForUser } from "@/graphql/updateSkillForUser";
 import { removeLeadingZero } from "@/lib/format";
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
 
@@ -141,7 +139,9 @@ export const SkillItemEdit = ({
                 target.value = removeLeadingZero(target.value);
               }}
               onChange={(e) => setYearStarted(Number(e.target.value))}
-              slotProps={{ htmlInput: { min: 1900, max: new Date().getFullYear() } }}
+              slotProps={{
+                htmlInput: { min: 1900, max: new Date().getFullYear() },
+              }}
               name="yearStarted"
             />
           ) : (

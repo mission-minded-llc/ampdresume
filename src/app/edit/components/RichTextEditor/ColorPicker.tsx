@@ -1,5 +1,5 @@
-import { Box, ClickAwayListener, IconButton } from "@mui/material";
 import { useState } from "react";
+import { Box, ClickAwayListener, IconButton } from "@mui/material";
 import { SketchPicker } from "react-color";
 
 interface ColorPickerProps {

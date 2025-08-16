@@ -1,14 +1,11 @@
 import "@testing-library/jest-dom";
-
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useSession } from "next-auth/react";
 import React from "react";
-
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { fireEvent, render, waitFor } from "@testing-library/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateEducation } from "@/graphql/updateEducation";
-
 import { EducationItem } from "./EducationItem";
 
 jest.mock("next-auth/react", () => ({
@@ -114,7 +111,9 @@ describe("EducationItem", () => {
     await waitFor(() => expect(getByText("Save Education")).toBeInTheDocument());
 
     // Change a value in the school name.
-    fireEvent.change(getByLabelText("School *"), { target: { value: "New University" } });
+    fireEvent.change(getByLabelText("School *"), {
+      target: { value: "New University" },
+    });
 
     // Expect the Save Education button to be enabled.
     expect(getByText("Save Education")).not.toBeDisabled();

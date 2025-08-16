@@ -1,12 +1,10 @@
-import { Education } from "@ampdresume/theme";
+import { Education } from "@/types";
+import dayjs, { Dayjs } from "dayjs";
+import { useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
-import dayjs, { Dayjs } from "dayjs";
-import React, { useState } from "react";
-
 import { EducationGeneric } from "@/graphql/getEducation";
 import { formatLongDate, timestampToDate } from "@/lib/format";
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 
 export const EducationForm = ({
@@ -42,7 +40,12 @@ export const EducationForm = ({
   return (
     <>
       <Box
-        sx={{ mb: 2, display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 2 }}
+        sx={{
+          mb: 2,
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+          gap: 2,
+        }}
       >
         <TextField
           margin="dense"

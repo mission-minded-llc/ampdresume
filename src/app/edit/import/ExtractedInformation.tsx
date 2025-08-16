@@ -1,13 +1,10 @@
-import { Box, Typography } from "@mui/material";
-import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-
+import { Box, Typography } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { saveExtractedResumeData } from "@/graphql/saveExtractedResumeData";
-
 import { UpdateWithConfirmation } from "../components/UpdateWithConfirmation";
-
 import { ExtractedEducation } from "./education/ExtractedEducation";
 import { ExtractedWorkExperience } from "./experience/ExtractedWorkExperience";
 import { ExtractedDataProvider, useExtractedData } from "./ExtractedDataContext";

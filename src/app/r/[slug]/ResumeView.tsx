@@ -1,14 +1,9 @@
 "use client";
 
-import {
-  Company,
-  Education,
-  SkillForUser,
-  ThemeName,
-  themeDefinitions,
-  Social,
-} from "@ampdresume/theme";
-import { Icon } from "@iconify/react";
+import { Company, Education, SkillForUser, Social, ThemeName } from "@/types";
+import { themeDefinitions } from "@/theme";
+import { Session } from "next-auth";
+import { useContext, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -18,10 +13,8 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
+import { Icon } from "@iconify/react";
 import * as Sentry from "@sentry/react";
-import { Session } from "next-auth";
-import { useContext, useEffect, useState } from "react";
-
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
 import { UserWithTheme } from "@/graphql/getResume";
 import { updateUser } from "@/graphql/updateUser";

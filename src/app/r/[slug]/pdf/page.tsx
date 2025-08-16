@@ -1,10 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-
 import { titleSuffix } from "@/constants";
 import { getResume } from "@/graphql/getResume";
 import { getUser } from "@/graphql/getUser";
-
 import { PDFView } from "./PDFView";
 
 export async function generateMetadata({

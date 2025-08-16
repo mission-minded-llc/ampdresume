@@ -3,8 +3,7 @@ import {
   LexicalComposerContextType,
 } from "@lexical/react/LexicalComposerContext";
 import { renderHook } from "@testing-library/react";
-import { KEY_ENTER_COMMAND, LexicalEditor, createEditor } from "lexical";
-
+import { createEditor, KEY_ENTER_COMMAND, LexicalEditor } from "lexical";
 import { RichTextAction } from "@/app/edit/components/RichTextEditor/plugins/constants";
 import { useKeyBindings } from "@/app/edit/components/RichTextEditor/useKeyBindings";
 
@@ -66,7 +65,11 @@ describe("useKeyBindings", () => {
   it("should call onAction with Redo when Ctrl+Shift+Z is pressed", () => {
     renderHook(() => useKeyBindings({ onAction }), { wrapper });
 
-    const event = new KeyboardEvent("keydown", { key: "Z", ctrlKey: true, shiftKey: true });
+    const event = new KeyboardEvent("keydown", {
+      key: "Z",
+      ctrlKey: true,
+      shiftKey: true,
+    });
     editor.dispatchCommand(KEY_ENTER_COMMAND, event);
 
     expect(onAction).toHaveBeenCalledWith(RichTextAction.Redo);

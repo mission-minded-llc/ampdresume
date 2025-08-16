@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-
 import { MuiLink } from "@/components/MuiLink";
 
 describe("MuiLink", () => {
@@ -20,5 +19,16 @@ describe("MuiLink", () => {
     const linkElement = getByText("Example");
     expect(linkElement).toBeInTheDocument();
     expect(linkElement).toHaveAttribute("target", "_self");
+  });
+
+  it("renders with aria-label attribute", () => {
+    const { getByRole } = render(
+      <MuiLink href="https://example.com" aria-label="Accessible link description">
+        Example
+      </MuiLink>,
+    );
+    const linkElement = getByRole("link", { name: "Accessible link description" });
+    expect(linkElement).toBeInTheDocument();
+    expect(linkElement).toHaveAttribute("aria-label", "Accessible link description");
   });
 });

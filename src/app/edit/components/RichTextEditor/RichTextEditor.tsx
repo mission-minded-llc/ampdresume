@@ -1,7 +1,6 @@
 // Thank you: https://www.youtube.com/watch?v=XI6nufqMSek
 
 import "./editor.css";
-
 import { css } from "@emotion/css";
 import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
 import { AutoLinkNode, LinkNode } from "@lexical/link";
@@ -18,13 +17,12 @@ import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { HeadingNode } from "@lexical/rich-text";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
+import React from "react";
 import { Box } from "@mui/material";
 import { $getRoot, EditorThemeClasses, LexicalEditor } from "lexical";
-import React from "react";
-
 import { EMAIL_REGEX } from "@/util/email";
 import { URL_REGEX, validateUrl } from "@/util/url";
-
+import { sanitizeHtmlForEditor } from "@/lib/secureHtmlParser";
 import { ImageNode } from "./nodes/ImageNode";
 import { YouTubeNode } from "./nodes/YouTubeNode";
 import { ToolbarPlugin } from "./plugins/ToolbarPlugin";
@@ -38,7 +36,11 @@ export const editorTheme: EditorThemeClasses = {
     subscript: css({ verticalAlign: "sub" }),
   },
   table: css({ marginTop: "4px" }),
-  tableCell: css({ border: "1px solid #bbb", paddingLeft: "6px", minWidth: "100px" }),
+  tableCell: css({
+    border: "1px solid #bbb",
+    paddingLeft: "6px",
+    minWidth: "100px",
+  }),
   tableCellHeader: css({}),
   link: "editorLink",
 };
@@ -75,8 +77,10 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
     onError: () => {},
     nodes: [...supportedEditorNodes],
     editorState: (editor: LexicalEditor) => {
+      // Sanitize HTML before parsing to ensure security
+      const sanitizedHtml = sanitizeHtmlForEditor(value);
       const parser = new DOMParser();
-      const dom = parser.parseFromString(value, "text/html");
+      const dom = parser.parseFromString(sanitizedHtml, "text/html");
       const nodes = $generateNodesFromDOM(editor, dom);
       const root = $getRoot();
       root.clear();

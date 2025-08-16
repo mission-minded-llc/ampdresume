@@ -1,8 +1,8 @@
 import {
+  DecoratorNode,
   DOMConversionMap,
   DOMConversionOutput,
   DOMExportOutput,
-  DecoratorNode,
   NodeKey,
   SerializedLexicalNode,
 } from "lexical";
@@ -64,8 +64,10 @@ export class ImageNode extends DecoratorNode<React.ReactElement> {
   }
 
   decorate(): React.ReactElement {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src={this.__src} alt={this.__altText} style={{ width: "100%", height: "auto" }} />;
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img src={this.__src} alt={this.__altText} style={{ width: "100%", height: "auto" }} />
+    );
   }
 
   createDOM(): HTMLElement {

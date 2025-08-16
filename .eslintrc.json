@@ -3,17 +3,6 @@
   "plugins": ["import"],
   "rules": {
     "no-console": "error",
-    "import/order": [
-      "error",
-      {
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
-        "newlines-between": "always",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
-      }
-    ],
     "import/no-unresolved": "error",
     "import/no-duplicates": "error"
   },

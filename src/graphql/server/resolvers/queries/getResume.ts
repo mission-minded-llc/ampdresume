@@ -27,7 +27,9 @@ export const getResume = async (_: string, { slug }: { slug: string }, context: 
           projects: {
             orderBy: { sortIndex: "asc" },
             include: {
-              skillsForProject: { include: { skillForUser: { include: { skill: true } } } },
+              skillsForProject: {
+                include: { skillForUser: { include: { skill: true } } },
+              },
             },
           },
         },

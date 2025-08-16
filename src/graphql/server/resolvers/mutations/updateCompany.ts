@@ -7,6 +7,7 @@ export const updateCompany = async (
     id,
     userId,
     name,
+    description,
     location,
     startDate,
     endDate,
@@ -14,6 +15,7 @@ export const updateCompany = async (
     id: string;
     userId: string;
     name: string;
+    description: string;
     location: string;
     startDate: string;
     endDate: string;
@@ -36,6 +38,7 @@ export const updateCompany = async (
     where: { id },
     data: {
       name,
+      description,
       location,
       startDate: startDateTimestamp,
       endDate: endDateTimestamp,

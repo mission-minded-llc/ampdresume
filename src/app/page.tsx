@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+import Image from "next/image";
 import {
   Box,
   Container,
@@ -7,9 +9,6 @@ import {
   Typography,
   TypographyOwnProps,
 } from "@mui/material";
-import { Metadata } from "next";
-import Image from "next/image";
-
 import { ThemeAwareLogo } from "@/app/components/ThemeAwareLogo";
 import { MuiLink } from "@/components/MuiLink";
 import { getSession } from "@/lib/auth";

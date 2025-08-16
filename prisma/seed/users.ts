@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
 import { fileURLToPath } from "url";
-import { logTitle } from "./helpers/util";
 import { prisma } from "@/lib/prisma";
 import { testUsers } from "./helpers/data";
+import { logTitle } from "./helpers/util";
 
 export async function seedUsers() {
   logTitle("Seeding Demo Users");

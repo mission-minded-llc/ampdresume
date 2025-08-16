@@ -1,11 +1,9 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import React, { useState } from "react";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Box, Button, Dialog, DialogContent, IconButton, TextField } from "@mui/material";
 import { $insertNodes } from "lexical";
-import React, { useState } from "react";
-
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-
 import { $createYouTubeNode } from "../nodes/YouTubeNode";
 
 export default function YoutubePlugin() {
@@ -46,7 +44,15 @@ export default function YoutubePlugin() {
           Embed YouTube Video
         </CustomDialogTitle>
         <DialogContent>
-          <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 2, zIndex: 100 }}>
+          <Box
+            sx={{
+              p: 2,
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+              zIndex: 100,
+            }}
+          >
             <TextField
               value={url}
               onChange={(e) => setURL(e.target.value)}

@@ -2,7 +2,13 @@ import { prisma } from "@/lib/prisma";
 
 export const getEducation = async (
   _: string,
-  { userId, sort }: { userId: string; sort: Array<{ field: string; direction: "ASC" | "DESC" }> },
+  {
+    userId,
+    sort,
+  }: {
+    userId: string;
+    sort: Array<{ field: string; direction: "ASC" | "DESC" }>;
+  },
 ) => {
   // Map the sort array into Prisma-compatible orderBy
   const orderBy =

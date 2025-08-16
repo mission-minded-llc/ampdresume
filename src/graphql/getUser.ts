@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 import { User } from "@prisma/client";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 /**

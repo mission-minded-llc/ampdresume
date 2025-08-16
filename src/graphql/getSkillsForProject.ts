@@ -1,7 +1,6 @@
-import { SkillForProject } from "@ampdresume/theme";
+import { SkillForProject } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 export const getSkillsForProject = async (

@@ -1,7 +1,7 @@
+import React, { useEffect, useRef, useState } from "react";
+import { Box, CircularProgress, Portal, TextField } from "@mui/material";
 import { Icon } from "@iconify/react";
-import { Box, CircularProgress, TextField, Portal } from "@mui/material";
 import * as Sentry from "@sentry/react";
-import React, { useEffect, useState, useRef } from "react";
 
 interface IconSelectorProps {
   setIcon: (icon: string) => void;
@@ -26,7 +26,11 @@ export const IconSelector: React.FC<IconSelectorProps> = ({ setIcon, icon = null
   const [selectedIcon, setSelectedIcon] = useState<string | null>(icon);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number; width: number }>({
+  const [dropdownPos, setDropdownPos] = useState<{
+    top: number;
+    left: number;
+    width: number;
+  }>({
     top: 0,
     left: 0,
     width: 0,
@@ -37,7 +41,11 @@ export const IconSelector: React.FC<IconSelectorProps> = ({ setIcon, icon = null
     function updateDropdownPos() {
       if (inputRef.current) {
         const rect = inputRef.current.getBoundingClientRect();
-        setDropdownPos({ top: rect.bottom, left: rect.left, width: rect.width });
+        setDropdownPos({
+          top: rect.bottom,
+          left: rect.left,
+          width: rect.width,
+        });
       }
     }
     if (query) {

@@ -44,6 +44,7 @@ export const types = gql`
   type Company {
     id: ID!
     name: String!
+    description: String
     location: String
     startDate: String
     endDate: String

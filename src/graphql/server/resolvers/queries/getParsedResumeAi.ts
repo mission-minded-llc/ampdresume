@@ -1,8 +1,6 @@
-import * as Sentry from "@sentry/node";
 import OpenAI from "openai";
-
+import * as Sentry from "@sentry/node";
 import { prisma } from "@/lib/prisma";
-
 import { verifySessionOwnership } from "../../util";
 
 const openai = new OpenAI({

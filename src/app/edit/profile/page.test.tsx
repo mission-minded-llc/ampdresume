@@ -1,13 +1,10 @@
 import "@testing-library/jest-dom";
-
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { render, waitFor } from "@testing-library/react";
-import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-
+import { useRouter } from "next/navigation";
+import { render, waitFor } from "@testing-library/react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-
 import Page from "./page";
 
 jest.mock("next-auth/react", () => ({
@@ -52,10 +49,14 @@ describe("Page", () => {
   });
 
   it("renders correctly for authenticated users", async () => {
-    (useSession as jest.Mock).mockReturnValue({ data: { user: { id: "user-id" } } });
+    (useSession as jest.Mock).mockReturnValue({
+      data: { user: { id: "user-id" } },
+    });
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: [] });
     (useMutation as jest.Mock).mockReturnValue({ mutate: jest.fn() });
-    (useQueryClient as jest.Mock).mockReturnValue({ invalidateQueries: jest.fn() });
+    (useQueryClient as jest.Mock).mockReturnValue({
+      invalidateQueries: jest.fn(),
+    });
     (useRouter as jest.Mock).mockReturnValue({ push: jest.fn() });
 
     (getSession as jest.Mock).mockResolvedValue({

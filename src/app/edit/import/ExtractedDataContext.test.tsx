@@ -1,6 +1,5 @@
-import { act, render, screen } from "@testing-library/react";
 import React from "react";
-
+import { act, render, screen } from "@testing-library/react";
 import { ExtractedDataProvider, useExtractedData } from "./ExtractedDataContext";
 import { ParsedResumeData } from "./types";
 

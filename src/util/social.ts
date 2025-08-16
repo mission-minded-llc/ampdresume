@@ -1,5 +1,4 @@
-import { Social } from "@ampdresume/theme";
-
+import { Social } from "@/types";
 import { SOCIAL_MEDIA_PLATFORMS } from "@/constants";
 
 export const getSocialMediaPlatformByHostname = (hostname: string) => {

@@ -1,18 +1,19 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $getSelectionStyleValueForProperty, $patchStyleText } from "@lexical/selection";
 import { mergeRegister } from "@lexical/utils";
+import { useEffect, useState } from "react";
 import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
 import TypeSpecimenIcon from "@mui/icons-material/TypeSpecimen";
 import { $getSelection, $isRangeSelection, SELECTION_CHANGE_COMMAND } from "lexical";
-import { useEffect, useState } from "react";
-
 import { ColorPicker } from "../ColorPicker";
-
 import { LOW_PRIORIRTY } from "./constants";
 
 export const ColorPlugin = () => {
   const [editor] = useLexicalComposerContext();
-  const [{ color, bgColor }, setColors] = useState({ color: "#000", bgColor: "#fff" });
+  const [{ color, bgColor }, setColors] = useState({
+    color: "#000",
+    bgColor: "#fff",
+  });
 
   const updateToolbar = () => {
     const selection = $getSelection();

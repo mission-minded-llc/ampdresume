@@ -1,36 +1,33 @@
-import { Project } from "@ampdresume/theme";
-import { Icon } from "@iconify/react";
+import { Project } from "@/types";
+import { useSession } from "next-auth/react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
   Button,
   Dialog,
   DialogContent,
   FormControl,
   IconButton,
-  Typography,
   InputLabel,
   MenuItem,
   Select,
   TextField,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
+  Typography,
 } from "@mui/material";
+import { Icon } from "@iconify/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { addSkillForProject } from "@/graphql/addSkillForProject";
 import { deleteProject } from "@/graphql/deleteProject";
 import { getSkillsForProject } from "@/graphql/getSkillsForProject";
 import { updateProject } from "@/graphql/updateProject";
-
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
-
 import { EditExperienceContext } from "./EditExperience";
 import { SkillItemForProjectEdit } from "./SkillItemForProjectEdit";
 
@@ -88,7 +85,9 @@ export const ProjectItem = ({
       });
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["skillsForProject", project.id] });
+      await queryClient.invalidateQueries({
+        queryKey: ["skillsForProject", project.id],
+      });
       setSelectedSkillId("");
     },
   });
@@ -241,7 +240,13 @@ export const ProjectItem = ({
               }}
             />
           </Box>
-          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 2 }}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+              gap: 2,
+            }}
+          >
             <FormControl fullWidth>
               <InputLabel sx={{ fontSize: "1rem" }}>Add Your Skills to Project</InputLabel>
               <Select
@@ -257,7 +262,14 @@ export const ProjectItem = ({
               >
                 {memoizedAvailableSkills.map((skillForUser) => (
                   <MenuItem key={skillForUser.id} value={skillForUser.id}>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1, padding: 1 }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 1,
+                        padding: 1,
+                      }}
+                    >
                       {skillForUser?.icon ? (
                         <Icon icon={skillForUser.icon} width={24} height={24} />
                       ) : skillForUser?.skill?.icon ? (

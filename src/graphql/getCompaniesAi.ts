@@ -1,7 +1,6 @@
-import { Company } from "@ampdresume/theme";
+import { Company } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 export const getCompaniesAi = async (userId: string, jobDescription: string) => {

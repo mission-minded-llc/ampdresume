@@ -1,20 +1,17 @@
 "use client";
 
-import { Company } from "@ampdresume/theme";
-import { Box, Button, Dialog, TextareaAutosize, Typography } from "@mui/material";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Company } from "@/types";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
-
+import { Box, Button, Dialog, TextareaAutosize, Typography } from "@mui/material";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import { Tooltip } from "@/components/Tooltip";
 import { getCompaniesAi } from "@/graphql/getCompaniesAi";
 import { getResume } from "@/graphql/getResume";
-
 import { SectionTitle } from "../components/SectionTitle";
-
 import { AnimatedTextTransition } from "./AnimatedTextTransition";
 
 export const AiAssist = () => {
@@ -170,7 +167,9 @@ export const AiAssist = () => {
         <Button
           variant="outlined"
           color="primary"
-          sx={{ borderColor: activeDisplay === "original" ? "green" : "grey.400" }}
+          sx={{
+            borderColor: activeDisplay === "original" ? "green" : "grey.400",
+          }}
           onClick={() => setActiveDisplay("original")}
           disabled={!companiesOriginalData?.length}
         >
@@ -180,7 +179,10 @@ export const AiAssist = () => {
         <Button
           variant="outlined"
           color="primary"
-          sx={{ ml: 2, borderColor: activeDisplay === "ai" ? "green" : "grey.400" }}
+          sx={{
+            ml: 2,
+            borderColor: activeDisplay === "ai" ? "green" : "grey.400",
+          }}
           onClick={() => setActiveDisplay("ai")}
           disabled={!companiesAiData?.length || companiesAiData === companiesOriginalData}
         >

@@ -36,11 +36,13 @@ export const mutationDefs = gql`
       location: String
       startDate: String!
       endDate: String
+      description: String
     ): Company!
     updateCompany(
       id: ID!
       userId: ID!
       name: String!
+      description: String
       location: String
       startDate: String!
       endDate: String

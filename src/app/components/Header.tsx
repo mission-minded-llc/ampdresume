@@ -1,9 +1,7 @@
 "use client";
 
 import { Box } from "@mui/material";
-
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-
 import { NavPrimary } from "./NavPrimary";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 

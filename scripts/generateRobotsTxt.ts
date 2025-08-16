@@ -8,6 +8,7 @@
  */
 
 import * as fs from "fs";
+import "dotenv/config";
 
 const productionRobotsTxt = `User-agent: *\nAllow: /`;
 const testRobotsTxt = `User-agent: *\nDisallow: /`;

@@ -1,7 +1,6 @@
-import { Project } from "@ampdresume/theme";
+import { Project } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 export const getProjects = async (positionId: string): Promise<Project[] | null> => {

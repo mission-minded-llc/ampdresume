@@ -1,7 +1,6 @@
-import { Company } from "@ampdresume/theme";
+import { Company } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 export type CompanyGeneric = Omit<Company, "id" | "userId">;
@@ -19,6 +18,7 @@ export const getExperience = async (userId: string | undefined): Promise<Company
             id
             name
             location
+            description
             startDate
             endDate
             positions {

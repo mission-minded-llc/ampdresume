@@ -1,10 +1,11 @@
-import { Icon } from "@iconify/react";
 import { $isListNode, ListNode } from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $createHeadingNode, $isHeadingNode, HeadingTagType } from "@lexical/rich-text";
 import { $wrapNodes } from "@lexical/selection";
 import { $getNearestNodeOfType, mergeRegister } from "@lexical/utils";
+import { useEffect, useState } from "react";
 import { Box, Divider, IconButton, MenuItem, Select } from "@mui/material";
+import { Icon } from "@iconify/react";
 import {
   $getSelection,
   $isRangeSelection,
@@ -15,19 +16,15 @@ import {
   FORMAT_TEXT_COMMAND,
   KEY_BACKSPACE_COMMAND,
   LexicalNode,
-  REDO_COMMAND,
   RangeSelection,
+  REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "lexical";
-import { useEffect, useState } from "react";
-
 import { deleteUserAsset } from "@/util/userAsset";
-
 import { ImageNode } from "../nodes/ImageNode";
 import { YouTubeNode } from "../nodes/YouTubeNode";
 import { useKeyBindings } from "../useKeyBindings";
-
 import { ColorPlugin } from "./ColorPlugin";
 import { HEADINGS, LOW_PRIORIRTY, RICH_TEXT_OPTIONS, RichTextAction } from "./constants";
 import { ImagePlugin } from "./ImagePlugin";
@@ -110,7 +107,10 @@ export const ToolbarPlugin = () => {
       editor.registerCommand(
         CAN_UNDO_COMMAND,
         (payload) => {
-          setDisableMap((prev) => ({ ...prev, [RichTextAction.Undo]: !payload }));
+          setDisableMap((prev) => ({
+            ...prev,
+            [RichTextAction.Undo]: !payload,
+          }));
           return false;
         },
         LOW_PRIORIRTY,
@@ -118,7 +118,10 @@ export const ToolbarPlugin = () => {
       editor.registerCommand(
         CAN_REDO_COMMAND,
         (payload) => {
-          setDisableMap((prev) => ({ ...prev, [RichTextAction.Redo]: !payload }));
+          setDisableMap((prev) => ({
+            ...prev,
+            [RichTextAction.Redo]: !payload,
+          }));
           return false;
         },
         LOW_PRIORIRTY,

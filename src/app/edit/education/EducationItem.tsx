@@ -1,17 +1,13 @@
-import { Education } from "@ampdresume/theme";
+import { Education } from "@/types";
+import { useSession } from "next-auth/react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import React from "react";
-
 import { deleteEducation } from "@/graphql/deleteEducation";
 import { EducationGeneric } from "@/graphql/getEducation";
 import { updateEducation } from "@/graphql/updateEducation";
 import { formatLongDate } from "@/lib/format";
-
 import { AccordionSummaryContent } from "../components/AccordionSummaryContent";
-
 import { EducationForm } from "./EducationForm";
 
 export const EducationItem = ({
@@ -96,7 +92,12 @@ export const EducationItem = ({
         })}
         data-testid={`education-accordion-${education.id}`}
       >
-        <div style={{ width: "90%", display: expanded === education.id ? "none" : "flex" }}>
+        <div
+          style={{
+            width: "90%",
+            display: expanded === education.id ? "none" : "flex",
+          }}
+        >
           <AccordionSummaryContent
             primary={education.school}
             secondary={education.degree}

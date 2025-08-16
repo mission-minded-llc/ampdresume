@@ -1,7 +1,6 @@
-import { Company, Education, ThemeName, Social, User, SkillForUser } from "@ampdresume/theme";
+import { Company, Education, SkillForUser, Social, ThemeName, User } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
-
 import { getApolloClient } from "@/lib/apolloClient";
 
 export type UserWithTheme = User & { webThemeName: ThemeName };
@@ -55,6 +54,7 @@ export const getResume = async (slug: string) => {
             companies {
               id
               name
+              description
               location
               startDate
               endDate
