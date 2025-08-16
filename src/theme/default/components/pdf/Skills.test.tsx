@@ -25,11 +25,11 @@ describe("Skills", () => {
     if (!cssSkill) throw new Error("CSS skill not found in sample data");
     const cssYears = currentYear - (cssSkill.yearStarted as number);
 
-    // Check for React's experience
+    // Check for React Redux experience
     expect(screen.getByText(`${reactReduxYears} years:`)).toBeInTheDocument();
     expect(screen.getByText(/React Redux/)).toBeInTheDocument();
 
-    // Check for TypeScript's experience
+    // Check for CSS experience
     expect(screen.getByText(`${cssYears} years:`)).toBeInTheDocument();
     expect(screen.getByText(/CSS/)).toBeInTheDocument();
   });

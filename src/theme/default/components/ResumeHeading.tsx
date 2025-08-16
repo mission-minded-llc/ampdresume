@@ -5,7 +5,11 @@ import { Box, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
 import { MuiLink } from "@/components/MuiLink";
 import { Social, User } from "@/types";
-import { generateSocialUrl, getSocialIcon } from "@/util/social";
+import {
+  generateSocialUrl,
+  getSocialIcon,
+  getSocialMediaPlatformByPlatformName,
+} from "@/util/social";
 
 export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[] }) => {
   const pathname = usePathname();
@@ -75,11 +79,20 @@ export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[]
       >
         <Box sx={{ display: "flex", gap: 2 }}>
           {socials
-            ? socials.map((social) => (
-                <MuiLink href={generateSocialUrl(social)} key={social.id} target="_blank">
-                  <Icon icon={getSocialIcon(social)} width="30" height="30" />
-                </MuiLink>
-              ))
+            ? socials.map((social) => {
+                const platformName = getSocialMediaPlatformByPlatformName(social.platform).name;
+                const ariaLabel = `${platformName} profile for ${user?.name || "user"}`;
+                return (
+                  <MuiLink
+                    href={generateSocialUrl(social)}
+                    key={social.id}
+                    target="_blank"
+                    aria-label={ariaLabel}
+                  >
+                    <Icon icon={getSocialIcon(social)} width="30" height="30" />
+                  </MuiLink>
+                );
+              })
             : null}
         </Box>
         <Typography component="div" sx={{ display: "flex", gap: 2, alignItems: "center" }}>

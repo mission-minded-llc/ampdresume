@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { usePathname } from "next/navigation";
 import { render, screen } from "@testing-library/react";
 import { themeDefaultSampleData } from "@/theme/sampleData";
-import { generateSocialUrl } from "@/util/social";
+import { generateSocialUrl, getSocialMediaPlatformByPlatformName } from "@/util/social";
 import { ResumeHeading } from "./ResumeHeading";
 
 // Mock the usePathname hook
@@ -42,10 +42,14 @@ describe("ResumeHeading", () => {
     // Check if all social links are rendered
     sampleSocials.forEach((social) => {
       const expectedUrl = generateSocialUrl(social);
-      const links = screen.getAllByRole("link", { name: "" });
-      const link = links.find((link) => link.getAttribute("href") === expectedUrl);
+      const platformName = getSocialMediaPlatformByPlatformName(social.platform).name;
+      const expectedAriaLabel = `${platformName} profile for ${sampleUser.name}`;
+
+      const link = screen.getByRole("link", { name: expectedAriaLabel });
       expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute("href", expectedUrl);
       expect(link).toHaveAttribute("target", "_blank");
+      expect(link).toHaveAttribute("aria-label", expectedAriaLabel);
     });
   });
 

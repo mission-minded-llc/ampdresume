@@ -37,9 +37,6 @@ export const SkillsExperience = ({ skills }: { skills: SkillForUser[] }) => {
    *
    */
   skills.forEach((skill) => {
-    // If yearStart isn't defined, use "0" as the object key to indicate
-    // that there's no year. We can filter on this value later to conditionally
-    // display a label.
     const year = skill?.yearStarted;
 
     // The totalYears field allows users to override the value of how many years'
