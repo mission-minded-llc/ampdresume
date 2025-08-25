@@ -12,7 +12,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { themeName } = await params;
 
-  const title = `Theme: ${themeName} ${titleSuffix}`;
+  const title = `Theme: ${themeDefinitions[themeName as ThemeName]?.name} ${titleSuffix}`;
 
   const description =
     themeDefinitions[themeName as ThemeName]?.description ||
