@@ -19,13 +19,13 @@ describe("Theme Page", () => {
     it("should generate correct metadata for a theme", async () => {
       const metadata = await generateMetadata({ params });
 
-      expect(metadata.title).toBe(`Theme: ${themeName} ${titleSuffix}`);
+      expect(metadata.title).toBe(`Theme: ${themeDefinitions[themeName].name} ${titleSuffix}`);
       expect(metadata.description).toBe(themeDefinitions[themeName].description);
       expect(Array.isArray(metadata.authors) && metadata.authors[0]?.name).toBe(
         themeDefinitions.default.authors[0].name,
       );
       expect(metadata.openGraph).toEqual({
-        title: `Theme: ${themeName} ${titleSuffix}`,
+        title: `Theme: ${themeDefinitions[themeName].name} ${titleSuffix}`,
         description: themeDefinitions[themeName].description,
         images: [],
       });

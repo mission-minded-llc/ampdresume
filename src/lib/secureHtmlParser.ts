@@ -60,13 +60,21 @@ export const ALLOWED_ATTRIBUTES = [
   "rowspan",
 ];
 
+// Check if we're in a browser environment
+const isBrowser = typeof window !== "undefined" && typeof document !== "undefined";
+
 /**
  * Secure HTML parsing options for html-react-parser
  * Only allows safe HTML tags and attributes, blocks everything else
  */
 export const secureHtmlParserOptions: HTMLReactParserOptions = {
   replace: (domNode) => {
-    if (domNode instanceof Element) {
+    // Only run in browser environment
+    if (!isBrowser) {
+      return domNode;
+    }
+
+    if (domNode && domNode.type === "tag") {
       const tagName = domNode.tagName.toLowerCase();
 
       // Only allow specified tags - everything else is blocked
@@ -113,7 +121,9 @@ export const secureHtmlParserOptions: HTMLReactParserOptions = {
         });
 
         // Copy the content
-        safeElement.innerHTML = domNode.innerHTML;
+        if ("innerHTML" in domNode) {
+          safeElement.innerHTML = String((domNode as Record<string, unknown>).innerHTML);
+        }
         return safeElement;
       }
     }
@@ -127,6 +137,11 @@ export const secureHtmlParserOptions: HTMLReactParserOptions = {
  * Useful for Lexical editor initialization
  */
 export function sanitizeHtmlForEditor(html: string): string {
+  // Only run in browser environment
+  if (!isBrowser) {
+    return html;
+  }
+
   // Create a temporary div to parse and sanitize HTML
   const tempDiv = document.createElement("div");
   tempDiv.innerHTML = html;
