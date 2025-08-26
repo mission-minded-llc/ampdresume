@@ -27,14 +27,14 @@ describe("PDF Theme Page", () => {
       const metadata = await generateMetadata({ params: mockParams });
 
       expect(metadata).toEqual({
-        title: `PDF Theme: default ${titleSuffix}`,
+        title: `PDF Theme: Classic ${titleSuffix}`,
         description: themeDefinitions.default.description,
         authors: themeDefinitions.default.authors.map((author) => ({
           name: author.name,
           url: author.gitHubUrl || author.linkedInUrl || "",
         })),
         openGraph: {
-          title: `PDF Theme: default ${titleSuffix}`,
+          title: `PDF Theme: Classic ${titleSuffix}`,
           description: themeDefinitions.default.description,
           images: [],
         },
@@ -48,7 +48,7 @@ describe("PDF Theme Page", () => {
       const metadata = await generateMetadata({ params: customThemeParams });
 
       expect(metadata).toEqual({
-        title: `PDF Theme: davids ${titleSuffix}`,
+        title: `PDF Theme: David's Theme ${titleSuffix}`,
         description: themeDefinitions.davids.description,
         authors: [
           {
@@ -57,7 +57,7 @@ describe("PDF Theme Page", () => {
           },
         ],
         openGraph: {
-          title: `PDF Theme: davids ${titleSuffix}`,
+          title: `PDF Theme: David's Theme ${titleSuffix}`,
           description: themeDefinitions.davids.description,
           images: [],
         },

@@ -2,7 +2,10 @@ import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
@@ -15,6 +18,7 @@ import { MuiLink } from "@/components/MuiLink";
 import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 import { getBaseUrl } from "@/util/url";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
+import { themeDefinitions } from "@/theme";
 
 /**
  * The primary navigation component for the application. This nav is shared
@@ -25,6 +29,7 @@ export const NavPrimary = () => {
   const isLoggedIn = useIsLoggedIn();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [demoThemesOpen, setDemoThemesOpen] = useState(false);
 
   const baseUrl = getBaseUrl();
 
@@ -37,6 +42,10 @@ export const NavPrimary = () => {
       return;
     }
     setIsOpen(open);
+  };
+
+  const toggleDemoThemes = () => {
+    setDemoThemesOpen(!demoThemesOpen);
   };
 
   const NavItemTitle = ({ text }: { text: string }) => (
@@ -94,6 +103,83 @@ export const NavPrimary = () => {
     </MuiLink>
   );
 
+  const SubmenuItem = ({
+    text,
+    icon,
+    href,
+    target = "_self",
+    dataTestId = "",
+  }: {
+    text: string;
+    icon: string;
+    href: string;
+    target?: "_self" | "_blank";
+    dataTestId?: string;
+  }) => (
+    <MuiLink
+      href={href}
+      target={target}
+      sx={{
+        textDecoration: "none",
+      }}
+    >
+      <ListItem
+        component="div"
+        onClick={() => {
+          setIsOpen(false);
+        }}
+        sx={(theme) => ({
+          pl: 4,
+          "&:hover": {
+            backgroundColor: "black",
+            color: "white",
+            borderRight: `4px solid ${theme.palette.secondary.main}`,
+          },
+        })}
+        {...(dataTestId && { "data-testid": dataTestId })}
+      >
+        <ListItemIcon>
+          <Icon icon={icon} width={24} height={24} />
+        </ListItemIcon>
+        <ListItemText primary={text} />
+      </ListItem>
+    </MuiLink>
+  );
+
+  const SubmenuHeader = ({
+    text,
+    icon,
+    isOpen,
+    onClick,
+    dataTestId = "",
+  }: {
+    text: string;
+    icon: string;
+    isOpen: boolean;
+    onClick: () => void;
+    dataTestId?: string;
+  }) => (
+    <ListItem
+      component="div"
+      onClick={onClick}
+      sx={(theme) => ({
+        cursor: "pointer",
+        "&:hover": {
+          backgroundColor: "black",
+          color: "white",
+          borderRight: `4px solid ${theme.palette.secondary.main}`,
+        },
+      })}
+      {...(dataTestId && { "data-testid": dataTestId })}
+    >
+      <ListItemIcon>
+        <Icon icon={icon} width={36} height={36} />
+      </ListItemIcon>
+      <ListItemText primary={text} />
+      {isOpen ? <ExpandLess /> : <ExpandMore />}
+    </ListItem>
+  );
+
   return (
     <Box>
       <IconButton
@@ -146,6 +232,25 @@ export const NavPrimary = () => {
               href={baseUrl}
               dataTestId="NavPrimaryMenuHome"
             />
+            <SubmenuHeader
+              text="Demo Themes"
+              icon="fluent-color:image-48"
+              isOpen={demoThemesOpen}
+              onClick={toggleDemoThemes}
+              dataTestId="NavPrimaryMenuDemoThemes"
+            />
+            <Collapse in={demoThemesOpen} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                {Object.entries(themeDefinitions).map(([key, theme]) => (
+                  <SubmenuItem
+                    text={theme.name}
+                    icon={theme.iconifyIcon}
+                    href={`/demo/${key}`}
+                    key={key}
+                  />
+                ))}
+              </List>
+            </Collapse>
             {isLoggedIn ? (
               <>
                 {session?.data?.user?.slug ? (
