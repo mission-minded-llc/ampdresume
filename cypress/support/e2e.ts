@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 Cypress.Commands.add("loginWithMagicLink", (email = Cypress.env("TEST_EMAIL")) => {
   cy.log(`Logging in with email: ${email}`);
   cy.visit(`${Cypress.env("BASE_URL") || ""}/login`);
@@ -9,7 +11,7 @@ Cypress.Commands.add("loginWithMagicLink", (email = Cypress.env("TEST_EMAIL")) =
   cy.wait(100); // Wait for magic link to be "sent" (writing to file).
 
   cy.task("getMagicLink", { email }).then((magicLink) => {
-    cy.visit(magicLink);
+    cy.visit(magicLink as string);
     cy.url().should("include", "/edit/profile");
     cy.contains("Profile").should("be.visible");
     cy.contains("General Information").should("be.visible");

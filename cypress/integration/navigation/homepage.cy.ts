@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 /**
  * The homepage is currently pretty light. Not much to test here.
  */

@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 export class ThemeDavidsPage {
   getDavidsThemePage() {
     cy.visit("/demo/davids");
@@ -11,11 +13,11 @@ export class ThemeDavidsPage {
     return cy.get('[data-testid="ArrowDropDownIcon"]').closest("button");
   }
 
-  getSkillFilterItem(skill) {
+  getSkillFilterItem(skill: string) {
     return cy.contains("li", skill);
   }
 
-  selectFilter(skill) {
+  selectFilter(skill: string) {
     this.getSkillFilterDropDown().click();
     this.getSkillFilterItem(skill).click();
   }
