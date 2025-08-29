@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 import { ThemeDavidsPage } from "../../../pages/themeDavidsPage.cy";
 
 const davidsPage = new ThemeDavidsPage();

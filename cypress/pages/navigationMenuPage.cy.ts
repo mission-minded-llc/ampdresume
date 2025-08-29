@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 export class NavigationMenuPage {
   visitNavPrimaryMenu() {
     cy.visit("/");
