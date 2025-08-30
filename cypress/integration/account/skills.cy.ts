@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 /**
  * The Skills section is a simple section that allows users to add, edit, and delete skills.
  */

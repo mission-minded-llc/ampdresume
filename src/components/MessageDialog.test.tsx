@@ -1,6 +1,6 @@
-import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MessageDialog } from "@/components/MessageDialog";
+import { expect } from "@jest/globals";
 
 describe("MessageDialog", () => {
   it("renders with default props", async () => {

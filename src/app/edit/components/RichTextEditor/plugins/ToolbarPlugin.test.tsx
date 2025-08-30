@@ -6,6 +6,7 @@ import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 import { render } from "@testing-library/react";
 import { RICH_TEXT_OPTIONS } from "./constants";
 import { ToolbarPlugin } from "./ToolbarPlugin";
+import { expect } from "@jest/globals";
 
 const initialConfig = {
   namespace: "TestEditor",

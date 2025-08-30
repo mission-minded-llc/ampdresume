@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 /**
  * The Profile section is a simple section that allows users to edit their personal information
  * including their name, slug, email, title, location, site title, and site description.

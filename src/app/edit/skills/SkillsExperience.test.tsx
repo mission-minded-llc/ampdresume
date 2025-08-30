@@ -3,6 +3,7 @@ import { SkillForUser } from "@/types";
 import { groupSkillsForUserByYearExperience } from "@/util/structure";
 import { render } from "@testing-library/react";
 import { SkillsExperience } from "./SkillsExperience";
+import { expect } from "@jest/globals";
 
 jest.mock("@/util/structure", () => ({
   groupSkillsForUserByYearExperience: jest.fn(),

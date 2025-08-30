@@ -1,9 +1,11 @@
+/// <reference types="cypress" />
+
 import fs from "fs";
 import path from "path";
 
-const filePlugin = (on, config) => {
+const filePlugin = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
   on("task", {
-    getMagicLink({ email }) {
+    getMagicLink({ email }: { email: string }) {
       // Convert email to safe filename
       const safeEmail = email.replace(/[@.]/g, "_");
       const tempDir = path.join(process.cwd(), ".cypress-temp");
@@ -23,7 +25,7 @@ const filePlugin = (on, config) => {
 
         return magicLink;
       } catch (error) {
-        throw new Error(`Error reading magic link for ${email}: ${error.message}`);
+        throw new Error(`Error reading magic link for ${email}: ${(error as Error).message}`);
       }
     },
 
@@ -50,8 +52,8 @@ const filePlugin = (on, config) => {
 
 const config = {
   e2e: {
-    supportFile: "./cypress/support/e2e.js",
-    setupNodeEvents(on, config) {
+    supportFile: "./cypress/support/e2e.ts",
+    setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) {
       return filePlugin(on, config);
     },
     baseUrl: "http://localhost:3000",
@@ -60,7 +62,7 @@ const config = {
       TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@ampdresume.com",
     },
     chromeWebSecurity: false,
-    specPattern: "./cypress/**/*.cy.js",
+    specPattern: "./cypress/**/*.cy.ts",
   },
 };
 

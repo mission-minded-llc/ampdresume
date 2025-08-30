@@ -6,6 +6,7 @@ import {
   S3Client,
 } from "@aws-sdk/client-s3";
 import { flagForDeletion, objectExists, revertFlagForDeletion, uploadObject } from "./s3";
+import { expect } from "@jest/globals";
 
 jest.mock("@aws-sdk/client-s3", () => {
   return {

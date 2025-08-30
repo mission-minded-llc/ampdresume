@@ -3,6 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { render, screen } from "@testing-library/react";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { Summary } from "./Summary";
+import { expect } from "@jest/globals";
 
 // Helper function to render with theme
 const renderWithTheme = (component: React.ReactElement, mode: "light" | "dark" = "light") => {

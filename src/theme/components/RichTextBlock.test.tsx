@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { RichTextBlock } from "./RichTextBlock";
+import { expect } from "@jest/globals";
 
 describe("RichTextBlock", () => {
   it("should render null when content is null", () => {

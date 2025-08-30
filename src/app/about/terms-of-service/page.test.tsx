@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { render } from "@testing-library/react";
 import TermsOfService from "./page";
+import { expect } from "@jest/globals";
 
 describe("TermsOfService Page", () => {
   it("matches snapshot", () => {

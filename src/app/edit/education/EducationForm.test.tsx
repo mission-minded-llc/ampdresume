@@ -1,9 +1,9 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { EducationForm } from "./EducationForm";
+import { expect } from "@jest/globals";
 
 describe("EducationForm", () => {
   const mockEducation = {

@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 /**
  * The primary navigation menu is the top navigation menu that appears on every page. It contains
  * links to the homepage, login, and logout, etc. Should be tested for all pages.

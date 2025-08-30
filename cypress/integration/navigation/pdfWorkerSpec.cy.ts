@@ -1,3 +1,7 @@
+/// <reference types="cypress" />
+
+import { expect } from "chai";
+
 /**
  * The PDF.js worker file is used to parse PDFs. It is a required file for the application's
  * import functionality to work.

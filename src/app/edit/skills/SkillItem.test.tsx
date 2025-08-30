@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { SkillItem } from "./SkillItem";
+import { expect } from "@jest/globals";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),

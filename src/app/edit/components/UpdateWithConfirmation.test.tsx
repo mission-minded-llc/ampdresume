@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { UpdateWithConfirmation } from "./UpdateWithConfirmation";
+import { expect } from "@jest/globals";
 
 describe("UpdateWithConfirmation", () => {
   it("renders correctly with default props", async () => {

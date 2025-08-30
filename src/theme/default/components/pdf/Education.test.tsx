@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { formatLongDate } from "@/lib/format";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { Education } from "./Education";
+import { expect } from "@jest/globals";
 
 describe("Education", () => {
   const sampleEducation = themeDefaultSampleData.data.resume.education;

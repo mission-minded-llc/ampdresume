@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { render } from "@testing-library/react";
 import Page from "./page";
+import { expect } from "@jest/globals";
 
 jest.mock("./EditSkills", () => ({
   EditSkills: () => <div>EditSkills Component</div>,

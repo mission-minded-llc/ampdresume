@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { SkillForUser } from "@/types";
 import { Skills } from "./Skills";
 import { javascriptSkill, reactSkill, sampleSkills } from "./testUtils";
+import { expect } from "@jest/globals";
 
 describe("Skills", () => {
   beforeAll(() => {

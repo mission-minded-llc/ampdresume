@@ -2,6 +2,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { render, screen } from "@testing-library/react";
 import { Certification } from "@/types";
 import { CertificationsSection } from "./Certifications";
+import { expect } from "@jest/globals";
 
 // TODO: Use the sample data for this after it's added to the sample data file.
 const mockCertifications: Certification[] = [

@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteSkillForUser } from "@/graphql/deleteSkillForUser";
 import { updateSkillForUser } from "@/graphql/updateSkillForUser";
 import { SkillItemEdit } from "./SkillItemEdit";
+import { expect } from "@jest/globals";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
