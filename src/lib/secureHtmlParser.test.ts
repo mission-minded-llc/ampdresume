@@ -4,6 +4,7 @@ import {
   ALLOWED_TAGS,
   ALLOWED_ATTRIBUTES,
 } from "./secureHtmlParser";
+import { expect } from "@jest/globals";
 
 describe("secureHtmlParser", () => {
   describe("secureHtmlParserOptions", () => {

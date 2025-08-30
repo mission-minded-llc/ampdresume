@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 import { renderHook } from "@testing-library/react";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { expect } from "@jest/globals";
 
 const theme = createTheme({
   breakpoints: {

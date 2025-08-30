@@ -1,6 +1,6 @@
-import React from "react";
 import { act, render } from "@testing-library/react";
 import { RichTextEditor } from "./RichTextEditor";
+import { expect } from "@jest/globals";
 
 describe("RichTextEditor", () => {
   it("renders without crashing", async () => {

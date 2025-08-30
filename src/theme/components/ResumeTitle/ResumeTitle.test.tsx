@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 import { render, screen } from "@testing-library/react";
 import { ResumeTitle } from "./ResumeTitle";
+import { expect } from "@jest/globals";
 
 const theme = createTheme();
 

@@ -22,7 +22,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["jest"],
+    "types": ["jest", "@testing-library/jest-dom", "cypress"],
     "target": "esnext"
   },
   "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],

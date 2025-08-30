@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { render } from "@testing-library/react";
 import { SectionTitle } from "./SectionTitle";
+import { expect } from "@jest/globals";
 
 describe("SectionTitle", () => {
   it("renders correctly with the provided title", () => {

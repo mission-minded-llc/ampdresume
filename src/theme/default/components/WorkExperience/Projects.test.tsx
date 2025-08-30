@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { Project } from "@/types";
 import { Projects } from "./Projects";
+import { expect } from "@jest/globals";
 
 // Mock the child components
 jest.mock("./ProjectAccordion", () => ({

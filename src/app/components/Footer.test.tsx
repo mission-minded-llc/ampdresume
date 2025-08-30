@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { usePathname } from "next/navigation";
 import { render } from "@testing-library/react";
 import { Footer } from "./Footer";
+import { expect } from "@jest/globals";
 
 jest.mock("next/navigation");
 

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { themeDefaultSampleData } from "../sampleData";
 import { ThemeDefaultPDF } from "./ThemeDefaultPDF";
+import { expect } from "@jest/globals";
 
 describe("ThemeDefaultPDF", () => {
   const mockData = themeDefaultSampleData.data.resume;

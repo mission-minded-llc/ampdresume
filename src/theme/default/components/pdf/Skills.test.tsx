@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { Skills } from "./Skills";
+import { expect } from "@jest/globals";
 
 describe("Skills", () => {
   const sampleSkills = themeDefaultSampleData.data.resume.skillsForUser;

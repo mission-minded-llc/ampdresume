@@ -6,6 +6,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Page from "./page";
+import { expect } from "@jest/globals";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),

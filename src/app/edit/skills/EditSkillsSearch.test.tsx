@@ -4,6 +4,7 @@ import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { EditSkillsSearch } from "./EditSkillsSearch";
+import { expect } from "@jest/globals";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),

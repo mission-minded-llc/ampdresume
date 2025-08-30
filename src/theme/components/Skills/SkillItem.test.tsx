@@ -4,6 +4,7 @@ import { SkillForProject, SkillForUser } from "@/types";
 import { SkillItem } from "./SkillItem";
 import { SkillsContext } from "./Skills";
 import { reactSkill } from "./testUtils";
+import { expect } from "@jest/globals";
 
 // Mock the Iconify Icon component
 jest.mock("@iconify/react", () => ({

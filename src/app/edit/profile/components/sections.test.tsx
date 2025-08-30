@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { render } from "@testing-library/react";
 import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
+import { expect } from "@jest/globals";
 
 describe("sections components", () => {
   it("renders InputSection correctly", () => {

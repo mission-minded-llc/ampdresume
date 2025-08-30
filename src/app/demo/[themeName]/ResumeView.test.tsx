@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { ResumeView } from "./ResumeView";
+import { expect } from "@jest/globals";
 
 // Mock the ThemeDefault component
 jest.mock("@/theme", () => ({

@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { Company } from "@/types";
 import { WorkExperience } from "./WorkExperience";
+import { expect } from "@jest/globals";
 
 // Mock the child components
 jest.mock("./PositionsList", () => ({

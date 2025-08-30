@@ -3,6 +3,7 @@ import { titleSuffix } from "@/constants";
 import { themeDefinitions } from "@/theme";
 import { ThemeName } from "@/types";
 import Page, { generateMetadata } from "./page";
+import { expect } from "@jest/globals";
 
 // Mock the PDFView component since we don't need to test its implementation
 jest.mock("../PDFView", () => ({
