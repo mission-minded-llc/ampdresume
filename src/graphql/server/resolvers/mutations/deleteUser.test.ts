@@ -2,6 +2,7 @@ import type { User } from "@prisma/client";
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
 import { deleteUser } from "./deleteUser";
+import { expect } from "@jest/globals";
 
 // Mock dependencies
 jest.mock("@/lib/prisma", () => ({

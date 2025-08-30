@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Tooltip } from "@/components/Tooltip";
+import { expect } from "@jest/globals";
 
 describe("Tooltip component", () => {
   it("renders the tooltip message on hover", async () => {

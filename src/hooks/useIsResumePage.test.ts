@@ -1,6 +1,7 @@
 import { usePathname } from "next/navigation";
 import { renderHook } from "@testing-library/react";
 import { useIsResumePage } from "@/hooks/useIsResumePage";
+import { expect } from "@jest/globals";
 
 // Mock the usePathname hook from next/navigation
 jest.mock("next/navigation", () => ({

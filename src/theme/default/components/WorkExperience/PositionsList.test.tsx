@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { PositionsList } from "./PositionsList";
+import { expect } from "@jest/globals";
 
 describe("PositionsList", () => {
   const sampleCompany = themeDefaultSampleData.data.resume.companies[0];

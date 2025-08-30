@@ -1,5 +1,6 @@
 import { SOCIAL_MEDIA_PLATFORMS } from "@/constants";
 import { getSocialMediaPlatformByPlatformName } from "./social";
+import { expect, describe, it } from "@jest/globals";
 
 describe("getSocialMediaPlatformByPlatformName", () => {
   it("returns the correct platform object for known platform", () => {

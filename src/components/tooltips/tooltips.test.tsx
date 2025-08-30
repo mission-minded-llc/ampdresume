@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { render } from "@testing-library/react";
 import { TooltipTotalYears } from "./";
+import { expect } from "@jest/globals";
 
 describe("TooltipTotalYears", () => {
   it("matches snapshot", () => {

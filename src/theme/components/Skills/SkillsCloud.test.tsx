@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { SkillForUser } from "@/types";
 import { SkillsCloud } from "./SkillsCloud";
 import { createInvalidSkill, javascriptSkill, reactSkill } from "./testUtils";
+import { expect } from "@jest/globals";
 
 describe("SkillsCloud", () => {
   it("renders all skills in a cloud layout", () => {

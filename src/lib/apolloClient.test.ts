@@ -1,5 +1,6 @@
 import { ApolloClient } from "@apollo/client";
 import { getApolloClient } from "@/lib/apolloClient";
+import { expect } from "@jest/globals";
 
 describe("getApolloClient", () => {
   beforeAll(() => {

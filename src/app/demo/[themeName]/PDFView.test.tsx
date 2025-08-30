@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import html2pdf from "html2pdf.js";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { PDFView } from "./PDFView";
+import { expect } from "@jest/globals";
 
 // Mock html2pdf
 jest.mock("html2pdf.js", () => ({

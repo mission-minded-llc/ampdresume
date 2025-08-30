@@ -1,9 +1,9 @@
-import "@testing-library/jest-dom";
 import { usePathname } from "next/navigation";
 import { render, screen } from "@testing-library/react";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { generateSocialUrl, getSocialMediaPlatformByPlatformName } from "@/util/social";
 import { ResumeHeading } from "./ResumeHeading";
+import { expect } from "@jest/globals";
 
 // Mock the usePathname hook
 jest.mock("next/navigation", () => ({

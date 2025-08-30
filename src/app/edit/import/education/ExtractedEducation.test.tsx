@@ -4,6 +4,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { ExtractedDataProvider } from "../ExtractedDataContext";
 import { ExtractedEducation } from "./ExtractedEducation";
+import { expect } from "@jest/globals";
 
 // Mock the ExtractedDataContext
 jest.mock("../ExtractedDataContext", () => ({

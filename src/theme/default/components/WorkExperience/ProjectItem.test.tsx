@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { Project } from "@/types";
 import sampleData from "../../../sampleData.json";
 import { ProjectItem } from "./ProjectItem";
+import { expect } from "@jest/globals";
 
 const theme = createTheme();
 

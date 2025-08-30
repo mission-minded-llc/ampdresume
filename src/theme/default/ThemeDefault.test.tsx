@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { ThemeAppearance } from "@/types";
 import { themeDefaultSampleData } from "../sampleData";
 import { ThemeDefault } from "./ThemeDefault";
+import { expect } from "@jest/globals";
 
 describe("ThemeDefault", () => {
   const mockProps = {

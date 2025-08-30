@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
 import { MuiLink } from "@/components/MuiLink";
+import { expect } from "@jest/globals";
 
 describe("MuiLink", () => {
   it("renders correctly with given props", () => {

@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { DeleteWithConfirmation } from "./DeleteWithConfirmation";
+import { expect } from "@jest/globals";
 
 describe("DeleteWithConfirmation", () => {
   it("renders correctly with default props", () => {

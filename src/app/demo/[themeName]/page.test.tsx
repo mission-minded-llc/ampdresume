@@ -3,6 +3,7 @@ import { titleSuffix } from "@/constants";
 import { themeDefinitions } from "@/theme";
 import { ThemeName } from "@/types";
 import Page, { generateMetadata } from "./page";
+import { expect } from "@jest/globals";
 
 // Mock the ResumeView component since we're only testing the page component
 jest.mock("./ResumeView", () => ({

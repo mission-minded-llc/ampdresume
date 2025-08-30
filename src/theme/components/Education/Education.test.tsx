@@ -3,6 +3,7 @@ import { formatLongDate } from "@/lib/format";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import type { Education as EducationType } from "@/types";
 import { Education } from "./Education";
+import { expect } from "@jest/globals";
 
 describe("Education Component", () => {
   const sampleEducation = themeDefaultSampleData.data.resume.education;

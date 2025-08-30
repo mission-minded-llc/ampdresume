@@ -4,6 +4,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { SocialsForm } from "./SocialsForm";
+import { expect } from "@jest/globals";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),

@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { SkillForUser } from "@/types";
 import { SkillItemView } from "./SkillItemView";
 import { reactSkill } from "./testUtils";
+import { expect } from "@jest/globals";
 
 const theme = createTheme();
 

@@ -1,6 +1,6 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { expect } from "@jest/globals";
 
 describe("LoadingOverlay", () => {
   test("renders with default props", () => {

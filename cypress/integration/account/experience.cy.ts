@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 /**
  * The Experience section is a complex section that allows users to add, edit, and delete companies
  * and positions within those companies. It also allows users to add projects to positions.

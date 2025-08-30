@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import { fireEvent, render } from "@testing-library/react";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 import { ThemeAppearanceContext } from "./ThemeContext";
+import { expect } from "@jest/globals";
 
 jest.mock("next/navigation");
 jest.mock("@/hooks/useIsDesktop", () => ({

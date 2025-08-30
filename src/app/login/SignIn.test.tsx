@@ -1,9 +1,9 @@
 import "@testing-library/jest-dom";
 import { signIn } from "next-auth/react";
-import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import * as Sentry from "@sentry/react";
 import { SignIn } from "./SignIn";
+import { expect } from "@jest/globals";
 
 jest.mock("next-auth/react", () => ({
   signIn: jest.fn(),

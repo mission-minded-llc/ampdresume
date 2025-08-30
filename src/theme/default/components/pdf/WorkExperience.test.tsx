@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { WorkExperience } from "./WorkExperience";
+import { expect } from "@jest/globals";
 
 describe("WorkExperience", () => {
   const companies = themeDefaultSampleData.data.resume.companies;

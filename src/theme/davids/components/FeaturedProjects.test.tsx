@@ -2,6 +2,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { render, screen } from "@testing-library/react";
 import { FeaturedProject } from "@/types";
 import { FeaturedProjects } from "./FeaturedProjects";
+import { expect } from "@jest/globals";
 
 // TODO: Use the sample data for this after it's added to the sample data file.
 const sampleProjects: FeaturedProject[] = [

@@ -1,7 +1,8 @@
 import "@testing-library/jest-dom";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { render } from "@testing-library/react";
 import { ThemeAppearanceContext, ThemeAppearanceProvider } from "./ThemeContext";
+import { expect } from "@jest/globals";
 
 function TestChild() {
   const { themeAppearance } = useContext(ThemeAppearanceContext);

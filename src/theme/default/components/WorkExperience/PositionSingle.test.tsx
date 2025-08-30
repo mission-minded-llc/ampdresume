@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { PositionSingle } from "./PositionSingle";
+import { expect } from "@jest/globals";
 
 // Mock the useIsDesktop hook
 jest.mock("@/hooks/useIsDesktop", () => ({

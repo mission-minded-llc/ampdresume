@@ -6,6 +6,7 @@ import { renderHook } from "@testing-library/react";
 import { createEditor, KEY_ENTER_COMMAND, LexicalEditor } from "lexical";
 import { RichTextAction } from "@/app/edit/components/RichTextEditor/plugins/constants";
 import { useKeyBindings } from "@/app/edit/components/RichTextEditor/useKeyBindings";
+import { expect } from "@jest/globals";
 
 describe("useKeyBindings", () => {
   let onAction: jest.Mock;

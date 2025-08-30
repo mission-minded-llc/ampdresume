@@ -1,9 +1,9 @@
 import "@testing-library/jest-dom";
 import { useSession } from "next-auth/react";
-import React from "react";
 import { usePathname } from "next/navigation";
 import { render } from "@testing-library/react";
 import { Layout } from "./Layout";
+import { expect } from "@jest/globals";
 
 jest.mock("next-auth/react");
 jest.mock("next/navigation");

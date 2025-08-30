@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { CloseButton } from "./CloseButton";
+import { expect } from "@jest/globals";
 
 describe("CloseButton", () => {
   it("renders correctly", () => {

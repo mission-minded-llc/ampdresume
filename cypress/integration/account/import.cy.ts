@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 import getParsedResumeAiResponse from "./data/getParsedResumeAiResponse.json";
 
 /**
