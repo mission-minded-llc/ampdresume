@@ -17,8 +17,8 @@ exports[`SkillItemEdit handles delete 1`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rm»"
-            id="«rm»-label"
+            for="_r_m_"
+            id="_r_m_-label"
           >
             Total Years
           </label>
@@ -28,7 +28,7 @@ exports[`SkillItemEdit handles delete 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rm»"
+              id="_r_m_"
               max="100"
               min="0"
               name="totalYears"
@@ -231,8 +231,8 @@ exports[`SkillItemEdit handles delete 2`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rm»"
-            id="«rm»-label"
+            for="_r_m_"
+            id="_r_m_-label"
           >
             Total Years
           </label>
@@ -242,7 +242,7 @@ exports[`SkillItemEdit handles delete 2`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rm»"
+              id="_r_m_"
               max="100"
               min="0"
               name="totalYears"
@@ -478,8 +478,8 @@ exports[`SkillItemEdit handles save and close 1`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rt»"
-            id="«rt»-label"
+            for="_r_t_"
+            id="_r_t_-label"
           >
             Total Years
           </label>
@@ -489,7 +489,7 @@ exports[`SkillItemEdit handles save and close 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rt»"
+              id="_r_t_"
               max="100"
               min="0"
               name="totalYears"
@@ -690,8 +690,8 @@ exports[`SkillItemEdit handles save and close 2`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rt»"
-            id="«rt»-label"
+            for="_r_t_"
+            id="_r_t_-label"
           >
             Total Years
           </label>
@@ -701,7 +701,7 @@ exports[`SkillItemEdit handles save and close 2`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rt»"
+              id="_r_t_"
               max="100"
               min="0"
               name="totalYears"
@@ -902,8 +902,8 @@ exports[`SkillItemEdit renders correctly 1`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«r0»"
-            id="«r0»-label"
+            for="_r_0_"
+            id="_r_0_-label"
           >
             Total Years
           </label>
@@ -913,7 +913,7 @@ exports[`SkillItemEdit renders correctly 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«r0»"
+              id="_r_0_"
               max="100"
               min="0"
               name="totalYears"
@@ -1114,8 +1114,8 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rh»"
-            id="«rh»-label"
+            for="_r_h_"
+            id="_r_h_-label"
           >
             Total Years
           </label>
@@ -1125,7 +1125,7 @@ exports[`SkillItemEdit updates fields and handles save 1`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rh»"
+              id="_r_h_"
               max="100"
               min="0"
               name="totalYears"
@@ -1326,8 +1326,8 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
           <label
             class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
             data-shrink="true"
-            for="«rh»"
-            id="«rh»-label"
+            for="_r_h_"
+            id="_r_h_-label"
           >
             Total Years
           </label>
@@ -1337,7 +1337,7 @@ exports[`SkillItemEdit updates fields and handles save 2`] = `
             <input
               aria-invalid="false"
               class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-              id="«rh»"
+              id="_r_h_"
               max="100"
               min="0"
               name="totalYears"

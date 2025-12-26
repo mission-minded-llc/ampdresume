@@ -30,8 +30,8 @@ exports[`EditSkillsSearch filters and displays skills based on search term 1`] =
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="false"
-        for="«r3»"
-        id="«r3»-label"
+        for="_r_3_"
+        id="_r_3_-label"
       >
         Search Skills to Add
       </label>
@@ -41,7 +41,7 @@ exports[`EditSkillsSearch filters and displays skills based on search term 1`] =
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r3»"
+          id="_r_3_"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -76,8 +76,8 @@ exports[`EditSkillsSearch filters and displays skills based on search term 2`] =
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for="«r3»"
-        id="«r3»-label"
+        for="_r_3_"
+        id="_r_3_-label"
       >
         Search Skills to Add
       </label>
@@ -87,7 +87,7 @@ exports[`EditSkillsSearch filters and displays skills based on search term 2`] =
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r3»"
+          id="_r_3_"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -180,8 +180,8 @@ exports[`EditSkillsSearch filters and displays skills based on search term 3`] =
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for="«r3»"
-        id="«r3»-label"
+        for="_r_3_"
+        id="_r_3_-label"
       >
         Search Skills to Add
       </label>
@@ -191,7 +191,7 @@ exports[`EditSkillsSearch filters and displays skills based on search term 3`] =
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r3»"
+          id="_r_3_"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -284,8 +284,8 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 1`] = `
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="false"
-        for="«r6»"
-        id="«r6»-label"
+        for="_r_6_"
+        id="_r_6_-label"
       >
         Search Skills to Add
       </label>
@@ -295,7 +295,7 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 1`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r6»"
+          id="_r_6_"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -330,8 +330,8 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 2`] = `
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for="«r6»"
-        id="«r6»-label"
+        for="_r_6_"
+        id="_r_6_-label"
       >
         Search Skills to Add
       </label>
@@ -341,7 +341,7 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 2`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r6»"
+          id="_r_6_"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -436,8 +436,8 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 3`] = `
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="true"
-        for="«r6»"
-        id="«r6»-label"
+        for="_r_6_"
+        id="_r_6_-label"
       >
         Search Skills to Add
       </label>
@@ -447,7 +447,7 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 3`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r6»"
+          id="_r_6_"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"
@@ -540,8 +540,8 @@ exports[`EditSkillsSearch renders correctly 1`] = `
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="false"
-        for="«r0»"
-        id="«r0»-label"
+        for="_r_0_"
+        id="_r_0_-label"
       >
         Search Skills to Add
       </label>
@@ -551,7 +551,7 @@ exports[`EditSkillsSearch renders correctly 1`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r0»"
+          id="_r_0_"
           name="searchSkills"
           placeholder="Type at least 3 characters to search"
           type="text"

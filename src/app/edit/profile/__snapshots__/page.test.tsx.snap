@@ -99,8 +99,8 @@ exports[`Page renders correctly for authenticated users 1`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for="«r2»"
-                id="«r2»-label"
+                for="_r_2_"
+                id="_r_2_-label"
               >
                 Full Name
               </label>
@@ -108,10 +108,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <input
-                  aria-describedby="«r2»-helper-text"
+                  aria-describedby="_r_2_-helper-text"
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="«r2»"
+                  id="_r_2_"
                   name="name"
                   type="text"
                   value="John Doe"
@@ -131,7 +131,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
               </div>
               <p
                 class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-er619e-MuiFormHelperText-root"
-                id="«r2»-helper-text"
+                id="_r_2_-helper-text"
               >
                 <span
                   aria-hidden="true"
@@ -192,8 +192,8 @@ exports[`Page renders correctly for authenticated users 1`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for="«r3»"
-                id="«r3»-label"
+                for="_r_3_"
+                id="_r_3_-label"
               >
                 URL Name
               </label>
@@ -201,10 +201,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <input
-                  aria-describedby="«r3»-helper-text"
+                  aria-describedby="_r_3_-helper-text"
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="«r3»"
+                  id="_r_3_"
                   name="slug"
                   type="text"
                   value="john-doe"
@@ -224,7 +224,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
               </div>
               <p
                 class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-er619e-MuiFormHelperText-root"
-                id="«r3»-helper-text"
+                id="_r_3_-helper-text"
               >
                 <span
                   aria-hidden="true"
@@ -273,8 +273,8 @@ exports[`Page renders correctly for authenticated users 1`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for="«r4»"
-                id="«r4»-label"
+                for="_r_4_"
+                id="_r_4_-label"
               >
                 Display Email
               </label>
@@ -282,10 +282,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <input
-                  aria-describedby="«r4»-helper-text"
+                  aria-describedby="_r_4_-helper-text"
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="«r4»"
+                  id="_r_4_"
                   name="displayEmail"
                   type="text"
                   value="john@example.com"
@@ -305,7 +305,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
               </div>
               <p
                 class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-er619e-MuiFormHelperText-root"
-                id="«r4»-helper-text"
+                id="_r_4_-helper-text"
               >
                 <span
                   aria-hidden="true"
@@ -346,8 +346,8 @@ exports[`Page renders correctly for authenticated users 1`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for="«r5»"
-                id="«r5»-label"
+                for="_r_5_"
+                id="_r_5_-label"
               >
                 Title
               </label>
@@ -355,10 +355,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <input
-                  aria-describedby="«r5»-helper-text"
+                  aria-describedby="_r_5_-helper-text"
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="«r5»"
+                  id="_r_5_"
                   name="title"
                   type="text"
                   value="Software Engineer"
@@ -378,7 +378,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
               </div>
               <p
                 class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-er619e-MuiFormHelperText-root"
-                id="«r5»-helper-text"
+                id="_r_5_-helper-text"
               >
                 <span
                   aria-hidden="true"
@@ -424,8 +424,8 @@ exports[`Page renders correctly for authenticated users 1`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for="«r6»"
-                id="«r6»-label"
+                for="_r_6_"
+                id="_r_6_-label"
               >
                 Location
               </label>
@@ -433,10 +433,10 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
               >
                 <input
-                  aria-describedby="«r6»-helper-text"
+                  aria-describedby="_r_6_-helper-text"
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="«r6»"
+                  id="_r_6_"
                   name="location"
                   type="text"
                   value="San Francisco, CA"
@@ -456,7 +456,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
               </div>
               <p
                 class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-er619e-MuiFormHelperText-root"
-                id="«r6»-helper-text"
+                id="_r_6_-helper-text"
               >
                 Recommendation: do not use your full address.
               </p>
@@ -509,8 +509,8 @@ exports[`Page renders correctly for authenticated users 1`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
-                for="«r9»"
-                id="«r9»-label"
+                for="_r_9_"
+                id="_r_9_-label"
               >
                 Social URL
               </label>
@@ -520,7 +520,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 <input
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="«r9»"
+                  id="_r_9_"
                   name="newSocialUrl"
                   type="text"
                   value=""
@@ -589,8 +589,8 @@ exports[`Page renders correctly for authenticated users 1`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for="«rc»"
-                id="«rc»-label"
+                for="_r_c_"
+                id="_r_c_-label"
               >
                 Site Title
               </label>
@@ -600,7 +600,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 <input
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="«rc»"
+                  id="_r_c_"
                   name="siteTitle"
                   type="text"
                   value="John's Resume"
@@ -650,8 +650,8 @@ exports[`Page renders correctly for authenticated users 1`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for="«rd»"
-                id="«rd»-label"
+                for="_r_d_"
+                id="_r_d_-label"
               >
                 Site Description
               </label>
@@ -661,7 +661,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                 <input
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-                  id="«rd»"
+                  id="_r_d_"
                   name="siteDescription"
                   type="text"
                   value="This is John's resume."
@@ -700,8 +700,8 @@ exports[`Page renders correctly for authenticated users 1`] = `
               <label
                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-disabled MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="true"
-                for="«re»"
-                id="«re»-label"
+                for="_r_e_"
+                id="_r_e_-label"
               >
                 Image URL
               </label>
@@ -712,7 +712,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input Mui-disabled css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
                   disabled=""
-                  id="«re»"
+                  id="_r_e_"
                   name="siteImage"
                   type="text"
                   value="https://example.com/image.png"

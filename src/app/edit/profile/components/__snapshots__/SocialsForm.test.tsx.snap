@@ -113,8 +113,8 @@ exports[`SocialsForm renders correctly 1`] = `
       <label
         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="false"
-        for="«r0»"
-        id="«r0»-label"
+        for="_r_0_"
+        id="_r_0_-label"
       >
         Social URL
       </label>
@@ -124,7 +124,7 @@ exports[`SocialsForm renders correctly 1`] = `
         <input
           aria-invalid="false"
           class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-          id="«r0»"
+          id="_r_0_"
           name="newSocialUrl"
           type="text"
           value=""
