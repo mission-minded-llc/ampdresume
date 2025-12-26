@@ -68,7 +68,7 @@
     "html2pdf.js": "^0.10.3",
     "next": "^15.3.4",
     "next-auth": "^4.24.11",
-    "nodemailer": "^6.6.5",
+    "nodemailer": "^7.0.12",
     "openai": "^5.5.1",
     "pdfjs-dist": "^5.3.31",
     "qrcode": "^1.5.4",
