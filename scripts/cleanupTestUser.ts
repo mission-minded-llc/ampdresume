@@ -70,7 +70,7 @@ await prisma.skillForUser
 console.log(`Deleting ${projectIds.length} projects for user with email: ${email}`);
 await prisma.project
   .deleteMany({
-    where: { id: { in: projectIds.map(( project: { id: string }) => project.id) } },
+    where: { id: { in: projectIds.map((project: { id: string }) => project.id) } },
   })
   .then(() => {
     console.log(`Deleted all projects for user with email: ${email}`);
