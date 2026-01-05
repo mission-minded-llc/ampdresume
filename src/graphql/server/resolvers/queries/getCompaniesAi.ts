@@ -133,7 +133,7 @@ export const getCompaniesAi = async (
   });
 
   const inputJson = {
-    skills: skillsForUser.map((skill) => skill.skill.name),
+    skills: skillsForUser.map((skill: { skill: { name: string } }) => skill.skill.name),
     companies,
   };
 

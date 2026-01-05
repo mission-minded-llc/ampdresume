@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { Company } from "@prisma/client";
 
 export const getCompanies = async (
   _: string,
@@ -25,7 +26,7 @@ export const getCompanies = async (
     },
   });
 
-  return companies.map((company) => ({
+  return companies.map((company: Company) => ({
     ...company,
     positionCount: company._count.positions,
   }));

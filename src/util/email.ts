@@ -41,7 +41,7 @@ export const findUserByNormalizedEmail = async (email: string) => {
   });
 
   // Compare normalized emails
-  const matchedUser = usersWithSameDomain.find((user) => {
+  const matchedUser = usersWithSameDomain.find((user: { email: string | null }) => {
     if (!user?.email) return false;
 
     const normalizedDbEmail = normalizeEmail(user.email);
