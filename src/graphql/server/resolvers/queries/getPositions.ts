@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { Position } from "@prisma/client";
 
 export const getPositions = async (
   _: string,
@@ -33,7 +32,7 @@ export const getPositions = async (
     orderBy, // Apply sorting
   });
 
-  return positions.map((position: Position) => ({
+  return positions.map((position) => ({
     ...position,
     projectCount: position._count.projects,
   }));
