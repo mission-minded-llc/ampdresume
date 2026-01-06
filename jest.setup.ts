@@ -1,9 +1,14 @@
 import "@testing-library/jest-dom";
 import dotenv from "dotenv";
 import React from "react";
+import { TextEncoder, TextDecoder } from "util";
 
 // Load environment variables
 dotenv.config();
+
+// Polyfill TextEncoder/TextDecoder for tests (required by pg package)
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder as typeof global.TextDecoder;
 
 // Polyfill fetch for tests
 if (!global.fetch) {
