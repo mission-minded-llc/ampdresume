@@ -12,7 +12,7 @@ import nodemailer from "nodemailer";
 import * as Sentry from "@sentry/nextjs";
 import { ALLOWED_USER_EMAILS } from "@/constants";
 import { prisma } from "@/lib/prisma";
-import { findUserByNormalizedEmail } from "@/util/email";
+import { findUserByNormalizedEmail } from "@/util/email.server";
 import { getEnvironmentName } from "@/util/url";
 
 /**

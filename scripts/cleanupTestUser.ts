@@ -35,12 +35,12 @@ const companyIds = await prisma.company.findMany({
 });
 
 const positionIds = await prisma.position.findMany({
-  where: { companyId: { in: companyIds.map((company) => company.id) } },
+  where: { companyId: { in: companyIds.map((company: { id: string }) => company.id) } },
   select: { id: true },
 });
 
 const projectIds = await prisma.project.findMany({
-  where: { positionId: { in: positionIds.map((position) => position.id) } },
+  where: { positionId: { in: positionIds.map((position: { id: string }) => position.id) } },
   select: { id: true },
 });
 
@@ -61,7 +61,7 @@ await prisma.skillForUser
   .then(() => {
     console.log(`Deleted all skills for user with email: ${email}`);
   })
-  .catch((error) => {
+  .catch((error: Error) => {
     console.log(`Error cleaning up skills: ${error.message}`);
     prisma.$disconnect();
     exit(1);
@@ -70,12 +70,12 @@ await prisma.skillForUser
 console.log(`Deleting ${projectIds.length} projects for user with email: ${email}`);
 await prisma.project
   .deleteMany({
-    where: { id: { in: projectIds.map((project) => project.id) } },
+    where: { id: { in: projectIds.map((project: { id: string }) => project.id) } },
   })
   .then(() => {
     console.log(`Deleted all projects for user with email: ${email}`);
   })
-  .catch((error) => {
+  .catch((error: Error) => {
     console.log(`Error cleaning up projects: ${error.message}`);
     prisma.$disconnect();
     exit(1);
@@ -84,12 +84,12 @@ await prisma.project
 console.log(`Deleting ${positionIds.length} positions for user with email: ${email}`);
 await prisma.position
   .deleteMany({
-    where: { id: { in: positionIds.map((position) => position.id) } },
+    where: { id: { in: positionIds.map((position: { id: string }) => position.id) } },
   })
   .then(() => {
     console.log(`Deleted all positions for user with email: ${email}`);
   })
-  .catch((error) => {
+  .catch((error: Error) => {
     console.log(`Error cleaning up positions: ${error.message}`);
     prisma.$disconnect();
     exit(1);
@@ -103,7 +103,7 @@ await prisma.company
   .then(() => {
     console.log(`Deleted all companies for user with email: ${email}`);
   })
-  .catch((error) => {
+  .catch((error: Error) => {
     console.log(`Error cleaning up companies: ${error.message}`);
     prisma.$disconnect();
     exit(1);
@@ -117,7 +117,7 @@ await prisma.user
   .then(() => {
     console.log(`Deleted all data for user with email: ${email}`);
   })
-  .catch((error) => {
+  .catch((error: Error) => {
     console.log(`Error cleaning up user data: ${error.message}`);
     prisma.$disconnect();
     exit(1);

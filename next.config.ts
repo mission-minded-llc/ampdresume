@@ -1,7 +1,22 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+  webpack: (config, { isServer }) => {
+    // Configure webpack to properly handle pdfjs-dist ESM module
+    if (!isServer) {
+      // Tell webpack to handle pdfjs-dist as an ESM module without transforming it
+      config.module.rules.push({
+        test: /node_modules[\\/]pdfjs-dist/,
+        resolve: {
+          fullySpecified: false,
+        },
+      });
+    }
+
+    return config;
+  },
+};
 
 export default withSentryConfig(nextConfig, {
   // For all available options, see:
