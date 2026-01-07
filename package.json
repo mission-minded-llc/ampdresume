@@ -28,6 +28,7 @@
     "test:coverage": "jest --coverage",
     "cypress:cleanup": "tsx scripts/cleanupTestUser.ts",
     "cypress:test": "cypress run",
+    "cypress:open": "cypress open",
     "cypress:upload:screenshots": "tsx scripts/uploadCypressScreenshots.ts",
     "cypress:upload:videos": "tsx scripts/uploadCypressVideos.ts",
     "copy:pdfjs": "tsx scripts/copyPdfJsDist.ts",
