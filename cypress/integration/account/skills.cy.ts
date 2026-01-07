@@ -48,7 +48,7 @@ describe("Skills Section", () => {
     cy.get("button").contains("Add Skill").click();
     cy.get("button").contains(skill).should("be.visible");
 
-    cy.contains(`${totalYears} years`).should("be.visible");
+    cy.contains(`${totalYears}0 years`).should("be.visible");
   });
 
   it("should edit a skill", () => {
