@@ -35,7 +35,6 @@ export const ImportPDF = () => {
         pdfjsLib = pdfjs as typeof import("pdfjs-dist");
       } catch (err) {
         setError("Failed to load PDF processing library");
-        console.error("Failed to load PDF processing library:", err);
         Sentry.captureException(err);
       }
     };
