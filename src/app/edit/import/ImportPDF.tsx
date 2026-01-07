@@ -26,11 +26,16 @@ export const ImportPDF = () => {
       if (typeof window === "undefined") return;
 
       try {
-        const pdfjs = await import("pdfjs-dist");
+        // Load pdfjs-dist from public directory to completely bypass webpack processing
+        // This avoids the Object.defineProperty error by loading the ESM module directly from the public directory
+        const pdfjsUrl = new URL("/pdf.mjs", window.location.origin).href;
+        const pdfjs = await import(/* @vite-ignore */ /* webpackIgnore: true */ pdfjsUrl);
+        
         pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
-        pdfjsLib = pdfjs;
+        pdfjsLib = pdfjs as typeof import("pdfjs-dist");
       } catch (err) {
         setError("Failed to load PDF processing library");
+        console.error("Failed to load PDF processing library:", err);
         Sentry.captureException(err);
       }
     };
