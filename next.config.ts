@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
         },
       });
     }
-    
+
     return config;
   },
 };

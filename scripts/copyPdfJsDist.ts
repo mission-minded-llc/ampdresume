@@ -25,7 +25,4 @@ copyFileSync(
   join(publicPath, "pdf.worker.min.mjs"),
 );
 // Also copy the main pdf.mjs file for direct loading
-copyFileSync(
-  join(pdfjsDistPath, "build", "pdf.mjs"),
-  join(publicPath, "pdf.mjs"),
-);
+copyFileSync(join(pdfjsDistPath, "build", "pdf.mjs"), join(publicPath, "pdf.mjs"));

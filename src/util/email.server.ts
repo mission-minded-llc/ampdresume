@@ -27,4 +27,3 @@ export const findUserByNormalizedEmail = async (email: string) => {
 
   return matchedUser;
 };
-
