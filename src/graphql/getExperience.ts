@@ -54,10 +54,14 @@ export const getExperience = async (userId: string | undefined): Promise<Company
       },
       fetchPolicy: "no-cache",
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       return { data: { experience: [] } };
     });
+
+  if (!data) {
+    return undefined;
+  }
 
   return data.experience;
 };

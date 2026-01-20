@@ -1,3 +1,5 @@
+"use client";
+
 import NextLink from "next/link";
 import { SxProps, Theme } from "@mui/material";
 import Link from "@mui/material/Link";

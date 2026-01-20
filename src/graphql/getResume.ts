@@ -95,10 +95,14 @@ export const getResume = async (slug: string) => {
       `,
       variables: { slug },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       return { data: { resume: null } };
     });
+
+  if (!data) {
+    return null;
+  }
 
   return data.resume;
 };

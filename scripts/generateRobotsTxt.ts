@@ -15,7 +15,6 @@ const testRobotsTxt = `User-agent: *\nDisallow: /`;
 const envName = process.env.NEXT_PUBLIC_ENVIRONMENT_NAME;
 
 if (!envName) {
-  // eslint-disable-next-line no-console
   console.error("NEXT_PUBLIC_ENVIRONMENT_NAME is not defined");
   process.exit(1);
 }
@@ -23,7 +22,6 @@ if (!envName) {
 const robotsTxt = envName === "production" ? productionRobotsTxt : testRobotsTxt;
 fs.writeFileSync("public/robots.txt", robotsTxt);
 
-// eslint-disable-next-line no-console
 console.log(
   `Generated a ${envName === "production" ? "crawlable" : "non-crawlable"} public/robots.txt`,
 );

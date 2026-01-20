@@ -1,4 +1,4 @@
-import { Company, Education, Skill } from "@/types";
+import { Company, Education, Position, Project, Skill } from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 import { ParsedResumeData } from "@/app/edit/import/types";
@@ -64,35 +64,35 @@ export const getParsedResumeAi = async (
       `,
       variables: { userId, text },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       return { data: { parsedResumeAi: null } };
     });
 
-  if (!data.parsedResumeAi) return null;
+  if (!data || !data.parsedResumeAi) return null;
 
   // Transform the data to match ParsedResumeData structure
   return {
     user: data.parsedResumeAi.user,
     skills: data.parsedResumeAi.skills,
-    companies: data.parsedResumeAi.companies.map((company) => ({
+    companies: data.parsedResumeAi.companies.map((company: Company) => ({
       name: company.name,
       location: company.location,
       startDate: company.startDate,
       endDate: company.endDate,
       positions:
-        company.positions?.map((position) => ({
+        company.positions?.map((position: Position) => ({
           title: position.title,
           startDate: position.startDate,
           endDate: position.endDate,
           projects:
-            position.projects?.map((project) => ({
+            position.projects?.map((project: Project) => ({
               name: project.name,
               description: null,
             })) || [],
         })) || [],
     })),
-    education: data.parsedResumeAi.education.map((edu) => ({
+    education: data.parsedResumeAi.education.map((edu: Education) => ({
       school: edu.school,
       degree: edu.degree,
       dateAwarded: edu.dateAwarded,

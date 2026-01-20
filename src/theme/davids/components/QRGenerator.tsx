@@ -109,7 +109,6 @@ export const QRGenerator = ({ url, user }: QRGeneratorProps) => {
            * gets bundled into an npm package and isn't directly hosted, we can disable the
            * Next.js image element linting rule.
            */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={qrCodeDataURL}
             alt="QR Code to share resume"

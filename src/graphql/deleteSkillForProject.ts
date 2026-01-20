@@ -25,7 +25,7 @@ export const deleteSkillForProject = async ({
         id,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

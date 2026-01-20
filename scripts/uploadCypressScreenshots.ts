@@ -3,7 +3,6 @@
  * CI/CD to ensure that the screenshots are available for review.
  */
 
-/* eslint-disable no-console */
 import { readdirSync, readFileSync, statSync } from "fs";
 import { join } from "path";
 import { fileURLToPath } from "url";

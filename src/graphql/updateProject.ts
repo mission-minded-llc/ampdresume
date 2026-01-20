@@ -41,7 +41,7 @@ export const updateProject = async ({
         description,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

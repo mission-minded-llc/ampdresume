@@ -25,7 +25,7 @@ export const deletePosition = async ({
         id,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };
