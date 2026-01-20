@@ -1,9 +1,9 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
-// Export the middleware with security headers
+// Export the proxy with security headers
 export default withAuth(
-  function middleware() {
+  function proxy() {
     const res = NextResponse.next();
 
     // Add security headers

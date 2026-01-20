@@ -29,10 +29,14 @@ export const getCompaniesAi = async (userId: string, jobDescription: string) => 
       `,
       variables: { userId, jobDescription },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
-      return { data: { companiesAi: null } };
+      return { data: { companiesAi: [] } };
     });
+
+  if (!data) {
+    return [];
+  }
 
   return data.companiesAi ?? [];
 };

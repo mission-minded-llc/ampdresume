@@ -29,10 +29,14 @@ export const getEducation = async (
       },
       fetchPolicy: "no-cache",
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       return { data: { education: [] } };
     });
+
+  if (!data) {
+    return undefined;
+  }
 
   return data.education;
 };

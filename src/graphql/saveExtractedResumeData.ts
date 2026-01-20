@@ -13,7 +13,7 @@ export const saveExtractedResumeData = async ({
   const client = getApolloClient();
 
   const { data } = await client
-    .mutate({
+    .mutate<{ saveExtractedResumeData: boolean }>({
       mutation: gql`
         mutation saveExtractedResumeData(
           $userId: ID!
@@ -39,10 +39,14 @@ export const saveExtractedResumeData = async ({
         education,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       throw error;
     });
+
+  if (!data) {
+    throw new Error("Failed to save extracted resume data");
+  }
 
   return data.saveExtractedResumeData;
 };

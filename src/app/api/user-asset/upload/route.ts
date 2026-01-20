@@ -5,12 +5,6 @@ import { ALLOWED_USER_IMAGE_TYPES, MAX_USER_IMAGE_SIZE } from "@/constants";
 import { authOptions } from "@/lib/auth";
 import { uploadObject } from "@/lib/s3";
 
-export const config = {
-  api: {
-    bodyParser: false, // Disable body parsing, we'll handle the multipart data
-  },
-};
-
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session || !session?.user) {

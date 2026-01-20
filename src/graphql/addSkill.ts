@@ -14,7 +14,7 @@ export const addSkill = async ({
   const client = getApolloClient();
 
   const { data } = await client
-    .mutate({
+    .mutate<{ addSkill: { id: string; name: string; icon: string } }>({
       mutation: gql`
         mutation addSkill($userId: ID!, $name: String!, $icon: String!) {
           addSkill(userId: $userId, name: $name, icon: $icon) {
@@ -30,7 +30,7 @@ export const addSkill = async ({
         icon,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       return { data: null };
     });

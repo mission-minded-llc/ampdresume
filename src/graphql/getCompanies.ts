@@ -30,10 +30,14 @@ export const getCompanies = async (userId: string): Promise<Company[] | null> =>
       },
       fetchPolicy: "no-cache",
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       return { data: { companies: [] } };
     });
+
+  if (!data) {
+    return null;
+  }
 
   return data.companies;
 };

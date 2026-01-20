@@ -25,7 +25,7 @@ export const deleteEducation = async ({
         id,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

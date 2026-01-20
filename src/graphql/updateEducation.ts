@@ -46,7 +46,7 @@ export const updateEducation = async ({
         dateAwarded,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

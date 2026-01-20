@@ -11,9 +11,7 @@ import { getApolloClient } from "@/lib/apolloClient";
 export const getUser = async (slug: string): Promise<User> => {
   const client = getApolloClient();
 
-  const {
-    data: { user },
-  } = await client.query<{ user: User }>({
+  const { data } = await client.query<{ user: User }>({
     query: gql`
       query getUser($slug: String!) {
         user(slug: $slug) {
@@ -33,5 +31,9 @@ export const getUser = async (slug: string): Promise<User> => {
     variables: { slug },
   });
 
-  return user;
+  if (!data) {
+    throw new Error("Failed to get user");
+  }
+
+  return data.user;
 };

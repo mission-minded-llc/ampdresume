@@ -32,7 +32,7 @@ export const addSkillForProject = async ({
         skillForUserId,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

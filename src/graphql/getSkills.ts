@@ -11,7 +11,7 @@ import { getApolloClient } from "@/lib/apolloClient";
 export const getSkills = async (): Promise<{ skills: Skill[] }> => {
   const client = getApolloClient();
 
-  const { data: skills } = await client
+  const { data } = await client
     .query<{ skills: Skill[] }>({
       query: gql`
         query getSkills {
@@ -23,10 +23,14 @@ export const getSkills = async (): Promise<{ skills: Skill[] }> => {
         }
       `,
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       return { data: { skills: [] } };
     });
 
-  return skills;
+  if (!data) {
+    return { skills: [] };
+  }
+
+  return { skills: data.skills };
 };

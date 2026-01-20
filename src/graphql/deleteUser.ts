@@ -6,7 +6,7 @@ export const deleteUser = async ({ userId }: { userId: string }): Promise<boolea
   const client = getApolloClient();
 
   try {
-    const result = await client.mutate({
+    const result = await client.mutate<{ deleteUser: boolean }>({
       mutation: gql`
         mutation deleteUser($userId: ID!) {
           deleteUser(userId: $userId)
