@@ -36,6 +36,7 @@ env:
   NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
   # Specific for the integration test.
   CYPRESS_TEST_EMAIL: test@ampdresume.com
+  DATABASE_SSL: false
   # For all AI integrations.
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
