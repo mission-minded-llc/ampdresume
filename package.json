@@ -18,7 +18,7 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "check": "npm run types:check && npm run lint && npm run prettier && npm run test",
-    "lint": "next lint",
+    "lint": "eslint .",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "types:check": "tsc --noEmit",
@@ -84,6 +84,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.27.1",
+    "@eslint/eslintrc": "^3.3.3",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@types/jest": "^30.0.0",

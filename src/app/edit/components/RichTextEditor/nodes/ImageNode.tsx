@@ -65,7 +65,6 @@ export class ImageNode extends DecoratorNode<React.ReactElement> {
 
   decorate(): React.ReactElement {
     return (
-      // eslint-disable-next-line @next/next/no-img-element
       <img src={this.__src} alt={this.__altText} style={{ width: "100%", height: "auto" }} />
     );
   }

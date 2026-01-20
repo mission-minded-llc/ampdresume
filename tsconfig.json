@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -24,15 +20,9 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
-    "types": [
-      "jest",
-      "@testing-library/jest-dom",
-      "cypress"
-    ],
+    "types": ["jest", "@testing-library/jest-dom", "cypress"],
     "target": "esnext"
   },
   "include": [
@@ -42,9 +32,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "ampdresume-theme",
-    ".next"
-  ]
+  "exclude": ["node_modules", "ampdresume-theme", ".next"]
 }
