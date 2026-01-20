@@ -10,6 +10,7 @@ import {
   Typography,
   TypographyOwnProps,
 } from "@mui/material";
+import * as Sentry from "@sentry/nextjs";
 import { ThemeAwareLogo } from "@/app/components/ThemeAwareLogo";
 import { MuiLink } from "@/components/MuiLink";
 import { getSession } from "@/lib/auth";
@@ -59,19 +60,45 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const session = await getSession();
-  const userId = session?.user?.id;
+  let session;
+  let user = null;
 
-  const user = userId
-    ? await prisma.user.findUnique({
-        where: {
-          id: session.user.id,
-        },
-      })
-    : null;
+  try {
+    session = await getSession();
+    const userId = session?.user?.id;
 
-  if (userId && !user) {
-    redirect("/logout");
+    if (userId && session) {
+      try {
+        user = await prisma.user.findUnique({
+          where: {
+            id: session.user.id,
+          },
+        });
+      } catch (dbError) {
+        // Log database errors but don't fail the page
+        Sentry.captureException(dbError);
+        // If we have a userId but can't fetch the user, redirect to logout
+        // Note: redirect() throws a special error that Next.js handles
+        redirect("/logout");
+      }
+
+      if (userId && !user) {
+        // Note: redirect() throws a special error that Next.js handles
+        redirect("/logout");
+      }
+    }
+  } catch (error) {
+    // Check if this is a Next.js redirect error - if so, rethrow it
+    // Next.js redirect() throws a NEXT_REDIRECT error that should propagate
+    if (error && typeof error === "object" && "digest" in error) {
+      const digest = (error as { digest?: string }).digest;
+      if (digest?.startsWith("NEXT_REDIRECT")) {
+        throw error;
+      }
+    }
+    // Log other session/auth errors but don't fail the page
+    Sentry.captureException(error);
+    // Continue rendering the page without user data
   }
 
   return (
