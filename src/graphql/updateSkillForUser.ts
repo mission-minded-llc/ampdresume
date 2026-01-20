@@ -59,7 +59,7 @@ export const updateSkillForUser = async ({
         icon,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

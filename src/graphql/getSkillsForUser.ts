@@ -40,10 +40,14 @@ export const getSkillsForUser = async (
       },
       fetchPolicy: "no-cache",
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       return { data: { skillsForUser: [] } };
     });
+
+  if (!data) {
+    return undefined;
+  }
 
   return data.skillsForUser;
 };

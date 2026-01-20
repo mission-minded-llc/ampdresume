@@ -5,6 +5,8 @@ import { themeDefinitions } from "@/theme";
 import { useEffect, useRef, useState } from "react";
 import { Box, Button } from "@mui/material";
 
+type Html2PdfType = typeof import("html2pdf.js").default;
+
 interface PDFViewProps {
   user: User;
   skillsForUser: SkillForUser[];
@@ -14,12 +16,12 @@ interface PDFViewProps {
 
 export const PDFView = ({ user, skillsForUser, companies, education }: PDFViewProps) => {
   const pdfRef = useRef<HTMLDivElement>(null);
-  const [html2pdf, setHtml2pdf] = useState<typeof import("html2pdf.js") | null>(null);
+  const [html2pdf, setHtml2pdf] = useState<Html2PdfType | null>(null);
 
   useEffect(() => {
     // Dynamically import html2pdf only on the client side
     import("html2pdf.js").then((module) => {
-      setHtml2pdf(() => module.default);
+      setHtml2pdf(module.default as Html2PdfType);
     });
   }, []);
 
@@ -27,12 +29,12 @@ export const PDFView = ({ user, skillsForUser, companies, education }: PDFViewPr
     if (!pdfRef.current || !html2pdf) return;
 
     const options = {
-      margin: [0.75, 0.75, 0.75, 0.75], // top, right, bottom, left
+      margin: [0.75, 0.75, 0.75, 0.75] as [number, number, number, number], // top, right, bottom, left
       filename: "resume.pdf",
-      image: { type: "jpeg", quality: 0.98 },
+      image: { type: "jpeg" as const, quality: 0.98 },
       html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-      pagebreak: { mode: ["avoid-all"] },
+      jsPDF: { unit: "in", format: "letter" as const, orientation: "portrait" as const },
+      pagebreak: { mode: ["avoid-all"] as const },
     };
 
     html2pdf()

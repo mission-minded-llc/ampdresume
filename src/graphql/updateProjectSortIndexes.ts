@@ -34,7 +34,7 @@ export const updateProjectSortIndexes = async ({
         projectSortIndexes,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

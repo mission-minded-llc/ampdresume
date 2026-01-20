@@ -24,10 +24,14 @@ export const getSocials = async (userId: string | undefined): Promise<Social[] |
       },
       fetchPolicy: "no-cache",
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       return { data: { socials: [] } };
     });
+
+  if (!data) {
+    return undefined;
+  }
 
   return data.socials;
 };

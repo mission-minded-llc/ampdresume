@@ -46,7 +46,7 @@ export const addPosition = async ({
         endDate,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

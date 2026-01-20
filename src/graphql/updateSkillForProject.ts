@@ -28,7 +28,7 @@ export const updateSkillForProject = async ({
         description,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

@@ -36,7 +36,7 @@ export const addSkillForUser = async ({
         totalYears,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { Company } from "@/types";
+import { Company, Position, Project } from "@/types";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 import { Box, Button, Dialog, TextareaAutosize, Typography } from "@mui/material";
@@ -93,13 +93,13 @@ export const AiAssist = () => {
 
     // Loop through the existing companies, and replace the project name and sortIndex
     // with the AI-generated project name and sortIndex.
-    const updatedCompanies = resume?.companies?.map((company) => {
-      const updatedPositions = company?.positions?.map((position) => {
-        const updatedProjects = position?.projects?.map((project) => {
+    const updatedCompanies = resume?.companies?.map((company: Company) => {
+      const updatedPositions = company?.positions?.map((position: Position) => {
+        const updatedProjects = position?.projects?.map((project: Project) => {
           const aiProject = companiesAi
-            .find((aiCompany) => aiCompany.id === company.id)
-            ?.positions?.find((aiPosition) => aiPosition.id === position.id)
-            ?.projects?.find((aiProject) => aiProject.id === project.id);
+            .find((aiCompany: Company) => aiCompany.id === company.id)
+            ?.positions?.find((aiPosition: Position) => aiPosition.id === position.id)
+            ?.projects?.find((aiProject: Project) => aiProject.id === project.id);
 
           return {
             ...project,
