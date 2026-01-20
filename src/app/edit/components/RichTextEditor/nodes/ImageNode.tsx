@@ -64,9 +64,7 @@ export class ImageNode extends DecoratorNode<React.ReactElement> {
   }
 
   decorate(): React.ReactElement {
-    return (
-      <img src={this.__src} alt={this.__altText} style={{ width: "100%", height: "auto" }} />
-    );
+    return <img src={this.__src} alt={this.__altText} style={{ width: "100%", height: "auto" }} />;
   }
 
   createDOM(): HTMLElement {

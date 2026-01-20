@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import {
   Box,
   Container,
@@ -70,12 +71,7 @@ export default async function HomePage() {
     : null;
 
   if (userId && !user) {
-    return {
-      redirect: {
-        destination: "/logout",
-        permanent: false,
-      },
-    };
+    redirect("/logout");
   }
 
   return (

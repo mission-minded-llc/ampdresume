@@ -1,12 +1,17 @@
 import { ApolloClient } from "@apollo/client";
 import { getApolloClient } from "@/lib/apolloClient";
 import { expect } from "@jest/globals";
+import { gql } from "@apollo/client";
 
 describe("getApolloClient", () => {
-  beforeAll(() => {
-    global.fetch = jest.fn(() =>
+  let mockFetch: jest.Mock;
+
+  beforeEach(() => {
+    // Reset the module to clear the singleton
+    jest.resetModules();
+    mockFetch = jest.fn(() =>
       Promise.resolve({
-        json: () => Promise.resolve({}),
+        json: () => Promise.resolve({ data: {} }),
         headers: new Headers(),
         ok: true,
         redirected: false,
@@ -24,13 +29,34 @@ describe("getApolloClient", () => {
         bytes: jest.fn(),
       } as Response),
     );
+    global.fetch = mockFetch;
   });
 
-  it("should create an ApolloClient instance with the correct URI", () => {
+  it("should create an ApolloClient instance with the correct URI", async () => {
     process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT = "http://example.com/graphql";
     const client = getApolloClient();
     expect(client).toBeInstanceOf(ApolloClient);
-    const httpLink = client.link;
-    expect(httpLink).toHaveProperty("options.uri", "http://example.com/graphql");
+
+    // Test that the client uses the correct URI by making a query
+    const TEST_QUERY = gql`
+      query {
+        __typename
+      }
+    `;
+
+    // Force a network request by using fetchPolicy: 'network-only'
+    try {
+      await client.query({
+        query: TEST_QUERY,
+        fetchPolicy: "network-only",
+      });
+    } catch {
+      // Ignore errors, we just want to verify the URI was used
+    }
+
+    // Verify fetch was called with the correct URI
+    expect(mockFetch).toHaveBeenCalled();
+    const fetchCall = mockFetch.mock.calls[0];
+    expect(fetchCall[0]).toBe("http://example.com/graphql");
   });
 });

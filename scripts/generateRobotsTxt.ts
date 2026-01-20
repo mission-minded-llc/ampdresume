@@ -22,7 +22,6 @@ if (!envName) {
 const robotsTxt = envName === "production" ? productionRobotsTxt : testRobotsTxt;
 fs.writeFileSync("public/robots.txt", robotsTxt);
 
- 
 console.log(
   `Generated a ${envName === "production" ? "crawlable" : "non-crawlable"} public/robots.txt`,
 );
