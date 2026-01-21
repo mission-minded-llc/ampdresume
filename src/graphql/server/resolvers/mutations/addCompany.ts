@@ -1,5 +1,6 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export const addCompany = async (
   _: string,
@@ -32,7 +33,7 @@ export const addCompany = async (
       location,
       startDate: startDateTimestamp,
       endDate: endDateTimestamp,
-      description,
+      description: sanitizeHtmlServer(description),
     },
   });
 

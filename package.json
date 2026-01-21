@@ -68,6 +68,7 @@
     "graphql-yoga": "^5.13.5",
     "html-react-parser": "^5.2.5",
     "html2pdf.js": "^0.14.0",
+    "isomorphic-dompurify": "^2.35.0",
     "next": "^16.1.4",
     "next-auth": "^4.24.11",
     "nodemailer": "^7.0.12",

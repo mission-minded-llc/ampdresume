@@ -1,5 +1,6 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export const updateCompany = async (
   _: string,
@@ -38,7 +39,7 @@ export const updateCompany = async (
     where: { id },
     data: {
       name,
-      description,
+      description: sanitizeHtmlServer(description),
       location,
       startDate: startDateTimestamp,
       endDate: endDateTimestamp,

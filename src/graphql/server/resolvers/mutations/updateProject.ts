@@ -1,5 +1,6 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export const updateProject = async (
   _: string,
@@ -42,7 +43,7 @@ export const updateProject = async (
     where: { id },
     data: {
       name: projectName,
-      description,
+      description: sanitizeHtmlServer(description),
     },
   });
 
