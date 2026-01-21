@@ -189,19 +189,27 @@ export function sanitizeHtmlForEditor(html: string): string {
   return tempDiv.innerHTML;
 }
 
-// Lazy-loaded DOMPurify instance for server-side use
-// Using a promise to cache the dynamically imported module
- 
-let domPurifyPromise: Promise<any> | null = null;
+// Lazy-loaded DOMPurify factory for server-side use
+// Using promises to cache the dynamically imported modules
+let createDOMPurifyPromise: Promise<any> | null = null;
+let jsdomPromise: Promise<any> | null = null;
 
-function getDOMPurify(): Promise<any> {
-  if (!domPurifyPromise) {
-    // Dynamically import DOMPurify to avoid ES module compatibility issues
-    // This prevents the module from being bundled at build time
-    domPurifyPromise = import("isomorphic-dompurify").then((mod) => mod.default);
+async function getDOMPurifyInstance(): Promise<any> {
+  // Import createDOMPurify and jsdom to create fresh instances
+  // This prevents race conditions by isolating hook modifications per instance
+  if (!createDOMPurifyPromise) {
+    createDOMPurifyPromise = import("dompurify").then((mod) => mod.default);
   }
-  // At this point, domPurifyPromise is guaranteed to be non-null
-  return domPurifyPromise as Promise<any>;
+  if (!jsdomPromise) {
+    jsdomPromise = import("jsdom").then((mod) => mod.JSDOM);
+  }
+
+  const [createDOMPurify, JSDOM] = await Promise.all([createDOMPurifyPromise, jsdomPromise]);
+
+  // Create a fresh window and DOMPurify instance for each call
+  // This ensures hooks are isolated and prevents race conditions
+  const window = new JSDOM("").window;
+  return createDOMPurify(window);
 }
 
 /**
@@ -216,10 +224,9 @@ export async function sanitizeHtmlServer(html: string | null | undefined): Promi
     return "";
   }
 
-  const DOMPurifyClass = await getDOMPurify();
-  // Create a fresh instance for each call to isolate hook modifications
+  // Create a fresh DOMPurify instance for each call to isolate hook modifications
   // This prevents race conditions when multiple sanitizations happen concurrently
-  const DOMPurify = DOMPurifyClass.create(window);
+  const DOMPurify = await getDOMPurifyInstance();
 
   // Add hooks to sanitize dangerous URLs and style attributes
   DOMPurify.addHook(
