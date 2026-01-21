@@ -1,6 +1,14 @@
 "use client";
 
-import { Certification, Company, Education, SkillForUser, Social, ThemeName } from "@/types";
+import {
+  Certification,
+  Company,
+  Education,
+  FeaturedProject,
+  SkillForUser,
+  Social,
+  ThemeName,
+} from "@/types";
 import { themeDefinitions } from "@/theme";
 import { Session } from "next-auth";
 import { useContext, useEffect, useState } from "react";
@@ -29,6 +37,7 @@ export const ResumeView = ({
   companies,
   education,
   certifications,
+  featuredProjects,
 }: {
   session: Session | null;
   slug: string;
@@ -38,6 +47,7 @@ export const ResumeView = ({
   companies: Company[];
   education: Education[];
   certifications: Certification[];
+  featuredProjects: FeaturedProject[];
 }) => {
   const { themeAppearance } = useContext(ThemeAppearanceContext);
   const [selectedTheme, setSelectedTheme] = useState<ThemeName>(user?.webThemeName ?? "default");
@@ -85,6 +95,7 @@ export const ResumeView = ({
       companies,
       education,
       certifications,
+      featuredProjects,
     };
 
     const themeDefinition = themeDefinitions[selectedTheme];
