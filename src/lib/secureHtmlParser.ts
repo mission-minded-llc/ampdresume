@@ -191,7 +191,7 @@ export function sanitizeHtmlForEditor(html: string): string {
 
 // Lazy-loaded DOMPurify instance for server-side use
 // Using a promise to cache the dynamically imported module
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 let domPurifyPromise: Promise<any> | null = null;
 
 function getDOMPurify(): Promise<any> {
@@ -209,13 +209,17 @@ function getDOMPurify(): Promise<any> {
  * Removes dangerous tags (script, iframe, etc.) and attributes
  * Works in Node.js environment (server-side)
  * Uses dynamic import to avoid ES module compatibility issues
+ * Creates a fresh DOMPurify instance for each call to prevent race conditions
  */
 export async function sanitizeHtmlServer(html: string | null | undefined): Promise<string> {
   if (!html) {
     return "";
   }
 
-  const DOMPurify = await getDOMPurify();
+  const DOMPurifyClass = await getDOMPurify();
+  // Create a fresh instance for each call to isolate hook modifications
+  // This prevents race conditions when multiple sanitizations happen concurrently
+  const DOMPurify = DOMPurifyClass.create(window);
 
   // Add hooks to sanitize dangerous URLs and style attributes
   DOMPurify.addHook(
@@ -281,6 +285,7 @@ export async function sanitizeHtmlServer(html: string | null | undefined): Promi
   });
 
   // Remove hooks after sanitization to avoid memory leaks
+  // Since this is a fresh instance, this cleanup is still good practice
   DOMPurify.removeAllHooks();
 
   return sanitized;
