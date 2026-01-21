@@ -595,6 +595,185 @@
           "degree": "B.S. Computer Science",
           "dateAwarded": "1611216000000"
         }
+      ],
+      "certifications": [
+        {
+          "id": "cert-1",
+          "name": "AWS Certified Solutions Architect",
+          "issuer": "Amazon Web Services",
+          "dateAwarded": "1704067200000",
+          "credentialUrl": "https://www.credly.com/org/aws-community/badge/aws-cloud-club-captain",
+          "credentialId": "AWS-SA-12345"
+        },
+        {
+          "id": "cert-2",
+          "name": "Google Cloud Professional Cloud Architect",
+          "issuer": "Google Cloud Platform",
+          "dateAwarded": "1672531200000",
+          "credentialUrl": "https://www.credly.com/org/o-reilly-media/badge/devops-on-gcp",
+          "credentialId": "GCP-PCA-67890"
+        },
+        {
+          "id": "cert-3",
+          "name": "Certified Kubernetes Administrator",
+          "issuer": "Cloud Native Computing Foundation",
+          "dateAwarded": "1704067200000",
+          "credentialUrl": null,
+          "credentialId": "CKA-2023-ABC"
+        }
+      ],
+      "featuredProjects": [
+        {
+          "id": "fp-1",
+          "name": "E-Commerce Platform",
+          "description": "<p>A full-stack e-commerce platform built with React, Node.js, and PostgreSQL. Features include user authentication, product catalog, shopping cart, payment processing, and order management.</p>",
+          "links": [
+            { "label": "GitHub", "url": "https://www.github.com/" },
+            { "label": "Live Demo", "url": "https://www.example.com" }
+          ],
+          "skillsForFeaturedProject": [
+            {
+              "id": "sfp-1",
+              "description": null,
+              "skillForUser": {
+                "id": "cm6vok3sp001zqjmtjq27gbhv",
+                "userId": "cm667ueei0000q8n1kuik8734",
+                "skill": {
+                  "id": "cm668feg1053qq8n19cooz2k5",
+                  "name": "React",
+                  "icon": "devicon:react"
+                },
+                "icon": null,
+                "description": "Building responsive, accessible component-based UIs",
+                "yearStarted": 2019,
+                "totalYears": null
+              }
+            },
+            {
+              "id": "sfp-2",
+              "description": null,
+              "skillForUser": {
+                "id": "cm6vok3l0001rqjmtqco2exhd",
+                "userId": "cm667ueei0000q8n1kuik8734",
+                "skill": {
+                  "id": "cm668c3w304azq8n1v9xze4bi",
+                  "name": "Node.js",
+                  "icon": "akar-icons:node-fill"
+                },
+                "icon": null,
+                "description": "Building RESTful APIs and microservices with Express.js",
+                "yearStarted": 2019,
+                "totalYears": null
+              }
+            },
+            {
+              "id": "sfp-3",
+              "description": null,
+              "skillForUser": {
+                "id": "cm6vok3ov001vqjmtg6sybtjn",
+                "userId": "cm667ueei0000q8n1kuik8734",
+                "skill": {
+                  "id": "cm668e6mc04t1q8n12dwno2rt",
+                  "name": "PostgreSQL",
+                  "icon": "devicon:postgresql"
+                },
+                "icon": null,
+                "description": "Advanced query optimization and relational database design",
+                "yearStarted": 2020,
+                "totalYears": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "fp-2",
+          "name": "Task Management API",
+          "description": "<p>RESTful API for task management built with Express.js and MongoDB. Includes features for creating, updating, and organizing tasks with user authentication and authorization.</p>",
+          "links": [
+            { "label": "GitHub", "url": "https://www.github.com/" }
+          ],
+          "skillsForFeaturedProject": [
+            {
+              "id": "sfp-4",
+              "description": null,
+              "skillForUser": {
+                "id": "cm6vok3l0001rqjmtqco2exhd",
+                "userId": "cm667ueei0000q8n1kuik8734",
+                "skill": {
+                  "id": "cm668c3w304azq8n1v9xze4bi",
+                  "name": "Node.js",
+                  "icon": "akar-icons:node-fill"
+                },
+                "icon": null,
+                "description": "Building RESTful APIs and microservices with Express.js",
+                "yearStarted": 2019,
+                "totalYears": null
+              }
+            },
+            {
+              "id": "sfp-5",
+              "description": null,
+              "skillForUser": {
+                "id": "cm6vok3h5001nqjmta2mcssjg",
+                "userId": "cm667ueei0000q8n1kuik8734",
+                "skill": {
+                  "id": "cm668b7ge0434q8n1x83rswbn",
+                  "name": "MongoDB",
+                  "icon": "skill-icons:mongodb"
+                },
+                "icon": null,
+                "description": "Experience with MongoDB Atlas, aggregation pipelines, and schema design",
+                "yearStarted": 2019,
+                "totalYears": null
+              }
+            }
+          ]
+        },
+        {
+          "id": "fp-3",
+          "name": "Portfolio Website",
+          "description": "<p>A responsive portfolio website showcasing my projects and skills. Built with Next.js, TypeScript, and Tailwind CSS. Features include dark mode, smooth animations, and SEO optimization.</p>",
+          "links": [
+            { "label": "GitHub", "url": "https://www.github.com/" },
+            { "label": "Website", "url": "https://www.example.com" }
+          ],
+          "skillsForFeaturedProject": [
+            {
+              "id": "sfp-6",
+              "description": null,
+              "skillForUser": {
+                "id": "cm6vok3yh0025qjmt1d36sujx",
+                "userId": "cm667ueei0000q8n1kuik8734",
+                "skill": {
+                  "id": "cm668kox906e0q8n1rc6zxge6",
+                  "name": "TypeScript",
+                  "icon": "devicon:typescript"
+                },
+                "icon": null,
+                "description": "Type-safe development for frontend and backend applications",
+                "yearStarted": 2020,
+                "totalYears": null
+              }
+            },
+            {
+              "id": "sfp-7",
+              "description": null,
+              "skillForUser": {
+                "id": "cm6vok3sp001zqjmtjq27gbhv",
+                "userId": "cm667ueei0000q8n1kuik8734",
+                "skill": {
+                  "id": "cm668feg1053qq8n19cooz2k5",
+                  "name": "React",
+                  "icon": "devicon:react"
+                },
+                "icon": null,
+                "description": "Building responsive, accessible component-based UIs",
+                "yearStarted": 2019,
+                "totalYears": null
+              }
+            }
+          ]
+        }
       ]
     }
   }
