@@ -58,6 +58,7 @@ export const CertificationForm = ({
           fullWidth
           variant="outlined"
           label="Certification Name"
+          name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -67,6 +68,7 @@ export const CertificationForm = ({
           fullWidth
           variant="outlined"
           label="Issuing Organization"
+          name="issuer"
           value={issuer}
           onChange={(e) => setIssuer(e.target.value)}
           required
@@ -86,6 +88,7 @@ export const CertificationForm = ({
           value={dateAwarded}
           onChange={(newValue) => setDateAwarded(newValue)}
           views={["month", "year"]}
+          name="dateAwarded"
         />
       </Box>
       <Box
@@ -101,6 +104,7 @@ export const CertificationForm = ({
           fullWidth
           variant="outlined"
           label="Credential URL (optional)"
+          name="credentialUrl"
           value={credentialUrl}
           onChange={(e) => setCredentialUrl(e.target.value)}
           placeholder="https://..."
@@ -110,6 +114,7 @@ export const CertificationForm = ({
           fullWidth
           variant="outlined"
           label="Credential ID (optional)"
+          name="credentialId"
           value={credentialId}
           onChange={(e) => setCredentialId(e.target.value)}
           placeholder="ABC-123-XYZ"
