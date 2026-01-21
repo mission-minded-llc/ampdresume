@@ -1,5 +1,6 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export const updateSkillForUser = async (
   _: string,
@@ -32,7 +33,7 @@ export const updateSkillForUser = async (
     where: { id },
     data: {
       userId,
-      description,
+      description: sanitizeHtmlServer(description),
       yearStarted,
       totalYears,
       icon,

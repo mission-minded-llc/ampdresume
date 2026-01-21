@@ -83,6 +83,15 @@ export const types = gql`
     dateAwarded: String
   }
 
+  type Certification {
+    id: ID!
+    name: String!
+    issuer: String!
+    dateAwarded: String
+    credentialUrl: String
+    credentialId: String
+  }
+
   # This is the full resume query. It pieces together all
   # the data needed to render a full resume in either interactive,
   # or PDF form.
@@ -92,6 +101,7 @@ export const types = gql`
     skillsForUser: [SkillForUser!]!
     companies: [Company!]!
     education: [Education!]!
+    certifications: [Certification!]!
   }
 
   # This type represents the parsed resume data from OpenAI

@@ -1,4 +1,5 @@
 import { HTMLReactParserOptions } from "html-react-parser";
+import DOMPurify from "isomorphic-dompurify";
 
 // Define safe HTML tags that are allowed (whitelist approach)
 export const ALLOWED_TAGS = [
@@ -187,4 +188,83 @@ export function sanitizeHtmlForEditor(html: string): string {
   });
 
   return tempDiv.innerHTML;
+}
+
+/**
+ * Server-side HTML sanitization function using DOMPurify
+ * Removes dangerous tags (script, iframe, etc.) and attributes
+ * Works in Node.js environment (server-side)
+ */
+export function sanitizeHtmlServer(html: string | null | undefined): string {
+  if (!html) {
+    return "";
+  }
+
+  // Add hooks to sanitize dangerous URLs and style attributes
+  DOMPurify.addHook(
+    "uponSanitizeAttribute",
+    (node: unknown, data: { attrName: string; attrValue: string; keepAttr: boolean }) => {
+      // Remove javascript: and data: URLs from href and src
+      if (data.attrName === "href" || data.attrName === "src") {
+        const url = data.attrValue;
+        if (url && (url.startsWith("javascript:") || url.startsWith("data:"))) {
+          data.keepAttr = false;
+          data.attrValue = "";
+        }
+      }
+
+      // Sanitize style attributes - remove if they contain javascript or expression
+      if (data.attrName === "style") {
+        const styleValue = data.attrValue;
+        if (
+          styleValue &&
+          (styleValue.includes("javascript:") || styleValue.includes("expression("))
+        ) {
+          data.keepAttr = false;
+          data.attrValue = "";
+        }
+      }
+    },
+  );
+
+  // Configure DOMPurify with our allowed tags and attributes
+  const sanitized = DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: ALLOWED_TAGS,
+    ALLOWED_ATTR: ALLOWED_ATTRIBUTES,
+    // Additional security options
+    FORBID_TAGS: ["script", "iframe", "object", "embed", "form", "input", "button"],
+    FORBID_ATTR: [
+      "onclick",
+      "onload",
+      "onerror",
+      "onmouseover",
+      "onmouseout",
+      "onfocus",
+      "onblur",
+      "onchange",
+      "onsubmit",
+      "onreset",
+      "onselect",
+      "onunload",
+      "onabort",
+      "onkeydown",
+      "onkeypress",
+      "onkeyup",
+      "onmousedown",
+      "onmousemove",
+      "onmouseup",
+    ],
+    // Block javascript: and data: URLs
+    ALLOW_DATA_ATTR: false,
+    // Additional sanitization
+    KEEP_CONTENT: true, // Keep text content even if tags are removed
+    RETURN_DOM: false, // Return string, not DOM
+    RETURN_DOM_FRAGMENT: false,
+    RETURN_TRUSTED_TYPE: false,
+  });
+
+  // Remove hooks after sanitization to avoid memory leaks
+  DOMPurify.removeAllHooks();
+
+  return sanitized;
 }

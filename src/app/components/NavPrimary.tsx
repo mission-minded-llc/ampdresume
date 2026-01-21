@@ -281,6 +281,11 @@ export const NavPrimary = () => {
                   icon="fluent-color:certificate-16"
                   href="/edit/education"
                 />
+                <NavItem
+                  text="Certifications"
+                  icon="flat-color-icons:diploma-1"
+                  href="/edit/certifications"
+                />
                 <NavItemTitle text="Tools" />
                 <NavItem
                   text="AI Assist"

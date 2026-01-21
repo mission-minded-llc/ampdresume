@@ -49,7 +49,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   if (!resume) notFound();
 
-  const { user, skillsForUser, companies, education } = resume;
+  const { user, skillsForUser, companies, education, certifications } = resume;
 
   return (
     <PDFView
@@ -57,6 +57,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       skillsForUser={skillsForUser}
       companies={companies}
       education={education}
+      certifications={certifications}
     />
   );
 }

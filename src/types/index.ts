@@ -65,6 +65,7 @@ export type ThemeDefinition = {
     skillsForUser: SkillForUser[];
     companies: Company[];
     education: Education[];
+    certifications: Certification[];
   }>;
   pdfComponent: React.ComponentType<{
     themeAppearance: ThemeAppearance;
@@ -73,6 +74,7 @@ export type ThemeDefinition = {
     skillsForUser: SkillForUser[];
     companies: Company[];
     education: Education[];
+    certifications: Certification[];
   }> | null;
 };
 
@@ -343,6 +345,8 @@ export interface Education {
 
 // Certification type for the Certifications section
 export interface Certification {
+  id: string;
+
   // Certification name
   name: string;
 

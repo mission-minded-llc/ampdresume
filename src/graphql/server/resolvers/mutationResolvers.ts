@@ -1,4 +1,5 @@
 import { addCompany } from "./mutations/addCompany";
+import { addCertification } from "./mutations/addCertification";
 import { addEducation } from "./mutations/addEducation";
 import { addPosition } from "./mutations/addPosition";
 import { addProject } from "./mutations/addProject";
@@ -6,6 +7,7 @@ import { addSkill } from "./mutations/addSkill";
 import { addSkillForProject } from "./mutations/addSkillForProject";
 import { addSkillForUser } from "./mutations/addSkillForUser";
 import { addSocial } from "./mutations/addSocial";
+import { deleteCertification } from "./mutations/deleteCertification";
 import { deleteCompany } from "./mutations/deleteCompany";
 import { deleteEducation } from "./mutations/deleteEducation";
 import { deletePosition } from "./mutations/deletePosition";
@@ -15,6 +17,7 @@ import { deleteSkillForUser } from "./mutations/deleteSkillForUser";
 import { deleteSocial } from "./mutations/deleteSocial";
 import { deleteUser } from "./mutations/deleteUser";
 import { saveExtractedResumeData } from "./mutations/saveExtractedResumeData";
+import { updateCertification } from "./mutations/updateCertification";
 import { updateCompany } from "./mutations/updateCompany";
 import { updateEducation } from "./mutations/updateEducation";
 import { updatePosition } from "./mutations/updatePosition";
@@ -63,4 +66,9 @@ export const mutationResolvers = {
   addEducation,
   updateEducation,
   deleteEducation,
+
+  // Certification specific mutations.
+  addCertification,
+  updateCertification,
+  deleteCertification,
 };
