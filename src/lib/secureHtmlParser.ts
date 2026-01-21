@@ -189,27 +189,37 @@ export function sanitizeHtmlForEditor(html: string): string {
   return tempDiv.innerHTML;
 }
 
-// Lazy-loaded DOMPurify factory for server-side use
-// Using promises to cache the dynamically imported modules
-let createDOMPurifyPromise: Promise<any> | null = null;
-let jsdomPromise: Promise<any> | null = null;
+// Lazy-loaded DOMPurify instance for server-side use
+// Using a promise to cache the dynamically imported module
+let domPurifyPromise: Promise<any> | null = null;
 
-async function getDOMPurifyInstance(): Promise<any> {
-  // Import createDOMPurify and jsdom to create fresh instances
-  // This prevents race conditions by isolating hook modifications per instance
-  if (!createDOMPurifyPromise) {
-    createDOMPurifyPromise = import("dompurify").then((mod) => mod.default);
+async function getDOMPurify(): Promise<any> {
+  if (!domPurifyPromise) {
+    // Dynamically import DOMPurify to avoid ES module compatibility issues
+    // This prevents the module from being bundled at build time
+    domPurifyPromise = import("isomorphic-dompurify").then((mod) => mod.default);
   }
-  if (!jsdomPromise) {
-    jsdomPromise = import("jsdom").then((mod) => mod.JSDOM);
-  }
+  // At this point, domPurifyPromise is guaranteed to be non-null
+  return domPurifyPromise as Promise<any>;
+}
 
-  const [createDOMPurify, JSDOM] = await Promise.all([createDOMPurifyPromise, jsdomPromise]);
+// Mutex to ensure only one sanitization happens at a time
+// This prevents race conditions when modifying hooks on the shared DOMPurify instance
+let sanitizationQueue: Promise<void> = Promise.resolve();
 
-  // Create a fresh window and DOMPurify instance for each call
-  // This ensures hooks are isolated and prevents race conditions
-  const window = new JSDOM("").window;
-  return createDOMPurify(window);
+async function withMutex<T>(fn: () => Promise<T>): Promise<T> {
+  // Wait for the previous operation to complete, then run our operation
+  const currentOperation = sanitizationQueue.then(() => fn());
+  // Update the queue to wait for this operation
+  sanitizationQueue = currentOperation.then(
+    () => {
+      // Operation completed successfully
+    },
+    () => {
+      // Operation failed, but we still want to allow the next operation
+    },
+  );
+  return currentOperation;
 }
 
 /**
@@ -217,83 +227,86 @@ async function getDOMPurifyInstance(): Promise<any> {
  * Removes dangerous tags (script, iframe, etc.) and attributes
  * Works in Node.js environment (server-side)
  * Uses dynamic import to avoid ES module compatibility issues
- * Creates a fresh DOMPurify instance for each call to prevent race conditions
+ * Uses a mutex to prevent race conditions when modifying hooks on the shared instance
  */
 export async function sanitizeHtmlServer(html: string | null | undefined): Promise<string> {
   if (!html) {
     return "";
   }
 
-  // Create a fresh DOMPurify instance for each call to isolate hook modifications
-  // This prevents race conditions when multiple sanitizations happen concurrently
-  const DOMPurify = await getDOMPurifyInstance();
+  // Use mutex to ensure only one sanitization modifies hooks at a time
+  return withMutex(async () => {
+    const DOMPurify = await getDOMPurify();
 
-  // Add hooks to sanitize dangerous URLs and style attributes
-  DOMPurify.addHook(
-    "uponSanitizeAttribute",
-    (node: unknown, data: { attrName: string; attrValue: string; keepAttr: boolean }) => {
-      // Remove javascript: and data: URLs from href and src
-      if (data.attrName === "href" || data.attrName === "src") {
-        const url = data.attrValue;
-        if (url && (url.startsWith("javascript:") || url.startsWith("data:"))) {
-          data.keepAttr = false;
-          data.attrValue = "";
+    // Remove any existing hooks before adding new ones to prevent accumulation
+    DOMPurify.removeAllHooks();
+
+    // Add hooks to sanitize dangerous URLs and style attributes
+    DOMPurify.addHook(
+      "uponSanitizeAttribute",
+      (node: unknown, data: { attrName: string; attrValue: string; keepAttr: boolean }) => {
+        // Remove javascript: and data: URLs from href and src
+        if (data.attrName === "href" || data.attrName === "src") {
+          const url = data.attrValue;
+          if (url && (url.startsWith("javascript:") || url.startsWith("data:"))) {
+            data.keepAttr = false;
+            data.attrValue = "";
+          }
         }
-      }
 
-      // Sanitize style attributes - remove if they contain javascript or expression
-      if (data.attrName === "style") {
-        const styleValue = data.attrValue;
-        if (
-          styleValue &&
-          (styleValue.includes("javascript:") || styleValue.includes("expression("))
-        ) {
-          data.keepAttr = false;
-          data.attrValue = "";
+        // Sanitize style attributes - remove if they contain javascript or expression
+        if (data.attrName === "style") {
+          const styleValue = data.attrValue;
+          if (
+            styleValue &&
+            (styleValue.includes("javascript:") || styleValue.includes("expression("))
+          ) {
+            data.keepAttr = false;
+            data.attrValue = "";
+          }
         }
-      }
-    },
-  );
+      },
+    );
 
-  // Configure DOMPurify with our allowed tags and attributes
-  const sanitized = DOMPurify.sanitize(html, {
-    ALLOWED_TAGS: ALLOWED_TAGS,
-    ALLOWED_ATTR: ALLOWED_ATTRIBUTES,
-    // Additional security options
-    FORBID_TAGS: ["script", "iframe", "object", "embed", "form", "input", "button"],
-    FORBID_ATTR: [
-      "onclick",
-      "onload",
-      "onerror",
-      "onmouseover",
-      "onmouseout",
-      "onfocus",
-      "onblur",
-      "onchange",
-      "onsubmit",
-      "onreset",
-      "onselect",
-      "onunload",
-      "onabort",
-      "onkeydown",
-      "onkeypress",
-      "onkeyup",
-      "onmousedown",
-      "onmousemove",
-      "onmouseup",
-    ],
-    // Block javascript: and data: URLs
-    ALLOW_DATA_ATTR: false,
-    // Additional sanitization
-    KEEP_CONTENT: true, // Keep text content even if tags are removed
-    RETURN_DOM: false, // Return string, not DOM
-    RETURN_DOM_FRAGMENT: false,
-    RETURN_TRUSTED_TYPE: false,
+    // Configure DOMPurify with our allowed tags and attributes
+    const sanitized = DOMPurify.sanitize(html, {
+      ALLOWED_TAGS: ALLOWED_TAGS,
+      ALLOWED_ATTR: ALLOWED_ATTRIBUTES,
+      // Additional security options
+      FORBID_TAGS: ["script", "iframe", "object", "embed", "form", "input", "button"],
+      FORBID_ATTR: [
+        "onclick",
+        "onload",
+        "onerror",
+        "onmouseover",
+        "onmouseout",
+        "onfocus",
+        "onblur",
+        "onchange",
+        "onsubmit",
+        "onreset",
+        "onselect",
+        "onunload",
+        "onabort",
+        "onkeydown",
+        "onkeypress",
+        "onkeyup",
+        "onmousedown",
+        "onmousemove",
+        "onmouseup",
+      ],
+      // Block javascript: and data: URLs
+      ALLOW_DATA_ATTR: false,
+      // Additional sanitization
+      KEEP_CONTENT: true, // Keep text content even if tags are removed
+      RETURN_DOM: false, // Return string, not DOM
+      RETURN_DOM_FRAGMENT: false,
+      RETURN_TRUSTED_TYPE: false,
+    });
+
+    // Remove hooks after sanitization to avoid memory leaks
+    DOMPurify.removeAllHooks();
+
+    return sanitized;
   });
-
-  // Remove hooks after sanitization to avoid memory leaks
-  // Since this is a fresh instance, this cleanup is still good practice
-  DOMPurify.removeAllHooks();
-
-  return sanitized;
 }
