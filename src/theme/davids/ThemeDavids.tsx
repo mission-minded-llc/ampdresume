@@ -19,16 +19,20 @@ import { Education } from "@/theme/components/Education/Education";
 import {
   Company,
   Education as EducationType,
+  FeaturedProject,
   SkillForUser,
   Social,
   ThemeAppearance,
   User,
+  Certification,
 } from "@/types";
 import { generateSocialUrl, getSocialIcon } from "@/util/social";
 import { QRGenerator } from "./components/QRGenerator";
 import { SkillsSection } from "./components/SkillsSection";
 import { Summary } from "./components/Summary";
 import { WorkExperienceSection } from "./components/WorkExperience";
+import { CertificationsSection } from "./components/Certifications";
+import { FeaturedProjects } from "./components/FeaturedProjects";
 
 // Theme color constants
 const COLORS = {
@@ -73,6 +77,8 @@ export const ThemeDavids = ({
   skillsForUser,
   companies,
   education,
+  certifications,
+  featuredProjects,
 }: {
   themeAppearance: ThemeAppearance;
   user: User;
@@ -80,6 +86,8 @@ export const ThemeDavids = ({
   skillsForUser: SkillForUser[];
   companies: Company[];
   education: EducationType[];
+  certifications: Certification[];
+  featuredProjects: FeaturedProject[];
 }) => {
   const [active, setActive] = useState<number>(0);
   const [currentUrl, setCurrentUrl] = useState<string>("");
@@ -115,18 +123,19 @@ export const ThemeDavids = ({
       render: companies?.length ? <WorkExperienceSection companies={companies} /> : null,
     },
     {
+      label: "Featured Projects",
+      render: featuredProjects?.length ? <FeaturedProjects projects={featuredProjects} /> : null,
+    },
+    {
       label: "Education",
       render: education?.length ? <Education education={education} /> : null,
     },
-    // Commented out until backend support is ready for featured projects and certifications.
-    // {
-    //   label: "Projects",
-    //   render: projects?.length ? <ProjectsSection projects={projects} /> : null,
-    // },
-    // {
-    //   label: "Certifications",
-    //   render: certifications?.length ? <CertificationsSection certifications={certifications} /> : null,
-    // },
+    {
+      label: "Certifications",
+      render: certifications?.length ? (
+        <CertificationsSection certifications={certifications} />
+      ) : null,
+    },
   ].filter((section) => section.render !== null);
 
   const cycle = (delta: number) => {

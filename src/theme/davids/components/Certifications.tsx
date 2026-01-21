@@ -11,7 +11,7 @@ export const CertificationsSection = ({ certifications }: CertificationsSectionP
   return (
     <Box data-testid="certifications-section">
       {certifications.map((cert) => (
-        <Box key={cert.name} sx={{ mb: 3 }}>
+        <Box key={cert.id} sx={{ mb: 3 }}>
           <Box component="h3" sx={{ fontWeight: "bold", mb: 0.5 }}>
             {cert.name}
           </Box>

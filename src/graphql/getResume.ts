@@ -1,4 +1,13 @@
-import { Company, Education, SkillForUser, Social, ThemeName, User } from "@/types";
+import {
+  Certification,
+  Company,
+  Education,
+  FeaturedProject,
+  SkillForUser,
+  Social,
+  ThemeName,
+  User,
+} from "@/types";
 import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 import { getApolloClient } from "@/lib/apolloClient";
@@ -16,6 +25,8 @@ export const getResume = async (slug: string) => {
         skillsForUser: SkillForUser[];
         companies: Company[];
         education: Education[];
+        certifications: Certification[];
+        featuredProjects: FeaturedProject[];
       };
     }>({
       query: gql`
@@ -89,6 +100,40 @@ export const getResume = async (slug: string) => {
               school
               degree
               dateAwarded
+            }
+            certifications {
+              id
+              name
+              issuer
+              dateAwarded
+              credentialUrl
+              credentialId
+            }
+            featuredProjects {
+              id
+              name
+              description
+              links {
+                label
+                url
+              }
+              skillsForFeaturedProject {
+                id
+                description
+                skillForUser {
+                  id
+                  userId
+                  skill {
+                    id
+                    name
+                    icon
+                  }
+                  icon
+                  description
+                  yearStarted
+                  totalYears
+                }
+              }
             }
           }
         }

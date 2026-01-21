@@ -7,12 +7,14 @@ import { expect } from "@jest/globals";
 // TODO: Use the sample data for this after it's added to the sample data file.
 const mockCertifications: Certification[] = [
   {
+    id: "cert-1",
     name: "AWS Certified Solutions Architect",
     issuer: "Amazon Web Services",
     dateAwarded: "1672617600000", // Jan 2, 2023 UTC
     credentialUrl: "https://aws.amazon.com/certification/",
   },
   {
+    id: "cert-2",
     name: "Google Cloud Professional Developer",
     issuer: "Google Cloud",
     dateAwarded: "1672617600000", // Jan 2, 2023 UTC

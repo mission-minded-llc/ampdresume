@@ -1,7 +1,9 @@
+import { getCertifications } from "./queries/getCertifications";
 import { getCompanies } from "./queries/getCompanies";
 import { getCompaniesAi } from "./queries/getCompaniesAi";
 import { getEducation } from "./queries/getEducation";
 import { getExperience } from "./queries/getExperience";
+import { getFeaturedProjects } from "./queries/getFeaturedProjects";
 import { getParsedResumeAi } from "./queries/getParsedResumeAi";
 import { getPositions } from "./queries/getPositions";
 import { getProjects } from "./queries/getProjects";
@@ -34,6 +36,8 @@ export const queryResolvers = {
   positions: getPositions,
   projects: getProjects,
   education: getEducation,
+  certifications: getCertifications,
+  featuredProjects: getFeaturedProjects,
   skillsForProject: getSkillsForProject,
 
   // Full resume query.

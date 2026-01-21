@@ -48,7 +48,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   if (!resume) notFound();
 
-  const { user, socials, skillsForUser, companies, education } = resume;
+  const { user, socials, skillsForUser, companies, education, certifications, featuredProjects } =
+    resume;
 
   return (
     <ResumeView
@@ -59,6 +60,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       skillsForUser={skillsForUser}
       companies={companies}
       education={education}
+      certifications={certifications}
+      featuredProjects={featuredProjects}
     />
   );
 }

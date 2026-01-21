@@ -1,6 +1,7 @@
 import { ExtractedCompany, ExtractedEducation } from "@/app/edit/import/types";
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export const saveExtractedResumeData = async (
   _: string,
@@ -131,7 +132,7 @@ export const saveExtractedResumeData = async (
           data: {
             positionId: newPosition.id,
             name: project.name,
-            description: project.description ?? "",
+            description: (await sanitizeHtmlServer(project.description)) ?? "",
           },
         });
       }

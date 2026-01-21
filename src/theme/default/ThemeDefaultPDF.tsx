@@ -1,8 +1,17 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { Company, Education as EducationType, SkillForUser, User } from "@/types";
+import {
+  Certification,
+  Company,
+  Education as EducationType,
+  FeaturedProject,
+  SkillForUser,
+  User,
+} from "@/types";
+import { Certifications } from "./components/pdf/Certifications";
 import { Education } from "./components/pdf/Education";
+import { FeaturedProjects } from "./components/pdf/FeaturedProjects";
 import { Header } from "./components/pdf/Header";
 import { Skills } from "./components/pdf/Skills";
 import { WorkExperience } from "./components/pdf/WorkExperience";
@@ -21,6 +30,8 @@ interface PDFViewProps {
   skillsForUser: SkillForUser[];
   companies: Company[];
   education: EducationType[];
+  certifications: Certification[];
+  featuredProjects: FeaturedProject[];
   themeOptions?: ThemeDefaultPDFOptions;
 }
 
@@ -29,6 +40,8 @@ export const ThemeDefaultPDF = ({
   skillsForUser,
   companies,
   education,
+  certifications,
+  featuredProjects,
   themeOptions = defaultThemeOptions,
 }: PDFViewProps) => {
   const options = { ...defaultThemeOptions, ...themeOptions };
@@ -47,7 +60,9 @@ export const ThemeDefaultPDF = ({
         <Header user={user} />
         <Skills skillsForUser={skillsForUser} />
         <WorkExperience companies={companies} showSkills={options.showSkillsInWorkExperience} />
+        <FeaturedProjects featuredProjects={featuredProjects} />
         <Education education={education} />
+        <Certifications certifications={certifications} />
       </Box>
     </MUIThemeProvider>
   );

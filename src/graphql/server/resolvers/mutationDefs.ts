@@ -90,6 +90,47 @@ export const mutationDefs = gql`
       dateAwarded: String!
     ): Education!
     deleteEducation(userId: ID!, id: ID!): Education!
+
+    # Certification specific mutations.
+    addCertification(
+      userId: ID!
+      name: String!
+      issuer: String!
+      dateAwarded: String!
+      credentialUrl: String
+      credentialId: String
+    ): Certification!
+    updateCertification(
+      id: ID!
+      userId: ID!
+      name: String!
+      issuer: String!
+      dateAwarded: String!
+      credentialUrl: String
+      credentialId: String
+    ): Certification!
+    deleteCertification(userId: ID!, id: ID!): Certification!
+
+    # Featured Project specific mutations.
+    addFeaturedProject(
+      userId: ID!
+      name: String!
+      description: String
+      links: [FeaturedProjectLinkInput!]!
+    ): FeaturedProject!
+    updateFeaturedProject(
+      id: ID!
+      userId: ID!
+      name: String!
+      description: String
+      links: [FeaturedProjectLinkInput!]!
+    ): FeaturedProject!
+    deleteFeaturedProject(userId: ID!, id: ID!): FeaturedProject!
+  }
+
+  input FeaturedProjectLinkInput {
+    label: String!
+    url: String!
   }
 
   input ProjectSortIndexInput {

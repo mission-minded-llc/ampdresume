@@ -20,6 +20,8 @@ export const ResumeView = ({ themeName }: { themeName: ThemeName }) => {
           skillsForUser={themeDavidsSampleData.data.resume.skillsForUser}
           companies={themeDavidsSampleData.data.resume.companies}
           education={themeDavidsSampleData.data.resume.education}
+          certifications={themeDavidsSampleData.data.resume.certifications || []}
+          featuredProjects={themeDavidsSampleData.data.resume.featuredProjects || []}
         />
       );
     case "default":
@@ -32,6 +34,8 @@ export const ResumeView = ({ themeName }: { themeName: ThemeName }) => {
           skillsForUser={themeDefaultSampleData.data.resume.skillsForUser}
           companies={themeDefaultSampleData.data.resume.companies}
           education={themeDefaultSampleData.data.resume.education}
+          certifications={themeDefaultSampleData.data.resume.certifications || []}
+          featuredProjects={themeDefaultSampleData.data.resume.featuredProjects || []}
         />
       );
   }

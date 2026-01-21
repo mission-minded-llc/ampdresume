@@ -16,6 +16,8 @@ export const queryDefs = gql`
     positions(companyId: ID!, sort: [SortInput!]): [Position!]!
     projects(positionId: ID!): [Project!]!
     education(userId: ID!, sort: [SortInput!]): [Education!]!
+    certifications(userId: ID!, sort: [SortInput!]): [Certification!]!
+    featuredProjects(userId: ID!, sort: [SortInput!]): [FeaturedProject!]!
 
     # Project-specific queries.
     skillsForProject(projectId: ID!): [SkillForProject!]!

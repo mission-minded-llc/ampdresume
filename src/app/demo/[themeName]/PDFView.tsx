@@ -46,6 +46,8 @@ export const PDFView = ({ themeName }: PDFViewProps) => {
             skillsForUser={themeDefaultSampleData.data.resume.skillsForUser}
             companies={themeDefaultSampleData.data.resume.companies}
             education={themeDefaultSampleData.data.resume.education}
+            certifications={themeDefaultSampleData.data.resume.certifications || []}
+            featuredProjects={themeDefaultSampleData.data.resume.featuredProjects || []}
             themeOptions={{ showSkillsInWorkExperience: false }}
           />
         );
