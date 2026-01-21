@@ -1,5 +1,4 @@
 import { HTMLReactParserOptions } from "html-react-parser";
-import DOMPurify from "isomorphic-dompurify";
 
 // Define safe HTML tags that are allowed (whitelist approach)
 export const ALLOWED_TAGS = [
@@ -190,81 +189,124 @@ export function sanitizeHtmlForEditor(html: string): string {
   return tempDiv.innerHTML;
 }
 
+// Lazy-loaded DOMPurify instance for server-side use
+// Using a promise to cache the dynamically imported module
+let domPurifyPromise: Promise<any> | null = null;
+
+async function getDOMPurify(): Promise<any> {
+  if (!domPurifyPromise) {
+    // Dynamically import DOMPurify to avoid ES module compatibility issues
+    // This prevents the module from being bundled at build time
+    domPurifyPromise = import("isomorphic-dompurify").then((mod) => mod.default);
+  }
+  // At this point, domPurifyPromise is guaranteed to be non-null
+  return domPurifyPromise as Promise<any>;
+}
+
+// Mutex to ensure only one sanitization happens at a time
+// This prevents race conditions when modifying hooks on the shared DOMPurify instance
+let sanitizationQueue: Promise<void> = Promise.resolve();
+
+async function withMutex<T>(fn: () => Promise<T>): Promise<T> {
+  // Wait for the previous operation to complete, then run our operation
+  const currentOperation = sanitizationQueue.then(() => fn());
+  // Update the queue to wait for this operation
+  sanitizationQueue = currentOperation.then(
+    () => {
+      // Operation completed successfully
+    },
+    () => {
+      // Operation failed, but we still want to allow the next operation
+    },
+  );
+  return currentOperation;
+}
+
 /**
  * Server-side HTML sanitization function using DOMPurify
  * Removes dangerous tags (script, iframe, etc.) and attributes
  * Works in Node.js environment (server-side)
+ * Uses dynamic import to avoid ES module compatibility issues
+ * Uses a mutex to prevent race conditions when modifying hooks on the shared instance
  */
-export function sanitizeHtmlServer(html: string | null | undefined): string {
+export async function sanitizeHtmlServer(html: string | null | undefined): Promise<string> {
   if (!html) {
     return "";
   }
 
-  // Add hooks to sanitize dangerous URLs and style attributes
-  DOMPurify.addHook(
-    "uponSanitizeAttribute",
-    (node: unknown, data: { attrName: string; attrValue: string; keepAttr: boolean }) => {
-      // Remove javascript: and data: URLs from href and src
-      if (data.attrName === "href" || data.attrName === "src") {
-        const url = data.attrValue;
-        if (url && (url.startsWith("javascript:") || url.startsWith("data:"))) {
-          data.keepAttr = false;
-          data.attrValue = "";
-        }
-      }
+  // Use mutex to ensure only one sanitization modifies hooks at a time
+  return withMutex(async () => {
+    const DOMPurify = await getDOMPurify();
 
-      // Sanitize style attributes - remove if they contain javascript or expression
-      if (data.attrName === "style") {
-        const styleValue = data.attrValue;
-        if (
-          styleValue &&
-          (styleValue.includes("javascript:") || styleValue.includes("expression("))
-        ) {
-          data.keepAttr = false;
-          data.attrValue = "";
-        }
-      }
-    },
-  );
+    // Remove any existing hooks before adding new ones to prevent accumulation
+    DOMPurify.removeAllHooks();
 
-  // Configure DOMPurify with our allowed tags and attributes
-  const sanitized = DOMPurify.sanitize(html, {
-    ALLOWED_TAGS: ALLOWED_TAGS,
-    ALLOWED_ATTR: ALLOWED_ATTRIBUTES,
-    // Additional security options
-    FORBID_TAGS: ["script", "iframe", "object", "embed", "form", "input", "button"],
-    FORBID_ATTR: [
-      "onclick",
-      "onload",
-      "onerror",
-      "onmouseover",
-      "onmouseout",
-      "onfocus",
-      "onblur",
-      "onchange",
-      "onsubmit",
-      "onreset",
-      "onselect",
-      "onunload",
-      "onabort",
-      "onkeydown",
-      "onkeypress",
-      "onkeyup",
-      "onmousedown",
-      "onmousemove",
-      "onmouseup",
-    ],
-    // Block javascript: and data: URLs
-    ALLOW_DATA_ATTR: false,
-    // Additional sanitization
-    KEEP_CONTENT: true, // Keep text content even if tags are removed
-    RETURN_DOM: false, // Return string, not DOM
-    RETURN_DOM_FRAGMENT: false,
-    RETURN_TRUSTED_TYPE: false,
+    // Add hooks to sanitize dangerous URLs and style attributes
+    DOMPurify.addHook(
+      "uponSanitizeAttribute",
+      (node: unknown, data: { attrName: string; attrValue: string; keepAttr: boolean }) => {
+        // Remove javascript: and data: URLs from href and src
+        if (data.attrName === "href" || data.attrName === "src") {
+          const url = data.attrValue;
+          if (url && (url.startsWith("javascript:") || url.startsWith("data:"))) {
+            data.keepAttr = false;
+            data.attrValue = "";
+          }
+        }
+
+        // Sanitize style attributes - remove if they contain javascript or expression
+        if (data.attrName === "style") {
+          const styleValue = data.attrValue;
+          if (
+            styleValue &&
+            (styleValue.includes("javascript:") || styleValue.includes("expression("))
+          ) {
+            data.keepAttr = false;
+            data.attrValue = "";
+          }
+        }
+      },
+    );
+
+    // Configure DOMPurify with our allowed tags and attributes
+    const sanitized = DOMPurify.sanitize(html, {
+      ALLOWED_TAGS: ALLOWED_TAGS,
+      ALLOWED_ATTR: ALLOWED_ATTRIBUTES,
+      // Additional security options
+      FORBID_TAGS: ["script", "iframe", "object", "embed", "form", "input", "button"],
+      FORBID_ATTR: [
+        "onclick",
+        "onload",
+        "onerror",
+        "onmouseover",
+        "onmouseout",
+        "onfocus",
+        "onblur",
+        "onchange",
+        "onsubmit",
+        "onreset",
+        "onselect",
+        "onunload",
+        "onabort",
+        "onkeydown",
+        "onkeypress",
+        "onkeyup",
+        "onmousedown",
+        "onmousemove",
+        "onmouseup",
+      ],
+      // Block javascript: and data: URLs
+      ALLOW_DATA_ATTR: false,
+      // Additional sanitization
+      KEEP_CONTENT: true, // Keep text content even if tags are removed
+      RETURN_DOM: false, // Return string, not DOM
+      RETURN_DOM_FRAGMENT: false,
+      RETURN_TRUSTED_TYPE: false,
+    });
+
+    // Remove hooks after sanitization to avoid memory leaks
+    DOMPurify.removeAllHooks();
+
+    return sanitized;
   });
-
-  // Remove hooks after sanitization to avoid memory leaks
-  DOMPurify.removeAllHooks();
-
-  return sanitized;
 }

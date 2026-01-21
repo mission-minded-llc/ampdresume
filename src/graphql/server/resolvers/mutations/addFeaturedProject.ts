@@ -19,7 +19,7 @@ export const addFeaturedProject = async (
   await verifySessionOwnership(userId);
 
   // Sanitize description if provided
-  const sanitizedDescription = description ? sanitizeHtmlServer(description) : null;
+  const sanitizedDescription = description ? await sanitizeHtmlServer(description) : null;
 
   const featuredProject = await prisma.featuredProject.create({
     data: {

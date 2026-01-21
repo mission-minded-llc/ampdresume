@@ -28,7 +28,7 @@ export const updateFeaturedProject = async (
     throw new Error("Unauthorized: You do not own this featured project");
 
   // Sanitize description if provided
-  const sanitizedDescription = description ? sanitizeHtmlServer(description) : null;
+  const sanitizedDescription = description ? await sanitizeHtmlServer(description) : null;
 
   const featuredProject = await prisma.featuredProject.update({
     where: { id },

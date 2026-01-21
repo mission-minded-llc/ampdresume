@@ -43,7 +43,7 @@ export const updateProject = async (
     where: { id },
     data: {
       name: projectName,
-      description: sanitizeHtmlServer(description),
+      description: await sanitizeHtmlServer(description),
     },
   });
 

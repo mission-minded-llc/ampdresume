@@ -14,6 +14,17 @@ const nextConfig: NextConfig = {
       });
     }
 
+    // Configure webpack to handle html-encoding-sniffer ES module compatibility
+    // This module is a dependency of jsdom/isomorphic-dompurify and has issues
+    // with require() of ES modules. Dynamic imports in code handle this at runtime.
+    if (isServer) {
+      config.resolve = config.resolve || {};
+      config.resolve.extensionAlias = {
+        ...config.resolve.extensionAlias,
+        ".js": [".js", ".ts", ".tsx"],
+      };
+    }
+
     return config;
   },
 };

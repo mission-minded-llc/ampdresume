@@ -44,7 +44,7 @@ export const updateSkillForProject = async (
   const skillForProject = await prisma.skillForProject.update({
     where: { id },
     data: {
-      description: sanitizeHtmlServer(description),
+      description: await sanitizeHtmlServer(description),
     },
     include: {
       skillForUser: {
