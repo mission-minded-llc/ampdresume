@@ -39,7 +39,7 @@ export const updateCompany = async (
     where: { id },
     data: {
       name,
-      description: sanitizeHtmlServer(description),
+      description: await sanitizeHtmlServer(description),
       location,
       startDate: startDateTimestamp,
       endDate: endDateTimestamp,

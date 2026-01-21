@@ -1,5 +1,4 @@
 import { HTMLReactParserOptions } from "html-react-parser";
-import DOMPurify from "isomorphic-dompurify";
 
 // Define safe HTML tags that are allowed (whitelist approach)
 export const ALLOWED_TAGS = [
@@ -190,15 +189,33 @@ export function sanitizeHtmlForEditor(html: string): string {
   return tempDiv.innerHTML;
 }
 
+// Lazy-loaded DOMPurify instance for server-side use
+// Using a promise to cache the dynamically imported module
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let domPurifyPromise: Promise<any> | null = null;
+
+function getDOMPurify(): Promise<any> {
+  if (!domPurifyPromise) {
+    // Dynamically import DOMPurify to avoid ES module compatibility issues
+    // This prevents the module from being bundled at build time
+    domPurifyPromise = import("isomorphic-dompurify").then((mod) => mod.default);
+  }
+  // At this point, domPurifyPromise is guaranteed to be non-null
+  return domPurifyPromise as Promise<any>;
+}
+
 /**
  * Server-side HTML sanitization function using DOMPurify
  * Removes dangerous tags (script, iframe, etc.) and attributes
  * Works in Node.js environment (server-side)
+ * Uses dynamic import to avoid ES module compatibility issues
  */
-export function sanitizeHtmlServer(html: string | null | undefined): string {
+export async function sanitizeHtmlServer(html: string | null | undefined): Promise<string> {
   if (!html) {
     return "";
   }
+
+  const DOMPurify = await getDOMPurify();
 
   // Add hooks to sanitize dangerous URLs and style attributes
   DOMPurify.addHook(

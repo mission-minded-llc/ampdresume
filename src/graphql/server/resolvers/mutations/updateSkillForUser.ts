@@ -33,7 +33,7 @@ export const updateSkillForUser = async (
     where: { id },
     data: {
       userId,
-      description: sanitizeHtmlServer(description),
+      description: await sanitizeHtmlServer(description),
       yearStarted,
       totalYears,
       icon,

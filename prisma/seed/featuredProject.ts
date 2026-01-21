@@ -51,7 +51,7 @@ export async function seedFeaturedProjects() {
         data: {
           userId,
           name: featuredProject.name,
-          description: sanitizeHtmlServer(featuredProject.description),
+          description: await sanitizeHtmlServer(featuredProject.description),
           links: featuredProject.links as unknown as object,
         },
       });

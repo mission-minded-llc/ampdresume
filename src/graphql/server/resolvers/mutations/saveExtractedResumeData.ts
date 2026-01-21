@@ -132,7 +132,7 @@ export const saveExtractedResumeData = async (
           data: {
             positionId: newPosition.id,
             name: project.name,
-            description: sanitizeHtmlServer(project.description) ?? "",
+            description: (await sanitizeHtmlServer(project.description)) ?? "",
           },
         });
       }

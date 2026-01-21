@@ -33,7 +33,7 @@ export const addCompany = async (
       location,
       startDate: startDateTimestamp,
       endDate: endDateTimestamp,
-      description: sanitizeHtmlServer(description),
+      description: await sanitizeHtmlServer(description),
     },
   });
 
