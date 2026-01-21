@@ -41,11 +41,16 @@ export const getResume = async (_: string, { slug }: { slug: string }, context: 
     where: { userId: user.id },
   });
 
+  const certifications = await prisma.certification.findMany({
+    where: { userId: user.id },
+  });
+
   return {
     user: filterUserData(user, context),
     socials,
     skillsForUser,
     companies,
     education,
+    certifications,
   };
 };

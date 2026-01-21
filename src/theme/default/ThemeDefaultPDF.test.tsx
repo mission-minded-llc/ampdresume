@@ -13,6 +13,7 @@ describe("ThemeDefaultPDF", () => {
         skillsForUser={mockData.skillsForUser}
         companies={mockData.companies}
         education={mockData.education}
+        certifications={mockData.certifications || []}
       />,
     );
 
@@ -52,6 +53,7 @@ describe("ThemeDefaultPDF", () => {
         skillsForUser={mockData.skillsForUser}
         companies={mockData.companies}
         education={mockData.education}
+        certifications={mockData.certifications || []}
         themeOptions={{ showSkillsInWorkExperience: true }}
       />,
     );
@@ -67,6 +69,7 @@ describe("ThemeDefaultPDF", () => {
         skillsForUser={mockData.skillsForUser}
         companies={mockData.companies}
         education={mockData.education}
+        certifications={mockData.certifications || []}
         themeOptions={{ showSkillsInWorkExperience: false }}
       />,
     );

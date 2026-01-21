@@ -23,12 +23,14 @@ import {
   Social,
   ThemeAppearance,
   User,
+  Certification,
 } from "@/types";
 import { generateSocialUrl, getSocialIcon } from "@/util/social";
 import { QRGenerator } from "./components/QRGenerator";
 import { SkillsSection } from "./components/SkillsSection";
 import { Summary } from "./components/Summary";
 import { WorkExperienceSection } from "./components/WorkExperience";
+import { CertificationsSection } from "./components/Certifications";
 
 // Theme color constants
 const COLORS = {
@@ -73,6 +75,7 @@ export const ThemeDavids = ({
   skillsForUser,
   companies,
   education,
+  certifications,
 }: {
   themeAppearance: ThemeAppearance;
   user: User;
@@ -80,6 +83,7 @@ export const ThemeDavids = ({
   skillsForUser: SkillForUser[];
   companies: Company[];
   education: EducationType[];
+  certifications: Certification[];
 }) => {
   const [active, setActive] = useState<number>(0);
   const [currentUrl, setCurrentUrl] = useState<string>("");
@@ -123,10 +127,12 @@ export const ThemeDavids = ({
     //   label: "Projects",
     //   render: projects?.length ? <ProjectsSection projects={projects} /> : null,
     // },
-    // {
-    //   label: "Certifications",
-    //   render: certifications?.length ? <CertificationsSection certifications={certifications} /> : null,
-    // },
+    {
+      label: "Certifications",
+      render: certifications?.length ? (
+        <CertificationsSection certifications={certifications} />
+      ) : null,
+    },
   ].filter((section) => section.render !== null);
 
   const cycle = (delta: number) => {
