@@ -38,10 +38,14 @@ export const getProjects = async (positionId: string): Promise<Project[] | null>
       },
       fetchPolicy: "no-cache",
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       return { data: { projects: [] } };
     });
+
+  if (!data) {
+    return null;
+  }
 
   return data.projects;
 };

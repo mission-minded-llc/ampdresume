@@ -5,7 +5,6 @@
  * this every time, but rather only when you encounter issues with the test runs due to
  * data issues.
  */
-/* eslint-disable no-console */
 
 import { exit } from "process";
 import { prisma } from "@/lib/prisma";

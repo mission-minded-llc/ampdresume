@@ -26,7 +26,7 @@ export const updateUser = async ({
         webThemeName,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

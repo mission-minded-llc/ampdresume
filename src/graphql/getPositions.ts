@@ -29,10 +29,14 @@ export const getPositions = async (companyId: string): Promise<Position[] | null
       },
       fetchPolicy: "no-cache",
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
       return { data: { positions: [] } };
     });
+
+  if (!data) {
+    return null;
+  }
 
   return data.positions;
 };

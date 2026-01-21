@@ -7,7 +7,6 @@ const getIds = async (
   filter: object,
   selectField = "id",
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const results = await (prisma[model] as any).findMany({
     where: filter,
     select: {
@@ -15,7 +14,6 @@ const getIds = async (
     },
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return results.map((result: any) => result[selectField]);
 };
 

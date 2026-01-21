@@ -28,7 +28,7 @@ export const addSocial = async ({
         ref,
       },
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       Sentry.captureException(error);
     });
 };

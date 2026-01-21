@@ -16,7 +16,6 @@ import Typography from "@mui/material/Typography";
 import { Icon } from "@iconify/react";
 import { MuiLink } from "@/components/MuiLink";
 import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
-import { getBaseUrl } from "@/util/url";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 import { themeDefinitions } from "@/theme";
 
@@ -30,8 +29,6 @@ export const NavPrimary = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [demoThemesOpen, setDemoThemesOpen] = useState(false);
-
-  const baseUrl = getBaseUrl();
 
   const toggleDrawer = (open: boolean) => (event: object) => {
     if (
@@ -229,7 +226,7 @@ export const NavPrimary = () => {
             <NavItem
               text="Home"
               icon="fluent-color:home-16"
-              href={baseUrl}
+              href="/"
               dataTestId="NavPrimaryMenuHome"
             />
             <SubmenuHeader
