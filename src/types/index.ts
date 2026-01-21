@@ -343,6 +343,8 @@ export interface Education {
 
 // Certification type for the Certifications section
 export interface Certification {
+  id: string;
+
   // Certification name
   name: string;
 
