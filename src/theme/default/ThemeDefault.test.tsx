@@ -13,6 +13,7 @@ describe("ThemeDefault", () => {
     companies: themeDefaultSampleData.data.resume.companies,
     education: themeDefaultSampleData.data.resume.education || [],
     certifications: themeDefaultSampleData.data.resume.certifications || [],
+    featuredProjects: themeDefaultSampleData.data.resume.featuredProjects || [],
   };
 
   it("renders all main sections when data is provided", () => {
@@ -60,6 +61,7 @@ describe("ThemeDefault", () => {
       companies: [],
       education: [],
       certifications: [],
+      featuredProjects: [],
     };
 
     render(<ThemeDefault {...propsWithEmptyData} />);

@@ -56,8 +56,6 @@ export type ThemeDefinition = {
   // and in the SEO meta tags.
   authors: ThemeAuthor[];
 
-  // TODO: Replace data types with ResumeData after the backend is updated to
-  // include the new fields for Certifications and FeaturedProjects.
   webComponent: React.ComponentType<{
     themeAppearance: ThemeAppearance;
     user: User;
@@ -66,6 +64,7 @@ export type ThemeDefinition = {
     companies: Company[];
     education: Education[];
     certifications: Certification[];
+    featuredProjects: FeaturedProject[];
   }>;
   pdfComponent: React.ComponentType<{
     themeAppearance: ThemeAppearance;
@@ -75,6 +74,7 @@ export type ThemeDefinition = {
     companies: Company[];
     education: Education[];
     certifications: Certification[];
+    featuredProjects: FeaturedProject[];
   }> | null;
 };
 

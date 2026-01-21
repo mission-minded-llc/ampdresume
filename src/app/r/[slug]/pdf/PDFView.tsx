@@ -1,6 +1,6 @@
 "use client";
 
-import { Certification, Company, Education, SkillForUser, User } from "@/types";
+import { Certification, Company, Education, FeaturedProject, SkillForUser, User } from "@/types";
 import { themeDefinitions } from "@/theme";
 import { useEffect, useRef, useState } from "react";
 import { Box, Button } from "@mui/material";
@@ -13,6 +13,7 @@ interface PDFViewProps {
   companies: Company[];
   education: Education[];
   certifications: Certification[];
+  featuredProjects: FeaturedProject[];
 }
 
 export const PDFView = ({
@@ -21,6 +22,7 @@ export const PDFView = ({
   companies,
   education,
   certifications,
+  featuredProjects,
 }: PDFViewProps) => {
   const pdfRef = useRef<HTMLDivElement>(null);
   const [html2pdf, setHtml2pdf] = useState<Html2PdfType | null>(null);
@@ -82,6 +84,7 @@ export const PDFView = ({
               companies={companies}
               education={education}
               certifications={certifications}
+              featuredProjects={featuredProjects}
             />
           )}
         </Box>
