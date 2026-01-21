@@ -182,25 +182,27 @@ describe("Featured Projects Skills Section", () => {
       .find("div[role='combobox']")
       .click();
     cy.get("li[role='option']", { timeout: 5000 }).should("have.length.at.least", 1);
-    
+
     // Get the first skill's text before clicking
-    cy.get("li[role='option']").first().then(($option) => {
-      const addedSkillText = $option.text().trim();
-      
-      // Click to add it
-      cy.wrap($option).click();
-      cy.wait(500);
+    cy.get("li[role='option']")
+      .first()
+      .then(($option) => {
+        const addedSkillText = $option.text().trim();
 
-      // Try to add the same skill again - it should not appear in the dropdown
-      cy.get(".Mui-expanded")
-        .find('label:contains("Add Your Skills to Featured Project")')
-        .parent()
-        .find("div[role='combobox']")
-        .click();
+        // Click to add it
+        cy.wrap($option).click();
+        cy.wait(500);
 
-      // The skill should not appear in the dropdown options
-      cy.get("li[role='option']").contains(addedSkillText).should("not.exist");
-    });
+        // Try to add the same skill again - it should not appear in the dropdown
+        cy.get(".Mui-expanded")
+          .find('label:contains("Add Your Skills to Featured Project")')
+          .parent()
+          .find("div[role='combobox']")
+          .click();
+
+        // The skill should not appear in the dropdown options
+        cy.get("li[role='option']").contains(addedSkillText).should("not.exist");
+      });
   });
 
   it("should edit a skill description for a featured project", () => {
@@ -231,34 +233,33 @@ describe("Featured Projects Skills Section", () => {
       .find("div[role='combobox']")
       .click();
     cy.get("li[role='option']", { timeout: 5000 }).should("have.length.at.least", 1);
-    
+
     // Get the first skill's text and add it
-    cy.get("li[role='option']").first().then(($option) => {
-      const skillText = $option.text().trim();
-      cy.wrap($option).click();
-      cy.wait(500);
+    cy.get("li[role='option']")
+      .first()
+      .then(($option) => {
+        const skillText = $option.text().trim();
+        cy.wrap($option).click();
+        cy.wait(500);
 
-      // Click on the skill button to open the edit dialog
-      cy.get(".Mui-expanded button").contains(skillText).click();
+        // Click on the skill button to open the edit dialog
+        cy.get(".Mui-expanded button").contains(skillText).click();
 
-      // Verify the dialog is open
-      cy.contains("Edit Featured Project Skill").should("be.visible");
-      cy.contains(skillText).should("be.visible");
+        // Verify the dialog is open
+        cy.contains("Edit Featured Project Skill").should("be.visible");
+        cy.contains(skillText).should("be.visible");
 
-      // Add a description
-      const description = "Used this skill extensively in the featured project";
-      cy.get(".MuiDialog-container [contenteditable='true']")
-        .first()
-        .click()
-        .type(description);
+        // Add a description
+        const description = "Used this skill extensively in the featured project";
+        cy.get(".MuiDialog-container [contenteditable='true']").first().click().type(description);
 
-      // Save the description
-      cy.get(".MuiDialog-container button").contains("Save & Close").click();
-      cy.wait(500);
+        // Save the description
+        cy.get(".MuiDialog-container button").contains("Save & Close").click();
+        cy.wait(500);
 
-      // Verify the skill button still exists (skill wasn't deleted)
-      cy.get(".Mui-expanded button").contains(skillText).should("be.visible");
-    });
+        // Verify the skill button still exists (skill wasn't deleted)
+        cy.get(".Mui-expanded button").contains(skillText).should("be.visible");
+      });
   });
 
   it("should delete a skill from a featured project", () => {
@@ -289,35 +290,37 @@ describe("Featured Projects Skills Section", () => {
       .find("div[role='combobox']")
       .click();
     cy.get("li[role='option']", { timeout: 5000 }).should("have.length.at.least", 1);
-    
-    cy.get("li[role='option']").first().then(($option) => {
-      const skillText = $option.text().trim();
-      cy.wrap($option).click();
-      cy.wait(500);
 
-      // Verify the skill is visible
-      cy.get(".Mui-expanded button").contains(skillText).should("be.visible");
+    cy.get("li[role='option']")
+      .first()
+      .then(($option) => {
+        const skillText = $option.text().trim();
+        cy.wrap($option).click();
+        cy.wait(500);
 
-      // Click on the skill button to open the edit dialog
-      cy.get(".Mui-expanded button").contains(skillText).click();
+        // Verify the skill is visible
+        cy.get(".Mui-expanded button").contains(skillText).should("be.visible");
 
-      // Delete the skill
-      cy.get(".MuiDialog-container button").contains("Delete from Featured Project").click();
-      cy.get("button").contains("Yes, Delete").click(); // Confirmation dialog
-      cy.wait(500);
+        // Click on the skill button to open the edit dialog
+        cy.get(".Mui-expanded button").contains(skillText).click();
 
-      // Verify the skill is no longer visible
-      cy.get(".Mui-expanded button").contains(skillText).should("not.exist");
+        // Delete the skill
+        cy.get(".MuiDialog-container button").contains("Delete from Featured Project").click();
+        cy.get("button").contains("Yes, Delete").click(); // Confirmation dialog
+        cy.wait(500);
 
-      // Verify the skill can be added again (it should appear in the dropdown)
-      cy.get(".Mui-expanded")
-        .find('label:contains("Add Your Skills to Featured Project")')
-        .parent()
-        .find("div[role='combobox']")
-        .click();
-      cy.get("li[role='option']", { timeout: 5000 }).should("have.length.at.least", 1);
-      cy.get("li[role='option']").contains(skillText).should("be.visible");
-    });
+        // Verify the skill is no longer visible
+        cy.get(".Mui-expanded button").contains(skillText).should("not.exist");
+
+        // Verify the skill can be added again (it should appear in the dropdown)
+        cy.get(".Mui-expanded")
+          .find('label:contains("Add Your Skills to Featured Project")')
+          .parent()
+          .find("div[role='combobox']")
+          .click();
+        cy.get("li[role='option']", { timeout: 5000 }).should("have.length.at.least", 1);
+        cy.get("li[role='option']").contains(skillText).should("be.visible");
+      });
   });
 
   it("should persist skills after closing and reopening the featured project", () => {
@@ -348,25 +351,27 @@ describe("Featured Projects Skills Section", () => {
       .find("div[role='combobox']")
       .click();
     cy.get("li[role='option']", { timeout: 5000 }).should("have.length.at.least", 1);
-    
-    cy.get("li[role='option']").first().then(($option) => {
-      const skillText = $option.text().trim();
-      cy.wrap($option).click();
-      cy.wait(500);
 
-      // Verify the skill is visible
-      cy.get(".Mui-expanded button").contains(skillText).should("be.visible");
+    cy.get("li[role='option']")
+      .first()
+      .then(($option) => {
+        const skillText = $option.text().trim();
+        cy.wrap($option).click();
+        cy.wait(500);
 
-      // Collapse the accordion
-      cy.contains(testProjectName).click();
-      cy.wait(500);
+        // Verify the skill is visible
+        cy.get(".Mui-expanded button").contains(skillText).should("be.visible");
 
-      // Expand it again
-      cy.contains(testProjectName).click();
+        // Collapse the accordion
+        cy.contains(testProjectName).click();
+        cy.wait(500);
 
-      // Verify the skill is still there
-      cy.get(".Mui-expanded button").contains(skillText).should("be.visible");
-    });
+        // Expand it again
+        cy.contains(testProjectName).click();
+
+        // Verify the skill is still there
+        cy.get(".Mui-expanded button").contains(skillText).should("be.visible");
+      });
   });
 
   it("should show loading state when fetching skills", () => {
@@ -428,17 +433,17 @@ describe("Featured Projects Skills Section", () => {
       .find("div[role='combobox']")
       .click();
     cy.get("li[role='option']", { timeout: 5000 }).should("have.length.at.least", 1);
-    
-    cy.get("li[role='option']").first().then(($option) => {
-      const skillText = $option.text().trim();
-      cy.wrap($option).click();
-      cy.wait(500);
 
-      // Check if the skill button exists
-      cy.get(".Mui-expanded button")
-        .contains(skillText)
-        .should("exist");
-    });
+    cy.get("li[role='option']")
+      .first()
+      .then(($option) => {
+        const skillText = $option.text().trim();
+        cy.wrap($option).click();
+        cy.wait(500);
+
+        // Check if the skill button exists
+        cy.get(".Mui-expanded button").contains(skillText).should("exist");
+      });
   });
 
   it("should allow editing skill description and saving without closing", () => {
@@ -469,32 +474,31 @@ describe("Featured Projects Skills Section", () => {
       .find("div[role='combobox']")
       .click();
     cy.get("li[role='option']", { timeout: 5000 }).should("have.length.at.least", 1);
-    
-    cy.get("li[role='option']").first().then(($option) => {
-      const skillText = $option.text().trim();
-      cy.wrap($option).click();
-      cy.wait(500);
 
-      // Click on the skill button to open the edit dialog
-      cy.get(".Mui-expanded button").contains(skillText).click();
+    cy.get("li[role='option']")
+      .first()
+      .then(($option) => {
+        const skillText = $option.text().trim();
+        cy.wrap($option).click();
+        cy.wait(500);
 
-      // Add a description
-      const description = "Test description for skill";
-      cy.get(".MuiDialog-container [contenteditable='true']")
-        .first()
-        .click()
-        .type(description);
+        // Click on the skill button to open the edit dialog
+        cy.get(".Mui-expanded button").contains(skillText).click();
 
-      // Save without closing
-      cy.get(".MuiDialog-container button").contains("Save").click();
-      cy.wait(500);
+        // Add a description
+        const description = "Test description for skill";
+        cy.get(".MuiDialog-container [contenteditable='true']").first().click().type(description);
 
-      // Dialog should still be open
-      cy.contains("Edit Featured Project Skill").should("be.visible");
+        // Save without closing
+        cy.get(".MuiDialog-container button").contains("Save").click();
+        cy.wait(500);
 
-      // Close the dialog manually
-      cy.get(".MuiDialog-container button[aria-label='close']").click();
-    });
+        // Dialog should still be open
+        cy.contains("Edit Featured Project Skill").should("be.visible");
+
+        // Close the dialog manually
+        cy.get(".MuiDialog-container button[aria-label='close']").click();
+      });
   });
 
   it("should display skills on the resume view", () => {
@@ -635,14 +639,16 @@ describe("Featured Projects Skills Section", () => {
     cy.get("li[role='option']", { timeout: 5000 }).should("have.length.at.least", 1);
 
     // Select the first available skill
-    cy.get("li[role='option']").first().then(($option) => {
-      const skillText = $option.text().trim();
-      cy.wrap($option).click();
-      cy.wait(500);
+    cy.get("li[role='option']")
+      .first()
+      .then(($option) => {
+        const skillText = $option.text().trim();
+        cy.wrap($option).click();
+        cy.wait(500);
 
-      // Verify skill was added
-      cy.get(".Mui-expanded button").contains(skillText).should("be.visible");
-    });
+        // Verify skill was added
+        cy.get(".Mui-expanded button").contains(skillText).should("be.visible");
+      });
   });
 
   it("should show skill buttons that are clickable to edit", () => {
@@ -673,36 +679,38 @@ describe("Featured Projects Skills Section", () => {
       .find("div[role='combobox']")
       .click();
     cy.get("li[role='option']", { timeout: 5000 }).should("have.length.at.least", 1);
-    
-    cy.get("li[role='option']").first().then(($option) => {
-      const skillText = $option.text().trim();
-      cy.wrap($option).click();
-      cy.wait(500);
 
-      // Verify the skill button is clickable
-      cy.get(".Mui-expanded button")
-        .contains(skillText)
-        .should("be.visible")
-        .should("not.be.disabled");
+    cy.get("li[role='option']")
+      .first()
+      .then(($option) => {
+        const skillText = $option.text().trim();
+        cy.wrap($option).click();
+        cy.wait(500);
 
-      // Click the button to open edit dialog
-      cy.get(".Mui-expanded button").contains(skillText).click();
-      cy.contains("Edit Featured Project Skill").should("be.visible");
+        // Verify the skill button is clickable
+        cy.get(".Mui-expanded button")
+          .contains(skillText)
+          .should("be.visible")
+          .should("not.be.disabled");
 
-      // Close the dialog
-      cy.get(".MuiDialog-container button[aria-label='close']").click();
-    });
+        // Click the button to open edit dialog
+        cy.get(".Mui-expanded button").contains(skillText).click();
+        cy.contains("Edit Featured Project Skill").should("be.visible");
+
+        // Close the dialog
+        cy.get(".MuiDialog-container button[aria-label='close']").click();
+      });
   });
 
   it("should clean up test data", () => {
     // This test ensures we clean up the test featured project and its skills
     cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/featured-projects`);
-    
+
     // Check if the project exists
     cy.get("body").then(($body) => {
       if ($body.find(`*:contains("${testProjectName}")`).length > 0) {
         cy.contains(testProjectName).click();
-        
+
         // Clean up any skills first (though cascade delete should handle this)
         cy.get("body").then(($body2) => {
           const existingSkills = $body2.find(".Mui-expanded button").filter((_, el) => {
@@ -713,7 +721,9 @@ describe("Featured Projects Skills Section", () => {
           if (existingSkills.length > 0) {
             existingSkills.each((_, el) => {
               cy.wrap(el).click();
-              cy.get(".MuiDialog-container button").contains("Delete from Featured Project").click();
+              cy.get(".MuiDialog-container button")
+                .contains("Delete from Featured Project")
+                .click();
               cy.get("button").contains("Yes, Delete").click();
               cy.wait(500);
             });
