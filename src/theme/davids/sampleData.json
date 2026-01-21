@@ -222,9 +222,7 @@
           "id": "fp-2",
           "name": "Task Management API",
           "description": "<p>RESTful API for task management built with Express.js and MongoDB. Includes features for creating, updating, and organizing tasks with user authentication and authorization.</p>",
-          "links": [
-            { "label": "GitHub", "url": "https://www.github.com/" }
-          ],
+          "links": [{ "label": "GitHub", "url": "https://www.github.com/" }],
           "skillsForFeaturedProject": [
             {
               "id": "sfp-3",

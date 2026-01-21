@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography, Link } from "@mui/material";
 import { RichTextBlock } from "@/theme/components/RichTextBlock";
 import { ResumeTitle } from "@/theme/components/ResumeTitle/ResumeTitle";
@@ -56,7 +55,7 @@ export const FeaturedProjects = ({ featuredProjects }: { featuredProjects: Featu
                     sx={{
                       display: "inline-block",
                       background: (theme) => theme.palette.primary.light,
-                      color: (theme) => theme.palette.primary.contrastText,
+                      color: (theme) => theme.palette.primary.main,
                       borderRadius: 2,
                       px: 1,
                       py: 0.5,
