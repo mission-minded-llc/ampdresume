@@ -6,6 +6,7 @@ import { addPosition } from "./mutations/addPosition";
 import { addProject } from "./mutations/addProject";
 import { addSkill } from "./mutations/addSkill";
 import { addSkillForProject } from "./mutations/addSkillForProject";
+import { addSkillForFeaturedProject } from "./mutations/addSkillForFeaturedProject";
 import { addSkillForUser } from "./mutations/addSkillForUser";
 import { addSocial } from "./mutations/addSocial";
 import { deleteCertification } from "./mutations/deleteCertification";
@@ -15,6 +16,7 @@ import { deleteFeaturedProject } from "./mutations/deleteFeaturedProject";
 import { deletePosition } from "./mutations/deletePosition";
 import { deleteProject } from "./mutations/deleteProject";
 import { deleteSkillForProject } from "./mutations/deleteSkillForProject";
+import { deleteSkillForFeaturedProject } from "./mutations/deleteSkillForFeaturedProject";
 import { deleteSkillForUser } from "./mutations/deleteSkillForUser";
 import { deleteSocial } from "./mutations/deleteSocial";
 import { deleteUser } from "./mutations/deleteUser";
@@ -27,6 +29,7 @@ import { updatePosition } from "./mutations/updatePosition";
 import { updateProject } from "./mutations/updateProject";
 import { updateProjectSortIndexes } from "./mutations/updateProjectSortIndexes";
 import { updateSkillForProject } from "./mutations/updateSkillForProject";
+import { updateSkillForFeaturedProject } from "./mutations/updateSkillForFeaturedProject";
 import { updateSkillForUser } from "./mutations/updateSkillForUser";
 import { updateSocial } from "./mutations/updateSocial";
 import { updateUser } from "./mutations/updateUser";
@@ -79,4 +82,7 @@ export const mutationResolvers = {
   addFeaturedProject,
   updateFeaturedProject,
   deleteFeaturedProject,
+  addSkillForFeaturedProject,
+  updateSkillForFeaturedProject,
+  deleteSkillForFeaturedProject,
 };

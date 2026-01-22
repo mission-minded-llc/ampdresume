@@ -145,6 +145,149 @@
           "degree": "B.S. Computer Science",
           "dateAwarded": "1370044800000"
         }
+      ],
+      "certifications": [
+        {
+          "id": "cert-1",
+          "name": "AWS Certified Solutions Architect",
+          "issuer": "Amazon Web Services",
+          "dateAwarded": "1704067200000",
+          "credentialUrl": "https://www.credly.com/org/aws-community/badge/aws-cloud-club-captain",
+          "credentialId": "AWS-SA-12345"
+        },
+        {
+          "id": "cert-2",
+          "name": "Google Cloud Professional Cloud Architect",
+          "issuer": "Google Cloud Platform",
+          "dateAwarded": "1672531200000",
+          "credentialUrl": "https://www.credly.com/org/o-reilly-media/badge/devops-on-gcp",
+          "credentialId": "GCP-PCA-67890"
+        },
+        {
+          "id": "cert-3",
+          "name": "Certified Kubernetes Administrator",
+          "issuer": "Cloud Native Computing Foundation",
+          "dateAwarded": "1704067200000",
+          "credentialUrl": null,
+          "credentialId": "CKA-2023-ABC"
+        }
+      ],
+      "featuredProjects": [
+        {
+          "id": "fp-1",
+          "name": "E-Commerce Platform",
+          "description": "<p>A full-stack e-commerce platform built with React, Node.js, and PostgreSQL. Features include user authentication, product catalog, shopping cart, payment processing, and order management.</p>",
+          "links": [
+            { "label": "GitHub", "url": "https://www.github.com/" },
+            { "label": "Live Demo", "url": "https://www.example.com" }
+          ],
+          "skillsForFeaturedProject": [
+            {
+              "id": "sfp-1",
+              "description": null,
+              "skillForUser": {
+                "id": "2",
+                "userId": "1",
+                "skill": {
+                  "id": "2",
+                  "name": "React",
+                  "icon": null
+                },
+                "icon": null,
+                "description": "Built and led React projects at scale.",
+                "yearStarted": 2015,
+                "totalYears": 9
+              }
+            },
+            {
+              "id": "sfp-2",
+              "description": null,
+              "skillForUser": {
+                "id": "3",
+                "userId": "1",
+                "skill": {
+                  "id": "3",
+                  "name": "Node.js",
+                  "icon": null
+                },
+                "icon": null,
+                "description": "Architected Node.js microservices.",
+                "yearStarted": 2013,
+                "totalYears": 11
+              }
+            }
+          ]
+        },
+        {
+          "id": "fp-2",
+          "name": "Task Management API",
+          "description": "<p>RESTful API for task management built with Express.js and MongoDB. Includes features for creating, updating, and organizing tasks with user authentication and authorization.</p>",
+          "links": [{ "label": "GitHub", "url": "https://www.github.com/" }],
+          "skillsForFeaturedProject": [
+            {
+              "id": "sfp-3",
+              "description": null,
+              "skillForUser": {
+                "id": "3",
+                "userId": "1",
+                "skill": {
+                  "id": "3",
+                  "name": "Node.js",
+                  "icon": null
+                },
+                "icon": null,
+                "description": "Architected Node.js microservices.",
+                "yearStarted": 2013,
+                "totalYears": 11
+              }
+            }
+          ]
+        },
+        {
+          "id": "fp-3",
+          "name": "Portfolio Website",
+          "description": "<p>A responsive portfolio website showcasing my projects and skills. Built with Next.js, TypeScript, and Tailwind CSS. Features include dark mode, smooth animations, and SEO optimization.</p>",
+          "links": [
+            { "label": "GitHub", "url": "https://www.github.com/" },
+            { "label": "Website", "url": "https://www.example.com" }
+          ],
+          "skillsForFeaturedProject": [
+            {
+              "id": "sfp-4",
+              "description": null,
+              "skillForUser": {
+                "id": "1",
+                "userId": "1",
+                "skill": {
+                  "id": "1",
+                  "name": "TypeScript",
+                  "icon": null
+                },
+                "icon": null,
+                "description": "Expert in TypeScript for large-scale applications.",
+                "yearStarted": 2014,
+                "totalYears": 10
+              }
+            },
+            {
+              "id": "sfp-5",
+              "description": null,
+              "skillForUser": {
+                "id": "2",
+                "userId": "1",
+                "skill": {
+                  "id": "2",
+                  "name": "React",
+                  "icon": null
+                },
+                "icon": null,
+                "description": "Built and led React projects at scale.",
+                "yearStarted": 2015,
+                "totalYears": 9
+              }
+            }
+          ]
+        }
       ]
     }
   }

@@ -10,6 +10,7 @@ import { getProjects } from "./queries/getProjects";
 import { getResume } from "./queries/getResume";
 import { getSkills } from "./queries/getSkills";
 import { getSkillsForProject } from "./queries/getSkillsForProject";
+import { getSkillsForFeaturedProject } from "./queries/getSkillsForFeaturedProject";
 import { getSkillsForUser } from "./queries/getSkillsForUser";
 import { getSocials } from "./queries/getSocials";
 import { getUser } from "./queries/getUser";
@@ -39,6 +40,7 @@ export const queryResolvers = {
   certifications: getCertifications,
   featuredProjects: getFeaturedProjects,
   skillsForProject: getSkillsForProject,
+  skillsForFeaturedProject: getSkillsForFeaturedProject,
 
   // Full resume query.
   resume: getResume,

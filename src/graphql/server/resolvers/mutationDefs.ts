@@ -80,6 +80,19 @@ export const mutationDefs = gql`
     updateSkillForProject(userId: ID!, id: ID!, description: String): SkillForProject!
     deleteSkillForProject(userId: ID!, id: ID!): SkillForProject!
 
+    # Featured Project skill mutations.
+    addSkillForFeaturedProject(
+      userId: ID!
+      featuredProjectId: ID!
+      skillForUserId: ID!
+    ): SkillForFeaturedProject!
+    updateSkillForFeaturedProject(
+      userId: ID!
+      id: ID!
+      description: String
+    ): SkillForFeaturedProject!
+    deleteSkillForFeaturedProject(userId: ID!, id: ID!): SkillForFeaturedProject!
+
     # Education specific mutations.
     addEducation(userId: ID!, school: String!, degree: String!, dateAwarded: String!): Education!
     updateEducation(

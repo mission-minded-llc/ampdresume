@@ -39,6 +39,48 @@ export const MUIThemeProvider = ({
         fontFamily: "var(--font-geist-mono), monospace",
       },
     },
+    components: {
+      MuiLink: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            color:
+              theme.palette.mode === "dark" ? theme.palette.info.light : theme.palette.info.main,
+            textDecoration: "underline",
+            "&:hover": {
+              color:
+                theme.palette.mode === "dark" ? theme.palette.info.main : theme.palette.info.dark,
+            },
+            "&:visited": {
+              color:
+                theme.palette.mode === "dark"
+                  ? theme.palette.secondary.light
+                  : theme.palette.secondary.dark,
+            },
+          }),
+        },
+      },
+      MuiTypography: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            "& a": {
+              color:
+                theme.palette.mode === "dark" ? theme.palette.info.light : theme.palette.info.main,
+              textDecoration: "underline",
+              "&:hover": {
+                color:
+                  theme.palette.mode === "dark" ? theme.palette.info.main : theme.palette.info.dark,
+              },
+              "&:visited": {
+                color:
+                  theme.palette.mode === "dark"
+                    ? theme.palette.secondary.light
+                    : theme.palette.secondary.dark,
+              },
+            },
+          }),
+        },
+      },
+    },
   });
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
