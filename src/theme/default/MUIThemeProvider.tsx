@@ -50,12 +50,6 @@ export const MUIThemeProvider = ({
               color:
                 theme.palette.mode === "dark" ? theme.palette.info.main : theme.palette.info.dark,
             },
-            "&:visited": {
-              color:
-                theme.palette.mode === "dark"
-                  ? theme.palette.secondary.light
-                  : theme.palette.secondary.dark,
-            },
           }),
         },
       },
@@ -69,12 +63,6 @@ export const MUIThemeProvider = ({
               "&:hover": {
                 color:
                   theme.palette.mode === "dark" ? theme.palette.info.main : theme.palette.info.dark,
-              },
-              "&:visited": {
-                color:
-                  theme.palette.mode === "dark"
-                    ? theme.palette.secondary.light
-                    : theme.palette.secondary.dark,
               },
             },
           }),

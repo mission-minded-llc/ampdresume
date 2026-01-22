@@ -50,12 +50,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               color:
                 theme.palette.mode === "dark" ? theme.palette.info.main : theme.palette.info.dark,
             },
-            "&:visited": {
-              color:
-                theme.palette.mode === "dark"
-                  ? theme.palette.secondary.light
-                  : theme.palette.secondary.dark,
-            },
           }),
         },
       },
