@@ -74,9 +74,10 @@ export const NavPrimary = () => {
     <MuiLink
       href={href}
       target={target}
-      sx={{
+      sx={(theme) => ({
         textDecoration: "none",
-      }}
+        color: theme.palette.text.primary,
+      })}
     >
       <ListItem
         component="div"
@@ -84,9 +85,10 @@ export const NavPrimary = () => {
           setIsOpen(false);
         }}
         sx={(theme) => ({
+          color: theme.palette.text.primary,
           "&:hover": {
             backgroundColor: "black",
-            color: "white",
+            color: theme.palette.text.primary,
             borderRight: `4px solid ${theme.palette.secondary.main}`,
           },
         })}
@@ -118,6 +120,7 @@ export const NavPrimary = () => {
       target={target}
       sx={{
         textDecoration: "none",
+        color: "inherit",
       }}
     >
       <ListItem
