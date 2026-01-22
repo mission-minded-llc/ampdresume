@@ -10,12 +10,27 @@ export const RichTextBlock = ({ content }: { content: string | null }) => {
 
     return (
       <Box
-        sx={{
+        sx={(theme) => ({
           "& img": {
             maxWidth: "100%",
             height: "auto",
           },
-        }}
+          "& a": {
+            color:
+              theme.palette.mode === "dark" ? theme.palette.info.light : theme.palette.info.main,
+            textDecoration: "underline",
+            "&:hover": {
+              color:
+                theme.palette.mode === "dark" ? theme.palette.info.main : theme.palette.info.dark,
+            },
+            "&:visited": {
+              color:
+                theme.palette.mode === "dark"
+                  ? theme.palette.secondary.light
+                  : theme.palette.secondary.dark,
+            },
+          },
+        })}
       >
         {parsedString}
       </Box>
