@@ -41,7 +41,8 @@ describe("QRGenerator Component", () => {
   describe("Rendering", () => {
     it("should render section heading when QR code is loading", async () => {
       (QRCode.toDataURL as jest.Mock).mockImplementation(
-        () => new Promise((resolve) => setTimeout(() => resolve("data:image/png;base64,test"), 100)),
+        () =>
+          new Promise((resolve) => setTimeout(() => resolve("data:image/png;base64,test"), 100)),
       );
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" />);
@@ -177,7 +178,10 @@ describe("QRGenerator Component", () => {
       const mockDataURL = "data:image/png;base64,mockQRCodeData";
       (QRCode.toDataURL as jest.Mock).mockResolvedValue(mockDataURL);
 
-      const { rerender } = renderWithTheme(<QRGenerator url="https://example.com/resume" />, "light");
+      const { rerender } = renderWithTheme(
+        <QRGenerator url="https://example.com/resume" />,
+        "light",
+      );
 
       await waitFor(() => {
         expect(QRCode.toDataURL).toHaveBeenCalledTimes(1);
@@ -224,9 +228,15 @@ describe("QRGenerator Component", () => {
         expect(screen.getByText("Download QR Code")).toBeInTheDocument();
       });
 
-      const createElementSpy = jest.spyOn(document, "createElement").mockReturnValue(mockLink as any);
-      const appendChildSpy = jest.spyOn(document.body, "appendChild").mockImplementation(() => mockLink as any);
-      const removeChildSpy = jest.spyOn(document.body, "removeChild").mockImplementation(() => mockLink as any);
+      const createElementSpy = jest
+        .spyOn(document, "createElement")
+        .mockReturnValue(mockLink as any);
+      const appendChildSpy = jest
+        .spyOn(document.body, "appendChild")
+        .mockImplementation(() => mockLink as any);
+      const removeChildSpy = jest
+        .spyOn(document.body, "removeChild")
+        .mockImplementation(() => mockLink as any);
 
       const downloadButton = screen.getByText("Download QR Code");
       fireEvent.click(downloadButton);
@@ -258,9 +268,15 @@ describe("QRGenerator Component", () => {
         expect(screen.getByText("Download QR Code")).toBeInTheDocument();
       });
 
-      const createElementSpy = jest.spyOn(document, "createElement").mockReturnValue(mockLink as any);
-      const appendChildSpy = jest.spyOn(document.body, "appendChild").mockImplementation(() => mockLink as any);
-      const removeChildSpy = jest.spyOn(document.body, "removeChild").mockImplementation(() => mockLink as any);
+      const createElementSpy = jest
+        .spyOn(document, "createElement")
+        .mockReturnValue(mockLink as any);
+      const appendChildSpy = jest
+        .spyOn(document.body, "appendChild")
+        .mockImplementation(() => mockLink as any);
+      const removeChildSpy = jest
+        .spyOn(document.body, "removeChild")
+        .mockImplementation(() => mockLink as any);
 
       const downloadButton = screen.getByText("Download QR Code");
       fireEvent.click(downloadButton);
@@ -292,9 +308,15 @@ describe("QRGenerator Component", () => {
         expect(screen.getByText("Download QR Code")).toBeInTheDocument();
       });
 
-      const createElementSpy = jest.spyOn(document, "createElement").mockReturnValue(mockLink as any);
-      const appendChildSpy = jest.spyOn(document.body, "appendChild").mockImplementation(() => mockLink as any);
-      const removeChildSpy = jest.spyOn(document.body, "removeChild").mockImplementation(() => mockLink as any);
+      const createElementSpy = jest
+        .spyOn(document, "createElement")
+        .mockReturnValue(mockLink as any);
+      const appendChildSpy = jest
+        .spyOn(document.body, "appendChild")
+        .mockImplementation(() => mockLink as any);
+      const removeChildSpy = jest
+        .spyOn(document.body, "removeChild")
+        .mockImplementation(() => mockLink as any);
 
       const downloadButton = screen.getByText("Download QR Code");
       fireEvent.click(downloadButton);
@@ -324,9 +346,15 @@ describe("QRGenerator Component", () => {
         expect(screen.getByText("Download QR Code")).toBeInTheDocument();
       });
 
-      const createElementSpy = jest.spyOn(document, "createElement").mockReturnValue(mockLink as any);
-      const appendChildSpy = jest.spyOn(document.body, "appendChild").mockImplementation(() => mockLink as any);
-      const removeChildSpy = jest.spyOn(document.body, "removeChild").mockImplementation(() => mockLink as any);
+      const createElementSpy = jest
+        .spyOn(document, "createElement")
+        .mockReturnValue(mockLink as any);
+      const appendChildSpy = jest
+        .spyOn(document.body, "appendChild")
+        .mockImplementation(() => mockLink as any);
+      const removeChildSpy = jest
+        .spyOn(document.body, "removeChild")
+        .mockImplementation(() => mockLink as any);
 
       const downloadButton = screen.getByText("Download QR Code");
       fireEvent.click(downloadButton);
@@ -353,7 +381,10 @@ describe("QRGenerator Component", () => {
       const mockDataURL = "data:image/png;base64,mockQRCodeData";
       (QRCode.toDataURL as jest.Mock).mockResolvedValue(mockDataURL);
 
-      const { container } = renderWithTheme(<QRGenerator url="https://example.com/resume" />, "light");
+      const { container } = renderWithTheme(
+        <QRGenerator url="https://example.com/resume" />,
+        "light",
+      );
 
       await waitFor(() => {
         expect(screen.getByText("Share Your Resume")).toBeInTheDocument();
@@ -366,7 +397,10 @@ describe("QRGenerator Component", () => {
       const mockDataURL = "data:image/png;base64,mockQRCodeData";
       (QRCode.toDataURL as jest.Mock).mockResolvedValue(mockDataURL);
 
-      const { container } = renderWithTheme(<QRGenerator url="https://example.com/resume" />, "dark");
+      const { container } = renderWithTheme(
+        <QRGenerator url="https://example.com/resume" />,
+        "dark",
+      );
 
       await waitFor(() => {
         expect(screen.getByText("Share Your Resume")).toBeInTheDocument();
@@ -429,9 +463,15 @@ describe("QRGenerator Component", () => {
         expect(screen.getByText("Download QR Code")).toBeInTheDocument();
       });
 
-      const createElementSpy = jest.spyOn(document, "createElement").mockReturnValue(mockLink as any);
-      const appendChildSpy = jest.spyOn(document.body, "appendChild").mockImplementation(() => mockLink as any);
-      const removeChildSpy = jest.spyOn(document.body, "removeChild").mockImplementation(() => mockLink as any);
+      const createElementSpy = jest
+        .spyOn(document, "createElement")
+        .mockReturnValue(mockLink as any);
+      const appendChildSpy = jest
+        .spyOn(document.body, "appendChild")
+        .mockImplementation(() => mockLink as any);
+      const removeChildSpy = jest
+        .spyOn(document.body, "removeChild")
+        .mockImplementation(() => mockLink as any);
 
       const downloadButton = screen.getByText("Download QR Code");
       fireEvent.click(downloadButton);

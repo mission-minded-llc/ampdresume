@@ -3,8 +3,8 @@ import path from "path";
 import { sendVerificationRequest, authOptions, getSession } from "./auth";
 import { findUserByNormalizedEmail } from "@/util/email.server";
 import { getEnvironmentName } from "@/util/url";
-import { ALLOWED_USER_EMAILS } from "@/constants";
 import { getServerSession } from "next-auth";
+import { EmailConfig } from "next-auth/providers/email";
 import * as Sentry from "@sentry/nextjs";
 import nodemailer from "nodemailer";
 import { expect } from "@jest/globals";
@@ -57,7 +57,7 @@ describe("auth", () => {
   });
 
   describe("sendVerificationRequest", () => {
-    const mockProvider = {
+    const mockProvider: EmailConfig = {
       server: {
         host: "smtp.example.com",
         port: 587,
@@ -67,7 +67,7 @@ describe("auth", () => {
         },
       },
       from: "noreply@example.com",
-    };
+    } as EmailConfig;
 
     const mockUrl = "https://example.com/auth/callback?token=abc123";
 
@@ -352,7 +352,11 @@ describe("auth", () => {
       it("should return true for non-Google, non-email providers", async () => {
         const result = await signInCallback?.({
           user: { id: "123", email: "user@example.com" },
-          account: { provider: "linkedin" },
+          account: {
+            provider: "linkedin",
+            providerAccountId: "linkedin123",
+            type: "oauth",
+          } as const,
           profile: {},
         });
 
@@ -365,7 +369,7 @@ describe("auth", () => {
 
           const result = await signInCallback?.({
             user: { id: "123", email: "test@ampdresume.com" },
-            account: { provider: "google", providerAccountId: "google123" },
+            account: { provider: "google", providerAccountId: "google123", type: "oauth" } as const,
             profile: { email: "test@ampdresume.com" },
           });
 
@@ -378,7 +382,7 @@ describe("auth", () => {
 
           const result = await signInCallback?.({
             user: { id: "123", email: "unauthorized@example.com" },
-            account: { provider: "google", providerAccountId: "google123" },
+            account: { provider: "google", providerAccountId: "google123", type: "oauth" } as const,
             profile: { email: "unauthorized@example.com" },
           });
 
@@ -394,7 +398,7 @@ describe("auth", () => {
 
           const result = await signInCallback?.({
             user: { id: "123", email: "any@example.com" },
-            account: { provider: "google", providerAccountId: "google123" },
+            account: { provider: "google", providerAccountId: "google123", type: "oauth" } as const,
             profile: { email: "any@example.com" },
           });
 
@@ -411,8 +415,9 @@ describe("auth", () => {
           const account: {
             provider: string;
             providerAccountId: string;
+            type: "oauth";
             userId?: string;
-          } = { provider: "google", providerAccountId: "google123" };
+          } = { provider: "google", providerAccountId: "google123", type: "oauth" } as const;
           const profile: { email?: string } = { email: "test@ampdresume.com" };
 
           const result = await signInCallback?.({
@@ -433,7 +438,11 @@ describe("auth", () => {
           mockFindUserByNormalizedEmail.mockResolvedValue(null);
 
           const user = { id: "123", email: "user@example.com" };
-          const account = { provider: "google", providerAccountId: "google123" };
+          const account = {
+            provider: "google",
+            providerAccountId: "google123",
+            type: "oauth",
+          } as const;
 
           await signInCallback?.({
             user,
@@ -448,7 +457,7 @@ describe("auth", () => {
         it("should handle missing profile email gracefully", async () => {
           const result = await signInCallback?.({
             user: { id: "123" },
-            account: { provider: "google" },
+            account: { provider: "google", providerAccountId: "google123", type: "oauth" } as const,
             profile: {},
           });
 
@@ -463,7 +472,12 @@ describe("auth", () => {
           });
 
           const user = { id: "123", email: "user@example.com" };
-          const account = { provider: "email", providerAccountId: "user@example.com" };
+          const account: {
+            provider: string;
+            providerAccountId: string;
+            type: "email";
+            userId?: string;
+          } = { provider: "email", providerAccountId: "user@example.com", type: "email" } as const;
 
           await signInCallback?.({
             user,
@@ -481,7 +495,11 @@ describe("auth", () => {
           mockFindUserByNormalizedEmail.mockResolvedValue(null);
 
           const user = { id: "123", email: "user@example.com" };
-          const account = { provider: "email", providerAccountId: "user@example.com" };
+          const account = {
+            provider: "email",
+            providerAccountId: "user@example.com",
+            type: "email",
+          } as const;
 
           await signInCallback?.({
             user,
@@ -496,7 +514,7 @@ describe("auth", () => {
         it("should handle missing user email gracefully", async () => {
           const result = await signInCallback?.({
             user: { id: "123" },
-            account: { provider: "email" },
+            account: { provider: "email", providerAccountId: "user@example.com", type: "email" },
             profile: {},
           });
 
@@ -507,6 +525,14 @@ describe("auth", () => {
 
     describe("session callback", () => {
       const sessionCallback = authOptions.callbacks?.session;
+      type SessionUser = {
+        id?: string;
+        email?: string | null;
+        name?: string | null;
+        slug?: string;
+        webThemeName?: string;
+        pdfThemeName?: string;
+      };
 
       it("should add user id and email to session", async () => {
         const session = {
@@ -517,13 +543,17 @@ describe("auth", () => {
         const user = {
           id: "user123",
           email: "user@example.com",
+          emailVerified: null,
         };
 
-        const result = await sessionCallback?.({ session, token, user });
+        const result = await sessionCallback?.({ session, token, user } as unknown as Parameters<
+          NonNullable<typeof sessionCallback>
+        >[0]);
+        const u = result?.user as SessionUser | undefined;
 
-        expect(result?.user.id).toBe("user123");
-        expect(result?.user.email).toBe("user@example.com");
-        expect(result?.user.name).toBe("Test User");
+        expect(u?.id).toBe("user123");
+        expect(u?.email).toBe("user@example.com");
+        expect(u?.name).toBe("Test User");
       });
 
       it("should add slug to session if user has slug", async () => {
@@ -535,12 +565,16 @@ describe("auth", () => {
         const user = {
           id: "user123",
           email: "user@example.com",
+          emailVerified: null,
           slug: "test-user",
         };
 
-        const result = await sessionCallback?.({ session, token, user });
+        const result = await sessionCallback?.({ session, token, user } as unknown as Parameters<
+          NonNullable<typeof sessionCallback>
+        >[0]);
+        const u = result?.user as SessionUser | undefined;
 
-        expect(result?.user.slug).toBe("test-user");
+        expect(u?.slug).toBe("test-user");
       });
 
       it("should add webThemeName to session if user has webThemeName", async () => {
@@ -552,12 +586,16 @@ describe("auth", () => {
         const user = {
           id: "user123",
           email: "user@example.com",
+          emailVerified: null,
           webThemeName: "davids",
         };
 
-        const result = await sessionCallback?.({ session, token, user });
+        const result = await sessionCallback?.({ session, token, user } as unknown as Parameters<
+          NonNullable<typeof sessionCallback>
+        >[0]);
+        const u = result?.user as SessionUser | undefined;
 
-        expect(result?.user.webThemeName).toBe("davids");
+        expect(u?.webThemeName).toBe("davids");
       });
 
       it("should add pdfThemeName to session if user has pdfThemeName", async () => {
@@ -569,12 +607,16 @@ describe("auth", () => {
         const user = {
           id: "user123",
           email: "user@example.com",
+          emailVerified: null,
           pdfThemeName: "davids",
         };
 
-        const result = await sessionCallback?.({ session, token, user });
+        const result = await sessionCallback?.({ session, token, user } as unknown as Parameters<
+          NonNullable<typeof sessionCallback>
+        >[0]);
+        const u = result?.user as SessionUser | undefined;
 
-        expect(result?.user.pdfThemeName).toBe("davids");
+        expect(u?.pdfThemeName).toBe("davids");
       });
 
       it("should add all optional fields if user has them", async () => {
@@ -586,16 +628,20 @@ describe("auth", () => {
         const user = {
           id: "user123",
           email: "user@example.com",
+          emailVerified: null,
           slug: "test-user",
           webThemeName: "davids",
           pdfThemeName: "modern",
         };
 
-        const result = await sessionCallback?.({ session, token, user });
+        const result = await sessionCallback?.({ session, token, user } as unknown as Parameters<
+          NonNullable<typeof sessionCallback>
+        >[0]);
+        const u = result?.user as SessionUser | undefined;
 
-        expect(result?.user.slug).toBe("test-user");
-        expect(result?.user.webThemeName).toBe("davids");
-        expect(result?.user.pdfThemeName).toBe("modern");
+        expect(u?.slug).toBe("test-user");
+        expect(u?.webThemeName).toBe("davids");
+        expect(u?.pdfThemeName).toBe("modern");
       });
 
       it("should not add optional fields if user does not have them", async () => {
@@ -607,13 +653,17 @@ describe("auth", () => {
         const user = {
           id: "user123",
           email: "user@example.com",
+          emailVerified: null,
         };
 
-        const result = await sessionCallback?.({ session, token, user });
+        const result = await sessionCallback?.({ session, token, user } as unknown as Parameters<
+          NonNullable<typeof sessionCallback>
+        >[0]);
+        const u = result?.user as SessionUser | undefined;
 
-        expect(result?.user.slug).toBeUndefined();
-        expect(result?.user.webThemeName).toBeUndefined();
-        expect(result?.user.pdfThemeName).toBeUndefined();
+        expect(u?.slug).toBeUndefined();
+        expect(u?.webThemeName).toBeUndefined();
+        expect(u?.pdfThemeName).toBeUndefined();
       });
     });
   });

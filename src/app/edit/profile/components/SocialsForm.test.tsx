@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { useSession } from "next-auth/react";
 import React from "react";
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { SocialsForm } from "./SocialsForm";
 import { expect } from "@jest/globals";
@@ -78,12 +78,10 @@ describe("SocialsForm", () => {
     invalidateQueries: jest.fn(),
   };
 
-  let mutationCallCount = 0;
   const mutationCalls: Array<{ type: string; variables: unknown }> = [];
 
   beforeEach(() => {
     jest.clearAllMocks();
-    mutationCallCount = 0;
     mutationCalls.length = 0;
     (useSession as jest.Mock).mockReturnValue({
       data: mockSession,
@@ -91,15 +89,23 @@ describe("SocialsForm", () => {
     });
     (useQueryClient as jest.Mock).mockReturnValue(mockQueryClient);
     (useMutation as jest.Mock).mockImplementation(({ mutationFn, onSuccess }) => {
-      const callIndex = mutationCallCount++;
       // Determine mutation type based on the function signature
       const fnString = mutationFn.toString();
       let type = "unknown";
-      if (fnString.includes("addSocial") || (fnString.includes("platform") && fnString.includes("ref") && !fnString.includes("id"))) {
+      if (
+        fnString.includes("addSocial") ||
+        (fnString.includes("platform") && fnString.includes("ref") && !fnString.includes("id"))
+      ) {
         type = "add";
-      } else if (fnString.includes("updateSocial") || (fnString.includes("id") && fnString.includes("ref"))) {
+      } else if (
+        fnString.includes("updateSocial") ||
+        (fnString.includes("id") && fnString.includes("ref"))
+      ) {
         type = "update";
-      } else if (fnString.includes("deleteSocial") || (fnString.includes("id") && !fnString.includes("ref"))) {
+      } else if (
+        fnString.includes("deleteSocial") ||
+        (fnString.includes("id") && !fnString.includes("ref"))
+      ) {
         type = "delete";
       }
 
@@ -117,7 +123,7 @@ describe("SocialsForm", () => {
     it("renders correctly with empty socials", () => {
       (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: [] });
 
-      const { container, getByLabelText, getByText } = render(<SocialsForm />);
+      const { getByLabelText, getByText } = render(<SocialsForm />);
 
       expect(getByLabelText("Social URL")).toBeInTheDocument();
       expect(getByText("Add Social")).toBeInTheDocument();
@@ -454,7 +460,7 @@ describe("SocialsForm", () => {
     });
 
     it("closes dialog after saving", async () => {
-      const { getAllByTestId, getByLabelText, getByText, queryByText } = render(<SocialsForm />);
+      const { getAllByTestId, getByText, queryByText } = render(<SocialsForm />);
       const icon = getAllByTestId("icon")[0];
 
       fireEvent.click(icon);

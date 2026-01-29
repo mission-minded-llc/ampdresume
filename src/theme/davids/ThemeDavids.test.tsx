@@ -8,7 +8,7 @@ import {
   Company,
   Education,
   Certification,
-  FeaturedProject
+  FeaturedProject,
 } from "@/types";
 import { expect } from "@jest/globals";
 
@@ -19,44 +19,30 @@ jest.mock("next/navigation", () => ({
 
 // Mock the child components to simplify testing
 jest.mock("./components/QRGenerator", () => ({
-  QRGenerator: ({ user }: { user: User }) => (
-    <div data-testid="qr-generator">{user.name}</div>
-  ),
+  QRGenerator: ({ user }: { user: User }) => <div data-testid="qr-generator">{user.name}</div>,
 }));
 
 jest.mock("./components/SkillsSection", () => ({
   SkillsSection: ({ skillsForUser }: { skillsForUser: SkillForUser[] }) => (
-    <div data-testid="skills-section">
-      Skills ({skillsForUser.length})
-    </div>
+    <div data-testid="skills-section">Skills ({skillsForUser.length})</div>
   ),
 }));
 
 jest.mock("./components/WorkExperience", () => ({
   WorkExperienceSection: ({ companies }: { companies: Company[] }) => (
-    <div data-testid="work-experience-section">
-      Work Experience ({companies.length})
-    </div>
+    <div data-testid="work-experience-section">Work Experience ({companies.length})</div>
   ),
 }));
 
 jest.mock("./components/FeaturedProjects", () => ({
   FeaturedProjects: ({ projects }: { projects: FeaturedProject[] }) => (
-    <div data-testid="featured-projects-section">
-      Featured Projects ({projects.length})
-    </div>
+    <div data-testid="featured-projects-section">Featured Projects ({projects.length})</div>
   ),
 }));
 
 jest.mock("./components/Certifications", () => ({
-  CertificationsSection: ({
-    certifications,
-  }: {
-    certifications: Certification[];
-  }) => (
-    <div data-testid="certifications-section">
-      Certifications ({certifications.length})
-    </div>
+  CertificationsSection: ({ certifications }: { certifications: Certification[] }) => (
+    <div data-testid="certifications-section">Certifications ({certifications.length})</div>
   ),
 }));
 
@@ -93,9 +79,7 @@ const createMockSocial = (overrides?: Partial<Social>): Social => ({
   ...overrides,
 });
 
-const createMockSkillForUser = (
-  overrides?: Partial<SkillForUser>,
-): SkillForUser => ({
+const createMockSkillForUser = (overrides?: Partial<SkillForUser>): SkillForUser => ({
   id: "skill-user-1",
   userId: "user-1",
   skill: {
@@ -129,9 +113,7 @@ const createMockEducation = (overrides?: Partial<Education>): Education => ({
   ...overrides,
 });
 
-const createMockCertification = (
-  overrides?: Partial<Certification>,
-): Certification => ({
+const createMockCertification = (overrides?: Partial<Certification>): Certification => ({
   id: "cert-1",
   name: "AWS Certified Solutions Architect",
   issuer: "Amazon Web Services",
@@ -141,9 +123,7 @@ const createMockCertification = (
   ...overrides,
 });
 
-const createMockFeaturedProject = (
-  overrides?: Partial<FeaturedProject>,
-): FeaturedProject => ({
+const createMockFeaturedProject = (overrides?: Partial<FeaturedProject>): FeaturedProject => ({
   id: "project-1",
   name: "Test Project",
   description: "A test project",

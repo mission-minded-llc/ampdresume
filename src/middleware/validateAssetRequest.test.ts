@@ -1,4 +1,5 @@
 import { getServerSession } from "next-auth";
+import type { NextRequest } from "next/server";
 import { handleAssetRequest } from "./validateAssetRequest";
 import { objectExists } from "@/lib/s3";
 import { expect } from "@jest/globals";
@@ -42,18 +43,20 @@ describe("handleAssetRequest", () => {
     mockAction.mockResolvedValue(undefined);
   });
 
-  const createMockRequest = (body: any) => {
+  const createMockRequest = (body: any): NextRequest => {
     return {
       json: jest.fn().mockResolvedValue(body),
       body: body ? {} : null, // Mock body as object when present, null when absent
-    };
+    } as unknown as NextRequest;
   };
 
   describe("authentication", () => {
     it("should return 401 when user is not authenticated", async () => {
       mockGetServerSession.mockResolvedValue(null);
 
-      const req = createMockRequest({ src: "https://test-bucket.com/assets/user/user123/file.jpg" });
+      const req = createMockRequest({
+        src: "https://test-bucket.com/assets/user/user123/file.jpg",
+      });
       const result = await handleAssetRequest(req, mockAction);
 
       expect(result.status).toBe(401);
@@ -64,7 +67,9 @@ describe("handleAssetRequest", () => {
     it("should return 401 when session exists but user is missing", async () => {
       mockGetServerSession.mockResolvedValue({});
 
-      const req = createMockRequest({ src: "https://test-bucket.com/assets/user/user123/file.jpg" });
+      const req = createMockRequest({
+        src: "https://test-bucket.com/assets/user/user123/file.jpg",
+      });
       const result = await handleAssetRequest(req, mockAction);
 
       expect(result.status).toBe(401);
@@ -82,7 +87,7 @@ describe("handleAssetRequest", () => {
       const req = {
         json: jest.fn().mockResolvedValue({}),
         body: null,
-      };
+      } as unknown as NextRequest;
 
       const result = await handleAssetRequest(req, mockAction);
 
@@ -122,7 +127,9 @@ describe("handleAssetRequest", () => {
     });
 
     it("should return 400 when src does not start with bucket URL", async () => {
-      const req = createMockRequest({ src: "https://other-bucket.com/assets/user/user123/file.jpg" });
+      const req = createMockRequest({
+        src: "https://other-bucket.com/assets/user/user123/file.jpg",
+      });
       const result = await handleAssetRequest(req, mockAction);
 
       expect(result.status).toBe(400);
@@ -283,7 +290,7 @@ describe("handleAssetRequest", () => {
       const req = {
         json: jest.fn().mockRejectedValue(new Error("Invalid JSON")),
         body: {}, // Mock body as object
-      };
+      } as unknown as NextRequest;
 
       const result = await handleAssetRequest(req, mockAction);
 
@@ -347,9 +354,7 @@ describe("handleAssetRequest", () => {
 
       expect(result.status).toBe(200);
       // Should extract user123 from the last occurrence
-      expect(mockAction).toHaveBeenCalledWith(
-        "assets/user/user123/assets/user/user123/file.jpg",
-      );
+      expect(mockAction).toHaveBeenCalledWith("assets/user/user123/assets/user/user123/file.jpg");
     });
   });
 });

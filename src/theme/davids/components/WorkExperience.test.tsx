@@ -473,7 +473,10 @@ describe("WorkExperienceSection Component", () => {
   describe("Theme Support", () => {
     it("should render correctly in light theme", () => {
       const companies = [createMockCompany()];
-      const { container } = renderWithTheme(<WorkExperienceSection companies={companies} />, "light");
+      const { container } = renderWithTheme(
+        <WorkExperienceSection companies={companies} />,
+        "light",
+      );
 
       expect(screen.getByText("Work Experience")).toBeInTheDocument();
       expect(container.firstChild).toBeInTheDocument();
@@ -481,7 +484,10 @@ describe("WorkExperienceSection Component", () => {
 
     it("should render correctly in dark theme", () => {
       const companies = [createMockCompany()];
-      const { container } = renderWithTheme(<WorkExperienceSection companies={companies} />, "dark");
+      const { container } = renderWithTheme(
+        <WorkExperienceSection companies={companies} />,
+        "dark",
+      );
 
       expect(screen.getByText("Work Experience")).toBeInTheDocument();
       expect(container.firstChild).toBeInTheDocument();
