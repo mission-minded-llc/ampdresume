@@ -149,7 +149,9 @@ describe("FeaturedProjectList", () => {
 
       fireEvent.click(screen.getByTestId("expand-fp-1"));
 
-      expect(screen.queryByRole("button", { name: "Add Featured Project" })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: "Add Featured Project" }),
+      ).not.toBeInTheDocument();
     });
   });
 

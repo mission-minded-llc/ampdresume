@@ -6,8 +6,6 @@ import { useQuery } from "@tanstack/react-query";
 import { EditFeaturedProjects } from "./EditFeaturedProjects";
 import { expect } from "@jest/globals";
 import { FeaturedProject, SkillForUser } from "@/types";
-import { getFeaturedProjects } from "@/graphql/getFeaturedProjects";
-import { getSkillsForUser } from "@/graphql/getSkillsForUser";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
@@ -26,16 +24,12 @@ jest.mock("@/graphql/getSkillsForUser", () => ({
 }));
 
 jest.mock("../components/SectionTitle", () => ({
-  SectionTitle: ({ title }: { title: string }) => (
-    <div data-testid="section-title">{title}</div>
-  ),
+  SectionTitle: ({ title }: { title: string }) => <div data-testid="section-title">{title}</div>,
 }));
 
 jest.mock("./FeaturedProjectList", () => ({
   FeaturedProjectList: ({ featuredProjects }: { featuredProjects: FeaturedProject[] }) => (
-    <div data-testid="featured-project-list">
-      Projects: {featuredProjects.length}
-    </div>
+    <div data-testid="featured-project-list">Projects: {featuredProjects.length}</div>
   ),
 }));
 
@@ -132,7 +126,9 @@ describe("EditFeaturedProjects", () => {
 
       render(<EditFeaturedProjects />);
 
-      expect(screen.getByText("Error loading featured projects: Failed to fetch projects")).toBeInTheDocument();
+      expect(
+        screen.getByText("Error loading featured projects: Failed to fetch projects"),
+      ).toBeInTheDocument();
     });
   });
 

@@ -197,7 +197,7 @@ describe("SkillItemForFeaturedProjectEdit", () => {
       );
 
       fireEvent.click(screen.getByRole("button", { name: /React/ }));
-      
+
       // Wait for dialog to be fully rendered
       await waitFor(() => {
         expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument();
@@ -229,7 +229,7 @@ describe("SkillItemForFeaturedProjectEdit", () => {
       );
 
       fireEvent.click(screen.getByRole("button", { name: /React/ }));
-      
+
       await waitFor(() => {
         expect(screen.getByText("Edit Featured Project Skill")).toBeInTheDocument();
         expect(screen.getByRole("button", { name: "Save & Close" })).toBeInTheDocument();

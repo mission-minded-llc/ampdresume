@@ -6,10 +6,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FeaturedProjectItem } from "./FeaturedProjectItem";
 import { expect } from "@jest/globals";
 import { FeaturedProject, SkillForUser, SkillForFeaturedProject } from "@/types";
-import { addSkillForFeaturedProject } from "@/graphql/addSkillForFeaturedProject";
 import { updateFeaturedProject } from "@/graphql/updateFeaturedProject";
 import { deleteFeaturedProject } from "@/graphql/deleteFeaturedProject";
-import { getSkillsForFeaturedProject } from "@/graphql/getSkillsForFeaturedProject";
 import { EditFeaturedProjectsContext } from "./EditFeaturedProjects";
 
 jest.mock("next-auth/react", () => ({
@@ -193,7 +191,9 @@ describe("FeaturedProjectItem", () => {
       );
 
       expect(screen.getByTestId("accordion-summary-content")).toHaveTextContent("Test Project");
-      expect(screen.getByTestId(`featured-project-accordion-${mockFeaturedProject.id}`)).toBeInTheDocument();
+      expect(
+        screen.getByTestId(`featured-project-accordion-${mockFeaturedProject.id}`),
+      ).toBeInTheDocument();
     });
 
     it("expands accordion when clicked", () => {
@@ -290,7 +290,9 @@ describe("FeaturedProjectItem", () => {
         </Wrapper>,
       );
 
-      expect(screen.getByText("Error loading featured project skills: Failed to fetch")).toBeInTheDocument();
+      expect(
+        screen.getByText("Error loading featured project skills: Failed to fetch"),
+      ).toBeInTheDocument();
     });
 
     it("fetches skills when expanded", () => {
