@@ -10,6 +10,10 @@ jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
 }));
 
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(),
+}));
+
 jest.mock("@tanstack/react-query", () => ({
   useMutation: jest.fn(),
 }));
@@ -75,15 +79,12 @@ jest.mock("@/components/LoadingOverlay", () => ({
     open ? <div data-testid="loading-overlay">{message}</div> : null,
 }));
 
+import { useRouter } from "next/navigation";
 import { saveExtractedResumeData } from "@/graphql/saveExtractedResumeData";
 
-// Mock window.location.href
-delete (window as any).location;
-(window as any).location = {
-  href: "",
-};
-
 describe("ExtractedInformation", () => {
+  const mockPush = jest.fn();
+
   const mockSession = {
     user: { id: "user-id" },
   };
@@ -141,6 +142,7 @@ describe("ExtractedInformation", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mutationFnRef = null;
+    (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
     (useSession as jest.Mock).mockReturnValue({
       data: mockSession,
       status: "authenticated",
@@ -153,7 +155,6 @@ describe("ExtractedInformation", () => {
       };
     });
     (saveExtractedResumeData as jest.Mock).mockResolvedValue(true);
-    window.location.href = "";
   });
 
   describe("Rendering", () => {
@@ -231,11 +232,10 @@ describe("ExtractedInformation", () => {
         expect(mockMutate).toHaveBeenCalled();
       });
 
-      // The mutation function should redirect
-      // We verify saveExtractedResumeData was called
       await waitFor(
         () => {
           expect(saveExtractedResumeData).toHaveBeenCalled();
+          expect(mockPush).toHaveBeenCalledWith("/edit/experience");
         },
         { timeout: 3000 },
       );

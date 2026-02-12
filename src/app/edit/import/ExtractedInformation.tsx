@@ -1,4 +1,5 @@
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
@@ -21,6 +22,7 @@ import { ParsedResumeData } from "./types";
  */
 const ExtractedInformationContent = () => {
   const { data: session } = useSession();
+  const router = useRouter();
 
   const {
     user,
@@ -89,7 +91,7 @@ const ExtractedInformationContent = () => {
       });
 
       // Redirect to the experience page on successful save.
-      window.location.href = "/edit/experience";
+      router.push("/edit/experience");
     },
   });
 

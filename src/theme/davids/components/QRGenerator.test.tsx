@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { act, render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { QRGenerator } from "./QRGenerator";
 import { User } from "@/types";
 import { expect } from "@jest/globals";
@@ -46,8 +46,11 @@ describe("QRGenerator Component", () => {
       );
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" />);
-
       expect(screen.getByText("Share Your Resume")).toBeInTheDocument();
+
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 150));
+      });
     });
 
     it("should render QR code image when generation succeeds", async () => {
@@ -55,6 +58,9 @@ describe("QRGenerator Component", () => {
       (QRCode.toDataURL as jest.Mock).mockResolvedValue(mockDataURL);
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         const img = screen.getByAltText("QR Code to share resume");
@@ -68,6 +74,9 @@ describe("QRGenerator Component", () => {
       (QRCode.toDataURL as jest.Mock).mockResolvedValue(mockDataURL);
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Download QR Code")).toBeInTheDocument();
@@ -79,6 +88,9 @@ describe("QRGenerator Component", () => {
       (QRCode.toDataURL as jest.Mock).mockResolvedValue(mockDataURL);
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Scan with your phone to view this resume")).toBeInTheDocument();
@@ -91,6 +103,9 @@ describe("QRGenerator Component", () => {
       (QRCode.toDataURL as jest.Mock).mockRejectedValue(new Error("Generation failed"));
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Failed to generate QR code")).toBeInTheDocument();
@@ -101,6 +116,9 @@ describe("QRGenerator Component", () => {
       (QRCode.toDataURL as jest.Mock).mockRejectedValue(new Error("Generation failed"));
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Failed to generate QR code")).toBeInTheDocument();
@@ -118,6 +136,9 @@ describe("QRGenerator Component", () => {
 
       const url = "https://example.com/resume";
       renderWithTheme(<QRGenerator url={url} />, "light");
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(QRCode.toDataURL).toHaveBeenCalledWith(url, {
@@ -138,6 +159,9 @@ describe("QRGenerator Component", () => {
 
       const url = "https://example.com/resume";
       renderWithTheme(<QRGenerator url={url} />, "dark");
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(QRCode.toDataURL).toHaveBeenCalledWith(url, {
@@ -157,6 +181,9 @@ describe("QRGenerator Component", () => {
       (QRCode.toDataURL as jest.Mock).mockResolvedValue(mockDataURL);
 
       const { rerender } = renderWithTheme(<QRGenerator url="https://example.com/resume1" />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(QRCode.toDataURL).toHaveBeenCalledTimes(1);
@@ -168,6 +195,9 @@ describe("QRGenerator Component", () => {
           <QRGenerator url="https://example.com/resume2" />
         </ThemeProvider>,
       );
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(QRCode.toDataURL).toHaveBeenCalledTimes(2);
@@ -182,6 +212,9 @@ describe("QRGenerator Component", () => {
         <QRGenerator url="https://example.com/resume" />,
         "light",
       );
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(QRCode.toDataURL).toHaveBeenCalledTimes(1);
@@ -193,6 +226,9 @@ describe("QRGenerator Component", () => {
           <QRGenerator url="https://example.com/resume" />
         </ThemeProvider>,
       );
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(QRCode.toDataURL).toHaveBeenCalledTimes(2);
@@ -223,6 +259,9 @@ describe("QRGenerator Component", () => {
       };
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" user={user} />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Download QR Code")).toBeInTheDocument();
@@ -263,6 +302,9 @@ describe("QRGenerator Component", () => {
       };
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Download QR Code")).toBeInTheDocument();
@@ -303,6 +345,9 @@ describe("QRGenerator Component", () => {
       };
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" user={user} />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Download QR Code")).toBeInTheDocument();
@@ -341,6 +386,9 @@ describe("QRGenerator Component", () => {
       };
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Download QR Code")).toBeInTheDocument();
@@ -368,10 +416,13 @@ describe("QRGenerator Component", () => {
     });
 
     it("should not download when QR code is not generated", async () => {
+      (QRCode.toDataURL as jest.Mock).mockImplementation(() => new Promise(() => {}));
       renderWithTheme(<QRGenerator url="https://example.com/resume" />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
-      // Try to click download before QR code is generated
-      // The button shouldn't be visible yet, but if it were, clicking shouldn't do anything
+      // Button shouldn't be visible while QR is still loading
       expect(screen.queryByText("Download QR Code")).not.toBeInTheDocument();
     });
   });
@@ -385,6 +436,9 @@ describe("QRGenerator Component", () => {
         <QRGenerator url="https://example.com/resume" />,
         "light",
       );
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Share Your Resume")).toBeInTheDocument();
@@ -401,6 +455,9 @@ describe("QRGenerator Component", () => {
         <QRGenerator url="https://example.com/resume" />,
         "dark",
       );
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Share Your Resume")).toBeInTheDocument();
@@ -427,6 +484,9 @@ describe("QRGenerator Component", () => {
 
       const longUrl = "https://example.com/resume?" + "a".repeat(1000);
       renderWithTheme(<QRGenerator url={longUrl} />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(QRCode.toDataURL).toHaveBeenCalledWith(longUrl, expect.any(Object));
@@ -439,6 +499,9 @@ describe("QRGenerator Component", () => {
 
       const specialUrl = "https://example.com/resume?name=John%20Doe&id=123";
       renderWithTheme(<QRGenerator url={specialUrl} />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(QRCode.toDataURL).toHaveBeenCalledWith(specialUrl, expect.any(Object));
@@ -458,6 +521,9 @@ describe("QRGenerator Component", () => {
       };
 
       renderWithTheme(<QRGenerator url="https://example.com/resume" user={user} />);
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Download QR Code")).toBeInTheDocument();
