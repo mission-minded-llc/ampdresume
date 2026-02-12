@@ -16,6 +16,17 @@ on:
       - "**.css"
       - "**.json"
       - "**.yml"
+  push:
+    branches: [main, develop]
+    paths:
+      - "**.ts"
+      - "**.tsx"
+      - "**.scss"
+      - "**.js"
+      - "**.mjs"
+      - "**.css"
+      - "**.json"
+      - "**.yml"
   workflow_dispatch:
 
 env:
