@@ -416,9 +416,7 @@ describe("QRGenerator Component", () => {
     });
 
     it("should not download when QR code is not generated", async () => {
-      (QRCode.toDataURL as jest.Mock).mockImplementation(
-        () => new Promise(() => {}),
-      );
+      (QRCode.toDataURL as jest.Mock).mockImplementation(() => new Promise(() => {}));
       renderWithTheme(<QRGenerator url="https://example.com/resume" />);
       await act(async () => {
         await Promise.resolve();
