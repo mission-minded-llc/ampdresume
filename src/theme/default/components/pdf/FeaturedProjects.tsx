@@ -41,7 +41,7 @@ export const FeaturedProjects = ({ featuredProjects }: { featuredProjects: Featu
                 </>
               )}
             </Typography>
-            <Typography sx={{ fontSize: fontSize.body }}>
+            <Typography component="div" sx={{ fontSize: fontSize.body }}>
               <RichTextBlock content={safeProject?.description} />
             </Typography>
             {safeProject.links && safeProject.links.length > 0 && (
