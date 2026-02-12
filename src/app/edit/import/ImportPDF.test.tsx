@@ -4,7 +4,6 @@ import { ImportPDF } from "./ImportPDF";
 import { expect } from "@jest/globals";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
-import * as Sentry from "@sentry/react";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
