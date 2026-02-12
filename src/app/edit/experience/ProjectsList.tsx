@@ -25,7 +25,12 @@ import { addProject } from "@/graphql/addProject";
 import { updateProjectSortIndexes } from "@/graphql/updateProjectSortIndexes";
 import { ProjectItem } from "./ProjectItem";
 
-const MemoizedProjectItem = React.memo(ProjectItem);
+// Lazy memo to avoid circular dependency (ProjectItem → EditExperience → … → ProjectsList → ProjectItem)
+let MemoizedProjectItem: React.MemoExoticComponent<typeof ProjectItem> | null = null;
+function getMemoizedProjectItem(): React.MemoExoticComponent<typeof ProjectItem> {
+  if (!MemoizedProjectItem) MemoizedProjectItem = React.memo(ProjectItem);
+  return MemoizedProjectItem;
+}
 
 // Sortable wrapper component for ProjectItem
 const SortableProjectItem = ({
@@ -54,9 +59,10 @@ const SortableProjectItem = ({
     outline: isDragging ? "1px solid rgba(0, 0, 0, 0.1)" : "none",
   };
 
+  const Component = getMemoizedProjectItem();
   return (
     <Box ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <MemoizedProjectItem
+      <Component
         positionId={positionId}
         project={project}
         expanded={expanded}

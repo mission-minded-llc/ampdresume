@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { UserAssetInput } from "./UserAssetInput";
 import { expect } from "@jest/globals";
 import { uploadUserAsset } from "@/util/userAsset";
@@ -274,7 +274,10 @@ describe("UserAssetInput", () => {
       fireEvent.change(fileInput, { target: { files: [file] } });
 
       const addButton = screen.getByRole("button", { name: /Add Image/ });
-      fireEvent.click(addButton);
+      await act(async () => {
+        fireEvent.click(addButton);
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(uploadUserAsset).toHaveBeenCalledWith(file);
@@ -303,7 +306,10 @@ describe("UserAssetInput", () => {
       fireEvent.change(fileInput, { target: { files: [file] } });
 
       const addButton = screen.getByRole("button", { name: /Add Image/ });
-      fireEvent.click(addButton);
+      await act(async () => {
+        fireEvent.click(addButton);
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(mockSetUrl).toHaveBeenCalledWith("https://example.com/image.jpg");
@@ -332,7 +338,10 @@ describe("UserAssetInput", () => {
       fireEvent.change(fileInput, { target: { files: [file] } });
 
       const addButton = screen.getByRole("button", { name: /Add Image/ });
-      fireEvent.click(addButton);
+      await act(async () => {
+        fireEvent.click(addButton);
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.queryByTestId("custom-dialog-title")).not.toBeInTheDocument();
@@ -358,7 +367,10 @@ describe("UserAssetInput", () => {
       fireEvent.change(fileInput, { target: { files: [file] } });
 
       const addButton = screen.getByRole("button", { name: /Add Image/ });
-      fireEvent.click(addButton);
+      await act(async () => {
+        fireEvent.click(addButton);
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText("Upload failed")).toBeInTheDocument();
@@ -384,7 +396,10 @@ describe("UserAssetInput", () => {
       fireEvent.change(fileInput, { target: { files: [file] } });
 
       const addButton = screen.getByRole("button", { name: /Add Image/ });
-      fireEvent.click(addButton);
+      await act(async () => {
+        fireEvent.click(addButton);
+        await Promise.resolve();
+      });
 
       await waitFor(() => {
         expect(screen.getByText(/Upload failed: Network error/)).toBeInTheDocument();
@@ -415,7 +430,10 @@ describe("UserAssetInput", () => {
       fireEvent.change(fileInput, { target: { files: [file] } });
 
       const addButton = screen.getByRole("button", { name: /Add Image/ });
-      fireEvent.click(addButton);
+      await act(async () => {
+        fireEvent.click(addButton);
+        await Promise.resolve();
+      });
 
       expect(screen.getByTestId("loading-overlay")).toBeInTheDocument();
       expect(screen.getByText("Uploading Image...")).toBeInTheDocument();
@@ -487,7 +505,10 @@ describe("UserAssetInput", () => {
       fireEvent.change(fileInput, { target: { files: [file] } });
 
       const addButton = screen.getByRole("button", { name: /Add Image/ });
-      fireEvent.click(addButton);
+      await act(async () => {
+        fireEvent.click(addButton);
+        await Promise.resolve();
+      });
 
       expect(addButton).toBeDisabled();
     });
@@ -533,14 +554,20 @@ describe("UserAssetInput", () => {
       fireEvent.change(fileInput, { target: { files: [file] } });
 
       const addButton = screen.getByRole("button", { name: /Add Image/ });
-      fireEvent.click(addButton);
+      await act(async () => {
+        fireEvent.click(addButton);
+        await Promise.resolve();
+      });
 
       // Try to click again while upload is in progress
       fireEvent.click(addButton);
 
       expect(uploadUserAsset).toHaveBeenCalledTimes(1);
 
-      resolveUpload!({ status: 200, url: "https://example.com/image.jpg" });
+      await act(async () => {
+        resolveUpload!({ status: 200, url: "https://example.com/image.jpg" });
+        await Promise.resolve();
+      });
     });
   });
 });
