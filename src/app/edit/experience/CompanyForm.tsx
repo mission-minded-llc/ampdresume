@@ -1,6 +1,6 @@
 import { Company } from "@/types";
 import dayjs, { Dayjs } from "dayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Button, FormControl, FormHelperText, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { CompanyGeneric } from "@/graphql/getExperience";
@@ -32,6 +32,29 @@ export const CompanyForm = ({
   const [endDate, setEndDate] = useState<Dayjs | null>(
     company?.endDate ? dayjs(timestampToDate(company.endDate)) : null,
   );
+
+  useEffect(() => {
+    if (!company) {
+      setCompanyName("");
+      setLocation("");
+      setDescription("");
+      setStartDate(null);
+      setEndDate(null);
+      return;
+    }
+    setCompanyName(company.name || "");
+    setLocation(company.location || "");
+    setDescription(company.description || "");
+    setStartDate(company.startDate ? dayjs(timestampToDate(company.startDate)) : null);
+    setEndDate(company.endDate ? dayjs(timestampToDate(company.endDate)) : null);
+  }, [
+    company?.id,
+    company?.name,
+    company?.location,
+    company?.description,
+    company?.startDate,
+    company?.endDate,
+  ]);
 
   const saveHandler = () => {
     if (!startDate) setStartDateValid(false);

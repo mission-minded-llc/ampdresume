@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { publicResumeDataCacheTag } from "@/lib/publicResumeDataCacheTag";
@@ -11,9 +12,13 @@ import { publicResumeDataCacheTag } from "@/lib/publicResumeDataCacheTag";
  */
 export function revalidatePublicResumeBySlug(slug: string | null | undefined): void {
   if (!slug) return;
-  revalidatePath(`/r/${slug}`);
-  revalidatePath(`/r/${slug}/pdf`);
-  revalidateTag(publicResumeDataCacheTag(slug), { expire: 0 });
+  try {
+    revalidatePath(`/r/${slug}`);
+    revalidatePath(`/r/${slug}/pdf`);
+    revalidateTag(publicResumeDataCacheTag(slug), { expire: 0 });
+  } catch (error) {
+    Sentry.captureException(error);
+  }
 }
 
 export async function revalidatePublicResumeForUserId(userId: string): Promise<void> {

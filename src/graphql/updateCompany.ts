@@ -43,6 +43,7 @@ export const updateCompany = async ({
             endDate: $endDate
           ) {
             id
+            description
           }
         }
       `,
