@@ -77,6 +77,9 @@ export const NavPrimary = () => {
       sx={(theme) => ({
         textDecoration: "none",
         color: theme.palette.text.primary,
+        "&:hover": {
+          color: theme.palette.common.white,
+        },
       })}
     >
       <ListItem
@@ -85,11 +88,14 @@ export const NavPrimary = () => {
           setIsOpen(false);
         }}
         sx={(theme) => ({
-          color: theme.palette.text.primary,
+          color: "inherit",
           "&:hover": {
             backgroundColor: "black",
-            color: theme.palette.text.primary,
+            color: theme.palette.common.white,
             borderRight: `4px solid ${theme.palette.secondary.main}`,
+            "& .MuiListItemIcon-root": {
+              color: "inherit",
+            },
           },
         })}
         {...(dataTestId && { "data-testid": dataTestId })}
