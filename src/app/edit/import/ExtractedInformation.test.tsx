@@ -74,7 +74,6 @@ jest.mock("./ExtractedSkills", () => ({
   ),
 }));
 
-
 import { useRouter } from "next/navigation";
 import { saveExtractedResumeData } from "@/graphql/saveExtractedResumeData";
 

@@ -110,13 +110,11 @@ export const AnimatedTextTransition = ({
     unchanged: "inherit",
   };
 
-  const showOriginalOnHover =
-    originalText != null && originalText.trim() !== text.trim();
+  const showOriginalOnHover = originalText != null && originalText.trim() !== text.trim();
 
   // Avoid spurious highlights when AI text equals resume text (internal prev/sentence can
   // still differ after toggling views or prior transitions).
-  const aiTextMatchesOriginal =
-    originalText != null && originalText.trim() === text.trim();
+  const aiTextMatchesOriginal = originalText != null && originalText.trim() === text.trim();
   const showDiffHighlight = highlightDiff && !aiTextMatchesOriginal;
 
   // Simplified render without animations that preserves colors

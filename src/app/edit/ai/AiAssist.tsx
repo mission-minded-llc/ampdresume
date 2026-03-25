@@ -360,10 +360,7 @@ export const AiAssist = () => {
                 Highlights:
               </Typography>
               <Typography variant="body2" component="span">
-                <Box
-                  component="span"
-                  sx={{ color: AI_DIFF_HIGHLIGHT_COLORS.add, fontWeight: 600 }}
-                >
+                <Box component="span" sx={{ color: AI_DIFF_HIGHLIGHT_COLORS.add, fontWeight: 600 }}>
                   Green
                 </Box>
                 {" — new words in this text"}
