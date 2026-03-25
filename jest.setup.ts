@@ -15,6 +15,16 @@ if (!global.fetch) {
   global.fetch = jest.fn();
 }
 
+jest.mock("next/cache", () => ({
+  revalidatePath: jest.fn(),
+  revalidateTag: jest.fn(),
+}));
+
+jest.mock("@/lib/revalidatePublicResume", () => ({
+  revalidatePublicResumeBySlug: jest.fn(),
+  revalidatePublicResumeForUserId: jest.fn().mockResolvedValue(undefined),
+}));
+
 // Mock @iconify/react Icon component
 jest.mock("@iconify/react", () => ({
   Icon: ({ icon, ...props }: any) => {

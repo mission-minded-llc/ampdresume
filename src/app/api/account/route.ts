@@ -9,6 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
 import * as Sentry from "@sentry/node";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { revalidatePublicResumeBySlug } from "@/lib/revalidatePublicResume";
 
 export async function POST(req: NextRequest) {
   try {
@@ -45,6 +46,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Slug is already taken" }, { status: 400 });
     }
 
+    const previous = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { slug: true },
+    });
+
     const data = await prisma.user.update({
       where: {
         id: session.user.id,
@@ -60,6 +66,9 @@ export async function POST(req: NextRequest) {
         siteImage: siteImage || null,
       },
     });
+
+    revalidatePublicResumeBySlug(previous?.slug);
+    revalidatePublicResumeBySlug(data.slug);
 
     return NextResponse.json({ data }, { status: 200 });
   } catch (error) {

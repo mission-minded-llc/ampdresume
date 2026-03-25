@@ -39,8 +39,23 @@ jest.mock("./UploadPDF", () => ({
 }));
 
 jest.mock("./ExtractedInformation", () => ({
-  ExtractedInformation: ({ data, error }: { data: any; error: string | null }) => (
+  ExtractedInformation: ({
+    data,
+    error,
+    onSavePendingChange,
+  }: {
+    data: any;
+    error: string | null;
+    onSavePendingChange?: (pending: boolean) => void;
+  }) => (
     <div data-testid="extracted-information">
+      <button
+        type="button"
+        data-testid="simulate-save-pending"
+        onClick={() => onSavePendingChange?.(true)}
+      >
+        Simulate saving
+      </button>
       {error && <div data-testid="error">{error}</div>}
       {data && <div data-testid="data">Data loaded</div>}
       {!data && !error && <div data-testid="no-data">No data</div>}
@@ -273,6 +288,15 @@ describe("ImportPDF", () => {
       await flushPdfLoadEffect();
 
       expect(useQuery).toHaveBeenCalled();
+    });
+
+    it("displays saving overlay when child reports save in progress", async () => {
+      render(<ImportPDF />);
+      await flushPdfLoadEffect();
+
+      fireEvent.click(screen.getByTestId("simulate-save-pending"));
+
+      expect(screen.getByTestId("loading-overlay")).toHaveTextContent("Saving...");
     });
 
     it("displays error when query fails", async () => {

@@ -1,5 +1,6 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { revalidatePublicResumeForUserId } from "@/lib/revalidatePublicResume";
 
 export const deleteSocial = async (_: string, { userId, id }: { userId: string; id: string }) => {
   await verifySessionOwnership(userId);
@@ -18,5 +19,6 @@ export const deleteSocial = async (_: string, { userId, id }: { userId: string; 
     },
   });
 
+  await revalidatePublicResumeForUserId(userId);
   return social;
 };

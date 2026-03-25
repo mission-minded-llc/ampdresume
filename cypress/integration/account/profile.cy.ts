@@ -59,14 +59,16 @@ describe("Profile Section", () => {
 
     cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/profile`);
 
+    cy.closeMessageDialog();
+
     cy.contains(slugErrorMessage).should("not.exist");
     cy.get("input[name='slug']").clear({ force: true }).type("test user");
     cy.get(saveButton).click();
 
-    cy.get("[id='alert-dialog-description']").contains(slugErrorMessage).should("be.visible");
-    cy.get("button").contains("OK").click();
+    // Slug errors are shown on the URL Name field (helper text), not in MessageDialog.
+    cy.contains(slugErrorMessage).should("be.visible");
 
-    cy.get("input[name=slug]").clear({ force: true }).type("test-user");
+    cy.get("input[name='slug']").clear({ force: true }).type("test-user");
     cy.contains(slugErrorMessage).should("not.exist");
 
     cy.get(saveButton).click();

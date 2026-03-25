@@ -1,5 +1,6 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { revalidatePublicResumeForUserId } from "@/lib/revalidatePublicResume";
 import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export const updateSkillForUser = async (
@@ -41,5 +42,6 @@ export const updateSkillForUser = async (
     include: { skill: true }, // Include skill details
   });
 
+  await revalidatePublicResumeForUserId(userId);
   return skillForUser;
 };

@@ -78,7 +78,20 @@ model User {
   FeaturedProject   FeaturedProject[]
   Certification     Certification[]
   SkillContribution SkillContribution[]
+  features          Feature[]
 
+  @@schema("ampdresume")
+}
+
+/// Per-user feature toggles (e.g. beta access). Checked server-side via isFeatureEnabledForUser.
+model Feature {
+  id      String  @id @default(cuid())
+  name    String
+  userId  String
+  enabled Boolean @default(false)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, name])
   @@schema("ampdresume")
 }
 

@@ -200,8 +200,8 @@ describe("secureHtmlParser", () => {
       const html = "<img src=\"javascript:alert('xss')\">";
       const result = await sanitizeHtmlServer(html);
       expect(result).not.toContain("javascript:");
-      // DOMPurify removes the dangerous src attribute entirely
-      expect(result).toContain("<img>");
+      // Dangerous src is removed; serializer may use `<img />` or `<img>`
+      expect(result).toMatch(/<img\b/);
     });
 
     it("should remove data: URLs from href", async () => {
@@ -218,8 +218,7 @@ describe("secureHtmlParser", () => {
       const html = '<img src="data:image/png;base64,evil">';
       const result = await sanitizeHtmlServer(html);
       expect(result).not.toContain("data:");
-      // DOMPurify removes the dangerous src attribute entirely
-      expect(result).toContain("<img>");
+      expect(result).toMatch(/<img\b/);
     });
 
     it("should remove style attributes with javascript", async () => {

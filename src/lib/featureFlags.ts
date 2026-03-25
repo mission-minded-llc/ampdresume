@@ -1,10 +1,7 @@
 import { getSession } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
-type FeatureFlagName = "ai_assist";
-
-const featurePerUser = {
-  ai_assist: ["missionmiked@gmail.com", "md@missionmike.dev", "test@ampdresume.com"],
-};
+export type FeatureFlagName = "ai_assist";
 
 /**
  * Check if a feature flag is enabled for the current user.
@@ -15,7 +12,16 @@ const featurePerUser = {
 export async function isFeatureEnabledForUser(flagName: FeatureFlagName) {
   const session = await getSession();
 
-  if (!session?.user?.email) return false;
+  if (!session?.user?.id) return false;
 
-  return featurePerUser[flagName].includes(session.user.email);
+  const row = await prisma.feature.findUnique({
+    where: {
+      userId_name: {
+        userId: session.user.id,
+        name: flagName,
+      },
+    },
+  });
+
+  return row?.enabled === true;
 }

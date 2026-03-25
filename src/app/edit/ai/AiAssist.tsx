@@ -2,17 +2,46 @@
 
 import { Company, Position, Project } from "@/types";
 import { useSession } from "next-auth/react";
-import { useEffect, useRef, useState } from "react";
-import { Box, Button, Dialog, TextareaAutosize, Typography } from "@mui/material";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Alert, Box, Button, Dialog, TextareaAutosize, Typography } from "@mui/material";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MuiLink } from "@/components/MuiLink";
 import { Tooltip } from "@/components/Tooltip";
 import { getCompaniesAi } from "@/graphql/getCompaniesAi";
 import { getResume } from "@/graphql/getResume";
+import { updateProject } from "@/graphql/updateProject";
+import { updateProjectSortIndexes } from "@/graphql/updateProjectSortIndexes";
 import { SectionTitle } from "../components/SectionTitle";
-import { AnimatedTextTransition } from "./AnimatedTextTransition";
+import { AI_DIFF_HIGHLIGHT_COLORS, AnimatedTextTransition } from "./AnimatedTextTransition";
+
+function projectDiffersFromOriginal(originalCompanies: Company[], aiCompanies: Company[]): boolean {
+  const originalById = new Map<string, { name: string; sortIndex: number }>();
+  for (const company of originalCompanies) {
+    for (const position of company.positions ?? []) {
+      for (const project of position.projects ?? []) {
+        originalById.set(project.id, {
+          name: project.name,
+          sortIndex: project.sortIndex ?? 0,
+        });
+      }
+    }
+  }
+
+  for (const company of aiCompanies) {
+    for (const position of company.positions ?? []) {
+      for (const project of position.projects ?? []) {
+        const orig = originalById.get(project.id);
+        if (!orig) continue;
+        const aiSort = project.sortIndex ?? 0;
+        if (orig.name !== project.name || orig.sortIndex !== aiSort) return true;
+      }
+    }
+  }
+
+  return false;
+}
 
 export const AiAssist = () => {
   const { data: session, status } = useSession();
@@ -134,6 +163,87 @@ export const AiAssist = () => {
     }
   }, [activeDisplay, companiesOriginalData, companiesAiData]);
 
+  const hasAiChanges =
+    companiesAiData.length > 0 &&
+    projectDiffersFromOriginal(companiesOriginalData, companiesAiData);
+
+  const originalProjectNameById = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const company of companiesOriginalData) {
+      for (const position of company.positions ?? []) {
+        for (const project of position.projects ?? []) {
+          map.set(project.id, project.name);
+        }
+      }
+    }
+    return map;
+  }, [companiesOriginalData]);
+
+  const saveAiChangesMutation = useMutation({
+    mutationFn: async () => {
+      if (!session?.user?.id || !companiesAiData.length) return;
+
+      const userId = session.user.id;
+      const originalById = new Map<
+        string,
+        { name: string; description: string | null; sortIndex: number }
+      >();
+
+      for (const company of companiesOriginalData) {
+        for (const position of company.positions ?? []) {
+          for (const project of position.projects ?? []) {
+            originalById.set(project.id, {
+              name: project.name,
+              description: project.description,
+              sortIndex: project.sortIndex ?? 0,
+            });
+          }
+        }
+      }
+
+      const sortTasks: Promise<void>[] = [];
+      const nameTasks: Promise<void>[] = [];
+
+      for (const company of companiesAiData) {
+        for (const position of company.positions ?? []) {
+          const projects = position.projects ?? [];
+          if (projects.length === 0) continue;
+
+          sortTasks.push(
+            updateProjectSortIndexes({
+              userId,
+              positionId: position.id,
+              projectSortIndexes: projects.map((p) => ({
+                id: p.id,
+                sortIndex: p.sortIndex ?? 0,
+              })),
+            }),
+          );
+
+          for (const project of projects) {
+            const orig = originalById.get(project.id);
+            if (orig && orig.name !== project.name) {
+              nameTasks.push(
+                updateProject({
+                  id: project.id,
+                  userId,
+                  projectName: project.name,
+                  description: orig.description ?? "",
+                }),
+              );
+            }
+          }
+        }
+      }
+
+      await Promise.all(sortTasks);
+      await Promise.all(nameTasks);
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["resume"] });
+    },
+  });
+
   if (status === "loading") return <LoadingOverlay message="Loading session..." />;
   if (status === "unauthenticated")
     return (
@@ -191,6 +301,16 @@ export const AiAssist = () => {
 
         <Button
           variant="contained"
+          color="success"
+          sx={{ ml: 2 }}
+          disabled={!hasAiChanges || saveAiChangesMutation.isPending}
+          onClick={() => saveAiChangesMutation.mutate()}
+        >
+          {saveAiChangesMutation.isPending ? "Saving…" : "Save AI changes"}
+        </Button>
+
+        <Button
+          variant="contained"
           color="primary"
           sx={{ ml: "auto" }}
           onClick={() => {
@@ -204,6 +324,14 @@ export const AiAssist = () => {
         </Button>
       </Box>
 
+      {saveAiChangesMutation.isError ? (
+        <Alert severity="error" sx={{ mt: 2 }}>
+          {saveAiChangesMutation.error instanceof Error
+            ? saveAiChangesMutation.error.message
+            : "Could not save changes."}
+        </Alert>
+      ) : null}
+
       {companiesDisplayData ? (
         <Box
           sx={{
@@ -215,6 +343,39 @@ export const AiAssist = () => {
             padding: "2rem 4rem",
           }}
         >
+          {activeDisplay === "ai" && companiesAiData.length > 0 ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "baseline",
+                columnGap: 2,
+                rowGap: 0.5,
+                mb: 2,
+                pb: 2,
+                borderBottom: "1px solid rgba(0, 0, 0, 0.08)",
+              }}
+            >
+              <Typography variant="body2" color="text.secondary" component="span" sx={{ mr: 0.5 }}>
+                Highlights:
+              </Typography>
+              <Typography variant="body2" component="span">
+                <Box component="span" sx={{ color: AI_DIFF_HIGHLIGHT_COLORS.add, fontWeight: 600 }}>
+                  Green
+                </Box>
+                {" — new words in this text"}
+              </Typography>
+              <Typography variant="body2" component="span">
+                <Box
+                  component="span"
+                  sx={{ color: AI_DIFF_HIGHLIGHT_COLORS.move, fontWeight: 600 }}
+                >
+                  Blue
+                </Box>
+                {" — same words, different order"}
+              </Typography>
+            </Box>
+          ) : null}
           {companiesDisplayData.map((company) =>
             company?.positions?.map((position) => (
               <Box key={position.id} sx={{ width: "100%" }}>
@@ -225,7 +386,12 @@ export const AiAssist = () => {
                   {position.title}
                 </Typography>
                 {position?.projects?.map((project) => (
-                  <AnimatedTextTransition key={project.id} text={project.name} />
+                  <AnimatedTextTransition
+                    key={project.id}
+                    text={project.name}
+                    originalText={originalProjectNameById.get(project.id)}
+                    highlightDiff={activeDisplay === "ai"}
+                  />
                 ))}
               </Box>
             )),

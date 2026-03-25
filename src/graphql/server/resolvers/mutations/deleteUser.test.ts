@@ -8,6 +8,7 @@ import { expect } from "@jest/globals";
 jest.mock("@/lib/prisma", () => ({
   prisma: {
     user: {
+      findUnique: jest.fn(),
       delete: jest.fn(),
     },
   },
@@ -22,6 +23,7 @@ describe("deleteUser", () => {
   const mockVerifySessionOwnership = verifySessionOwnership as jest.MockedFunction<
     typeof verifySessionOwnership
   >;
+  const mockFindUnique = prisma.user.findUnique as unknown as jest.Mock;
   const mockDelete = prisma.user.delete as unknown as jest.Mock;
 
   beforeEach(() => {
@@ -31,11 +33,16 @@ describe("deleteUser", () => {
   it("should delete user successfully", async () => {
     const userId = "test-user-id";
     mockVerifySessionOwnership.mockResolvedValue(true);
+    mockFindUnique.mockResolvedValue({ slug: "test-slug" });
     mockDelete.mockResolvedValue({ id: userId } as User);
 
     const result = await deleteUser("", { userId });
 
     expect(mockVerifySessionOwnership).toHaveBeenCalledWith(userId);
+    expect(mockFindUnique).toHaveBeenCalledWith({
+      where: { id: userId },
+      select: { slug: true },
+    });
     expect(mockPrisma.user.delete).toHaveBeenCalledWith({
       where: {
         id: userId,
@@ -59,6 +66,7 @@ describe("deleteUser", () => {
     const userId = "test-user-id";
     const errorMessage = "User not found";
     mockVerifySessionOwnership.mockResolvedValue(true);
+    mockFindUnique.mockResolvedValue({ slug: "test-slug" });
     mockDelete.mockRejectedValue(new Error(errorMessage));
 
     await expect(deleteUser("", { userId })).rejects.toThrow(errorMessage);

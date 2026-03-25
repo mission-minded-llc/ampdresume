@@ -74,11 +74,6 @@ jest.mock("./ExtractedSkills", () => ({
   ),
 }));
 
-jest.mock("@/components/LoadingOverlay", () => ({
-  LoadingOverlay: ({ open, message }: { open: boolean; message: string }) =>
-    open ? <div data-testid="loading-overlay">{message}</div> : null,
-}));
-
 import { useRouter } from "next/navigation";
 import { saveExtractedResumeData } from "@/graphql/saveExtractedResumeData";
 
@@ -241,16 +236,22 @@ describe("ExtractedInformation", () => {
       );
     });
 
-    it("shows loading overlay when saving", () => {
+    it("notifies parent when save is pending", () => {
+      const onSavePendingChange = jest.fn();
       (useMutation as jest.Mock).mockReturnValue({
         mutate: mockMutate,
         isPending: true,
       });
 
-      render(<ExtractedInformation data={mockParsedResumeData} error={null} />);
+      render(
+        <ExtractedInformation
+          data={mockParsedResumeData}
+          error={null}
+          onSavePendingChange={onSavePendingChange}
+        />,
+      );
 
-      expect(screen.getByTestId("loading-overlay")).toBeInTheDocument();
-      expect(screen.getByText("Saving Resume...")).toBeInTheDocument();
+      expect(onSavePendingChange).toHaveBeenCalledWith(true);
     });
 
     it("disables save button when saving", () => {
