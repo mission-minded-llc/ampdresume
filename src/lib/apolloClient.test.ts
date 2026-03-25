@@ -32,7 +32,7 @@ describe("getApolloClient", () => {
     global.fetch = mockFetch;
   });
 
-  it("should use same-origin /api/graphql in the browser so preview deployments hit their own API", async () => {
+  it("should create an ApolloClient instance with the correct URI", async () => {
     process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT = "http://example.com/graphql";
     const client = getApolloClient();
     expect(client).toBeInstanceOf(ApolloClient);
@@ -57,6 +57,6 @@ describe("getApolloClient", () => {
     // Verify fetch was called with the correct URI
     expect(mockFetch).toHaveBeenCalled();
     const fetchCall = mockFetch.mock.calls[0];
-    expect(fetchCall[0]).toBe("/api/graphql");
+    expect(fetchCall[0]).toBe("http://example.com/graphql");
   });
 });

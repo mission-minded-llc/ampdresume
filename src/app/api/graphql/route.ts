@@ -8,29 +8,6 @@ import { createYoga } from "graphql-yoga";
 import { schema } from "@/graphql/server/schema";
 import { authOptions } from "@/lib/auth";
 
-function graphqlCorsOrigins(): string[] {
-  if (process.env.NODE_ENV !== "production") {
-    return ["http://localhost:3000"];
-  }
-  const origins = new Set<string>();
-  const add = (raw: string | undefined) => {
-    if (!raw?.trim()) return;
-    const u = raw.trim().replace(/\/$/, "");
-    if (u.startsWith("http://") || u.startsWith("https://")) {
-      origins.add(u);
-      return;
-    }
-    origins.add(`https://${u.replace(/^https?:\/\//, "")}`);
-  };
-  add(process.env.NEXTAUTH_URL);
-  add("https://ampdresume.com");
-  add("https://test.ampdresume.com"); // staging (see README)
-  // Preview and production deployments (NODE_ENV is "production" on Vercel previews)
-  add(process.env.VERCEL_URL);
-  add(process.env.VERCEL_BRANCH_URL);
-  return [...origins];
-}
-
 const yoga = createYoga<NextRequest>({
   schema,
   graphqlEndpoint: "/api/graphql",
@@ -46,7 +23,10 @@ const yoga = createYoga<NextRequest>({
 
   // Add some basic security measures to prevent CORS issues.
   cors: {
-    origin: graphqlCorsOrigins(),
+    origin:
+      process.env.NODE_ENV === "production"
+        ? [process.env.NEXTAUTH_URL || "https://ampdresume.com"]
+        : ["http://localhost:3000"],
     credentials: true,
   },
 });

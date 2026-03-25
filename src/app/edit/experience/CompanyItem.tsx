@@ -53,9 +53,7 @@ export const CompanyItem = ({
       startDate: string;
       endDate: string;
     }) => {
-      if (!session?.user?.id) {
-        throw new Error("Not authenticated");
-      }
+      if (!session?.user?.id) return;
 
       await updateCompany({
         id,
@@ -83,13 +81,19 @@ export const CompanyItem = ({
   });
 
   const handleEditCompany = (companyGeneric: CompanyGeneric) => {
+    company.name = companyGeneric.name;
+    company.description = companyGeneric.description;
+    company.location = companyGeneric.location;
+    company.startDate = companyGeneric.startDate;
+    company.endDate = companyGeneric.endDate;
+
     saveMutation.mutate({
       id: company.id,
-      name: companyGeneric.name,
-      description: companyGeneric.description || "",
-      location: companyGeneric.location,
-      startDate: companyGeneric.startDate,
-      endDate: companyGeneric.endDate || "",
+      name: company.name,
+      description: company.description || "",
+      location: company.location,
+      startDate: company.startDate,
+      endDate: company.endDate || "",
     });
   };
 
