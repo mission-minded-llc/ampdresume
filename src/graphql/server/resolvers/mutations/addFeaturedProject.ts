@@ -1,5 +1,6 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { revalidatePublicResumeForUserId } from "@/lib/revalidatePublicResume";
 import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export const addFeaturedProject = async (
@@ -30,5 +31,6 @@ export const addFeaturedProject = async (
     },
   });
 
+  await revalidatePublicResumeForUserId(userId);
   return featuredProject;
 };

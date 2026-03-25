@@ -179,6 +179,59 @@ describe("AccountForm", () => {
     });
   });
 
+  it("submits when display email is empty (optional field)", async () => {
+    global.fetch = jest.fn((url) => {
+      if (url === "/api/auth/session") {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          statusText: "OK",
+          headers: new Headers(),
+          redirected: false,
+          url: String(url),
+          json: () =>
+            Promise.resolve({
+              user: { id: "test-user-id", email: "test@example.com" },
+            }),
+          text: () =>
+            Promise.resolve(
+              JSON.stringify({
+                user: { id: "test-user-id", email: "test@example.com" },
+              }),
+            ),
+        } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        statusText: "OK",
+        headers: new Headers(),
+        redirected: false,
+        url: String(url),
+        json: () => Promise.resolve({}),
+        text: () => Promise.resolve(JSON.stringify({})),
+      } as Response);
+    });
+
+    const { getByLabelText, getByText } = renderWithSession(<AccountForm {...mockProps} />);
+
+    fireEvent.change(getByLabelText("Full Name"), {
+      target: { value: "Jane Doe" },
+    });
+    fireEvent.change(getByLabelText("URL Name"), {
+      target: { value: "jane-doe" },
+    });
+    fireEvent.change(getByLabelText("Display Email"), {
+      target: { value: "" },
+    });
+
+    fireEvent.click(getByText("Save"));
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith("/api/account", expect.any(Object));
+    });
+  });
+
   it("displays error message on form submission failure", async () => {
     global.fetch = jest.fn((url) => {
       if (url === "/api/auth/session") {

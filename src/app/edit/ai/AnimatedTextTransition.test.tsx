@@ -71,4 +71,52 @@ describe("AnimatedTextTransition", () => {
     // Before any prop change, status is "unchanged" -> inherit (no explicit color override from component)
     expect(word).toHaveStyle({ fontWeight: "400" });
   });
+
+  it("does not highlight when text matches originalText (avoids stale diff after matching AI)", () => {
+    const theme = createTheme();
+    const { rerender } = render(
+      <ThemeProvider theme={theme}>
+        <AnimatedTextTransition text="hello" originalText="hello" />
+      </ThemeProvider>,
+    );
+    rerender(
+      <ThemeProvider theme={theme}>
+        <AnimatedTextTransition text="hello world" originalText="hello" />
+      </ThemeProvider>,
+    );
+    expect(screen.getByText("world")).toHaveStyle({ color: "rgb(76, 175, 80)" });
+
+    rerender(
+      <ThemeProvider theme={theme}>
+        <AnimatedTextTransition text="hello" originalText="hello" />
+      </ThemeProvider>,
+    );
+
+    const hello = screen.getByText("hello");
+    expect(hello).not.toHaveStyle({ color: "rgb(76, 175, 80)" });
+    expect(hello).toHaveStyle({ fontWeight: "400" });
+  });
+
+  it("does not apply diff colors when highlightDiff is false", () => {
+    const theme = createTheme();
+    const { rerender } = render(
+      <ThemeProvider theme={theme}>
+        <AnimatedTextTransition text="hello" />
+      </ThemeProvider>,
+    );
+    rerender(
+      <ThemeProvider theme={theme}>
+        <AnimatedTextTransition text="hello world" />
+      </ThemeProvider>,
+    );
+    expect(screen.getByText("world")).toHaveStyle({ color: "rgb(76, 175, 80)" });
+
+    rerender(
+      <ThemeProvider theme={theme}>
+        <AnimatedTextTransition text="hello world" highlightDiff={false} />
+      </ThemeProvider>,
+    );
+    expect(screen.getByText("world")).not.toHaveStyle({ color: "rgb(76, 175, 80)" });
+    expect(screen.getByText("world")).toHaveStyle({ fontWeight: "400" });
+  });
 });

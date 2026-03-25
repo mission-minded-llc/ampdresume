@@ -1,9 +1,8 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { saveExtractedResumeData } from "@/graphql/saveExtractedResumeData";
 import { UpdateWithConfirmation } from "../components/UpdateWithConfirmation";
 import { ExtractedEducation } from "./education/ExtractedEducation";
@@ -20,7 +19,11 @@ import { ParsedResumeData } from "./types";
  *
  * @returns The extracted information page.
  */
-const ExtractedInformationContent = () => {
+const ExtractedInformationContent = ({
+  onSavePendingChange,
+}: {
+  onSavePendingChange?: (pending: boolean) => void;
+}) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -95,6 +98,10 @@ const ExtractedInformationContent = () => {
     },
   });
 
+  useEffect(() => {
+    onSavePendingChange?.(saveMutation.isPending);
+  }, [saveMutation.isPending, onSavePendingChange]);
+
   return (
     <Box
       sx={{
@@ -104,7 +111,6 @@ const ExtractedInformationContent = () => {
         mb: 4,
       }}
     >
-      <LoadingOverlay open={saveMutation.isPending} message="Saving Resume..." />
       {!user && <Typography variant="h6">Extracted Information</Typography>}
       <Box
         sx={(theme) => ({
@@ -163,13 +169,15 @@ const ExtractedInformationContent = () => {
 export const ExtractedInformation = ({
   data,
   error,
+  onSavePendingChange,
 }: {
   data: ParsedResumeData | null;
   error: string | null;
+  onSavePendingChange?: (pending: boolean) => void;
 }) => {
   return (
     <ExtractedDataProvider initialData={data} initialError={error}>
-      <ExtractedInformationContent />
+      <ExtractedInformationContent onSavePendingChange={onSavePendingChange} />
     </ExtractedDataProvider>
   );
 };

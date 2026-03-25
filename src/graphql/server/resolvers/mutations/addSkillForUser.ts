@@ -1,5 +1,6 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { revalidatePublicResumeForUserId } from "@/lib/revalidatePublicResume";
 
 export const addSkillForUser = async (
   _: string,
@@ -37,5 +38,6 @@ export const addSkillForUser = async (
     include: { skill: true }, // Include skill details
   });
 
+  await revalidatePublicResumeForUserId(userId);
   return skillForUser;
 };

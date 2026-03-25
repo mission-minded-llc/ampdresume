@@ -77,6 +77,7 @@ export const getResume = async (slug: string) => {
                 projects {
                   id
                   name
+                  sortIndex
                   description
                   skillsForProject {
                     id
@@ -139,6 +140,9 @@ export const getResume = async (slug: string) => {
         }
       `,
       variables: { slug },
+      // Singleton Apollo on the server defaults to cache-first; without this, refreshes keep
+      // stale data in dev and production until the process restarts.
+      fetchPolicy: "no-cache",
     })
     .catch((error: unknown) => {
       Sentry.captureException(error);

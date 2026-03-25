@@ -8,7 +8,6 @@ import {
   DialogContentText,
 } from "@mui/material";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
-import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { Tooltip } from "@/components/Tooltip";
 
 interface UpdateWithConfirmationProps {
@@ -33,20 +32,17 @@ export const UpdateWithConfirmation = ({
   disabled = false,
 }: UpdateWithConfirmationProps) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const [isUpdating, setIsUpdating] = useState(false);
 
   const handleOpenConfirm = () => setConfirmOpen(true);
   const handleCloseConfirm = () => setConfirmOpen(false);
 
   const handleConfirmUpdate = () => {
-    setIsUpdating(true);
     setConfirmOpen(false);
     onConfirmUpdate();
   };
 
   return (
     <>
-      {isUpdating ? <LoadingOverlay message="Updating..." /> : null}
       <Box>
         <Button
           variant="contained"

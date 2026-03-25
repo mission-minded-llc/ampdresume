@@ -20,6 +20,8 @@ import { UserAssetInput } from "../../components/UserAssetInput";
 import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
 import { SocialsForm } from "./SocialsForm";
 
+const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
 const AccountForm = ({
   name,
   slug,
@@ -72,8 +74,7 @@ const AccountForm = ({
 
     // Ensure the slug is alphanumeric and lowercase, with hyphens for spaces.
     if (name === "slug") {
-      const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-      if (!slugRegex.test(value)) {
+      if (!SLUG_PATTERN.test(value)) {
         setErrors((prev) => ({
           ...prev,
           slug: "Slug must be alphanumeric and lowercase. Hyphens allowed.",
@@ -86,21 +87,19 @@ const AccountForm = ({
 
   const validateForm = () => {
     const newErrors: { name?: string; slug?: string; displayEmail?: string } = {};
-    let hasEmptyFields = false;
 
-    // Check for empty fields
-    Object.entries(formData).forEach(([key, value]) => {
-      if (!value.trim()) {
-        if (["name", "slug", "displayEmail"].includes(key)) {
-          hasEmptyFields = true;
-          if (key === "name") newErrors.name = "Name is required";
-          if (key === "slug") newErrors.slug = "Slug is required";
-        }
-      }
-    });
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+    const slugTrimmed = formData.slug.trim();
+    if (!slugTrimmed) {
+      newErrors.slug = "Slug is required";
+    } else if (!SLUG_PATTERN.test(slugTrimmed)) {
+      newErrors.slug = "Slug must be alphanumeric and lowercase. Hyphens allowed.";
+    }
 
     setErrors(newErrors);
-    return !hasEmptyFields;
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e: React.FormEvent) => {

@@ -1,5 +1,6 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { revalidatePublicResumeForUserId } from "@/lib/revalidatePublicResume";
 
 export const addEducation = async (
   _: string,
@@ -29,5 +30,6 @@ export const addEducation = async (
     },
   });
 
+  await revalidatePublicResumeForUserId(userId);
   return education;
 };

@@ -20,6 +20,7 @@ export const ImportPDF = () => {
 
   const [extractedText, setExtractedText] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [savePending, setSavePending] = useState(false);
 
   useEffect(() => {
     const loadPdfJs = async () => {
@@ -116,15 +117,23 @@ export const ImportPDF = () => {
     }
   };
 
+  const analyzing = isPending && shouldFetchResume;
+
   return (
     <>
+      <LoadingOverlay
+        open={analyzing || savePending}
+        message={savePending ? "Saving..." : "Analyzing your resume..."}
+      />
       <PageHeading />
       <UploadPDF onFileUpload={handleFileUpload} />
       {isError && <Typography>Error loading resume</Typography>}
-      {isPending && shouldFetchResume ? (
-        <LoadingOverlay open={true} message="Analyzing your resume..." />
-      ) : (
-        <ExtractedInformation data={parsedResumeAi || null} error={error} />
+      {!analyzing && (
+        <ExtractedInformation
+          data={parsedResumeAi || null}
+          error={error}
+          onSavePendingChange={setSavePending}
+        />
       )}
     </>
   );

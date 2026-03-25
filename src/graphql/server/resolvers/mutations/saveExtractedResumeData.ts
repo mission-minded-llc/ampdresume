@@ -1,6 +1,7 @@
 import { ExtractedCompany, ExtractedEducation } from "@/app/edit/import/types";
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { revalidatePublicResumeForUserId } from "@/lib/revalidatePublicResume";
 import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export const saveExtractedResumeData = async (
@@ -151,5 +152,6 @@ export const saveExtractedResumeData = async (
     });
   }
 
+  await revalidatePublicResumeForUserId(userId);
   return true;
 };

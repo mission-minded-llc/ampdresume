@@ -29,6 +29,7 @@ export const getUser = async (slug: string): Promise<User> => {
       }
     `,
     variables: { slug },
+    fetchPolicy: "no-cache",
   });
 
   if (!data) {

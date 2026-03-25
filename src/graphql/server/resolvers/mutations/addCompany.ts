@@ -1,5 +1,6 @@
 import { verifySessionOwnership } from "@/graphql/server/util";
 import { prisma } from "@/lib/prisma";
+import { revalidatePublicResumeForUserId } from "@/lib/revalidatePublicResume";
 import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export const addCompany = async (
@@ -37,5 +38,6 @@ export const addCompany = async (
     },
   });
 
+  await revalidatePublicResumeForUserId(userId);
   return company;
 };
