@@ -12,11 +12,21 @@ import { publicResumeDataCacheTag } from "@/lib/publicResumeDataCacheTag";
  */
 export function revalidatePublicResumeBySlug(slug: string | null | undefined): void {
   if (!slug) return;
+
+  const paths = [`/r/${slug}`, `/r/${slug}/pdf`] as const;
+  const tag = publicResumeDataCacheTag(slug);
+
   try {
-    revalidatePath(`/r/${slug}`);
-    revalidatePath(`/r/${slug}/pdf`);
-    revalidateTag(publicResumeDataCacheTag(slug), { expire: 0 });
+    revalidatePath(paths[0]);
+    revalidatePath(paths[1]);
+    revalidateTag(tag, { expire: 0 });
+    if (process.env.VERCEL === "1") {
+      // eslint-disable-next-line no-console -- surfaced in Vercel Runtime Logs
+      console.info("[revalidatePublicResume]", { result: "ok", paths, tag });
+    }
   } catch (error) {
+    // eslint-disable-next-line no-console -- surfaced in Vercel Runtime Logs
+    console.error("[revalidatePublicResume]", { result: "error", paths, tag, error });
     Sentry.captureException(error);
   }
 }
