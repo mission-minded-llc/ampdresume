@@ -3,6 +3,26 @@ import { publicResumeDataCacheTag } from "@/lib/publicResumeDataCacheTag";
 
 let apolloClient: ApolloClient | null = null;
 
+/** Browser: same-origin so session cookies work on every Vercel preview URL. Server: absolute URL for RSC/route handlers. */
+function graphqlHttpUri(): string {
+  if (typeof window !== "undefined") {
+    return "/api/graphql";
+  }
+  const vercelHost = process.env.VERCEL_URL?.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  if (vercelHost) {
+    return `https://${vercelHost}/api/graphql`;
+  }
+  const fromPublic = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT?.trim();
+  if (fromPublic?.startsWith("http://") || fromPublic?.startsWith("https://")) {
+    return fromPublic;
+  }
+  const nextAuthBase = process.env.NEXTAUTH_URL?.replace(/\/$/, "");
+  if (nextAuthBase) {
+    return `${nextAuthBase}/api/graphql`;
+  }
+  return "http://localhost:3000/api/graphql";
+}
+
 /** Tags resume-by-slug GraphQL fetches for Next.js Data Cache so `revalidateTag` can purge them on Vercel. */
 const resumeSlugFetchTagLink = new ApolloLink((operation, forward) => {
   if (typeof window === "undefined") {
@@ -31,7 +51,8 @@ export function getApolloClient() {
       link: ApolloLink.from([
         resumeSlugFetchTagLink,
         new HttpLink({
-          uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
+          uri: graphqlHttpUri(),
+          credentials: "same-origin",
         }),
       ]),
       cache: new InMemoryCache(),

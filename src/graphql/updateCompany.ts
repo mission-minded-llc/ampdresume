@@ -58,5 +58,6 @@ export const updateCompany = async ({
     })
     .catch((error: unknown) => {
       Sentry.captureException(error);
+      throw error;
     });
 };
