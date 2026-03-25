@@ -25,11 +25,19 @@ jest.mock("../components/SectionTitle", () => ({
   SectionTitle: ({ title }: { title: string }) => <h2 data-testid="section-title">{title}</h2>,
 }));
 
-jest.mock("./AnimatedTextTransition", () => ({
-  AnimatedTextTransition: ({ text }: { text: string }) => (
-    <span data-testid="animated-text">{text}</span>
-  ),
-}));
+jest.mock("./AnimatedTextTransition", () => {
+  const AI_DIFF_HIGHLIGHT_COLORS = {
+    add: "#4caf50",
+    move: "#2196f3",
+    remove: "#f44336",
+  };
+  return {
+    AI_DIFF_HIGHLIGHT_COLORS,
+    AnimatedTextTransition: ({ text }: { text: string }) => (
+      <span data-testid="animated-text">{text}</span>
+    ),
+  };
+});
 
 jest.mock("@/components/CustomDialogTitle", () => ({
   CustomDialogTitle: ({
