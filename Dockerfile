@@ -1,68 +1,74 @@
-# This Dockerfile is not used to build the image, but to document the steps to build the image.
-# This project is currently deployed on Vercel, without using this Dockerfile at all.
-# However, this is saved in the event we need to move off Vercel and host in Docker elsewhere.
-
+# Image for the Cloud Run service. Built and pushed by .github/workflows/cd-app.yml.
+#
 # syntax=docker.io/docker/dockerfile:1
 
-FROM node:22-bullseye-slim AS base
+FROM node:22-bookworm-slim AS base
 
-# Install dependencies only when needed
+# --- Dependencies -----------------------------------------------------------
+
 FROM base AS deps
-
 WORKDIR /app
 
-# Install dependencies based on the preferred package manager
 COPY package.json package-lock.json* .npmrc* ./
 RUN npm ci
 
-# Rebuild the source code only when needed
+# --- Build ------------------------------------------------------------------
+
 FROM base AS builder
 WORKDIR /app
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
-ENV NEXT_TELEMETRY_DISABLED=1
+# NEXT_PUBLIC_* values are inlined into the browser bundle at build time, so they
+# have to be present here rather than only in the Cloud Run environment.
+ARG NEXT_PUBLIC_ENVIRONMENT_NAME=production
+ARG NEXT_PUBLIC_BASE_URL
+ARG NEXT_PUBLIC_GRAPHQL_ENDPOINT
+ARG NEXT_PUBLIC_SENTRY_DSN
 
-RUN npm run prisma:generate
-RUN npm run build
+ENV NEXT_PUBLIC_ENVIRONMENT_NAME=$NEXT_PUBLIC_ENVIRONMENT_NAME \
+    NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL \
+    NEXT_PUBLIC_GRAPHQL_ENDPOINT=$NEXT_PUBLIC_GRAPHQL_ENDPOINT \
+    NEXT_PUBLIC_SENTRY_DSN=$NEXT_PUBLIC_SENTRY_DSN \
+    NEXT_TELEMETRY_DISABLED=1
 
-# Production image, copy all the files and run next
+# Uploading source maps needs a token, but the build has to succeed without one
+# so the image can be built locally. Mounted as a secret to keep it out of the
+# image layers.
+RUN --mount=type=secret,id=sentry_auth_token,required=false \
+    SENTRY_AUTH_TOKEN="$(cat /run/secrets/sentry_auth_token 2>/dev/null || true)" \
+    npm run build
+
+# --- Runtime ----------------------------------------------------------------
+
 FROM base AS runner
-
-# tsx is required for the Prisma seed.ts script
-RUN npm install -g tsx
-
 WORKDIR /app
 
-ENV NODE_ENV=production
-# Uncomment the following line in case you want to disable telemetry during runtime.
-ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1 \
+    PORT=8080 \
+    HOSTNAME="0.0.0.0"
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs \
+    && adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
 
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
+# The standalone output already contains a minimal node_modules and server.js.
+# https://nextjs.org/docs/app/api-reference/config/next-config-js/output
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Copy prisma seed folder, used later to seed DB.
-COPY --from=builder --chown=nextjs:nodejs /app/prisma/seed ./prisma/seed
+# Next.js output tracing does not reliably pick up Prisma's generated client, so
+# copy it explicitly.
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
 
 USER nextjs
 
-EXPOSE 3000
+EXPOSE 8080
 
-ENV PORT=3000
-
-# server.js is created by next build from the standalone output
-# https://nextjs.org/docs/pages/api-reference/config/next-config-js/output
-ENV HOSTNAME="0.0.0.0"
-
-COPY --chown=nextjs:nodejs ./entrypoint.sh ./entrypoint.sh
-CMD ["./entrypoint.sh"]
+# Migrations and seeding run in the CD pipeline, not here: Cloud Run starts a new
+# container on every cold start, and running them per-container would be both
+# slow and unsafe under concurrency.
+CMD ["node", "server.js"]

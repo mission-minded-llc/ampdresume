@@ -135,10 +135,13 @@ public/robots.txt
 .pnp.*
 
 # Terraform
+# .terraform.lock.hcl is intentionally committed: it pins provider versions, which
+# matters most for the community-maintained Neon provider.
 .terraform
-.terraform.lock.hcl
 terraform.tfstate
 terraform.tfstate.backup
+terraform.tfvars
+tfplan
 
 # Sentry Config File
 .env.sentry-build-plugin

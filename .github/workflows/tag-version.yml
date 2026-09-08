@@ -127,19 +127,3 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Merge main back to develop
-        run: |
-          # Check if develop branch exists
-          if git ls-remote --heads origin develop | grep -q develop; then
-            echo "Develop branch exists, merging main into develop..."
-            
-            git fetch origin
-            git checkout develop
-            git merge origin/main --no-edit
-            git push origin develop
-            
-            echo "Successfully merged main into develop"
-          else
-            echo "Develop branch does not exist, skipping merge"
-          fi

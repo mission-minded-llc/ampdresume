@@ -3,7 +3,7 @@ import { publicResumeDataCacheTag } from "@/lib/publicResumeDataCacheTag";
 
 let apolloClient: ApolloClient | null = null;
 
-/** Tags resume-by-slug GraphQL fetches for Next.js Data Cache so `revalidateTag` can purge them on Vercel. */
+/** Tags resume-by-slug GraphQL fetches for Next.js Data Cache so `revalidateTag` can purge them. */
 const resumeSlugFetchTagLink = new ApolloLink((operation, forward) => {
   if (typeof window === "undefined") {
     const slug = operation.variables?.slug;

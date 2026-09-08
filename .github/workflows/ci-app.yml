@@ -1,12 +1,12 @@
 name: "CI: App"
-description:
-  "Run tests and checks on the application code. Should be run when any code changes are merged,
-  excluding infrastructure and documentation changes."
+
+# Runs tests and checks on the application code. Trunk-based: main is the only
+# long-lived branch.
 
 on:
   pull_request:
     types: [opened, synchronize]
-    branches: [main, develop]
+    branches: [main]
     paths:
       - "**.ts"
       - "**.tsx"
@@ -17,7 +17,7 @@ on:
       - "**.json"
       - "**.yml"
   push:
-    branches: [main, develop]
+    branches: [main]
     paths:
       - "**.ts"
       - "**.tsx"
@@ -31,9 +31,6 @@ on:
 
 env:
   DATABASE_URL: postgres://postgres:postgres@localhost:5432/ampdresume?schema=ampdresume
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
   NEXT_PUBLIC_ENVIRONMENT_NAME: ci
   NEXT_PUBLIC_BASE_URL: http://localhost:3000
@@ -43,7 +40,7 @@ jobs:
     name: Test Code
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: ./.github/actions/setup-dependencies
 

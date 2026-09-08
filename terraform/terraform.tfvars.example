@@ -1,0 +1,16 @@
+# Copy to terraform.tfvars and fill in. Only non-sensitive values belong here;
+# secrets are written straight to Secret Manager by scripts/gcp-set-secrets.sh.
+
+project_id  = "ampdresume-production"
+region      = "us-west1"
+domain      = "ampdresume.com"
+
+# Neon organization ID, from Account Settings > Organization settings.
+neon_org_id = "org-example-12345678"
+
+# Public by design: this value is inlined into the browser bundle.
+sentry_dsn = ""
+gtm_id     = ""
+
+# Turn on once the domain is verified in Google Search Console.
+enable_domain_mapping = false

@@ -1,21 +1,18 @@
 name: Integration Test
-description:
-  "Run integration tests on the application code. Should only be run when any code changes are
-  proposed to the `main` or `develop` branches. Does not deploy the application."
+
+# Runs Cypress against a locally built app and a throwaway Postgres container.
+# Does not deploy anything.
 
 on:
   pull_request:
-    branches:
-      - main
-      - develop
+    branches: [main]
   push:
-    branches:
-      - main
-      - develop
+    branches: [main]
   workflow_dispatch:
 
 env:
   DATABASE_URL: postgres://postgres:postgres@localhost:5432/ampdresume?schema=ampdresume
+  DATABASE_SSL: false
   # Used for sending emails for magic links.
   EMAIL_SERVER_HOST: ${{ secrets.EMAIL_SERVER_HOST }}
   EMAIL_SERVER_PORT: ${{ secrets.EMAIL_SERVER_PORT }}
@@ -31,16 +28,10 @@ env:
   NEXTAUTH_SECRET: this_is_obviously_not_a_secret
   GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
   GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-  # Used by AWS SDK for S3 uploads.
-  AWS_REGION: us-west-2
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_S3_BUCKET_NAME: medialocal.ampdresume.com
   # Used by Sentry for error tracking.
   NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
   # Specific for the integration test.
   CYPRESS_TEST_EMAIL: test@ampdresume.com
-  DATABASE_SSL: false
   # For all AI integrations.
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
@@ -48,9 +39,14 @@ jobs:
   integration-test:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      # Only needed to upload screenshots to Cloud Storage when a test fails.
+      id-token: write
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: ./.github/actions/setup-dependencies
 
@@ -79,13 +75,18 @@ jobs:
       - name: Run Cypress tests
         run: npm run cypress:test
 
+      - name: Authenticate to Google Cloud
+        if: failure()
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOY_SERVICE_ACCOUNT }}
+
       - name: Upload Cypress Screenshots
         if: failure()
         run: npm run cypress:upload:screenshots
         env:
-          AWS_S3_USER_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_S3_USER_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_S3_BUCKET_NAME: ci.ampdresume.com # Required by the s3Client in the script, but not used.
+          GCS_CI_ARTIFACTS_BUCKET: ${{ vars.GCS_CI_ARTIFACTS_BUCKET }}
 
       - name: Stop and remove Postgres
         if: always()

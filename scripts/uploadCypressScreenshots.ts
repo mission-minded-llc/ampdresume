@@ -1,13 +1,12 @@
 /**
- * Helper script to upload cypress screenshots to S3. Used during
+ * Helper script to upload Cypress screenshots to Cloud Storage. Used during
  * CI/CD to ensure that the screenshots are available for review.
  */
 
 import { readdirSync, readFileSync, statSync } from "fs";
 import { join } from "path";
 import { fileURLToPath } from "url";
-import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { getS3Client } from "../src/lib/s3";
+import { Storage } from "@google-cloud/storage";
 
 function getAllFiles(dirPath: string, arrayOfFiles: string[] = []): string[] {
   const files = readdirSync(dirPath);
@@ -24,15 +23,20 @@ function getAllFiles(dirPath: string, arrayOfFiles: string[] = []): string[] {
   return arrayOfFiles;
 }
 
-function uploadScreenshots() {
-  const s3 = getS3Client();
+async function uploadScreenshots() {
+  const bucketName = process.env.GCS_CI_ARTIFACTS_BUCKET;
 
-  const bucket = "ci.ampdresume.com";
+  if (!bucketName) {
+    throw new Error("GCS_CI_ARTIFACTS_BUCKET environment variable is required.");
+  }
+
+  // Authenticates via Application Default Credentials, which GitHub Actions
+  // provides through Workload Identity Federation.
+  const bucket = new Storage().bucket(bucketName);
 
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = join(__filename, "..");
 
-  console.log("Uploading screenshots to S3...");
   const screenshotsDir = join(__dirname, "..", "cypress", "screenshots");
 
   console.log("Local screenshots directory:", screenshotsDir);
@@ -42,30 +46,30 @@ function uploadScreenshots() {
   );
   console.log("Screenshot files list:", files);
 
-  const s3dir = "cypress/screenshots/" + new Date().toISOString();
-  console.log("S3 bucket:", bucket);
-  console.log("S3 directory:", s3dir);
+  const destinationDir = "cypress/screenshots/" + new Date().toISOString();
+  console.log("Bucket:", bucketName);
+  console.log("Destination directory:", destinationDir);
 
-  files.forEach(async (file) => {
+  for (const file of files) {
     const filePath = join(screenshotsDir, file);
     const data = readFileSync(filePath);
 
     console.log("Uploading file:", file);
-    await s3
-      .send(
-        new PutObjectCommand({
-          Bucket: bucket,
-          Key: `${s3dir}/${file}`,
-          Body: data,
-          ContentType: "image/png",
-        }),
-      )
-      .catch((error) => {
-        console.error("Error uploading file:", file, error);
-      });
 
-    console.log("Done.");
-  });
+    try {
+      await bucket.file(`${destinationDir}/${file}`).save(data, {
+        contentType: "image/png",
+        resumable: false,
+      });
+    } catch (error) {
+      console.error("Error uploading file:", file, error);
+    }
+  }
+
+  console.log("Done.");
 }
 
-uploadScreenshots();
+uploadScreenshots().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

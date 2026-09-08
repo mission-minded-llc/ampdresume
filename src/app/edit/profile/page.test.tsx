@@ -72,7 +72,6 @@ describe("Page", () => {
       location: "San Francisco, CA",
       siteTitle: "John's Resume",
       siteDescription: "This is John's resume.",
-      siteImage: "https://example.com/image.png",
     });
 
     const { container, getByLabelText } = render(await Page());
@@ -84,7 +83,6 @@ describe("Page", () => {
       expect(getByLabelText("Location")).toHaveValue("San Francisco, CA");
       expect(getByLabelText("Site Title")).toHaveValue("John's Resume");
       expect(getByLabelText("Site Description")).toHaveValue("This is John's resume.");
-      expect(getByLabelText("Image URL")).toHaveValue("https://example.com/image.png");
     });
 
     expect(container).toMatchSnapshot();

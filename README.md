@@ -19,15 +19,15 @@ Explore the GraphQL and REST API endpoints on
 
 ## The Stack
 
-This product is a Next.js full stack web application, currently hosted on Vercel.
+This product is a Next.js full stack web application, hosted on Google Cloud Run.
 
 - Application: Next.js with TypeScript
 - Authentication: NextAuth (Auth.js), OAuth, Email magic links
-- Database: PostgreSQL
+- Database: Neon serverless PostgreSQL
 - Data Fetching: Tanstack Query, Apollo, GraphQL
 - Testing: Jest, Cypress
-- Primary Hosting: Vercel
-- Media Hosting: AWS S3
+- Hosting: Google Cloud Run
+- Infrastructure as Code: Terraform
 
 ## Local Setup
 
@@ -98,19 +98,15 @@ The PostgreSQL database is accessible on port 5432 with the following credential
 
 ## Infrastructure
 
-Amp'd Resume is currently hosted on Vercel. The database is hosted by DigitalOcean. Media assets are
-hosted on AWS S3.
+Amp'd Resume runs on Google Cloud Run, with the database on Neon. All of it is defined in Terraform
+under `terraform/` — see [terraform/README.md](terraform/README.md) for the setup and deployment
+details.
 
-For local development, no changes are needed for the database references. However, if you want to
-test file upload ability, you'll need to set up an S3 bucket and provide the values for S3 settings
-in your local `.env`:
+There is a single production environment. Merging a pull request to `main` builds a container image,
+runs any pending database migrations, and rolls out a new Cloud Run revision.
 
-```
-# AWS S3 bucket for storing user uploaded files.
-AWS_S3_BUCKET_NAME=[your publicly-accessible bucket name]
-AWS_S3_USER_ACCESS_KEY_ID=[use your key id]
-AWS_S3_USER_SECRET_ACCESS_KEY=[use your secret access key]
-```
+Local development needs no cloud resources: `docker compose up -d` provides Postgres, and the app
+runs against it directly.
 
 ## 📄 License
 
