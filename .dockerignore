@@ -2,6 +2,19 @@ Dockerfile
 .dockerignore
 node_modules
 npm-debug.log
-README.md
 .next
 .git
+.github
+
+# Local secrets must never enter the build context: Next.js would otherwise bake
+# NEXT_PUBLIC_* values from them into the client bundle.
+.env
+.env.*
+!.env.example
+
+# Not needed to build or run the server.
+coverage
+cypress
+.cypress-temp
+terraform
+*.md

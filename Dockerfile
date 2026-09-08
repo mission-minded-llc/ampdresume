@@ -60,10 +60,6 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Next.js output tracing does not reliably pick up Prisma's generated client, so
-# copy it explicitly.
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
-
 USER nextjs
 
 EXPOSE 8080
