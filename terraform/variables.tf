@@ -160,9 +160,3 @@ variable "email_server_port" {
   type        = string
   default     = "587"
 }
-
-variable "allowed_user_emails" {
-  description = "Comma-separated allow list used to gate access. Leave empty to allow all users."
-  type        = string
-  default     = ""
-}

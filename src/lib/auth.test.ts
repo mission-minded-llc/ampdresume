@@ -2,10 +2,8 @@ import fs from "fs";
 import path from "path";
 import { sendVerificationRequest, authOptions, getSession } from "./auth";
 import { findUserByNormalizedEmail } from "@/util/email.server";
-import { getEnvironmentName } from "@/util/url";
 import { getServerSession } from "next-auth";
 import { EmailConfig } from "next-auth/providers/email";
-import * as Sentry from "@sentry/nextjs";
 import nodemailer from "nodemailer";
 import { expect } from "@jest/globals";
 
@@ -13,17 +11,8 @@ import { expect } from "@jest/globals";
 jest.mock("fs");
 jest.mock("path");
 jest.mock("nodemailer");
-jest.mock("@sentry/nextjs", () => ({
-  captureMessage: jest.fn(),
-}));
 jest.mock("@/util/email.server", () => ({
   findUserByNormalizedEmail: jest.fn(),
-}));
-jest.mock("@/util/url", () => ({
-  getEnvironmentName: jest.fn(),
-}));
-jest.mock("@/constants", () => ({
-  ALLOWED_USER_EMAILS: ["test@ampdresume.com", "allowed@example.com"],
 }));
 jest.mock("next-auth", () => ({
   getServerSession: jest.fn(),
@@ -31,8 +20,6 @@ jest.mock("next-auth", () => ({
 
 describe("auth", () => {
   const mockFindUserByNormalizedEmail = findUserByNormalizedEmail as jest.Mock;
-  const mockGetEnvironmentName = getEnvironmentName as jest.Mock;
-  const mockSentryCaptureMessage = Sentry.captureMessage as jest.Mock;
   const mockFsExistsSync = fs.existsSync as jest.Mock;
   const mockFsMkdirSync = fs.mkdirSync as jest.Mock;
   const mockFsWriteFileSync = fs.writeFileSync as jest.Mock;
@@ -72,7 +59,6 @@ describe("auth", () => {
     const mockUrl = "https://example.com/auth/callback?token=abc123";
 
     it("should send verification email to the provided identifier", async () => {
-      mockGetEnvironmentName.mockReturnValue("production");
       mockFindUserByNormalizedEmail.mockResolvedValue(null);
 
       await sendVerificationRequest({
@@ -92,7 +78,6 @@ describe("auth", () => {
     });
 
     it("should use matched user email if found", async () => {
-      mockGetEnvironmentName.mockReturnValue("production");
       mockFindUserByNormalizedEmail.mockResolvedValue({
         email: "matched@example.com",
       });
@@ -111,7 +96,6 @@ describe("auth", () => {
     });
 
     it("should use original identifier if user not found", async () => {
-      mockGetEnvironmentName.mockReturnValue("production");
       mockFindUserByNormalizedEmail.mockResolvedValue(null);
 
       await sendVerificationRequest({
@@ -128,7 +112,6 @@ describe("auth", () => {
     });
 
     it("should use original identifier if user found but email is null", async () => {
-      mockGetEnvironmentName.mockReturnValue("production");
       mockFindUserByNormalizedEmail.mockResolvedValue({
         email: null,
       });
@@ -146,80 +129,9 @@ describe("auth", () => {
       );
     });
 
-    describe("non-production environment email restrictions", () => {
-      beforeEach(() => {
-        mockGetEnvironmentName.mockReturnValue("development");
-      });
-
-      it("should allow email if it is in ALLOWED_USER_EMAILS", async () => {
-        mockFindUserByNormalizedEmail.mockResolvedValue(null);
-
-        await sendVerificationRequest({
-          identifier: "test@ampdresume.com",
-          url: mockUrl,
-          provider: mockProvider,
-        });
-
-        expect(mockSendMail).toHaveBeenCalled();
-        expect(mockSentryCaptureMessage).not.toHaveBeenCalled();
-      });
-
-      it("should allow email if matched user email is in ALLOWED_USER_EMAILS", async () => {
-        mockFindUserByNormalizedEmail.mockResolvedValue({
-          email: "allowed@example.com",
-        });
-
-        await sendVerificationRequest({
-          identifier: "user@example.com",
-          url: mockUrl,
-          provider: mockProvider,
-        });
-
-        expect(mockSendMail).toHaveBeenCalled();
-        expect(mockSentryCaptureMessage).not.toHaveBeenCalled();
-      });
-
-      it("should reject email if it is not in ALLOWED_USER_EMAILS", async () => {
-        mockFindUserByNormalizedEmail.mockResolvedValue(null);
-
-        await expect(
-          sendVerificationRequest({
-            identifier: "unauthorized@example.com",
-            url: mockUrl,
-            provider: mockProvider,
-          }),
-        ).rejects.toThrow("Email is not allowed to sign in.");
-
-        expect(mockSentryCaptureMessage).toHaveBeenCalledWith(
-          "Email unauthorized@example.com is not allowed to sign in.",
-        );
-        expect(mockSendMail).not.toHaveBeenCalled();
-      });
-
-      it("should reject email if matched user email is not in ALLOWED_USER_EMAILS", async () => {
-        mockFindUserByNormalizedEmail.mockResolvedValue({
-          email: "unauthorized@example.com",
-        });
-
-        await expect(
-          sendVerificationRequest({
-            identifier: "user@example.com",
-            url: mockUrl,
-            provider: mockProvider,
-          }),
-        ).rejects.toThrow("Email is not allowed to sign in.");
-
-        expect(mockSentryCaptureMessage).toHaveBeenCalledWith(
-          "Email unauthorized@example.com is not allowed to sign in.",
-        );
-        expect(mockSendMail).not.toHaveBeenCalled();
-      });
-    });
-
     describe("Cypress test email handling", () => {
       beforeEach(() => {
         process.env.CYPRESS_TEST_EMAIL = "cypress@test.com";
-        mockGetEnvironmentName.mockReturnValue("production");
       });
 
       it("should save magic link to file for Cypress test email", async () => {
@@ -294,7 +206,6 @@ describe("auth", () => {
 
     describe("email content", () => {
       beforeEach(() => {
-        mockGetEnvironmentName.mockReturnValue("production");
         mockFindUserByNormalizedEmail.mockResolvedValue(null);
       });
 
@@ -345,10 +256,6 @@ describe("auth", () => {
     describe("signIn callback", () => {
       const signInCallback = authOptions.callbacks?.signIn;
 
-      beforeEach(() => {
-        mockGetEnvironmentName.mockReturnValue("development");
-      });
-
       it("should return true for non-Google, non-email providers", async () => {
         const result = await signInCallback?.({
           user: { id: "123", email: "user@example.com" },
@@ -364,36 +271,7 @@ describe("auth", () => {
       });
 
       describe("Google provider", () => {
-        it("should allow sign-in if email is in ALLOWED_USER_EMAILS in non-production", async () => {
-          mockFindUserByNormalizedEmail.mockResolvedValue(null);
-
-          const result = await signInCallback?.({
-            user: { id: "123", email: "test@ampdresume.com" },
-            account: { provider: "google", providerAccountId: "google123", type: "oauth" } as const,
-            profile: { email: "test@ampdresume.com" },
-          });
-
-          expect(result).toBe(true);
-          expect(mockSentryCaptureMessage).not.toHaveBeenCalled();
-        });
-
-        it("should reject sign-in if email is not in ALLOWED_USER_EMAILS in non-production", async () => {
-          mockFindUserByNormalizedEmail.mockResolvedValue(null);
-
-          const result = await signInCallback?.({
-            user: { id: "123", email: "unauthorized@example.com" },
-            account: { provider: "google", providerAccountId: "google123", type: "oauth" } as const,
-            profile: { email: "unauthorized@example.com" },
-          });
-
-          expect(result).toBe(false);
-          expect(mockSentryCaptureMessage).toHaveBeenCalledWith(
-            "Email unauthorized@example.com is not allowed to sign in with Google.",
-          );
-        });
-
-        it("should allow sign-in in production without email check", async () => {
-          mockGetEnvironmentName.mockReturnValue("production");
+        it("should allow sign-in for any email", async () => {
           mockFindUserByNormalizedEmail.mockResolvedValue(null);
 
           const result = await signInCallback?.({
@@ -403,7 +281,6 @@ describe("auth", () => {
           });
 
           expect(result).toBe(true);
-          expect(mockSentryCaptureMessage).not.toHaveBeenCalled();
         });
 
         it("should update user and account with matched email if user found", async () => {

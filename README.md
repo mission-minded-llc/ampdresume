@@ -7,8 +7,7 @@ presence with interactive features to showcase their skills, work history, and e
 
 ## Environments
 
-- **Production**: https://www.ampdresume.com
-- **Staging**: https://test.ampdresume.com
+There are two environments: local development and production at https://www.ampdresume.com.
 
 ## GraphQL API
 

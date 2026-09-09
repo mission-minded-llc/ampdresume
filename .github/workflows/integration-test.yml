@@ -19,8 +19,8 @@ env:
   EMAIL_SERVER_USER: ${{ secrets.EMAIL_SERVER_USER }}
   EMAIL_SERVER_PASSWORD: ${{ secrets.EMAIL_SERVER_PASSWORD }}
   EMAIL_FROM: "Amp'd Resume <mail@ampdresume.com>"
-  # Used for tracking, analytics, etc.
-  NEXT_PUBLIC_ENVIRONMENT_NAME: test
+  # Used for tracking, analytics, etc. The app only supports local and production.
+  NEXT_PUBLIC_ENVIRONMENT_NAME: local
   NEXT_PUBLIC_GRAPHQL_ENDPOINT: http://localhost:3000/api/graphql
   NEXT_PUBLIC_BASE_URL: http://localhost:3000
   # Used by NextAuth.js for authentication.

@@ -24,7 +24,6 @@ locals {
     EMAIL_FROM             = var.email_from
     EMAIL_SERVER_PORT      = var.email_server_port
     GTM_ID                 = var.gtm_id
-    ALLOWED_USER_EMAILS    = var.allowed_user_emails
   }
 }
 

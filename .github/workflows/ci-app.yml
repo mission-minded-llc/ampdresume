@@ -32,7 +32,7 @@ on:
 env:
   DATABASE_URL: postgres://postgres:postgres@localhost:5432/ampdresume?schema=ampdresume
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-  NEXT_PUBLIC_ENVIRONMENT_NAME: ci
+  NEXT_PUBLIC_ENVIRONMENT_NAME: local
   NEXT_PUBLIC_BASE_URL: http://localhost:3000
 
 jobs:
