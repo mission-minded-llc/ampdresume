@@ -21,7 +21,7 @@
     "lint": "eslint .",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "types:check": "tsc --noEmit",
+    "types:check": "next typegen && tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:update": "jest --updateSnapshot",

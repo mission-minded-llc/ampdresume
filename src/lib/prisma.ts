@@ -1,6 +1,7 @@
 /**
  * This should be the ONLY prisma import in your codebase.
  */
+import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";

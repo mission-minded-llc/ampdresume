@@ -33,11 +33,9 @@ ENV NEXT_PUBLIC_ENVIRONMENT_NAME=$NEXT_PUBLIC_ENVIRONMENT_NAME \
     NEXT_PUBLIC_SENTRY_DSN=$NEXT_PUBLIC_SENTRY_DSN \
     NEXT_TELEMETRY_DISABLED=1
 
-# prisma.config.ts resolves DATABASE_URL when the CLI loads, but `prisma generate`
-# never opens a connection and the build does not query the database. This
-# placeholder satisfies that lookup and stays in the builder stage; the real URL
-# is injected at runtime from Secret Manager.
-ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder"
+# `prisma generate` does not open a database connection. Leave DATABASE_URL unset
+# here; prisma.config.ts reads it only when present. The real URL is injected at
+# runtime from Secret Manager.
 
 # Uploading source maps needs a token, but the build has to succeed without one
 # so the image can be built locally. Mounted as a secret to keep it out of the
