@@ -5,6 +5,9 @@ project_id  = "ampdresume-production"
 region      = "us-west1"
 domain      = "ampdresume.com"
 
+# owner/name of the GitHub repo allowed to deploy via Workload Identity Federation.
+github_repository = "mission-minded-llc/ampdresume"
+
 # Neon organization ID, from Account Settings > Organization settings.
 neon_org_id = "org-example-12345678"
 

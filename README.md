@@ -98,14 +98,34 @@ The PostgreSQL database is accessible on port 5432 with the following credential
 ## Infrastructure
 
 Amp'd Resume runs on Google Cloud Run, with the database on Neon. All of it is defined in Terraform
-under `terraform/` — see [terraform/README.md](terraform/README.md) for the setup and deployment
-details.
-
-There is a single production environment. Merging a pull request to `main` builds a container image,
-runs any pending database migrations, and rolls out a new Cloud Run revision.
+under `terraform/`. There is a single production environment. Merging a pull request to `main`
+builds a container image, runs any pending database migrations, and rolls out a new Cloud Run
+revision.
 
 Local development needs no cloud resources: `docker compose up -d` provides Postgres, and the app
 runs against it directly.
+
+### Publishing to Cloud Run
+
+To stand up a live environment on a domain you own, create a Google Cloud project, link billing,
+bootstrap Terraform state, apply the configuration, then point DNS at Cloud Run. The full walkthrough
+is in [terraform/README.md](terraform/README.md). In short:
+
+1. Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install) and
+   [Terraform](https://developer.hashicorp.com/terraform/install) (>= 1.9).
+2. Create a Google Cloud project, attach a billing account, and authenticate.
+3. Run `./scripts/gcp-bootstrap.sh YOUR_PROJECT_ID us-west1` to enable APIs and create the
+   Terraform state bucket.
+4. Copy `terraform/terraform.tfvars.example` to `terraform/terraform.tfvars`, fill in the project
+   ID, domain, Neon org ID, and GitHub repository, then `terraform init` and `terraform apply`.
+5. Write application secrets with `./scripts/gcp-set-secrets.sh YOUR_PROJECT_ID`.
+6. Copy the Terraform outputs into GitHub Actions variables and secrets so CI can deploy.
+7. Verify the domain in Google Search Console, enable `enable_domain_mapping`, and add the DNS
+   records Cloud Run reports — or skip the mapping and front Cloud Run with a CDN such as
+   Cloudflare.
+
+Until the first CD run, Cloud Run serves Google's placeholder image. The first merge to `main`
+(or a manual run of **CD: App**) builds and deploys the real application.
 
 ## 📄 License
 
