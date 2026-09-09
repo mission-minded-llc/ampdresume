@@ -13,12 +13,18 @@ locals {
     NEXT_PUBLIC_ENVIRONMENT_NAME = "production"
     NEXT_PUBLIC_BASE_URL         = local.base_url
     NEXT_PUBLIC_GRAPHQL_ENDPOINT = "${local.base_url}/api/graphql"
-    NEXT_PUBLIC_SENTRY_DSN       = var.sentry_dsn
-    NEXTAUTH_URL                 = local.base_url
-    EMAIL_FROM                   = var.email_from
-    EMAIL_SERVER_PORT            = var.email_server_port
-    GTM_ID                       = var.gtm_id
-    ALLOWED_USER_EMAILS          = var.allowed_user_emails
+
+    # Server-rendered pages query the GraphQL route in their own container, so
+    # they skip the round trip out through the load balancer and stay available
+    # even before the domain mapping finishes provisioning.
+    INTERNAL_GRAPHQL_ENDPOINT = "http://127.0.0.1:8080/api/graphql"
+
+    NEXT_PUBLIC_SENTRY_DSN = var.sentry_dsn
+    NEXTAUTH_URL           = local.base_url
+    EMAIL_FROM             = var.email_from
+    EMAIL_SERVER_PORT      = var.email_server_port
+    GTM_ID                 = var.gtm_id
+    ALLOWED_USER_EMAILS    = var.allowed_user_emails
   }
 }
 
