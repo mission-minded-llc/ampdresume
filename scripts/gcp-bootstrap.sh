@@ -46,9 +46,9 @@ cat <<EOF
 Bootstrap complete.
 
 Next steps:
-  1. export NEON_API_KEY=...            # from https://console.neon.tech
+  1. export NEON_API_KEY=...            # first apply only; from https://console.neon.tech
   2. cp terraform/terraform.tfvars.example terraform/terraform.tfvars
   3. cd terraform && terraform init && terraform apply
   4. Add secret versions in Secret Manager (Cloud Console)
-  5. eval "\$(../scripts/gcp-fetch-secrets.sh $PROJECT_ID)"  # optional, load into this shell
+  5. eval "\$(../scripts/gcp-fetch-secrets.sh $PROJECT_ID)"  # later applies; loads NEON_API_KEY from GCP
 EOF

@@ -99,9 +99,12 @@ variable "neon_autoscaling_max_cu" {
 }
 
 variable "neon_suspend_timeout_seconds" {
-  description = "Idle seconds before Neon suspends compute and billing stops. 0 uses the Neon default of 300."
+  description = <<-EOT
+    Idle seconds before Neon suspends compute. 0 leaves Neon's plan default (5
+    minutes on Free). Free-plan accounts reject any other value.
+  EOT
   type        = number
-  default     = 300
+  default     = 0
 }
 
 variable "neon_history_retention_seconds" {
