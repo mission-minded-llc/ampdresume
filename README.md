@@ -118,7 +118,9 @@ is in [terraform/README.md](terraform/README.md). In short:
    Terraform state bucket.
 4. Copy `terraform/terraform.tfvars.example` to `terraform/terraform.tfvars`, fill in the project
    ID, domain, Neon org ID, and GitHub repository, then `terraform init` and `terraform apply`.
-5. Write application secrets with `./scripts/gcp-set-secrets.sh YOUR_PROJECT_ID`.
+5. Add application secret versions in the [Secret Manager
+   console](https://console.cloud.google.com/security/secret-manager). To load them into the current
+   shell afterwards: `eval "$(./scripts/gcp-fetch-secrets.sh YOUR_PROJECT_ID)"`.
 6. Copy the Terraform outputs into GitHub Actions variables and secrets so CI can deploy.
 7. Verify the domain in Google Search Console, enable `enable_domain_mapping`, and add the DNS
    records Cloud Run reports — or skip the mapping and front Cloud Run with a CDN such as

@@ -1,5 +1,5 @@
 # Copy to terraform.tfvars and fill in. Only non-sensitive values belong here;
-# secrets are written straight to Secret Manager by scripts/gcp-set-secrets.sh.
+# secrets are set in Secret Manager via the Google Cloud Console.
 
 project_id  = "ampdresume-production"
 region      = "us-west1"

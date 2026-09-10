@@ -133,18 +133,36 @@ Secret Manager, STS, and so on) are enabled as part of this apply.
 ### 8. Populate the secrets
 
 Terraform creates the Secret Manager entries with placeholder values and never sees the real ones.
-Fill them in afterwards (from the repo root, not `terraform/`):
+Add a new version for each secret in the [Google Cloud
+Console](https://console.cloud.google.com/security/secret-manager) (Secret Manager → open the secret
+→ **New version**). Cloud Run reads `latest`, so the next cold start picks the new value up; run
+`gcloud run services update ampdresume --region REGION` to force it sooner.
+
+| Secret ID                              | Environment variable     |
+| -------------------------------------- | ------------------------ |
+| `ampdresume-nextauth-secret`           | `NEXTAUTH_SECRET`        |
+| `ampdresume-google-client-id`          | `GOOGLE_CLIENT_ID`       |
+| `ampdresume-google-client-secret`      | `GOOGLE_CLIENT_SECRET`   |
+| `ampdresume-linkedin-client-id`        | `LINKEDIN_CLIENT_ID`     |
+| `ampdresume-linkedin-client-secret`    | `LINKEDIN_CLIENT_SECRET` |
+| `ampdresume-email-server-host`         | `EMAIL_SERVER_HOST`      |
+| `ampdresume-email-server-user`         | `EMAIL_SERVER_USER`      |
+| `ampdresume-email-server-password`     | `EMAIL_SERVER_PASSWORD`  |
+| `ampdresume-openai-api-key`            | `OPENAI_API_KEY`         |
+| `ampdresume-neon-api-key`              | `NEON_API_KEY`           |
+
+Leave `ampdresume-database-url` and `ampdresume-database-url-direct` alone: Terraform writes those
+from the Neon project.
+
+`NEON_API_KEY` still needs to be in the environment on first apply, before the Secret Manager entry
+exists. After the value is in the console, load secrets into the current shell with:
 
 ```bash
-./scripts/gcp-set-secrets.sh YOUR_PROJECT_ID
+eval "$(./scripts/gcp-fetch-secrets.sh YOUR_PROJECT_ID)"
 ```
 
-The script prompts for each value, or reads it from the matching environment variable if set:
-`NEXTAUTH_SECRET`, Google and LinkedIn OAuth client credentials, SMTP settings, and
-`OPENAI_API_KEY`. Blank skips a secret.
-
-`DATABASE_URL` is the exception: it comes from the Neon project Terraform just created, so Terraform
-manages that value directly.
+That exports the application secrets plus `NEON_API_KEY` and `DATABASE_URL`. `DATABASE_URL` will be
+the production Neon connection string, not the local Docker Postgres URL.
 
 For Google and LinkedIn OAuth to work on the live domain, register authorized redirect URIs of
 `https://YOUR_DOMAIN/api/auth/callback/google` and
@@ -172,9 +190,13 @@ And these as repository **secrets**:
 
 | Secret              | Used by                                  |
 | ------------------- | ---------------------------------------- |
-| `NEON_API_KEY`      | Terraform workflows                      |
+| `NEON_API_KEY`      | Terraform workflows (Neon provider auth) |
 | `SENTRY_AUTH_TOKEN` | source map upload during the image build |
 | `CODECOV_TOKEN`     | coverage upload                          |
+
+`NEON_API_KEY` is also a Secret Manager entry (`ampdresume-neon-api-key`), set in the Cloud Console.
+GitHub Actions still uses the repository secret so Terraform can talk to Neon even before that entry
+has a real value.
 
 Workload Identity Federation is scoped to `github_repository`. If that variable does not match the
 repo you configure these on, the workflows will fail to authenticate.

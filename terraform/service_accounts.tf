@@ -51,6 +51,15 @@ resource "google_secret_manager_secret_iam_member" "deployer_reads_direct_url" {
   member    = "serviceAccount:${google_service_account.deployer.email}"
 }
 
+# The Neon provider authenticates with this key. Terraform workflows can read
+# it from Secret Manager after the value has been set in the Cloud Console.
+resource "google_secret_manager_secret_iam_member" "terraform_reads_neon_api_key" {
+  project   = var.project_id
+  secret_id = google_secret_manager_secret.app["neon-api-key"].secret_id
+  role      = "roles/secretmanager.secretAccessor"
+  member    = "serviceAccount:${google_service_account.terraform.email}"
+}
+
 # Cypress screenshots and videos from failed integration test runs.
 resource "google_storage_bucket_iam_member" "deployer_ci_artifacts" {
   bucket = google_storage_bucket.ci_artifacts.name

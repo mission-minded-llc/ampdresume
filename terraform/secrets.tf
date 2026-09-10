@@ -1,7 +1,8 @@
 locals {
   # Secrets whose values Terraform does not know. Terraform owns the container
-  # and the IAM binding; the values are written out of band with
-  # `scripts/gcp-set-secrets.sh` so they never land in Terraform state.
+  # and the IAM binding; real values are added in the Secret Manager UI so they
+  # never land in Terraform state. Mounted into Cloud Run as environment variables.
+  # `scripts/gcp-fetch-secrets.sh` reads them into the local environment.
   managed_secrets = {
     "nextauth-secret"        = "NEXTAUTH_SECRET"
     "google-client-id"       = "GOOGLE_CLIENT_ID"
@@ -20,7 +21,19 @@ locals {
     "database-url-direct" = local.database_url_direct
   }
 
-  all_secret_ids = concat(keys(local.managed_secrets), keys(local.derived_secrets))
+  # Infrastructure credentials. Created in Secret Manager like the others, but
+  # not mounted into Cloud Run: only Terraform and CI use them.
+  infra_secrets = {
+    "neon-api-key" = "NEON_API_KEY"
+  }
+
+  all_secret_ids = concat(
+    keys(local.managed_secrets),
+    keys(local.derived_secrets),
+    keys(local.infra_secrets),
+  )
+
+  placeholder_secrets = merge(local.managed_secrets, local.infra_secrets)
 }
 
 resource "google_secret_manager_secret" "app" {
@@ -37,13 +50,13 @@ resource "google_secret_manager_secret" "app" {
 }
 
 # A placeholder version so that Cloud Run can resolve `latest` on the very first
-# apply. Real values are added afterwards as new versions; `ignore_changes`
-# keeps Terraform from reverting them.
+# apply. Real values are added afterwards as new versions in the Secret Manager
+# UI; `ignore_changes` keeps Terraform from reverting them.
 resource "google_secret_manager_secret_version" "placeholder" {
-  for_each = local.managed_secrets
+  for_each = local.placeholder_secrets
 
   secret      = google_secret_manager_secret.app[each.key].id
-  secret_data = "PLACEHOLDER_SET_ME_WITH_scripts/gcp-set-secrets.sh"
+  secret_data = "PLACEHOLDER_SET_IN_CLOUD_CONSOLE"
 
   lifecycle {
     ignore_changes = [secret_data]
@@ -58,7 +71,7 @@ resource "google_secret_manager_secret_version" "derived" {
 }
 
 resource "google_secret_manager_secret_iam_member" "run_accessor" {
-  for_each = toset(local.all_secret_ids)
+  for_each = toset(concat(keys(local.managed_secrets), keys(local.derived_secrets)))
 
   project   = var.project_id
   secret_id = google_secret_manager_secret.app[each.value].secret_id
