@@ -18,16 +18,11 @@ concurrency:
   group: deploy-production
   cancel-in-progress: false
 
-# Non-secret project identity. Required for Workload Identity Federation;
-# Secret Manager values are loaded afterwards by scripts/gcp-fetch-secrets.sh.
 env:
-  GCP_PROJECT_ID: openresume-443405
-  GCP_REGION: us-west1
-  GCP_WORKLOAD_IDENTITY_PROVIDER: projects/318714754085/locations/global/workloadIdentityPools/github/providers/github
-  GCP_DEPLOY_SERVICE_ACCOUNT: ampdresume-deployer@openresume-443405.iam.gserviceaccount.com
-  CLOUD_RUN_SERVICE: ampdresume
   NEXT_PUBLIC_BASE_URL: https://www.ampdresume.com
-  IMAGE_NAME: us-west1-docker.pkg.dev/openresume-443405/ampdresume/app
+  IMAGE_NAME:
+    ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/${{ vars.CLOUD_RUN_SERVICE
+    }}/app
 
 jobs:
   deploy:
@@ -46,22 +41,22 @@ jobs:
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v3
         with:
-          project_id: ${{ env.GCP_PROJECT_ID }}
-          workload_identity_provider: ${{ env.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ env.GCP_DEPLOY_SERVICE_ACCOUNT }}
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOY_SERVICE_ACCOUNT }}
 
       - name: Set up gcloud
         uses: google-github-actions/setup-gcloud@v3
         with:
-          project_id: ${{ env.GCP_PROJECT_ID }}
+          project_id: ${{ vars.GCP_PROJECT_ID }}
 
       - name: Load secrets from Secret Manager
         run:
-          source ./scripts/gcp-fetch-secrets.sh "${{ env.GCP_PROJECT_ID }}" "${{
-          env.CLOUD_RUN_SERVICE }}"
+          source ./scripts/gcp-fetch-secrets.sh "${{ vars.GCP_PROJECT_ID }}" "${{
+          vars.CLOUD_RUN_SERVICE }}"
 
       - name: Configure Docker for Artifact Registry
-        run: gcloud auth configure-docker ${{ env.GCP_REGION }}-docker.pkg.dev --quiet
+        run: gcloud auth configure-docker ${{ vars.GCP_REGION }}-docker.pkg.dev --quiet
 
       - uses: docker/setup-buildx-action@v4
 
@@ -99,16 +94,16 @@ jobs:
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy ${{ env.CLOUD_RUN_SERVICE }} \
+          gcloud run deploy ${{ vars.CLOUD_RUN_SERVICE }} \
             --image=${{ env.IMAGE_NAME }}:${{ github.sha }} \
-            --region=${{ env.GCP_REGION }} \
-            --project=${{ env.GCP_PROJECT_ID }} \
+            --region=${{ vars.GCP_REGION }} \
+            --project=${{ vars.GCP_PROJECT_ID }} \
             --quiet
 
       - name: Report deployed URL
         run: |
-          URL="$(gcloud run services describe ${{ env.CLOUD_RUN_SERVICE }} \
-            --region=${{ env.GCP_REGION }} \
-            --project=${{ env.GCP_PROJECT_ID }} \
+          URL="$(gcloud run services describe ${{ vars.CLOUD_RUN_SERVICE }} \
+            --region=${{ vars.GCP_REGION }} \
+            --project=${{ vars.GCP_PROJECT_ID }} \
             --format='value(status.url)')"
           echo "Deployed ${{ github.sha }} to $URL" >> "$GITHUB_STEP_SUMMARY"

@@ -17,14 +17,6 @@ concurrency:
   group: terraform-production
   cancel-in-progress: false
 
-# Non-secret project identity. Required for Workload Identity Federation;
-# Secret Manager values are loaded afterwards by scripts/gcp-fetch-secrets.sh.
-env:
-  GCP_PROJECT_ID: openresume-443405
-  GCP_WORKLOAD_IDENTITY_PROVIDER: projects/318714754085/locations/global/workloadIdentityPools/github/providers/github
-  GCP_TERRAFORM_SERVICE_ACCOUNT: ampdresume-terraform@openresume-443405.iam.gserviceaccount.com
-  CLOUD_RUN_SERVICE: ampdresume
-
 jobs:
   infra-deploy:
     name: Deploy Infrastructure
@@ -34,15 +26,23 @@ jobs:
       contents: read
       id-token: write
 
+    env:
+      TF_VAR_project_id: ${{ vars.GCP_PROJECT_ID }}
+      TF_VAR_region: ${{ vars.GCP_REGION }}
+      TF_VAR_service_name: ${{ vars.CLOUD_RUN_SERVICE }}
+      TF_VAR_domain: ${{ vars.DOMAIN }}
+      TF_VAR_neon_org_id: ${{ vars.NEON_ORG_ID }}
+      TF_VAR_github_repository: ${{ github.repository }}
+
     steps:
       - uses: actions/checkout@v5
 
       - uses: ./.github/actions/terraform-plan
         with:
-          workload_identity_provider: ${{ env.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ env.GCP_TERRAFORM_SERVICE_ACCOUNT }}
-          project_id: ${{ env.GCP_PROJECT_ID }}
-          service_name: ${{ env.CLOUD_RUN_SERVICE }}
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_TERRAFORM_SERVICE_ACCOUNT }}
+          project_id: ${{ vars.GCP_PROJECT_ID }}
+          service_name: ${{ vars.CLOUD_RUN_SERVICE }}
           neon_api_key: ${{ secrets.NEON_API_KEY }}
 
       - name: Apply Terraform

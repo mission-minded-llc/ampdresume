@@ -121,10 +121,10 @@ walkthrough is in [terraform/README.md](terraform/README.md). In short:
 5. Add application secret versions in the
    [Secret Manager console](https://console.cloud.google.com/security/secret-manager). To load them
    into the current shell afterwards: `eval "$(./scripts/gcp-fetch-secrets.sh YOUR_PROJECT_ID)"`.
-6. Update the GCP `env:` values in the GitHub Actions workflows if they differ from this project's
-   defaults. CI authenticates with Workload Identity Federation, then loads secrets from Secret
-   Manager. Optional GitHub secrets: `NEON_API_KEY` (fallback), `SENTRY_AUTH_TOKEN`,
-   `CODECOV_TOKEN`.
+6. Set the GitHub Actions repository variables from `terraform output` (see
+   [terraform/README.md](terraform/README.md#9-wire-up-github-actions)). CI authenticates with
+   Workload Identity Federation, then loads secrets from Secret Manager. Optional GitHub secrets:
+   `NEON_API_KEY` (fallback), `SENTRY_AUTH_TOKEN`, `CODECOV_TOKEN`.
 7. Verify the domain in Google Search Console, enable `enable_domain_mapping`, and add the DNS
    records Cloud Run reports — or skip the mapping and front Cloud Run with a CDN such as
    Cloudflare.

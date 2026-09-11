@@ -115,8 +115,8 @@ Set at least:
 | `github_repository` | `owner/name` of the repo GitHub Actions will deploy from (default is this repo) |
 
 Leave `enable_domain_mapping` `false` until the domain is verified (see
-[Custom domain](#custom-domain)). `terraform.tfvars` is gitignored; only non-sensitive values belong
-in it.
+[Custom domain](#custom-domain)). `terraform.tfvars` is gitignored for local use. CI sets the same
+inputs with `TF_VAR_*` from GitHub Actions repository variables.
 
 ### 7. Apply
 
@@ -171,13 +171,24 @@ with those providers, and set the origin to `https://YOUR_DOMAIN`.
 
 ### 9. Wire up GitHub Actions
 
-Workload Identity Federation values (project, provider, service accounts) live in the workflow
-`env:` blocks — they are not secret. After auth, CI runs `scripts/gcp-fetch-secrets.sh` so
-`NEON_API_KEY` and the other Secret Manager values are injected into the job environment.
+Set these as **repository variables** (Settings → Secrets and variables → Actions → Variables) —
+none of them are secret. After auth, CI runs `scripts/gcp-fetch-secrets.sh` so `NEON_API_KEY` and
+the other Secret Manager values are injected into the job environment. Terraform plan/apply read the
+same variables as `TF_VAR_*` (`github.repository` supplies `github_repository`).
 
-If you forked this repo, update those `env:` values from `terraform output` in
-`.github/workflows/cd-infrastructure.yml`, `.github/workflows/ci-infrastructure.yml`,
-`.github/workflows/cd-app.yml`, and `.github/workflows/integration-test.yml`.
+| Variable                         | Source                                        |
+| -------------------------------- | --------------------------------------------- |
+| `GCP_PROJECT_ID`                 | your project ID                               |
+| `GCP_REGION`                     | your region, e.g. `us-west1`                  |
+| `GCP_WORKLOAD_IDENTITY_PROVIDER` | `terraform output workload_identity_provider` |
+| `GCP_DEPLOY_SERVICE_ACCOUNT`     | `terraform output deployer_service_account`   |
+| `GCP_TERRAFORM_SERVICE_ACCOUNT`  | `terraform output terraform_service_account`  |
+| `CLOUD_RUN_SERVICE`              | `ampdresume`                                  |
+| `GCS_CI_ARTIFACTS_BUCKET`        | `terraform output ci_artifacts_bucket`        |
+| `DOMAIN`                         | apex hostname, e.g. `ampdresume.com`          |
+| `NEON_ORG_ID`                    | Neon organization ID                          |
+
+If you forked this repo, point those variables at your own project.
 
 Optional repository **secrets**:
 

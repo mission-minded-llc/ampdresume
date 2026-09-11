@@ -1,5 +1,6 @@
 # Copy to terraform.tfvars and fill in. Only non-sensitive values belong here;
 # secrets are set in Secret Manager via the Google Cloud Console.
+# CI sets the same inputs via TF_VAR_* from GitHub Actions repository variables.
 
 project_id  = "ampdresume-production"
 region      = "us-west1"
