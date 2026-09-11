@@ -32,13 +32,6 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      images: user?.siteImage
-        ? [
-            {
-              url: user.siteImage,
-            },
-          ]
-        : [],
     },
   };
 }

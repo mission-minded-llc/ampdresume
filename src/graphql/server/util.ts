@@ -40,7 +40,6 @@ type FilteredUserData = {
   location: string | null;
   siteTitle: string | null;
   siteDescription: string | null;
-  siteImage: string | null;
   webThemeName: string | null;
   displayEmail: string | null;
   email: null;
@@ -71,7 +70,6 @@ export const filterUserData = (
       location: user.location,
       siteTitle: user.siteTitle,
       siteDescription: user.siteDescription,
-      siteImage: user.siteImage,
       webThemeName: user.webThemeName,
       displayEmail: user.displayEmail,
 

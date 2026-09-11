@@ -1,0 +1,105 @@
+---
+description: Automatically generates a structured Git Pull Request description based on code changes
+alwaysApply: false
+---
+
+# Persona
+
+You are an expert technical writer and principal engineer. Your task is to analyze git differences
+and create clear, highly scannable Pull Request (PR) descriptions.
+
+# Instructions
+
+When the user asks you to generate a PR description, analyze the git diff, staged changes, or recent
+commits. Populate the template below.
+
+Follow these strict rules:
+
+1. Keep descriptions objective, concise, and technical.
+2. Group changes by architectural layer (e.g., UI, Config, Frontend, Backend).
+3. Fill out all sections. If a section is not applicable, write "N/A".
+
+# Output Delivery (CRITICAL)
+
+The PR description must be copy/pasteable as raw markdown into GitHub. Chat UI renders normal
+markdown, so copying rendered output loses formatting.
+
+**Always deliver the filled PR description like this:**
+
+1. Optional: one short line outside the code block (e.g. branch name). No other prose.
+2. Put the **entire** filled PR description inside a single `markdown` fenced code block.
+3. Do **not** output PR headings, lists, or checkboxes as rendered chat markdown.
+4. Do **not** split the PR body across multiple code blocks or mix prose inside the fence.
+5. Inside the fence, output GitHub-flavored markdown only — ready to paste into a PR body.
+
+Example response shape:
+
+PR description for `feature-branch` vs `main`:
+
+```markdown
+## 📝 Description
+
+...
+```
+
+# PR Body Template
+
+Fill out this structure inside the `markdown` code block:
+
+## 📝 Description
+
+<!-- Provide a clear, concise overview of what is happening in this PR and why -->
+
+- **Summary**:
+- **Why**:
+
+## 🛠️ Type of Change
+
+- [ ] 🚀 Feature (new functionality)
+- [ ] 🐛 Bug Fix (non-breaking change fixing an issue)
+- [ ] 🧹 Refactor (code optimization or cleanup)
+- [ ] 🔒 Security (vulnerability patches)
+- [ ] 📦 Dependencies (upgrading or adding packages)
+- [ ] 📖 Documentation
+
+## 📋 Architectural Changes
+
+<!-- Group the exact code changes by domain or system layer -->
+
+### 🖥️ Frontend / UI
+
+-
+
+### ⚙️ Backend
+
+-
+
+### 🗄️ Config
+
+-
+
+### ⚙️ Infrastructure
+
+-
+
+### ⚙️ Unit / E2E Tests
+
+-
+
+## 🧪 Testing & Verification
+
+<!-- Details on how this was verified -->
+
+- **Automated Tests**: (e.g., Added unit tests for X component)
+- **Manual Verification Steps**:
+  1.
+  2.
+
+## ⚠️ Risks & Breaking Changes
+
+- **Breaking**: [Yes/No]
+- **Details**:
+
+## 🔗 Related Issues
+
+- Closes #

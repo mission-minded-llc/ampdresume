@@ -1,0 +1,99 @@
+name: "CD: App"
+
+# Trunk-based deployment: merging to main builds an image, migrates the
+# database, and rolls out a new Cloud Run revision. There is one environment.
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+      - "terraform/**"
+      - ".github/workflows/ci-*.yml"
+      - ".github/workflows/cd-infrastructure.yml"
+  workflow_dispatch:
+
+concurrency:
+  # Never let two deploys race to update the same service.
+  group: deploy-production
+  cancel-in-progress: false
+
+env:
+  IMAGE_NAME:
+    ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/${{ vars.CLOUD_RUN_SERVICE
+    }}/app
+
+jobs:
+  deploy:
+    name: Build and Deploy to Cloud Run
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      # Required to mint the OIDC token that Workload Identity Federation exchanges
+      # for Google Cloud credentials.
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOY_SERVICE_ACCOUNT }}
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v3
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker ${{ vars.GCP_REGION }}-docker.pkg.dev --quiet
+
+      - uses: docker/setup-buildx-action@v4
+
+      - name: Build and push image
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.IMAGE_NAME }}:latest
+          build-args: |
+            NEXT_PUBLIC_ENVIRONMENT_NAME=production
+            NEXT_PUBLIC_BASE_URL=${{ vars.NEXT_PUBLIC_BASE_URL }}
+            NEXT_PUBLIC_GRAPHQL_ENDPOINT=${{ vars.NEXT_PUBLIC_BASE_URL }}/api/graphql
+            NEXT_PUBLIC_SENTRY_DSN=${{ vars.NEXT_PUBLIC_SENTRY_DSN }}
+          secrets: |
+            sentry_auth_token=${{ secrets.SENTRY_AUTH_TOKEN }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - uses: ./.github/actions/setup-dependencies
+
+      # Migrations run against the direct Neon endpoint, because Prisma Migrate
+      # needs session-level advisory locks that the connection pooler does not
+      # support. They run before the rollout so the new revision never starts
+      # against an older schema.
+      - name: Migrate database
+        run: |
+          DATABASE_URL="$(gcloud secrets versions access latest \
+            --secret=${{ vars.CLOUD_RUN_SERVICE }}-database-url-direct \
+            --project=${{ vars.GCP_PROJECT_ID }})" \
+          npm run prisma:migrate:deploy
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy ${{ vars.CLOUD_RUN_SERVICE }} \
+            --image=${{ env.IMAGE_NAME }}:${{ github.sha }} \
+            --region=${{ vars.GCP_REGION }} \
+            --project=${{ vars.GCP_PROJECT_ID }} \
+            --quiet
+
+      - name: Report deployed URL
+        run: |
+          URL="$(gcloud run services describe ${{ vars.CLOUD_RUN_SERVICE }} \
+            --region=${{ vars.GCP_REGION }} \
+            --project=${{ vars.GCP_PROJECT_ID }} \
+            --format='value(status.url)')"
+          echo "Deployed ${{ github.sha }} to $URL" >> "$GITHUB_STEP_SUMMARY"

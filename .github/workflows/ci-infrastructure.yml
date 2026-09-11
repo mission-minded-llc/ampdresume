@@ -1,27 +1,37 @@
 name: "CI: Infrastructure"
-description:
-  "Run tests and checks on the infrastructure code. Should be run when any infrastructure changes
-  are pending in the Terraform code. Does not deploy the infrastructure."
+
+# Validates and plans Terraform changes on a pull request. Does not apply them.
 
 on:
   pull_request:
     types: [opened, synchronize]
     branches: [main]
     paths:
-      - "**.tf"
-      - "**.tfvars"
+      - "terraform/**"
+      - ".github/actions/terraform-plan/**"
+      - ".github/workflows/ci-infrastructure.yml"
   workflow_dispatch:
-
-env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
 
 jobs:
   infra-test:
     name: Test Infrastructure
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
+
+      - uses: hashicorp/setup-terraform@v4
+
+      - name: Check formatting
+        working-directory: terraform
+        run: terraform fmt -check -recursive
 
       - uses: ./.github/actions/terraform-plan
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_TERRAFORM_SERVICE_ACCOUNT }}
+          neon_api_key: ${{ secrets.NEON_API_KEY }}

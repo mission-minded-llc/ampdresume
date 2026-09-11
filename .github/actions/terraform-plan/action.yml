@@ -1,15 +1,36 @@
 name: "Terraform Init and Plan"
 description:
-  "Initialize Terraform and run a plan to ensure the infrastructure will be created as expected"
+  "Authenticate to Google Cloud, initialize Terraform, and run a plan to ensure the infrastructure
+  will be created as expected"
+
+inputs:
+  workload_identity_provider:
+    description: "Workload Identity Federation provider resource name."
+    required: true
+  service_account:
+    description: "Service account to impersonate for Terraform."
+    required: true
+  neon_api_key:
+    description: "Neon API key used by the Neon Terraform provider."
+    required: true
 
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v3
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v3
+      with:
+        workload_identity_provider: ${{ inputs.workload_identity_provider }}
+        service_account: ${{ inputs.service_account }}
 
+    # Provider versions are pinned by .terraform.lock.hcl, so the CLI version
+    # itself does not need pinning here.
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
+      uses: hashicorp/setup-terraform@v4
 
+    # Plain `init` rather than `init -upgrade`, so the versions recorded in
+    # .terraform.lock.hcl are used. Upgrading the community Neon provider
+    # unattended risks replacing the database.
     - name: Initialize Terraform
       working-directory: terraform
       shell: bash
@@ -23,4 +44,8 @@ runs:
     - name: Plan Terraform
       working-directory: terraform
       shell: bash
-      run: terraform plan
+      env:
+        NEON_API_KEY: ${{ inputs.neon_api_key }}
+      # The plan is not saved as an artifact: it contains the generated database
+      # password and connection strings in cleartext.
+      run: terraform plan -input=false

@@ -3,7 +3,7 @@ import { publicResumeDataCacheTag } from "@/lib/publicResumeDataCacheTag";
 
 let apolloClient: ApolloClient | null = null;
 
-/** Tags resume-by-slug GraphQL fetches for Next.js Data Cache so `revalidateTag` can purge them on Vercel. */
+/** Tags resume-by-slug GraphQL fetches for Next.js Data Cache so `revalidateTag` can purge them. */
 const resumeSlugFetchTagLink = new ApolloLink((operation, forward) => {
   if (typeof window === "undefined") {
     const slug = operation.variables?.slug;
@@ -25,13 +25,27 @@ const resumeSlugFetchTagLink = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
+/**
+ * Server-side rendering happens inside the same container that serves
+ * `/api/graphql`, so when `INTERNAL_GRAPHQL_ENDPOINT` is set those queries stay on
+ * the loopback interface instead of leaving the network and coming back in
+ * through the public domain. The browser always uses the public endpoint.
+ */
+function getGraphQLEndpoint() {
+  if (typeof window === "undefined" && process.env.INTERNAL_GRAPHQL_ENDPOINT) {
+    return process.env.INTERNAL_GRAPHQL_ENDPOINT;
+  }
+
+  return process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
+}
+
 export function getApolloClient() {
   if (!apolloClient) {
     apolloClient = new ApolloClient({
       link: ApolloLink.from([
         resumeSlugFetchTagLink,
         new HttpLink({
-          uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
+          uri: getGraphQLEndpoint(),
         }),
       ]),
       cache: new InMemoryCache(),

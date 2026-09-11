@@ -7,8 +7,7 @@ presence with interactive features to showcase their skills, work history, and e
 
 ## Environments
 
-- **Production**: https://www.ampdresume.com
-- **Staging**: https://test.ampdresume.com
+There are two environments: local development and production at https://www.ampdresume.com.
 
 ## GraphQL API
 
@@ -19,15 +18,15 @@ Explore the GraphQL and REST API endpoints on
 
 ## The Stack
 
-This product is a Next.js full stack web application, currently hosted on Vercel.
+This product is a Next.js full stack web application, hosted on Google Cloud Run.
 
 - Application: Next.js with TypeScript
 - Authentication: NextAuth (Auth.js), OAuth, Email magic links
-- Database: PostgreSQL
+- Database: Neon serverless PostgreSQL
 - Data Fetching: Tanstack Query, Apollo, GraphQL
 - Testing: Jest, Cypress
-- Primary Hosting: Vercel
-- Media Hosting: AWS S3
+- Hosting: Google Cloud Run
+- Infrastructure as Code: Terraform
 
 ## Local Setup
 
@@ -98,19 +97,37 @@ The PostgreSQL database is accessible on port 5432 with the following credential
 
 ## Infrastructure
 
-Amp'd Resume is currently hosted on Vercel. The database is hosted by DigitalOcean. Media assets are
-hosted on AWS S3.
+Amp'd Resume runs on Google Cloud Run, with the database on Neon. All of it is defined in Terraform
+under `terraform/`. There is a single production environment. Merging a pull request to `main`
+builds a container image, runs any pending database migrations, and rolls out a new Cloud Run
+revision.
 
-For local development, no changes are needed for the database references. However, if you want to
-test file upload ability, you'll need to set up an S3 bucket and provide the values for S3 settings
-in your local `.env`:
+Local development needs no cloud resources: `docker compose up -d` provides Postgres, and the app
+runs against it directly.
 
-```
-# AWS S3 bucket for storing user uploaded files.
-AWS_S3_BUCKET_NAME=[your publicly-accessible bucket name]
-AWS_S3_USER_ACCESS_KEY_ID=[use your key id]
-AWS_S3_USER_SECRET_ACCESS_KEY=[use your secret access key]
-```
+### Publishing to Cloud Run
+
+To stand up a live environment on a domain you own, create a Google Cloud project, link billing,
+bootstrap Terraform state, apply the configuration, then point DNS at Cloud Run. The full
+walkthrough is in [terraform/README.md](terraform/README.md). In short:
+
+1. Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install) and
+   [Terraform](https://developer.hashicorp.com/terraform/install) (>= 1.9).
+2. Create a Google Cloud project, attach a billing account, and authenticate.
+3. Run `./scripts/gcp-bootstrap.sh YOUR_PROJECT_ID us-west1` to enable APIs and create the Terraform
+   state bucket.
+4. Copy `terraform/terraform.tfvars.example` to `terraform/terraform.tfvars`, fill in the project
+   ID, domain, Neon org ID, and GitHub repository, then `terraform init` and `terraform apply`.
+5. Add application secret versions in the
+   [Secret Manager console](https://console.cloud.google.com/security/secret-manager). To load them
+   into the current shell afterwards: `eval "$(./scripts/gcp-fetch-secrets.sh YOUR_PROJECT_ID)"`.
+6. Copy the Terraform outputs into GitHub Actions variables and secrets so CI can deploy.
+7. Verify the domain in Google Search Console, enable `enable_domain_mapping`, and add the DNS
+   records Cloud Run reports — or skip the mapping and front Cloud Run with a CDN such as
+   Cloudflare.
+
+Until the first CD run, Cloud Run serves Google's placeholder image. The first merge to `main` (or a
+manual run of **CD: App**) builds and deploys the real application.
 
 ## 📄 License
 

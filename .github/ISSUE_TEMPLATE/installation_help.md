@@ -47,7 +47,7 @@ Please share any error messages you're seeing:
 
 **Repository State:**
 
-- Branch: [e.g., main, develop]
+- Branch: [e.g., main]
 - Commit: [e.g., abc1234]
 - Fresh clone or existing setup?
 

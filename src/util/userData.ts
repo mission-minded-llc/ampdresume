@@ -14,7 +14,6 @@ export function removeHiddenFields<T>(obj: T): T {
     "email",
     "siteTitle",
     "siteDescription",
-    "siteImage",
     "companyId",
     "positionId",
     "icon",

@@ -3,15 +3,21 @@ import * as Sentry from "@sentry/node";
 import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "../../util";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 export const getParsedResumeAi = async (
   _: string,
   { userId, text }: { userId: string; text: string },
 ) => {
   await verifySessionOwnership(userId);
+
+  if (!process.env.OPENAI_API_KEY) {
+    throw new Error("OpenAI API key is not set.");
+  }
+
+  // Constructed per request rather than at module scope: the OpenAI client throws
+  // when the key is absent, which would otherwise fail the production build.
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
 
   try {
     const response = await openai.chat.completions.create({

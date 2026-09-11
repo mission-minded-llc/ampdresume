@@ -21,7 +21,6 @@ export const getUser = async (slug: string): Promise<User> => {
           displayEmail
           location
           title
-          siteImage
           siteTitle
           siteDescription
           webThemeName

@@ -9,11 +9,8 @@ import EmailProvider, { EmailConfig } from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
 import LinkedInProvider, { LinkedInProfile } from "next-auth/providers/linkedin";
 import nodemailer from "nodemailer";
-import * as Sentry from "@sentry/nextjs";
-import { ALLOWED_USER_EMAILS } from "@/constants";
 import { prisma } from "@/lib/prisma";
 import { findUserByNormalizedEmail } from "@/util/email.server";
-import { getEnvironmentName } from "@/util/url";
 
 /**
  * The custom email sending function for the email provider.
@@ -42,12 +39,6 @@ export const sendVerificationRequest = async ({
 
   // Use the matched email if found, otherwise fallback to the original
   const emailToSend = user?.email ? user.email : identifier;
-
-  if (getEnvironmentName() !== "production" && !ALLOWED_USER_EMAILS.includes(emailToSend)) {
-    Sentry.captureMessage(`Email ${emailToSend} is not allowed to sign in.`);
-
-    throw new Error("Email is not allowed to sign in.");
-  }
 
   // Save the magic link to a temp file for Cypress to use.
   if (emailToSend === process.env.CYPRESS_TEST_EMAIL) {
@@ -155,12 +146,6 @@ export const authOptions: NextAuthOptions = {
       const { user, account, profile } = data;
 
       if (account?.provider === "google" && profile?.email) {
-        if (getEnvironmentName() !== "production" && !ALLOWED_USER_EMAILS.includes(profile.email)) {
-          Sentry.captureMessage(`Email ${profile.email} is not allowed to sign in with Google.`);
-
-          return false; // Prevent sign-in
-        }
-
         const existingUser = await findUserByNormalizedEmail(profile.email);
 
         // If a match is found, use the database email

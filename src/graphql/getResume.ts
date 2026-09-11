@@ -40,7 +40,6 @@ export const getResume = async (slug: string) => {
               title
               siteTitle
               siteDescription
-              siteImage
               webThemeName
             }
             socials {
