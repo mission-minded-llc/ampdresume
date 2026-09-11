@@ -171,35 +171,28 @@ with those providers, and set the origin to `https://YOUR_DOMAIN`.
 
 ### 9. Wire up GitHub Actions
 
-`terraform output` prints the values the workflows expect. Set these as **repository variables**
-(Settings → Secrets and variables → Actions → Variables) — none of them are secret:
+Workload Identity Federation values (project, provider, service accounts) live in the workflow
+`env:` blocks — they are not secret. After auth, CI runs `scripts/gcp-fetch-secrets.sh` so
+`NEON_API_KEY` and the other Secret Manager values are injected into the job environment.
 
-| Variable                         | Source                                         |
-| -------------------------------- | ---------------------------------------------- |
-| `GCP_PROJECT_ID`                 | your project ID                                |
-| `GCP_REGION`                     | your region, e.g. `us-west1`                   |
-| `GCP_WORKLOAD_IDENTITY_PROVIDER` | `terraform output workload_identity_provider`  |
-| `GCP_DEPLOY_SERVICE_ACCOUNT`     | `terraform output deployer_service_account`    |
-| `GCP_TERRAFORM_SERVICE_ACCOUNT`  | `terraform output terraform_service_account`   |
-| `CLOUD_RUN_SERVICE`              | `ampdresume`                                   |
-| `GCS_CI_ARTIFACTS_BUCKET`        | `terraform output ci_artifacts_bucket`         |
-| `NEXT_PUBLIC_BASE_URL`           | `https://` plus the `domain` you set in tfvars |
-| `NEXT_PUBLIC_SENTRY_DSN`         | your Sentry DSN                                |
+If you forked this repo, update those `env:` values from `terraform output` in
+`.github/workflows/cd-infrastructure.yml`, `.github/workflows/ci-infrastructure.yml`,
+`.github/workflows/cd-app.yml`, and `.github/workflows/integration-test.yml`.
 
-And these as repository **secrets**:
+Optional repository **secrets**:
 
-| Secret              | Used by                                  |
-| ------------------- | ---------------------------------------- |
-| `NEON_API_KEY`      | Terraform workflows (Neon provider auth) |
-| `SENTRY_AUTH_TOKEN` | source map upload during the image build |
-| `CODECOV_TOKEN`     | coverage upload                          |
+| Secret              | Used by                                                                  |
+| ------------------- | ------------------------------------------------------------------------ |
+| `NEON_API_KEY`      | Fallback for Terraform if `ampdresume-neon-api-key` is still a placeholder |
+| `SENTRY_AUTH_TOKEN` | source map upload during the image build                                 |
+| `CODECOV_TOKEN`     | coverage upload                                                          |
+| `NEXT_PUBLIC_SENTRY_DSN` | optional; also accepted as a repository variable                    |
 
-`NEON_API_KEY` is also a Secret Manager entry (`ampdresume-neon-api-key`), set in the Cloud Console.
-GitHub Actions still uses the repository secret so Terraform can talk to Neon even before that entry
-has a real value.
+`NEON_API_KEY` is primarily `ampdresume-neon-api-key` in Secret Manager. The GitHub secret is only
+needed before that entry has a real value.
 
-Workload Identity Federation is scoped to `github_repository`. If that variable does not match the
-repo you configure these on, the workflows will fail to authenticate.
+Workload Identity Federation is scoped to `github_repository`. If that Terraform variable does not
+match the repo these workflows run in, authentication will fail.
 
 ### 10. Deploy the application
 

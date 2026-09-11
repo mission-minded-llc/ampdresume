@@ -18,10 +18,16 @@ concurrency:
   group: deploy-production
   cancel-in-progress: false
 
+# Non-secret project identity. Required for Workload Identity Federation;
+# Secret Manager values are loaded afterwards by scripts/gcp-fetch-secrets.sh.
 env:
-  IMAGE_NAME:
-    ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/${{ vars.CLOUD_RUN_SERVICE
-    }}/app
+  GCP_PROJECT_ID: openresume-443405
+  GCP_REGION: us-west1
+  GCP_WORKLOAD_IDENTITY_PROVIDER: projects/318714754085/locations/global/workloadIdentityPools/github/providers/github
+  GCP_DEPLOY_SERVICE_ACCOUNT: ampdresume-deployer@openresume-443405.iam.gserviceaccount.com
+  CLOUD_RUN_SERVICE: ampdresume
+  NEXT_PUBLIC_BASE_URL: https://www.ampdresume.com
+  IMAGE_NAME: us-west1-docker.pkg.dev/openresume-443405/ampdresume/app
 
 jobs:
   deploy:
@@ -40,14 +46,20 @@ jobs:
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v3
         with:
-          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ vars.GCP_DEPLOY_SERVICE_ACCOUNT }}
+          project_id: ${{ env.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ env.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.GCP_DEPLOY_SERVICE_ACCOUNT }}
 
       - name: Set up gcloud
         uses: google-github-actions/setup-gcloud@v3
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+
+      - name: Load secrets from Secret Manager
+        run: source ./scripts/gcp-fetch-secrets.sh "${{ env.GCP_PROJECT_ID }}" "${{ env.CLOUD_RUN_SERVICE }}"
 
       - name: Configure Docker for Artifact Registry
-        run: gcloud auth configure-docker ${{ vars.GCP_REGION }}-docker.pkg.dev --quiet
+        run: gcloud auth configure-docker ${{ env.GCP_REGION }}-docker.pkg.dev --quiet
 
       - uses: docker/setup-buildx-action@v4
 
@@ -61,8 +73,8 @@ jobs:
             ${{ env.IMAGE_NAME }}:latest
           build-args: |
             NEXT_PUBLIC_ENVIRONMENT_NAME=production
-            NEXT_PUBLIC_BASE_URL=${{ vars.NEXT_PUBLIC_BASE_URL }}
-            NEXT_PUBLIC_GRAPHQL_ENDPOINT=${{ vars.NEXT_PUBLIC_BASE_URL }}/api/graphql
+            NEXT_PUBLIC_BASE_URL=${{ env.NEXT_PUBLIC_BASE_URL }}
+            NEXT_PUBLIC_GRAPHQL_ENDPOINT=${{ env.NEXT_PUBLIC_BASE_URL }}/api/graphql
             NEXT_PUBLIC_SENTRY_DSN=${{ vars.NEXT_PUBLIC_SENTRY_DSN }}
           secrets: |
             sentry_auth_token=${{ secrets.SENTRY_AUTH_TOKEN }}
@@ -77,23 +89,24 @@ jobs:
       # against an older schema.
       - name: Migrate database
         run: |
-          DATABASE_URL="$(gcloud secrets versions access latest \
-            --secret=${{ vars.CLOUD_RUN_SERVICE }}-database-url-direct \
-            --project=${{ vars.GCP_PROJECT_ID }})" \
-          npm run prisma:migrate:deploy
+          if [ -z "$DATABASE_URL_DIRECT" ]; then
+            echo "DATABASE_URL_DIRECT was not loaded from Secret Manager." >&2
+            exit 1
+          fi
+          DATABASE_URL="$DATABASE_URL_DIRECT" npm run prisma:migrate:deploy
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy ${{ vars.CLOUD_RUN_SERVICE }} \
+          gcloud run deploy ${{ env.CLOUD_RUN_SERVICE }} \
             --image=${{ env.IMAGE_NAME }}:${{ github.sha }} \
-            --region=${{ vars.GCP_REGION }} \
-            --project=${{ vars.GCP_PROJECT_ID }} \
+            --region=${{ env.GCP_REGION }} \
+            --project=${{ env.GCP_PROJECT_ID }} \
             --quiet
 
       - name: Report deployed URL
         run: |
-          URL="$(gcloud run services describe ${{ vars.CLOUD_RUN_SERVICE }} \
-            --region=${{ vars.GCP_REGION }} \
-            --project=${{ vars.GCP_PROJECT_ID }} \
+          URL="$(gcloud run services describe ${{ env.CLOUD_RUN_SERVICE }} \
+            --region=${{ env.GCP_REGION }} \
+            --project=${{ env.GCP_PROJECT_ID }} \
             --format='value(status.url)')"
           echo "Deployed ${{ github.sha }} to $URL" >> "$GITHUB_STEP_SUMMARY"

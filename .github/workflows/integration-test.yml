@@ -79,14 +79,15 @@ jobs:
         if: failure()
         uses: google-github-actions/auth@v3
         with:
-          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ vars.GCP_DEPLOY_SERVICE_ACCOUNT }}
+          project_id: openresume-443405
+          workload_identity_provider: projects/318714754085/locations/global/workloadIdentityPools/github/providers/github
+          service_account: ampdresume-deployer@openresume-443405.iam.gserviceaccount.com
 
       - name: Upload Cypress Screenshots
         if: failure()
         run: npm run cypress:upload:screenshots
         env:
-          GCS_CI_ARTIFACTS_BUCKET: ${{ vars.GCS_CI_ARTIFACTS_BUCKET }}
+          GCS_CI_ARTIFACTS_BUCKET: openresume-443405-ci-artifacts
 
       - name: Stop and remove Postgres
         if: always()

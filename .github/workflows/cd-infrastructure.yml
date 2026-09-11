@@ -9,12 +9,21 @@ on:
       - "terraform/**"
       - ".github/actions/terraform-plan/**"
       - ".github/workflows/cd-infrastructure.yml"
+      - "scripts/gcp-fetch-secrets.sh"
   workflow_dispatch:
 
 concurrency:
   # Terraform state does not tolerate concurrent applies.
   group: terraform-production
   cancel-in-progress: false
+
+# Non-secret project identity. Required for Workload Identity Federation;
+# Secret Manager values are loaded afterwards by scripts/gcp-fetch-secrets.sh.
+env:
+  GCP_PROJECT_ID: openresume-443405
+  GCP_WORKLOAD_IDENTITY_PROVIDER: projects/318714754085/locations/global/workloadIdentityPools/github/providers/github
+  GCP_TERRAFORM_SERVICE_ACCOUNT: ampdresume-terraform@openresume-443405.iam.gserviceaccount.com
+  CLOUD_RUN_SERVICE: ampdresume
 
 jobs:
   infra-deploy:
@@ -30,12 +39,18 @@ jobs:
 
       - uses: ./.github/actions/terraform-plan
         with:
-          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ vars.GCP_TERRAFORM_SERVICE_ACCOUNT }}
+          workload_identity_provider: ${{ env.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.GCP_TERRAFORM_SERVICE_ACCOUNT }}
+          project_id: ${{ env.GCP_PROJECT_ID }}
+          service_name: ${{ env.CLOUD_RUN_SERVICE }}
           neon_api_key: ${{ secrets.NEON_API_KEY }}
 
       - name: Apply Terraform
         working-directory: terraform
         env:
-          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
-        run: terraform apply -auto-approve -input=false
+          NEON_API_KEY_FALLBACK: ${{ secrets.NEON_API_KEY }}
+        run: |
+          if [ -z "$NEON_API_KEY" ]; then
+            export NEON_API_KEY="$NEON_API_KEY_FALLBACK"
+          fi
+          terraform apply -auto-approve -input=false

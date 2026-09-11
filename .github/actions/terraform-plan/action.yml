@@ -1,7 +1,7 @@
 name: "Terraform Init and Plan"
 description:
-  "Authenticate to Google Cloud, initialize Terraform, and run a plan to ensure the infrastructure
-  will be created as expected"
+  "Authenticate to Google Cloud, load Secret Manager values, initialize Terraform, and run a plan to
+  ensure the infrastructure will be created as expected"
 
 inputs:
   workload_identity_provider:
@@ -10,9 +10,19 @@ inputs:
   service_account:
     description: "Service account to impersonate for Terraform."
     required: true
-  neon_api_key:
-    description: "Neon API key used by the Neon Terraform provider."
+  project_id:
+    description: "Google Cloud project that holds Terraform state and secrets."
     required: true
+  service_name:
+    description: "Cloud Run service name; also the Secret Manager id prefix."
+    required: false
+    default: "ampdresume"
+  neon_api_key:
+    description:
+      "Fallback Neon API key if Secret Manager does not yet have a real value. Leave empty to use
+      only the fetched secret."
+    required: false
+    default: ""
 
 runs:
   using: "composite"
@@ -20,8 +30,21 @@ runs:
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v3
       with:
+        project_id: ${{ inputs.project_id }}
         workload_identity_provider: ${{ inputs.workload_identity_provider }}
         service_account: ${{ inputs.service_account }}
+
+    - name: Set up gcloud
+      uses: google-github-actions/setup-gcloud@v3
+      with:
+        project_id: ${{ inputs.project_id }}
+
+    # Writes NEON_API_KEY and the other Secret Manager values to GITHUB_ENV.
+    - name: Load secrets from Secret Manager
+      shell: bash
+      run:
+        source "$GITHUB_WORKSPACE/scripts/gcp-fetch-secrets.sh" "${{ inputs.project_id }}" "${{
+        inputs.service_name }}"
 
     # Provider versions are pinned by .terraform.lock.hcl, so the CLI version
     # itself does not need pinning here.
@@ -45,7 +68,17 @@ runs:
       working-directory: terraform
       shell: bash
       env:
-        NEON_API_KEY: ${{ inputs.neon_api_key }}
+        NEON_API_KEY_FALLBACK: ${{ inputs.neon_api_key }}
       # The plan is not saved as an artifact: it contains the generated database
-      # password and connection strings in cleartext.
-      run: terraform plan -input=false
+      # password and connection strings in cleartext. NEON_API_KEY is inherited
+      # from GITHUB_ENV (the fetch step) when Secret Manager has a real value.
+      run: |
+        if [ -z "$NEON_API_KEY" ]; then
+          NEON_API_KEY="$NEON_API_KEY_FALLBACK"
+        fi
+        if [ -z "$NEON_API_KEY" ]; then
+          echo "NEON_API_KEY is empty. Set ampdresume-neon-api-key in Secret Manager, or pass the NEON_API_KEY GitHub secret as a fallback." >&2
+          exit 1
+        fi
+        export NEON_API_KEY
+        terraform plan -input=false
