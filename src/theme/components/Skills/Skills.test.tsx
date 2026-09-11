@@ -43,13 +43,13 @@ describe("Skills", () => {
 
     // Switch to cloud layout
     fireEvent.click(cloudButton);
-    expect(cloudButton).toHaveClass("MuiButton-colorPrimary");
-    expect(experienceButton).toHaveClass("MuiButton-colorSecondary");
+    expect(cloudButton).toHaveClass("MuiButton-contained");
+    expect(experienceButton).toHaveClass("MuiButton-outlined");
 
     // Switch back to experience layout
     fireEvent.click(experienceButton);
-    expect(experienceButton).toHaveClass("MuiButton-colorPrimary");
-    expect(cloudButton).toHaveClass("MuiButton-colorSecondary");
+    expect(experienceButton).toHaveClass("MuiButton-contained");
+    expect(cloudButton).toHaveClass("MuiButton-outlined");
   });
 
   it("returns null when skillsForUser is not provided", () => {
@@ -71,6 +71,6 @@ describe("Skills", () => {
     fireEvent.click(experienceButton, fakeEvent);
 
     // Layout should remain in experience mode
-    expect(experienceButton).toHaveClass("MuiButton-colorPrimary");
+    expect(experienceButton).toHaveClass("MuiButton-contained");
   });
 });

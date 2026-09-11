@@ -30,8 +30,10 @@ export const ProjectAccordion = ({ project }: { project: Project }) => {
         boxShadow: "none",
         padding: 0,
         mt: 0,
-        mb: 0,
+        mb: 0.5,
         backgroundColor: "transparent",
+        borderRadius: "12px !important",
+        overflow: "hidden",
         borderTop: "2px solid transparent",
         borderBottom: "2px solid transparent",
         "&::before": {
@@ -45,7 +47,7 @@ export const ProjectAccordion = ({ project }: { project: Project }) => {
         },
         "& .MuiAccordionSummary-expandIconWrapper": {
           position: "absolute",
-          right: 0,
+          right: 8,
         },
       }}
     >
@@ -66,7 +68,9 @@ export const ProjectAccordion = ({ project }: { project: Project }) => {
       </AccordionSummary>
       <AccordionDetails
         sx={(theme) => ({
-          backgroundColor: theme.palette.primary.light,
+          backgroundColor: theme.palette.background.paper,
+          border: `1px solid ${theme.palette.divider}`,
+          borderRadius: "0 0 12px 12px",
           padding: "1rem 2rem",
           mt: 0,
           [theme.breakpoints.down("sm")]: {

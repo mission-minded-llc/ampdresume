@@ -29,7 +29,11 @@ export const Education = ({ education }: { education: EducationType[] }) => {
       <ResumeTitle>Education</ResumeTitle>
       {Object.keys(educationGroupedBySchool).map((school) => (
         <React.Fragment key={`education-${school}`}>
-          <Typography component="h3" variant="h5">
+          <Typography
+            component="h3"
+            variant="h5"
+            sx={{ fontWeight: 750, mt: 2, letterSpacing: "-0.02em" }}
+          >
             {school}
           </Typography>
           {educationGroupedBySchool[school].map((edu) => (

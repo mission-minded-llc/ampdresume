@@ -55,7 +55,7 @@ export const PositionSingle = ({
         ref={stickyRef}
         sx={(theme) => ({
           backgroundColor: theme.palette.background.default,
-          boxShadow: isSticky ? "0 2px 4px rgba(0, 0, 0, 0.1)" : "none",
+          boxShadow: isSticky ? "0 8px 24px rgba(42, 36, 48, 0.08)" : "none",
           position: isDesktop ? "sticky" : "static",
           top: 0,
           textAlign: "center",
@@ -63,7 +63,7 @@ export const PositionSingle = ({
           marginTop: 0,
           marginBottom: "10px",
           zIndex: 1,
-          borderBottom: "1px solid white",
+          borderBottom: `1px solid ${isSticky ? theme.palette.divider : "transparent"}`,
           [theme.breakpoints.down("sm")]: {
             textAlign: "left",
             fontSize: "1.2rem",

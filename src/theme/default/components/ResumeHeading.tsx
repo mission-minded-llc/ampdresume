@@ -1,9 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
-import { MuiLink } from "@/components/MuiLink";
 import { Social, User } from "@/types";
 import {
   generateSocialUrl,
@@ -23,7 +22,9 @@ export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[]
         marginTop: 8,
         marginBottom: 0,
         textAlign: "center",
-        lineHeight: "100%",
+        lineHeight: 1.15,
+        letterSpacing: "-0.03em",
+        fontWeight: 750,
         [theme.breakpoints.down("sm")]: {
           textAlign: "left",
           fontSize: "2rem",
@@ -37,8 +38,10 @@ export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[]
         variant="h5"
         sx={(theme) => ({
           display: "block",
-          mt: 1,
-          pt: 1,
+          mt: 1.25,
+          fontWeight: 500,
+          letterSpacing: "-0.01em",
+          color: "text.secondary",
           [theme.breakpoints.down("sm")]: {
             fontSize: "1rem",
           },
@@ -50,7 +53,12 @@ export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[]
         component="span"
         variant="body1"
         sx={{
+          display: "block",
+          mt: 1,
           fontSize: "1rem",
+          color: "text.secondary",
+          letterSpacing: 0,
+          fontWeight: 400,
         }}
       >
         {user?.displayEmail}
@@ -58,13 +66,13 @@ export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[]
           <Typography
             component="span"
             sx={{
-              margin: "0 1rem",
-              fontSize: "2rem",
-              fontWeight: "lighter",
-              opacity: 0.5,
+              margin: "0 0.65rem",
+              fontSize: "1.1rem",
+              fontWeight: 400,
+              opacity: 0.55,
             }}
           >
-            |
+            ·
           </Typography>
         ) : null}
         {user?.location}
@@ -74,33 +82,55 @@ export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[]
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          mt: 2,
+          mt: 2.5,
         }}
       >
-        <Box sx={{ display: "flex", gap: 2 }}>
+        <Box sx={{ display: "flex", gap: 1.5, alignItems: "center" }}>
           {socials
             ? socials.map((social) => {
                 const platformName = getSocialMediaPlatformByPlatformName(social.platform).name;
                 const ariaLabel = `${platformName} profile for ${user?.name || "user"}`;
                 return (
-                  <MuiLink
-                    href={generateSocialUrl(social)}
+                  <Box
                     key={social.id}
-                    target="_blank"
-                    aria-label={ariaLabel}
+                    component="span"
+                    sx={(theme) => ({
+                      display: "inline-flex",
+                      "& a": {
+                        display: "inline-flex",
+                        p: 0.75,
+                        borderRadius: 2,
+                        textDecoration: "none",
+                        color: theme.palette.text.primary,
+                        transition: "background-color 0.2s ease",
+                        "&:hover": {
+                          backgroundColor:
+                            theme.palette.mode === "dark"
+                              ? "rgba(255,255,255,0.08)"
+                              : "rgba(42,36,48,0.06)",
+                        },
+                      },
+                    })}
                   >
-                    <Icon icon={getSocialIcon(social)} width="30" height="30" />
-                  </MuiLink>
+                    <a href={generateSocialUrl(social)} target="_blank" aria-label={ariaLabel}>
+                      <Icon icon={getSocialIcon(social)} width="28" height="28" />
+                    </a>
+                  </Box>
                 );
               })
             : null}
         </Box>
-        <Typography component="div" sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-          <Icon icon="catppuccin:pdf" width="24" height="24" />
-          <MuiLink href={pdfUrl} target="_blank">
-            View PDF
-          </MuiLink>
-        </Typography>
+        <Button
+          component="a"
+          href={pdfUrl}
+          target="_blank"
+          variant="outlined"
+          color="secondary"
+          size="small"
+          startIcon={<Icon icon="catppuccin:pdf" width="20" height="20" />}
+        >
+          View PDF
+        </Button>
       </Box>
     </Typography>
   );

@@ -75,8 +75,9 @@ export const SkillsExperience = ({ skills }: { skills: SkillForUser[] }) => {
         gridTemplateColumns: "auto 1fr",
         gridTemplateRows: "auto",
         width: "100%",
-        gap: "5px",
-        marginTop: "5px",
+        gap: "8px 12px",
+        marginTop: "8px",
+        alignItems: "start",
       }}
     >
       {skillsExperienceList.map((skillsExperience) => {

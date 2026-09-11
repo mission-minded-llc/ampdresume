@@ -30,10 +30,11 @@ export const WorkExperience = ({ companies }: { companies: Company[] }) => (
             variant="h5"
             sx={(theme) => ({
               textAlign: "center",
-              padding: "20px 0 0",
+              padding: "28px 0 0",
               zIndex: 1,
-              lineHeight: "2rem",
-              fontWeight: "bold",
+              lineHeight: 1.3,
+              fontWeight: 750,
+              letterSpacing: "-0.02em",
               [theme.breakpoints.down("sm")]: {
                 mt: 0,
                 textAlign: "left",
@@ -45,9 +46,10 @@ export const WorkExperience = ({ companies }: { companies: Company[] }) => (
             <Typography
               component="div"
               sx={{
-                fontWeight: "normal",
-                fontSize: "1.2rem",
+                fontWeight: 400,
+                fontSize: "1.05rem",
                 mt: 1,
+                color: "text.secondary",
               }}
             >
               {company?.location ? `${company.location}, ` : ""}
