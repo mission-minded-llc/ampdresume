@@ -237,8 +237,7 @@ Cloud Run always assigns a `*.run.app` URL. Mapping your own domain is a separat
    terraform apply
    ```
 
-4. Point DNS at the records Cloud Run reports (typically A/AAAA for an apex, or a CNAME for
-   `www`):
+4. Point DNS at the records Cloud Run reports (typically A/AAAA for an apex, or a CNAME for `www`):
 
    ```bash
    gcloud beta run domain-mappings describe --domain www.YOUR_DOMAIN --region us-west1
@@ -248,9 +247,9 @@ Google provisions a managed TLS certificate once those records are in place. Unt
 the site remains available at the `cloud_run_url` output.
 
 If the domain is on Cloudflare **Free**, do not orange-cloud these records and do not use Origin
-Rules (Host header override is a paid feature). Set each record to **DNS only** (grey cloud) and
-use the Cloud Run mapping above. After the certificate status is Ready, you can orange-cloud again
-if you want Cloudflare in front — Cloud Run will then accept `Host: www.YOUR_DOMAIN`.
+Rules (Host header override is a paid feature). Set each record to **DNS only** (grey cloud) and use
+the Cloud Run mapping above. After the certificate status is Ready, you can orange-cloud again if
+you want Cloudflare in front — Cloud Run will then accept `Host: www.YOUR_DOMAIN`.
 
 Paid Cloudflare plans can instead leave `enable_domain_mapping` off, orange-cloud a CNAME to
 `terraform output cloud_run_url`, and add an Origin Rule that rewrites the Host header to the

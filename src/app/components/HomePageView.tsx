@@ -57,12 +57,7 @@ const HeroCtas = ({ userName }: { userName: string | null }) => {
         <Button component={NextLink} href="/edit/profile" variant="contained" color="secondary">
           Edit your resume
         </Button>
-        <Button
-          component={NextLink}
-          href="/r/missionmike"
-          variant="outlined"
-          color="secondary"
-        >
+        <Button component={NextLink} href="/r/missionmike" variant="outlined" color="secondary">
           See an example
         </Button>
       </Box>
