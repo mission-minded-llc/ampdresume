@@ -29,9 +29,10 @@ variable "github_repository" {
 
 variable "enable_domain_mapping" {
   description = <<-EOT
-    Map the apex domain directly to Cloud Run. Domain mappings are only available in a
-    subset of regions and require the domain to be verified in Google Search Console
-    first. Leave this off if the domain is fronted by a CDN such as Cloudflare.
+    Map the apex and www hostnames directly to Cloud Run. Domain mappings are only
+    available in a subset of regions and require the domain to be verified in Google
+    Search Console first. On Cloudflare Free, grey-cloud the records Cloud Run
+    reports; a Host-header Origin Rule is a paid feature.
   EOT
   type        = bool
   default     = false

@@ -1,5 +1,6 @@
 locals {
-  base_url = "https://${var.domain}"
+  www_domain = "www.${var.domain}"
+  base_url   = "https://${local.www_domain}"
 
   # Secret Manager entries the running container needs, keyed by secret suffix
   # and mapped to the environment variable the app reads. The direct database
@@ -131,16 +132,33 @@ resource "google_cloud_run_v2_service_iam_member" "public" {
   member   = "allUsers"
 }
 
-# Optional: serve the apex domain straight from Cloud Run, with a
-# Google-managed certificate and no load balancer to pay for. Requires the
-# domain to be verified in Google Search Console and a region that supports
-# domain mappings.
+# Optional: serve the custom hostnames from Cloud Run, with a Google-managed
+# certificate and no load balancer. Requires the domain to be verified in
+# Google Search Console and a region that supports domain mappings. On a
+# Cloudflare Free plan, grey-cloud (DNS only) these records — Origin Rules
+# for a Host override are not available.
 resource "google_cloud_run_domain_mapping" "apex" {
   count = var.enable_domain_mapping ? 1 : 0
 
   project  = var.project_id
   location = var.region
   name     = var.domain
+
+  metadata {
+    namespace = var.project_id
+  }
+
+  spec {
+    route_name = google_cloud_run_v2_service.app.name
+  }
+}
+
+resource "google_cloud_run_domain_mapping" "www" {
+  count = var.enable_domain_mapping ? 1 : 0
+
+  project  = var.project_id
+  location = var.region
+  name     = local.www_domain
 
   metadata {
     namespace = var.project_id
