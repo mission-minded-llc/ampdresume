@@ -16,5 +16,6 @@ neon_org_id = "org-example-12345678"
 sentry_dsn = ""
 gtm_id     = ""
 
-# Turn on once the domain is verified in Google Search Console.
+# Turn on once the domain is verified in Google Search Console. On Cloudflare
+# Free, grey-cloud the www/apex records Cloud Run reports after apply.
 enable_domain_mapping = false

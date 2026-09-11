@@ -126,8 +126,8 @@ walkthrough is in [terraform/README.md](terraform/README.md). In short:
    Workload Identity Federation, then loads secrets from Secret Manager. Optional GitHub secrets:
    `NEON_API_KEY` (fallback), `SENTRY_AUTH_TOKEN`, `CODECOV_TOKEN`.
 7. Verify the domain in Google Search Console, enable `enable_domain_mapping`, and add the DNS
-   records Cloud Run reports — or skip the mapping and front Cloud Run with a CDN such as
-   Cloudflare.
+   records Cloud Run reports. On Cloudflare Free, grey-cloud those records (Origin Rules are a
+   paid feature).
 
 Until the first CD run, Cloud Run serves Google's placeholder image. The first merge to `main` (or a
 manual run of **CD: App**) builds and deploys the real application.
