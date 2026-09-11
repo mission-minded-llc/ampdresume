@@ -170,6 +170,7 @@ export const ThemeDavids = ({
       borderRadius: 10,
     },
     typography: {
+      fontFamily: "var(--font-geist-sans), Arial, sans-serif",
       button: {
         textTransform: "none",
         fontWeight: 650,

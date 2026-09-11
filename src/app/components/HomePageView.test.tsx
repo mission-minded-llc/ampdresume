@@ -14,12 +14,13 @@ function renderHome(userName: string | null) {
 
 describe("HomePageView", () => {
   it("renders a visible brand heading and guest CTAs", () => {
-    const { getByRole, getAllByRole } = renderHome(null);
+    const { getByRole, getAllByRole, container } = renderHome(null);
 
     expect(getByRole("heading", { level: 1, name: "Amp'd Resume" })).toBeVisible();
     expect(getAllByRole("link", { name: "Start building free" }).length).toBeGreaterThan(0);
     expect(getByRole("heading", { name: "What is Amp'd Resume?" })).toBeInTheDocument();
     expect(getByRole("heading", { name: "Who is it for?" })).toBeInTheDocument();
+    expect(container.querySelector("svg[viewBox='0 0 600 400']")).toBeInTheDocument();
   });
 
   it("welcomes a signed-in user and points them to the editor", () => {

@@ -4,6 +4,7 @@ import NextLink from "next/link";
 import { Box, Button, Chip, Container, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
 import { MuiLink } from "@/components/MuiLink";
+import { ThemeAwareLogo } from "./ThemeAwareLogo";
 
 const features = [
   {
@@ -58,7 +59,7 @@ const HeroCtas = ({ userName }: { userName: string | null }) => {
         </Button>
         <Button
           component={NextLink}
-          href="/r/michael-dinerstein"
+          href="/r/missionmike"
           variant="outlined"
           color="secondary"
         >
@@ -227,7 +228,25 @@ export const HomePageView = ({ userName }: { userName: string | null }) => (
           }}
         >
           {["Free forever", "Hosted for you", "PDF export"].map((label) => (
-            <Chip key={label} label={label} variant="outlined" color="secondary" />
+            <Box
+              key={label}
+              component="span"
+              sx={(theme) => ({
+                px: 1.5,
+                py: 0.5,
+                borderRadius: 999,
+                fontSize: "0.85rem",
+                fontWeight: 600,
+                letterSpacing: "0.01em",
+                color: "text.secondary",
+                bgcolor:
+                  theme.palette.mode === "dark" ? "rgba(255,255,255,0.06)" : "rgba(42,36,48,0.06)",
+                cursor: "default",
+                userSelect: "none",
+              })}
+            >
+              {label}
+            </Box>
           ))}
         </Box>
       </Container>
@@ -304,7 +323,7 @@ export const HomePageView = ({ userName }: { userName: string | null }) => (
           </Typography>
           <Typography>
             Peek at the founder&apos;s resume{" "}
-            <MuiLink href="/r/michael-dinerstein" target="_blank">
+            <MuiLink href="/r/missionmike" target="_blank">
               here
             </MuiLink>
             .
@@ -371,6 +390,17 @@ export const HomePageView = ({ userName }: { userName: string | null }) => (
         Sign in and start building your resume today. It&apos;s free.
       </Typography>
       <HeroCtas userName={userName} />
+    </Box>
+
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        px: 2,
+        py: { xs: 4, sm: 6 },
+      }}
+    >
+      <ThemeAwareLogo maxWidth={440} />
     </Box>
   </Box>
 );

@@ -21,13 +21,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
         {process.env?.GTM_ID ? <GoogleTagManager gtmId={process.env.GTM_ID} /> : null}
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="icon" href="/images/ampd-resume-favicon.png" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={geistSans.className}>
         <ThemeAppearanceProvider>
           <Layout>{children}</Layout>
         </ThemeAppearanceProvider>
