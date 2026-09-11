@@ -24,7 +24,7 @@ jobs:
       contents: write # This allows pushing tags and commits
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           # Fetch all history and tags
           fetch-depth: 0
@@ -108,7 +108,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: v${{ steps.new-version.outputs.new_version }}
           name: Release v${{ steps.new-version.outputs.new_version }}
@@ -127,19 +127,3 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Merge main back to develop
-        run: |
-          # Check if develop branch exists
-          if git ls-remote --heads origin develop | grep -q develop; then
-            echo "Develop branch exists, merging main into develop..."
-            
-            git fetch origin
-            git checkout develop
-            git merge origin/main --no-edit
-            git push origin develop
-            
-            echo "Successfully merged main into develop"
-          else
-            echo "Develop branch does not exist, skipping merge"
-          fi

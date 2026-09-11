@@ -1,3 +1,4 @@
 public/pdf.worker.min.mjs
 public/pdf.mjs
 ampdresume-theme/
+next-env.d.ts

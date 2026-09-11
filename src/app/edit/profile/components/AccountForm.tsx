@@ -1,7 +1,7 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import BadgeIcon from "@mui/icons-material/Badge";
@@ -16,7 +16,6 @@ import { MessageDialog } from "@/components/MessageDialog";
 import { deleteUser } from "@/graphql/deleteUser";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
-import { UserAssetInput } from "../../components/UserAssetInput";
 import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
 import { SocialsForm } from "./SocialsForm";
 
@@ -30,7 +29,6 @@ const AccountForm = ({
   location,
   siteTitle,
   siteDescription,
-  siteImage,
 }: {
   name: string;
   slug: string;
@@ -39,7 +37,6 @@ const AccountForm = ({
   location: string;
   siteTitle: string;
   siteDescription: string;
-  siteImage: string;
 }) => {
   const [formData, setFormData] = useState({
     name,
@@ -49,7 +46,6 @@ const AccountForm = ({
     location,
     siteTitle,
     siteDescription,
-    siteImage,
   });
   const [errors, setErrors] = useState<{
     name?: string;
@@ -64,8 +60,6 @@ const AccountForm = ({
   const slugInputRef = React.useRef<HTMLInputElement>(null);
   const { data: session } = useSession();
   const router = useRouter();
-
-  const [siteImageUrl, setSiteImageUrl] = useState(siteImage);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -157,12 +151,6 @@ const AccountForm = ({
         setLoading(false);
       });
   };
-
-  // Since siteImage uses a separate state than formData, ensure
-  // that formData is updated when siteImage changes.
-  useEffect(() => {
-    setFormData((prev) => ({ ...prev, siteImage: siteImageUrl }));
-  }, [siteImageUrl]);
 
   const handleSlugPopupClose = () => {
     setShowSlugPopup(false);
@@ -383,23 +371,6 @@ const AccountForm = ({
               fullWidth
               sx={{ marginTop: "auto" }}
             />
-          </InputSection>
-          <InputSection>
-            <FieldTitle>Site Image</FieldTitle>
-            <FieldDescription>
-              An image that represents your resume. This will be used when your resume is shared on
-              social media.
-            </FieldDescription>
-            <TextField
-              label="Image URL"
-              name="siteImage"
-              value={siteImageUrl}
-              onChange={handleChange}
-              disabled
-              fullWidth
-              sx={{ marginTop: "auto" }}
-            />
-            <UserAssetInput url={siteImageUrl} setUrl={setSiteImageUrl} buttonType="button" />
           </InputSection>
         </GridSection>
         <Box

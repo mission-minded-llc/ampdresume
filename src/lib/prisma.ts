@@ -1,6 +1,7 @@
 /**
  * This should be the ONLY prisma import in your codebase.
  */
+import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
@@ -8,9 +9,8 @@ import { Pool } from "pg";
 // Prevent multiple Prisma Client instances in development
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
-// Configure SSL for database connection
-// This handles self-signed certificates commonly used by managed database services
-// (e.g., AWS RDS, DigitalOcean Managed Databases, Vercel Postgres)
+// Configure SSL for the database connection. Production runs against Neon, which
+// presents a certificate from a public CA, so the chain is verified by default.
 const databaseUrl = process.env.DATABASE_URL || "";
 
 // Detect if this is a localhost connection
@@ -40,9 +40,9 @@ if (process.env.DATABASE_SSL === "false") {
   // 2. Explicitly enabled via DATABASE_SSL=true
   // 3. Remote databases (not localhost) - most managed DB services require SSL
   sslConfig = {
-    // Allow self-signed certificates by default (required for DigitalOcean, AWS RDS, etc.)
-    // Set DATABASE_SSL_REJECT_UNAUTHORIZED=true to enforce certificate validation
-    rejectUnauthorized: process.env.DATABASE_SSL_REJECT_UNAUTHORIZED === "true",
+    // Verify the certificate chain unless explicitly disabled, which is only
+    // needed for a provider using a self-signed certificate.
+    rejectUnauthorized: process.env.DATABASE_SSL_REJECT_UNAUTHORIZED !== "false",
   };
 } else {
   // Localhost without SSL requirements - no SSL config needed

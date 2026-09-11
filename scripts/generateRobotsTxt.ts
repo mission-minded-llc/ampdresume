@@ -10,8 +10,6 @@
 import * as fs from "fs";
 import "dotenv/config";
 
-const productionRobotsTxt = `User-agent: *\nAllow: /`;
-const testRobotsTxt = `User-agent: *\nDisallow: /`;
 const envName = process.env.NEXT_PUBLIC_ENVIRONMENT_NAME;
 
 if (!envName) {
@@ -19,9 +17,9 @@ if (!envName) {
   process.exit(1);
 }
 
-const robotsTxt = envName === "production" ? productionRobotsTxt : testRobotsTxt;
-fs.writeFileSync("public/robots.txt", robotsTxt);
+// Only production is crawlable; local builds are kept out of search indexes.
+const isProduction = envName === "production";
 
-console.log(
-  `Generated a ${envName === "production" ? "crawlable" : "non-crawlable"} public/robots.txt`,
-);
+fs.writeFileSync("public/robots.txt", `User-agent: *\n${isProduction ? "Allow" : "Disallow"}: /`);
+
+console.log(`Generated a ${isProduction ? "crawlable" : "non-crawlable"} public/robots.txt`);

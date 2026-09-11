@@ -21,21 +21,15 @@ import {
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "lexical";
-import { deleteUserAsset } from "@/util/userAsset";
-import { ImageNode } from "../nodes/ImageNode";
 import { YouTubeNode } from "../nodes/YouTubeNode";
 import { useKeyBindings } from "../useKeyBindings";
 import { ColorPlugin } from "./ColorPlugin";
 import { HEADINGS, LOW_PRIORIRTY, RICH_TEXT_OPTIONS, RichTextAction } from "./constants";
-import { ImagePlugin } from "./ImagePlugin";
 import { ListPlugin } from "./ListPlugin";
 import { TablePlugin } from "./TablePlugin";
 import YoutubePlugin from "./YouTubePlugin";
 
-const $isCustomImageNode = (node: LexicalNode): boolean => node instanceof ImageNode;
-
-const $isCustomNode = (node: LexicalNode): boolean =>
-  node instanceof YouTubeNode || $isCustomImageNode(node);
+const $isCustomNode = (node: LexicalNode): boolean => node instanceof YouTubeNode;
 
 export const ToolbarPlugin = () => {
   const [editor] = useLexicalComposerContext();
@@ -135,11 +129,6 @@ export const ToolbarPlugin = () => {
           if ($isRangeSelection(selection)) {
             const node = selection.getNodes()[0];
             if (node && $isCustomNode(node)) {
-              if ($isCustomImageNode(node)) {
-                const src = (node as ImageNode).getSrc();
-                deleteUserAsset(src);
-              }
-
               const parent = node.getParent();
               if (parent) {
                 parent.remove();
@@ -263,7 +252,6 @@ export const ToolbarPlugin = () => {
         <ColorPlugin />
         <ListPlugin blockType={blockType} />
         <TablePlugin />
-        <ImagePlugin />
         <YoutubePlugin />
       </Box>
     </Box>

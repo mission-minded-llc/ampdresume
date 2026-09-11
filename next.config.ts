@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 
 const nextConfig: NextConfig = {
+  // Emits .next/standalone, a self-contained server bundle with only the
+  // node_modules it actually uses. This is what the Cloud Run image runs.
+  output: "standalone",
+
   webpack: (config, { isServer }) => {
     // Configure webpack to properly handle pdfjs-dist ESM module
     if (!isServer) {
@@ -55,11 +59,5 @@ export default withSentryConfig(nextConfig, {
     treeshake: {
       removeDebugLogging: true,
     },
-
-    // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
-    // See the following for more information:
-    // https://docs.sentry.io/product/crons/
-    // https://vercel.com/docs/cron-jobs
-    automaticVercelMonitors: true,
   },
 });

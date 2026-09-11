@@ -3,7 +3,7 @@
  * directory to the `data/iconify` directory.
  *
  * This is used to ensure that the Iconify JSON files are available to the application. It excludes
- * files that are larger than 5MB to stay within the limits of Vercel's hosting.
+ * files that are larger than 5MB, to keep the container image small.
  */
 
 import fs from "fs";

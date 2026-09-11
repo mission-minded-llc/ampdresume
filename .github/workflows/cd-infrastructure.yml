@@ -1,29 +1,41 @@
 name: "CD: Infrastructure"
-description:
-  "Deploy the infrastructure to AWS. Should only be run when Terraform changes are merged."
+
+# Applies Terraform changes once they are merged to main.
 
 on:
   push:
     branches: [main]
     paths:
-      - "**.tf"
-      - "**.tfvars"
+      - "terraform/**"
+      - ".github/actions/terraform-plan/**"
+      - ".github/workflows/cd-infrastructure.yml"
   workflow_dispatch:
 
-env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
+concurrency:
+  # Terraform state does not tolerate concurrent applies.
+  group: terraform-production
+  cancel-in-progress: false
 
 jobs:
   infra-deploy:
     name: Deploy Infrastructure
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - uses: ./.github/actions/terraform-plan
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_TERRAFORM_SERVICE_ACCOUNT }}
+          neon_api_key: ${{ secrets.NEON_API_KEY }}
 
       - name: Apply Terraform
         working-directory: terraform
-        run: terraform apply -auto-approve
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+        run: terraform apply -auto-approve -input=false

@@ -7,8 +7,8 @@ import { publicResumeDataCacheTag } from "@/lib/publicResumeDataCacheTag";
  * Invalidates Next.js route and Data Cache for the public resume routes for a user.
  * Call after GraphQL mutations persist resume-related data.
  *
- * Public pages load resume data via Apollo/fetch; on Vercel, `revalidatePath` alone may not
- * purge those entries unless they are tagged — see `publicResumeDataCacheTag` + Apollo link.
+ * Public pages load resume data via Apollo/fetch, and `revalidatePath` alone may not purge those
+ * entries unless they are tagged — see `publicResumeDataCacheTag` + Apollo link.
  */
 export function revalidatePublicResumeBySlug(slug: string | null | undefined): void {
   if (!slug) return;
@@ -20,12 +20,8 @@ export function revalidatePublicResumeBySlug(slug: string | null | undefined): v
     revalidatePath(paths[0]);
     revalidatePath(paths[1]);
     revalidateTag(tag, { expire: 0 });
-    if (process.env.VERCEL === "1") {
-      // eslint-disable-next-line no-console -- surfaced in Vercel Runtime Logs
-      console.info("[revalidatePublicResume]", { result: "ok", paths, tag });
-    }
   } catch (error) {
-    // eslint-disable-next-line no-console -- surfaced in Vercel Runtime Logs
+    // eslint-disable-next-line no-console -- surfaced in Cloud Run logs
     console.error("[revalidatePublicResume]", { result: "error", paths, tag, error });
     Sentry.captureException(error);
   }

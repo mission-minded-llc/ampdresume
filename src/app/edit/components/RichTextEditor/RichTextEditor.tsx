@@ -23,7 +23,6 @@ import { $getRoot, EditorThemeClasses, LexicalEditor } from "lexical";
 import { EMAIL_REGEX } from "@/util/email";
 import { URL_REGEX, validateUrl } from "@/util/url";
 import { sanitizeHtmlForEditor } from "@/lib/secureHtmlParser";
-import { ImageNode } from "./nodes/ImageNode";
 import { YouTubeNode } from "./nodes/YouTubeNode";
 import { ToolbarPlugin } from "./plugins/ToolbarPlugin";
 
@@ -47,7 +46,6 @@ export const editorTheme: EditorThemeClasses = {
 
 export const supportedEditorNodes = [
   HeadingNode,
-  ImageNode,
   YouTubeNode,
   LinkNode,
   AutoLinkNode,

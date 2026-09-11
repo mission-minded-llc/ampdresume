@@ -28,7 +28,6 @@ export const ALLOWED_TAGS = [
   "code",
   "pre",
   "a",
-  "img",
   "table",
   "thead",
   "tbody",
@@ -191,7 +190,7 @@ export function sanitizeHtmlForEditor(html: string): string {
   return tempDiv.innerHTML;
 }
 
-/** Server-side sanitizer options (no jsdom — avoids ESM/CJS issues on Vercel). */
+/** Server-side sanitizer options (no jsdom — avoids ESM/CJS issues in the server bundle). */
 const serverSanitizeOptions: SanitizeHtmlOptions = {
   allowedTags: [...ALLOWED_TAGS],
   allowedAttributes: {
@@ -218,7 +217,7 @@ const serverSanitizeOptions: SanitizeHtmlOptions = {
 /**
  * Server-side HTML sanitization (Node / serverless).
  * Uses sanitize-html instead of isomorphic-dompurify so we do not load jsdom
- * (jsdom pulls html-encoding-sniffer → @exodus/bytes ESM-only, which breaks under require() on Vercel).
+ * (jsdom pulls html-encoding-sniffer → @exodus/bytes ESM-only, which breaks under require()).
  */
 export async function sanitizeHtmlServer(html: string | null | undefined): Promise<string> {
   if (!html) {

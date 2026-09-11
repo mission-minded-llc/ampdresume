@@ -10,7 +10,6 @@ export const types = gql`
     title: String
     siteTitle: String
     siteDescription: String
-    siteImage: String
     webThemeName: String
   }
 

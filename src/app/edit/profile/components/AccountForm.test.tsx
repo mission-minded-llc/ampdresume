@@ -51,7 +51,6 @@ const mockProps = {
   location: "San Francisco, CA",
   siteTitle: "John's Resume",
   siteDescription: "This is John's resume.",
-  siteImage: "https://example.com/image.png",
 };
 
 const renderWithSession = (component: React.ReactElement) => {

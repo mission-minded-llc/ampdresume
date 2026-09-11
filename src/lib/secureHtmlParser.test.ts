@@ -196,12 +196,12 @@ describe("secureHtmlParser", () => {
       expect(result).toContain("</a>");
     });
 
-    it("should remove javascript: URLs from src", async () => {
+    it("should discard images entirely, including javascript: URLs", async () => {
       const html = "<img src=\"javascript:alert('xss')\">";
       const result = await sanitizeHtmlServer(html);
       expect(result).not.toContain("javascript:");
-      // Dangerous src is removed; serializer may use `<img />` or `<img>`
-      expect(result).toMatch(/<img\b/);
+      // Resumes are text-only, so `img` is not an allowed tag at all.
+      expect(result).not.toMatch(/<img\b/);
     });
 
     it("should remove data: URLs from href", async () => {
@@ -214,11 +214,11 @@ describe("secureHtmlParser", () => {
       expect(result).toContain("</a>");
     });
 
-    it("should remove data: URLs from src", async () => {
+    it("should discard images entirely, including data: URLs", async () => {
       const html = '<img src="data:image/png;base64,evil">';
       const result = await sanitizeHtmlServer(html);
       expect(result).not.toContain("data:");
-      expect(result).toMatch(/<img\b/);
+      expect(result).not.toMatch(/<img\b/);
     });
 
     it("should remove style attributes with javascript", async () => {

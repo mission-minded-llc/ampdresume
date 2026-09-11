@@ -72,7 +72,6 @@ Copy `.env.example` to `.env` and configure the following:
 
 - OAuth provider credentials (Google, LinkedIn)
 - Email server configuration
-- AWS S3 credentials for file uploads and Terraform setup.
 - OpenAI API key for AI features
 
 ### Database Setup

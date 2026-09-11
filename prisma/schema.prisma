@@ -53,8 +53,6 @@ model User {
   displayEmail    String?
   /// Used for location, displayed on profile. Should be a general value, e.g. City, State
   location        String?
-  /// Used for open graph tags. Should be a URL
-  siteImage       String?
   /// Used for SEO and open graph tags
   siteTitle       String?
   /// Used for profile title, e.g. "Senior Software Engineer"

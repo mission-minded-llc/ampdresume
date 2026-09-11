@@ -1,4 +1,6 @@
-Thank you for submitting a PR! Please review & check the boxes below:
+> Note: If using Cursor, run the @pr-template.mdc to generate this for you!
+
+Thank you for submitting a PR! Please review & check the boxes below.
 
 - [ ] I have filled in the "Description" section below.
 - [ ] I have provided manual testing steps and screenshots (if applicable).

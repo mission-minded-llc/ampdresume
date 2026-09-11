@@ -14,6 +14,7 @@ export default [
       "dist/**",
       "coverage/**",
       ".cypress-temp/**",
+      "next-env.d.ts",
     ],
   },
   // JavaScript and JSX files
