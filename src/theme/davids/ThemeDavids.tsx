@@ -166,11 +166,22 @@ export const ThemeDavids = ({
         secondary: themeColors.text,
       },
     },
+    shape: {
+      borderRadius: 10,
+    },
+    typography: {
+      button: {
+        textTransform: "none",
+        fontWeight: 650,
+      },
+    },
     components: {
       MuiButton: {
         styleOverrides: {
           root: {
             textTransform: "none",
+            borderRadius: 999,
+            boxShadow: "none",
           },
           outlinedPrimary: {
             color: themeAppearance === "dark" ? "#ffffff" : "#000000",
@@ -182,10 +193,29 @@ export const ThemeDavids = ({
           },
         },
       },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+            borderRadius: 12,
+          },
+        },
+      },
       MuiTabs: {
         styleOverrides: {
           indicator: {
+            height: 3,
+            borderRadius: 999,
             backgroundColor: themeColors.text,
+          },
+        },
+      },
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            textTransform: "none",
+            minHeight: 44,
+            borderRadius: 999,
+            fontWeight: 650,
           },
         },
       },
@@ -231,29 +261,44 @@ export const ThemeDavids = ({
           paddingBottom: "100px",
         }}
       >
-        {/* Resume Heading with social icons */}
-        <Box sx={{ textAlign: "center", mt: 8, mb: 0 }}>
-          <Box component="h1" sx={{ fontSize: "2.5rem", fontWeight: "bold" }}>
+        <Box sx={{ textAlign: "center", mt: 8, mb: 0, px: { xs: 2, sm: 0 } }}>
+          <Box
+            component="h1"
+            sx={{
+              fontSize: { xs: "2rem", sm: "2.5rem" },
+              fontWeight: 750,
+              letterSpacing: "-0.03em",
+            }}
+          >
             {user?.name}
           </Box>
-          <Box component="span" sx={{ display: "block", fontSize: "1.5rem", mt: 1, pt: 1 }}>
+          <Box
+            component="span"
+            sx={{
+              display: "block",
+              fontSize: { xs: "1.15rem", sm: "1.35rem" },
+              mt: 1.25,
+              fontWeight: 500,
+              opacity: 0.9,
+            }}
+          >
             {user?.title}
           </Box>
 
-          <Box component="span" sx={{ fontSize: "1rem" }}>
+          <Box component="span" sx={{ display: "block", mt: 1, fontSize: "1rem", opacity: 0.85 }}>
             {user?.displayEmail}
             {user?.displayEmail && user?.location ? (
               <Box
                 component="span"
                 sx={{
-                  margin: "0 1rem",
-                  fontSize: "2rem",
-                  fontWeight: "lighter",
-                  opacity: 0.5,
+                  margin: "0 0.65rem",
+                  fontSize: "1.1rem",
+                  fontWeight: 400,
+                  opacity: 0.55,
                   display: "inline",
                 }}
               >
-                |
+                ·
               </Box>
             ) : null}
             {user?.location}
@@ -263,8 +308,9 @@ export const ThemeDavids = ({
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              mt: 2,
-              gap: 2,
+              flexWrap: "wrap",
+              mt: 2.5,
+              gap: 1.5,
             }}
           >
             {socials?.map((social) => {
@@ -275,31 +321,50 @@ export const ThemeDavids = ({
               const url = platformConfig?.url(social.ref) ?? generateSocialUrl(social);
 
               return (
-                <a href={url} key={social.id} target="_blank" rel="noopener noreferrer">
-                  <Icon icon={icon} width="30" height="30" color={themeColors.text} />
-                </a>
+                <Box
+                  key={social.id}
+                  component="a"
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    display: "inline-flex",
+                    p: 0.75,
+                    borderRadius: 2,
+                    color: themeColors.text,
+                    "&:hover": {
+                      backgroundColor:
+                        themeAppearance === "dark"
+                          ? "rgba(96, 165, 250, 0.12)"
+                          : "rgba(13, 71, 161, 0.08)",
+                    },
+                  }}
+                >
+                  <Icon icon={icon} width="28" height="28" color={themeColors.text} />
+                </Box>
               );
             })}
             <Typography
-              component="span"
+              component="a"
+              href={pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               sx={{
-                color: themeAppearance === "dark" ? "#ADD8E6" : "#0d47a1",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 0.75,
+                px: 1.5,
+                py: 0.6,
+                borderRadius: 999,
+                border: `1px solid ${themeColors.text}`,
+                color: themeColors.text,
+                textDecoration: "none",
+                fontSize: "0.9rem",
+                fontWeight: 650,
               }}
             >
-              <Icon
-                icon="catppuccin:pdf"
-                width="24"
-                height="24"
-                color={themeAppearance === "dark" ? "#ADD8E6" : "#0d47a1"}
-              />
-              <a
-                href={pdfUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "inherit", textDecoration: "none" }}
-              >
-                View PDF
-              </a>
+              <Icon icon="catppuccin:pdf" width="20" height="20" color={themeColors.text} />
+              View PDF
             </Typography>
           </Box>
         </Box>
@@ -319,9 +384,11 @@ export const ThemeDavids = ({
             onClick={() => cycle(-1)}
             aria-label="Previous section"
             sx={{
-              color: themeAppearance === "dark" ? "#ADD8E6" : "#0d47a1",
+              color: themeColors.text,
+              backgroundColor:
+                themeAppearance === "dark" ? "rgba(96, 165, 250, 0.1)" : "rgba(13, 71, 161, 0.06)",
               "& .MuiSvgIcon-root": {
-                color: themeAppearance === "dark" ? "#ADD8E6" : "#0d47a1",
+                color: themeColors.text,
               },
             }}
           >
@@ -332,7 +399,7 @@ export const ThemeDavids = ({
             onChange={(_, v) => setActive(v)}
             variant="scrollable"
             scrollButtons="auto"
-            sx={{ mx: 2 }}
+            sx={{ mx: 1 }}
           >
             {sections.map((s, idx) => (
               <Tab
@@ -340,12 +407,12 @@ export const ThemeDavids = ({
                 label={s.label}
                 value={idx}
                 sx={{
-                  color: themeAppearance === "dark" ? "#ADD8E6" : "#0d47a1",
+                  color: themeColors.text,
                   "&.Mui-selected": {
-                    color: themeAppearance === "dark" ? "#ADD8E6" : "#0d47a1",
+                    color: themeColors.text,
                   },
                   "&:hover": {
-                    color: themeAppearance === "dark" ? "#ADD8E6" : "#0d47a1",
+                    color: themeColors.text,
                   },
                 }}
               />
@@ -355,9 +422,11 @@ export const ThemeDavids = ({
             onClick={() => cycle(1)}
             aria-label="Next section"
             sx={{
-              color: themeAppearance === "dark" ? "#ADD8E6" : "#0d47a1",
+              color: themeColors.text,
+              backgroundColor:
+                themeAppearance === "dark" ? "rgba(96, 165, 250, 0.1)" : "rgba(13, 71, 161, 0.06)",
               "& .MuiSvgIcon-root": {
-                color: themeAppearance === "dark" ? "#ADD8E6" : "#0d47a1",
+                color: themeColors.text,
               },
             }}
           >
@@ -365,9 +434,22 @@ export const ThemeDavids = ({
           </IconButton>
         </Box>
 
-        {/* Cross-fade content */}
         <Fade in key={active} timeout={500} unmountOnExit mountOnEnter>
-          <Box sx={{ mt: 4 }}>{sections[active].render}</Box>
+          <Box
+            sx={{
+              mt: 3,
+              px: { xs: 2, sm: 3 },
+              py: { xs: 2, sm: 3 },
+              borderRadius: 3,
+              backgroundColor:
+                themeAppearance === "dark" ? "rgba(30, 41, 59, 0.55)" : "rgba(227, 242, 253, 0.55)",
+              border: `1px solid ${
+                themeAppearance === "dark" ? "rgba(96, 165, 250, 0.18)" : "rgba(13, 71, 161, 0.1)"
+              }`,
+            }}
+          >
+            {sections[active]?.render}
+          </Box>
         </Fade>
 
         <QRGenerator url={currentUrl} user={user} />

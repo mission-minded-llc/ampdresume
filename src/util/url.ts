@@ -1,16 +1,19 @@
 /**
  * Helper function to get the base URL for the application.
  *
+ * Read `process.env.NEXT_PUBLIC_*` without optional chaining so Next.js inlines
+ * the value on the client and SSR/client hrefs stay in sync.
+ *
  * @returns {string} The base URL for the application.
  */
-export const getBaseUrl = () => process?.env?.NEXT_PUBLIC_BASE_URL || "https://www.ampdresume.com";
+export const getBaseUrl = () => process.env.NEXT_PUBLIC_BASE_URL || "https://www.ampdresume.com";
 
 /**
  * Helper function to get the environment name.
  *
  * @returns {string} the environment name.
  */
-export const getEnvironmentName = () => process?.env?.NEXT_PUBLIC_ENVIRONMENT_NAME || "production";
+export const getEnvironmentName = () => process.env.NEXT_PUBLIC_ENVIRONMENT_NAME || "production";
 
 /**
  * Helper function to validate a URL.
