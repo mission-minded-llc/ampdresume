@@ -121,7 +121,7 @@ export const ResumeView = ({
             maxWidth: "100%",
             zIndex: 1000,
             padding: 2,
-            borderRadius: 1,
+            borderRadius: 3,
             boxShadow: 2,
           }}
         >

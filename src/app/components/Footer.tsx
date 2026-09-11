@@ -24,7 +24,8 @@ export const Footer = () => {
         bottom: 0,
         left: 0,
         width: "100%",
-        boxShadow: "0 0 35px rgba(0, 0, 0, 0.1)",
+        borderTop: `1px solid ${theme.palette.divider}`,
+        boxShadow: "0 -8px 28px rgba(42, 36, 48, 0.06)",
       })}
     >
       <Box

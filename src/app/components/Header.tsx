@@ -12,12 +12,14 @@ export const Header = () => {
     <Box
       component="header"
       sx={(theme) => ({
-        backgroundColor: "transparent",
+        backgroundColor:
+          theme.palette.mode === "dark" ? "rgba(20, 17, 24, 0.72)" : "rgba(255, 248, 243, 0.78)",
+        backdropFilter: "blur(16px)",
         position: "sticky",
         zIndex: 9,
         top: 0,
         left: 0,
-        width: "100vw",
+        width: "100%",
         mb: 2,
         display: "flex",
         justifyContent: "space-between",
