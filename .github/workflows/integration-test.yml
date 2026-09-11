@@ -46,7 +46,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - uses: ./.github/actions/setup-dependencies
 
@@ -77,7 +77,7 @@ jobs:
 
       - name: Authenticate to Google Cloud
         if: failure()
-        uses: google-github-actions/auth@v2
+        uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_DEPLOY_SERVICE_ACCOUNT }}

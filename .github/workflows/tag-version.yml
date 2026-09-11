@@ -24,7 +24,7 @@ jobs:
       contents: write # This allows pushing tags and commits
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           # Fetch all history and tags
           fetch-depth: 0
@@ -108,7 +108,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: v${{ steps.new-version.outputs.new_version }}
           name: Release v${{ steps.new-version.outputs.new_version }}
