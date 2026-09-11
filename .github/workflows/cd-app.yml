@@ -50,10 +50,28 @@ jobs:
         with:
           project_id: ${{ vars.GCP_PROJECT_ID }}
 
-      - name: Load secrets from Secret Manager
-        run:
-          source ./scripts/gcp-fetch-secrets.sh "${{ vars.GCP_PROJECT_ID }}" "${{
-          vars.CLOUD_RUN_SERVICE }}"
+      # The deployer identity can only read this secret; Cloud Run mounts the rest.
+      - name: Load database URL from Secret Manager
+        env:
+          GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+          CLOUD_RUN_SERVICE: ${{ vars.CLOUD_RUN_SERVICE }}
+        run: |
+          SECRET_ID="${CLOUD_RUN_SERVICE}-database-url-direct"
+          VALUE="$(gcloud secrets versions access latest \
+            --secret="$SECRET_ID" \
+            --project="$GCP_PROJECT_ID")"
+          case "$VALUE" in
+            ""|PLACEHOLDER*)
+              echo "${SECRET_ID} is missing or still a placeholder." >&2
+              exit 1
+              ;;
+          esac
+          echo "::add-mask::${VALUE}"
+          {
+            printf 'DATABASE_URL_DIRECT<<GCP_SECRET_EOF\n'
+            printf '%s\n' "$VALUE"
+            printf 'GCP_SECRET_EOF\n'
+          } >> "$GITHUB_ENV"
 
       - name: Configure Docker for Artifact Registry
         run: gcloud auth configure-docker ${{ vars.GCP_REGION }}-docker.pkg.dev --quiet
