@@ -27,7 +27,7 @@ export const ThemeAppearanceToggle = () => {
         backgroundColor: isResumePage ? "transparent" : theme.palette.background.default,
         marginRight: isDesktop && !isResumePage ? "1em" : 0,
         padding: "0 1em",
-        borderRadius: "1em",
+        borderRadius: 999,
       })}
     >
       <Icon icon="solar:sun-bold" />

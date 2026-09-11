@@ -180,7 +180,7 @@ export function createAppTheme(mode: PaletteMode) {
       MuiDrawer: {
         styleOverrides: {
           paper: {
-            borderRadius: "0 24px 24px 0",
+            borderRadius: 0,
             border: "none",
             boxShadow: softShadows[6],
           },
@@ -190,6 +190,9 @@ export function createAppTheme(mode: PaletteMode) {
         styleOverrides: {
           root: {
             padding: 8,
+          },
+          track: {
+            borderRadius: 999,
           },
         },
       },
