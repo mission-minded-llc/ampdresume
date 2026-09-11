@@ -108,26 +108,26 @@ runs against it directly.
 ### Publishing to Cloud Run
 
 To stand up a live environment on a domain you own, create a Google Cloud project, link billing,
-bootstrap Terraform state, apply the configuration, then point DNS at Cloud Run. The full walkthrough
-is in [terraform/README.md](terraform/README.md). In short:
+bootstrap Terraform state, apply the configuration, then point DNS at Cloud Run. The full
+walkthrough is in [terraform/README.md](terraform/README.md). In short:
 
 1. Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install) and
    [Terraform](https://developer.hashicorp.com/terraform/install) (>= 1.9).
 2. Create a Google Cloud project, attach a billing account, and authenticate.
-3. Run `./scripts/gcp-bootstrap.sh YOUR_PROJECT_ID us-west1` to enable APIs and create the
-   Terraform state bucket.
+3. Run `./scripts/gcp-bootstrap.sh YOUR_PROJECT_ID us-west1` to enable APIs and create the Terraform
+   state bucket.
 4. Copy `terraform/terraform.tfvars.example` to `terraform/terraform.tfvars`, fill in the project
    ID, domain, Neon org ID, and GitHub repository, then `terraform init` and `terraform apply`.
-5. Add application secret versions in the [Secret Manager
-   console](https://console.cloud.google.com/security/secret-manager). To load them into the current
-   shell afterwards: `eval "$(./scripts/gcp-fetch-secrets.sh YOUR_PROJECT_ID)"`.
+5. Add application secret versions in the
+   [Secret Manager console](https://console.cloud.google.com/security/secret-manager). To load them
+   into the current shell afterwards: `eval "$(./scripts/gcp-fetch-secrets.sh YOUR_PROJECT_ID)"`.
 6. Copy the Terraform outputs into GitHub Actions variables and secrets so CI can deploy.
 7. Verify the domain in Google Search Console, enable `enable_domain_mapping`, and add the DNS
    records Cloud Run reports — or skip the mapping and front Cloud Run with a CDN such as
    Cloudflare.
 
-Until the first CD run, Cloud Run serves Google's placeholder image. The first merge to `main`
-(or a manual run of **CD: App**) builds and deploys the real application.
+Until the first CD run, Cloud Run serves Google's placeholder image. The first merge to `main` (or a
+manual run of **CD: App**) builds and deploys the real application.
 
 ## 📄 License
 

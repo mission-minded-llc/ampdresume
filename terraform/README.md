@@ -28,9 +28,9 @@ domain. After it, day-to-day deploys are pull requests to `main`.
 
 ### Prerequisites
 
-- A Google account that can create projects, and a [billing
-  account](https://console.cloud.google.com/billing) attached to it. Cloud Run and the supporting
-  APIs will not enable without billing, even though idle spend is near zero.
+- A Google account that can create projects, and a
+  [billing account](https://console.cloud.google.com/billing) attached to it. Cloud Run and the
+  supporting APIs will not enable without billing, even though idle spend is near zero.
 - The [gcloud CLI](https://cloud.google.com/sdk/docs/install) and
   [Terraform](https://developer.hashicorp.com/terraform/install) >= 1.9.
 - A [Neon](https://console.neon.tech) account. Terraform creates the Postgres project; you only
@@ -39,9 +39,9 @@ domain. After it, day-to-day deploys are pull requests to `main`.
 - A domain you control, if you want a public hostname instead of the `*.run.app` URL Cloud Run
   assigns.
 
-If you are publishing a fork rather than this project as-is, plan to change `project_id`,
-`domain`, `github_repository`, and the Terraform state bucket name. GCS bucket names are globally
-unique; `ampdresume-tf-state` is already taken by the production project.
+If you are publishing a fork rather than this project as-is, plan to change `project_id`, `domain`,
+`github_repository`, and the Terraform state bucket name. GCS bucket names are globally unique;
+`ampdresume-tf-state` is already taken by the production project.
 
 ### 1. Create the Google Cloud project
 
@@ -56,9 +56,9 @@ gcloud projects create YOUR_PROJECT_ID --name="Amp'd Resume"
 gcloud config set project YOUR_PROJECT_ID
 ```
 
-You can also create the project in the [Google Cloud
-Console](https://console.cloud.google.com/projectcreate). Either way, your user needs **Owner** (or
-equivalent) on the project so Terraform can create IAM bindings and enable APIs.
+You can also create the project in the
+[Google Cloud Console](https://console.cloud.google.com/projectcreate). Either way, your user needs
+**Owner** (or equivalent) on the project so Terraform can create IAM bindings and enable APIs.
 
 ### 2. Link a billing account
 
@@ -114,8 +114,9 @@ Set at least:
 | `neon_org_id`       | from the Neon console                                                           |
 | `github_repository` | `owner/name` of the repo GitHub Actions will deploy from (default is this repo) |
 
-Leave `enable_domain_mapping` `false` until the domain is verified (see [Custom domain](#custom-domain)).
-`terraform.tfvars` is gitignored; only non-sensitive values belong in it.
+Leave `enable_domain_mapping` `false` until the domain is verified (see
+[Custom domain](#custom-domain)). `terraform.tfvars` is gitignored; only non-sensitive values belong
+in it.
 
 ### 7. Apply
 
@@ -127,29 +128,29 @@ terraform apply
 
 The first apply creates the Cloud Run service using Google's placeholder `hello` image, because CI
 has not pushed a real one yet. Terraform ignores the image field from then on, so deploys and
-Terraform runs do not fight over it. The remaining Google APIs (Cloud Run, Artifact Registry,
-Secret Manager, STS, and so on) are enabled as part of this apply.
+Terraform runs do not fight over it. The remaining Google APIs (Cloud Run, Artifact Registry, Secret
+Manager, STS, and so on) are enabled as part of this apply.
 
 ### 8. Populate the secrets
 
 Terraform creates the Secret Manager entries with placeholder values and never sees the real ones.
-Add a new version for each secret in the [Google Cloud
-Console](https://console.cloud.google.com/security/secret-manager) (Secret Manager → open the secret
-→ **New version**). Cloud Run reads `latest`, so the next cold start picks the new value up; run
-`gcloud run services update ampdresume --region REGION` to force it sooner.
+Add a new version for each secret in the
+[Google Cloud Console](https://console.cloud.google.com/security/secret-manager) (Secret Manager →
+open the secret → **New version**). Cloud Run reads `latest`, so the next cold start picks the new
+value up; run `gcloud run services update ampdresume --region REGION` to force it sooner.
 
-| Secret ID                              | Environment variable     |
-| -------------------------------------- | ------------------------ |
-| `ampdresume-nextauth-secret`           | `NEXTAUTH_SECRET`        |
-| `ampdresume-google-client-id`          | `GOOGLE_CLIENT_ID`       |
-| `ampdresume-google-client-secret`      | `GOOGLE_CLIENT_SECRET`   |
-| `ampdresume-linkedin-client-id`        | `LINKEDIN_CLIENT_ID`     |
-| `ampdresume-linkedin-client-secret`    | `LINKEDIN_CLIENT_SECRET` |
-| `ampdresume-email-server-host`         | `EMAIL_SERVER_HOST`      |
-| `ampdresume-email-server-user`         | `EMAIL_SERVER_USER`      |
-| `ampdresume-email-server-password`     | `EMAIL_SERVER_PASSWORD`  |
-| `ampdresume-openai-api-key`            | `OPENAI_API_KEY`         |
-| `ampdresume-neon-api-key`              | `NEON_API_KEY`           |
+| Secret ID                           | Environment variable     |
+| ----------------------------------- | ------------------------ |
+| `ampdresume-nextauth-secret`        | `NEXTAUTH_SECRET`        |
+| `ampdresume-google-client-id`       | `GOOGLE_CLIENT_ID`       |
+| `ampdresume-google-client-secret`   | `GOOGLE_CLIENT_SECRET`   |
+| `ampdresume-linkedin-client-id`     | `LINKEDIN_CLIENT_ID`     |
+| `ampdresume-linkedin-client-secret` | `LINKEDIN_CLIENT_SECRET` |
+| `ampdresume-email-server-host`      | `EMAIL_SERVER_HOST`      |
+| `ampdresume-email-server-user`      | `EMAIL_SERVER_USER`      |
+| `ampdresume-email-server-password`  | `EMAIL_SERVER_PASSWORD`  |
+| `ampdresume-openai-api-key`         | `OPENAI_API_KEY`         |
+| `ampdresume-neon-api-key`           | `NEON_API_KEY`           |
 
 Leave `ampdresume-database-url` and `ampdresume-database-url-direct` alone: Terraform writes those
 from the Neon project.
@@ -165,9 +166,8 @@ That exports the application secrets plus `NEON_API_KEY` and `DATABASE_URL`. `DA
 the production Neon connection string, not the local Docker Postgres URL.
 
 For Google and LinkedIn OAuth to work on the live domain, register authorized redirect URIs of
-`https://YOUR_DOMAIN/api/auth/callback/google` and
-`https://YOUR_DOMAIN/api/auth/callback/linkedin` with those providers, and set the origin to
-`https://YOUR_DOMAIN`.
+`https://YOUR_DOMAIN/api/auth/callback/google` and `https://YOUR_DOMAIN/api/auth/callback/linkedin`
+with those providers, and set the origin to `https://YOUR_DOMAIN`.
 
 ### 9. Wire up GitHub Actions
 
@@ -203,10 +203,10 @@ repo you configure these on, the workflows will fail to authenticate.
 
 ### 10. Deploy the application
 
-Until CI has pushed an image, Cloud Run still serves Google's `hello` placeholder. After the
-Actions variables and secrets are in place, run **CD: App** from the Actions tab
-(`workflow_dispatch`), or merge a commit to `main`. That workflow builds the image, runs Prisma
-migrations against Neon, and updates the Cloud Run service.
+Until CI has pushed an image, Cloud Run still serves Google's `hello` placeholder. After the Actions
+variables and secrets are in place, run **CD: App** from the Actions tab (`workflow_dispatch`), or
+merge a commit to `main`. That workflow builds the image, runs Prisma migrations against Neon, and
+updates the Cloud Run service.
 
 Confirm it with:
 
@@ -221,10 +221,11 @@ Cloud Run always assigns a `*.run.app` URL. Mapping your own domain is a separat
 `enable_domain_mapping` is off by default. Domain mappings are only offered in some regions
 (including `us-west1`) and require the domain to be verified against this Google Cloud project:
 
-1. Add the domain as a **Domain** property in [Google Search
-   Console](https://search.google.com/search-console) and complete the DNS TXT verification.
-2. In Google Cloud Console, open **APIs & Services → Domain verification**, add the same domain,
-   and select this project so Cloud Run is allowed to serve it.
+1. Add the domain as a **Domain** property in
+   [Google Search Console](https://search.google.com/search-console) and complete the DNS TXT
+   verification.
+2. In Google Cloud Console, open **APIs & Services → Domain verification**, add the same domain, and
+   select this project so Cloud Run is allowed to serve it.
 3. Set `enable_domain_mapping = true` in `terraform.tfvars` and apply again:
 
    ```bash
@@ -243,8 +244,8 @@ Google provisions a managed TLS certificate once those records are in place. Unt
 the site remains available at the `cloud_run_url` output.
 
 If the domain is fronted by Cloudflare or another CDN, leave `enable_domain_mapping` off and point
-the CDN origin at `terraform output cloud_run_url` instead. That is the usual way to serve `www`
-and the apex from the same service, or to sit in a region that does not support domain mappings.
+the CDN origin at `terraform output cloud_run_url` instead. That is the usual way to serve `www` and
+the apex from the same service, or to sit in a region that does not support domain mappings.
 
 ## Day-to-day
 
