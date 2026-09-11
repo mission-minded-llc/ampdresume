@@ -8,6 +8,9 @@
 #   eval "$(./scripts/gcp-fetch-secrets.sh [PROJECT_ID] [SERVICE_NAME])"
 #   source ./scripts/gcp-fetch-secrets.sh [PROJECT_ID] [SERVICE_NAME]
 #
+# In GitHub Actions, source this script after authenticating. When GITHUB_ENV
+# is set, each loaded value is written there (and masked) so later steps see it.
+#
 # PROJECT_ID defaults to the active gcloud project. Status goes to stderr so
 # `eval "$(...)"` only sees export statements.
 
@@ -93,6 +96,15 @@ for _gcp_fetch_entry in "${SECRETS[@]}"; do
     export "${_gcp_fetch_env_var}=${_gcp_fetch_value}"
   else
     printf 'export %s=%s\n' "$_gcp_fetch_env_var" "$(_gcp_fetch_quote "$_gcp_fetch_value")"
+  fi
+
+  if [ -n "${GITHUB_ENV:-}" ]; then
+    printf '%s\n' "::add-mask::${_gcp_fetch_value}"
+    {
+      printf '%s<<GCP_SECRET_EOF\n' "$_gcp_fetch_env_var"
+      printf '%s\n' "$_gcp_fetch_value"
+      printf 'GCP_SECRET_EOF\n'
+    } >> "$GITHUB_ENV"
   fi
 
   echo "Loaded ${_gcp_fetch_env_var}." >&2

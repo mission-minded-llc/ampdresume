@@ -115,8 +115,8 @@ Set at least:
 | `github_repository` | `owner/name` of the repo GitHub Actions will deploy from (default is this repo) |
 
 Leave `enable_domain_mapping` `false` until the domain is verified (see
-[Custom domain](#custom-domain)). `terraform.tfvars` is gitignored; only non-sensitive values belong
-in it.
+[Custom domain](#custom-domain)). `terraform.tfvars` is gitignored for local use. CI sets the same
+inputs with `TF_VAR_*` from GitHub Actions repository variables.
 
 ### 7. Apply
 
@@ -171,35 +171,39 @@ with those providers, and set the origin to `https://YOUR_DOMAIN`.
 
 ### 9. Wire up GitHub Actions
 
-`terraform output` prints the values the workflows expect. Set these as **repository variables**
-(Settings → Secrets and variables → Actions → Variables) — none of them are secret:
+Set these as **repository variables** (Settings → Secrets and variables → Actions → Variables) —
+none of them are secret. After auth, CI runs `scripts/gcp-fetch-secrets.sh` so `NEON_API_KEY` and
+the other Secret Manager values are injected into the job environment. Terraform plan/apply read the
+same variables as `TF_VAR_*` (`github.repository` supplies `github_repository`).
 
-| Variable                         | Source                                         |
-| -------------------------------- | ---------------------------------------------- |
-| `GCP_PROJECT_ID`                 | your project ID                                |
-| `GCP_REGION`                     | your region, e.g. `us-west1`                   |
-| `GCP_WORKLOAD_IDENTITY_PROVIDER` | `terraform output workload_identity_provider`  |
-| `GCP_DEPLOY_SERVICE_ACCOUNT`     | `terraform output deployer_service_account`    |
-| `GCP_TERRAFORM_SERVICE_ACCOUNT`  | `terraform output terraform_service_account`   |
-| `CLOUD_RUN_SERVICE`              | `ampdresume`                                   |
-| `GCS_CI_ARTIFACTS_BUCKET`        | `terraform output ci_artifacts_bucket`         |
-| `NEXT_PUBLIC_BASE_URL`           | `https://` plus the `domain` you set in tfvars |
-| `NEXT_PUBLIC_SENTRY_DSN`         | your Sentry DSN                                |
+| Variable                         | Source                                        |
+| -------------------------------- | --------------------------------------------- |
+| `GCP_PROJECT_ID`                 | your project ID                               |
+| `GCP_REGION`                     | your region, e.g. `us-west1`                  |
+| `GCP_WORKLOAD_IDENTITY_PROVIDER` | `terraform output workload_identity_provider` |
+| `GCP_DEPLOY_SERVICE_ACCOUNT`     | `terraform output deployer_service_account`   |
+| `GCP_TERRAFORM_SERVICE_ACCOUNT`  | `terraform output terraform_service_account`  |
+| `CLOUD_RUN_SERVICE`              | `ampdresume`                                  |
+| `GCS_CI_ARTIFACTS_BUCKET`        | `terraform output ci_artifacts_bucket`        |
+| `DOMAIN`                         | apex hostname, e.g. `ampdresume.com`          |
+| `NEON_ORG_ID`                    | Neon organization ID                          |
 
-And these as repository **secrets**:
+If you forked this repo, point those variables at your own project.
 
-| Secret              | Used by                                  |
-| ------------------- | ---------------------------------------- |
-| `NEON_API_KEY`      | Terraform workflows (Neon provider auth) |
-| `SENTRY_AUTH_TOKEN` | source map upload during the image build |
-| `CODECOV_TOKEN`     | coverage upload                          |
+Optional repository **secrets**:
 
-`NEON_API_KEY` is also a Secret Manager entry (`ampdresume-neon-api-key`), set in the Cloud Console.
-GitHub Actions still uses the repository secret so Terraform can talk to Neon even before that entry
-has a real value.
+| Secret                   | Used by                                                                    |
+| ------------------------ | -------------------------------------------------------------------------- |
+| `NEON_API_KEY`           | Fallback for Terraform if `ampdresume-neon-api-key` is still a placeholder |
+| `SENTRY_AUTH_TOKEN`      | source map upload during the image build                                   |
+| `CODECOV_TOKEN`          | coverage upload                                                            |
+| `NEXT_PUBLIC_SENTRY_DSN` | optional; also accepted as a repository variable                           |
 
-Workload Identity Federation is scoped to `github_repository`. If that variable does not match the
-repo you configure these on, the workflows will fail to authenticate.
+`NEON_API_KEY` is primarily `ampdresume-neon-api-key` in Secret Manager. The GitHub secret is only
+needed before that entry has a real value.
+
+Workload Identity Federation is scoped to `github_repository`. If that Terraform variable does not
+match the repo these workflows run in, authentication will fail.
 
 ### 10. Deploy the application
 
