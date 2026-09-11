@@ -56,7 +56,9 @@ jobs:
           project_id: ${{ env.GCP_PROJECT_ID }}
 
       - name: Load secrets from Secret Manager
-        run: source ./scripts/gcp-fetch-secrets.sh "${{ env.GCP_PROJECT_ID }}" "${{ env.CLOUD_RUN_SERVICE }}"
+        run:
+          source ./scripts/gcp-fetch-secrets.sh "${{ env.GCP_PROJECT_ID }}" "${{
+          env.CLOUD_RUN_SERVICE }}"
 
       - name: Configure Docker for Artifact Registry
         run: gcloud auth configure-docker ${{ env.GCP_REGION }}-docker.pkg.dev --quiet

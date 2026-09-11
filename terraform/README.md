@@ -181,12 +181,12 @@ If you forked this repo, update those `env:` values from `terraform output` in
 
 Optional repository **secrets**:
 
-| Secret              | Used by                                                                  |
-| ------------------- | ------------------------------------------------------------------------ |
-| `NEON_API_KEY`      | Fallback for Terraform if `ampdresume-neon-api-key` is still a placeholder |
-| `SENTRY_AUTH_TOKEN` | source map upload during the image build                                 |
-| `CODECOV_TOKEN`     | coverage upload                                                          |
-| `NEXT_PUBLIC_SENTRY_DSN` | optional; also accepted as a repository variable                    |
+| Secret                   | Used by                                                                    |
+| ------------------------ | -------------------------------------------------------------------------- |
+| `NEON_API_KEY`           | Fallback for Terraform if `ampdresume-neon-api-key` is still a placeholder |
+| `SENTRY_AUTH_TOKEN`      | source map upload during the image build                                   |
+| `CODECOV_TOKEN`          | coverage upload                                                            |
+| `NEXT_PUBLIC_SENTRY_DSN` | optional; also accepted as a repository variable                           |
 
 `NEON_API_KEY` is primarily `ampdresume-neon-api-key` in Secret Manager. The GitHub secret is only
 needed before that entry has a real value.
