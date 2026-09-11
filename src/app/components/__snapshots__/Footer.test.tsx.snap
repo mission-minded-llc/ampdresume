@@ -3,7 +3,7 @@
 exports[`Footer component matches snapshot for regular page 1`] = `
 <div>
   <footer
-    class="MuiBox-root css-1xsyhud"
+    class="MuiBox-root css-1a17j7g"
   >
     <div
       class="MuiBox-root css-1a8n5hv"
@@ -47,7 +47,7 @@ exports[`Footer component matches snapshot for regular page 1`] = `
 exports[`Footer component matches snapshot for resume page 1`] = `
 <div>
   <footer
-    class="MuiBox-root css-1417pob"
+    class="MuiBox-root css-104kqs6"
   >
     <div
       class="MuiBox-root css-1a8n5hv"

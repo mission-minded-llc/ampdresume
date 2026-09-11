@@ -207,7 +207,7 @@ describe("ThemeDavids Component", () => {
         />,
       );
 
-      expect(screen.getByText("|")).toBeInTheDocument();
+      expect(screen.getByText("·")).toBeInTheDocument();
     });
 
     it("should not render separator when email is missing", () => {
@@ -225,7 +225,7 @@ describe("ThemeDavids Component", () => {
         />,
       );
 
-      expect(screen.queryByText("|")).not.toBeInTheDocument();
+      expect(screen.queryByText("·")).not.toBeInTheDocument();
     });
 
     it("should not render separator when location is missing", () => {
@@ -243,7 +243,7 @@ describe("ThemeDavids Component", () => {
         />,
       );
 
-      expect(screen.queryByText("|")).not.toBeInTheDocument();
+      expect(screen.queryByText("·")).not.toBeInTheDocument();
     });
 
     it("should render Summary component", () => {

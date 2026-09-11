@@ -56,12 +56,16 @@ export function SignIn() {
             maxWidth: 400,
             bgcolor: "background.paper",
             boxShadow: 3,
-            borderRadius: 2,
-            p: 3,
+            borderRadius: "24px",
+            p: { xs: 3, sm: 4 },
+            border: (theme) => `1px solid ${theme.palette.divider}`,
           }}
         >
-          <Typography variant="h5" component="h1" textAlign="center">
+          <Typography variant="h5" component="h1" textAlign="center" sx={{ fontWeight: 750 }}>
             Sign In
+          </Typography>
+          <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: -1 }}>
+            Magic link or social — it&apos;s free either way.
           </Typography>
           <TextField
             type="email"

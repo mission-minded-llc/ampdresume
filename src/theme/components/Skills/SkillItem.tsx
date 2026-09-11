@@ -32,25 +32,33 @@ export const SkillItem = ({ skill }: { skill: SkillForUser | SkillForProject }) 
         variant="outlined"
         color="primary"
         onClick={() => setIsOpen(true)}
+        data-interactive={Boolean(skill?.description)}
         sx={(theme) => {
           const color = theme.palette.mode === "dark" ? "#fff" : theme.palette.primary.main;
           const backgroundColor =
-            theme.palette.mode === "dark" ? "#333" : theme.palette.primary.light;
+            theme.palette.mode === "dark" ? "#2C2733" : theme.palette.background.paper;
+          const hasDescription = Boolean(skill?.description);
 
           return {
-            padding: "2px 10px !important",
+            padding: "4px 12px !important",
+            minHeight: 32,
             color,
             backgroundColor,
-            boxShadow: `2px 2px 3px 0px ${theme.palette.primary.dark}`,
+            borderRadius: 999,
+            boxShadow: "none",
+            border: `1px solid ${
+              hasDescription ? theme.palette.secondary.main : theme.palette.divider
+            }`,
             "&.Mui-disabled": {
               color,
               backgroundColor,
-              borderColor: "transparent !important",
+              borderColor: `${theme.palette.divider} !important`,
               boxShadow: "none !important",
+              opacity: 1,
             },
             textTransform: "none",
+            fontWeight: 600,
             gap: "8px",
-            borderColor: skill?.description ? "lawngreen" : theme.palette.primary.dark,
           };
         }}
       >

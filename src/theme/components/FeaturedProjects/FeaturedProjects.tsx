@@ -28,7 +28,11 @@ export const FeaturedProjects = ({ featuredProjects }: { featuredProjects: Featu
 
         return (
           <Box key={safeProject.id} sx={{ mb: 3 }}>
-            <Typography component="h3" variant="h5" sx={{ fontWeight: "bold", mb: 0.5 }}>
+            <Typography
+              component="h3"
+              variant="h5"
+              sx={{ fontWeight: 750, mb: 0.5, letterSpacing: "-0.02em" }}
+            >
               {safeProject.name}
             </Typography>
             <RichTextBlock content={safeProject?.description} />
@@ -54,10 +58,11 @@ export const FeaturedProjects = ({ featuredProjects }: { featuredProjects: Featu
                     key={skillForFeaturedProject.id}
                     sx={{
                       display: "inline-block",
-                      background: (theme) => theme.palette.primary.light,
+                      background: (theme) => theme.palette.background.paper,
                       color: (theme) => theme.palette.primary.main,
-                      borderRadius: 2,
-                      px: 1,
+                      border: (theme) => `1px solid ${theme.palette.divider}`,
+                      borderRadius: 999,
+                      px: 1.25,
                       py: 0.5,
                       fontSize: "0.9rem",
                     }}

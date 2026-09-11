@@ -67,10 +67,13 @@ export const SkillsSection = ({ skillsForUser }: SkillsSectionProps) => {
             ),
           }}
           sx={{
-            background: theme.palette.background.paper,
             "& .MuiOutlinedInput-root": {
+              borderRadius: 3,
+              backgroundColor: theme.palette.background.paper,
+              overflow: "hidden",
               "& fieldset": {
-                borderColor: theme.palette.mode === "dark" ? "#475569" : "#d1d5db",
+                borderRadius: 3,
+                borderColor: theme.palette.mode === "dark" ? "#475569" : "#bbdefb",
               },
               "&:hover fieldset": {
                 borderColor: theme.palette.primary.main,

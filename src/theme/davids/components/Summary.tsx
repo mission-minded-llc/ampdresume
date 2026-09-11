@@ -1,5 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { User } from "@/types";
+import { DavidsSectionTitle } from "./DavidsSectionTitle";
 
 interface SummaryProps {
   user?: User;
@@ -13,38 +14,14 @@ export const Summary = ({ user }: SummaryProps) => {
   }
 
   return (
-    <Box sx={{ mt: 4, mb: 4 }}>
-      {/* Decorative line above */}
+    <Box sx={{ mt: 4, mb: 4, px: { xs: 2, sm: 0 } }}>
+      <DavidsSectionTitle>Summary</DavidsSectionTitle>
 
-      {/* Summary Heading */}
-      <Box
-        sx={{
-          borderTop: `1px solid ${theme.palette.mode === "dark" ? "#475569" : "#e0e0e0"}`,
-          borderBottom: `1px solid ${theme.palette.mode === "dark" ? "#475569" : "#e0e0e0"}`,
-          py: 3,
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          mb: 3,
-        }}
-      >
-        <Typography
-          variant="h5"
-          component="h2"
-          sx={{
-            fontWeight: "bold",
-          }}
-        >
-          Summary
-        </Typography>
-      </Box>
-
-      {/* Summary text content */}
       <Typography
         variant="body1"
         sx={{
-          color: theme.palette.mode === "dark" ? "#94a3b8" : "#6b7280", // grey color
-          lineHeight: 1.6,
+          color: theme.palette.mode === "dark" ? "#94a3b8" : "#6b7280",
+          lineHeight: 1.7,
           textAlign: "justify",
           maxWidth: "800px",
           margin: "0 auto",

@@ -23,7 +23,11 @@ export const Certifications = ({ certifications }: { certifications: Certificati
       <ResumeTitle>Certifications</ResumeTitle>
       {certifications.map((cert) => (
         <Box key={cert.id} sx={{ mb: 2 }}>
-          <Typography component="h3" variant="h5">
+          <Typography
+            component="h3"
+            variant="h5"
+            sx={{ fontWeight: 750, letterSpacing: "-0.02em" }}
+          >
             {cert.name}
           </Typography>
           <Typography component="h4" variant="h6" sx={{ fontWeight: "bold", mt: 0.5 }}>

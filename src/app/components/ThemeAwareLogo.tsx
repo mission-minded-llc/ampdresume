@@ -3,7 +3,7 @@
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-export const ThemeAwareLogo = () => {
+export const ThemeAwareLogo = ({ maxWidth = "100vw" }: { maxWidth?: string | number }) => {
   const theme = useTheme();
 
   // Theme-aware colors
@@ -15,7 +15,7 @@ export const ThemeAwareLogo = () => {
   const borderColor = theme.palette.mode === "dark" ? "none" : "white";
 
   return (
-    <Box sx={{ width: "100%", maxWidth: "100vw" }}>
+    <Box sx={{ width: "100%", maxWidth }}>
       <svg
         viewBox="0 0 600 400"
         fill="none"

@@ -39,13 +39,17 @@ export const ThemeDefault = ({
   <MUIThemeProvider themeAppearance={themeAppearance}>
     <Box
       component="main"
-      sx={{
+      sx={(theme) => ({
         position: "relative",
         display: "block",
         maxWidth: "1024px",
         margin: "0 auto",
-        paddingBottom: "100px",
-      }}
+        padding: "0 16px 100px",
+        color: theme.palette.text.primary,
+        [theme.breakpoints.up("sm")]: {
+          padding: "0 24px 100px",
+        },
+      })}
     >
       <ResumeHeading user={user} socials={socials} />
 

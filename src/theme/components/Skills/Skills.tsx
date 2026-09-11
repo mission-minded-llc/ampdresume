@@ -49,22 +49,35 @@ export const Skills = ({
   return (
     <SkillsContextProvider skillType={skillType}>
       <ResumeTitle>Skills</ResumeTitle>
-      <Box>
-        Group by:{" "}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: 1,
+          mb: 1.5,
+        }}
+      >
+        <Box component="span" sx={{ color: "text.secondary", mr: 0.5 }}>
+          Group by:
+        </Box>
         <Button
           data-active={skillsLayout === "experience"}
           data-layout="experience"
           onClick={toggleSkillsLayout}
-          color={skillsLayout === "experience" ? "primary" : "secondary"}
+          variant={skillsLayout === "experience" ? "contained" : "outlined"}
+          color="secondary"
+          size="small"
         >
           Experience
-        </Button>{" "}
-        |{" "}
+        </Button>
         <Button
           data-active={skillsLayout === "cloud"}
           data-layout="cloud"
           onClick={toggleSkillsLayout}
-          color={skillsLayout === "cloud" ? "primary" : "secondary"}
+          variant={skillsLayout === "cloud" ? "contained" : "outlined"}
+          color="secondary"
+          size="small"
         >
           Cloud
         </Button>

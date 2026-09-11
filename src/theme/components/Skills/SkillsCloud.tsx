@@ -10,7 +10,7 @@ export const SkillsCloud = ({ skills }: { skills: SkillForUser[] }) => (
     sx={{
       display: "flex",
       flexWrap: "wrap",
-      gap: "5px",
+      gap: "8px",
       alignItems: "center",
     }}
   >

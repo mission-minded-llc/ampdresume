@@ -78,7 +78,7 @@ export const NavPrimary = () => {
         textDecoration: "none",
         color: theme.palette.text.primary,
         "&:hover": {
-          color: theme.palette.common.white,
+          color: theme.palette.text.primary,
         },
       })}
     >
@@ -90,8 +90,8 @@ export const NavPrimary = () => {
         sx={(theme) => ({
           color: "inherit",
           "&:hover": {
-            backgroundColor: "black",
-            color: theme.palette.common.white,
+            backgroundColor:
+              theme.palette.mode === "dark" ? "rgba(174, 0, 255, 0.18)" : "rgba(174, 0, 255, 0.08)",
             borderRight: `4px solid ${theme.palette.secondary.main}`,
             "& .MuiListItemIcon-root": {
               color: "inherit",
@@ -137,8 +137,8 @@ export const NavPrimary = () => {
         sx={(theme) => ({
           pl: 4,
           "&:hover": {
-            backgroundColor: "black",
-            color: "white",
+            backgroundColor:
+              theme.palette.mode === "dark" ? "rgba(174, 0, 255, 0.18)" : "rgba(174, 0, 255, 0.08)",
             borderRight: `4px solid ${theme.palette.secondary.main}`,
           },
         })}
@@ -171,8 +171,8 @@ export const NavPrimary = () => {
       sx={(theme) => ({
         cursor: "pointer",
         "&:hover": {
-          backgroundColor: "black",
-          color: "white",
+          backgroundColor:
+            theme.palette.mode === "dark" ? "rgba(174, 0, 255, 0.18)" : "rgba(174, 0, 255, 0.08)",
           borderRight: `4px solid ${theme.palette.secondary.main}`,
         },
       })}
@@ -199,11 +199,12 @@ export const NavPrimary = () => {
           mt: 1,
           ml: 1,
           backgroundColor: theme.palette.background.paper,
-          borderRadius: 0,
+          borderRadius: 2.5,
+          boxShadow: theme.shadows[1],
           [theme.breakpoints.down("sm")]: {
             mt: 1,
             mr: 1,
-            backgroundColor: theme.palette.background.default,
+            backgroundColor: theme.palette.background.paper,
           },
         })}
       >

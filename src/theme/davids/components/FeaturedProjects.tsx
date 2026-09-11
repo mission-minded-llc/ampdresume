@@ -17,8 +17,15 @@ export const FeaturedProjects = ({ projects }: FeaturedProjectsProps) => {
           : [];
         const safeProj = { ...proj, skillsForFeaturedProject };
         return (
-          <Box key={safeProj.id} sx={{ mb: 3 }}>
-            <Box component="h3" sx={{ fontWeight: "bold", mb: 0.5 }}>
+          <Box
+            key={safeProj.id}
+            sx={{
+              mb: 3,
+              pl: 1.5,
+              borderLeft: `3px solid ${theme.palette.mode === "dark" ? "#60a5fa" : "#0d47a1"}`,
+            }}
+          >
+            <Box component="h3" sx={{ fontWeight: 750, mb: 0.5, letterSpacing: "-0.02em" }}>
               {safeProj.name}
             </Box>
             <RichTextBlock content={safeProj?.description} />
@@ -50,7 +57,7 @@ export const FeaturedProjects = ({ projects }: FeaturedProjectsProps) => {
                       display: "inline-block",
                       background: theme.palette.primary.light,
                       color: theme.palette.primary.contrastText,
-                      borderRadius: 2,
+                      borderRadius: 999,
                       px: 1,
                       py: 0.5,
                       fontSize: "0.9rem",

@@ -11,7 +11,10 @@ export const WorkExperienceSection = ({ companies }: WorkExperienceSectionProps)
 
   return (
     <Box component="section">
-      <Box component="h2" sx={{ fontWeight: "bold", fontSize: "1.5rem", mt: 4, mb: 2 }}>
+      <Box
+        component="h2"
+        sx={{ fontWeight: 750, fontSize: "1.5rem", mt: 0, mb: 2, letterSpacing: "-0.02em" }}
+      >
         Work Experience
       </Box>
       {companies.map((company) => (
@@ -75,8 +78,9 @@ export const WorkExperienceSection = ({ companies }: WorkExperienceSectionProps)
                   sx={{
                     mb: 2,
                     textAlign: "left",
-                    borderBottom: `1px solid ${theme.palette.mode === "dark" ? "#475569" : "#e0e0e0"}`,
-                    pb: 1,
+                    pl: 1.5,
+                    borderLeft: `3px solid ${theme.palette.mode === "dark" ? "#60a5fa" : "#0d47a1"}`,
+                    pb: 0.5,
                   }}
                 >
                   <Box sx={{ fontWeight: "bold" }}>{project.name}</Box>
@@ -98,7 +102,7 @@ export const WorkExperienceSection = ({ companies }: WorkExperienceSectionProps)
                               display: "inline-block",
                               background: theme.palette.primary.light,
                               color: theme.palette.primary.contrastText,
-                              borderRadius: 2,
+                              borderRadius: 999,
                               px: 1,
                               py: 0.5,
                               fontSize: "0.9rem",

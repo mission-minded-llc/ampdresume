@@ -33,7 +33,7 @@ describe("ResumeHeading", () => {
       );
     });
     expect(container).toBeInTheDocument();
-    expect(screen.getByText("|")).toBeInTheDocument();
+    expect(screen.getByText("·")).toBeInTheDocument();
   });
 
   it("renders social media links", () => {
@@ -63,7 +63,7 @@ describe("ResumeHeading", () => {
   it("handles missing email", () => {
     const userWithoutEmail = { ...sampleUser, displayEmail: null };
     render(<ResumeHeading user={userWithoutEmail} socials={sampleSocials} />);
-    expect(screen.queryByText("|")).not.toBeInTheDocument();
+    expect(screen.queryByText("·")).not.toBeInTheDocument();
     const container = screen.getByText((content) =>
       content.includes(sampleUser.location as string),
     );
@@ -73,7 +73,7 @@ describe("ResumeHeading", () => {
   it("handles missing location", () => {
     const userWithoutLocation = { ...sampleUser, location: null };
     render(<ResumeHeading user={userWithoutLocation} socials={sampleSocials} />);
-    expect(screen.queryByText("|")).not.toBeInTheDocument();
+    expect(screen.queryByText("·")).not.toBeInTheDocument();
     const container = screen.getByText((content) =>
       content.includes(sampleUser.displayEmail as string),
     );

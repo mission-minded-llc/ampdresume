@@ -111,10 +111,10 @@ describe("SkillItem", () => {
       expect(button).toHaveAttribute("aria-disabled", "true");
     });
 
-    it("should have correct border color when description is present", () => {
+    it("marks skills with a description as interactive", () => {
       renderWithTheme(reactSkill);
       const button = screen.getByRole("button");
-      expect(button).toHaveStyle({ borderColor: "lawngreen" });
+      expect(button).toHaveAttribute("data-interactive", "true");
     });
   });
 });

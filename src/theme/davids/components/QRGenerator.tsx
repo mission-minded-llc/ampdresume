@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import QRCode from "qrcode";
 import { User } from "@/types";
+import { DavidsSectionTitle } from "./DavidsSectionTitle";
 
 interface QRGeneratorProps {
   url: string;
@@ -64,34 +65,14 @@ export const QRGenerator = ({ url, user }: QRGeneratorProps) => {
         textAlign: "center",
         mt: 6,
         mb: 4,
-        borderTop: `1px solid ${theme.palette.mode === "dark" ? "#475569" : "#e0e0e0"}`,
-        pt: 4,
+        pt: 2,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         width: "100%",
       }}
     >
-      <Box
-        sx={{
-          borderTop: `1px solid ${theme.palette.mode === "dark" ? "#475569" : "#e0e0e0"}`,
-          borderBottom: `1px solid ${theme.palette.mode === "dark" ? "#475569" : "#e0e0e0"}`,
-          py: 3,
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Typography
-          variant="h5"
-          component="h2"
-          sx={{
-            fontWeight: "bold",
-          }}
-        >
-          Share Your Resume
-        </Typography>
-      </Box>
+      <DavidsSectionTitle>Share Your Resume</DavidsSectionTitle>
 
       {qrCodeDataURL && (
         <Box
@@ -100,8 +81,15 @@ export const QRGenerator = ({ url, user }: QRGeneratorProps) => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            mt: 3,
-            width: "100%",
+            mt: 1,
+            px: 3,
+            py: 3,
+            borderRadius: 3,
+            backgroundColor:
+              theme.palette.mode === "dark" ? "rgba(30, 41, 59, 0.55)" : "rgba(227, 242, 253, 0.7)",
+            border: `1px solid ${
+              theme.palette.mode === "dark" ? "rgba(96, 165, 250, 0.18)" : "rgba(13, 71, 161, 0.1)"
+            }`,
           }}
         >
           {/**
@@ -114,11 +102,11 @@ export const QRGenerator = ({ url, user }: QRGeneratorProps) => {
             alt="QR Code to share resume"
             style={{
               display: "block",
-              borderRadius: "8px",
+              borderRadius: "12px",
               boxShadow:
                 theme.palette.mode === "dark"
-                  ? "0 4px 6px rgba(0, 0, 0, 0.3)"
-                  : "0 4px 6px rgba(0, 0, 0, 0.1)",
+                  ? "0 8px 20px rgba(0, 0, 0, 0.35)"
+                  : "0 8px 20px rgba(13, 71, 161, 0.12)",
               margin: "0 auto",
             }}
           />
@@ -128,7 +116,7 @@ export const QRGenerator = ({ url, user }: QRGeneratorProps) => {
             sx={{
               mt: 2,
               textTransform: "none",
-              borderRadius: "8px",
+              borderRadius: 999,
               px: 3,
               py: 1,
             }}
@@ -145,13 +133,6 @@ export const QRGenerator = ({ url, user }: QRGeneratorProps) => {
           >
             Scan with your phone to view this resume
           </Typography>
-          <Box
-            sx={{
-              borderBottom: `1px solid ${theme.palette.mode === "dark" ? "#475569" : "#e0e0e0"}`,
-              width: "100%",
-              mt: 3,
-            }}
-          />
         </Box>
       )}
     </Box>
