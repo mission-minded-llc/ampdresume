@@ -3,7 +3,7 @@
 exports[`SkillItem closes the dialog when the close button is clicked 1`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-bxhczq-MuiButtonBase-root-MuiButton-root"
+    class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-sizeMedium MuiButton-colorPrimary css-16j1m22-MuiButtonBase-root-MuiButton-root"
     tabindex="0"
     type="button"
   >
@@ -21,7 +21,7 @@ exports[`SkillItem closes the dialog when the close button is clicked 2`] = `
   aria-hidden="true"
 >
   <button
-    class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-bxhczq-MuiButtonBase-root-MuiButton-root"
+    class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-sizeMedium MuiButton-colorPrimary css-16j1m22-MuiButtonBase-root-MuiButton-root"
     tabindex="0"
     type="button"
   >
@@ -37,7 +37,7 @@ exports[`SkillItem closes the dialog when the close button is clicked 2`] = `
 exports[`SkillItem closes the dialog when the close button is clicked 3`] = `
 <div>
   <button
-    class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorPrimary css-bxhczq-MuiButtonBase-root-MuiButton-root"
+    class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-sizeMedium MuiButton-colorPrimary css-16j1m22-MuiButtonBase-root-MuiButton-root"
     tabindex="0"
     type="button"
   >

@@ -12,9 +12,18 @@ const jestConfig: JestConfigWithTsJest = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   transform: {
     "^.+\\.tsx?$": ["ts-jest", { tsconfig: "./tsconfig.jest.json" }],
+    "^.+\\.m?js$": [
+      "babel-jest",
+      { presets: [["@babel/preset-env", { targets: { node: "current" } }]] },
+    ],
   },
-  transformIgnorePatterns: ["node_modules"],
+  // html-react-parser / sanitize-html and their parser stacks ship ESM-only
+  // packages, including nested copies under node_modules/<pkg>/node_modules.
+  transformIgnorePatterns: [
+    "/node_modules/(?!.*(?:html-react-parser|html-dom-parser|domhandler|htmlparser2|domelementtype|domutils|entities|dom-serializer|inline-style-parser|style-to-js|style-to-object|react-property|sanitize-html))",
+  ],
   testPathIgnorePatterns: ["/node_modules/", "/ampdresume-theme/"],
+  modulePathIgnorePatterns: ["<rootDir>/.next/"],
 
   // Coverage settings.
   collectCoverageFrom: [

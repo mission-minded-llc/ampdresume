@@ -16,7 +16,7 @@ describe("Import Section", () => {
   });
 
   it("should access protected import section", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/import`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/import`);
     cy.contains("Import from PDF").should("be.visible");
   });
 
@@ -27,7 +27,7 @@ describe("Import Section", () => {
       }
     }).as("getParsedResumeAi");
 
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/import`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/import`);
 
     // Wait for the page to load, including PDF.js worker.
     cy.wait(1000);

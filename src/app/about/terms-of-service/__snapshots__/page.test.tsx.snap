@@ -34,7 +34,7 @@ exports[`TermsOfService Page matches snapshot 1`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-subtitle1 css-k5po9n-MuiTypography-root"
           >
             Eligibility
           </h6>
@@ -53,7 +53,7 @@ exports[`TermsOfService Page matches snapshot 1`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-subtitle1 css-k5po9n-MuiTypography-root"
           >
             Account Responsibility
           </h6>
@@ -67,7 +67,7 @@ exports[`TermsOfService Page matches snapshot 1`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-subtitle1 css-k5po9n-MuiTypography-root"
           >
             Prohibited Activities
           </h6>

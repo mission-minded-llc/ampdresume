@@ -13,12 +13,12 @@ describe("Certifications Section", () => {
   });
 
   it("should access protected certifications section", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/certifications`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/certifications`);
     cy.contains("Your Certifications").should("be.visible");
   });
 
   it("should add a certification", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/certifications`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/certifications`);
 
     const certificationName = "AWS Certified Solutions Architect";
     const issuer = "Amazon Web Services";
@@ -52,7 +52,7 @@ describe("Certifications Section", () => {
   });
 
   it("should add a certification without optional fields", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/certifications`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/certifications`);
 
     const certificationName = "Google Cloud Professional";
     const issuer = "Google Cloud Platform";
@@ -82,7 +82,7 @@ describe("Certifications Section", () => {
   });
 
   it("should edit a certification", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/certifications`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/certifications`);
 
     const certificationName = "AWS Certified Solutions Architect";
     const updatedIssuer = "Amazon Web Services Inc.";
@@ -115,7 +115,7 @@ describe("Certifications Section", () => {
   });
 
   it("should delete a certification", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/certifications`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/certifications`);
 
     const certificationName = "AWS Certified Solutions Architect";
 
@@ -127,7 +127,7 @@ describe("Certifications Section", () => {
   });
 
   it("should delete a certification without optional fields", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/certifications`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/certifications`);
 
     const certificationName = "Google Cloud Professional";
 

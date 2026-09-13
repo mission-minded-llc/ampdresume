@@ -13,12 +13,12 @@ describe("Featured Projects Section", () => {
   });
 
   it("should access protected featured projects section", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
     cy.contains("Your Featured Projects").should("be.visible");
   });
 
   it("should add a featured project", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
 
     const projectName = "E-Commerce Platform";
     const linkLabel = "GitHub";
@@ -46,7 +46,7 @@ describe("Featured Projects Section", () => {
   });
 
   it("should add a featured project without optional fields", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
 
     const projectName = "Portfolio Website";
 
@@ -58,7 +58,7 @@ describe("Featured Projects Section", () => {
   });
 
   it("should edit a featured project", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
 
     const projectName = "E-Commerce Platform";
     const updatedProjectName = "E-Commerce Platform v2";
@@ -83,7 +83,7 @@ describe("Featured Projects Section", () => {
   });
 
   it("should delete a featured project", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
 
     const projectName = "E-Commerce Platform v2";
 
@@ -95,7 +95,7 @@ describe("Featured Projects Section", () => {
   });
 
   it("should delete a featured project without optional fields", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
 
     const projectName = "Portfolio Website";
 

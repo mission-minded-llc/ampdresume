@@ -14,12 +14,12 @@ describe("Experience Section", () => {
   });
 
   it("should access protected experience section", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/experience`);
     cy.contains("Edit Professional Experience").should("be.visible");
   });
 
   it("should add a company", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/experience`);
 
     const companyName = "Acme Corp";
     const location = "Springfield, USA";
@@ -63,7 +63,7 @@ describe("Experience Section", () => {
   });
 
   it("should edit a company", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/experience`);
 
     const companyName = "Acme Corp";
     const location = "New Place, USA";
@@ -106,7 +106,7 @@ describe("Experience Section", () => {
   });
 
   it("should add a position", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/experience`);
 
     const companyName = "Acme Corp";
     const positionTitle = "Software Engineer";
@@ -150,7 +150,7 @@ describe("Experience Section", () => {
   });
 
   it("should be unable to delete the company because a position is present", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/experience`);
 
     const companyName = "Acme Corp";
 
@@ -159,7 +159,7 @@ describe("Experience Section", () => {
   });
 
   it("should add a project to the position", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/experience`);
 
     const companyName = "Acme Corp";
     const positionTitle = "Software Engineer";
@@ -174,7 +174,7 @@ describe("Experience Section", () => {
   });
 
   it("should be unable to delete the position because a project is present", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/experience`);
 
     const companyName = "Acme Corp";
     const positionTitle = "Software Engineer";
@@ -185,7 +185,7 @@ describe("Experience Section", () => {
   });
 
   it("should delete the project", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/experience`);
 
     const companyName = "Acme Corp";
     const positionTitle = "Software Engineer";
@@ -202,7 +202,7 @@ describe("Experience Section", () => {
   });
 
   it("should delete the position", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/experience`);
 
     const companyName = "Acme Corp";
     const positionTitle = "Software Engineer";
@@ -216,7 +216,7 @@ describe("Experience Section", () => {
   });
 
   it("should delete a company", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/experience`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/experience`);
 
     const companyName = "Acme Corp";
 

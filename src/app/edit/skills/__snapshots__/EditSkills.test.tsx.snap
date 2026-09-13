@@ -85,7 +85,7 @@ exports[`EditSkills renders skills when fetched successfully 1`] = `
      
     <button
       aria-label="Click on a skill to edit or remove it."
-      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-lk7kvc-MuiButtonBase-root-MuiIconButton-root"
+      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-shem2u-MuiButtonBase-root-MuiIconButton-root"
       data-mui-internal-clone-element="true"
       tabindex="0"
       type="button"

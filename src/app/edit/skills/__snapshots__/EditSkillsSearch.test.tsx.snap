@@ -118,7 +118,7 @@ exports[`EditSkillsSearch filters and displays skills based on search term 2`] =
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-gys9a0-MuiListItem-root"
         >
           <div
-            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+            class="MuiListItemIcon-root css-sqdpnb-MuiListItemIcon-root"
           >
             <span
               data-icon="icon-js"
@@ -144,7 +144,7 @@ exports[`EditSkillsSearch filters and displays skills based on search term 2`] =
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1pl8jsc-MuiListItem-root"
         >
           <div
-            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+            class="MuiListItemIcon-root css-sqdpnb-MuiListItemIcon-root"
           >
             <span
               data-icon="mdi:plus"
@@ -222,7 +222,7 @@ exports[`EditSkillsSearch filters and displays skills based on search term 3`] =
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-gys9a0-MuiListItem-root"
         >
           <div
-            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+            class="MuiListItemIcon-root css-sqdpnb-MuiListItemIcon-root"
           >
             <span
               data-icon="icon-js"
@@ -248,7 +248,7 @@ exports[`EditSkillsSearch filters and displays skills based on search term 3`] =
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1pl8jsc-MuiListItem-root"
         >
           <div
-            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+            class="MuiListItemIcon-root css-sqdpnb-MuiListItemIcon-root"
           >
             <span
               data-icon="mdi:plus"
@@ -372,7 +372,7 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 2`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-gys9a0-MuiListItem-root"
         >
           <div
-            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+            class="MuiListItemIcon-root css-sqdpnb-MuiListItemIcon-root"
           >
             <span
               data-icon="icon-js"
@@ -398,7 +398,7 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 2`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1pl8jsc-MuiListItem-root"
         >
           <div
-            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+            class="MuiListItemIcon-root css-sqdpnb-MuiListItemIcon-root"
           >
             <span
               data-icon="mdi:plus"
@@ -478,7 +478,7 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 3`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-gys9a0-MuiListItem-root"
         >
           <div
-            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+            class="MuiListItemIcon-root css-sqdpnb-MuiListItemIcon-root"
           >
             <span
               data-icon="icon-js"
@@ -504,7 +504,7 @@ exports[`EditSkillsSearch opens dialog when a skill is selected 3`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1pl8jsc-MuiListItem-root"
         >
           <div
-            class="MuiListItemIcon-root css-cokf1l-MuiListItemIcon-root"
+            class="MuiListItemIcon-root css-sqdpnb-MuiListItemIcon-root"
           >
             <span
               data-icon="mdi:plus"

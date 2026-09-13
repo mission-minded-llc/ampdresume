@@ -16,11 +16,11 @@ describe("Featured Projects Skills Section", () => {
 
   beforeEach(() => {
     cy.setNextAuthCookies();
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
 
     // Ensure we have skills available
     // First, check if skills exist, if not, add them
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/skills`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
 
     // Add skill1 if it doesn't exist
     cy.get("body").then(($body) => {
@@ -53,7 +53,7 @@ describe("Featured Projects Skills Section", () => {
     });
 
     // Navigate back to featured projects
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
 
     // Create a test featured project if it doesn't exist
     cy.get("body").then(($body) => {
@@ -503,7 +503,7 @@ describe("Featured Projects Skills Section", () => {
 
   it("should display skills on the resume view", () => {
     // First, ensure we have a featured project with skills
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
     cy.contains(testProjectName).click();
 
     // Add a skill if not already present
@@ -526,14 +526,14 @@ describe("Featured Projects Skills Section", () => {
     });
 
     // Get the user's slug to visit their resume
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/profile`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
     cy.get("input[name='slug']")
       .invoke("val")
       .then((slug) => {
         // Only test if slug exists (user has set up their profile)
         if (slug && slug.toString().trim()) {
           // Visit the resume view
-          cy.visit(`${Cypress.env("BASE_URL") || ""}/r/${slug}`);
+          cy.visit(`${Cypress.expose("BASE_URL") || ""}/r/${slug}`);
 
           // Verify the featured project is visible
           cy.contains("Featured Projects", { timeout: 5000 }).should("be.visible");
@@ -704,7 +704,7 @@ describe("Featured Projects Skills Section", () => {
 
   it("should clean up test data", () => {
     // This test ensures we clean up the test featured project and its skills
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
 
     // Check if the project exists
     cy.get("body").then(($body) => {

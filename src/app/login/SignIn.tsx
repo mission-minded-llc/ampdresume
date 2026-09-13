@@ -61,10 +61,10 @@ export function SignIn() {
             border: (theme) => `1px solid ${theme.palette.divider}`,
           }}
         >
-          <Typography variant="h5" component="h1" textAlign="center" sx={{ fontWeight: 750 }}>
+          <Typography variant="h5" component="h1" sx={{ fontWeight: 750, textAlign: "center" }}>
             Sign In
           </Typography>
-          <Typography variant="body2" textAlign="center" color="text.secondary" sx={{ mt: -1 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: -1, textAlign: "center" }}>
             Magic link or social — it&apos;s free either way.
           </Typography>
           <TextField
@@ -87,13 +87,13 @@ export function SignIn() {
             Sign in with Email
           </Button>
           {error ? (
-            <Typography color="error" textAlign="center">
+            <Typography color="error" sx={{ textAlign: "center" }}>
               An error occurred. Please try again later.
             </Typography>
           ) : null}
 
           <Divider />
-          <Typography variant="body2" textAlign="center">
+          <Typography variant="body2" sx={{ textAlign: "center" }}>
             Or sign in with a social account:
           </Typography>
           <Button

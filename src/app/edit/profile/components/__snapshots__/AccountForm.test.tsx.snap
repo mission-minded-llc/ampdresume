@@ -114,7 +114,7 @@ exports[`AccountForm renders correctly 1`] = `
             Used in your URL. Example:
              
             <em
-              class="MuiTypography-root MuiTypography-body1 css-aipyd8-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body1 css-15wkqun-MuiTypography-root"
             >
               ampdresume.com/r/
               <strong>
@@ -191,12 +191,12 @@ exports[`AccountForm renders correctly 1`] = `
             <svg
               aria-hidden="true"
               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
-              data-testid="MailOutlineIcon"
+              data-testid="MailOutlinedIcon"
               focusable="false"
               viewBox="0 0 24 24"
             >
               <path
-                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 14H4V8l8 5 8-5zm-8-7L4 6h16z"
+                d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 4.99L4 6zm0 12H4V8l8 5 8-5z"
               />
             </svg>
              Display Email
@@ -552,7 +552,7 @@ exports[`AccountForm renders correctly 1`] = `
         class="MuiBox-root css-7vt6dx"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-yztmtz-MuiButtonBase-root-MuiButton-root"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-sizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-1uja8ga-MuiButtonBase-root-MuiButton-root"
           data-testid="AccountFormSaveButton"
           tabindex="0"
           type="button"
@@ -572,7 +572,7 @@ exports[`AccountForm renders correctly 1`] = `
           class="MuiBox-root css-0"
         >
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary MuiButton-root MuiButton-outlined MuiButton-outlinedSecondary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorSecondary css-1w2tkiw-MuiButtonBase-root-MuiButton-root"
+            class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-sizeMedium MuiButton-colorSecondary css-sr3e1z-MuiButtonBase-root-MuiButton-root"
             tabindex="0"
             type="button"
           >
@@ -580,7 +580,7 @@ exports[`AccountForm renders correctly 1`] = `
           </button>
           <button
             aria-label="Permanently delete your account and all data"
-            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-lk7kvc-MuiButtonBase-root-MuiIconButton-root"
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-shem2u-MuiButtonBase-root-MuiIconButton-root"
             data-mui-internal-clone-element="true"
             tabindex="0"
             type="button"

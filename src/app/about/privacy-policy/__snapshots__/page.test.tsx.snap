@@ -34,7 +34,7 @@ exports[`PrivacyPolicy Page matches snapshot 1`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-subtitle1 css-k5po9n-MuiTypography-root"
           >
             Personal Information
           </h6>
@@ -52,7 +52,7 @@ exports[`PrivacyPolicy Page matches snapshot 1`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-subtitle1 css-k5po9n-MuiTypography-root"
           >
             Usage Data
           </h6>
@@ -79,7 +79,7 @@ exports[`PrivacyPolicy Page matches snapshot 1`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-subtitle1 css-k5po9n-MuiTypography-root"
           >
             Service Provision
           </h6>
@@ -93,7 +93,7 @@ exports[`PrivacyPolicy Page matches snapshot 1`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-subtitle1 css-k5po9n-MuiTypography-root"
           >
             Communication
           </h6>
@@ -107,7 +107,7 @@ exports[`PrivacyPolicy Page matches snapshot 1`] = `
           class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-raecwt-MuiListItem-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-subtitle1 css-1eqisik-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-subtitle1 css-k5po9n-MuiTypography-root"
           >
             Legal Compliance
           </h6>

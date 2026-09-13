@@ -8,7 +8,7 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import LanguageIcon from "@mui/icons-material/Language";
 import LinkIcon from "@mui/icons-material/Link";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import TocIcon from "@mui/icons-material/Toc";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
@@ -278,7 +278,7 @@ const AccountForm = ({
           </InputSection>
           <InputSection>
             <FieldTitle>
-              <MailOutlineIcon /> Display Email
+              <MailOutlinedIcon /> Display Email
             </FieldTitle>
             <FieldDescription>
               Your display email is <strong>publicly visible</strong> on your resume! This is not
