@@ -184,14 +184,17 @@ export const ThemeDavids = ({
             borderRadius: 999,
             boxShadow: "none",
           },
-          outlinedPrimary: {
-            color: themeAppearance === "dark" ? "#ffffff" : "#000000",
-            backgroundColor: themeColors.buttonBg,
-            borderColor: themeColors.buttonBorder,
-            "&:hover": {
-              backgroundColor: themeColors.buttonHover,
-            },
-          },
+          outlined: ({ ownerState }) =>
+            ownerState.color === "primary"
+              ? {
+                  color: themeAppearance === "dark" ? "#ffffff" : "#000000",
+                  backgroundColor: themeColors.buttonBg,
+                  borderColor: themeColors.buttonBorder,
+                  "&:hover": {
+                    backgroundColor: themeColors.buttonHover,
+                  },
+                }
+              : {},
         },
       },
       MuiOutlinedInput: {

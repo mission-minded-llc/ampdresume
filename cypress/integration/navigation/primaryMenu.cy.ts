@@ -6,7 +6,7 @@
  */
 describe("Primary Nav Menu", () => {
   it("should navigate to login page from nav", () => {
-    cy.visit(Cypress.env("BASE_URL") || "/");
+    cy.visit(Cypress.expose("BASE_URL") || "/");
 
     cy.get("[data-testid=NavPrimaryMenuLogin]").should("not.exist");
     cy.get("[data-testid=NavPrimaryMenuIcon]").click();
@@ -16,18 +16,18 @@ describe("Primary Nav Menu", () => {
   });
 
   it("should navigate to homepage from nav", () => {
-    cy.visit(Cypress.env("BASE_URL") + "/login" || "/login");
+    cy.visit(Cypress.expose("BASE_URL") + "/login" || "/login");
 
     cy.get("[data-testid=NavPrimaryMenuHome]").should("not.exist");
     cy.get("[data-testid=NavPrimaryMenuIcon]").click();
     cy.get("[data-testid=NavPrimaryMenuHome]").should("be.visible");
     cy.get("[data-testid=NavPrimaryMenuHome]").click();
 
-    cy.url().should("eq", Cypress.env("BASE_URL") + "/");
+    cy.url().should("eq", Cypress.expose("BASE_URL") + "/");
   });
 
   it("should NOT show protected links when NOT logged in", () => {
-    cy.visit(Cypress.env("BASE_URL") || "/");
+    cy.visit(Cypress.expose("BASE_URL") || "/");
 
     cy.get("[data-testid=NavPrimaryMenuIcon]").click();
     cy.get("[data-testid=NavPrimaryMenuViewResume]").should("not.exist");

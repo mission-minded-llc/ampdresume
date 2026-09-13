@@ -13,7 +13,7 @@ describe("Skills Section", () => {
   });
 
   it("should add a skill with year started", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/skills`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
 
     const skill = "JavaScript";
     const yearStarted = "2010";
@@ -34,7 +34,7 @@ describe("Skills Section", () => {
   });
 
   it("should add a skill with no year started", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/skills`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
 
     const skill = "TypeScript";
     const totalYears = "5";
@@ -52,7 +52,7 @@ describe("Skills Section", () => {
   });
 
   it("should edit a skill", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/skills`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
 
     const skill = "JavaScript";
     cy.get("button").contains(skill).click();
@@ -75,7 +75,7 @@ describe("Skills Section", () => {
   });
 
   it("should delete a skill", () => {
-    cy.visit(`${Cypress.env("BASE_URL") || ""}/edit/skills`);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
 
     const skill = "JavaScript";
     cy.get("button").contains(skill).click();

@@ -1,7 +1,7 @@
 import { Skill } from "@/types";
 import { useSession } from "next-auth/react";
 import React, { useCallback } from "react";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { Box, IconButton, Typography } from "@mui/material";
 import { SkillItem } from "../skills/SkillItem";
 
@@ -87,7 +87,7 @@ const ExtractedSkillsComponent = ({
                   }}
                   data-testid={`trash-icon-${skill.id}`}
                 >
-                  <DeleteOutlineIcon fontSize="small" />
+                  <DeleteOutlinedIcon fontSize="small" />
                 </IconButton>
               </Box>
             ))}

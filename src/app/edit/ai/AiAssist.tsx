@@ -418,7 +418,7 @@ export const AiAssist = () => {
             />
           </span>
         </CustomDialogTitle>
-        <Box p={2}>
+        <Box sx={{ p: 2 }}>
           <Typography sx={{ mb: 2 }}>Paste in the job description below:</Typography>
           <TextareaAutosize
             onChange={(e) => setJobDescription(e.target.value)}

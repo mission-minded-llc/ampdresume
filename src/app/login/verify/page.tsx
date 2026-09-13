@@ -19,11 +19,11 @@ export default function Verify() {
         p: 3,
       }}
     >
-      <Typography variant="h5" component="h1" textAlign="center">
+      <Typography variant="h5" component="h1" sx={{ textAlign: "center" }}>
         Check Your Email
       </Typography>
       <br />
-      <Typography component="p" textAlign="center">
+      <Typography component="p" sx={{ textAlign: "center" }}>
         We&apos;ve sent you a sign in link to your email address. Click the link in your email to
         sign in.
       </Typography>

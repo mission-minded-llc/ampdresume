@@ -57,14 +57,16 @@ export const SkillsSection = ({ skillsForUser }: SkillsSectionProps) => {
           placeholder={filterType === "skill" ? "Enter Skill" : "Enter Years of Experience"}
           value={skillFilter}
           onChange={(e) => setSkillFilter(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={handleDropdownClick} edge="end">
-                  <ArrowDropDownIcon />
-                </IconButton>
-              </InputAdornment>
-            ),
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={handleDropdownClick} edge="end">
+                    <ArrowDropDownIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            },
           }}
           sx={{
             "& .MuiOutlinedInput-root": {

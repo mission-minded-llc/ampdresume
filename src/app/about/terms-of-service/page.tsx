@@ -9,7 +9,7 @@ export function generateMetadata() {
 }
 
 const Subtitle = ({ children }: { children: React.ReactNode }) => (
-  <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 2 }}>
+  <Typography variant="subtitle1" sx={{ mb: 2, fontWeight: "bold" }}>
     {children}
   </Typography>
 );
@@ -27,7 +27,7 @@ export default function TermsOfService() {
         read them carefully.
       </Typography>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Use of Services
         </Typography>
@@ -57,7 +57,7 @@ export default function TermsOfService() {
         </List>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           User Content
         </Typography>
@@ -68,7 +68,7 @@ export default function TermsOfService() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Data Usage and Privacy
         </Typography>
@@ -80,7 +80,7 @@ export default function TermsOfService() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Limitation of Liability
         </Typography>
@@ -91,7 +91,7 @@ export default function TermsOfService() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Indemnification
         </Typography>
@@ -102,7 +102,7 @@ export default function TermsOfService() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Termination
         </Typography>
@@ -113,7 +113,7 @@ export default function TermsOfService() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Changes to Terms
         </Typography>
@@ -123,7 +123,7 @@ export default function TermsOfService() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Governing Law
         </Typography>
@@ -133,7 +133,7 @@ export default function TermsOfService() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Contact Us
         </Typography>

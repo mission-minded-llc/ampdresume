@@ -9,7 +9,7 @@ export function generateMetadata() {
 }
 
 const Subtitle = ({ children }: { children: React.ReactNode }) => (
-  <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 2 }}>
+  <Typography variant="subtitle1" sx={{ mb: 2, fontWeight: "bold" }}>
     {children}
   </Typography>
 );
@@ -27,7 +27,7 @@ export default function PrivacyPolicy() {
         your personal information, you agree to the practices described in this Privacy Policy.
       </Typography>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Information We Collect
         </Typography>
@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
         </List>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           How We Use Your Information
         </Typography>
@@ -79,7 +79,7 @@ export default function PrivacyPolicy() {
         </List>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Data Security
         </Typography>
@@ -90,7 +90,7 @@ export default function PrivacyPolicy() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Data Retention
         </Typography>
@@ -107,7 +107,7 @@ export default function PrivacyPolicy() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Third-Party Disclosure
         </Typography>
@@ -117,7 +117,7 @@ export default function PrivacyPolicy() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Future Use
         </Typography>
@@ -133,7 +133,7 @@ export default function PrivacyPolicy() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Your Consent
         </Typography>
@@ -143,7 +143,7 @@ export default function PrivacyPolicy() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Changes to this Privacy Policy
         </Typography>
@@ -153,7 +153,7 @@ export default function PrivacyPolicy() {
         </Typography>
       </Box>
 
-      <Box my={3}>
+      <Box sx={{ my: 3 }}>
         <Typography variant="h5" gutterBottom>
           Contact Us
         </Typography>
