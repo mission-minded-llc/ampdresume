@@ -272,10 +272,10 @@ When requesting features:
 
 ## Contributing a Theme
 
-The standalone theme template repository is archived. New resume themes are added in this repo
-under `src/theme/`. Follow [src/theme/README.md](src/theme/README.md) for folder layout,
-registration (`ThemeName` and `themeDefinitions`), demo wiring, and tests, then open a pull request
-here using the process above.
+The standalone theme template repository is archived. New resume themes are added in this repo under
+`src/theme/`. Follow [src/theme/README.md](src/theme/README.md) for folder layout, registration
+(`ThemeName` and `themeDefinitions`), demo wiring, and tests, then open a pull request here using
+the process above.
 
 ## Development Workflow
 

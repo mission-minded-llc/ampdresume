@@ -27,9 +27,8 @@ and the `/demo/<slug>` URL.
 
 ## Theme contract
 
-A web theme is a React component that receives resume data and the site appearance. The parent
-Amp'd Resume app owns the light/dark toggle — do not add a second one or ignore
-`themeAppearance`.
+A web theme is a React component that receives resume data and the site appearance. The parent Amp'd
+Resume app owns the light/dark toggle — do not add a second one or ignore `themeAppearance`.
 
 Required props (see `ThemeDefinition` in `src/types/index.ts`):
 
@@ -42,8 +41,8 @@ Required props (see `ThemeDefinition` in `src/types/index.ts`):
 - `certifications`
 - `featuredProjects`
 
-A PDF theme is optional. Set `pdfComponent` to `null` if you are not shipping one yet (David's
-Theme does this). Users then fall back to the Classic PDF.
+A PDF theme is optional. Set `pdfComponent` to `null` if you are not shipping one yet (David's Theme
+does this). Users then fall back to the Classic PDF.
 
 Reuse shared sections from [`components/`](./components/) when they fit. Put unique layout or
 styling in your theme folder.
@@ -68,13 +67,13 @@ Wire the slug in every place the app looks up themes:
    },
    ```
 
-   Keep `published: false` until maintainers are ready to offer it in production. Unpublished
-   themes still appear on `/demo/<slug>`. On production they stay hidden in the resume theme
-   picker unless a `theme-preview` cookie is set.
+   Keep `published: false` until maintainers are ready to offer it in production. Unpublished themes
+   still appear on `/demo/<slug>`. On production they stay hidden in the resume theme picker unless
+   a `theme-preview` cookie is set.
 
-3. **`src/app/demo/[themeName]/ResumeView.tsx`** — add a `switch` case that renders your
-   component with sample data. Live resumes at `/r/[slug]` read `webComponent` from
-   `themeDefinitions`; the demo page does not, so this case is required.
+3. **`src/app/demo/[themeName]/ResumeView.tsx`** — add a `switch` case that renders your component
+   with sample data. Live resumes at `/r/[slug]` read `webComponent` from `themeDefinitions`; the
+   demo page does not, so this case is required.
 
 4. **`src/app/demo/[themeName]/PDFView.tsx`** — only if you ship a PDF component.
 
@@ -83,9 +82,8 @@ Demo pages pick up the new slug automatically in the nav under **Demo Themes**. 
 
 ## Sample data
 
-Copy `src/theme/sampleData.json` (or another theme's sample file) into your theme folder and
-export it from `sampleData.ts` as a `Response`. The JSON shape matches the `getResume` GraphQL
-response.
+Copy `src/theme/sampleData.json` (or another theme's sample file) into your theme folder and export
+it from `sampleData.ts` as a `Response`. The JSON shape matches the `getResume` GraphQL response.
 
 ## Tests
 
