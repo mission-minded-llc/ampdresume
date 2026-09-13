@@ -20,6 +20,10 @@ describe("HomePageView", () => {
     expect(getAllByRole("link", { name: "Start building free" }).length).toBeGreaterThan(0);
     expect(getByRole("heading", { name: "What is Amp'd Resume?" })).toBeInTheDocument();
     expect(getByRole("heading", { name: "Who is it for?" })).toBeInTheDocument();
+    expect(getByRole("link", { name: "theme contribution guide" })).toHaveAttribute(
+      "href",
+      "https://github.com/mission-minded-llc/ampdresume/blob/main/src/theme/README.md",
+    );
     expect(container.querySelector("svg[viewBox='0 0 600 400']")).toBeInTheDocument();
   });
 

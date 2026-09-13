@@ -13,6 +13,7 @@ information for contributors.
 - [Pull Request Process](#pull-request-process)
 - [Reporting Issues](#reporting-issues)
 - [Feature Requests](#feature-requests)
+- [Contributing a Theme](#contributing-a-theme)
 - [License](#license)
 
 ## Code of Conduct
@@ -268,6 +269,13 @@ When requesting features:
 - **Propose a solution**: How should it work?
 - **Consider alternatives**: Are there existing solutions?
 - **Check existing issues**: Has this been requested before?
+
+## Contributing a Theme
+
+The standalone theme template repository is archived. New resume themes are added in this repo under
+`src/theme/`. Follow [src/theme/README.md](src/theme/README.md) for folder layout, registration
+(`ThemeName` and `themeDefinitions`), demo wiring, and tests, then open a pull request here using
+the process above.
 
 ## Development Workflow
 
