@@ -14,12 +14,24 @@ function renderHome(userName: string | null) {
 
 describe("HomePageView", () => {
   it("renders a visible brand heading and guest CTAs", () => {
-    const { getByRole, getAllByRole, container } = renderHome(null);
+    const { getByRole, getAllByRole, getByText, container } = renderHome(null);
 
     expect(getByRole("heading", { level: 1, name: "Amp'd Resume" })).toBeVisible();
     expect(getAllByRole("link", { name: "Start building free" }).length).toBeGreaterThan(0);
     expect(getByRole("heading", { name: "What is Amp'd Resume?" })).toBeInTheDocument();
     expect(getByRole("heading", { name: "Who is it for?" })).toBeInTheDocument();
+    expect(getByRole("heading", { name: "Example resumes" })).toBeInTheDocument();
+    expect(getByText("Click a name to see how a finished resume looks.")).toBeInTheDocument();
+    expect(getAllByRole("link", { name: "See example resumes" })[0]).toHaveAttribute(
+      "href",
+      "#example-resumes",
+    );
+    expect(getByRole("button", { name: /Detectives/ })).toBeInTheDocument();
+    expect(getByRole("link", { name: "Sherlock Holmes" })).toHaveAttribute(
+      "href",
+      "/r/sherlock-holmes",
+    );
+    expect(container.querySelector('a[href="/r/michael-dinerstein"]')).not.toBeInTheDocument();
     expect(getByRole("link", { name: "theme contribution guide" })).toHaveAttribute(
       "href",
       "https://github.com/mission-minded-llc/ampdresume/blob/main/src/theme/README.md",

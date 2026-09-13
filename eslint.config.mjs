@@ -75,7 +75,7 @@ export default [
   },
   // Allow console in prisma seed helpers
   {
-    files: ["prisma/seed/helpers/ids.ts"],
+    files: ["prisma/seed/helpers/ids.ts", "prisma/seed/literary/**/*.ts"],
     rules: {
       "no-console": "off",
     },
