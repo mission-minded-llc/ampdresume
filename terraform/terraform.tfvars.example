@@ -14,7 +14,10 @@ neon_org_id = "org-example-12345678"
 
 # Public by design: this value is inlined into the browser bundle.
 sentry_dsn = ""
-gtm_id     = ""
+
+# Google Tag Manager container ID. CI sets this from the GTM_ID repository
+# variable (TF_VAR_gtm_id). Leave empty to disable analytics.
+gtm_id = ""
 
 # Turn on once the domain is verified in Google Search Console. On Cloudflare
 # Free, grey-cloud the www/apex records Cloud Run reports after apply.

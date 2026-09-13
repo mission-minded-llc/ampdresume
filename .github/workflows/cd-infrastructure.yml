@@ -33,6 +33,7 @@ jobs:
       TF_VAR_domain: ${{ vars.DOMAIN }}
       TF_VAR_neon_org_id: ${{ vars.NEON_ORG_ID }}
       TF_VAR_github_repository: ${{ github.repository }}
+      TF_VAR_gtm_id: ${{ vars.GTM_ID }}
 
     steps:
       - uses: actions/checkout@v5

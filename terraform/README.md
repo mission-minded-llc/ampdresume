@@ -187,6 +187,7 @@ same variables as `TF_VAR_*` (`github.repository` supplies `github_repository`).
 | `GCS_CI_ARTIFACTS_BUCKET`        | `terraform output ci_artifacts_bucket`        |
 | `DOMAIN`                         | apex hostname, e.g. `ampdresume.com`          |
 | `NEON_ORG_ID`                    | Neon organization ID                          |
+| `GTM_ID`                         | Google Tag Manager container ID (optional)    |
 
 If you forked this repo, point those variables at your own project.
 
@@ -201,6 +202,9 @@ Optional repository **secrets**:
 
 `NEON_API_KEY` is primarily `ampdresume-neon-api-key` in Secret Manager. The GitHub secret is only
 needed before that entry has a real value.
+
+`GTM_ID` is optional. The app image build inlines it into the statically generated root layout, and
+Terraform also sets it on Cloud Run as `TF_VAR_gtm_id`. Leave it empty to disable analytics.
 
 Workload Identity Federation is scoped to `github_repository`. If that Terraform variable does not
 match the repo these workflows run in, authentication will fail.
