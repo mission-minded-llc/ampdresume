@@ -21,16 +21,19 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # NEXT_PUBLIC_* values are inlined into the browser bundle at build time, so they
-# have to be present here rather than only in the Cloud Run environment.
+# have to be present here rather than only in the Cloud Run environment. GTM_ID
+# is read while the root layout is statically generated, so it must be too.
 ARG NEXT_PUBLIC_ENVIRONMENT_NAME=production
 ARG NEXT_PUBLIC_BASE_URL
 ARG NEXT_PUBLIC_GRAPHQL_ENDPOINT
 ARG NEXT_PUBLIC_SENTRY_DSN
+ARG GTM_ID
 
 ENV NEXT_PUBLIC_ENVIRONMENT_NAME=$NEXT_PUBLIC_ENVIRONMENT_NAME \
     NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL \
     NEXT_PUBLIC_GRAPHQL_ENDPOINT=$NEXT_PUBLIC_GRAPHQL_ENDPOINT \
     NEXT_PUBLIC_SENTRY_DSN=$NEXT_PUBLIC_SENTRY_DSN \
+    GTM_ID=$GTM_ID \
     NEXT_TELEMETRY_DISABLED=1
 
 # `prisma generate` does not open a database connection. Leave DATABASE_URL unset

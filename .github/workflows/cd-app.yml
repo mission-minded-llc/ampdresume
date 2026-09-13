@@ -91,6 +91,7 @@ jobs:
             NEXT_PUBLIC_BASE_URL=${{ env.NEXT_PUBLIC_BASE_URL }}
             NEXT_PUBLIC_GRAPHQL_ENDPOINT=${{ env.NEXT_PUBLIC_BASE_URL }}/api/graphql
             NEXT_PUBLIC_SENTRY_DSN=${{ vars.NEXT_PUBLIC_SENTRY_DSN }}
+            GTM_ID=${{ vars.GTM_ID }}
           secrets: |
             sentry_auth_token=${{ secrets.SENTRY_AUTH_TOKEN }}
           cache-from: type=gha
