@@ -21,17 +21,20 @@ export const adventure = [
       },
       {
         name: "Engineering",
-        description: "Drew every plate himself and had the parts built in scattered yards so no one nation owned the secret.",
+        description:
+          "Drew every plate himself and had the parts built in scattered yards so no one nation owned the secret.",
         yearStarted: 1860,
       },
       {
         name: "Navigation",
-        description: "Under-ice runs to the South Pole, the Arabian Tunnel, and the cemetery in the Atlantic.",
+        description:
+          "Under-ice runs to the South Pole, the Arabian Tunnel, and the cemetery in the Atlantic.",
         yearStarted: 1866,
       },
       {
         name: "Command at Sea",
-        description: "A crew that spoke a private tongue and followed a captain who would not name his country.",
+        description:
+          "A crew that spoke a private tongue and followed a captain who would not name his country.",
         yearStarted: 1866,
       },
       {
@@ -41,7 +44,8 @@ export const adventure = [
       },
       {
         name: "Scientific Research",
-        description: "A library and a museum under pressure; Aronnax was invited as a colleague, then held as a guest.",
+        description:
+          "A library and a museum under pressure; Aronnax was invited as a colleague, then held as a guest.",
         yearStarted: 1866,
       },
     ],
@@ -99,12 +103,14 @@ export const adventure = [
     skills: [
       {
         name: "Logistics",
-        description: "Eighty days by liner, rail, elephant, and sledge, booked as a sequence of connections rather than an adventure.",
+        description:
+          "Eighty days by liner, rail, elephant, and sledge, booked as a sequence of connections rather than an adventure.",
         yearStarted: 1872,
       },
       {
         name: "Accounting",
-        description: "Carried a carpet-bag of notes and spent them as fuel. The Reform Club bet was twenty thousand pounds.",
+        description:
+          "Carried a carpet-bag of notes and spent them as fuel. The Reform Club bet was twenty thousand pounds.",
         yearStarted: 1872,
       },
       {
@@ -114,7 +120,8 @@ export const adventure = [
       },
       {
         name: "Diplomacy",
-        description: "Bought an elephant, raised a siege of sorts in India, and married Aouda without raising his voice.",
+        description:
+          "Bought an elephant, raised a siege of sorts in India, and married Aouda without raising his voice.",
         yearStarted: 1872,
       },
       {
@@ -126,7 +133,8 @@ export const adventure = [
     companies: [
       {
         name: "Reform Club wager",
-        description: "A whist conversation on 2 October 1872 became a circumnavigation. Fix followed; Passepartout carried the bags.",
+        description:
+          "A whist conversation on 2 October 1872 became a circumnavigation. Fix followed; Passepartout carried the bags.",
         location: "London to London via the East",
         startDate: "1872-10-02",
         endDate: "1872-12-21",
@@ -184,7 +192,8 @@ export const adventure = [
     skills: [
       {
         name: "Prison Escape",
-        description: "Left the château in another man's shroud and swam to the island that financed the rest.",
+        description:
+          "Left the château in another man's shroud and swam to the island that financed the rest.",
         yearStarted: 1829,
       },
       {
@@ -209,14 +218,16 @@ export const adventure = [
       },
       {
         name: "Obsession",
-        description: "Danglars, Fernand, and Villefort were not random enemies; they were the three signatures on a letter.",
+        description:
+          "Danglars, Fernand, and Villefort were not random enemies; they were the three signatures on a letter.",
         yearStarted: 1815,
       },
     ],
     companies: [
       {
         name: "Château d'If",
-        description: "Political prison in the Marseille roadstead. Fourteen years in a cell beside a priest who had a map.",
+        description:
+          "Political prison in the Marseille roadstead. Fourteen years in a cell beside a priest who had a map.",
         location: "Île d'If, France",
         startDate: "1815-03-01",
         endDate: "1829-02-27",
@@ -238,7 +249,8 @@ export const adventure = [
       },
       {
         name: "House of Monte Cristo",
-        description: "A title bought with buried coin, then spent on the slow undoing of three careers in Paris.",
+        description:
+          "A title bought with buried coin, then spent on the slow undoing of three careers in Paris.",
         location: "Paris, France",
         startDate: "1838-05-01",
         positions: [
@@ -282,39 +294,46 @@ export const adventure = [
     skills: [
       {
         name: "Physical Strength",
-        description: "Lifted a cart off Fauchelevent; later carried Marius through the Paris sewers.",
+        description:
+          "Lifted a cart off Fauchelevent; later carried Marius through the Paris sewers.",
         yearStarted: 1795,
       },
       {
         name: "Prison Escape",
-        description: "Broke parole after Digne, then lived under other names until the courtroom at Arras.",
+        description:
+          "Broke parole after Digne, then lived under other names until the courtroom at Arras.",
         yearStarted: 1823,
       },
       {
         name: "Charity",
-        description: "As Madeleine, employed a town and refused to let Fantine fall without a witness.",
+        description:
+          "As Madeleine, employed a town and refused to let Fantine fall without a witness.",
         yearStarted: 1815,
       },
       {
         name: "Prison Reform",
-        description: "Ran a factory on humane lines and learned that a mayor's kindness does not cancel a yellow passport.",
+        description:
+          "Ran a factory on humane lines and learned that a mayor's kindness does not cancel a yellow passport.",
         yearStarted: 1815,
       },
       {
         name: "Dual Identity",
-        description: "Madeleine, Ultime Fauchelevent, Ultimus Fauchelevent — each alias a shelter for Cosette.",
+        description:
+          "Madeleine, Ultime Fauchelevent, Ultimus Fauchelevent — each alias a shelter for Cosette.",
         yearStarted: 1815,
       },
       {
         name: "Moral Philosophy",
-        description: "The bishop's candlesticks remain the argument: a life can be purchased back, at interest.",
+        description:
+          "The bishop's candlesticks remain the argument: a life can be purchased back, at interest.",
         yearStarted: 1815,
       },
     ],
     companies: [
       {
         name: "Montreuil-sur-Mer",
-        description: "Jet-work factory town. Valjean arrived with a new name and left when another man was tried in his place.",
+        description:
+          "Jet-work factory town. Valjean arrived with a new name and left when another man was tried in his place.",
         location: "Montreuil-sur-Mer, France",
         startDate: "1815-12-01",
         endDate: "1823-06-01",
@@ -336,7 +355,8 @@ export const adventure = [
       },
       {
         name: "Paris, under other names",
-        description: "The Gorbeau tenement, the convent, the Rue Plumet, and the sewer on the night of the barricades.",
+        description:
+          "The Gorbeau tenement, the convent, the Rue Plumet, and the sewer on the night of the barricades.",
         location: "Paris, France",
         startDate: "1823-12-01",
         endDate: "1833-06-01",
@@ -394,7 +414,8 @@ export const adventure = [
       },
       {
         name: "Investigation",
-        description: "Tracked Madeleine to Arras and Valjean through Paris on a scent that never cooled.",
+        description:
+          "Tracked Madeleine to Arras and Valjean through Paris on a scent that never cooled.",
         yearStarted: 1820,
       },
       {
@@ -404,12 +425,14 @@ export const adventure = [
       },
       {
         name: "Obsession",
-        description: "Valjean was not a case load; he was a proposition about whether a convict can close.",
+        description:
+          "Valjean was not a case load; he was a proposition about whether a convict can close.",
         yearStarted: 1823,
       },
       {
         name: "Moral Philosophy",
-        description: "When the convict spared him at the barricade, the proposition failed. The Seine was his last report.",
+        description:
+          "When the convict spared him at the barricade, the proposition failed. The Seine was his last report.",
         yearStarted: 1832,
       },
     ],
@@ -480,7 +503,8 @@ export const adventure = [
       },
       {
         name: "Dueling",
-        description: "Three appointments at midday; the Cardinal's Guards interrupted, and a friendship began.",
+        description:
+          "Three appointments at midday; the Cardinal's Guards interrupted, and a friendship began.",
         yearStarted: 1625,
       },
       {
@@ -495,7 +519,8 @@ export const adventure = [
       },
       {
         name: "Tactical Leadership",
-        description: "The fourth man in 'all for one' — later a lieutenant who still took the street work.",
+        description:
+          "The fourth man in 'all for one' — later a lieutenant who still took the street work.",
         yearStarted: 1626,
       },
     ],
@@ -552,22 +577,26 @@ export const adventure = [
     skills: [
       {
         name: "Court Intrigue",
-        description: "Moved between Paris, London, and the cardinal's cabinet as a wife, a penitent, or a widow.",
+        description:
+          "Moved between Paris, London, and the cardinal's cabinet as a wife, a penitent, or a widow.",
         yearStarted: 1620,
       },
       {
         name: "Poisoncraft",
-        description: "The convent at Béthune; a last commission against Buckingham that arrived too late and against Constance that did not.",
+        description:
+          "The convent at Béthune; a last commission against Buckingham that arrived too late and against Constance that did not.",
         yearStarted: 1626,
       },
       {
         name: "Social Engineering",
-        description: "Turned jailers, lovers, and brothers-in-law into instruments. Felton was the most expensive.",
+        description:
+          "Turned jailers, lovers, and brothers-in-law into instruments. Felton was the most expensive.",
         yearStarted: 1625,
       },
       {
         name: "Assassination",
-        description: "Buckingham by a fanatic's knife; Constance by a stolen Host and a glass of wine.",
+        description:
+          "Buckingham by a fanatic's knife; Constance by a stolen Host and a glass of wine.",
         yearStarted: 1628,
       },
       {
@@ -579,7 +608,8 @@ export const adventure = [
     companies: [
       {
         name: "Service of the Cardinal",
-        description: "Unofficial. Richelieu used her when musketeers and open warrants would have made a scandal.",
+        description:
+          "Unofficial. Richelieu used her when musketeers and open warrants would have made a scandal.",
         location: "France / England",
         startDate: "1625-01-01",
         endDate: "1628-08-01",
@@ -637,12 +667,14 @@ export const adventure = [
     skills: [
       {
         name: "Zoology",
-        description: "Described living forms the British Museum had only as fossils, then brought a specimen home in a crate.",
+        description:
+          "Described living forms the British Museum had only as fossils, then brought a specimen home in a crate.",
         yearStarted: 1895,
       },
       {
         name: "Paleontology",
-        description: "The plateau was a Jurassic argument with teeth. Summerlee came to scoff and stayed to collect.",
+        description:
+          "The plateau was a Jurassic argument with teeth. Summerlee came to scoff and stayed to collect.",
         yearStarted: 1912,
       },
       {
@@ -652,24 +684,28 @@ export const adventure = [
       },
       {
         name: "Debate",
-        description: "Lectured with his fists when the hall required it. The Queen's Hall demonstration ended the dispute.",
+        description:
+          "Lectured with his fists when the hall required it. The Queen's Hall demonstration ended the dispute.",
         yearStarted: 1912,
       },
       {
         name: "Survival",
-        description: "Swamp, pterodactyl, and ape-men. Malone got the copy; Challenger got the proof.",
+        description:
+          "Swamp, pterodactyl, and ape-men. Malone got the copy; Challenger got the proof.",
         yearStarted: 1912,
       },
       {
         name: "Leadership",
-        description: "Commanded a four-man party that did not like him and came back believing him.",
+        description:
+          "Commanded a four-man party that did not like him and came back believing him.",
         yearStarted: 1912,
       },
     ],
     companies: [
       {
         name: "Amazon plateau expedition",
-        description: "Challenger, Summerlee, Lord John Roxton, and Edward Malone. A plateau above the jungle, reached by beech and cut off by landslide.",
+        description:
+          "Challenger, Summerlee, Lord John Roxton, and Edward Malone. A plateau above the jungle, reached by beech and cut off by landslide.",
         location: "South America",
         startDate: "1912-04-01",
         endDate: "1912-11-01",
@@ -733,12 +769,14 @@ export const adventure = [
       },
       {
         name: "Command at Sea",
-        description: "Held a crew of isolatoes to a single hunt by sermon, gold ounce, and the line of his bone leg.",
+        description:
+          "Held a crew of isolatoes to a single hunt by sermon, gold ounce, and the line of his bone leg.",
         yearStarted: 1841,
       },
       {
         name: "Navigation",
-        description: "Read the sea's surface for a scarred hump and a spout that was not like other spouts.",
+        description:
+          "Read the sea's surface for a scarred hump and a spout that was not like other spouts.",
         yearStarted: 1800,
       },
       {
@@ -748,7 +786,8 @@ export const adventure = [
       },
       {
         name: "Obsession",
-        description: "Moby Dick took a leg. Ahab meant to take the mask off the world by striking through the whale.",
+        description:
+          "Moby Dick took a leg. Ahab meant to take the mask off the world by striking through the whale.",
         yearStarted: 1841,
       },
       {
@@ -760,7 +799,8 @@ export const adventure = [
     companies: [
       {
         name: "Pequod",
-        description: "Nantucket whaleship, three years out, never returned. Queequeg, Starbuck, Stubb, Flask, and Ishmael among the company.",
+        description:
+          "Nantucket whaleship, three years out, never returned. Queequeg, Starbuck, Stubb, Flask, and Ishmael among the company.",
         location: "Pacific Ocean",
         startDate: "1841-01-01",
         endDate: "1841-12-01",
@@ -812,12 +852,14 @@ export const adventure = [
     skills: [
       {
         name: "Piracy",
-        description: "Sailed with Flint; knew where the cache was buried and who had been buried with it.",
+        description:
+          "Sailed with Flint; knew where the cache was buried and who had been buried with it.",
         yearStarted: 1740,
       },
       {
         name: "Seamanship",
-        description: "Could work a ship from a crutch and keep a crew fed while he counted their usefulness.",
+        description:
+          "Could work a ship from a crutch and keep a crew fed while he counted their usefulness.",
         yearStarted: 1740,
       },
       {
@@ -832,14 +874,16 @@ export const adventure = [
       },
       {
         name: "Cunning",
-        description: "Changed sides when the numbers changed, and left the island with a sack rather than a noose.",
+        description:
+          "Changed sides when the numbers changed, and left the island with a sack rather than a noose.",
         yearStarted: 1760,
       },
     ],
     companies: [
       {
         name: "Hispaniola",
-        description: "Schooner fitted in Bristol for a treasure cruise. Silver packed the crew with Flint's survivors.",
+        description:
+          "Schooner fitted in Bristol for a treasure cruise. Silver packed the crew with Flint's survivors.",
         location: "Bristol to Treasure Island",
         startDate: "1760-01-01",
         endDate: "1760-12-01",
@@ -898,7 +942,8 @@ export const adventure = [
     skills: [
       {
         name: "Poetry",
-        description: "Improvised a ballade while fighting, and wrote the letters Roxane believed were Christian's.",
+        description:
+          "Improvised a ballade while fighting, and wrote the letters Roxane believed were Christian's.",
         yearStarted: 1635,
       },
       {
@@ -918,14 +963,16 @@ export const adventure = [
       },
       {
         name: "Letter Writing",
-        description: "Fifteen years of unsigned pages to Roxane; the last one he recited as he died.",
+        description:
+          "Fifteen years of unsigned pages to Roxane; the last one he recited as he died.",
         yearStarted: 1640,
       },
     ],
     companies: [
       {
         name: "Carbon de Castel-Jaloux's cadets",
-        description: "Gascon company in Paris and at the siege of Arras. Christian stood in the light; Cyrano stood under the balcony.",
+        description:
+          "Gascon company in Paris and at the siege of Arras. Christian stood in the light; Cyrano stood under the balcony.",
         location: "Paris / Arras",
         startDate: "1640-01-01",
         endDate: "1655-01-01",

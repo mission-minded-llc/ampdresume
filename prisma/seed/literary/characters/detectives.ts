@@ -58,12 +58,14 @@ export const detectives = [
       },
       {
         name: "Boxing",
-        description: "Amateur boxer; uses fists when a walking stick and a waiting cab will not do.",
+        description:
+          "Amateur boxer; uses fists when a walking stick and a waiting cab will not do.",
         yearStarted: 1878,
       },
       {
         name: "Music",
-        description: "Plays the violin through a case, often as a way of thinking rather than of performing.",
+        description:
+          "Plays the violin through a case, often as a way of thinking rather than of performing.",
         yearStarted: 1878,
       },
       {
@@ -145,7 +147,8 @@ export const detectives = [
     skills: [
       {
         name: "Medical Practice",
-        description: "Civilian practice in Paddington after the Afghan campaign; later a second marriage and a return to Baker Street as needed.",
+        description:
+          "Civilian practice in Paddington after the Afghan campaign; later a second marriage and a return to Baker Street as needed.",
         yearStarted: 1878,
       },
       {
@@ -156,7 +159,8 @@ export const detectives = [
       },
       {
         name: "Surgery",
-        description: "Trained at Netley; kept a service revolver and a medical bag on Baker Street cases.",
+        description:
+          "Trained at Netley; kept a service revolver and a medical bag on Baker Street cases.",
         yearStarted: 1878,
       },
       {
@@ -167,19 +171,22 @@ export const detectives = [
       },
       {
         name: "Investigation",
-        description: "Watson is the second pair of eyes. He misses what Holmes sees, then records why it mattered.",
+        description:
+          "Watson is the second pair of eyes. He misses what Holmes sees, then records why it mattered.",
         yearStarted: 1881,
       },
       {
         name: "Marksmanship",
-        description: "Service revolver; used on the moor, in a suburban villa, and wherever Holmes asked him to cover a door.",
+        description:
+          "Service revolver; used on the moor, in a suburban villa, and wherever Holmes asked him to cover a door.",
         yearStarted: 1878,
       },
     ],
     companies: [
       {
         name: "British Army Medical Department",
-        description: "Posted to India and Afghanistan with the Fifth Northumberland Fusiliers, then attached to the Berkshires after Maiwand.",
+        description:
+          "Posted to India and Afghanistan with the Fifth Northumberland Fusiliers, then attached to the Berkshires after Maiwand.",
         location: "Afghanistan / India",
         startDate: "1878-12-01",
         endDate: "1880-12-01",
@@ -201,7 +208,8 @@ export const detectives = [
       },
       {
         name: "221B Baker Street",
-        description: "Shared rooms from 1881. Paid the bills, interviewed clients, and wrote the stories Holmes would not write himself.",
+        description:
+          "Shared rooms from 1881. Paid the bills, interviewed clients, and wrote the stories Holmes would not write himself.",
         location: "London, England",
         startDate: "1881-03-01",
         positions: [
@@ -268,19 +276,22 @@ export const detectives = [
       },
       {
         name: "Infiltration",
-        description: "Read Holmes's own watchers, then used his church-wedding ruse as cover for her departure.",
+        description:
+          "Read Holmes's own watchers, then used his church-wedding ruse as cover for her departure.",
         yearStarted: 1888,
       },
       {
         name: "Diplomacy",
-        description: "Settled with Godfrey Norton and left England; the King of Bohemia kept the photograph she chose to leave.",
+        description:
+          "Settled with Godfrey Norton and left England; the King of Bohemia kept the photograph she chose to leave.",
         yearStarted: 1888,
       },
     ],
     companies: [
       {
         name: "Briony Lodge",
-        description: "Serpentine Avenue, St. John's Wood. The house from which a king wanted a photograph recovered and a detective learned he could lose.",
+        description:
+          "Serpentine Avenue, St. John's Wood. The house from which a king wanted a photograph recovered and a detective learned he could lose.",
         location: "St. John's Wood, London",
         startDate: "1888-03-01",
         endDate: "1888-03-31",
@@ -349,12 +360,14 @@ export const detectives = [
       },
       {
         name: "Obsession",
-        description: "Once Holmes closed on the web, Moriarty made the contest personal and followed him to Switzerland.",
+        description:
+          "Once Holmes closed on the web, Moriarty made the contest personal and followed him to Switzerland.",
         yearStarted: 1891,
       },
       {
         name: "Tactical Leadership",
-        description: "Coordinated the destruction of Holmes's cases and the pursuit that ended at the Reichenbach Fall.",
+        description:
+          "Coordinated the destruction of Holmes's cases and the pursuit that ended at the Reichenbach Fall.",
         yearStarted: 1891,
       },
     ],
@@ -408,12 +421,14 @@ export const detectives = [
     skills: [
       {
         name: "Gentleman Burglary",
-        description: "Steals from the titled and the insured, often leaving a card and a compliment.",
+        description:
+          "Steals from the titled and the insured, often leaving a card and a compliment.",
         yearStarted: 1905,
       },
       {
         name: "Disguise",
-        description: "A dozen names and faces; inspectors have arrested the wrong man while Lupin held the door.",
+        description:
+          "A dozen names and faces; inspectors have arrested the wrong man while Lupin held the door.",
         yearStarted: 1905,
       },
       {
@@ -433,7 +448,8 @@ export const detectives = [
       },
       {
         name: "Infiltration",
-        description: "Boards liners and walks into ministries as a guest, a clerk, or the victim himself.",
+        description:
+          "Boards liners and walks into ministries as a guest, a clerk, or the victim himself.",
         yearStarted: 1905,
       },
     ],
@@ -498,17 +514,20 @@ export const detectives = [
     skills: [
       {
         name: "Private Investigation",
-        description: "Shadow work, hotel lobbies, and the habit of letting other people talk until the story cracks.",
+        description:
+          "Shadow work, hotel lobbies, and the habit of letting other people talk until the story cracks.",
         yearStarted: 1925,
       },
       {
         name: "Investigation",
-        description: "Follows money, steamship tickets, and who had a key — not the romance of a black bird.",
+        description:
+          "Follows money, steamship tickets, and who had a key — not the romance of a black bird.",
         yearStarted: 1925,
       },
       {
         name: "Social Engineering",
-        description: "Plays Gutman, Cairo, and Brigid against one another until someone names the shooter.",
+        description:
+          "Plays Gutman, Cairo, and Brigid against one another until someone names the shooter.",
         yearStarted: 1928,
       },
       {
