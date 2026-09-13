@@ -35,9 +35,12 @@ const comingSoon = [
     title: "More open-source templates",
     body: (
       <>
-        Help shape new looks in the{" "}
-        <MuiLink href="https://github.com/mission-minded-llc/ampdresume-theme">
-          theme GitHub repo
+        Help shape new looks by opening a PR — see the{" "}
+        <MuiLink
+          href="https://github.com/mission-minded-llc/ampdresume/blob/main/src/theme/README.md"
+          target="_blank"
+        >
+          theme contribution guide
         </MuiLink>
         .
       </>
