@@ -106,7 +106,6 @@ export const getParsedResumeAi = async (
     };
   } catch (error) {
     Sentry.captureException(error);
-    console.error("Failed to parse resume text:", error);
     throw new Error(getParseResumeErrorMessage(error));
   }
 };
