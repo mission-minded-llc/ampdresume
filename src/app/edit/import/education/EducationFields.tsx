@@ -58,12 +58,14 @@ export const EducationFields = memo(
             onChange={(date) => onDateChange(index, date)}
             hasError={dateError}
           />
-          <DeleteWithConfirmation
-            onConfirmDelete={() => onDelete(index)}
-            buttonLabel="Delete Education"
-            dialogTitle="Delete Education?"
-            dialogMessage="Are you sure you want to delete this education? (No undo!)"
-          />
+          <Box sx={{ mt: 2 }}>
+            <DeleteWithConfirmation
+              onConfirmDelete={() => onDelete(index)}
+              buttonLabel="Delete Education"
+              dialogTitle="Delete Education?"
+              dialogMessage="Are you sure you want to delete this education? (No undo!)"
+            />
+          </Box>
         </Box>
       </Box>
     );

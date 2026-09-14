@@ -22,6 +22,8 @@ export const EducationDateField = memo(
           textField: {
             error: hasError,
             helperText: hasError ? "Date awarded is required" : "",
+            onClick: (event) => event.stopPropagation(),
+            onKeyDown: (event) => event.stopPropagation(),
           },
         }}
         sx={{ width: "100%" }}

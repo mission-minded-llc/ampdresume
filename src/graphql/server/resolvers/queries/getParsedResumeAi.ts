@@ -2,6 +2,11 @@ import OpenAI from "openai";
 import * as Sentry from "@sentry/node";
 import { prisma } from "@/lib/prisma";
 import { verifySessionOwnership } from "../../util";
+import {
+  getParseResumeErrorMessage,
+  getSkillNamesForFuzzyMatch,
+  normalizeParsedResume,
+} from "./parseResumeAi";
 
 export const getParsedResumeAi = async (
   _: string,
@@ -77,29 +82,30 @@ export const getParsedResumeAi = async (
     if (!content) throw new Error("No content received from OpenAI");
 
     const parsedData = JSON.parse(content);
+    const skillNames = getSkillNamesForFuzzyMatch(parsedData.skills);
 
-    // Run a fuzzy match on the skills so that we can return any skills that are actually
-    // found in the database.
-    const fuzzySkillsMatches = await prisma.skill.findMany({
-      where: {
-        OR: parsedData.skills
-          .filter((skill: string) => skill.length > 4)
-          .map((skill: string) => ({
-            name: {
-              contains: skill,
-              mode: "insensitive",
+    // Only query when there are usable names. Prisma rejects `OR: []`.
+    const fuzzySkillsMatches =
+      skillNames.length > 0
+        ? await prisma.skill.findMany({
+            where: {
+              OR: skillNames.map((skill) => ({
+                name: {
+                  contains: skill,
+                  mode: "insensitive",
+                },
+              })),
             },
-          })),
-      },
-      take: 30, // Limit to 30 fuzzy matches.
-    });
+            take: 30,
+          })
+        : [];
 
     return {
-      ...parsedData,
+      ...normalizeParsedResume(parsedData),
       skills: fuzzySkillsMatches,
     };
   } catch (error) {
     Sentry.captureException(error);
-    throw new Error("Failed to parse resume text");
+    throw new Error(getParseResumeErrorMessage(error));
   }
 };

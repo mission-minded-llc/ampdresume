@@ -123,12 +123,45 @@ export const types = gql`
     featuredProjects: [FeaturedProject!]!
   }
 
-  # This type represents the parsed resume data from OpenAI
+  # Parsed resume types omit database IDs and required nested relations
+  # from the persisted User/Company/Education types.
+  type ParsedResumeUser {
+    name: String!
+    displayEmail: String
+    location: String
+    title: String
+  }
+
+  type ParsedResumeProject {
+    name: String!
+  }
+
+  type ParsedResumePosition {
+    title: String!
+    startDate: String
+    endDate: String
+    projects: [ParsedResumeProject!]!
+  }
+
+  type ParsedResumeCompany {
+    name: String!
+    location: String
+    startDate: String
+    endDate: String
+    positions: [ParsedResumePosition!]!
+  }
+
+  type ParsedResumeEducation {
+    school: String!
+    degree: String!
+    dateAwarded: String
+  }
+
   type ParsedResume {
-    user: User!
+    user: ParsedResumeUser!
     skills: [Skill!]!
-    companies: [Company!]!
-    education: [Education!]!
+    companies: [ParsedResumeCompany!]!
+    education: [ParsedResumeEducation!]!
   }
 
   input SortInput {
