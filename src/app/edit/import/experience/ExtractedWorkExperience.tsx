@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import { AccordionSummaryContent } from "../../components/AccordionSummaryContent";
@@ -25,16 +25,18 @@ export const ExtractedWorkExperience = ({
   const [expandedCompany, setExpandedCompany] = useState<string | false>(false);
   const [expandedPosition, setExpandedPosition] = useState<string | false>(false);
 
-  // Add effect to expand accordion when start date is empty
+  // Expand incomplete date fields once on load. Re-running on every companies
+  // update would close the accordion the user is typing in.
+  const hasAutoExpanded = useRef(false);
   useEffect(() => {
+    if (hasAutoExpanded.current) return;
+
     const companyWithEmptyStartDate = companies.findIndex((company) => !company.startDate);
     if (companyWithEmptyStartDate !== -1) {
       setExpandedCompany(`company-${companyWithEmptyStartDate}`);
+      hasAutoExpanded.current = true;
     }
-  }, [companies]);
 
-  // Add effect to expand position accordion when start date is empty
-  useEffect(() => {
     companies.forEach((company, companyIndex) => {
       const positionWithEmptyStartDate = company.positions.findIndex(
         (position) => !position.startDate,
@@ -42,6 +44,7 @@ export const ExtractedWorkExperience = ({
       if (positionWithEmptyStartDate !== -1) {
         setExpandedCompany(`company-${companyIndex}`);
         setExpandedPosition(`position-${companyIndex}-${positionWithEmptyStartDate}`);
+        hasAutoExpanded.current = true;
       }
     });
   }, [companies]);

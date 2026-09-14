@@ -269,7 +269,7 @@ describe("ImportPDF", () => {
 
       expect(useQuery).toHaveBeenCalledWith(
         expect.objectContaining({
-          queryKey: ["parsedResumeAi"],
+          queryKey: ["parsedResumeAi", ""],
           enabled: expect.any(Boolean),
         }),
       );
@@ -304,12 +304,19 @@ describe("ImportPDF", () => {
         data: null,
         isPending: false,
         isError: true,
+        error: new Error(
+          "OpenAI has no credits remaining. Add billing credits to your OpenAI account to use Import PDF.",
+        ),
       });
 
       render(<ImportPDF />);
       await flushPdfLoadEffect();
 
-      expect(screen.getByText("Error loading resume")).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          "OpenAI has no credits remaining. Add billing credits to your OpenAI account to use Import PDF.",
+        ),
+      ).toBeInTheDocument();
     });
 
     it("passes parsed data to ExtractedInformation when available", async () => {

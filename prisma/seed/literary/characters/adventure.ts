@@ -90,6 +90,133 @@ export const adventure = [
   }),
 
   defineCharacter({
+    slug: "cyrus-smith",
+    name: "Cyrus Smith",
+    title: "Engineer of Lincoln Island",
+    location: "Lincoln Island, Pacific",
+    siteDescription:
+      "Union engineer who left a Richmond prison by balloon and built a colony from ore, brick, and a telegraph. Kingston's translations call him Harding; Verne wrote Smith.",
+    affiliation: "hero",
+    died: 1869,
+    education: [
+      {
+        school: "American engineering faculties",
+        degree: "Civil and military engineer",
+        dateAwarded: "1855-06-01",
+      },
+    ],
+    certifications: [
+      {
+        name: "Engineer, Union armies",
+        issuer: "United States",
+        dateAwarded: "1861-04-01",
+        credentialId: "UNION-SMITH",
+      },
+    ],
+    skills: [
+      {
+        name: "Engineering",
+        description:
+          "Granite House, a mill, a bridge, and a lift cut from a cliff. The island supplied the materials; Smith supplied the order of operations.",
+        yearStarted: 1855,
+      },
+      {
+        name: "Chemistry",
+        description:
+          "Nitroglycerin for the lake, soap, acids, and the first fire from a lens when matches were gone.",
+        yearStarted: 1855,
+      },
+      {
+        name: "Mechanical Invention",
+        description:
+          "A telegraph between the corral and the house, a windmill, and tools forged from the island's own iron.",
+        yearStarted: 1865,
+      },
+      {
+        name: "Scientific Research",
+        description:
+          "Surveyed the island as if it were a worksite: coal, iron, clay, and the currents that later hid the Nautilus.",
+        yearStarted: 1865,
+      },
+      {
+        name: "Leadership",
+        description:
+          "Spilett, Pencroff, Harbert, and Nab took his assignments. The colony voted; the engineer planned.",
+        yearStarted: 1865,
+      },
+      {
+        name: "Survival",
+        description:
+          "Washed ashore alone, found by the dog Top, then kept five men alive until the volcano closed the lease.",
+        yearStarted: 1865,
+      },
+    ],
+    companies: [
+      {
+        name: "Union Army engineers",
+        description:
+          "Served through the American Civil War until capture in Richmond. The balloon was Pencroff's idea; the weather was not.",
+        location: "Richmond, Virginia",
+        startDate: "1861-04-01",
+        endDate: "1865-03-20",
+        positions: [
+          {
+            title: "Engineer",
+            startDate: "1861-04-01",
+            endDate: "1865-03-20",
+            projects: [
+              {
+                name: "The Richmond balloon",
+                description:
+                  "Escaped a Confederate prison in a storm with Spilett, Pencroff, Harbert, Nab, and Top. The Pacific was not the intended landing.",
+                skills: ["Engineering", "Leadership", "Survival"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "Lincoln Island colony",
+        description:
+          "An uncharted Pacific island the colonists named for the dead president. They left it when the mountain broke; Nemo had already died in the cavern.",
+        location: "Lincoln Island, Pacific",
+        startDate: "1865-03-24",
+        endDate: "1869-03-01",
+        positions: [
+          {
+            title: "Engineer in chief",
+            startDate: "1865-03-24",
+            endDate: "1869-03-01",
+            projects: [
+              {
+                name: "Granite House",
+                description:
+                  "A cliff dwelling with windows, a lift, and a hearth. Brick, pottery, and iron followed once the first fire held.",
+                skills: ["Engineering", "Chemistry", "Mechanical Invention"],
+              },
+              {
+                name: "Nemo's last harbor",
+                description:
+                  "Found the Nautilus in a sea cave and the captain dying. The island's unknown benefactor had been the engineer of the deep.",
+                skills: ["Scientific Research", "Leadership", "Survival"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    featuredProjects: [
+      {
+        name: "The Mysterious Island (1874)",
+        description:
+          "<p>Verne's engineer-restores-civilization novel. This résumé uses Cyrus Smith, the French name; some public-domain translations call him Cyrus Harding.</p>",
+        links: [{ label: "Project Gutenberg", url: "https://www.gutenberg.org/ebooks/1268" }],
+        skills: ["Engineering", "Mechanical Invention", "Chemistry"],
+      },
+    ],
+  }),
+
+  defineCharacter({
     slug: "phileas-fogg",
     name: "Phileas Fogg",
     title: "Gentleman of the Reform Club",
@@ -1006,6 +1133,101 @@ export const adventure = [
           "<p>Rostand's play, not the historical satirist alone. The 1897 text is public domain; this résumé follows that Gascon, not later films.</p>",
         links: [{ label: "Project Gutenberg", url: "https://www.gutenberg.org/ebooks/1256" }],
         skills: ["Poetry", "Swordsmanship", "Wit"],
+      },
+    ],
+  }),
+
+  defineCharacter({
+    slug: "time-traveller",
+    name: "The Time Traveller",
+    title: "Independent Inventor",
+    location: "Richmond, Surrey",
+    siteDescription:
+      "Unnamed host of a Richmond dinner who sent a model through time at the table, then followed it to the year 802,701. The machine came home; Weena did not.",
+    affiliation: "hero",
+    died: 1895,
+    education: [
+      {
+        school: "Independent mechanical study",
+        degree: "Private laboratory, Richmond",
+        dateAwarded: "1888-06-01",
+      },
+    ],
+    certifications: [],
+    skills: [
+      {
+        name: "Time Travel",
+        description:
+          "Built a machine that moved on the fourth dimension. Demonstrated it with a model before the fireplace, then with himself.",
+        yearStarted: 1894,
+      },
+      {
+        name: "Mechanical Invention",
+        description:
+          "Ivory, nickel, and quartz in a frame the dinner guests could watch shrink out of the present.",
+        yearStarted: 1888,
+      },
+      {
+        name: "Engineering",
+        description:
+          "Repaired the machine in a dark pedestal after the Morlocks took it, working by match-light under the White Sphinx.",
+        yearStarted: 1888,
+      },
+      {
+        name: "Scientific Research",
+        description:
+          "Read the split of mankind in the Eloi and the Morlocks, then pushed further to a red beach and a dying sun.",
+        yearStarted: 1895,
+      },
+      {
+        name: "Observation",
+        description:
+          "Noted the vanished industry, the well-shafts, and the fear of the dark before he had a theory that fit.",
+        yearStarted: 1895,
+      },
+      {
+        name: "Survival",
+        description:
+          "Fought in the palace of green porcelain and in the woods by night. Came back with a flower and a story the guests only half believed.",
+        yearStarted: 1895,
+      },
+    ],
+    companies: [
+      {
+        name: "Richmond laboratory",
+        description:
+          "A private house and workshop up the hill from the station. The dinner was for colleagues; the second departure had no audience.",
+        location: "Richmond, Surrey",
+        startDate: "1888-01-01",
+        positions: [
+          {
+            title: "Independent inventor",
+            startDate: "1888-01-01",
+            projects: [
+              {
+                name: "The Time Machine",
+                description:
+                  "A full-scale frame after the clockwork model. He left after dinner and returned late, worn, with a tale of 802,701.",
+                skills: ["Time Travel", "Mechanical Invention", "Engineering"],
+              },
+              {
+                name: "The year 802,701",
+                description:
+                  "Lived among the Eloi, lost Weena to the Morlocks, and retrieved the machine from under the Sphinx. A further hop showed him the end of the world.",
+                skills: ["Scientific Research", "Observation", "Survival"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    featuredProjects: [
+      {
+        name: "The Time Machine (1895)",
+        description:
+          "<p>Wells never names the inventor. The 1895 text is the source — a laboratory demonstration, a class fable, and a machine — not later films.</p>",
+        links: [{ label: "Project Gutenberg", url: "https://www.gutenberg.org/ebooks/35" }],
+        skills: ["Time Travel", "Mechanical Invention", "Scientific Research"],
       },
     ],
   }),
