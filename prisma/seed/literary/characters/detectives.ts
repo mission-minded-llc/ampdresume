@@ -577,4 +577,110 @@ export const detectives = [
       },
     ],
   }),
+
+  defineCharacter({
+    slug: "john-thorndyke",
+    name: "John Evelyn Thorndyke",
+    title: "Medico-legal Expert · Barrister",
+    location: "5A King's Bench Walk, Inner Temple",
+    siteDescription:
+      "Physician and barrister who treats a crime scene as a bench, not a puzzle for intuition. Fingerprints can lie if someone has a cast and a stamp-pad; Thorndyke brought both into court.",
+    affiliation: "hero",
+    died: 1907,
+    education: [
+      {
+        school: "London hospital schools",
+        degree: "Doctor of Medicine",
+        dateAwarded: "1890-06-01",
+      },
+      {
+        school: "Inner Temple",
+        degree: "Called to the bar",
+        dateAwarded: "1894-06-01",
+      },
+    ],
+    certifications: [
+      {
+        name: "Lecturer in medical jurisprudence",
+        issuer: "St. Margaret's Hospital",
+        dateAwarded: "1898-01-01",
+        credentialId: "TEMPLE-THORNDYKE",
+      },
+    ],
+    skills: [
+      {
+        name: "Forensic Medicine",
+        description:
+          "Medical jurisprudence from the Temple: wounds, identity, and what a body or a stain can be made to say.",
+        yearStarted: 1894,
+      },
+      {
+        name: "Forensic Chemistry",
+        description:
+          "Polton keeps the laboratory. Casts, reagents, and photomicrographs go to court as exhibits, not as hunches.",
+        yearStarted: 1894,
+      },
+      {
+        name: "Medical Practice",
+        description: "A physician first. The legal work is the medicine applied to a brief.",
+        yearStarted: 1890,
+      },
+      {
+        name: "Law",
+        description:
+          "Barrister of the Inner Temple. Appears as expert and as counsel when a scientific fact is the whole defence.",
+        yearStarted: 1894,
+      },
+      {
+        name: "Investigation",
+        description:
+          "Goes to the scene with a research-case and comes back with measurements. Jervis writes what the jury can follow.",
+        yearStarted: 1894,
+      },
+      {
+        name: "Deduction",
+        description:
+          "Will not theorize ahead of the facts — and will not accept a fact that has not been tested against a forgery.",
+        yearStarted: 1894,
+      },
+    ],
+    companies: [
+      {
+        name: "5A King's Bench Walk",
+        description:
+          "Chambers and laboratory in the Inner Temple. Polton at the bench, Jervis on the notes, Thorndyke between medicine and the bar.",
+        location: "Inner Temple, London",
+        startDate: "1898-01-01",
+        positions: [
+          {
+            title: "Medico-legal expert",
+            startDate: "1898-01-01",
+            projects: [
+              {
+                name: "The Red Thumb Mark",
+                description:
+                  "Reuben Hornby stood to lose his liberty on a bloody print. Thorndyke showed the court how a fingerprint is cast, inked, and planted.",
+                skills: ["Forensic Medicine", "Forensic Chemistry", "Law"],
+              },
+              {
+                name: "The Temple laboratory",
+                description:
+                  "A working bench above the Walk: photomicrography, casts, and the exhibits that turn a brief into a demonstration.",
+                skills: ["Investigation", "Deduction", "Medical Practice"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    featuredProjects: [
+      {
+        name: "The Red Thumb Mark (1907)",
+        description:
+          "<p>Freeman's first Thorndyke novel, and the public-domain text this résumé follows. A doctor-barrister dismantles fingerprint evidence that everyone else treated as infallible.</p>",
+        links: [{ label: "Project Gutenberg", url: "https://www.gutenberg.org/ebooks/11128" }],
+        skills: ["Forensic Medicine", "Law", "Deduction"],
+      },
+    ],
+  }),
 ];

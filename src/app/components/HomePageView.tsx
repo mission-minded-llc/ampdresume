@@ -333,11 +333,7 @@ export const HomePageView = ({ userName }: { userName: string | null }) => {
               skills: interactive for reviewers, and a PDF when you need one, all in the same place.
             </Typography>
             <Typography>
-              Peek at the founder&apos;s resume{" "}
-              <MuiLink href="/r/missionmike" target="_blank">
-                here
-              </MuiLink>
-              .
+              Peek at the founder&apos;s resume <MuiLink href="/r/missionmike">here</MuiLink>.
             </Typography>
           </Box>
           <JobApplicationMock />
@@ -408,7 +404,6 @@ export const HomePageView = ({ userName }: { userName: string | null }) => {
                       >
                         <MuiLink
                           href={`/r/${character.slug}`}
-                          target="_blank"
                           aria-label={character.name}
                           sx={{
                             display: "block",
