@@ -1,11 +1,14 @@
 /// <reference types="cypress" />
 
+import { cypressSpecEmail, cypressSpecSlug } from "../../../src/lib/cypressTestAccount";
+
 /**
  * The Profile section is a simple section that allows users to edit their personal information
  * including their name, slug, email, title, location, site title, and site description.
  */
 describe("Profile Section", () => {
-  const testEmail = "test@ampdresume.com";
+  const testEmail = cypressSpecEmail(Cypress.spec.relative);
+  const testSlug = cypressSpecSlug(Cypress.spec.relative);
   const saveButton = "[data-testid='AccountFormSaveButton']";
 
   before(() => {
@@ -28,7 +31,7 @@ describe("Profile Section", () => {
 
     const fields = [
       { name: "name", value: " Test User" },
-      { name: "slug", value: "test-user" },
+      { name: "slug", value: testSlug },
       { name: "displayEmail", value: testEmail },
       { name: "title", value: "Professional Tester " },
       { name: "location", value: " Test City, Test State " },
@@ -68,7 +71,7 @@ describe("Profile Section", () => {
     // Slug errors are shown on the URL Name field (helper text), not in MessageDialog.
     cy.contains(slugErrorMessage).should("be.visible");
 
-    cy.get("input[name='slug']").clear({ force: true }).type("test-user");
+    cy.get("input[name='slug']").clear({ force: true }).type(testSlug);
     cy.contains(slugErrorMessage).should("not.exist");
 
     cy.get(saveButton).click();

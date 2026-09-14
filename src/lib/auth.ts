@@ -9,6 +9,7 @@ import EmailProvider, { EmailConfig } from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
 import LinkedInProvider, { LinkedInProfile } from "next-auth/providers/linkedin";
 import nodemailer from "nodemailer";
+import { isCypressMagicLinkEmail } from "@/lib/cypressTestAccount";
 import { prisma } from "@/lib/prisma";
 import { findUserByNormalizedEmail } from "@/util/email.server";
 
@@ -41,7 +42,7 @@ export const sendVerificationRequest = async ({
   const emailToSend = user?.email ? user.email : identifier;
 
   // Save the magic link to a temp file for Cypress to use.
-  if (emailToSend === process.env.CYPRESS_TEST_EMAIL) {
+  if (isCypressMagicLinkEmail(emailToSend)) {
     const tempDir = path.join(process.cwd(), ".cypress-temp");
 
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });

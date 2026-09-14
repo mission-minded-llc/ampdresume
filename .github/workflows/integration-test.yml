@@ -1,7 +1,7 @@
 name: Integration Test
 
 # Runs Cypress against a locally built app and a throwaway Postgres container.
-# Specs are sharded across runners because account tests share one user/DB.
+# Specs are split round-robin across runners; each spec logs in as its own user.
 # Does not deploy anything.
 
 on:
@@ -73,26 +73,18 @@ jobs:
             !.next/standalone
             !.next/standalone/**
 
-  # Account specs share one Cypress user and mutate the same DB, so they cannot
-  # run concurrently on one app/database. Each shard gets its own runner and
-  # Postgres, and reuses the shared Next.js build.
+  # Each shard gets its own runner and Postgres, and reuses the shared Next.js
+  # build. Spec files are assigned round-robin; account specs use per-file users.
   cypress:
-    name: Cypress (${{ matrix.name }})
+    name: Cypress (${{ matrix.shard }})
     needs: build
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
+      # Values must be 1..N consecutive; length of this list is the shard count.
       matrix:
-        include:
-          - name: navigation-theme
-            spec: >-
-              cypress/integration/navigation/**/*.cy.ts,cypress/integration/theme/**/*.cy.ts
-          - name: account-featured-skills
-            spec: cypress/integration/account/featuredProjectsSkills.cy.ts
-          - name: account-core
-            spec: >-
-              cypress/integration/account/experience.cy.ts,cypress/integration/account/skills.cy.ts,cypress/integration/account/certifications.cy.ts,cypress/integration/account/featuredProjects.cy.ts,cypress/integration/account/import.cy.ts,cypress/integration/account/profile.cy.ts
+        shard: [1, 2, 3]
 
     permissions:
       contents: read
@@ -153,7 +145,12 @@ jobs:
           timeout 60s bash -c 'until curl -sf -o /dev/null http://localhost:3000; do sleep 1; done'
 
       - name: Run Cypress tests
-        run: npm run cypress:test -- --spec "${{ matrix.spec }}"
+        env:
+          SHARD_INDEX: ${{ matrix.shard }}
+          SHARD_COUNT: ${{ strategy.job-total }}
+        run: |
+          specs=$(npx tsx scripts/cypressSpecsForShard.ts)
+          npm run cypress:test -- --spec "$specs"
 
       - name: Authenticate to Google Cloud
         if: failure()
@@ -168,7 +165,7 @@ jobs:
         run: npm run cypress:upload:screenshots
         env:
           GCS_CI_ARTIFACTS_BUCKET: ${{ vars.GCS_CI_ARTIFACTS_BUCKET }}
-          CYPRESS_SHARD: ${{ matrix.name }}
+          CYPRESS_SHARD: ${{ matrix.shard }}
 
       - name: Stop and remove Postgres
         if: always()
@@ -177,7 +174,7 @@ jobs:
           docker rm postgres
 
   # Keep a stable check name for branch protection. Matrix jobs report as
-  # "Cypress (navigation-theme)", etc.
+  # "Cypress (1)", "Cypress (2)", etc.
   integration-test:
     needs: [build, cypress]
     if: always()
