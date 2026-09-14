@@ -1,7 +1,7 @@
 name: Integration Test
 
 # Runs Cypress against a locally built app and a throwaway Postgres container.
-# Specs are split round-robin across runners; each spec logs in as its own user.
+# Specs are packed by estimated weight across runners; each spec logs in as its own user.
 # Does not deploy anything.
 
 on:
@@ -60,7 +60,7 @@ jobs:
         run: npm run build
 
       - name: Upload Next.js build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: nextjs-build
           include-hidden-files: true
@@ -73,18 +73,44 @@ jobs:
             !.next/standalone
             !.next/standalone/**
 
-  # Each shard gets its own runner and Postgres, and reuses the shared Next.js
-  # build. Spec files are assigned round-robin; account specs use per-file users.
+  # Discover spec groups while Next.js compiles. Job names come from spec paths.
+  cypress-plan:
+    name: Plan Cypress shards
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: ".nvmrc"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Pack Cypress specs
+        id: plan
+        run: |
+          {
+            echo "matrix<<EOF"
+            npx tsx scripts/cypressSpecsForShard.ts --matrix
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+  # Each group gets its own runner and Postgres, and reuses the shared Next.js build.
   cypress:
-    name: Cypress (${{ matrix.shard }})
-    needs: build
+    name: Cypress (${{ matrix.name }})
+    needs: [build, cypress-plan]
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
-      # Values must be 1..N consecutive; length of this list is the shard count.
-      matrix:
-        shard: [1, 2, 3]
+      matrix: ${{ fromJSON(needs.cypress-plan.outputs.matrix) }}
 
     permissions:
       contents: read
@@ -106,7 +132,7 @@ jobs:
       # `.next` folder onto the destination, which would overwrite package.json
       # with Next's generated `.next/package.json` (no scripts).
       - name: Download Next.js build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: nextjs-build
           path: ${{ runner.temp }}/nextjs-build
@@ -145,12 +171,7 @@ jobs:
           timeout 60s bash -c 'until curl -sf -o /dev/null http://localhost:3000; do sleep 1; done'
 
       - name: Run Cypress tests
-        env:
-          SHARD_INDEX: ${{ matrix.shard }}
-          SHARD_COUNT: ${{ strategy.job-total }}
-        run: |
-          specs=$(npx tsx scripts/cypressSpecsForShard.ts)
-          npm run cypress:test -- --spec "$specs"
+        run: npm run cypress:test -- --spec "${{ matrix.spec }}"
 
       - name: Authenticate to Google Cloud
         if: failure()
@@ -165,7 +186,7 @@ jobs:
         run: npm run cypress:upload:screenshots
         env:
           GCS_CI_ARTIFACTS_BUCKET: ${{ vars.GCS_CI_ARTIFACTS_BUCKET }}
-          CYPRESS_SHARD: ${{ matrix.shard }}
+          CYPRESS_SHARD: ${{ matrix.name }}
 
       - name: Stop and remove Postgres
         if: always()
@@ -174,9 +195,9 @@ jobs:
           docker rm postgres
 
   # Keep a stable check name for branch protection. Matrix jobs report as
-  # "Cypress (1)", "Cypress (2)", etc.
+  # "Cypress (account/skills)", etc.
   integration-test:
-    needs: [build, cypress]
+    needs: [build, cypress-plan, cypress]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -184,6 +205,10 @@ jobs:
         run: |
           if [ "${{ needs.build.result }}" != "success" ]; then
             echo "Build: ${{ needs.build.result }}"
+            exit 1
+          fi
+          if [ "${{ needs.cypress-plan.result }}" != "success" ]; then
+            echo "Cypress plan: ${{ needs.cypress-plan.result }}"
             exit 1
           fi
           if [ "${{ needs.cypress.result }}" != "success" ]; then
