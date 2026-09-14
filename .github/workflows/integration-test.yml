@@ -37,11 +37,48 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
+  # One production build for the whole workflow. Matrix shards copy this
+  # artifact rather than compiling Next.js three times.
+  build:
+    name: Build Next.js
+    runs-on: ubuntu-latest
+    # No database during compile; same as the Cloud Run image build.
+    env:
+      DATABASE_URL: ""
+      CYPRESS_INSTALL_BINARY: 0
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - uses: ./.github/actions/setup-dependencies
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Upload Next.js build
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextjs-build
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+          path: |
+            .next
+            !.next/cache
+            !.next/cache/**
+            !.next/standalone
+            !.next/standalone/**
+
   # Account specs share one Cypress user and mutate the same DB, so they cannot
-  # run concurrently on one app/database. Each shard gets its own runner,
-  # Postgres, and Next.js build.
+  # run concurrently on one app/database. Each shard gets its own runner and
+  # Postgres, and reuses the shared Next.js build.
   cypress:
     name: Cypress (${{ matrix.name }})
+    needs: build
     runs-on: ubuntu-latest
 
     strategy:
@@ -66,29 +103,36 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - uses: ./.github/actions/setup-dependencies
-
-      # Spin up a local Postgres instance.
       - name: Start Postgres
         run:
           docker run --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e
           POSTGRES_DB=ampdresume -p 5432:5432 -d postgres:16-alpine
 
-      # Wait for Postgres to be ready
+      - uses: ./.github/actions/setup-dependencies
+
+      - name: Download Next.js build
+        uses: actions/download-artifact@v4
+        with:
+          name: nextjs-build
+
+      - name: Restore prebuild outputs
+        run: npm run prebuild
+
       - name: Wait for Postgres to be ready
         run: |
           echo "Waiting for Postgres to be ready..."
           timeout 30s bash -c 'until pg_isready -h localhost -p 5432 -U postgres; do sleep 1; done'
           echo "Postgres is ready!"
 
-      - name: Seed data
-        run: npm run prisma:migrate && npm run prisma:seed
-
-      - name: Build Next.js app
-        run: npm run build
+      - name: Migrate and seed Cypress data
+        run: npm run prisma:migrate && npm run prisma:seed:cypress
 
       - name: Start Next.js app
         run: npm start &
+
+      - name: Wait for Next.js
+        run:
+          timeout 60s bash -c 'until curl -sf -o /dev/null http://localhost:3000; do sleep 1; done'
 
       - name: Run Cypress tests
         run: npm run cypress:test -- --spec "${{ matrix.spec }}"
@@ -117,12 +161,16 @@ jobs:
   # Keep a stable check name for branch protection. Matrix jobs report as
   # "Cypress (navigation-theme)", etc.
   integration-test:
-    needs: cypress
+    needs: [build, cypress]
     if: always()
     runs-on: ubuntu-latest
     steps:
       - name: All Cypress shards passed
         run: |
+          if [ "${{ needs.build.result }}" != "success" ]; then
+            echo "Build: ${{ needs.build.result }}"
+            exit 1
+          fi
           if [ "${{ needs.cypress.result }}" != "success" ]; then
             echo "Cypress shards: ${{ needs.cypress.result }}"
             exit 1
