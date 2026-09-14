@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import { AccordionSummaryContent } from "../../components/AccordionSummaryContent";
@@ -52,18 +52,17 @@ export const ExtractedEducation = ({
     [education, setEducation],
   );
 
-  // Check for any education entries with missing dateAwarded
-  const hasDateErrors = education.some((edu) => !edu.dateAwarded);
-
-  // Expand the first education entry with a missing dateAwarded
+  // Expand the first incomplete entry once on load. Do not re-run when the user
+  // edits dates — DatePicker updates would otherwise steal the open accordion.
+  const hasAutoExpanded = useRef(false);
   useEffect(() => {
-    if (hasDateErrors) {
-      const index = education.findIndex((edu) => !edu.dateAwarded);
-      if (index !== -1) {
-        setExpandedEducation(`education-${index}`);
-      }
+    if (hasAutoExpanded.current) return;
+    const index = education.findIndex((edu) => !edu.dateAwarded);
+    if (index !== -1) {
+      setExpandedEducation(`education-${index}`);
+      hasAutoExpanded.current = true;
     }
-  }, [education, hasDateErrors]);
+  }, [education]);
 
   return (
     <Box sx={{ mb: 4 }}>

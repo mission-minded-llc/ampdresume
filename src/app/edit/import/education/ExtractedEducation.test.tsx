@@ -1,9 +1,11 @@
 import dayjs from "dayjs";
+import { useState } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { ExtractedDataProvider } from "../ExtractedDataContext";
 import { ExtractedEducation } from "./ExtractedEducation";
+import { Education } from "./types";
 import { expect } from "@jest/globals";
 
 // Mock the ExtractedDataContext
@@ -92,5 +94,59 @@ describe("ExtractedEducation", () => {
     renderComponent([{ school: "", degree: "Test Degree", dateAwarded: "" }]);
 
     expect(screen.getAllByText("Unnamed School").length).toBeGreaterThan(0);
+  });
+
+  it("auto-expands the first education entry with a missing date awarded", () => {
+    renderComponent([
+      { school: "Test University", degree: "Bachelor of Science", dateAwarded: "" },
+    ]);
+
+    expect(screen.getByRole("textbox", { name: "Institution" })).toBeInTheDocument();
+  });
+
+  it("does not close the accordion when date awarded changes", () => {
+    const TestHarness = () => {
+      const [education, setEducation] = useState<Education[]>([
+        { school: "First University", degree: "BS", dateAwarded: "" },
+        { school: "Second University", degree: "MA", dateAwarded: "2022-06-20T00:00:00.000Z" },
+      ]);
+
+      return (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <button
+            type="button"
+            onClick={() =>
+              setEducation((current) =>
+                current.map((edu, index) =>
+                  index === 1 ? { ...edu, dateAwarded: "2023-01-01T00:00:00.000Z" } : edu,
+                ),
+              )
+            }
+          >
+            Update date
+          </button>
+          <ExtractedEducation education={education} setEducation={setEducation} />
+        </LocalizationProvider>
+      );
+    };
+
+    render(<TestHarness />);
+
+    fireEvent.click(screen.getAllByTestId("education-accordion-1")[0]);
+    expect(screen.getAllByTestId("education-accordion-1")[0]).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Update date" }));
+
+    expect(screen.getAllByTestId("education-accordion-1")[0]).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+    expect(screen.getAllByTestId("education-accordion-0")[0]).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
   });
 });

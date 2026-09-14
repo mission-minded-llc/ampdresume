@@ -23,6 +23,16 @@ export const LITERARY_DEMO_GROUPS: LiteraryDemoGroup[] = [
       { slug: "james-moriarty", name: "James Moriarty", title: "Consulting Criminal" },
       { slug: "arsene-lupin", name: "Arsène Lupin", title: "Gentleman Burglar" },
       { slug: "sam-spade", name: "Sam Spade", title: "Private Detective" },
+      { slug: "john-thorndyke", name: "John Evelyn Thorndyke", title: "Medico-legal Expert" },
+    ],
+  },
+  {
+    id: "legal",
+    label: "Legal",
+    blurb: "A solicitor's file, a Venetian bond, and the letter of the law.",
+    characters: [
+      { slug: "jonathan-harker", name: "Jonathan Harker", title: "Solicitor of Exeter" },
+      { slug: "portia", name: "Portia", title: "Advocate of Belmont" },
     ],
   },
   {
@@ -35,6 +45,7 @@ export const LITERARY_DEMO_GROUPS: LiteraryDemoGroup[] = [
       { slug: "henry-jekyll", name: "Henry Jekyll", title: "Physician · Dual identity" },
       { slug: "griffin", name: "Griffin", title: "Invisible Man" },
       { slug: "moreau", name: "Doctor Moreau", title: "Island Physiologist" },
+      { slug: "abraham-van-helsing", name: "Abraham Van Helsing", title: "M.D., D.Ph., D.Lit." },
     ],
   },
   {
@@ -43,6 +54,7 @@ export const LITERARY_DEMO_GROUPS: LiteraryDemoGroup[] = [
     blurb: "Submarines, wagers, prisons, and a white whale.",
     characters: [
       { slug: "captain-nemo", name: "Captain Nemo", title: "Commander of the Nautilus" },
+      { slug: "cyrus-smith", name: "Cyrus Smith", title: "Engineer of Lincoln Island" },
       { slug: "phileas-fogg", name: "Phileas Fogg", title: "Gentleman of the Reform Club" },
       { slug: "edmond-dantes", name: "Edmond Dantès", title: "Count of Monte Cristo" },
       { slug: "jean-valjean", name: "Jean Valjean", title: "Monsieur Madeleine" },
@@ -57,6 +69,7 @@ export const LITERARY_DEMO_GROUPS: LiteraryDemoGroup[] = [
       { slug: "captain-ahab", name: "Captain Ahab", title: "Master of the Pequod" },
       { slug: "long-john-silver", name: "Long John Silver", title: "Sea-cook · Pirate" },
       { slug: "cyrano-de-bergerac", name: "Cyrano de Bergerac", title: "Cadet · Poet" },
+      { slug: "time-traveller", name: "The Time Traveller", title: "Independent Inventor" },
     ],
   },
   {

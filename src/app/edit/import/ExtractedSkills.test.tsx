@@ -8,13 +8,12 @@ jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
 }));
 
-jest.mock("../skills/SkillItem", () => ({
-  SkillItem: ({ skill }: { skill: { skill: Skill; id: string; userId: string; icon: null } }) => (
-    <div data-testid={`skill-item-${skill.skill.id}`}>{skill.skill.name}</div>
-  ),
-}));
-
 import { useSession } from "next-auth/react";
+
+const applySkillsUpdate = (setSkills: jest.Mock, currentSkills: Skill[]) => {
+  const update = setSkills.mock.calls[setSkills.mock.calls.length - 1][0];
+  return typeof update === "function" ? update(currentSkills) : update;
+};
 
 describe("ExtractedSkills", () => {
   const mockSkills: Skill[] = [
@@ -40,11 +39,11 @@ describe("ExtractedSkills", () => {
     it("renders correctly with skills", () => {
       render(<ExtractedSkills skills={mockSkills} setSkills={mockSetSkills} />);
 
-      expect(screen.getByText("Skills")).toBeInTheDocument();
-      expect(screen.getByText(/Skills can be edited after saving/)).toBeInTheDocument();
-      expect(screen.getByTestId("skill-item-skill-1")).toBeInTheDocument();
-      expect(screen.getByTestId("skill-item-skill-2")).toBeInTheDocument();
-      expect(screen.getByTestId("skill-item-skill-3")).toBeInTheDocument();
+      expect(screen.getByText("Skills (3)")).toBeInTheDocument();
+      expect(screen.getByText(/Click the × on a skill to remove it/)).toBeInTheDocument();
+      expect(screen.getByTestId("skill-chip-skill-1")).toBeInTheDocument();
+      expect(screen.getByTestId("skill-chip-skill-2")).toBeInTheDocument();
+      expect(screen.getByTestId("skill-chip-skill-3")).toBeInTheDocument();
     });
 
     it("renders empty state when no skills", () => {
@@ -54,13 +53,11 @@ describe("ExtractedSkills", () => {
       expect(screen.getByText("No skills found.")).toBeInTheDocument();
     });
 
-    it("renders note about editing skills", () => {
+    it("renders note about removing and adding skills", () => {
       render(<ExtractedSkills skills={mockSkills} setSkills={mockSetSkills} />);
 
-      expect(screen.getByText(/Skills can be edited after saving/)).toBeInTheDocument();
-      expect(
-        screen.getByText(/You can also add new skills by clicking the "Add Skill" button/),
-      ).toBeInTheDocument();
+      expect(screen.getByText(/sorted A–Z/)).toBeInTheDocument();
+      expect(screen.getByText(/You can add more after saving/)).toBeInTheDocument();
     });
 
     it("renders delete buttons for each skill", () => {
@@ -69,6 +66,17 @@ describe("ExtractedSkills", () => {
       expect(screen.getByTestId("trash-icon-skill-1")).toBeInTheDocument();
       expect(screen.getByTestId("trash-icon-skill-2")).toBeInTheDocument();
       expect(screen.getByTestId("trash-icon-skill-3")).toBeInTheDocument();
+    });
+
+    it("sorts skills alphabetically", () => {
+      render(<ExtractedSkills skills={mockSkills} setSkills={mockSetSkills} />);
+
+      const chips = screen.getAllByTestId(/skill-chip-/);
+      expect(chips.map((chip) => chip.getAttribute("data-testid"))).toEqual([
+        "skill-chip-skill-1",
+        "skill-chip-skill-3",
+        "skill-chip-skill-2",
+      ]);
     });
   });
 
@@ -92,7 +100,7 @@ describe("ExtractedSkills", () => {
 
       render(<ExtractedSkills skills={mockSkills} setSkills={mockSetSkills} />);
 
-      expect(screen.getByTestId("skill-item-skill-1")).toBeInTheDocument();
+      expect(screen.getByTestId("skill-chip-skill-1")).toBeInTheDocument();
     });
   });
 
@@ -100,12 +108,11 @@ describe("ExtractedSkills", () => {
     it("deletes a skill when delete button is clicked", async () => {
       render(<ExtractedSkills skills={mockSkills} setSkills={mockSetSkills} />);
 
-      const deleteButton = screen.getByTestId("trash-icon-skill-1");
-      fireEvent.click(deleteButton);
+      fireEvent.click(screen.getByTestId("trash-icon-skill-1"));
 
       await waitFor(() => {
         expect(mockSetSkills).toHaveBeenCalledTimes(1);
-        expect(mockSetSkills).toHaveBeenCalledWith([
+        expect(applySkillsUpdate(mockSetSkills, mockSkills)).toEqual([
           { id: "skill-2", name: "TypeScript", icon: null },
           { id: "skill-3", name: "React", icon: null },
         ]);
@@ -115,11 +122,10 @@ describe("ExtractedSkills", () => {
     it("deletes the correct skill when multiple skills exist", async () => {
       render(<ExtractedSkills skills={mockSkills} setSkills={mockSetSkills} />);
 
-      const deleteButton = screen.getByTestId("trash-icon-skill-2");
-      fireEvent.click(deleteButton);
+      fireEvent.click(screen.getByTestId("trash-icon-skill-2"));
 
       await waitFor(() => {
-        expect(mockSetSkills).toHaveBeenCalledWith([
+        expect(applySkillsUpdate(mockSetSkills, mockSkills)).toEqual([
           { id: "skill-1", name: "JavaScript", icon: null },
           { id: "skill-3", name: "React", icon: null },
         ]);
@@ -130,11 +136,10 @@ describe("ExtractedSkills", () => {
       const singleSkill = [mockSkills[0]];
       render(<ExtractedSkills skills={singleSkill} setSkills={mockSetSkills} />);
 
-      const deleteButton = screen.getByTestId("trash-icon-skill-1");
-      fireEvent.click(deleteButton);
+      fireEvent.click(screen.getByTestId("trash-icon-skill-1"));
 
       await waitFor(() => {
-        expect(mockSetSkills).toHaveBeenCalledWith([]);
+        expect(applySkillsUpdate(mockSetSkills, singleSkill)).toEqual([]);
       });
     });
 
@@ -143,19 +148,16 @@ describe("ExtractedSkills", () => {
         <ExtractedSkills skills={mockSkills} setSkills={mockSetSkills} />,
       );
 
-      const deleteButton1 = screen.getByTestId("trash-icon-skill-1");
-      fireEvent.click(deleteButton1);
+      fireEvent.click(screen.getByTestId("trash-icon-skill-1"));
 
       await waitFor(() => {
         expect(mockSetSkills).toHaveBeenCalledTimes(1);
       });
 
-      // Update the component with the new skills array
       const remainingSkills = mockSkills.slice(1);
       rerender(<ExtractedSkills skills={remainingSkills} setSkills={mockSetSkills} />);
 
-      const deleteButton2 = screen.getByTestId("trash-icon-skill-2");
-      fireEvent.click(deleteButton2);
+      fireEvent.click(screen.getByTestId("trash-icon-skill-2"));
 
       await waitFor(() => {
         expect(mockSetSkills).toHaveBeenCalledTimes(2);
@@ -166,8 +168,6 @@ describe("ExtractedSkills", () => {
   describe("Component memoization", () => {
     it("is memoized", () => {
       expect(ExtractedSkills).toBeDefined();
-      // React.memo adds a displayName, but we can verify it's a memo component
-      // by checking it doesn't re-render unnecessarily (tested through behavior)
     });
   });
 
@@ -180,8 +180,8 @@ describe("ExtractedSkills", () => {
 
       render(<ExtractedSkills skills={specialSkills} setSkills={mockSetSkills} />);
 
-      expect(screen.getByTestId("skill-item-skill-1")).toBeInTheDocument();
-      expect(screen.getByTestId("skill-item-skill-2")).toBeInTheDocument();
+      expect(screen.getByTestId("skill-chip-skill-1")).toBeInTheDocument();
+      expect(screen.getByTestId("skill-chip-skill-2")).toBeInTheDocument();
     });
 
     it("handles skills with very long names", () => {
@@ -189,7 +189,7 @@ describe("ExtractedSkills", () => {
 
       render(<ExtractedSkills skills={longNameSkill} setSkills={mockSetSkills} />);
 
-      expect(screen.getByTestId("skill-item-skill-1")).toBeInTheDocument();
+      expect(screen.getByTestId("skill-chip-skill-1")).toBeInTheDocument();
     });
 
     it("handles skills with null icon", () => {
@@ -197,7 +197,7 @@ describe("ExtractedSkills", () => {
 
       render(<ExtractedSkills skills={skillsWithNullIcon} setSkills={mockSetSkills} />);
 
-      expect(screen.getByTestId("skill-item-skill-1")).toBeInTheDocument();
+      expect(screen.getByTestId("skill-chip-skill-1")).toBeInTheDocument();
     });
   });
 });
