@@ -524,4 +524,129 @@ export const gothic = [
       },
     ],
   }),
+
+  defineCharacter({
+    slug: "abraham-van-helsing",
+    name: "Abraham Van Helsing",
+    title: "M.D., D.Ph., D.Lit.",
+    location: "Amsterdam, Netherlands",
+    siteDescription:
+      "Amsterdam professor called to London for a case of wasting illness that was not anaemia. Philosopher, metaphysician, and the only consultant who packed garlic with the lancet.",
+    affiliation: "hero",
+    died: 1897,
+    education: [
+      {
+        school: "Dutch medical and philosophical faculties",
+        degree: "M.D., D.Ph., D.Lit.",
+        dateAwarded: "1865-06-01",
+      },
+    ],
+    certifications: [
+      {
+        name: "Professor of Medicine",
+        issuer: "University of Amsterdam",
+        dateAwarded: "1878-01-01",
+        credentialId: "AMSTERDAM-VH",
+      },
+    ],
+    skills: [
+      {
+        name: "Medical Practice",
+        description:
+          "Seward's old teacher. Transfused Lucy from Holmwood, Seward, Morris, and himself when the blood kept vanishing.",
+        yearStarted: 1865,
+      },
+      {
+        name: "Scientific Research",
+        description:
+          "An open mind and an iron nerve, in Seward's phrase: tested the case against both the laboratory and the folklore.",
+        yearStarted: 1865,
+      },
+      {
+        name: "Philosophy",
+        description:
+          "Metaphysician as much as physician. Treated the Un-Dead as a problem of will and soul, not only of pulse.",
+        yearStarted: 1860,
+      },
+      {
+        name: "Investigation",
+        description:
+          "Read Harker's journal, Lucy's letters, and the shipping news until the Count's houses and boxes made a map.",
+        yearStarted: 1893,
+      },
+      {
+        name: "Field Medicine",
+        description:
+          "Garlic flowers, the Host, and a bedside vigil. The treatments were medieval; the case notes were not.",
+        yearStarted: 1893,
+      },
+      {
+        name: "Languages",
+        description:
+          "Dutch, English, German, and Latin enough for the rites. His English arrived with the work, not before it.",
+        yearStarted: 1860,
+      },
+    ],
+    companies: [
+      {
+        name: "University of Amsterdam",
+        description:
+          "Chair of medicine and a reputation Seward still quoted. The London work was a consultation that would not stay in the ward.",
+        location: "Amsterdam, Netherlands",
+        startDate: "1878-01-01",
+        positions: [
+          {
+            title: "Professor of Medicine",
+            startDate: "1878-01-01",
+            projects: [
+              {
+                name: "The Amsterdam chair",
+                description:
+                  "Taught Seward, published, and kept the kind of library that later explained a patient who did not stay dead.",
+                skills: ["Medical Practice", "Scientific Research", "Philosophy"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "The Westenra consultation",
+        description:
+          "Called by Seward in August 1893 for Lucy Westenra. The anaemia was a feeding; the funeral was not the end of the case.",
+        location: "London / Whitby / Transylvania",
+        startDate: "1893-08-01",
+        endDate: "1893-11-06",
+        positions: [
+          {
+            title: "Consulting physician",
+            startDate: "1893-08-01",
+            endDate: "1893-11-06",
+            projects: [
+              {
+                name: "Lucy Westenra",
+                description:
+                  "Four transfusions, the garlic, and a tomb in Hampstead. Van Helsing named what Seward would not, then finished the work in the vault.",
+                skills: ["Medical Practice", "Field Medicine", "Languages"],
+              },
+              {
+                name: "The Count's file",
+                description:
+                  "Compiled the journals into one case, then led Harker, Seward, Holmwood, and Morris from Carfax to the castle road.",
+                skills: ["Investigation", "Scientific Research", "Philosophy"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    featuredProjects: [
+      {
+        name: "Dracula (1897)",
+        description:
+          "<p>Stoker's Van Helsing is a doctor of medicine, philosophy, and letters — a consultant, not a film's action lead. The 1897 text is the source; later stagings are not.</p>",
+        links: [{ label: "Project Gutenberg", url: "https://www.gutenberg.org/ebooks/345" }],
+        skills: ["Medical Practice", "Investigation", "Philosophy"],
+      },
+    ],
+  }),
 ];

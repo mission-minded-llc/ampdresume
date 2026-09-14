@@ -334,9 +334,7 @@ export const HomePageView = ({ userName }: { userName: string | null }) => {
             </Typography>
             <Typography>
               Peek at the founder&apos;s resume{" "}
-              <MuiLink href="/r/missionmike" target="_blank">
-                here
-              </MuiLink>
+              <MuiLink href="/r/missionmike">here</MuiLink>
               .
             </Typography>
           </Box>
@@ -408,7 +406,6 @@ export const HomePageView = ({ userName }: { userName: string | null }) => {
                       >
                         <MuiLink
                           href={`/r/${character.slug}`}
-                          target="_blank"
                           aria-label={character.name}
                           sx={{
                             display: "block",
