@@ -27,10 +27,14 @@ describe("HomePageView", () => {
       "#example-resumes",
     );
     expect(getByRole("button", { name: /Detectives/ })).toBeInTheDocument();
+    expect(getByRole("button", { name: /Legal/ })).toBeInTheDocument();
     expect(getByRole("link", { name: "Sherlock Holmes" })).toHaveAttribute(
       "href",
       "/r/sherlock-holmes",
     );
+    expect(getByRole("link", { name: "Sherlock Holmes" })).toHaveAttribute("target", "_self");
+    expect(getByRole("link", { name: "here" })).toHaveAttribute("href", "/r/missionmike");
+    expect(getByRole("link", { name: "here" })).toHaveAttribute("target", "_self");
     expect(container.querySelector('a[href="/r/michael-dinerstein"]')).not.toBeInTheDocument();
     expect(getByRole("link", { name: "theme contribution guide" })).toHaveAttribute(
       "href",

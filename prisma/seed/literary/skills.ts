@@ -10,6 +10,7 @@ export type LiterarySkillDefinition = {
  */
 export const LITERARY_SKILLS: LiterarySkillDefinition[] = [
   { name: "Accounting", icon: "mdi:calculator-variant" },
+  { name: "Advocacy", icon: "mdi:podium" },
   { name: "Anatomy", icon: "mdi:human" },
   { name: "Archery", icon: "mdi:bow-arrow" },
   { name: "Assassination", icon: "mdi:target-account" },
@@ -38,6 +39,7 @@ export const LITERARY_SKILLS: LiterarySkillDefinition[] = [
   { name: "Fencing", icon: "mdi:fencing" },
   { name: "Field Medicine", icon: "mdi:medical-bag" },
   { name: "Forensic Chemistry", icon: "mdi:test-tube" },
+  { name: "Forensic Medicine", icon: "mdi:fingerprint" },
   { name: "Forestry", icon: "mdi:forest" },
   { name: "Forgery", icon: "mdi:file-document-edit" },
   { name: "Galvanism", icon: "mdi:lightning-bolt" },
@@ -92,6 +94,7 @@ export const LITERARY_SKILLS: LiterarySkillDefinition[] = [
   { name: "Survival", icon: "mdi:campfire" },
   { name: "Swordsmanship", icon: "mdi:sword" },
   { name: "Tactical Leadership", icon: "mdi:strategy" },
+  { name: "Time Travel", icon: "mdi:clock-fast" },
   { name: "Transformation", icon: "mdi:molecule" },
   { name: "Translation", icon: "mdi:book-alphabet" },
   { name: "Treasure Hunting", icon: "mdi:treasure-chest" },
