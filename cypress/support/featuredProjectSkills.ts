@@ -23,8 +23,9 @@ export function setupFeaturedProjectSkills(options?: { slug?: boolean }) {
     // Name is required; saving slug alone is a no-op and leaves /r/:slug empty.
     cy.get("input[name='name']").clear({ force: true }).type("Cypress Test User", { force: true });
     cy.get("input[name='slug']").clear({ force: true }).type(slug, { force: true });
+    cy.intercept("POST", "/api/account").as("saveAccount");
     cy.get("[data-testid='AccountFormSaveButton']").click();
-    cy.get("[data-testid=LoadingOverlay]").should("not.exist");
+    cy.wait("@saveAccount").its("response.statusCode").should("eq", 200);
     cy.reload();
     cy.get("input[name='slug']").should("have.value", slug);
   }
