@@ -110,10 +110,28 @@ jobs:
 
       - uses: ./.github/actions/setup-dependencies
 
+      # Unpack off to the side. download-artifact will flatten a single top-level
+      # `.next` folder onto the destination, which would overwrite package.json
+      # with Next's generated `.next/package.json` (no scripts).
       - name: Download Next.js build
         uses: actions/download-artifact@v4
         with:
           name: nextjs-build
+          path: ${{ runner.temp }}/nextjs-build
+
+      - name: Restore Next.js build
+        run: |
+          rm -rf .next
+          download="${{ runner.temp }}/nextjs-build"
+          if [ -f "$download/BUILD_ID" ]; then
+            mv "$download" .next
+          elif [ -f "$download/.next/BUILD_ID" ]; then
+            mv "$download/.next" .next
+          else
+            echo "Next.js build artifact is missing BUILD_ID" >&2
+            find "$download" -maxdepth 3 -print
+            exit 1
+          fi
 
       - name: Restore prebuild outputs
         run: npm run prebuild
