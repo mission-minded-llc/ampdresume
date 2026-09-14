@@ -62,7 +62,8 @@ const config = {
       TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@ampdresume.com",
     },
     chromeWebSecurity: false,
-    specPattern: "./cypress/**/*.cy.ts",
+    // Page objects live under cypress/pages/*.cy.ts and must not run as specs.
+    specPattern: "./cypress/integration/**/*.cy.ts",
   },
 };
 

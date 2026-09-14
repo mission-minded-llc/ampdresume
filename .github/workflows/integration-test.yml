@@ -1,6 +1,7 @@
 name: Integration Test
 
 # Runs Cypress against a locally built app and a throwaway Postgres container.
+# Specs are sharded across runners because account tests share one user/DB.
 # Does not deploy anything.
 
 on:
@@ -36,8 +37,25 @@ env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
-  integration-test:
+  # Account specs share one Cypress user and mutate the same DB, so they cannot
+  # run concurrently on one app/database. Each shard gets its own runner,
+  # Postgres, and Next.js build.
+  cypress:
+    name: Cypress (${{ matrix.name }})
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: navigation-theme
+            spec: >-
+              cypress/integration/navigation/**/*.cy.ts,cypress/integration/theme/**/*.cy.ts
+          - name: account-featured-skills
+            spec: cypress/integration/account/featuredProjectsSkills.cy.ts
+          - name: account-core
+            spec: >-
+              cypress/integration/account/experience.cy.ts,cypress/integration/account/skills.cy.ts,cypress/integration/account/certifications.cy.ts,cypress/integration/account/featuredProjects.cy.ts,cypress/integration/account/import.cy.ts,cypress/integration/account/profile.cy.ts
 
     permissions:
       contents: read
@@ -73,7 +91,7 @@ jobs:
         run: npm start &
 
       - name: Run Cypress tests
-        run: npm run cypress:test
+        run: npm run cypress:test -- --spec "${{ matrix.spec }}"
 
       - name: Authenticate to Google Cloud
         if: failure()
@@ -88,9 +106,25 @@ jobs:
         run: npm run cypress:upload:screenshots
         env:
           GCS_CI_ARTIFACTS_BUCKET: ${{ vars.GCS_CI_ARTIFACTS_BUCKET }}
+          CYPRESS_SHARD: ${{ matrix.name }}
 
       - name: Stop and remove Postgres
         if: always()
         run: |
           docker stop postgres
           docker rm postgres
+
+  # Keep a stable check name for branch protection. Matrix jobs report as
+  # "Cypress (navigation-theme)", etc.
+  integration-test:
+    needs: cypress
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: All Cypress shards passed
+        run: |
+          if [ "${{ needs.cypress.result }}" != "success" ]; then
+            echo "Cypress shards: ${{ needs.cypress.result }}"
+            exit 1
+          fi
+          echo "All Cypress shards passed."
