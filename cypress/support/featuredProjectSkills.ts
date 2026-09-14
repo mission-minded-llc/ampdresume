@@ -20,9 +20,13 @@ export function setupFeaturedProjectSkills(options?: { slug?: boolean }) {
     const slug = cypressSpecSlug(Cypress.spec.relative);
     cy.visit(`${baseUrl()}/edit/profile`);
     cy.closeMessageDialog({ required: true });
-    cy.get("input[name='slug']").clear({ force: true }).type(slug);
+    // Name is required; saving slug alone is a no-op and leaves /r/:slug empty.
+    cy.get("input[name='name']").clear({ force: true }).type("Cypress Test User", { force: true });
+    cy.get("input[name='slug']").clear({ force: true }).type(slug, { force: true });
     cy.get("[data-testid='AccountFormSaveButton']").click();
-    cy.wait(500);
+    cy.get("[data-testid=LoadingOverlay]").should("not.exist");
+    cy.reload();
+    cy.get("input[name='slug']").should("have.value", slug);
   }
 
   cy.visit(`${baseUrl()}/edit/skills`);

@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import { cypressSpecSlug } from "../../../src/lib/cypressTestAccount";
 import {
   clearFeaturedProjectSkills,
   featuredProjectName,
@@ -81,23 +82,19 @@ describe("Featured project skills display", () => {
       }
     });
 
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
-    cy.get("input[name='slug']")
-      .invoke("val")
-      .then((slug) => {
-        cy.visit(`${Cypress.expose("BASE_URL") || ""}/r/${slug}`);
-        cy.contains("Featured Projects", { timeout: 5000 }).should("be.visible");
-        cy.contains(featuredProjectName).should("be.visible");
-        cy.contains(featuredProjectName)
-          .parent()
-          .then(($parent) => {
-            const parentText = $parent.text();
-            expect(
-              parentText.includes(featuredSkill1) ||
-                parentText.includes(featuredSkill2) ||
-                parentText.includes(featuredSkill3),
-            ).to.be.true;
-          });
+    const slug = cypressSpecSlug(Cypress.spec.relative);
+    cy.visit(`${Cypress.expose("BASE_URL") || ""}/r/${slug}`);
+    cy.contains("Featured Projects", { timeout: 5000 }).should("be.visible");
+    cy.contains(featuredProjectName).should("be.visible");
+    cy.contains(featuredProjectName)
+      .parent()
+      .then(($parent) => {
+        const parentText = $parent.text();
+        expect(
+          parentText.includes(featuredSkill1) ||
+            parentText.includes(featuredSkill2) ||
+            parentText.includes(featuredSkill3),
+        ).to.be.true;
       });
   });
 
