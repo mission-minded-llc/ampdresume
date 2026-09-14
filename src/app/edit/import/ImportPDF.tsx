@@ -2,7 +2,6 @@
 
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import * as Sentry from "@sentry/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
@@ -49,14 +48,23 @@ export const ImportPDF = () => {
     data: parsedResumeAi,
     isPending,
     isError,
+    error: parseError,
   } = useQuery({
     enabled: shouldFetchResume,
-    queryKey: ["parsedResumeAi"],
+    queryKey: ["parsedResumeAi", extractedText],
+    retry: false,
     queryFn: async () => {
       if (!session?.user?.id || !extractedText) return null;
       return await getParsedResumeAi(session.user.id, extractedText);
     },
   });
+
+  const queryError =
+    isError && parseError instanceof Error
+      ? parseError.message
+      : isError
+        ? "Failed to analyze the resume. Please try again."
+        : null;
 
   const extractTextFromPDF = async (file: PDFFile): Promise<void> => {
     if (!pdfjsLib) {
@@ -110,6 +118,7 @@ export const ImportPDF = () => {
 
   const handleFileUpload = (event: FileUploadEvent): void => {
     const file = event.target.files[0];
+    setError(null);
     if (file && file.type === "application/pdf") {
       extractTextFromPDF(file as PDFFile);
     } else {
@@ -127,11 +136,10 @@ export const ImportPDF = () => {
       />
       <PageHeading />
       <UploadPDF onFileUpload={handleFileUpload} />
-      {isError && <Typography>Error loading resume</Typography>}
       {!analyzing && (
         <ExtractedInformation
           data={parsedResumeAi || null}
-          error={error}
+          error={queryError || error}
           onSavePendingChange={setSavePending}
         />
       )}

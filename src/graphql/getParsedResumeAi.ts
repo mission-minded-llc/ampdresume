@@ -4,6 +4,27 @@ import * as Sentry from "@sentry/react";
 import { ParsedResumeData } from "@/app/edit/import/types";
 import { getApolloClient } from "@/lib/apolloClient";
 
+const getClientParseErrorMessage = (error: unknown): string => {
+  if (error && typeof error === "object") {
+    const graphQLErrors =
+      "graphQLErrors" in error
+        ? (error as { graphQLErrors: { message?: string }[] }).graphQLErrors
+        : "errors" in error
+          ? (error as { errors: { message?: string }[] }).errors
+          : null;
+
+    if (Array.isArray(graphQLErrors) && graphQLErrors[0]?.message) {
+      return graphQLErrors[0].message;
+    }
+  }
+
+  if (error instanceof Error && error.message) {
+    return error.message;
+  }
+
+  return "Failed to parse resume text";
+};
+
 export type ParsedResumeAi = {
   user: {
     name: string;
@@ -66,10 +87,12 @@ export const getParsedResumeAi = async (
     })
     .catch((error: unknown) => {
       Sentry.captureException(error);
-      return { data: { parsedResumeAi: null } };
+      throw new Error(getClientParseErrorMessage(error));
     });
 
-  if (!data || !data.parsedResumeAi) return null;
+  if (!data || !data.parsedResumeAi) {
+    throw new Error("Failed to parse resume text");
+  }
 
   // Transform the data to match ParsedResumeData structure
   return {
