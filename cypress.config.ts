@@ -57,12 +57,7 @@ const config = {
       return filePlugin(on, config);
     },
     baseUrl: "http://localhost:3000",
-    expose: {
-      BASE_URL: process.env.CYPRESS_BASE_URL || "http://localhost:3000",
-      TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@ampdresume.com",
-    },
     chromeWebSecurity: false,
-    // Page objects live under cypress/pages/*.cy.ts and must not run as specs.
     specPattern: "./cypress/integration/**/*.cy.ts",
   },
 };

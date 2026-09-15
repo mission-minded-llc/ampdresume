@@ -4,21 +4,17 @@
  * The Featured Projects section allows users to add, edit, and delete featured projects.
  */
 describe("Featured Projects Section", () => {
-  before(() => {
+  beforeEach(() => {
     cy.loginWithMagicLink();
   });
 
-  beforeEach(() => {
-    cy.setNextAuthCookies();
-  });
-
   it("should access protected featured projects section", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit("/edit/featured-projects");
     cy.contains("Your Featured Projects").should("be.visible");
   });
 
   it("should add a featured project", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit("/edit/featured-projects");
 
     const projectName = "E-Commerce Platform";
     const linkLabel = "GitHub";
@@ -46,7 +42,7 @@ describe("Featured Projects Section", () => {
   });
 
   it("should add a featured project without optional fields", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit("/edit/featured-projects");
 
     const projectName = "Portfolio Website";
 
@@ -58,7 +54,7 @@ describe("Featured Projects Section", () => {
   });
 
   it("should edit a featured project", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit("/edit/featured-projects");
 
     const projectName = "E-Commerce Platform";
     const updatedProjectName = "E-Commerce Platform v2";
@@ -83,7 +79,7 @@ describe("Featured Projects Section", () => {
   });
 
   it("should delete a featured project", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit("/edit/featured-projects");
 
     const projectName = "E-Commerce Platform v2";
 
@@ -95,7 +91,7 @@ describe("Featured Projects Section", () => {
   });
 
   it("should delete a featured project without optional fields", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/featured-projects`);
+    cy.visit("/edit/featured-projects");
 
     const projectName = "Portfolio Website";
 

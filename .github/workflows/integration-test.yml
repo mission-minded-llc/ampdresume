@@ -1,7 +1,7 @@
 name: Integration Test
 
 # Runs Cypress against a locally built app and a throwaway Postgres container.
-# Specs are packed by estimated weight across runners; each spec logs in as its own user.
+# Specs are split by folder across four groups; each spec logs in as its own user.
 # Does not deploy anything.
 
 on:
@@ -10,6 +10,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+
+concurrency:
+  group: integration-test-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   DATABASE_URL: postgres://postgres:postgres@localhost:5432/ampdresume?schema=ampdresume
@@ -31,14 +35,12 @@ env:
   GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
   # Used by Sentry for error tracking.
   NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
-  # Specific for the integration test.
-  CYPRESS_TEST_EMAIL: test@ampdresume.com
   # For all AI integrations.
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
-  # One production build for the whole workflow. Matrix shards copy this
-  # artifact rather than compiling Next.js three times.
+  # One production build for the whole workflow. Matrix groups copy this
+  # artifact rather than compiling Next.js four times.
   build:
     name: Build Next.js
     runs-on: ubuntu-latest
@@ -73,44 +75,37 @@ jobs:
             !.next/standalone
             !.next/standalone/**
 
-  # Discover spec groups while Next.js compiles. Job names come from spec paths.
-  cypress-plan:
-    name: Plan Cypress shards
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.plan.outputs.matrix }}
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-
-      - uses: actions/setup-node@v5
-        with:
-          node-version-file: ".nvmrc"
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Pack Cypress specs
-        id: plan
-        run: |
-          {
-            echo "matrix<<EOF"
-            npx tsx scripts/cypressSpecsForShard.ts --matrix
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
-
   # Each group gets its own runner and Postgres, and reuses the shared Next.js build.
   cypress:
     name: Cypress (${{ matrix.name }})
-    needs: [build, cypress-plan]
+    needs: [build]
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
-      matrix: ${{ fromJSON(needs.cypress-plan.outputs.matrix) }}
+      matrix:
+        include:
+          - name: account
+            spec: cypress/integration/account/**/*.cy.ts
+          - name: featured-project-skills
+            spec: cypress/integration/featured-project-skills/**/*.cy.ts
+          - name: navigation
+            spec: cypress/integration/navigation/**/*.cy.ts
+          - name: theme
+            spec: cypress/integration/theme/**/*.cy.ts
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ampdresume
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 10s --health-timeout 5s
+          --health-retries 5
 
     permissions:
       contents: read
@@ -121,10 +116,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Start Postgres
-        run:
-          docker run --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e
-          POSTGRES_DB=ampdresume -p 5432:5432 -d postgres:16-alpine
+      - name: Cache Cypress binary
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - uses: ./.github/actions/setup-dependencies
 
@@ -154,14 +150,8 @@ jobs:
       - name: Restore prebuild outputs
         run: npm run prebuild
 
-      - name: Wait for Postgres to be ready
-        run: |
-          echo "Waiting for Postgres to be ready..."
-          timeout 30s bash -c 'until pg_isready -h localhost -p 5432 -U postgres; do sleep 1; done'
-          echo "Postgres is ready!"
-
       - name: Migrate and seed Cypress data
-        run: npm run prisma:migrate && npm run prisma:seed:cypress
+        run: npm run prisma:migrate:deploy && npm run prisma:seed:cypress
 
       - name: Start Next.js app
         run: npm start &
@@ -186,33 +176,16 @@ jobs:
         run: npm run cypress:upload:screenshots
         env:
           GCS_CI_ARTIFACTS_BUCKET: ${{ vars.GCS_CI_ARTIFACTS_BUCKET }}
-          CYPRESS_SHARD: ${{ matrix.name }}
-
-      - name: Stop and remove Postgres
-        if: always()
-        run: |
-          docker stop postgres
-          docker rm postgres
+          CYPRESS_GROUP: ${{ matrix.name }}
 
   # Keep a stable check name for branch protection. Matrix jobs report as
-  # "Cypress (account/skills)", etc.
+  # "Cypress (account)", "Cypress (navigation)", etc.
   integration-test:
-    needs: [build, cypress-plan, cypress]
+    needs: [build, cypress]
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: All Cypress shards passed
+      - name: All Cypress groups passed
         run: |
-          if [ "${{ needs.build.result }}" != "success" ]; then
-            echo "Build: ${{ needs.build.result }}"
-            exit 1
-          fi
-          if [ "${{ needs.cypress-plan.result }}" != "success" ]; then
-            echo "Cypress plan: ${{ needs.cypress-plan.result }}"
-            exit 1
-          fi
-          if [ "${{ needs.cypress.result }}" != "success" ]; then
-            echo "Cypress shards: ${{ needs.cypress.result }}"
-            exit 1
-          fi
-          echo "All Cypress shards passed."
+          test "${{ needs.build.result }}" = success
+          test "${{ needs.cypress.result }}" = success

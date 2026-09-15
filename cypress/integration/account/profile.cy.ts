@@ -11,21 +11,17 @@ describe("Profile Section", () => {
   const testSlug = cypressSpecSlug(Cypress.spec.relative);
   const saveButton = "[data-testid='AccountFormSaveButton']";
 
-  before(() => {
+  beforeEach(() => {
     cy.loginWithMagicLink();
   });
 
-  beforeEach(() => {
-    cy.setNextAuthCookies();
-  });
-
   it("should access protected profile section", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
+    cy.visit("/edit/profile");
     cy.contains("Profile").should("be.visible");
   });
 
   it("should populate profile data and save", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
+    cy.visit("/edit/profile");
 
     cy.closeMessageDialog({ required: true });
 
@@ -60,7 +56,7 @@ describe("Profile Section", () => {
   it("should encounter slug validation error", () => {
     const slugErrorMessage = "Slug must be alphanumeric and lowercase. Hyphens allowed.";
 
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
+    cy.visit("/edit/profile");
 
     cy.closeMessageDialog();
 
@@ -78,7 +74,7 @@ describe("Profile Section", () => {
   });
 
   it("should encounter email validation error", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
+    cy.visit("/edit/profile");
 
     cy.contains("Invalid email address").should("not.exist");
     cy.get("input[name='displayEmail']")
@@ -94,7 +90,7 @@ describe("Profile Section", () => {
   });
 
   it("should successfully delete account and redirect to homepage", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
+    cy.visit("/edit/profile");
 
     cy.contains("Profile").should("be.visible");
     cy.contains("General Information").should("be.visible");
@@ -115,10 +111,10 @@ describe("Profile Section", () => {
     cy.get("button").contains("Yes, Delete My Account").should("not.be.disabled").click();
 
     // Deleting the account will redirect to the homepage.
-    cy.url().should("eq", `${Cypress.expose("BASE_URL") || ""}/`);
+    cy.location("pathname").should("eq", "/");
 
     // Verify the user is no longer authenticated by trying to access a protected route.
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
+    cy.visit("/edit/profile");
     cy.url().should("not.include", "/edit/profile");
   });
 });

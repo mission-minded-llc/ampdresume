@@ -1,6 +1,6 @@
 /**
  * Cypress logs in as one user per spec file so specs can run in any order
- * (and in parallel shards) without sharing resume data.
+ * (and in parallel CI groups) without sharing resume data.
  *
  * Do not use plus-addressing (test+spec@...). `normalizeEmail` strips +tags,
  * so those addresses would collapse onto a single user.

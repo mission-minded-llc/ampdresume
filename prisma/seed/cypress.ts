@@ -7,7 +7,7 @@ import { logTitle } from "./helpers/util";
 /**
  * Published catalog skills that Cypress searches for. Keep in sync with
  * `cypress/integration/account/skills.cy.ts` and
- * `cypress/integration/account/featuredProjectsSkills.cy.ts`.
+ * `cypress/integration/featured-project-skills/`.
  *
  * Icons match `prisma/seed/skills.csv` so the selector looks the same as a
  * full local seed.

@@ -83,7 +83,7 @@ describe("Featured project skills display", () => {
     });
 
     const slug = cypressSpecSlug(Cypress.spec.relative);
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/r/${slug}`);
+    cy.visit(`/r/${slug}`);
     cy.contains("Featured Projects", { timeout: 5000 }).should("be.visible");
     cy.contains(featuredProjectName).should("be.visible");
     cy.contains(featuredProjectName)

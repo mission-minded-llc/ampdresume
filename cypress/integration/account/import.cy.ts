@@ -6,17 +6,12 @@ import getParsedResumeAiResponse from "./data/getParsedResumeAiResponse.json";
  * The Import section is a simple section that allows users to import a resume from a PDF file.
  */
 describe("Import Section", () => {
-  before(() => {
-    cy.loginWithMagicLink();
-    cy.closeMessageDialog({ required: false });
-  });
-
   beforeEach(() => {
-    cy.setNextAuthCookies();
+    cy.loginWithMagicLink();
   });
 
   it("should access protected import section", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/import`);
+    cy.visit("/edit/import");
     cy.contains("Import from PDF").should("be.visible");
   });
 
@@ -27,7 +22,7 @@ describe("Import Section", () => {
       }
     }).as("getParsedResumeAi");
 
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/import`);
+    cy.visit("/edit/import");
 
     // Wait for the page to load, including PDF.js worker.
     cy.wait(1000);

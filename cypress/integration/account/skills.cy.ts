@@ -4,16 +4,12 @@
  * The Skills section is a simple section that allows users to add, edit, and delete skills.
  */
 describe("Skills Section", () => {
-  before(() => {
+  beforeEach(() => {
     cy.loginWithMagicLink();
   });
 
-  beforeEach(() => {
-    cy.setNextAuthCookies();
-  });
-
   it("should add a skill with year started", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
+    cy.visit("/edit/skills");
 
     const skill = "JavaScript";
     const yearStarted = "2010";
@@ -34,7 +30,7 @@ describe("Skills Section", () => {
   });
 
   it("should add a skill with no year started", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
+    cy.visit("/edit/skills");
 
     const skill = "TypeScript";
     const totalYears = "5";
@@ -52,7 +48,7 @@ describe("Skills Section", () => {
   });
 
   it("should edit a skill", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
+    cy.visit("/edit/skills");
 
     const skill = "JavaScript";
     cy.get("button").contains(skill).click();
@@ -75,7 +71,7 @@ describe("Skills Section", () => {
   });
 
   it("should delete a skill", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
+    cy.visit("/edit/skills");
 
     const skill = "JavaScript";
     cy.get("button").contains(skill).click();

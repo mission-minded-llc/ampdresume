@@ -9,16 +9,12 @@ export const featuredSkill3 = "Node.js";
 
 const catalogSkills = [featuredSkill1, featuredSkill2, featuredSkill3];
 
-function baseUrl() {
-  return Cypress.expose("BASE_URL") || "";
-}
-
 export function setupFeaturedProjectSkills(options?: { slug?: boolean }) {
   cy.loginWithMagicLink();
 
   if (options?.slug) {
     const slug = cypressSpecSlug(Cypress.spec.relative);
-    cy.visit(`${baseUrl()}/edit/profile`);
+    cy.visit("/edit/profile");
     cy.closeMessageDialog({ required: true });
     // Name is required; saving slug alone is a no-op and leaves /r/:slug empty.
     cy.get("input[name='name']").clear({ force: true }).type("Cypress Test User", { force: true });
@@ -30,7 +26,7 @@ export function setupFeaturedProjectSkills(options?: { slug?: boolean }) {
     cy.get("input[name='slug']").should("have.value", slug);
   }
 
-  cy.visit(`${baseUrl()}/edit/skills`);
+  cy.visit("/edit/skills");
   for (const skill of catalogSkills) {
     cy.get("body").then(($body) => {
       if (!$body.find(`button:contains("${skill}")`).length) {
@@ -42,7 +38,7 @@ export function setupFeaturedProjectSkills(options?: { slug?: boolean }) {
     });
   }
 
-  cy.visit(`${baseUrl()}/edit/featured-projects`);
+  cy.visit("/edit/featured-projects");
   cy.get("body").then(($body) => {
     if (!$body.find(`*:contains("${featuredProjectName}")`).length) {
       cy.get("button").contains("Add Featured Project").click();
@@ -54,8 +50,8 @@ export function setupFeaturedProjectSkills(options?: { slug?: boolean }) {
 }
 
 export function visitFeaturedProjects() {
-  cy.setNextAuthCookies();
-  cy.visit(`${baseUrl()}/edit/featured-projects`);
+  cy.loginWithMagicLink();
+  cy.visit("/edit/featured-projects");
 }
 
 export function openFeaturedProject(name = featuredProjectName) {

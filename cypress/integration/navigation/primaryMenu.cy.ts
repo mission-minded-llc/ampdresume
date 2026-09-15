@@ -6,7 +6,7 @@
  */
 describe("Primary Nav Menu", () => {
   it("should navigate to login page from nav", () => {
-    cy.visit(Cypress.expose("BASE_URL") || "/");
+    cy.visit("/");
 
     cy.get("[data-testid=NavPrimaryMenuLogin]").should("not.exist");
     cy.get("[data-testid=NavPrimaryMenuIcon]").click();
@@ -16,18 +16,18 @@ describe("Primary Nav Menu", () => {
   });
 
   it("should navigate to homepage from nav", () => {
-    cy.visit(Cypress.expose("BASE_URL") + "/login" || "/login");
+    cy.visit("/login");
 
     cy.get("[data-testid=NavPrimaryMenuHome]").should("not.exist");
     cy.get("[data-testid=NavPrimaryMenuIcon]").click();
     cy.get("[data-testid=NavPrimaryMenuHome]").should("be.visible");
     cy.get("[data-testid=NavPrimaryMenuHome]").click();
 
-    cy.url().should("eq", Cypress.expose("BASE_URL") + "/");
+    cy.location("pathname").should("eq", "/");
   });
 
   it("should NOT show protected links when NOT logged in", () => {
-    cy.visit(Cypress.expose("BASE_URL") || "/");
+    cy.visit("/");
 
     cy.get("[data-testid=NavPrimaryMenuIcon]").click();
     cy.get("[data-testid=NavPrimaryMenuViewResume]").should("not.exist");
@@ -37,16 +37,10 @@ describe("Primary Nav Menu", () => {
 
   it("should show protected links when logged in", () => {
     cy.loginWithMagicLink();
-
-    cy.wait(1000); // It can take a second for the dialog to appear.
-
-    // If this runs brefore the user populated a slug, this popup will appear.
+    cy.visit("/");
     cy.closeMessageDialog({ required: false });
 
-    // Wait for the menu icon to be visible and click it
     cy.get("[data-testid=NavPrimaryMenuIcon]").should("be.visible").click();
-
-    // Wait for the menu to be visible before checking for protected links
     cy.get("[data-testid=NavPrimaryMenuEditResume]").should("be.visible");
     cy.get("[data-testid=NavPrimaryMenuLogout]").scrollIntoView().should("be.visible");
   });
