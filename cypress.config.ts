@@ -3,47 +3,30 @@
 import fs from "fs";
 import path from "path";
 
+function magicLinkPath(email: string) {
+  const safeEmail = email.replace(/[@.]/g, "_");
+  return path.join(process.cwd(), ".cypress-temp", `magic-link-${safeEmail}.txt`);
+}
+
+async function waitForMagicLink(email: string) {
+  const filePath = magicLinkPath(email);
+  const deadline = Date.now() + 5000;
+
+  while (Date.now() < deadline) {
+    if (fs.existsSync(filePath)) {
+      const magicLink = fs.readFileSync(filePath, "utf8").trim();
+      if (magicLink) return magicLink;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  }
+
+  throw new Error(`Magic link file not found for ${email} at ${filePath}`);
+}
+
 const filePlugin = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
   on("task", {
     getMagicLink({ email }: { email: string }) {
-      // Convert email to safe filename
-      const safeEmail = email.replace(/[@.]/g, "_");
-      const tempDir = path.join(process.cwd(), ".cypress-temp");
-      const filePath = path.join(tempDir, `magic-link-${safeEmail}.txt`);
-
-      // Try to read the file
-      try {
-        if (!fs.existsSync(filePath)) {
-          throw new Error(`Magic link file not found for ${email} at ${filePath}`);
-        }
-
-        // Read the magic link from the file
-        const magicLink = fs.readFileSync(filePath, "utf8").trim();
-
-        // Optional: Remove the file after reading it
-        // fs.unlinkSync(filePath);
-
-        return magicLink;
-      } catch (error) {
-        throw new Error(`Error reading magic link for ${email}: ${(error as Error).message}`);
-      }
-    },
-
-    // Optional: Add a task to clean up all magic link files
-    cleanupMagicLinks() {
-      const tempDir = path.join(process.cwd(), ".cypress-temp");
-
-      if (fs.existsSync(tempDir)) {
-        const files = fs.readdirSync(tempDir);
-
-        for (const file of files) {
-          if (file.startsWith("magic-link-")) {
-            fs.unlinkSync(path.join(tempDir, file));
-          }
-        }
-      }
-
-      return null;
+      return waitForMagicLink(email);
     },
   });
 
@@ -57,12 +40,8 @@ const config = {
       return filePlugin(on, config);
     },
     baseUrl: "http://localhost:3000",
-    expose: {
-      BASE_URL: process.env.CYPRESS_BASE_URL || "http://localhost:3000",
-      TEST_EMAIL: process.env.CYPRESS_TEST_EMAIL || "test@ampdresume.com",
-    },
     chromeWebSecurity: false,
-    specPattern: "./cypress/**/*.cy.ts",
+    specPattern: "./cypress/integration/**/*.cy.ts",
   },
 };
 

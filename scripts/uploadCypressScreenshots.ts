@@ -46,7 +46,8 @@ async function uploadScreenshots() {
   );
   console.log("Screenshot files list:", files);
 
-  const destinationDir = "cypress/screenshots/" + new Date().toISOString();
+  const group = process.env.CYPRESS_GROUP ? `${process.env.CYPRESS_GROUP}/` : "";
+  const destinationDir = `cypress/screenshots/${group}${new Date().toISOString()}`;
   console.log("Bucket:", bucketName);
   console.log("Destination directory:", destinationDir);
 

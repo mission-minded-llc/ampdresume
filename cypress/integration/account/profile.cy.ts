@@ -1,34 +1,31 @@
 /// <reference types="cypress" />
 
+import { cypressSpecEmail, cypressSpecSlug } from "../../../src/lib/cypressTestAccount";
+
 /**
  * The Profile section is a simple section that allows users to edit their personal information
  * including their name, slug, email, title, location, site title, and site description.
  */
 describe("Profile Section", () => {
-  const testEmail = "test@ampdresume.com";
+  const testEmail = cypressSpecEmail(Cypress.spec.relative);
+  const testSlug = cypressSpecSlug(Cypress.spec.relative);
   const saveButton = "[data-testid='AccountFormSaveButton']";
 
-  before(() => {
-    cy.loginWithMagicLink();
-  });
-
   beforeEach(() => {
-    cy.setNextAuthCookies();
+    cy.loginWithMagicLink();
+    cy.visit("/edit/profile");
   });
 
   it("should access protected profile section", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
     cy.contains("Profile").should("be.visible");
   });
 
   it("should populate profile data and save", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
-
     cy.closeMessageDialog({ required: true });
 
     const fields = [
       { name: "name", value: " Test User" },
-      { name: "slug", value: "test-user" },
+      { name: "slug", value: testSlug },
       { name: "displayEmail", value: testEmail },
       { name: "title", value: "Professional Tester " },
       { name: "location", value: " Test City, Test State " },
@@ -42,13 +39,11 @@ describe("Profile Section", () => {
         .type(field.value, { force: true, delay: 25 });
     });
 
-    const saveButton = "[data-testid='AccountFormSaveButton']";
+    cy.intercept("POST", "/api/account").as("saveAccount");
     cy.get(saveButton).click();
-
-    cy.wait(1000); // Give it a second to save.
+    cy.wait("@saveAccount").its("response.statusCode").should("eq", 200);
     cy.reload();
 
-    // Ensure that the fields are populated with the saved data, minus extra leading or trailing spaces.
     fields.forEach((field) => {
       cy.get(`input[name='${field.name}']`).should("have.value", field.value.trim());
     });
@@ -57,42 +52,35 @@ describe("Profile Section", () => {
   it("should encounter slug validation error", () => {
     const slugErrorMessage = "Slug must be alphanumeric and lowercase. Hyphens allowed.";
 
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
-
     cy.closeMessageDialog();
 
     cy.contains(slugErrorMessage).should("not.exist");
     cy.get("input[name='slug']").clear({ force: true }).type("test user");
     cy.get(saveButton).click();
 
-    // Slug errors are shown on the URL Name field (helper text), not in MessageDialog.
     cy.contains(slugErrorMessage).should("be.visible");
 
-    cy.get("input[name='slug']").clear({ force: true }).type("test-user");
+    cy.get("input[name='slug']").clear({ force: true }).type(testSlug);
     cy.contains(slugErrorMessage).should("not.exist");
 
     cy.get(saveButton).click();
   });
 
   it("should encounter email validation error", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
-
     cy.contains("Invalid email address").should("not.exist");
     cy.get("input[name='displayEmail']")
       .clear({ force: true })
-      .type(testEmail.substring(0, testEmail.length - 4)); // Remove the ".org" suffix.
+      .type(testEmail.substring(0, testEmail.length - 4));
 
     cy.get(saveButton).click();
     cy.contains("Invalid email address").should("be.visible");
 
-    cy.get("input[name=displayEmail]").type(".org"); // Adds missing suffix.
+    cy.get("input[name=displayEmail]").type(".org");
     cy.get(saveButton).click();
     cy.contains("Invalid email address").should("not.exist");
   });
 
   it("should successfully delete account and redirect to homepage", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
-
     cy.contains("Profile").should("be.visible");
     cy.contains("General Information").should("be.visible");
 
@@ -106,16 +94,13 @@ describe("Profile Section", () => {
       .should("be.visible")
       .click({ force: true });
 
-    // Check all the required checkboxes to delete the account.
     cy.get("input[type='checkbox']").check({ force: true });
 
     cy.get("button").contains("Yes, Delete My Account").should("not.be.disabled").click();
 
-    // Deleting the account will redirect to the homepage.
-    cy.url().should("eq", `${Cypress.expose("BASE_URL") || ""}/`);
+    cy.location("pathname").should("eq", "/");
 
-    // Verify the user is no longer authenticated by trying to access a protected route.
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/profile`);
+    cy.visit("/edit/profile");
     cy.url().should("not.include", "/edit/profile");
   });
 });

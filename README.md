@@ -77,10 +77,10 @@ You are welcome to set up your own credentials for an SMTP email server or OAuth
 **However**, it is possible to sign in locally _without_ doing this!
 
 To sign in locally without using a provider, you'll need to use the `test@ampdresume.com` email.
-This email is specific to testing and is used by Cypress integration tests. When you use this email
-address within the email input and sign in, you should be able to find the magic link in your local
-`./.cypress-temp/magic-link-test_ampdresume_com.txt` file. If you open that URL in the browser, you
-should be signed in as the `test` user.
+When you use this email within the email input and sign in, you should be able to find the magic
+link in your local `./.cypress-temp/magic-link-test_ampdresume_com.txt` file. If you open that URL
+in the browser, you should be signed in as the `test` user. Cypress specs use separate
+`cypress-<spec>@ampdresume.com` accounts so they can run in parallel without sharing resume data.
 
 #### VS Code Integration
 

@@ -4,17 +4,12 @@
  * The Skills section is a simple section that allows users to add, edit, and delete skills.
  */
 describe("Skills Section", () => {
-  before(() => {
-    cy.loginWithMagicLink();
-  });
-
   beforeEach(() => {
-    cy.setNextAuthCookies();
+    cy.loginWithMagicLink();
+    cy.visit("/edit/skills");
   });
 
   it("should add a skill with year started", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
-
     const skill = "JavaScript";
     const yearStarted = "2010";
     cy.get("input[name='searchSkills']").type(skill);
@@ -34,14 +29,11 @@ describe("Skills Section", () => {
   });
 
   it("should add a skill with no year started", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
-
     const skill = "TypeScript";
     const totalYears = "5";
     cy.get("input[name='searchSkills']").type(skill);
     cy.get("span").contains(skill).click();
 
-    // Uncheck the "Auto-calculate" checkbox.
     cy.get("input[name='autoCalculate']").uncheck();
     cy.get("input[name='totalYears']").clear().type(totalYears);
 
@@ -52,13 +44,10 @@ describe("Skills Section", () => {
   });
 
   it("should edit a skill", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
-
     const skill = "JavaScript";
     cy.get("button").contains(skill).click();
     cy.get("h2").contains(skill).should("be.visible");
 
-    // Uncheck the "Auto-calculate" checkbox.
     cy.get("input[name='autoCalculate']").uncheck();
 
     // When editing, the yearStarted field is a number input, so we need to clear
@@ -67,20 +56,19 @@ describe("Skills Section", () => {
     // This value results in a "10" below.
     cy.get("input[name='totalYears']").clear().type("1");
 
+    cy.aliasGraphql("updateSkillForUser");
     cy.get("button").contains("Save & Close").click();
-    cy.wait(1000); // Give it a second to save.
+    cy.wait("@updateSkillForUser");
 
     cy.get("button").contains(skill).should("be.visible");
     cy.contains("10 years").should("be.visible");
   });
 
   it("should delete a skill", () => {
-    cy.visit(`${Cypress.expose("BASE_URL") || ""}/edit/skills`);
-
     const skill = "JavaScript";
     cy.get("button").contains(skill).click();
     cy.get("button").contains("Delete Skill").click();
-    cy.get("button").contains("Yes, Delete").click(); // Confirmation dialog.
+    cy.get("button").contains("Yes, Delete").click();
 
     cy.get("button").contains(skill).should("not.exist");
   });

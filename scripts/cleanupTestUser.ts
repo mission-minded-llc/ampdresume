@@ -1,5 +1,5 @@
 /**
- * This script is used to cleanup the test user data from the database. Run this via
+ * This script is used to cleanup Cypress test user data from the database. Run this via
  * `npm run cypress:cleanup` prior to running Cypress tests, to help ensure that there
  * is no conflicting orphan data left over from previous test runs. There's no need to run
  * this every time, but rather only when you encounter issues with the test runs due to
@@ -7,121 +7,36 @@
  */
 
 import { exit } from "process";
+import { isCypressMagicLinkEmail } from "@/lib/cypressTestAccount";
 import { prisma } from "@/lib/prisma";
 
-// This is the test email used for Cypress.
-const email = "test@ampdresume.com";
+const localTestEmail = process.env.CYPRESS_TEST_EMAIL || "test@ampdresume.com";
 
-const user = await prisma.user.findFirst({
-  where: { email },
-  select: { id: true },
+const users = await prisma.user.findMany({
+  where: {
+    OR: [
+      { email: localTestEmail },
+      {
+        AND: [{ email: { startsWith: "cypress-" } }, { email: { endsWith: "@ampdresume.com" } }],
+      },
+    ],
+  },
+  select: { id: true, email: true },
 });
 
-if (!user) {
-  console.log(`No user found with email: ${email}`);
-  prisma.$disconnect();
+const testUsers = users.filter((user) => user.email != null && isCypressMagicLinkEmail(user.email));
+
+if (testUsers.length === 0) {
+  console.log("No Cypress test users found.");
+  await prisma.$disconnect();
   exit(0);
 }
 
-console.log(`Cleaning up data for user with email: ${email} and id: ${user.id}`);
+for (const user of testUsers) {
+  console.log(`Deleting Cypress test user ${user.email} (${user.id})`);
+  await prisma.user.delete({ where: { id: user.id } });
+}
 
-console.log(
-  `Fetching company, position, project, and skillForUser IDs for user with email: ${email}`,
-);
-const companyIds = await prisma.company.findMany({
-  where: { userId: user.id },
-  select: { id: true },
-});
-
-const positionIds = await prisma.position.findMany({
-  where: { companyId: { in: companyIds.map((company: { id: string }) => company.id) } },
-  select: { id: true },
-});
-
-const projectIds = await prisma.project.findMany({
-  where: { positionId: { in: positionIds.map((position: { id: string }) => position.id) } },
-  select: { id: true },
-});
-
-const skillForUserIds = await prisma.skillForUser.findMany({
-  where: { userId: user.id },
-  select: { id: true },
-});
-
-console.log(
-  `Found ${companyIds.length} companies, ${positionIds.length} positions, ${projectIds.length} projects, and ${skillForUserIds.length} skills for user with email: ${email}`,
-);
-
-console.log(`Deleting ${skillForUserIds.length} skills for user with email: ${email}`);
-await prisma.skillForUser
-  .deleteMany({
-    where: { userId: user.id },
-  })
-  .then(() => {
-    console.log(`Deleted all skills for user with email: ${email}`);
-  })
-  .catch((error: Error) => {
-    console.log(`Error cleaning up skills: ${error.message}`);
-    prisma.$disconnect();
-    exit(1);
-  });
-
-console.log(`Deleting ${projectIds.length} projects for user with email: ${email}`);
-await prisma.project
-  .deleteMany({
-    where: { id: { in: projectIds.map((project: { id: string }) => project.id) } },
-  })
-  .then(() => {
-    console.log(`Deleted all projects for user with email: ${email}`);
-  })
-  .catch((error: Error) => {
-    console.log(`Error cleaning up projects: ${error.message}`);
-    prisma.$disconnect();
-    exit(1);
-  });
-
-console.log(`Deleting ${positionIds.length} positions for user with email: ${email}`);
-await prisma.position
-  .deleteMany({
-    where: { id: { in: positionIds.map((position: { id: string }) => position.id) } },
-  })
-  .then(() => {
-    console.log(`Deleted all positions for user with email: ${email}`);
-  })
-  .catch((error: Error) => {
-    console.log(`Error cleaning up positions: ${error.message}`);
-    prisma.$disconnect();
-    exit(1);
-  });
-
-console.log(`Deleting ${companyIds.length} companies for user with email: ${email}`);
-await prisma.company
-  .deleteMany({
-    where: { userId: user.id },
-  })
-  .then(() => {
-    console.log(`Deleted all companies for user with email: ${email}`);
-  })
-  .catch((error: Error) => {
-    console.log(`Error cleaning up companies: ${error.message}`);
-    prisma.$disconnect();
-    exit(1);
-  });
-
-console.log(`Deleting user with email: ${email}`);
-await prisma.user
-  .delete({
-    where: { id: user.id },
-  })
-  .then(() => {
-    console.log(`Deleted all data for user with email: ${email}`);
-  })
-  .catch((error: Error) => {
-    console.log(`Error cleaning up user data: ${error.message}`);
-    prisma.$disconnect();
-    exit(1);
-  });
-
-console.log(`Data cleanup complete for user with email: ${email}`);
-prisma.$disconnect();
+console.log(`Deleted ${testUsers.length} Cypress test user(s).`);
+await prisma.$disconnect();
 exit(0);

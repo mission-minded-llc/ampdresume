@@ -29,6 +29,13 @@ describe("UploadPDF", () => {
       expect(fileInput).toHaveAttribute("type", "file");
       expect(fileInput).toHaveAttribute("accept", "application/pdf");
     });
+
+    it("disables the file input when disabled is set", () => {
+      const { container } = render(<UploadPDF onFileUpload={mockOnFileUpload} disabled />);
+
+      const fileInput = container.querySelector('input[type="file"]');
+      expect(fileInput).toBeDisabled();
+    });
   });
 
   describe("File upload handling", () => {

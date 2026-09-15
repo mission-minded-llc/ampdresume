@@ -94,7 +94,8 @@ npm run prisma:seed
 
 For local development without OAuth providers:
 
-1. Use the email `test@ampdresume.com` in the sign-in form
+1. Use the email `test@ampdresume.com` in the sign-in form (Cypress specs use
+   `cypress-<spec>@ampdresume.com`)
 2. Check `./.cypress-temp/magic-link-test_ampdresume_com.txt` for the magic link
 3. Open the link to sign in as the test user
 

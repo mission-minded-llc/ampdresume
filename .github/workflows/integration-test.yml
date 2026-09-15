@@ -1,6 +1,7 @@
 name: Integration Test
 
 # Runs Cypress against a locally built app and a throwaway Postgres container.
+# Specs are split by folder across four groups; each spec logs in as its own user.
 # Does not deploy anything.
 
 on:
@@ -9,6 +10,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+
+concurrency:
+  group: integration-test-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   DATABASE_URL: postgres://postgres:postgres@localhost:5432/ampdresume?schema=ampdresume
@@ -30,14 +35,77 @@ env:
   GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
   # Used by Sentry for error tracking.
   NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
-  # Specific for the integration test.
-  CYPRESS_TEST_EMAIL: test@ampdresume.com
   # For all AI integrations.
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
-  integration-test:
+  # One production build for the whole workflow. Matrix groups copy this
+  # artifact rather than compiling Next.js four times.
+  build:
+    name: Build Next.js
     runs-on: ubuntu-latest
+    # No database during compile; same as the Cloud Run image build.
+    env:
+      DATABASE_URL: ""
+      CYPRESS_INSTALL_BINARY: 0
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - uses: ./.github/actions/setup-dependencies
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Upload Next.js build
+        uses: actions/upload-artifact@v7
+        with:
+          name: nextjs-build
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+          path: |
+            .next
+            !.next/cache
+            !.next/cache/**
+            !.next/standalone
+            !.next/standalone/**
+
+  # Each group gets its own runner and Postgres, and reuses the shared Next.js build.
+  cypress:
+    name: Cypress (${{ matrix.name }})
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: account
+            spec: cypress/integration/account/**/*.cy.ts
+          - name: featured-project-skills
+            spec: cypress/integration/featured-project-skills/**/*.cy.ts
+          - name: navigation
+            spec: cypress/integration/navigation/**/*.cy.ts
+          - name: theme
+            spec: cypress/integration/theme/**/*.cy.ts
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ampdresume
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 10s --health-timeout 5s
+          --health-retries 5
 
     permissions:
       contents: read
@@ -46,34 +114,54 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v5
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - uses: ./.github/actions/setup-dependencies
 
-      # Spin up a local Postgres instance.
-      - name: Start Postgres
-        run:
-          docker run --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e
-          POSTGRES_DB=ampdresume -p 5432:5432 -d postgres:16-alpine
+      # Unpack off to the side. download-artifact will flatten a single top-level
+      # `.next` folder onto the destination, which would overwrite package.json
+      # with Next's generated `.next/package.json` (no scripts).
+      - name: Download Next.js build
+        uses: actions/download-artifact@v8
+        with:
+          name: nextjs-build
+          path: ${{ runner.temp }}/nextjs-build
 
-      # Wait for Postgres to be ready
-      - name: Wait for Postgres to be ready
+      - name: Restore Next.js build
         run: |
-          echo "Waiting for Postgres to be ready..."
-          timeout 30s bash -c 'until pg_isready -h localhost -p 5432 -U postgres; do sleep 1; done'
-          echo "Postgres is ready!"
+          rm -rf .next
+          download="${{ runner.temp }}/nextjs-build"
+          if [ -f "$download/BUILD_ID" ]; then
+            mv "$download" .next
+          elif [ -f "$download/.next/BUILD_ID" ]; then
+            mv "$download/.next" .next
+          else
+            echo "Next.js build artifact is missing BUILD_ID" >&2
+            find "$download" -maxdepth 3 -print
+            exit 1
+          fi
 
-      - name: Seed data
-        run: npm run prisma:migrate && npm run prisma:seed
+      - name: Restore prebuild outputs
+        run: npm run prebuild
 
-      - name: Build Next.js app
-        run: npm run build
+      - name: Migrate and seed Cypress data
+        run: npm run prisma:migrate:deploy && npm run prisma:seed:cypress
 
       - name: Start Next.js app
         run: npm start &
 
+      - name: Wait for Next.js
+        run:
+          timeout 60s bash -c 'until curl -sf -o /dev/null http://localhost:3000; do sleep 1; done'
+
       - name: Run Cypress tests
-        run: npm run cypress:test
+        run: npm run cypress:test -- --spec "${{ matrix.spec }}"
 
       - name: Authenticate to Google Cloud
         if: failure()
@@ -88,9 +176,16 @@ jobs:
         run: npm run cypress:upload:screenshots
         env:
           GCS_CI_ARTIFACTS_BUCKET: ${{ vars.GCS_CI_ARTIFACTS_BUCKET }}
+          CYPRESS_GROUP: ${{ matrix.name }}
 
-      - name: Stop and remove Postgres
-        if: always()
+  # Keep a stable check name for branch protection. Matrix jobs report as
+  # "Cypress (account)", "Cypress (navigation)", etc.
+  integration-test:
+    needs: [build, cypress]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: All Cypress groups passed
         run: |
-          docker stop postgres
-          docker rm postgres
+          test "${{ needs.build.result }}" = success
+          test "${{ needs.cypress.result }}" = success

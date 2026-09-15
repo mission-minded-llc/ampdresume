@@ -35,6 +35,7 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:migrate:deploy": "prisma migrate deploy",
     "prisma:seed": "tsx prisma/seed/all.ts",
+    "prisma:seed:cypress": "tsx prisma/seed/cypress.ts",
     "prisma:seed:literary": "tsx prisma/seed/literary/index.ts",
     "prisma:seed:literary:production": "./scripts/seed-literary-production.sh",
     "terraform:validate": "cd terraform && terraform validate",

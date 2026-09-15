@@ -202,6 +202,38 @@ describe("auth", () => {
           mockUrl,
         );
       });
+
+      it("should save magic link for per-spec Cypress accounts without CYPRESS_TEST_EMAIL", async () => {
+        delete process.env.CYPRESS_TEST_EMAIL;
+        mockFindUserByNormalizedEmail.mockResolvedValue(null);
+        mockFsExistsSync.mockReturnValue(true);
+
+        await sendVerificationRequest({
+          identifier: "cypress-account-skills@ampdresume.com",
+          url: mockUrl,
+          provider: mockProvider,
+        });
+
+        expect(mockFsWriteFileSync).toHaveBeenCalledWith(
+          "/test/workspace/.cypress-temp/magic-link-cypress-account-skills_ampdresume_com.txt",
+          mockUrl,
+        );
+        expect(mockSendMail).not.toHaveBeenCalled();
+      });
+
+      it("should still send mail for plus-addressed emails that are not Cypress accounts", async () => {
+        delete process.env.CYPRESS_TEST_EMAIL;
+        mockFindUserByNormalizedEmail.mockResolvedValue(null);
+
+        await sendVerificationRequest({
+          identifier: "test+skills@ampdresume.com",
+          url: mockUrl,
+          provider: mockProvider,
+        });
+
+        expect(mockFsWriteFileSync).not.toHaveBeenCalled();
+        expect(mockSendMail).toHaveBeenCalled();
+      });
     });
 
     describe("email content", () => {
