@@ -3,16 +3,18 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { expect } from "@jest/globals";
 import { OnboardingProvider } from "./OnboardingProvider";
+import { useOnboarding } from "./OnboardingContext";
 import { NavPrimaryProvider } from "./NavPrimaryContext";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const mockPush = jest.fn();
+const mockSession = {
+  data: { user: { id: "user-1" } } as { user: { id: string } } | null,
+  status: "authenticated" as "authenticated" | "loading" | "unauthenticated",
+};
 
 jest.mock("next-auth/react", () => ({
-  useSession: () => ({
-    data: { user: { id: "user-1" } },
-    status: "authenticated",
-  }),
+  useSession: () => mockSession,
 }));
 
 jest.mock("next/navigation", () => ({
@@ -28,9 +30,21 @@ jest.mock("./demos/ExperienceDemo", () => ({
   ExperienceDemo: () => <div>Experience demo</div>,
 }));
 
+const StatusProbe = () => {
+  const { isOnboardingStatusResolved, isOnboardingActive } = useOnboarding();
+  return (
+    <div>
+      <span>resolved:{String(isOnboardingStatusResolved)}</span>
+      <span>active:{String(isOnboardingActive)}</span>
+    </div>
+  );
+};
+
 describe("OnboardingProvider", () => {
   beforeEach(() => {
     mockPush.mockReset();
+    mockSession.data = { user: { id: "user-1" } };
+    mockSession.status = "authenticated";
     global.fetch = jest.fn();
   });
 
@@ -128,5 +142,30 @@ describe("OnboardingProvider", () => {
         }),
       );
     });
+  });
+
+  it("does not treat onboarding as resolved while the session is loading", () => {
+    mockSession.data = null;
+    mockSession.status = "loading";
+
+    const queryClient = new QueryClient({
+      defaultOptions: { queries: { retry: false } },
+    });
+
+    render(
+      <ThemeProvider theme={createTheme()}>
+        <QueryClientProvider client={queryClient}>
+          <NavPrimaryProvider>
+            <OnboardingProvider>
+              <StatusProbe />
+            </OnboardingProvider>
+          </NavPrimaryProvider>
+        </QueryClientProvider>
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByText("resolved:false")).toBeInTheDocument();
+    expect(screen.getByText("active:false")).toBeInTheDocument();
+    expect(screen.queryByTestId("OnboardingRoot")).not.toBeInTheDocument();
   });
 });

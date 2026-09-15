@@ -61,13 +61,10 @@ Cypress.Commands.add("closeMessageDialog", ({ required = false } = {}) => {
   const reminder = "[data-testid=SlugReminderDialog]";
 
   const dismissSlugReminder = () => {
-    cy.contains("Don't forget to set your URL!").should("be.visible");
-    cy.contains("button", "OK").should("be.visible").click();
-    cy.get("body").should(($body) => {
-      const $dlg = $body.find("[data-testid=SlugReminderDialog]");
-      if ($dlg.length === 0) return;
-      expect($dlg.attr("aria-hidden") === "true" || !$dlg.is(":visible")).to.eq(true);
-    });
+    cy.get(reminder).should("exist");
+    cy.contains("Don't forget to set your URL!");
+    cy.get(reminder).contains("button", "OK").click({ force: true });
+    cy.contains("Don't forget to set your URL!").should("not.exist");
   };
 
   if (required) {

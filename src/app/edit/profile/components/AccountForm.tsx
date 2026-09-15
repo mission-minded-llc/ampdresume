@@ -56,6 +56,7 @@ const AccountForm = ({
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [showSlugPopup, setShowSlugPopup] = useState(false);
+  const [slugPopupDismissed, setSlugPopupDismissed] = useState(false);
   const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const isDesktop = useIsDesktop();
   const slugInputRef = React.useRef<HTMLInputElement>(null);
@@ -68,8 +69,8 @@ const AccountForm = ({
       setShowSlugPopup(false);
       return;
     }
-    if (slug.length === 0) setShowSlugPopup(true);
-  }, [isOnboardingActive, isOnboardingStatusResolved, slug.length]);
+    if (slug.length === 0 && !slugPopupDismissed) setShowSlugPopup(true);
+  }, [isOnboardingActive, isOnboardingStatusResolved, slug.length, slugPopupDismissed]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -111,6 +112,7 @@ const AccountForm = ({
 
     if (!validateForm()) {
       if (!formData.slug.trim()) {
+        setSlugPopupDismissed(false);
         setShowSlugPopup(true);
       }
       return;
@@ -163,6 +165,7 @@ const AccountForm = ({
   };
 
   const handleSlugPopupClose = () => {
+    setSlugPopupDismissed(true);
     setShowSlugPopup(false);
     setTimeout(() => slugInputRef.current?.focus(), 100);
   };

@@ -26,6 +26,7 @@ export const OnboardingProvider = ({ children }: { children: React.ReactNode }) 
   const [didImport, setDidImport] = useState(false);
 
   const isAuthPage = AUTH_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+  const sessionReady = status !== "loading";
   const isLoggedIn = status === "authenticated" && !!session?.user?.id;
 
   const { data, isFetched } = useQuery({
@@ -36,7 +37,7 @@ export const OnboardingProvider = ({ children }: { children: React.ReactNode }) 
   });
 
   const pending = data?.pending === true;
-  const isOnboardingStatusResolved = !isLoggedIn || isAuthPage || isFetched;
+  const isOnboardingStatusResolved = sessionReady && (!isLoggedIn || isAuthPage || isFetched);
   const isOnboardingActive =
     isLoggedIn && !isAuthPage && isFetched && !dismissed && (pending || forcedActive);
 

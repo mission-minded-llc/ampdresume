@@ -3,6 +3,10 @@ import { SessionProvider } from "next-auth/react";
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import {
+  OnboardingContext,
+  OnboardingContextValue,
+} from "@/app/components/onboarding/OnboardingContext";
 import { AccountForm } from "./AccountForm";
 import { expect } from "@jest/globals";
 
@@ -316,5 +320,48 @@ describe("AccountForm", () => {
     await waitFor(() => {
       expect(getByText("Invalid email address")).toBeInTheDocument();
     });
+  });
+
+  it("does not reopen the slug reminder after dismiss when onboarding status settles", async () => {
+    const onboarding: OnboardingContextValue = {
+      isOnboardingActive: false,
+      isOnboardingStatusResolved: true,
+      didImport: false,
+      restartOnboarding: jest.fn(),
+      completeOnboarding: jest.fn(),
+      notifyImported: jest.fn(),
+    };
+
+    const view = render(
+      <SessionProvider>
+        <OnboardingContext.Provider value={onboarding}>
+          <AccountForm {...mockProps} slug="" />
+        </OnboardingContext.Provider>
+      </SessionProvider>,
+    );
+
+    expect(view.getByText("Don't forget to set your URL!")).toBeInTheDocument();
+    fireEvent.click(view.getByText("OK"));
+
+    await waitFor(() => {
+      expect(view.queryByText("Don't forget to set your URL!")).not.toBeInTheDocument();
+    });
+
+    view.rerender(
+      <SessionProvider>
+        <OnboardingContext.Provider value={{ ...onboarding, isOnboardingStatusResolved: false }}>
+          <AccountForm {...mockProps} slug="" />
+        </OnboardingContext.Provider>
+      </SessionProvider>,
+    );
+    view.rerender(
+      <SessionProvider>
+        <OnboardingContext.Provider value={{ ...onboarding, isOnboardingStatusResolved: true }}>
+          <AccountForm {...mockProps} slug="" />
+        </OnboardingContext.Provider>
+      </SessionProvider>,
+    );
+
+    expect(view.queryByText("Don't forget to set your URL!")).not.toBeInTheDocument();
   });
 });
