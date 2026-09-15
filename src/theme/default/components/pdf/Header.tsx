@@ -8,7 +8,8 @@ export const Header = ({ user }: { user: User }) => (
       {user.name}
     </Typography>
     <Typography sx={{ pb: 1, fontSize: fontSize.body, borderBottom: `1px solid #ccc` }}>
-      {user?.location ? `${user.location} | ` : null}
+      {user?.location}
+      {user?.location && user?.displayEmail ? " | " : null}
       {user?.displayEmail ? <a href={`mailto:${user.displayEmail}`}>{user.displayEmail}</a> : null}
     </Typography>
     <Typography

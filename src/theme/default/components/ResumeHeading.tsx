@@ -61,20 +61,6 @@ export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[]
           fontWeight: 400,
         }}
       >
-        {user?.displayEmail}
-        {user?.displayEmail && user?.location ? (
-          <Typography
-            component="span"
-            sx={{
-              margin: "0 0.65rem",
-              fontSize: "1.1rem",
-              fontWeight: 400,
-              opacity: 0.55,
-            }}
-          >
-            ·
-          </Typography>
-        ) : null}
         {user?.location}
       </Typography>
       <Box

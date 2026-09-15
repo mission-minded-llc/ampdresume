@@ -33,6 +33,9 @@ describe("PDFView", () => {
     render(<PDFView themeName="default" />);
     // Check for some content from the default theme template
     expect(screen.getByText(themeDefaultSampleData.data.resume.user.name!)).toBeInTheDocument();
+    expect(
+      screen.queryByText(themeDefaultSampleData.data.resume.user.displayEmail as string),
+    ).not.toBeInTheDocument();
   });
 
   it("generates PDF when clicking the Generate PDF button", () => {

@@ -82,14 +82,11 @@ Send your report to: **security@missionminded.net**
 
 ### Current Limitations
 
-- `displayEmail` addresses are displayed publicly
-- File uploads are limited to images but not virus-scanned
 - Rate limiting is not implemented on all endpoints
 
 ### Planned Improvements
 
 - [ ] Implement rate limiting on API endpoints
-- [ ] Consider virus scanning for file uploads
 - [ ] Enhanced Content Security Policy headers
 
 ## Responsible Disclosure

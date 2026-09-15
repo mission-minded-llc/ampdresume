@@ -17,37 +17,30 @@ describe("Header", () => {
     expect(screen.getByText(sampleUser.title as string)).toBeInTheDocument();
   });
 
-  it("renders location and email with separator", () => {
-    render(<Header user={sampleUser} />);
-    const contactInfo = screen.getByText(`${sampleUser.location} |`);
-    expect(contactInfo).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: sampleUser.displayEmail as string }),
-    ).toBeInTheDocument();
+  it("renders location without email when displayEmail is omitted", () => {
+    const userWithoutEmail = { ...sampleUser, displayEmail: null };
+    render(<Header user={userWithoutEmail} />);
+    expect(screen.getByText(sampleUser.location as string)).toBeInTheDocument();
+    expect(screen.queryByText(sampleUser.displayEmail as string)).not.toBeInTheDocument();
+    expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
 
-  it("renders email as clickable link", () => {
+  it("renders location and email with separator when displayEmail is present", () => {
     render(<Header user={sampleUser} />);
+    expect(screen.getByText(sampleUser.location as string, { exact: false })).toBeInTheDocument();
     const emailLink = screen.getByRole("link", {
       name: sampleUser.displayEmail as string,
     });
     expect(emailLink).toHaveAttribute("href", `mailto:${sampleUser.displayEmail}`);
   });
 
-  it("handles missing location", () => {
+  it("renders email without location", () => {
     const userWithoutLocation = { ...sampleUser, location: null };
     render(<Header user={userWithoutLocation} />);
     expect(screen.queryByText(/\|/)).not.toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: sampleUser.displayEmail as string }),
     ).toBeInTheDocument();
-  });
-
-  it("handles missing email", () => {
-    const userWithoutEmail = { ...sampleUser, displayEmail: null };
-    render(<Header user={userWithoutEmail} />);
-    expect(screen.getByText(`${sampleUser.location} |`)).toBeInTheDocument();
-    expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
 
   it("handles missing location and email", () => {

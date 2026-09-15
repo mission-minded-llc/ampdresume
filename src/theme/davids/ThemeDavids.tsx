@@ -289,24 +289,11 @@ export const ThemeDavids = ({
             {user?.title}
           </Box>
 
-          <Box component="span" sx={{ display: "block", mt: 1, fontSize: "1rem", opacity: 0.85 }}>
-            {user?.displayEmail}
-            {user?.displayEmail && user?.location ? (
-              <Box
-                component="span"
-                sx={{
-                  margin: "0 0.65rem",
-                  fontSize: "1.1rem",
-                  fontWeight: 400,
-                  opacity: 0.55,
-                  display: "inline",
-                }}
-              >
-                ·
-              </Box>
-            ) : null}
-            {user?.location}
-          </Box>
+          {user?.location ? (
+            <Box component="span" sx={{ display: "block", mt: 1, fontSize: "1rem", opacity: 0.85 }}>
+              {user.location}
+            </Box>
+          ) : null}
           <Box
             sx={{
               display: "flex",

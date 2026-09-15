@@ -24,6 +24,19 @@ describe("removeHiddenFields", () => {
     });
   });
 
+  it("removes displayEmail from public output", () => {
+    const input = {
+      name: "Alice",
+      displayEmail: "alice@example.com",
+      location: "Wonderland",
+    };
+
+    expect(removeHiddenFields(input)).toEqual({
+      name: "Alice",
+      location: "Wonderland",
+    });
+  });
+
   it("handles arrays and nested objects correctly", () => {
     const input = [
       {

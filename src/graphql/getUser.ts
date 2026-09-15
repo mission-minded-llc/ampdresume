@@ -18,7 +18,6 @@ export const getUser = async (slug: string): Promise<User> => {
           id
           name
           email
-          displayEmail
           location
           title
           siteTitle
