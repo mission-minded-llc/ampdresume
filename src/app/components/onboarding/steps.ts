@@ -1,5 +1,8 @@
 export type OnboardingStepKind = "modal" | "spotlight" | "demo" | "page";
 
+export type OnboardingPlacement =
+  "right-start" | "right" | "bottom-start" | "bottom" | "left-start" | "top-start";
+
 export type OnboardingStepId =
   | "welcome"
   | "menu"
@@ -17,6 +20,7 @@ export type OnboardingStep = {
   title: string;
   body: string;
   target?: string;
+  placement?: OnboardingPlacement;
   openNav?: boolean;
   skipWhenImported?: boolean;
   primaryLabel: string;
@@ -36,8 +40,9 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     id: "menu",
     kind: "spotlight",
     title: "Your main menu",
-    body: "This button opens the app menu. Hover or tap it anytime to edit your resume, import a PDF, or view your live page.",
+    body: "This button opens the app menu. Click or tap it anytime to edit your resume, import a PDF, or view your live page.",
     target: "nav-menu-button",
+    placement: "right-start",
     primaryLabel: "Next",
   },
   {
@@ -46,6 +51,7 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     title: "Edit Resume",
     body: "Profile, skills, work experience, featured projects, education, and certifications all live in this section. Start with your profile URL so people can find you.",
     target: "edit-resume-section",
+    placement: "right-start",
     openNav: true,
     primaryLabel: "Next",
   },
@@ -69,6 +75,7 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     title: "Tools",
     body: "Import PDF pulls in an existing resume as a starting point. AI Assist is here too when it is enabled for your account.",
     target: "import-pdf",
+    placement: "right",
     openNav: true,
     primaryLabel: "Import a PDF",
   },
@@ -77,6 +84,8 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     kind: "page",
     title: "Start from a PDF",
     body: "Upload a PDF and we'll extract profile, skills, jobs, and education for you to review. You can skip this and add everything by hand.",
+    target: "import-page",
+    placement: "right-start",
     primaryLabel: "Skip for now",
   },
   {
@@ -85,6 +94,7 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     title: "Import anytime",
     body: "You can run PDF import later from Tools → Import PDF in this menu.",
     target: "import-pdf",
+    placement: "right",
     openNav: true,
     skipWhenImported: true,
     primaryLabel: "Next",

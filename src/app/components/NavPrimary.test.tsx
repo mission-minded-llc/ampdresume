@@ -33,6 +33,20 @@ describe("NavPrimary Component", () => {
     expect(container).toMatchSnapshot();
   });
 
+  it("opens the menu on click, not hover", () => {
+    (useSession as jest.Mock).mockReturnValue({
+      data: null,
+      status: "unauthenticated",
+    });
+    render(<NavPrimary />);
+
+    fireEvent.mouseEnter(screen.getByTestId("NavPrimaryMenuIcon"));
+    expect(screen.queryByTestId("NavPrimaryMenuHome")).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByTestId("NavPrimaryMenuIcon"));
+    expect(screen.getByTestId("NavPrimaryMenuHome")).toBeInTheDocument();
+  });
+
   it("shows restart tutorial and import links when logged in", () => {
     (useSession as jest.Mock).mockReturnValue({
       data: { user: { slug: "test-user", id: "user-1" } },
@@ -41,7 +55,11 @@ describe("NavPrimary Component", () => {
     render(<NavPrimary />);
     fireEvent.click(screen.getByTestId("NavPrimaryMenuIcon"));
 
-    expect(screen.getByTestId("NavPrimaryMenuRestartTutorial")).toBeInTheDocument();
+    const restart = screen.getByTestId("NavPrimaryMenuRestartTutorial");
+    expect(restart).toBeInTheDocument();
+    expect(restart.querySelector("[data-icon]")?.getAttribute("data-icon")).toBe(
+      "fluent-color:book-open-lightbulb-20",
+    );
     expect(screen.getByTestId("NavPrimaryMenuEditImport")).toBeInTheDocument();
     expect(screen.getByTestId("NavPrimaryMenuEditExperience")).toBeInTheDocument();
   });

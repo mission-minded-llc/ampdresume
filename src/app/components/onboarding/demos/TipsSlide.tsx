@@ -1,11 +1,11 @@
 "use client";
 
-import { Box, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { Box, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import { Icon } from "@iconify/react";
 
 const TIPS = [
   {
-    icon: "fluent-color:link-16",
+    icon: "fluent-color:link-multiple-16",
     title: "Claim a clean URL",
     body: "Set your profile URL name first. That's how you share ampdresume.com/r/your-name.",
   },
@@ -20,7 +20,7 @@ const TIPS = [
     body: "Treat each project as a bullet: what changed, for whom, and by how much.",
   },
   {
-    icon: "fluent-color:re-order-dots-vertical-16",
+    icon: "fluent-color:apps-list-detail-20",
     title: "Put the strongest work first",
     body: "Drag projects to reorder them so the first things people expand are your best examples.",
   },
@@ -35,7 +35,7 @@ const TIPS = [
     body: "Open View Resume to check the live page, switch themes, and download a PDF.",
   },
   {
-    icon: "fluent-color:learning-app-24",
+    icon: "fluent-color:book-open-lightbulb-20",
     title: "Replay this tour anytime",
     body: "Restart it from the menu (Account → Restart tutorial) or from your profile page.",
   },
@@ -43,14 +43,11 @@ const TIPS = [
 
 export const TipsSlide = () => (
   <Box data-testid="OnboardingTips">
-    <Typography variant="body2" sx={{ mb: 2, color: "text.secondary" }}>
-      A few habits that make Amp'd Resume work best.
-    </Typography>
     <List disablePadding>
       {TIPS.map((tip) => (
         <ListItem key={tip.title} alignItems="flex-start" sx={{ px: 0, py: 1 }}>
-          <ListItemIcon sx={{ minWidth: 44, mt: 0.5 }}>
-            <Icon icon={tip.icon} width={28} height={28} />
+          <ListItemIcon sx={{ minWidth: 44, mt: 0.5, color: "inherit" }}>
+            <Icon icon={tip.icon} width={28} height={28} aria-hidden />
           </ListItemIcon>
           <ListItemText primary={tip.title} secondary={tip.body} />
         </ListItem>

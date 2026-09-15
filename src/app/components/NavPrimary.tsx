@@ -19,7 +19,7 @@ import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 import { themeDefinitions } from "@/theme";
 import { useOnboarding } from "./onboarding/OnboardingContext";
-import { NavTourId, useNavPrimary } from "./onboarding/NavPrimaryContext";
+import { useNavPrimary } from "./onboarding/NavPrimaryContext";
 
 /**
  * The primary navigation component for the application. This nav is shared
@@ -39,14 +39,13 @@ export const NavPrimary = () => {
   const highlightId = nav?.highlightId ?? null;
   const lockOpen = nav?.lockOpen ?? false;
 
-  const highlightSx = (id: NavTourId) =>
+  const highlightFillSx = (id: "edit-resume-section" | "import-pdf") =>
     highlightId === id
       ? {
-          outline: "3px solid",
-          outlineColor: "secondary.main",
-          backgroundColor: "rgba(255, 140, 40, 0.18)",
+          bgcolor: (theme: { palette: { mode: string } }) =>
+            theme.palette.mode === "dark" ? "rgba(255, 140, 40, 0.16)" : "rgba(255, 140, 40, 0.1)",
         }
-      : {};
+      : undefined;
 
   const toggleDrawer = (open: boolean) => (event: object) => {
     if (lockOpen && !open) return;
@@ -212,7 +211,6 @@ export const NavPrimary = () => {
         color="inherit"
         aria-label="menu"
         onClick={toggleDrawer(true)}
-        onMouseEnter={toggleDrawer(true)}
         data-testid="NavPrimaryMenuIcon"
         data-tour-id="nav-menu-button"
         sx={(theme) => ({
@@ -223,7 +221,6 @@ export const NavPrimary = () => {
           boxShadow: theme.shadows[1],
           zIndex: highlightId === "nav-menu-button" ? 1400 : undefined,
           position: highlightId === "nav-menu-button" ? "relative" : undefined,
-          ...highlightSx("nav-menu-button"),
           [theme.breakpoints.down("sm")]: {
             mt: 1,
             mr: 1,
@@ -305,7 +302,7 @@ export const NavPrimary = () => {
                     dataTestId="NavPrimaryMenuViewResume"
                   />
                 ) : null}
-                <Box data-tour-id="edit-resume-section" sx={highlightSx("edit-resume-section")}>
+                <Box data-tour-id="edit-resume-section" sx={highlightFillSx("edit-resume-section")}>
                   <NavItemTitle text="Edit Resume" />
                   <NavItem
                     text="Resume Profile"
@@ -351,7 +348,7 @@ export const NavPrimary = () => {
                   href="/edit/ai"
                   dataTestId="NavPrimaryMenuEditAI"
                 />
-                <Box data-tour-id="import-pdf" sx={highlightSx("import-pdf")}>
+                <Box data-tour-id="import-pdf" sx={highlightFillSx("import-pdf")}>
                   <NavItem
                     text="Import PDF"
                     icon="fluent-color:slide-text-sparkle-48"
@@ -368,7 +365,6 @@ export const NavPrimary = () => {
                   }}
                   sx={(theme) => ({
                     cursor: "pointer",
-                    ...highlightSx("restart-tutorial"),
                     "&:hover": {
                       backgroundColor:
                         theme.palette.mode === "dark"
@@ -381,7 +377,7 @@ export const NavPrimary = () => {
                   data-tour-id="restart-tutorial"
                 >
                   <ListItemIcon>
-                    <Icon icon="fluent-color:learning-app-24" width={36} height={36} />
+                    <Icon icon="fluent-color:book-open-lightbulb-20" width={36} height={36} />
                   </ListItemIcon>
                   <ListItemText primary="Restart tutorial" />
                 </ListItem>

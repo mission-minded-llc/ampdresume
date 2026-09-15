@@ -2,8 +2,9 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Box, Dialog, DialogContent } from "@mui/material";
-import { OnboardingCoachCard } from "./OnboardingCoachCard";
+import { Box, Dialog, DialogContent, Modal } from "@mui/material";
+import { OnboardingAnchoredCard } from "./OnboardingAnchoredCard";
+import { OnboardingCoachActions, OnboardingCoachCard } from "./OnboardingCoachCard";
 import { OnboardingSpotlight } from "./OnboardingSpotlight";
 import { ExperienceDemo } from "./demos/ExperienceDemo";
 import { SkillsDemo } from "./demos/SkillsDemo";
@@ -87,57 +88,112 @@ export const OnboardingTour = ({
     goNext();
   };
 
+  const coachActionProps = {
+    step,
+    onPrimary: goNext,
+    onSecondary: step.secondaryLabel ? handleSecondary : undefined,
+    onSkipTour: onComplete,
+    onBack: goBack,
+    showBack: safeIndex > 0 && step.id !== "welcome",
+  };
+
+  const isPanel = step.kind === "demo" || step.id === "tips";
+
   const coach = (
     <OnboardingCoachCard
-      step={step}
+      {...coachActionProps}
       stepNumber={safeIndex + 1}
       stepCount={visibleSteps.length}
-      onPrimary={goNext}
-      onSecondary={step.secondaryLabel ? handleSecondary : undefined}
-      onSkipTour={onComplete}
-      onBack={goBack}
-      showBack={safeIndex > 0 && step.id !== "welcome"}
+      variant={isPanel ? "header" : "card"}
     />
   );
+  const panelChromeSx = (theme: { palette: { mode: string } }) => ({
+    bgcolor: theme.palette.mode === "dark" ? "#16131B" : "#F3F0EC",
+    px: 3,
+    borderColor: "divider",
+    flexShrink: 0,
+  });
 
   return (
     <>
       {step.kind === "spotlight" && step.target ? (
-        <OnboardingSpotlight targetId={step.target} zIndex={step.openNav ? 1100 : 1300} />
+        <OnboardingSpotlight
+          targetId={step.target}
+          zIndex={step.openNav ? 1100 : 1300}
+          showRing={
+            step.target !== "edit-resume-section" &&
+            step.target !== "nav-menu-button" &&
+            step.target !== "import-pdf"
+          }
+        />
       ) : null}
 
-      {step.kind === "modal" || step.kind === "demo" ? (
+      {isPanel ? (
         <Dialog
           open
           fullWidth
           maxWidth={step.kind === "demo" ? "md" : "sm"}
           onClose={() => {}}
           aria-labelledby="onboarding-dialog-title"
-        >
-          <DialogContent
-            data-testid="OnboardingRoot"
-            sx={{ pt: 3, pb: 2, maxHeight: "80vh" }}
-          >
-            {step.id === "skills-demo" ? <SkillsDemo /> : null}
-            {step.id === "experience-demo" ? <ExperienceDemo /> : null}
-            {step.id === "tips" ? <TipsSlide /> : null}
-            <Box sx={{ mt: 2, display: "flex", justifyContent: "center" }}>{coach}</Box>
-          </DialogContent>
-        </Dialog>
-      ) : (
-        <Box
-          data-testid="OnboardingRoot"
-          sx={{
-            position: "fixed",
-            zIndex: 1400,
-            left: "50%",
-            bottom: { xs: 16, sm: 24 },
-            transform: "translateX(-50%)",
-            pointerEvents: "auto",
+          slotProps={{
+            paper: {
+              sx: {
+                maxHeight: "80vh",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+              },
+            },
           }}
         >
+          <Box
+            data-testid="OnboardingDemoHeader"
+            sx={(theme) => ({
+              ...panelChromeSx(theme),
+              pt: 2.5,
+              pb: 2,
+              borderBottom: 1,
+            })}
+          >
+            {coach}
+          </Box>
+          <DialogContent data-testid="OnboardingRoot" sx={{ p: 0, flex: 1, overflowY: "auto" }}>
+            <Box sx={{ px: 3, py: 2 }}>
+              {step.id === "skills-demo" ? <SkillsDemo /> : null}
+              {step.id === "experience-demo" ? <ExperienceDemo /> : null}
+              {step.id === "tips" ? <TipsSlide /> : null}
+            </Box>
+          </DialogContent>
+          <Box
+            data-testid="OnboardingDemoFooter"
+            sx={(theme) => ({
+              ...panelChromeSx(theme),
+              py: 2,
+              borderTop: 1,
+            })}
+          >
+            <OnboardingCoachActions {...coachActionProps} />
+          </Box>
+        </Dialog>
+      ) : step.kind === "modal" ? (
+        <Modal open onClose={() => {}} aria-labelledby="onboarding-dialog-title">
+          <Box
+            data-testid="OnboardingRoot"
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              outline: "none",
+            }}
+          >
+            {coach}
+          </Box>
+        </Modal>
+      ) : (
+        <OnboardingAnchoredCard targetId={step.target} placement={step.placement}>
           {coach}
-        </Box>
+        </OnboardingAnchoredCard>
       )}
     </>
   );

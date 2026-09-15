@@ -1,31 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import { useTourTargetRect } from "./tourTarget";
 
-const SPOTLIGHT_PADDING = 10;
-
-type SpotlightRect = {
-  top: number;
-  left: number;
-  width: number;
-  height: number;
-};
-
-const readTargetRect = (targetId: string): SpotlightRect | null => {
-  const el = document.querySelector(`[data-tour-id="${targetId}"]`);
-  if (!el) return null;
-
-  const rect = el.getBoundingClientRect();
-  if (rect.width === 0 && rect.height === 0) return null;
-
-  return {
-    top: rect.top - SPOTLIGHT_PADDING,
-    left: rect.left - SPOTLIGHT_PADDING,
-    width: rect.width + SPOTLIGHT_PADDING * 2,
-    height: rect.height + SPOTLIGHT_PADDING * 2,
-  };
-};
+const SPOTLIGHT_PADDING = 4;
 
 /**
  * Dims the page and rings the element with `data-tour-id={targetId}`.
@@ -34,26 +13,21 @@ const readTargetRect = (targetId: string): SpotlightRect | null => {
 export const OnboardingSpotlight = ({
   targetId,
   zIndex = 1300,
+  showRing = true,
 }: {
   targetId: string;
   zIndex?: number;
+  showRing?: boolean;
 }) => {
-  const [rect, setRect] = useState<SpotlightRect | null>(null);
-
-  useEffect(() => {
-    const update = () => setRect(readTargetRect(targetId));
-    update();
-
-    const interval = window.setInterval(update, 120);
-    window.addEventListener("resize", update);
-    window.addEventListener("scroll", update, true);
-
-    return () => {
-      window.clearInterval(interval);
-      window.removeEventListener("resize", update);
-      window.removeEventListener("scroll", update, true);
-    };
-  }, [targetId]);
+  const raw = useTourTargetRect(targetId);
+  const rect = raw
+    ? {
+        top: raw.top - SPOTLIGHT_PADDING,
+        left: raw.left - SPOTLIGHT_PADDING,
+        width: raw.width + SPOTLIGHT_PADDING * 2,
+        height: raw.height + SPOTLIGHT_PADDING * 2,
+      }
+    : null;
 
   const dim = {
     position: "fixed" as const,
@@ -91,20 +65,23 @@ export const OnboardingSpotlight = ({
           height: rect.height,
         }}
       />
-      <Box
-        sx={{
-          position: "fixed",
-          top: rect.top,
-          left: rect.left,
-          width: rect.width,
-          height: rect.height,
-          borderRadius: 2,
-          boxShadow: (theme) => `0 0 0 3px ${theme.palette.secondary.main}`,
-          pointerEvents: "none",
-          zIndex: 1400,
-        }}
-        data-testid="OnboardingSpotlightRing"
-      />
+      {showRing ? (
+        <Box
+          sx={{
+            position: "fixed",
+            top: rect.top,
+            left: rect.left,
+            width: rect.width,
+            height: rect.height,
+            borderRadius: 3,
+            boxShadow: (theme) =>
+              `0 0 0 1.5px ${alpha(theme.palette.secondary.main, 0.7)}, 0 0 0 5px ${alpha(theme.palette.secondary.main, 0.16)}`,
+            pointerEvents: "none",
+            zIndex: 1400,
+          }}
+          data-testid="OnboardingSpotlightRing"
+        />
+      ) : null}
     </>
   );
 };

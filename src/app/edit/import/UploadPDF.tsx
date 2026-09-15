@@ -17,6 +17,7 @@ export const UploadPDF = ({
 }) => {
   return (
     <Box
+      data-tour-id="import-page"
       sx={{
         display: "flex",
         flexDirection: "column",
