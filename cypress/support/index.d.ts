@@ -3,8 +3,15 @@
 declare global {
   namespace Cypress {
     interface Chainable {
-      loginWithMagicLink(email?: string): Chainable<void>;
+      loginWithMagicLink(): Chainable<void>;
       closeMessageDialog(options?: { required?: boolean }): Chainable<void>;
+      fillMonthYear(
+        parentSelector: string,
+        fieldName: string,
+        month: string,
+        year: string,
+      ): Chainable<void>;
+      aliasGraphql(operationName: string): Chainable<null>;
     }
   }
 }

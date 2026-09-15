@@ -31,9 +31,7 @@ describe("cypressTestAccount", () => {
       expect(cypressSpecTagFromPath("./cypress/integration/account/skills.cy.ts")).toBe(
         "account-skills",
       );
-      expect(cypressSpecTagFromPath("theme/davids/davidsMain.cy.ts")).toBe(
-        "theme-davids-davidsmain",
-      );
+      expect(cypressSpecTagFromPath("theme/themes.cy.ts")).toBe("theme-themes");
     });
   });
 

@@ -28,25 +28,18 @@ export function setupFeaturedProjectSkills(options?: { slug?: boolean }) {
 
   cy.visit("/edit/skills");
   for (const skill of catalogSkills) {
-    cy.get("body").then(($body) => {
-      if (!$body.find(`button:contains("${skill}")`).length) {
-        cy.get("input[name='searchSkills']").type(skill);
-        cy.get("span").contains(skill).click();
-        cy.get("button").contains("Add Skill").click();
-        cy.wait(500);
-      }
-    });
+    cy.get("input[name='searchSkills']").clear().type(skill);
+    cy.get("span").contains(skill).click();
+    cy.get("h2").contains("Enter Proficiency Level").should("be.visible");
+    cy.get("button").contains("Add Skill").click();
+    cy.get("button").contains(skill).should("be.visible");
   }
 
   cy.visit("/edit/featured-projects");
-  cy.get("body").then(($body) => {
-    if (!$body.find(`*:contains("${featuredProjectName}")`).length) {
-      cy.get("button").contains("Add Featured Project").click();
-      cy.get(".MuiDialog-container input[name='name']").type(featuredProjectName);
-      cy.get(".MuiDialog-container button").contains("Save Featured Project").click();
-      cy.wait(500);
-    }
-  });
+  cy.get("button").contains("Add Featured Project").click();
+  cy.get(".MuiDialog-container input[name='name']").type(featuredProjectName);
+  cy.get(".MuiDialog-container button").contains("Save Featured Project").click();
+  cy.contains(featuredProjectName).should("be.visible");
 }
 
 export function visitFeaturedProjects() {
@@ -60,21 +53,17 @@ export function openFeaturedProject(name = featuredProjectName) {
 }
 
 export function clearFeaturedProjectSkills() {
-  cy.get("body").then(($body) => {
-    const existingSkills = $body.find(".Mui-expanded button").filter((_, el) => {
-      const text = Cypress.$(el).text();
-      return catalogSkills.includes(text);
+  for (const skill of catalogSkills) {
+    cy.get(".Mui-expanded").then(($expanded) => {
+      if (!$expanded.find("button").filter((_, el) => Cypress.$(el).text() === skill).length) {
+        return;
+      }
+      cy.get(".Mui-expanded button").contains(skill).click();
+      cy.get(".MuiDialog-container button").contains("Delete from Featured Project").click();
+      cy.get("button").contains("Yes, Delete").click();
+      cy.get(".Mui-expanded button").contains(skill).should("not.exist");
     });
-
-    if (existingSkills.length > 0) {
-      existingSkills.each((_, el) => {
-        cy.wrap(el).click();
-        cy.get(".MuiDialog-container button").contains("Delete from Featured Project").click();
-        cy.get("button").contains("Yes, Delete").click();
-        cy.wait(500);
-      });
-    }
-  });
+  }
 }
 
 export function openSkillsCombobox() {
@@ -83,4 +72,27 @@ export function openSkillsCombobox() {
     .parent()
     .find("div[role='combobox']")
     .click();
+}
+
+export function addFirstAvailableSkill() {
+  openSkillsCombobox();
+  cy.get("li[role='option']", { timeout: 5000 }).should("have.length.at.least", 1);
+  cy.get("li[role='option']")
+    .first()
+    .then(($option) => {
+      const skillText = $option.text().trim();
+      cy.wrap(skillText).as("addedSkill");
+      cy.aliasGraphql("addSkillForFeaturedProject");
+      cy.wrap($option).click();
+      cy.wait("@addSkillForFeaturedProject");
+      cy.get(".Mui-expanded button").contains(skillText).should("be.visible");
+    });
+}
+
+export function addCatalogSkill(skill: string) {
+  openSkillsCombobox();
+  cy.aliasGraphql("addSkillForFeaturedProject");
+  cy.get("li[role='option']").contains(skill).click();
+  cy.wait("@addSkillForFeaturedProject");
+  cy.get(".Mui-expanded button").contains(skill).should("be.visible");
 }
