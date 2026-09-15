@@ -208,6 +208,7 @@ const AccountForm = ({
       />
       <MessageDialog
         open={showSlugPopup}
+        testId="SlugReminderDialog"
         title="Don't forget to set your URL!"
         message="Your URL name is very important! It's how others will find your resume page. Please set a name to continue."
         onClose={handleSlugPopupClose}

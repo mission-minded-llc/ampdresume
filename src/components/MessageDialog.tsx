@@ -17,6 +17,7 @@ export const MessageDialog = ({
   cancelText = "Cancel",
   onConfirm = () => {},
   variant = "alert",
+  testId = "MessageDialog",
 }: {
   open?: boolean;
   onClose?: () => void;
@@ -26,6 +27,7 @@ export const MessageDialog = ({
   cancelText?: string;
   onConfirm?: () => void;
   variant?: "alert" | "confirm";
+  testId?: string;
 }) => {
   return (
     <Dialog
@@ -35,7 +37,7 @@ export const MessageDialog = ({
       aria-describedby="alert-dialog-description"
       maxWidth="xs"
       fullWidth
-      data-testid="MessageDialog"
+      data-testid={testId}
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>

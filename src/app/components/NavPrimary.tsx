@@ -265,6 +265,9 @@ export const NavPrimary = () => {
             sx={{
               flex: 1,
               paddingTop: 2,
+              "& .MuiListItemIcon-root": {
+                mr: 1.5,
+              },
             }}
           >
             <NavItem

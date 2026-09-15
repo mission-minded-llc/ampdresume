@@ -58,26 +58,40 @@ Cypress.Commands.add("loginWithMagicLink", ({ skipOnboarding = true } = {}) => {
 });
 
 Cypress.Commands.add("closeMessageDialog", ({ required = false } = {}) => {
-  const closeVisibleDialog = () => {
-    cy.get("[data-testid=MessageDialog]")
-      .filter(":visible")
-      .first()
-      .should("be.visible")
-      .contains("button", "OK")
-      .click();
+  const reminder = "[data-testid=SlugReminderDialog]";
+
+  const dismissSlugReminder = () => {
+    cy.contains("Don't forget to set your URL!").should("be.visible");
+    cy.contains("button", "OK").should("be.visible").click();
+    cy.get("body").should(($body) => {
+      const $dlg = $body.find("[data-testid=SlugReminderDialog]");
+      if ($dlg.length === 0) return;
+      expect($dlg.attr("aria-hidden") === "true" || !$dlg.is(":visible")).to.eq(true);
+    });
   };
 
   if (required) {
-    closeVisibleDialog();
+    dismissSlugReminder();
     return;
   }
 
-  cy.get("body").then(($body) => {
-    if ($body.find("[data-testid=MessageDialog]:visible").length) {
-      closeVisibleDialog();
-    } else {
-      cy.log("Message dialog not found — continuing");
+  cy.location("pathname").then((pathname) => {
+    if (pathname.includes("/edit/profile")) {
+      cy.get("input[name='slug']")
+        .should("exist")
+        .invoke("val")
+        .then((value) => {
+          if (String(value ?? "").trim()) return;
+          dismissSlugReminder();
+        });
+      return;
     }
+
+    cy.get("body").then(($body) => {
+      if ($body.find(`${reminder}:visible`).length) {
+        dismissSlugReminder();
+      }
+    });
   });
 });
 
