@@ -3,12 +3,13 @@
 exports[`NavPrimary Component matches snapshot when logged in 1`] = `
 <div>
   <div
-    class="MuiBox-root css-0"
+    class="MuiBox-root css-vxcmzt"
   >
     <button
       aria-label="menu"
       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-8f3wy8-MuiButtonBase-root-MuiIconButton-root"
       data-testid="NavPrimaryMenuIcon"
+      data-tour-id="nav-menu-button"
       tabindex="0"
       type="button"
     >
@@ -31,12 +32,13 @@ exports[`NavPrimary Component matches snapshot when logged in 1`] = `
 exports[`NavPrimary Component matches snapshot when not logged in 1`] = `
 <div>
   <div
-    class="MuiBox-root css-0"
+    class="MuiBox-root css-vxcmzt"
   >
     <button
       aria-label="menu"
       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-8f3wy8-MuiButtonBase-root-MuiIconButton-root"
       data-testid="NavPrimaryMenuIcon"
+      data-tour-id="nav-menu-button"
       tabindex="0"
       type="button"
     >

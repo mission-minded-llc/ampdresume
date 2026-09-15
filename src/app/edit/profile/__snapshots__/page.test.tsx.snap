@@ -691,6 +691,28 @@ exports[`Page renders correctly for authenticated users 1`] = `
           </button>
         </div>
         <div
+          class="MuiBox-root css-wib88a"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-h6 css-18xxwmt-MuiTypography-root"
+          >
+            Tutorial
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-vsy9rl-MuiTypography-root"
+          >
+            Replay the walkthrough of menus, editors, and PDF import.
+          </p>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-sizeMedium MuiButton-colorPrimary css-1fw3zn-MuiButtonBase-root-MuiButton-root"
+            data-testid="RestartOnboardingButton"
+            tabindex="0"
+            type="button"
+          >
+            Restart tutorial
+          </button>
+        </div>
+        <div
           class="MuiBox-root css-2qbjw"
         >
           <h6

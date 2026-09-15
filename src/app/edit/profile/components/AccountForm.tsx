@@ -18,6 +18,7 @@ import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
 import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
 import { SocialsForm } from "./SocialsForm";
+import { useOnboarding } from "@/app/components/onboarding/OnboardingContext";
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -54,12 +55,22 @@ const AccountForm = ({
   }>({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [showSlugPopup, setShowSlugPopup] = useState(slug.length === 0);
+  const [showSlugPopup, setShowSlugPopup] = useState(false);
+  const [slugPopupDismissed, setSlugPopupDismissed] = useState(false);
   const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const isDesktop = useIsDesktop();
   const slugInputRef = React.useRef<HTMLInputElement>(null);
   const { data: session } = useSession();
   const router = useRouter();
+  const { isOnboardingActive, isOnboardingStatusResolved, restartOnboarding } = useOnboarding();
+
+  React.useEffect(() => {
+    if (!isOnboardingStatusResolved || isOnboardingActive) {
+      setShowSlugPopup(false);
+      return;
+    }
+    if (slug.length === 0 && !slugPopupDismissed) setShowSlugPopup(true);
+  }, [isOnboardingActive, isOnboardingStatusResolved, slug.length, slugPopupDismissed]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -101,6 +112,7 @@ const AccountForm = ({
 
     if (!validateForm()) {
       if (!formData.slug.trim()) {
+        setSlugPopupDismissed(false);
         setShowSlugPopup(true);
       }
       return;
@@ -153,6 +165,7 @@ const AccountForm = ({
   };
 
   const handleSlugPopupClose = () => {
+    setSlugPopupDismissed(true);
     setShowSlugPopup(false);
     setTimeout(() => slugInputRef.current?.focus(), 100);
   };
@@ -198,6 +211,7 @@ const AccountForm = ({
       />
       <MessageDialog
         open={showSlugPopup}
+        testId="SlugReminderDialog"
         title="Don't forget to set your URL!"
         message="Your URL name is very important! It's how others will find your resume page. Please set a name to continue."
         onClose={handleSlugPopupClose}
@@ -400,6 +414,39 @@ const AccountForm = ({
             data-testid="AccountFormSaveButton"
           >
             Save
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            padding: "32px 0",
+            borderTop: "1px solid",
+            borderColor: "divider",
+            marginTop: "2rem",
+          }}
+        >
+          <Typography variant="h6" sx={{ mb: 1 }}>
+            Tutorial
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ mb: 2, textAlign: "center", px: 2 }}
+          >
+            Replay the walkthrough of menus, editors, and PDF import.
+          </Typography>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              void restartOnboarding();
+            }}
+            data-testid="RestartOnboardingButton"
+          >
+            Restart tutorial
           </Button>
         </Box>
         <Box

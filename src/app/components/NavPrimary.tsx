@@ -18,6 +18,8 @@ import { MuiLink } from "@/components/MuiLink";
 import { useIsLoggedIn } from "@/hooks/useIsLoggedIn";
 import { ThemeAppearanceToggle } from "./ThemeAppearanceToggle";
 import { themeDefinitions } from "@/theme";
+import { useOnboarding } from "./onboarding/OnboardingContext";
+import { useNavPrimary } from "./onboarding/NavPrimaryContext";
 
 /**
  * The primary navigation component for the application. This nav is shared
@@ -26,11 +28,27 @@ import { themeDefinitions } from "@/theme";
 export const NavPrimary = () => {
   const session = useSession();
   const isLoggedIn = useIsLoggedIn();
+  const nav = useNavPrimary();
+  const { restartOnboarding } = useOnboarding();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [localOpen, setLocalOpen] = useState(false);
   const [demoThemesOpen, setDemoThemesOpen] = useState(false);
 
+  const isOpen = nav?.isOpen ?? localOpen;
+  const setIsOpen = nav?.setOpen ?? setLocalOpen;
+  const highlightId = nav?.highlightId ?? null;
+  const lockOpen = nav?.lockOpen ?? false;
+
+  const highlightFillSx = (id: "edit-resume-section" | "import-pdf") =>
+    highlightId === id
+      ? {
+          bgcolor: (theme: { palette: { mode: string } }) =>
+            theme.palette.mode === "dark" ? "rgba(255, 140, 40, 0.16)" : "rgba(255, 140, 40, 0.1)",
+        }
+      : undefined;
+
   const toggleDrawer = (open: boolean) => (event: object) => {
+    if (lockOpen && !open) return;
     if (
       ((event as React.KeyboardEvent).type === "keydown" &&
         (event as React.KeyboardEvent).key === "Tab") ||
@@ -85,7 +103,7 @@ export const NavPrimary = () => {
       <ListItem
         component="div"
         onClick={() => {
-          setIsOpen(false);
+          if (!lockOpen) setIsOpen(false);
         }}
         sx={(theme) => ({
           color: "inherit",
@@ -132,7 +150,7 @@ export const NavPrimary = () => {
       <ListItem
         component="div"
         onClick={() => {
-          setIsOpen(false);
+          if (!lockOpen) setIsOpen(false);
         }}
         sx={(theme) => ({
           pl: 4,
@@ -187,20 +205,22 @@ export const NavPrimary = () => {
   );
 
   return (
-    <Box>
+    <Box sx={{ display: "inline-flex" }}>
       <IconButton
         edge="start"
         color="inherit"
         aria-label="menu"
         onClick={toggleDrawer(true)}
-        onMouseEnter={toggleDrawer(true)}
         data-testid="NavPrimaryMenuIcon"
+        data-tour-id="nav-menu-button"
         sx={(theme) => ({
           mt: 1,
           ml: 1,
           backgroundColor: theme.palette.background.paper,
           borderRadius: 2.5,
           boxShadow: theme.shadows[1],
+          zIndex: highlightId === "nav-menu-button" ? 1400 : undefined,
+          position: highlightId === "nav-menu-button" ? "relative" : undefined,
           [theme.breakpoints.down("sm")]: {
             mt: 1,
             mr: 1,
@@ -211,7 +231,18 @@ export const NavPrimary = () => {
         <MenuIcon fontSize="large" />
       </IconButton>
 
-      <Drawer anchor="left" open={isOpen} onClose={toggleDrawer(false)}>
+      <Drawer
+        anchor="left"
+        open={isOpen}
+        onClose={toggleDrawer(false)}
+        slotProps={{
+          paper: {
+            sx: {
+              zIndex: lockOpen ? 1250 : undefined,
+            },
+          },
+        }}
+      >
         <Box
           sx={{
             width: 250,
@@ -231,6 +262,9 @@ export const NavPrimary = () => {
             sx={{
               flex: 1,
               paddingTop: 2,
+              "& .MuiListItemIcon-root": {
+                mr: 1.5,
+              },
             }}
           >
             <NavItem
@@ -268,39 +302,45 @@ export const NavPrimary = () => {
                     dataTestId="NavPrimaryMenuViewResume"
                   />
                 ) : null}
-                <NavItemTitle text="Edit Resume" />
-                <NavItem
-                  text="Resume Profile"
-                  icon="fluent-color:scan-person-48"
-                  href="/edit/profile"
-                  dataTestId="NavPrimaryMenuEditResume"
-                />
-                <NavItem
-                  text="Your Skills"
-                  icon="fluent-color:data-pie-20"
-                  href="/edit/skills"
-                  dataTestId="NavPrimaryMenuEditSkills"
-                />
-                <NavItem
-                  text="Work Experience"
-                  icon="fluent-color:data-bar-vertical-ascending-16"
-                  href="/edit/experience"
-                />
-                <NavItem
-                  text="Featured Projects"
-                  icon="fluent-color:code-16"
-                  href="/edit/featured-projects"
-                />
-                <NavItem
-                  text="Education"
-                  icon="fluent-color:certificate-16"
-                  href="/edit/education"
-                />
-                <NavItem
-                  text="Certifications"
-                  icon="flat-color-icons:diploma-1"
-                  href="/edit/certifications"
-                />
+                <Box data-tour-id="edit-resume-section" sx={highlightFillSx("edit-resume-section")}>
+                  <NavItemTitle text="Edit Resume" />
+                  <NavItem
+                    text="Resume Profile"
+                    icon="fluent-color:scan-person-48"
+                    href="/edit/profile"
+                    dataTestId="NavPrimaryMenuEditResume"
+                  />
+                  <NavItem
+                    text="Your Skills"
+                    icon="fluent-color:data-pie-20"
+                    href="/edit/skills"
+                    dataTestId="NavPrimaryMenuEditSkills"
+                  />
+                  <NavItem
+                    text="Work Experience"
+                    icon="fluent-color:data-bar-vertical-ascending-16"
+                    href="/edit/experience"
+                    dataTestId="NavPrimaryMenuEditExperience"
+                  />
+                  <NavItem
+                    text="Featured Projects"
+                    icon="fluent-color:code-16"
+                    href="/edit/featured-projects"
+                    dataTestId="NavPrimaryMenuEditFeaturedProjects"
+                  />
+                  <NavItem
+                    text="Education"
+                    icon="fluent-color:certificate-16"
+                    href="/edit/education"
+                    dataTestId="NavPrimaryMenuEditEducation"
+                  />
+                  <NavItem
+                    text="Certifications"
+                    icon="flat-color-icons:diploma-1"
+                    href="/edit/certifications"
+                    dataTestId="NavPrimaryMenuEditCertifications"
+                  />
+                </Box>
                 <NavItemTitle text="Tools" />
                 <NavItem
                   text="AI Assist"
@@ -308,13 +348,39 @@ export const NavPrimary = () => {
                   href="/edit/ai"
                   dataTestId="NavPrimaryMenuEditAI"
                 />
-                <NavItem
-                  text="Import PDF"
-                  icon="fluent-color:slide-text-sparkle-48"
-                  href="/edit/import"
-                  dataTestId="NavPrimaryMenuEditImport"
-                />
+                <Box data-tour-id="import-pdf" sx={highlightFillSx("import-pdf")}>
+                  <NavItem
+                    text="Import PDF"
+                    icon="fluent-color:slide-text-sparkle-48"
+                    href="/edit/import"
+                    dataTestId="NavPrimaryMenuEditImport"
+                  />
+                </Box>
                 <NavItemTitle text="Account" />
+                <ListItem
+                  component="div"
+                  onClick={() => {
+                    if (!lockOpen) setIsOpen(false);
+                    void restartOnboarding();
+                  }}
+                  sx={(theme) => ({
+                    cursor: "pointer",
+                    "&:hover": {
+                      backgroundColor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(174, 0, 255, 0.18)"
+                          : "rgba(174, 0, 255, 0.08)",
+                      borderRight: `4px solid ${theme.palette.secondary.main}`,
+                    },
+                  })}
+                  data-testid="NavPrimaryMenuRestartTutorial"
+                  data-tour-id="restart-tutorial"
+                >
+                  <ListItemIcon>
+                    <Icon icon="fluent-color:book-open-lightbulb-20" width={36} height={36} />
+                  </ListItemIcon>
+                  <ListItemText primary="Restart tutorial" />
+                </ListItem>
                 <NavItem
                   text="Logout"
                   icon="flat-color-icons:export"

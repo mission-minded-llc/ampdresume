@@ -14,6 +14,8 @@ describe("Profile Section", () => {
   beforeEach(() => {
     cy.loginWithMagicLink();
     cy.visit("/edit/profile");
+    cy.skipOnboardingIfPresent();
+    cy.closeMessageDialog();
   });
 
   it("should access protected profile section", () => {
@@ -21,8 +23,6 @@ describe("Profile Section", () => {
   });
 
   it("should populate profile data and save", () => {
-    cy.closeMessageDialog({ required: true });
-
     const fields = [
       { name: "name", value: " Test User" },
       { name: "slug", value: testSlug },
@@ -34,15 +34,14 @@ describe("Profile Section", () => {
     ];
 
     fields.forEach((field) => {
-      cy.get(`input[name='${field.name}']`)
-        .clear({ force: true })
-        .type(field.value, { force: true, delay: 25 });
+      cy.get(`input[name='${field.name}']`).clear().type(field.value, { delay: 25 });
     });
 
     cy.intercept("POST", "/api/account").as("saveAccount");
     cy.get(saveButton).click();
     cy.wait("@saveAccount").its("response.statusCode").should("eq", 200);
     cy.reload();
+    cy.closeMessageDialog();
 
     fields.forEach((field) => {
       cy.get(`input[name='${field.name}']`).should("have.value", field.value.trim());
@@ -52,15 +51,13 @@ describe("Profile Section", () => {
   it("should encounter slug validation error", () => {
     const slugErrorMessage = "Slug must be alphanumeric and lowercase. Hyphens allowed.";
 
-    cy.closeMessageDialog();
-
     cy.contains(slugErrorMessage).should("not.exist");
-    cy.get("input[name='slug']").clear({ force: true }).type("test user");
+    cy.get("input[name='slug']").clear().type("test user");
     cy.get(saveButton).click();
 
     cy.contains(slugErrorMessage).should("be.visible");
 
-    cy.get("input[name='slug']").clear({ force: true }).type(testSlug);
+    cy.get("input[name='slug']").clear().type(testSlug);
     cy.contains(slugErrorMessage).should("not.exist");
 
     cy.get(saveButton).click();
@@ -69,7 +66,7 @@ describe("Profile Section", () => {
   it("should encounter email validation error", () => {
     cy.contains("Invalid email address").should("not.exist");
     cy.get("input[name='displayEmail']")
-      .clear({ force: true })
+      .clear()
       .type(testEmail.substring(0, testEmail.length - 4));
 
     cy.get(saveButton).click();
@@ -83,20 +80,18 @@ describe("Profile Section", () => {
   it("should successfully delete account and redirect to homepage", () => {
     cy.contains("Profile").should("be.visible");
     cy.contains("General Information").should("be.visible");
-
-    cy.closeMessageDialog();
-
     cy.contains("Danger Zone").should("be.visible");
 
     cy.get("button")
       .contains("Delete Account")
       .should("not.be.disabled")
       .should("be.visible")
-      .click({ force: true });
+      .click();
 
-    cy.get("input[type='checkbox']").check({ force: true });
-
-    cy.get("button").contains("Yes, Delete My Account").should("not.be.disabled").click();
+    cy.contains('[role="dialog"]', "Delete Account").within(() => {
+      cy.get("input[type='checkbox']").check();
+      cy.contains("button", "Yes, Delete My Account").should("not.be.disabled").click();
+    });
 
     cy.location("pathname").should("eq", "/");
 

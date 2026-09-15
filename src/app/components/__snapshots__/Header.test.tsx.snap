@@ -6,12 +6,13 @@ exports[`Header component matches snapshot 1`] = `
     class="MuiBox-root css-1ykbfkf"
   >
     <div
-      class="MuiBox-root css-0"
+      class="MuiBox-root css-vxcmzt"
     >
       <button
         aria-label="menu"
         class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart MuiIconButton-sizeMedium css-8f3wy8-MuiButtonBase-root-MuiIconButton-root"
         data-testid="NavPrimaryMenuIcon"
+        data-tour-id="nav-menu-button"
         tabindex="0"
         type="button"
       >

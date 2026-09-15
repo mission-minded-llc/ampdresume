@@ -7,6 +7,7 @@ describe("Skills Section", () => {
   beforeEach(() => {
     cy.loginWithMagicLink();
     cy.visit("/edit/skills");
+    cy.skipOnboardingIfPresent();
   });
 
   it("should add a skill with year started", () => {

@@ -7,6 +7,7 @@ describe("Certifications Section", () => {
   beforeEach(() => {
     cy.loginWithMagicLink();
     cy.visit("/edit/certifications");
+    cy.skipOnboardingIfPresent();
   });
 
   it("should access protected certifications section", () => {
