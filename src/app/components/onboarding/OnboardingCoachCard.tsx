@@ -36,6 +36,7 @@ export const OnboardingCoachActions = ({
       sx={{
         display: "flex",
         flexDirection: "row",
+        flexWrap: "wrap",
         gap: 1,
         justifyContent: "space-between",
         alignItems: "center",
@@ -137,9 +138,12 @@ export const OnboardingCoachCard = ({
       data-testid="OnboardingCoachCard"
       sx={{
         width: { xs: "calc(100vw - 32px)", sm: 420 },
-        maxWidth: "100%",
+        maxWidth: "calc(100vw - 32px)",
+        maxHeight: "calc(100dvh - 32px)",
+        overflow: "auto",
         p: 2.5,
         borderRadius: 3,
+        boxSizing: "border-box",
       }}
     >
       {instructions}
