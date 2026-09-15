@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { titleSuffix } from "@/constants";
 import { getResume } from "@/graphql/getResume";
 import { getUser } from "@/graphql/getUser";
+import { getSession } from "@/lib/auth";
+import { withOwnerDisplayEmail } from "@/lib/withOwnerDisplayEmail";
 import { PDFView } from "./PDFView";
 
 export async function generateMetadata({
@@ -38,11 +40,12 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const resume = await getResume(slug);
+  const [resume, session] = await Promise.all([getResume(slug), getSession()]);
 
   if (!resume) notFound();
 
-  const { user, skillsForUser, companies, education, certifications, featuredProjects } = resume;
+  const { skillsForUser, companies, education, certifications, featuredProjects } = resume;
+  const user = await withOwnerDisplayEmail(resume.user, session);
 
   return (
     <PDFView

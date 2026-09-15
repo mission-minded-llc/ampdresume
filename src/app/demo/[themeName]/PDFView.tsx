@@ -42,7 +42,7 @@ export const PDFView = ({ themeName }: PDFViewProps) => {
       default:
         return (
           <ThemeDefaultPDF
-            user={themeDefaultSampleData.data.resume.user}
+            user={{ ...themeDefaultSampleData.data.resume.user, displayEmail: null }}
             skillsForUser={themeDefaultSampleData.data.resume.skillsForUser}
             companies={themeDefaultSampleData.data.resume.companies}
             education={themeDefaultSampleData.data.resume.education}

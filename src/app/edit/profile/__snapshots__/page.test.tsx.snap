@@ -253,11 +253,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
             >
-              This email is stored with your profile and is 
-              <strong>
-                not shown
-              </strong>
-               on your public resume, to prevent scrapers from harvesting it.
+              This email is not shown on your public resume, to prevent scrapers from harvesting it. It can appear on a PDF you generate while signed in.
             </p>
             <div
               class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"

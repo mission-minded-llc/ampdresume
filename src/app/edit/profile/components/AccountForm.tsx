@@ -295,8 +295,8 @@ const AccountForm = ({
               <MailOutlinedIcon /> Display Email
             </FieldTitle>
             <FieldDescription>
-              This email is stored with your profile and is <strong>not shown</strong> on your
-              public resume, to prevent scrapers from harvesting it.
+              This email is not shown on your public resume, to prevent scrapers from harvesting it.
+              It can appear on a PDF you generate while signed in.
             </FieldDescription>
             <TextField
               label="Display Email"
