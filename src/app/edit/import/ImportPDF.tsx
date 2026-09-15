@@ -20,6 +20,7 @@ export const ImportPDF = () => {
   const [extractedText, setExtractedText] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [savePending, setSavePending] = useState(false);
+  const [pdfJsReady, setPdfJsReady] = useState(false);
 
   useEffect(() => {
     const loadPdfJs = async () => {
@@ -33,6 +34,7 @@ export const ImportPDF = () => {
 
         pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
         pdfjsLib = pdfjs as typeof import("pdfjs-dist");
+        setPdfJsReady(true);
       } catch (err) {
         setError("Failed to load PDF processing library");
         Sentry.captureException(err);
@@ -135,7 +137,7 @@ export const ImportPDF = () => {
         message={savePending ? "Saving..." : "Analyzing your resume..."}
       />
       <PageHeading />
-      <UploadPDF onFileUpload={handleFileUpload} />
+      <UploadPDF onFileUpload={handleFileUpload} disabled={!pdfJsReady} />
       {!analyzing && (
         <ExtractedInformation
           data={parsedResumeAi || null}

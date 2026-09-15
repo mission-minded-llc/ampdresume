@@ -18,12 +18,13 @@ describe("Import Section", () => {
   it("should import resume from PDF", () => {
     cy.intercept("POST", "/api/graphql", (req) => {
       if (req.body.operationName === "getParsedResumeAi") {
-        req.alias = "getParsedResumeAi";
         req.reply(getParsedResumeAiResponse);
       }
-    });
+    }).as("getParsedResumeAi");
 
-    cy.get('input[type="file"]').selectFile("cypress/fixtures/test-resume-1.pdf");
+    cy.get('input[type="file"]:enabled', { timeout: 10000 }).selectFile(
+      "cypress/fixtures/test-resume-1.pdf",
+    );
     cy.wait("@getParsedResumeAi", { timeout: 10000 });
 
     cy.contains("Personal Information").should("be.visible");
