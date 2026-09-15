@@ -9,6 +9,7 @@ describe("Import Section", () => {
   beforeEach(() => {
     cy.loginWithMagicLink();
     cy.visit("/edit/import");
+    cy.skipOnboardingIfPresent();
   });
 
   it("should access protected import section", () => {

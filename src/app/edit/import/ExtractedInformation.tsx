@@ -11,6 +11,7 @@ import { ExtractedDataProvider, useExtractedData } from "./ExtractedDataContext"
 import { ExtractedSkills } from "./ExtractedSkills";
 import { ExtractedUser } from "./ExtractedUser";
 import { ParsedResumeData } from "./types";
+import { useOnboarding } from "@/app/components/onboarding/OnboardingContext";
 
 /**
  * The main component for the extracted information page. This component
@@ -26,6 +27,7 @@ const ExtractedInformationContent = ({
 }) => {
   const { data: session } = useSession();
   const router = useRouter();
+  const { isOnboardingActive, notifyImported } = useOnboarding();
 
   const {
     user,
@@ -92,6 +94,11 @@ const ExtractedInformationContent = ({
         companies: companies,
         education: education,
       });
+
+      if (isOnboardingActive) {
+        notifyImported();
+        return;
+      }
 
       // Redirect to the experience page on successful save.
       router.push("/edit/experience");

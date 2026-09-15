@@ -30,10 +30,20 @@ import { addSkill } from "@/graphql/addSkill";
 import { addSkillForUser } from "@/graphql/addSkillForUser";
 import { getSkills } from "@/graphql/getSkills";
 import { removeLeadingZero } from "@/lib/format";
+import { Skill } from "@/types";
 
-export const EditSkillsSearch = () => {
+export const EditSkillsSearch = ({
+  demoSkills,
+  demoSearchTerm,
+  onDemoAdd,
+}: {
+  demoSkills?: Skill[];
+  demoSearchTerm?: string;
+  onDemoAdd?: (skill: Skill, yearStarted: number, totalYears: number) => void;
+} = {}) => {
   const { data: session, status } = useSession();
   const queryClient = useQueryClient();
+  const isDemo = Array.isArray(demoSkills);
 
   const [isAddExistingSkillDialogOpen, setIsAddExistingSkillDialogOpen] = useState(false);
   const [isAddNewSkillDialogOpen, setIsAddNewSkillDialogOpen] = useState(false);
@@ -66,9 +76,15 @@ export const EditSkillsSearch = () => {
     };
   }, [searchTerm]);
 
+  useEffect(() => {
+    if (typeof demoSearchTerm === "string") {
+      setSearchTerm(demoSearchTerm);
+    }
+  }, [demoSearchTerm]);
+
   // Load all available skills for search/selector
   const { isPending, error, data } = useQuery({
-    enabled: status === "authenticated" && !!session?.user?.id,
+    enabled: !isDemo && status === "authenticated" && !!session?.user?.id,
     queryKey: ["skills"],
     queryFn: async () => await getSkills(),
   });
@@ -116,11 +132,12 @@ export const EditSkillsSearch = () => {
   });
 
   // Filter skills based on search term
+  const skillCatalog = isDemo ? demoSkills : data?.skills;
   const filteredSkills = useMemo(() => {
-    if (!data?.skills || searchTerm.length < minCharsForSearch) return [];
+    if (!skillCatalog || searchTerm.length < minCharsForSearch) return [];
 
     // Sort skills by closest match and limit to top 10
-    return data.skills
+    return skillCatalog
       .filter((skill) => skill.name.toLowerCase().includes(searchTerm.toLowerCase()))
       .sort((a, b) => {
         if (a.name.toLowerCase() === searchTerm.toLowerCase()) return -1;
@@ -133,10 +150,10 @@ export const EditSkillsSearch = () => {
         return aIndex - bIndex;
       })
       .slice(0, 10); // Limit to top 10 matches
-  }, [data?.skills, searchTerm]);
+  }, [skillCatalog, searchTerm]);
 
-  if (isPending) return <LoadingOverlay message="Loading skills..." />;
-  if (error) return <Box>Error loading skills: {error.message}</Box>;
+  if (!isDemo && isPending) return <LoadingOverlay message="Loading skills..." />;
+  if (!isDemo && error) return <Box>Error loading skills: {error.message}</Box>;
 
   const handleSkillSelection = (skillId: string) => {
     // Open dialog to get proficiency level
@@ -146,11 +163,16 @@ export const EditSkillsSearch = () => {
 
   const handleAddExistingSkill = () => {
     if (selectedSkillId) {
-      addExistingSkillMutation.mutate({
-        skillId: selectedSkillId,
-        yearStarted: yearStarted,
-        totalYears: totalYears,
-      });
+      if (onDemoAdd) {
+        const skill = skillCatalog?.find((item) => item.id === selectedSkillId);
+        if (skill) onDemoAdd(skill, yearStarted, totalYears);
+      } else {
+        addExistingSkillMutation.mutate({
+          skillId: selectedSkillId,
+          yearStarted: yearStarted,
+          totalYears: totalYears,
+        });
+      }
 
       // Close dialog and reset states
       setIsAddExistingSkillDialogOpen(false);
@@ -162,6 +184,10 @@ export const EditSkillsSearch = () => {
   };
 
   const handleAddNewSkill = () => {
+    if (isDemo) {
+      setIsAddNewSkillDialogOpen(false);
+      return;
+    }
     // Only call mutate if icon is a string (not null)
     if (newSkillName && icon) {
       addNewSkillMutation.mutate({ name: newSkillName, icon });

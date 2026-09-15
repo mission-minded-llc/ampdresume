@@ -7,6 +7,7 @@ describe("Featured Projects Section", () => {
   beforeEach(() => {
     cy.loginWithMagicLink();
     cy.visit("/edit/featured-projects");
+    cy.skipOnboardingIfPresent();
   });
 
   it("should access protected featured projects section", () => {

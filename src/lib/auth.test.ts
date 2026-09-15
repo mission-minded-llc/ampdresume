@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { EmailConfig } from "next-auth/providers/email";
 import nodemailer from "nodemailer";
 import { expect } from "@jest/globals";
+import { prisma } from "@/lib/prisma";
 
 // Mock dependencies
 jest.mock("fs");
@@ -16,6 +17,13 @@ jest.mock("@/util/email.server", () => ({
 }));
 jest.mock("next-auth", () => ({
   getServerSession: jest.fn(),
+}));
+jest.mock("@/lib/prisma", () => ({
+  prisma: {
+    feature: {
+      upsert: jest.fn(),
+    },
+  },
 }));
 
 describe("auth", () => {
@@ -603,6 +611,34 @@ describe("auth", () => {
       const result = await getSession();
 
       expect(result).toBeNull();
+    });
+  });
+
+  describe("createUser event", () => {
+    const mockUpsert = prisma.feature.upsert as jest.Mock;
+
+    beforeEach(() => {
+      mockUpsert.mockResolvedValue({});
+    });
+
+    it("should mark onboarding as pending for a new user", async () => {
+      const createUser = authOptions.events?.createUser;
+      await createUser?.({
+        user: { id: "user-1", email: "new@example.com" },
+      } as never);
+
+      expect(mockUpsert).toHaveBeenCalledWith({
+        where: { userId_name: { userId: "user-1", name: "onboarding_pending" } },
+        create: { userId: "user-1", name: "onboarding_pending", enabled: true },
+        update: { enabled: true },
+      });
+    });
+
+    it("should no-op when the new user has no id", async () => {
+      const createUser = authOptions.events?.createUser;
+      await createUser?.({ user: { email: "new@example.com" } } as never);
+
+      expect(mockUpsert).not.toHaveBeenCalled();
     });
   });
 });

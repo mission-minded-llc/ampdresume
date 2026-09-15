@@ -11,6 +11,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { createAppTheme } from "@/app/theme/createAppTheme";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { NavPrimaryProvider } from "./onboarding/NavPrimaryContext";
+import { OnboardingProvider } from "./onboarding/OnboardingProvider";
 import { TanstackQueryProvider } from "./TanstackContext";
 import { ThemeAppearanceContext } from "./ThemeContext";
 
@@ -27,27 +29,31 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  minHeight: "100vh",
-                  overflowX: "clip",
-                }}
-              >
-                <Header />
-                <Container
-                  maxWidth={isHome ? false : "lg"}
-                  disableGutters={isHome}
-                  sx={(theme) => ({
-                    backgroundColor: theme.palette.background.default,
-                    flex: 1,
-                  })}
-                >
-                  {children}
-                </Container>
-                <Footer />
-              </Box>
+              <NavPrimaryProvider>
+                <OnboardingProvider>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      minHeight: "100vh",
+                      overflowX: "clip",
+                    }}
+                  >
+                    <Header />
+                    <Container
+                      maxWidth={isHome ? false : "lg"}
+                      disableGutters={isHome}
+                      sx={(theme) => ({
+                        backgroundColor: theme.palette.background.default,
+                        flex: 1,
+                      })}
+                    >
+                      {children}
+                    </Container>
+                    <Footer />
+                  </Box>
+                </OnboardingProvider>
+              </NavPrimaryProvider>
             </ThemeProvider>
           </LocalizationProvider>
         </TanstackQueryProvider>

@@ -14,6 +14,7 @@ describe("Profile Section", () => {
   beforeEach(() => {
     cy.loginWithMagicLink();
     cy.visit("/edit/profile");
+    cy.skipOnboardingIfPresent();
   });
 
   it("should access protected profile section", () => {

@@ -1,6 +1,6 @@
 import { SkillForUser } from "@/types";
 import { useSession } from "next-auth/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   Accordion,
@@ -22,18 +22,22 @@ import { updateSkillForUser } from "@/graphql/updateSkillForUser";
 import { removeLeadingZero } from "@/lib/format";
 import { DeleteWithConfirmation } from "../components/DeleteWithConfirmation";
 import { RichTextEditor } from "../components/RichTextEditor/RichTextEditor";
+import { useDemoMode } from "@/app/components/onboarding/DemoModeContext";
 
 export const SkillItemEdit = ({
   skill,
   handleClose,
   setIconCallback,
+  defaultDescriptionOpen = false,
 }: {
   skill: SkillForUser;
   handleClose: VoidFunction;
-  setIconCallback: React.Dispatch<React.SetStateAction<string | null | undefined>>;
+  setIconCallback: Dispatch<SetStateAction<string | null | undefined>>;
+  defaultDescriptionOpen?: boolean;
 }) => {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
+  const isDemo = useDemoMode();
 
   const editorStateRef = useRef<string | null>(null);
 
@@ -45,7 +49,7 @@ export const SkillItemEdit = ({
   const [totalYears, setTotalYears] = useState(skill?.totalYears ?? 0);
   const [icon, setIcon] = useState(skill?.icon ? skill.icon : skill?.skill?.icon);
   const [autoCalculate, setAutoCalculate] = useState(defaultAutoCalculate);
-  const [isAccordionExpanded, setIsAccordionExpanded] = useState(false);
+  const [isAccordionExpanded, setIsAccordionExpanded] = useState(defaultDescriptionOpen);
 
   const updateSkillForUserMutation = useMutation({
     mutationFn: async ({
@@ -60,7 +64,7 @@ export const SkillItemEdit = ({
       totalYears: number;
       icon: string | null | undefined;
     }) => {
-      if (!session?.user?.id) return;
+      if (isDemo || !session?.user?.id) return;
 
       await updateSkillForUser({
         id,
@@ -76,7 +80,7 @@ export const SkillItemEdit = ({
 
   const deleteSkillForUserMutation = useMutation({
     mutationFn: async ({ id }: { id: string }) => {
-      if (!session?.user?.id) return;
+      if (isDemo || !session?.user?.id) return;
 
       await deleteSkillForUser({
         id,

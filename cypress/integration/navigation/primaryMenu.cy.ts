@@ -38,6 +38,7 @@ describe("Primary Nav Menu", () => {
   it("should show protected links when logged in", () => {
     cy.loginWithMagicLink();
     cy.visit("/");
+    cy.skipOnboardingIfPresent();
     cy.closeMessageDialog({ required: false });
 
     cy.get("[data-testid=NavPrimaryMenuIcon]").should("be.visible").click();

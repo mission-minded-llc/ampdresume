@@ -7,10 +7,12 @@ import Button from "@mui/material/Button";
 import { Icon } from "@iconify/react";
 import { SkillItemEdit } from "@/app/edit/skills/SkillItemEdit";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
+import { useDemoMode } from "@/app/components/onboarding/DemoModeContext";
 
 export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
   const { data: session, status } = useSession();
   const pathname = usePathname();
+  const isDemo = useDemoMode();
 
   const [isOpen, setIsOpen] = useState(false);
   const [icon, setIcon] = useState<string | null | undefined>(
@@ -18,10 +20,11 @@ export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
   );
 
   const userCanEdit =
-    skill?.userId &&
-    pathname.startsWith("/edit/skills") &&
-    status === "authenticated" &&
-    session?.user?.id === skill.userId;
+    isDemo ||
+    (Boolean(skill?.userId) &&
+      pathname.startsWith("/edit/skills") &&
+      status === "authenticated" &&
+      session?.user?.id === skill.userId);
 
   const buttonDisabled = !(skill?.description || userCanEdit);
 

@@ -8,6 +8,7 @@ describe("Experience Section", () => {
   beforeEach(() => {
     cy.loginWithMagicLink();
     cy.visit("/edit/experience");
+    cy.skipOnboardingIfPresent();
   });
 
   it("should access protected experience section", () => {

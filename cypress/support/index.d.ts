@@ -3,7 +3,8 @@
 declare global {
   namespace Cypress {
     interface Chainable {
-      loginWithMagicLink(): Chainable<void>;
+      loginWithMagicLink(options?: { skipOnboarding?: boolean }): Chainable<void>;
+      skipOnboardingIfPresent(): Chainable<void>;
       closeMessageDialog(options?: { required?: boolean }): Chainable<void>;
       fillMonthYear(
         parentSelector: string,

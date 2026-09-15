@@ -2,21 +2,46 @@
 
 import { cypressSpecEmail } from "../../src/lib/cypressTestAccount";
 
-Cypress.Commands.add("loginWithMagicLink", () => {
+/**
+ * Persist "tour dismissed" on the server. Do not click or assert visibility
+ * on tour wrappers — several are zero-height Boxes that fail Cypress
+ * actionability during session setup.
+ */
+Cypress.Commands.add("skipOnboardingIfPresent", () => {
+  cy.request({
+    method: "POST",
+    url: "/api/onboarding",
+    body: { pending: false },
+    failOnStatusCode: false,
+  });
+});
+
+Cypress.Commands.add("loginWithMagicLink", ({ skipOnboarding = true } = {}) => {
   const email = cypressSpecEmail(Cypress.spec.relative);
   cy.session(
-    email,
+    [email, skipOnboarding ? "skip-onboarding" : "keep-onboarding"],
     () => {
       cy.visit("/login");
       cy.get("input[type='email']").type(email);
       cy.contains("button", "Sign in with Email").click();
-      cy.contains("Check Your Email").should("be.visible");
+      cy.contains("h1", "Check Your Email").should("be.visible");
 
       cy.task("getMagicLink", { email }).then((magicLink) => {
+        if (skipOnboarding) {
+          cy.intercept("GET", "/api/onboarding", { pending: false });
+        }
+
         cy.visit(magicLink as string);
         cy.url().should("include", "/edit/profile");
-        cy.contains("Profile").should("be.visible");
-        cy.contains("General Information").should("be.visible");
+
+        if (skipOnboarding) {
+          cy.request({
+            method: "POST",
+            url: "/api/onboarding",
+            body: { pending: false },
+            failOnStatusCode: false,
+          });
+        }
       });
     },
     {
@@ -25,23 +50,35 @@ Cypress.Commands.add("loginWithMagicLink", () => {
       },
     },
   );
+
+  // Intercepts inside cy.session do not persist after restore.
+  if (skipOnboarding) {
+    cy.intercept("GET", "/api/onboarding", { pending: false });
+  }
 });
 
 Cypress.Commands.add("closeMessageDialog", ({ required = false } = {}) => {
+  const closeVisibleDialog = () => {
+    cy.get("[data-testid=MessageDialog]")
+      .filter(":visible")
+      .first()
+      .should("be.visible")
+      .contains("button", "OK")
+      .click();
+  };
+
   if (required) {
-    cy.get("[data-testid=MessageDialog]").should("be.visible");
-    cy.get("[data-testid=MessageDialog]").contains("OK").click();
-  } else {
-    cy.get("body", { timeout: 1000 }).then(($body) => {
-      const $dialog = $body.find("[data-testid=MessageDialog]");
-      if ($dialog.length) {
-        cy.wrap($dialog).should("be.visible");
-        cy.wrap($dialog).contains("OK").click();
-      } else {
-        cy.log("Message dialog not found — continuing");
-      }
-    });
+    closeVisibleDialog();
+    return;
   }
+
+  cy.get("body").then(($body) => {
+    if ($body.find("[data-testid=MessageDialog]:visible").length) {
+      closeVisibleDialog();
+    } else {
+      cy.log("Message dialog not found — continuing");
+    }
+  });
 });
 
 Cypress.Commands.add(

@@ -15,6 +15,7 @@ export function setupFeaturedProjectSkills(options?: { slug?: boolean }) {
   if (options?.slug) {
     const slug = cypressSpecSlug(Cypress.spec.relative);
     cy.visit("/edit/profile");
+    cy.skipOnboardingIfPresent();
     cy.closeMessageDialog({ required: true });
     // Name is required; saving slug alone is a no-op and leaves /r/:slug empty.
     cy.get("input[name='name']").clear({ force: true }).type("Cypress Test User", { force: true });
@@ -23,10 +24,12 @@ export function setupFeaturedProjectSkills(options?: { slug?: boolean }) {
     cy.get("[data-testid='AccountFormSaveButton']").click();
     cy.wait("@saveAccount").its("response.statusCode").should("eq", 200);
     cy.reload();
+    cy.skipOnboardingIfPresent();
     cy.get("input[name='slug']").should("have.value", slug);
   }
 
   cy.visit("/edit/skills");
+  cy.skipOnboardingIfPresent();
   for (const skill of catalogSkills) {
     cy.get("input[name='searchSkills']").clear().type(skill);
     cy.get("span").contains(skill).click();
@@ -36,6 +39,7 @@ export function setupFeaturedProjectSkills(options?: { slug?: boolean }) {
   }
 
   cy.visit("/edit/featured-projects");
+  cy.skipOnboardingIfPresent();
   cy.get("button").contains("Add Featured Project").click();
   cy.get(".MuiDialog-container input[name='name']").type(featuredProjectName);
   cy.get(".MuiDialog-container button").contains("Save Featured Project").click();
@@ -45,6 +49,7 @@ export function setupFeaturedProjectSkills(options?: { slug?: boolean }) {
 export function visitFeaturedProjects() {
   cy.loginWithMagicLink();
   cy.visit("/edit/featured-projects");
+  cy.skipOnboardingIfPresent();
 }
 
 export function openFeaturedProject(name = featuredProjectName) {

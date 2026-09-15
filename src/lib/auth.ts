@@ -220,6 +220,29 @@ export const authOptions: NextAuthOptions = {
     // error: "/auth/error",
     verifyRequest: "/login/verify",
   },
+
+  events: {
+    async createUser({ user }) {
+      if (!user.id) return;
+
+      await prisma.feature.upsert({
+        where: {
+          userId_name: {
+            userId: user.id,
+            name: "onboarding_pending",
+          },
+        },
+        create: {
+          userId: user.id,
+          name: "onboarding_pending",
+          enabled: true,
+        },
+        update: {
+          enabled: true,
+        },
+      });
+    },
+  },
 };
 
 /**
