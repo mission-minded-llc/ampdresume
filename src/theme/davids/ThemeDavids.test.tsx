@@ -165,7 +165,7 @@ describe("ThemeDavids Component", () => {
       expect(screen.getByText("Software Engineer")).toBeInTheDocument();
     });
 
-    it("should render user email and location", () => {
+    it("should render user location without email", () => {
       const user = createMockUser();
       render(
         <ThemeDavids
@@ -180,55 +180,12 @@ describe("ThemeDavids Component", () => {
         />,
       );
 
-      // Email and location may be in separate elements, so use a flexible matcher
-      const emailElements = screen.getAllByText((content, element) => {
-        return element?.textContent?.includes("john.doe@example.com") ?? false;
-      });
-      expect(emailElements.length).toBeGreaterThan(0);
-
-      const locationElements = screen.getAllByText((content, element) => {
-        return element?.textContent?.includes("San Francisco, CA") ?? false;
-      });
-      expect(locationElements.length).toBeGreaterThan(0);
-    });
-
-    it("should render separator between email and location when both exist", () => {
-      const user = createMockUser();
-      render(
-        <ThemeDavids
-          themeAppearance="light"
-          user={user}
-          socials={[]}
-          skillsForUser={[createMockSkillForUser()]}
-          companies={[]}
-          education={[]}
-          certifications={[]}
-          featuredProjects={[]}
-        />,
-      );
-
-      expect(screen.getByText("·")).toBeInTheDocument();
-    });
-
-    it("should not render separator when email is missing", () => {
-      const user = createMockUser({ displayEmail: null });
-      render(
-        <ThemeDavids
-          themeAppearance="light"
-          user={user}
-          socials={[]}
-          skillsForUser={[createMockSkillForUser()]}
-          companies={[]}
-          education={[]}
-          certifications={[]}
-          featuredProjects={[]}
-        />,
-      );
-
+      expect(screen.getByText("San Francisco, CA")).toBeInTheDocument();
+      expect(screen.queryByText("john.doe@example.com")).not.toBeInTheDocument();
       expect(screen.queryByText("·")).not.toBeInTheDocument();
     });
 
-    it("should not render separator when location is missing", () => {
+    it("should not render contact line when location is missing", () => {
       const user = createMockUser({ location: null });
       render(
         <ThemeDavids
@@ -243,6 +200,7 @@ describe("ThemeDavids Component", () => {
         />,
       );
 
+      expect(screen.queryByText("john.doe@example.com")).not.toBeInTheDocument();
       expect(screen.queryByText("·")).not.toBeInTheDocument();
     });
 

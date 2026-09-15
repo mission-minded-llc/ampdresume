@@ -24,16 +24,11 @@ describe("ResumeHeading", () => {
     expect(screen.getByText(sampleUser.title as string)).toBeInTheDocument();
   });
 
-  it("renders email and location with separator when both exist", () => {
+  it("renders location without email", () => {
     render(<ResumeHeading user={sampleUser} socials={sampleSocials} />);
-    const container = screen.getByText((content) => {
-      return (
-        content.includes(sampleUser.displayEmail as string) &&
-        content.includes(sampleUser.location as string)
-      );
-    });
-    expect(container).toBeInTheDocument();
-    expect(screen.getByText("·")).toBeInTheDocument();
+    expect(screen.getByText(sampleUser.location as string)).toBeInTheDocument();
+    expect(screen.queryByText(sampleUser.displayEmail as string)).not.toBeInTheDocument();
+    expect(screen.queryByText("·")).not.toBeInTheDocument();
   });
 
   it("renders social media links", () => {
@@ -60,24 +55,11 @@ describe("ResumeHeading", () => {
     expect(pdfLink).toHaveAttribute("target", "_blank");
   });
 
-  it("handles missing email", () => {
-    const userWithoutEmail = { ...sampleUser, displayEmail: null };
-    render(<ResumeHeading user={userWithoutEmail} socials={sampleSocials} />);
-    expect(screen.queryByText("·")).not.toBeInTheDocument();
-    const container = screen.getByText((content) =>
-      content.includes(sampleUser.location as string),
-    );
-    expect(container).toBeInTheDocument();
-  });
-
   it("handles missing location", () => {
     const userWithoutLocation = { ...sampleUser, location: null };
     render(<ResumeHeading user={userWithoutLocation} socials={sampleSocials} />);
+    expect(screen.queryByText(sampleUser.displayEmail as string)).not.toBeInTheDocument();
     expect(screen.queryByText("·")).not.toBeInTheDocument();
-    const container = screen.getByText((content) =>
-      content.includes(sampleUser.displayEmail as string),
-    );
-    expect(container).toBeInTheDocument();
   });
 
   it("handles empty socials array", () => {

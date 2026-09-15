@@ -119,8 +119,8 @@ export interface User {
   // The user's name, e.g. "John Doe".
   name: string | null;
 
-  // The user's display email, e.g. "johndoe@otheremail.com"
-  // This is the email that gets displayed in the UI.
+  // The user's display email, e.g. "johndoe@otheremail.com".
+  // Stored on the profile but omitted from public resume views and APIs.
   displayEmail: string | null;
 
   // The user's location, e.g. "San Francisco, CA". It is not strict, so a location is never verified.

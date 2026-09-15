@@ -41,7 +41,7 @@ type FilteredUserData = {
   siteTitle: string | null;
   siteDescription: string | null;
   webThemeName: string | null;
-  displayEmail: string | null;
+  displayEmail: null;
   email: null;
 };
 
@@ -71,9 +71,9 @@ export const filterUserData = (
       siteTitle: user.siteTitle,
       siteDescription: user.siteDescription,
       webThemeName: user.webThemeName,
-      displayEmail: user.displayEmail,
 
       // Explicitly set sensitive fields to null for unauthenticated users
+      displayEmail: null,
       email: null,
     };
   }

@@ -295,9 +295,8 @@ const AccountForm = ({
               <MailOutlinedIcon /> Display Email
             </FieldTitle>
             <FieldDescription>
-              Your display email is <strong>publicly visible</strong> on your resume! This is not
-              required. If you <em>do</em> want to display an email, it is recommended to set up a
-              separate new email for this purpose, or use an email alias. Expect spam.
+              This email is stored with your profile and is <strong>not shown</strong> on your
+              public resume, to prevent scrapers from harvesting it.
             </FieldDescription>
             <TextField
               label="Display Email"
