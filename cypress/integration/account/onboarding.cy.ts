@@ -92,7 +92,7 @@ describe("Onboarding", () => {
     cy.get("[data-testid=OnboardingNext]").should("be.visible");
     cy.contains("Welcome to Amp'd Resume").should("be.visible");
     cy.get("[data-testid=OnboardingSkip]").click();
-    cy.closeMessageDialog({ required: true });
+    cy.get("[data-testid=OnboardingRoot]").should("not.exist");
 
     cy.get("[data-testid=NavPrimaryMenuIcon]").click();
     cy.get("[data-testid=NavPrimaryMenuRestartTutorial]").scrollIntoView().click();

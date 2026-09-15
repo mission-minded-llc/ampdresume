@@ -88,9 +88,10 @@ describe("Profile Section", () => {
       .should("be.visible")
       .click();
 
-    cy.get("input[type='checkbox']").check();
-
-    cy.get("button").contains("Yes, Delete My Account").should("not.be.disabled").click();
+    cy.contains('[role="dialog"]', "Delete Account").within(() => {
+      cy.get("input[type='checkbox']").check();
+      cy.contains("button", "Yes, Delete My Account").should("not.be.disabled").click();
+    });
 
     cy.location("pathname").should("eq", "/");
 
