@@ -55,6 +55,8 @@ export interface ParsedResumeData {
     displayEmail: string;
     location: string;
     title: string;
+    summary: string;
+    summaryTitle: string;
   };
   skills: Skill[];
   companies: {

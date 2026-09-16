@@ -32,7 +32,9 @@ export const getParsedResumeAi = async (
           role: "system",
           content: `You are a helpful assistant that extracts structured resume 
             data from unstructured text. The resume text should include companies,
-            positions, projects, skills, and education. If skills are not an explicit
+            positions, projects, skills, and education. Extract a professional summary
+            when the resume has a summary, profile, objective, or similar overview
+            paragraph near the top. If skills are not an explicit
             list, extract them from the text. If projects are not an explicit list, they
             are usually near each position, sometimes prefixed with "Projects" or 
             "Projects and Responsibilities" and may or may not have bullet points.
@@ -45,6 +47,8 @@ export const getParsedResumeAi = async (
                 displayEmail: string,
                 location: string,
                 title: string,
+                summary: string, // Professional summary, profile, or objective. Keep the original wording. Empty string if not found.
+                summaryTitle: string, // Heading above the summary if present (e.g. "Summary", "Profile", "About Me"). Empty string if none.
               },
               skills: string[], // e.g. ["React", "Node.js", "TypeScript"], use the original text.
               companies: {

@@ -62,6 +62,8 @@ export type LiteraryCharacter = {
   location: string;
   siteTitle: string;
   siteDescription: string;
+  summary: string;
+  summaryTitle?: string;
   affiliation: LiteraryAffiliation;
   socials: LiterarySocial[];
   companies: LiteraryCompany[];
@@ -71,8 +73,13 @@ export type LiteraryCharacter = {
   featuredProjects: LiteraryFeaturedProject[];
 };
 
-export type LiteraryCharacterInput = Omit<LiteraryCharacter, "siteTitle" | "socials"> & {
+export type LiteraryCharacterInput = Omit<
+  LiteraryCharacter,
+  "siteTitle" | "socials" | "summary" | "summaryTitle"
+> & {
   siteTitle?: string;
+  summary?: string;
+  summaryTitle?: string;
   socials?: LiterarySocial[];
   /** Year of death, or last year of the source text if the character survives. */
   died?: number;

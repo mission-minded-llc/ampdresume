@@ -22,6 +22,8 @@ export const getUser = async (slug: string): Promise<User> => {
           title
           siteTitle
           siteDescription
+          summary
+          summaryTitle
           webThemeName
         }
       }

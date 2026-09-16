@@ -33,12 +33,15 @@ describe("Import Section", () => {
     cy.contains("Email").should("be.visible");
     cy.contains("Location").should("be.visible");
     cy.contains("Title").should("be.visible");
+    cy.contains("Professional Summary").should("be.visible");
 
     const user = getParsedResumeAiResponse.data.parsedResumeAi.user;
     cy.get('input[name="name"]').should("have.value", user.name);
     cy.get('input[name="display-email"]').should("have.value", user.displayEmail);
     cy.get('input[name="location"]').should("have.value", user.location);
     cy.get('input[name="title"]').should("have.value", user.title);
+    cy.get('input[name="section-title"]').should("have.value", user.summaryTitle);
+    cy.get('[name="professional-summary"]').should("have.value", user.summary);
 
     cy.contains("Work Experience").should("be.visible");
 

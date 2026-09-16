@@ -34,6 +34,21 @@ jest.mock("@/lib/prisma", () => ({
   },
 }));
 
+jest.mock("../components/RichTextEditor/RichTextEditor", () => ({
+  RichTextEditor: ({
+    value,
+    editorStateRef,
+    name,
+  }: {
+    value: string;
+    editorStateRef: { current: string | null };
+    name: string;
+  }) => {
+    editorStateRef.current = value;
+    return <textarea data-testid={name} defaultValue={value} />;
+  },
+}));
+
 describe("Page", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -72,6 +87,8 @@ describe("Page", () => {
       location: "San Francisco, CA",
       siteTitle: "John's Resume",
       siteDescription: "This is John's resume.",
+      summary: "<p>Builder of reliable systems.</p>",
+      summaryTitle: "About Me",
     });
 
     const { container, getByLabelText } = render(await Page());
@@ -83,6 +100,7 @@ describe("Page", () => {
       expect(getByLabelText("Location")).toHaveValue("San Francisco, CA");
       expect(getByLabelText("Site Title")).toHaveValue("John's Resume");
       expect(getByLabelText("Site Description")).toHaveValue("This is John's resume.");
+      expect(getByLabelText("Section Title")).toHaveValue("About Me");
     });
 
     expect(container).toMatchSnapshot();

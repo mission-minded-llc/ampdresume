@@ -61,6 +61,7 @@ interface RichTextEditorProps {
   editorStateRef: React.MutableRefObject<string | null>;
   placeholder?: string;
   name: string;
+  height?: number;
 }
 
 export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function RichTextEditor({
@@ -68,6 +69,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
   editorStateRef,
   placeholder = "Type here...",
   name,
+  height = 500,
 }) {
   const initialConfig = {
     namespace: name,
@@ -118,7 +120,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
               <ContentEditable
                 className={css({
                   position: "relative",
-                  height: 500,
+                  height,
                   fontSize: 14,
                   padding: 8,
                   outline: "none",

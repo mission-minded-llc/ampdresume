@@ -130,8 +130,12 @@ export interface User {
   // The user's title, e.g. "Software Engineer".
   title: string | null;
 
-  // The user's summary or bio text that appears on their resume.
-  summary?: string;
+  // Rich-text professional summary shown near the top of the resume and PDF.
+  summary?: string | null;
+
+  // Optional heading for the professional summary. Themes default to
+  // "Professional Summary" when this is blank.
+  summaryTitle?: string | null;
 }
 
 /**

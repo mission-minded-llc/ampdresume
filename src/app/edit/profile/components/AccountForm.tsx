@@ -9,13 +9,17 @@ import LanguageIcon from "@mui/icons-material/Language";
 import LinkIcon from "@mui/icons-material/Link";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
+import NotesIcon from "@mui/icons-material/Notes";
+import TitleIcon from "@mui/icons-material/Title";
 import TocIcon from "@mui/icons-material/Toc";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { MessageDialog } from "@/components/MessageDialog";
 import { deleteUser } from "@/graphql/deleteUser";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { DEFAULT_PROFESSIONAL_SUMMARY_TITLE } from "@/lib/professionalSummary";
 import { DeleteWithConfirmation } from "../../components/DeleteWithConfirmation";
+import { RichTextEditor } from "../../components/RichTextEditor/RichTextEditor";
 import { FieldDescription, FieldTitle, GridSection, InputSection, SectionTitle } from "./sections";
 import { SocialsForm } from "./SocialsForm";
 import { useOnboarding } from "@/app/components/onboarding/OnboardingContext";
@@ -30,6 +34,8 @@ const AccountForm = ({
   location,
   siteTitle,
   siteDescription,
+  summary,
+  summaryTitle,
 }: {
   name: string;
   slug: string;
@@ -38,6 +44,8 @@ const AccountForm = ({
   location: string;
   siteTitle: string;
   siteDescription: string;
+  summary: string;
+  summaryTitle: string;
 }) => {
   const [formData, setFormData] = useState({
     name,
@@ -47,7 +55,9 @@ const AccountForm = ({
     location,
     siteTitle,
     siteDescription,
+    summaryTitle,
   });
+  const summaryEditorRef = React.useRef<string | null>(summary || null);
   const [errors, setErrors] = useState<{
     name?: string;
     slug?: string;
@@ -147,7 +157,10 @@ const AccountForm = ({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formDataTrimmed),
+      body: JSON.stringify({
+        ...formDataTrimmed,
+        summary: summaryEditorRef.current ?? summary,
+      }),
     })
       .then(async (res) => {
         if (!res.ok) {
@@ -345,6 +358,52 @@ const AccountForm = ({
               sx={{ marginTop: "auto" }}
             />
           </InputSection>
+        </GridSection>
+        <GridSection isDesktop={isDesktop}>
+          <SectionTitle>Professional Summary</SectionTitle>
+          <InputSection>
+            <FieldTitle>
+              <TitleIcon /> Section Title
+            </FieldTitle>
+            <FieldDescription>
+              Heading shown above your summary on the resume and PDF. Leave blank to use{" "}
+              <strong>{DEFAULT_PROFESSIONAL_SUMMARY_TITLE}</strong>.
+            </FieldDescription>
+            <TextField
+              label="Section Title"
+              name="summaryTitle"
+              value={formData.summaryTitle}
+              onChange={handleChange}
+              placeholder={DEFAULT_PROFESSIONAL_SUMMARY_TITLE}
+              fullWidth
+              sx={{ marginTop: "auto" }}
+            />
+          </InputSection>
+          <Box
+            sx={{
+              gridColumn: "1 / -1",
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+            }}
+          >
+            <FieldTitle>
+              <NotesIcon /> Summary
+            </FieldTitle>
+            <FieldDescription>
+              A short overview of your background. Supports rich text and appears near the top of
+              your public resume and PDF.
+            </FieldDescription>
+            <Box data-testid="ProfessionalSummaryEditor">
+              <RichTextEditor
+                value={summary}
+                editorStateRef={summaryEditorRef}
+                placeholder="Write a professional summary..."
+                name="professional-summary"
+                height={240}
+              />
+            </Box>
+          </Box>
         </GridSection>
         <GridSection isDesktop={isDesktop}>
           <SocialsForm />

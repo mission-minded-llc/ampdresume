@@ -20,6 +20,8 @@ const TestComponent = () => {
             displayEmail: "john@example.com",
             location: "New York",
             title: "Software Engineer",
+            summary: "",
+            summaryTitle: "",
           })
         }
       >
@@ -84,6 +86,8 @@ describe("ExtractedDataContext", () => {
       displayEmail: "",
       location: "",
       title: "",
+      summary: "",
+      summaryTitle: "",
     },
     skills: [],
     companies: [],

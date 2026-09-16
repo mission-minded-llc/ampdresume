@@ -90,6 +90,8 @@ describe("ExtractedInformation", () => {
       displayEmail: "john@example.com",
       location: "New York",
       title: "Software Engineer",
+      summary: "Builder of reliable systems.",
+      summaryTitle: "About Me",
     },
     skills: [
       { id: "skill-1", name: "JavaScript", icon: null },
