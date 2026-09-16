@@ -32,6 +32,7 @@ import { updateSkillForProject } from "./mutations/updateSkillForProject";
 import { updateSkillForFeaturedProject } from "./mutations/updateSkillForFeaturedProject";
 import { updateSkillForUser } from "./mutations/updateSkillForUser";
 import { updateSocial } from "./mutations/updateSocial";
+import { updateSocialSortIndexes } from "./mutations/updateSocialSortIndexes";
 import { updateUser } from "./mutations/updateUser";
 
 export const mutationResolvers = {
@@ -45,6 +46,7 @@ export const mutationResolvers = {
   addSocial,
   deleteSocial,
   updateSocial,
+  updateSocialSortIndexes,
 
   // Save all extracted resume data at once
   saveExtractedResumeData,

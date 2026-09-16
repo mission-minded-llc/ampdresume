@@ -132,14 +132,22 @@ async function syncSocials(
   const existing = await prisma.social.findMany({ where: { userId } });
   const keepIds = new Set<string>();
 
-  for (const social of socials) {
+  for (const [sortIndex, social] of socials.entries()) {
     const match = existing.find(
       (row) => row.platform === social.platform && row.ref === social.ref,
     );
 
     if (match) {
       keepIds.add(match.id);
-      bump(counts, "unchanged");
+      if (match.sortIndex !== sortIndex) {
+        await prisma.social.update({
+          where: { id: match.id },
+          data: { sortIndex },
+        });
+        bump(counts, "updated");
+      } else {
+        bump(counts, "unchanged");
+      }
       continue;
     }
 
@@ -150,7 +158,7 @@ async function syncSocials(
     if (samePlatform) {
       await prisma.social.update({
         where: { id: samePlatform.id },
-        data: { ref: social.ref },
+        data: { ref: social.ref, sortIndex },
       });
       keepIds.add(samePlatform.id);
       bump(counts, "updated");
@@ -158,7 +166,7 @@ async function syncSocials(
     }
 
     const created = await prisma.social.create({
-      data: { userId, platform: social.platform, ref: social.ref },
+      data: { userId, platform: social.platform, ref: social.ref, sortIndex },
     });
     keepIds.add(created.id);
     bump(counts, "created");

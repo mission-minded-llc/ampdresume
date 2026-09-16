@@ -11,6 +11,7 @@ export const getResume = async (_: string, { slug }: { slug: string }, context: 
 
   const socials = await prisma.social.findMany({
     where: { userId: user.id },
+    orderBy: { sortIndex: "asc" },
   });
 
   const skillsForUser = await prisma.skillForUser.findMany({

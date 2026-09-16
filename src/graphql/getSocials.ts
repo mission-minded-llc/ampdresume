@@ -16,6 +16,7 @@ export const getSocials = async (userId: string | undefined): Promise<Social[] |
             id
             platform
             ref
+            sortIndex
           }
         }
       `,

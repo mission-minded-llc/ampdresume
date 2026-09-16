@@ -15,25 +15,29 @@
           "id": "cm6vo6u2m0001qjmta1uz8xgd",
           "userId": "cm667ueei0000q8n1kuik8734",
           "platform": "github",
-          "ref": "tayloreverglow-dev"
+          "ref": "tayloreverglow-dev",
+          "sortIndex": 0
         },
         {
           "id": "cm6vo6u6h0003qjmtqym93m8a",
           "userId": "cm667ueei0000q8n1kuik8734",
           "platform": "linkedin",
-          "ref": "taylor-everglow-developer"
+          "ref": "taylor-everglow-developer",
+          "sortIndex": 1
         },
         {
           "id": "cm6vo6u8f0005qjmt3anbw517",
           "userId": "cm667ueei0000q8n1kuik8734",
           "platform": "x",
-          "ref": "tayloreverglow"
+          "ref": "tayloreverglow",
+          "sortIndex": 2
         },
         {
           "id": "cm6vo6uac0007qjmt6oo9zwit",
           "userId": "cm667ueei0000q8n1kuik8734",
           "platform": "website",
-          "ref": "https://www.tayloreverglow.dev"
+          "ref": "https://www.tayloreverglow.dev",
+          "sortIndex": 3
         }
       ],
       "skillsForUser": [

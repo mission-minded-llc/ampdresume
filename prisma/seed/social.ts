@@ -14,18 +14,22 @@ export async function seedSocials() {
     {
       platform: "github",
       ref: "missionmike",
+      sortIndex: 0,
     },
     {
       platform: "linkedin",
       ref: "michael-dinerstein",
+      sortIndex: 1,
     },
     {
       platform: "x",
       ref: "missionmikedev",
+      sortIndex: 2,
     },
     {
       platform: "website",
       ref: "https://www.missionmike.dev",
+      sortIndex: 3,
     },
   ];
 

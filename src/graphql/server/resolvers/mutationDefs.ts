@@ -19,6 +19,7 @@ export const mutationDefs = gql`
     addSocial(userId: ID!, platform: String!, ref: String!): Social!
     updateSocial(userId: ID!, id: ID!, ref: String!): Social!
     deleteSocial(userId: ID!, id: ID!): Social
+    updateSocialSortIndexes(userId: ID!, socialSortIndexes: [SocialSortIndexInput!]!): Boolean!
 
     # Save all extracted resume data at once
     saveExtractedResumeData(
@@ -147,6 +148,11 @@ export const mutationDefs = gql`
   }
 
   input ProjectSortIndexInput {
+    id: ID!
+    sortIndex: Int!
+  }
+
+  input SocialSortIndexInput {
     id: ID!
     sortIndex: Int!
   }
