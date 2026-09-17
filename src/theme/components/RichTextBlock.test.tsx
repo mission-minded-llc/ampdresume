@@ -8,6 +8,11 @@ describe("RichTextBlock", () => {
     expect(container.firstChild).toBeNull();
   });
 
+  it("should render null when content is undefined", () => {
+    const { container } = render(<RichTextBlock />);
+    expect(container.firstChild).toBeNull();
+  });
+
   it("should render plain text content when parsing fails", () => {
     const content = "Hello World";
     render(<RichTextBlock content={content} />);
