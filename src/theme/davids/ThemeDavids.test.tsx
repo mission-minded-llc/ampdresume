@@ -76,6 +76,7 @@ const createMockSocial = (overrides?: Partial<Social>): Social => ({
   userId: "user-1",
   platform: "github.com",
   ref: "johndoe",
+  sortIndex: 0,
   ...overrides,
 });
 

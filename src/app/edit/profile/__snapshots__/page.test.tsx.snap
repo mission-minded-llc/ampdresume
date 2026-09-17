@@ -600,7 +600,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
             >
-              Paste a link below to add to your socials. Link icons will appear at the top of your resume.
+              Paste a link below to add to your socials. Link icons will appear at the top of your resume. Drag to reorder them.
             </p>
             <div
               class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"

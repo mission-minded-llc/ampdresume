@@ -20,7 +20,7 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { HeadingNode } from "@lexical/rich-text";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { $getRoot, EditorThemeClasses, LexicalEditor } from "lexical";
 import { EMAIL_REGEX } from "@/util/email";
 import { URL_REGEX, validateUrl } from "@/util/url";
@@ -75,6 +75,10 @@ function RichTextEditorInner({
   height = 500,
   autoFocus = true,
 }: RichTextEditorProps) {
+  const theme = useTheme();
+  const paragraphFontSize = theme.typography.body1.fontSize;
+  const paragraphLineHeight = theme.typography.body1.lineHeight;
+
   const initialConfig = {
     namespace: name,
     theme: editorTheme,
@@ -114,7 +118,7 @@ function RichTextEditorInner({
                   color: "#888",
                   top: 23,
                   left: 10,
-                  fontSize: 14,
+                  fontSize: paragraphFontSize,
                 })}
               >
                 {placeholder}
@@ -125,7 +129,8 @@ function RichTextEditorInner({
                 className={css({
                   position: "relative",
                   height,
-                  fontSize: 14,
+                  fontSize: paragraphFontSize,
+                  lineHeight: paragraphLineHeight,
                   padding: 8,
                   outline: "none",
                   overflow: "auto",

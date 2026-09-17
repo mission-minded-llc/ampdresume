@@ -48,6 +48,7 @@ export const getResume = async (slug: string) => {
               userId
               platform
               ref
+              sortIndex
             }
             skillsForUser {
               id

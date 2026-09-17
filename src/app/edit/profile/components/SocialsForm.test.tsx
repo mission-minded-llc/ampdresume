@@ -9,6 +9,7 @@ import { Social } from "@/types";
 import { addSocial } from "@/graphql/addSocial";
 import { updateSocial } from "@/graphql/updateSocial";
 import { deleteSocial } from "@/graphql/deleteSocial";
+import { updateSocialSortIndexes } from "@/graphql/updateSocialSortIndexes";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
@@ -30,6 +31,66 @@ jest.mock("@/graphql/updateSocial", () => ({
 
 jest.mock("@/graphql/deleteSocial", () => ({
   deleteSocial: jest.fn(),
+}));
+
+jest.mock("@/graphql/updateSocialSortIndexes", () => ({
+  updateSocialSortIndexes: jest.fn().mockResolvedValue(undefined),
+}));
+
+jest.mock("@dnd-kit/core", () => ({
+  DndContext: ({
+    children,
+    onDragEnd,
+  }: {
+    children: React.ReactNode;
+    onDragEnd: (event: { active: { id: string }; over: { id: string } | null }) => void;
+  }) => (
+    <div data-testid="dnd-context">
+      <button
+        type="button"
+        data-testid="simulate-social-reorder"
+        onClick={() => onDragEnd({ active: { id: "1" }, over: { id: "2" } })}
+      >
+        Simulate reorder
+      </button>
+      <button
+        type="button"
+        data-testid="simulate-social-reorder-cancelled"
+        onClick={() => onDragEnd({ active: { id: "1" }, over: null })}
+      >
+        Simulate cancelled reorder
+      </button>
+      {children}
+    </div>
+  ),
+  closestCenter: jest.fn(),
+  KeyboardSensor: jest.fn(),
+  MouseSensor: jest.fn(),
+  TouchSensor: jest.fn(),
+  useSensor: jest.fn(() => jest.fn()),
+  useSensors: jest.fn(() => []),
+}));
+
+jest.mock("@dnd-kit/sortable", () => ({
+  SortableContext: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="sortable-context">{children}</div>
+  ),
+  useSortable: jest.fn(() => ({
+    attributes: {},
+    listeners: {},
+    setNodeRef: jest.fn(),
+    transform: null,
+    transition: null,
+    isDragging: false,
+  })),
+  rectSortingStrategy: jest.fn(),
+  sortableKeyboardCoordinates: jest.fn(),
+  arrayMove: jest.fn((arr: unknown[], oldIndex: number, newIndex: number) => {
+    const result = [...arr];
+    const [removed] = result.splice(oldIndex, 1);
+    result.splice(newIndex, 0, removed);
+    return result;
+  }),
 }));
 
 jest.mock("@/components/CustomDialogTitle", () => ({
@@ -92,7 +153,9 @@ describe("SocialsForm", () => {
       // Determine mutation type based on the function signature
       const fnString = mutationFn.toString();
       let type = "unknown";
-      if (
+      if (fnString.includes("updateSocialSortIndexes") || fnString.includes("socialSortIndexes")) {
+        type = "updateSort";
+      } else if (
         fnString.includes("addSocial") ||
         (fnString.includes("platform") && fnString.includes("ref") && !fnString.includes("id"))
       ) {
@@ -173,8 +236,8 @@ describe("SocialsForm", () => {
   describe("Displaying socials", () => {
     it("displays existing socials when available", () => {
       const mockSocials: Social[] = [
-        { id: "1", userId: "user-id", platform: "github.com", ref: "johndoe" },
-        { id: "2", userId: "user-id", platform: "linkedin.com", ref: "johndoe" },
+        { id: "1", userId: "user-id", platform: "github.com", ref: "johndoe", sortIndex: 0 },
+        { id: "2", userId: "user-id", platform: "linkedin.com", ref: "johndoe", sortIndex: 1 },
       ];
       (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: mockSocials });
 
@@ -189,6 +252,22 @@ describe("SocialsForm", () => {
 
       const { queryByText } = render(<SocialsForm />);
       expect(queryByText("Current Socials")).not.toBeInTheDocument();
+    });
+
+    it("renders socials in sortIndex order", () => {
+      const mockSocials: Social[] = [
+        { id: "2", userId: "user-id", platform: "linkedin.com", ref: "johndoe", sortIndex: 1 },
+        { id: "1", userId: "user-id", platform: "github.com", ref: "johndoe", sortIndex: 0 },
+      ];
+      (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: mockSocials });
+
+      const { getByTestId } = render(<SocialsForm />);
+      const github = getByTestId("social-icon-1");
+      const linkedin = getByTestId("social-icon-2");
+
+      expect(
+        github.compareDocumentPosition(linkedin) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
     });
   });
 
@@ -366,6 +445,7 @@ describe("SocialsForm", () => {
       userId: "user-id",
       platform: "github",
       ref: "johndoe",
+      sortIndex: 0,
     };
 
     beforeEach(() => {
@@ -524,6 +604,7 @@ describe("SocialsForm", () => {
       userId: "user-id",
       platform: "github.com",
       ref: "johndoe",
+      sortIndex: 0,
     };
 
     beforeEach(() => {
@@ -603,6 +684,68 @@ describe("SocialsForm", () => {
       fireEvent.change(input, { target: { value: "https://github.com/johndoe" } });
 
       expect(input.value).toBe("https://github.com/johndoe");
+    });
+  });
+
+  describe("Reordering socials", () => {
+    const mockSocials: Social[] = [
+      { id: "1", userId: "user-id", platform: "github.com", ref: "johndoe", sortIndex: 0 },
+      { id: "2", userId: "user-id", platform: "linkedin.com", ref: "johndoe", sortIndex: 1 },
+    ];
+
+    beforeEach(() => {
+      (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: mockSocials });
+    });
+
+    it("enables drag and drop when more than one social exists", () => {
+      const { getByTestId, getByText } = render(<SocialsForm />);
+
+      expect(getByTestId("dnd-context")).toBeInTheDocument();
+      expect(getByText(/press and hold/i)).toBeInTheDocument();
+    });
+
+    it("does not enable drag and drop for a single social", () => {
+      (useQuery as jest.Mock).mockReturnValue({
+        isPending: false,
+        data: [mockSocials[0]],
+      });
+
+      const { queryByTestId } = render(<SocialsForm />);
+      expect(queryByTestId("dnd-context")).not.toBeInTheDocument();
+    });
+
+    it("updates sort indexes when socials are reordered", async () => {
+      const { getByTestId } = render(<SocialsForm />);
+
+      fireEvent.click(getByTestId("simulate-social-reorder"));
+
+      await waitFor(() => {
+        const sortCall = mutationCalls.find((call) => call.type === "updateSort");
+        expect(sortCall).toBeDefined();
+        expect(sortCall?.variables).toEqual({
+          socialSortIndexes: [
+            { id: "2", sortIndex: 0 },
+            { id: "1", sortIndex: 1 },
+          ],
+        });
+        expect(updateSocialSortIndexes).toHaveBeenCalledWith({
+          userId: "user-id",
+          socialSortIndexes: [
+            { id: "2", sortIndex: 0 },
+            { id: "1", sortIndex: 1 },
+          ],
+        });
+        expect(mockQueryClient.invalidateQueries).toHaveBeenCalledWith({ queryKey: ["socials"] });
+      });
+    });
+
+    it("does not update sort indexes when a drag is cancelled", () => {
+      const { getByTestId } = render(<SocialsForm />);
+
+      fireEvent.click(getByTestId("simulate-social-reorder-cancelled"));
+
+      expect(mutationCalls.find((call) => call.type === "updateSort")).toBeUndefined();
+      expect(updateSocialSortIndexes).not.toHaveBeenCalled();
     });
   });
 });

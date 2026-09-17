@@ -109,9 +109,10 @@ model VerificationToken {
 
 /// Social media links for a user, e.g. "Twitter", "GitHub", "LinkedIn"
 model Social {
-  id       String @id @default(cuid())
-  platform String
-  ref      String
+  id        String @id @default(cuid())
+  platform  String
+  ref       String
+  sortIndex Int    @default(0)
 
   /// The relation to the user that this social is associated with.
   userId String

@@ -20,6 +20,7 @@ export const types = gql`
     userId: ID!
     platform: String!
     ref: String!
+    sortIndex: Int!
   }
 
   type SkillsForUser {

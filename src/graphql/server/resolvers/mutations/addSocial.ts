@@ -8,11 +8,18 @@ export const addSocial = async (
 ) => {
   await verifySessionOwnership(userId);
 
+  const { _max } = await prisma.social.aggregate({
+    where: { userId },
+    _max: { sortIndex: true },
+  });
+  const sortIndex = (_max.sortIndex ?? -1) + 1;
+
   const social = await prisma.social.create({
     data: {
       userId,
       platform,
       ref,
+      sortIndex,
     },
   });
 

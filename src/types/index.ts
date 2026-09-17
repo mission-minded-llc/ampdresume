@@ -161,6 +161,9 @@ export interface Social {
   // The reference for the social media platform, e.g. "johndoe".
   // This is the username or handle for the social media platform.
   ref: string;
+
+  // Display order on the resume. Lower values appear first.
+  sortIndex: number;
 }
 
 /**
