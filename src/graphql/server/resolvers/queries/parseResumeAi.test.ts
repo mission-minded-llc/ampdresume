@@ -26,7 +26,14 @@ describe("getSkillNamesForFuzzyMatch", () => {
 describe("normalizeParsedResume", () => {
   it("fills missing arrays and user fields", () => {
     expect(normalizeParsedResume({})).toEqual({
-      user: { name: "", displayEmail: "", location: "", title: "" },
+      user: {
+        name: "",
+        displayEmail: "",
+        location: "",
+        title: "",
+        summary: "",
+        summaryTitle: "",
+      },
       companies: [],
       education: [],
     });
@@ -35,14 +42,21 @@ describe("normalizeParsedResume", () => {
   it("normalizes nested company positions and projects", () => {
     expect(
       normalizeParsedResume({
-        user: { name: "Jane" },
+        user: { name: "Jane", summary: "Builder of systems.", summaryTitle: "About Me" },
         companies: [
           { name: "Acme", positions: [{ title: "Engineer", projects: [{ name: "API" }] }] },
         ],
         education: [{ school: "State", degree: "BS" }],
       }),
     ).toEqual({
-      user: { name: "Jane", displayEmail: "", location: "", title: "" },
+      user: {
+        name: "Jane",
+        displayEmail: "",
+        location: "",
+        title: "",
+        summary: "Builder of systems.",
+        summaryTitle: "About Me",
+      },
       companies: [
         {
           name: "Acme",

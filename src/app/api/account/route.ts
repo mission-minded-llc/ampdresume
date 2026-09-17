@@ -8,8 +8,10 @@ import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import * as Sentry from "@sentry/node";
 import { authOptions } from "@/lib/auth";
+import { hasRichTextContent } from "@/lib/professionalSummary";
 import { prisma } from "@/lib/prisma";
 import { revalidatePublicResumeBySlug } from "@/lib/revalidatePublicResume";
+import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export async function POST(req: NextRequest) {
   try {
@@ -18,8 +20,17 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { name, slug, displayEmail, title, location, siteTitle, siteDescription } =
-      await req.json();
+    const {
+      name,
+      slug,
+      displayEmail,
+      title,
+      location,
+      siteTitle,
+      siteDescription,
+      summary,
+      summaryTitle,
+    } = await req.json();
     if (!name || !slug) {
       return NextResponse.json({ error: "Name and slug are required" }, { status: 400 });
     }
@@ -51,6 +62,11 @@ export async function POST(req: NextRequest) {
       select: { slug: true },
     });
 
+    const sanitizedSummary = await sanitizeHtmlServer(summary);
+    const summaryToStore = hasRichTextContent(sanitizedSummary) ? sanitizedSummary : null;
+    const summaryTitleToStore =
+      typeof summaryTitle === "string" && summaryTitle.trim() ? summaryTitle.trim() : null;
+
     const data = await prisma.user.update({
       where: {
         id: session.user.id,
@@ -63,6 +79,8 @@ export async function POST(req: NextRequest) {
         location: location || null,
         siteTitle: siteTitle || null,
         siteDescription: siteDescription || null,
+        summary: summaryToStore,
+        summaryTitle: summaryTitleToStore,
       },
     });
 

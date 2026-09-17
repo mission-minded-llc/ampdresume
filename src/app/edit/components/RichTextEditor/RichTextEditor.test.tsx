@@ -1,30 +1,28 @@
-import { act, render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { RichTextEditor } from "./RichTextEditor";
 import { expect } from "@jest/globals";
 
 describe("RichTextEditor", () => {
   it("renders without crashing", async () => {
-    let result;
     const editorStateRef = { current: null };
+    const { container } = render(
+      <RichTextEditor editorStateRef={editorStateRef} value="" name="test-editor" />,
+    );
 
-    await act(async () => {
-      result = render(
-        <RichTextEditor editorStateRef={editorStateRef} value="" name="test-editor" />,
-      );
+    await waitFor(() => {
+      expect(container.querySelector("[contenteditable='true']")).toBeInTheDocument();
     });
-    expect(result!.container).toBeInTheDocument();
   });
 
   it("displays the placeholder text", async () => {
     const placeholderText = "Type here...";
-    let result;
     const editorStateRef = { current: null };
+    const { getByText } = render(
+      <RichTextEditor editorStateRef={editorStateRef} value="" name="test-editor" />,
+    );
 
-    await act(async () => {
-      result = render(
-        <RichTextEditor editorStateRef={editorStateRef} value="" name="test-editor" />,
-      );
+    await waitFor(() => {
+      expect(getByText(placeholderText)).toBeInTheDocument();
     });
-    expect(result!.getByText(placeholderText)).toBeInTheDocument();
   });
 });

@@ -5,7 +5,9 @@
         "name": "John Smith",
         "displayEmail": "john.smith@example.com",
         "location": "West Coast, USA",
-        "title": "Senior Software Engineer"
+        "title": "Senior Software Engineer",
+        "summary": "Senior software engineer focused on shipping reliable web platforms.",
+        "summaryTitle": "Professional Summary"
       },
       "skills": [
         {

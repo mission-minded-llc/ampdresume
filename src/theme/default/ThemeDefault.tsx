@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { Certifications } from "@/theme/components/Certifications/Certifications";
 import { Education } from "@/theme/components/Education/Education";
 import { FeaturedProjects } from "@/theme/components/FeaturedProjects/FeaturedProjects";
+import { ProfessionalSummary } from "@/theme/components/ProfessionalSummary/ProfessionalSummary";
 import { Skills } from "@/theme/components/Skills/Skills";
 import {
   Certification,
@@ -52,6 +53,7 @@ export const ThemeDefault = ({
       })}
     >
       <ResumeHeading user={user} socials={socials} />
+      <ProfessionalSummary user={user} />
 
       {skillsForUser?.length ? <Skills skillType="user" skillsForUser={skillsForUser} /> : null}
       {companies?.length ? <WorkExperience companies={companies} /> : null}

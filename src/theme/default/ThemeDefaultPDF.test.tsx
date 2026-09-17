@@ -28,6 +28,8 @@ describe("ThemeDefaultPDF", () => {
       expect(screen.getByText(mockData.user.title)).toBeInTheDocument();
     }
 
+    expect(screen.getByText("Professional Summary")).toBeInTheDocument();
+
     // Check if skills section is rendered
     mockData.skillsForUser.forEach((skillForUser) => {
       // Use a regex to match the skill name with or without a trailing comma

@@ -1,5 +1,6 @@
 import { ExtractedCompany, ExtractedEducation } from "@/app/edit/import/types";
 import { verifySessionOwnership } from "@/graphql/server/util";
+import { hasRichTextContent, plainTextToSummaryHtml } from "@/lib/professionalSummary";
 import { prisma } from "@/lib/prisma";
 import { revalidatePublicResumeForUserId } from "@/lib/revalidatePublicResume";
 import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
@@ -16,9 +17,11 @@ export const saveExtractedResumeData = async (
     userId: string;
     user: {
       name: string;
-      email: string;
-      location: string;
-      title: string;
+      displayEmail?: string | null;
+      location?: string | null;
+      title?: string | null;
+      summary?: string | null;
+      summaryTitle?: string | null;
     };
     skillIds: string[];
     companies: ExtractedCompany[];
@@ -76,14 +79,21 @@ export const saveExtractedResumeData = async (
     },
   });
 
+  const summaryHtml = plainTextToSummaryHtml(user.summary);
+  const sanitizedSummary = summaryHtml ? await sanitizeHtmlServer(summaryHtml) : "";
+  const summaryToStore = hasRichTextContent(sanitizedSummary) ? sanitizedSummary : null;
+  const summaryTitleToStore = user.summaryTitle?.trim() ? user.summaryTitle.trim() : null;
+
   // Update user data
   await prisma.user.update({
     where: { id: userId },
     data: {
       name: user.name,
-      displayEmail: user.email,
+      displayEmail: user.displayEmail || null,
       location: user.location,
       title: user.title,
+      summary: summaryToStore,
+      summaryTitle: summaryTitleToStore,
     },
   });
 

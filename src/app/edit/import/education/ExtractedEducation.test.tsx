@@ -36,6 +36,8 @@ describe("ExtractedEducation", () => {
       displayEmail: "",
       location: "",
       title: "",
+      summary: "",
+      summaryTitle: "",
     },
     skills: [],
     companies: [],

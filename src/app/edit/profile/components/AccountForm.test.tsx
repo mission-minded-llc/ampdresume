@@ -23,6 +23,21 @@ jest.mock("./SocialsForm", () => ({
   SocialsForm: () => <div>SocialsForm</div>,
 }));
 
+jest.mock("../../components/RichTextEditor/RichTextEditor", () => ({
+  RichTextEditor: ({
+    value,
+    editorStateRef,
+    name,
+  }: {
+    value: string;
+    editorStateRef: React.RefObject<string | null>;
+    name: string;
+  }) => {
+    (editorStateRef as React.MutableRefObject<string | null>).current = value;
+    return <textarea data-testid={name} defaultValue={value} />;
+  },
+}));
+
 jest.mock("@/graphql/deleteUser", () => ({
   deleteUser: jest.fn(),
 }));
@@ -55,6 +70,8 @@ const mockProps = {
   location: "San Francisco, CA",
   siteTitle: "John's Resume",
   siteDescription: "This is John's resume.",
+  summary: "<p>Builder of reliable systems.</p>",
+  summaryTitle: "About Me",
 };
 
 const renderWithSession = (component: React.ReactElement) => {
@@ -111,6 +128,7 @@ describe("AccountForm", () => {
       expect(getByLabelText("Display Email")).toBeInTheDocument();
       expect(getByLabelText("Title")).toBeInTheDocument();
       expect(getByLabelText("Location")).toBeInTheDocument();
+      expect(getByLabelText("Section Title")).toHaveValue("About Me");
     });
 
     expect(container).toMatchSnapshot();
@@ -180,6 +198,17 @@ describe("AccountForm", () => {
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith("/api/account", expect.any(Object));
     });
+
+    const accountCall = (global.fetch as jest.Mock).mock.calls.find(
+      (call) => call[0] === "/api/account",
+    );
+    expect(JSON.parse(accountCall[1].body)).toEqual(
+      expect.objectContaining({
+        name: "Jane Doe",
+        summary: "<p>Builder of reliable systems.</p>",
+        summaryTitle: "About Me",
+      }),
+    );
   });
 
   it("submits when display email is empty (optional field)", async () => {

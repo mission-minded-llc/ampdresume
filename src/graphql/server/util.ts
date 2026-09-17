@@ -40,6 +40,8 @@ type FilteredUserData = {
   location: string | null;
   siteTitle: string | null;
   siteDescription: string | null;
+  summary: string | null;
+  summaryTitle: string | null;
   webThemeName: string | null;
   displayEmail: null;
   email: null;
@@ -70,6 +72,8 @@ export const filterUserData = (
       location: user.location,
       siteTitle: user.siteTitle,
       siteDescription: user.siteDescription,
+      summary: user.summary,
+      summaryTitle: user.summaryTitle,
       webThemeName: user.webThemeName,
 
       // Explicitly set sensitive fields to null for unauthenticated users

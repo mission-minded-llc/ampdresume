@@ -10,6 +10,8 @@ export const types = gql`
     title: String
     siteTitle: String
     siteDescription: String
+    summary: String
+    summaryTitle: String
     webThemeName: String
   }
 
@@ -130,6 +132,8 @@ export const types = gql`
     displayEmail: String
     location: String
     title: String
+    summary: String
+    summaryTitle: String
   }
 
   type ParsedResumeProject {
@@ -179,6 +183,8 @@ export const types = gql`
     displayEmail: String
     location: String
     title: String
+    summary: String
+    summaryTitle: String
   }
 
   input CompanyInput {

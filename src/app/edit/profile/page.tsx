@@ -41,6 +41,8 @@ const Page = async () => {
         location={user?.location || ""}
         siteTitle={user?.siteTitle || ""}
         siteDescription={user?.siteDescription || ""}
+        summary={user?.summary || ""}
+        summaryTitle={user?.summaryTitle || ""}
       />
     </Box>
   );

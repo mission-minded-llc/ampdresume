@@ -10,6 +10,8 @@ describe("ExtractedUser", () => {
     displayEmail: "john.doe@example.com",
     location: "New York, NY",
     title: "Software Engineer",
+    summary: "Builder of reliable systems.",
+    summaryTitle: "About Me",
   };
 
   const mockSetUser = jest.fn();
@@ -27,6 +29,8 @@ describe("ExtractedUser", () => {
       expect(screen.getByLabelText("Display Email")).toBeInTheDocument();
       expect(screen.getByLabelText("Location")).toBeInTheDocument();
       expect(screen.getByLabelText("Title")).toBeInTheDocument();
+      expect(screen.getByLabelText("Section Title")).toBeInTheDocument();
+      expect(screen.getByLabelText("Professional Summary")).toBeInTheDocument();
     });
 
     it("displays correct initial values", () => {
@@ -36,6 +40,8 @@ describe("ExtractedUser", () => {
       expect(screen.getByDisplayValue("john.doe@example.com")).toBeInTheDocument();
       expect(screen.getByDisplayValue("New York, NY")).toBeInTheDocument();
       expect(screen.getByDisplayValue("Software Engineer")).toBeInTheDocument();
+      expect(screen.getByDisplayValue("About Me")).toBeInTheDocument();
+      expect(screen.getByDisplayValue("Builder of reliable systems.")).toBeInTheDocument();
     });
 
     it("renders with empty values", () => {
@@ -44,6 +50,8 @@ describe("ExtractedUser", () => {
         displayEmail: "",
         location: "",
         title: "",
+        summary: "",
+        summaryTitle: "",
       };
 
       render(<ExtractedUser user={emptyUser} setUser={mockSetUser} />);
@@ -115,6 +123,36 @@ describe("ExtractedUser", () => {
       });
     });
 
+    it("updates professional summary field on blur", async () => {
+      render(<ExtractedUser user={mockUser} setUser={mockSetUser} />);
+
+      const summaryField = screen.getByLabelText("Professional Summary");
+      fireEvent.change(summaryField, { target: { value: "Updated summary." } });
+      fireEvent.blur(summaryField);
+
+      await waitFor(() => {
+        expect(mockSetUser).toHaveBeenCalledWith({
+          ...mockUser,
+          summary: "Updated summary.",
+        });
+      });
+    });
+
+    it("updates section title field on blur", async () => {
+      render(<ExtractedUser user={mockUser} setUser={mockSetUser} />);
+
+      const titleField = screen.getByLabelText("Section Title");
+      fireEvent.change(titleField, { target: { value: "Profile" } });
+      fireEvent.blur(titleField);
+
+      await waitFor(() => {
+        expect(mockSetUser).toHaveBeenCalledWith({
+          ...mockUser,
+          summaryTitle: "Profile",
+        });
+      });
+    });
+
     it("does not call setUser when value hasn't changed", () => {
       render(<ExtractedUser user={mockUser} setUser={mockSetUser} />);
 
@@ -180,6 +218,12 @@ describe("ExtractedUser", () => {
 
       const titleField = screen.getByLabelText("Title");
       expect(titleField).toHaveAttribute("name", "title");
+
+      const sectionTitleField = screen.getByLabelText("Section Title");
+      expect(sectionTitleField).toHaveAttribute("name", "section-title");
+
+      const summaryField = screen.getByLabelText("Professional Summary");
+      expect(summaryField).toHaveAttribute("name", "professional-summary");
     });
   });
 

@@ -26,6 +26,8 @@ export const normalizeParsedResume = (parsedData: {
     displayEmail?: string;
     location?: string;
     title?: string;
+    summary?: string;
+    summaryTitle?: string;
   };
   companies?: Array<{
     name?: string;
@@ -50,6 +52,8 @@ export const normalizeParsedResume = (parsedData: {
     displayEmail: parsedData.user?.displayEmail ?? "",
     location: parsedData.user?.location ?? "",
     title: parsedData.user?.title ?? "",
+    summary: parsedData.user?.summary ?? "",
+    summaryTitle: parsedData.user?.summaryTitle ?? "",
   },
   companies: (parsedData.companies ?? []).map((company) => ({
     name: company?.name ?? "",

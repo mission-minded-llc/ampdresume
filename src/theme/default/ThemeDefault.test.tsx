@@ -25,6 +25,8 @@ describe("ThemeDefault", () => {
       expect(screen.getByRole("heading", { name: new RegExp(userName, "i") })).toBeInTheDocument();
     }
 
+    expect(screen.getByRole("heading", { name: /professional summary/i })).toBeInTheDocument();
+
     // Check if skills section is rendered
     expect(screen.getByRole("heading", { name: /skills/i })).toBeInTheDocument();
     expect(screen.getAllByText("CSS").length).toBeGreaterThan(0);
@@ -57,6 +59,7 @@ describe("ThemeDefault", () => {
   it("does not render optional sections when data is empty", () => {
     const propsWithEmptyData = {
       ...mockProps,
+      user: { ...mockProps.user, summary: "", summaryTitle: "" },
       skillsForUser: [],
       companies: [],
       education: [],
@@ -65,6 +68,10 @@ describe("ThemeDefault", () => {
     };
 
     render(<ThemeDefault {...propsWithEmptyData} />);
+
+    expect(
+      screen.queryByRole("heading", { name: /professional summary/i }),
+    ).not.toBeInTheDocument();
 
     // Skills section should not be rendered
     expect(screen.queryByRole("heading", { name: /skills/i })).not.toBeInTheDocument();

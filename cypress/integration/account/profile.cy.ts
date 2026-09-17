@@ -4,7 +4,8 @@ import { cypressSpecEmail, cypressSpecSlug } from "../../../src/lib/cypressTestA
 
 /**
  * The Profile section is a simple section that allows users to edit their personal information
- * including their name, slug, email, title, location, site title, and site description.
+ * including their name, slug, email, title, location, professional summary, site title, and site
+ * description.
  */
 describe("Profile Section", () => {
   const testEmail = cypressSpecEmail(Cypress.spec.relative);
@@ -31,11 +32,16 @@ describe("Profile Section", () => {
       { name: "location", value: " Test City, Test State " },
       { name: "siteTitle", value: " Test SEO Site Title" },
       { name: "siteDescription", value: " Test SEO Site Description   " },
+      { name: "summaryTitle", value: " About Me " },
     ];
 
     fields.forEach((field) => {
       cy.get(`input[name='${field.name}']`).clear().type(field.value, { delay: 25 });
     });
+
+    cy.get("[data-testid='ProfessionalSummaryEditor'] [contenteditable='true']")
+      .click()
+      .type("A concise professional summary for testing.");
 
     cy.intercept("POST", "/api/account").as("saveAccount");
     cy.get(saveButton).click();
@@ -46,6 +52,10 @@ describe("Profile Section", () => {
     fields.forEach((field) => {
       cy.get(`input[name='${field.name}']`).should("have.value", field.value.trim());
     });
+    cy.get("[data-testid='ProfessionalSummaryEditor']").should(
+      "contain",
+      "A concise professional summary for testing.",
+    );
   });
 
   it("should encounter slug validation error", () => {
