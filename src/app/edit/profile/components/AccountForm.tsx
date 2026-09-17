@@ -401,6 +401,7 @@ const AccountForm = ({
                 placeholder="Write a professional summary..."
                 name="professional-summary"
                 height={240}
+                autoFocus={false}
               />
             </Box>
           </Box>

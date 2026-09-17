@@ -1,3 +1,5 @@
+"use client";
+
 // Thank you: https://www.youtube.com/watch?v=XI6nufqMSek
 
 import "./editor.css";
@@ -17,7 +19,7 @@ import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { HeadingNode } from "@lexical/rich-text";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { $getRoot, EditorThemeClasses, LexicalEditor } from "lexical";
 import { EMAIL_REGEX } from "@/util/email";
@@ -62,15 +64,17 @@ interface RichTextEditorProps {
   placeholder?: string;
   name: string;
   height?: number;
+  autoFocus?: boolean;
 }
 
-export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function RichTextEditor({
+function RichTextEditorInner({
   value,
   editorStateRef,
   placeholder = "Type here...",
   name,
   height = 500,
-}) {
+  autoFocus = true,
+}: RichTextEditorProps) {
   const initialConfig = {
     namespace: name,
     theme: editorTheme,
@@ -136,7 +140,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
             }
             ErrorBoundary={LexicalErrorBoundary}
           />
-          <AutoFocusPlugin />
+          {autoFocus ? <AutoFocusPlugin /> : null}
           <HistoryPlugin />
           <ListPlugin />
           {/**
@@ -156,6 +160,33 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(function
       </LexicalComposer>
     </Box>
   );
-});
+}
+
+export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(
+  function RichTextEditor(props) {
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+      setIsMounted(true);
+    }, []);
+
+    // Mount after hydration: Lexical/Iconify SSR markup does not match the client.
+    if (!isMounted) {
+      return (
+        <Box
+          aria-hidden
+          sx={{
+            height: (props.height ?? 500) + 48,
+            border: "1px solid",
+            borderColor: "divider",
+            borderRadius: 1,
+          }}
+        />
+      );
+    }
+
+    return <RichTextEditorInner {...props} />;
+  },
+);
 
 RichTextEditor.displayName = "RichTextEditor";
