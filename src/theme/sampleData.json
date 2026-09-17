@@ -7,6 +7,8 @@
         "displayEmail": "taylor.everglow@techdev.com",
         "location": "San Francisco, CA",
         "title": "Full Stack Software Engineer",
+        "summary": "<p>Full Stack Engineer specializing in modern web technologies, with a bias toward clear architecture and maintainable systems.</p>",
+        "summaryTitle": "Professional Summary",
         "siteTitle": "Taylor Everglow's Professional Portfolio",
         "siteDescription": "Full Stack Engineer specializing in modern web technologies"
       },

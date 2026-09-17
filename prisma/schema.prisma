@@ -60,6 +60,10 @@ model User {
   /// Used for SEO and open graph tags
   siteDescription String?
   image           String?
+  /// Rich-text professional summary shown near the top of the resume and PDF.
+  summary         String?
+  /// Optional heading for the professional summary. Defaults to "Professional Summary" when empty.
+  summaryTitle    String?
 
   /// Used for theme name, e.g. "default"
   webThemeName String?

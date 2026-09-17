@@ -1,5 +1,7 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
+import { RichTextBlock } from "@/theme/components/RichTextBlock";
 import { User } from "@/types";
+import { getProfessionalSummaryTitle, hasRichTextContent } from "@/lib/professionalSummary";
 import { DavidsSectionTitle } from "./DavidsSectionTitle";
 
 interface SummaryProps {
@@ -9,16 +11,15 @@ interface SummaryProps {
 export const Summary = ({ user }: SummaryProps) => {
   const theme = useTheme();
 
-  if (!user?.summary || !user.summary.trim()) {
+  if (!hasRichTextContent(user?.summary)) {
     return null;
   }
 
   return (
     <Box sx={{ mt: 4, mb: 4, px: { xs: 2, sm: 0 } }}>
-      <DavidsSectionTitle>Summary</DavidsSectionTitle>
+      <DavidsSectionTitle>{getProfessionalSummaryTitle(user?.summaryTitle)}</DavidsSectionTitle>
 
-      <Typography
-        variant="body1"
+      <Box
         sx={{
           color: theme.palette.mode === "dark" ? "#94a3b8" : "#6b7280",
           lineHeight: 1.7,
@@ -28,8 +29,8 @@ export const Summary = ({ user }: SummaryProps) => {
           fontSize: "1rem",
         }}
       >
-        {user.summary.length > 2500 ? `${user.summary.substring(0, 2500)}` : user.summary}
-      </Typography>
+        <RichTextBlock content={user?.summary ?? null} />
+      </Box>
     </Box>
   );
 };

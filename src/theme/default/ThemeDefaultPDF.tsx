@@ -13,6 +13,7 @@ import { Certifications } from "./components/pdf/Certifications";
 import { Education } from "./components/pdf/Education";
 import { FeaturedProjects } from "./components/pdf/FeaturedProjects";
 import { Header } from "./components/pdf/Header";
+import { ProfessionalSummary } from "./components/pdf/ProfessionalSummary";
 import { Skills } from "./components/pdf/Skills";
 import { WorkExperience } from "./components/pdf/WorkExperience";
 import { MUIThemeProvider } from "./MUIThemeProvider";
@@ -58,6 +59,7 @@ export const ThemeDefaultPDF = ({
         }}
       >
         <Header user={user} />
+        <ProfessionalSummary user={user} />
         <Skills skillsForUser={skillsForUser} />
         <WorkExperience companies={companies} showSkills={options.showSkillsInWorkExperience} />
         <FeaturedProjects featuredProjects={featuredProjects} />

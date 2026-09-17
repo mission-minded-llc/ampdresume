@@ -28,9 +28,11 @@ const getClientParseErrorMessage = (error: unknown): string => {
 export type ParsedResumeAi = {
   user: {
     name: string;
-    displayEmail: string;
-    location: string;
-    title: string;
+    displayEmail?: string | null;
+    location?: string | null;
+    title?: string | null;
+    summary?: string | null;
+    summaryTitle?: string | null;
   };
   skills: Skill[];
   companies: Company[];
@@ -55,6 +57,8 @@ export const getParsedResumeAi = async (
               displayEmail
               location
               title
+              summary
+              summaryTitle
             }
             skills {
               id
@@ -96,7 +100,14 @@ export const getParsedResumeAi = async (
 
   // Transform the data to match ParsedResumeData structure
   return {
-    user: data.parsedResumeAi.user,
+    user: {
+      name: data.parsedResumeAi.user.name,
+      displayEmail: data.parsedResumeAi.user.displayEmail ?? "",
+      location: data.parsedResumeAi.user.location ?? "",
+      title: data.parsedResumeAi.user.title ?? "",
+      summary: data.parsedResumeAi.user.summary ?? "",
+      summaryTitle: data.parsedResumeAi.user.summaryTitle ?? "",
+    },
     skills: data.parsedResumeAi.skills,
     companies: data.parsedResumeAi.companies.map((company: Company) => ({
       name: company.name,

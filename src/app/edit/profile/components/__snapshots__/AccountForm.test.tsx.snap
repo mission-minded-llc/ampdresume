@@ -405,6 +405,117 @@ exports[`AccountForm renders correctly 1`] = `
       <div
         class="MuiBox-root css-bvujjh"
       >
+        <h2
+          class="MuiTypography-root MuiTypography-h5 css-xt72g8-MuiTypography-root"
+        >
+          Professional Summary
+        </h2>
+        <div
+          class="MuiBox-root css-18mctc4"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              data-testid="TitleIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M5 4v3h5.5v12h3V7H19V4z"
+              />
+            </svg>
+             Section Title
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+          >
+            Heading shown above your summary on the resume and PDF. Leave blank to use
+             
+            <strong>
+              Professional Summary
+            </strong>
+            .
+          </p>
+          <div
+            class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vc4ixa-MuiFormControl-root-MuiTextField-root"
+          >
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
+              data-shrink="true"
+              for="_r_7_"
+              id="_r_7_-label"
+            >
+              Section Title
+            </label>
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
+                id="_r_7_"
+                name="summaryTitle"
+                placeholder="Professional Summary"
+                type="text"
+                value="About Me"
+              />
+              <fieldset
+                aria-hidden="true"
+                class="MuiOutlinedInput-notchedOutline css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  class="css-ex8a5f-MuiNotchedOutlined-root"
+                >
+                  <span>
+                    Section Title
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-1t3wvuy"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-h6 css-115ey5t-MuiTypography-root"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              data-testid="NotesIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h12v-2H3zM3 6v2h18V6zm0 7h18v-2H3z"
+              />
+            </svg>
+             Summary
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-1a1whku-MuiTypography-root"
+          >
+            A short overview of your background. Supports rich text and appears near the top of your public resume and PDF.
+          </p>
+          <div
+            class="MuiBox-root css-0"
+            data-testid="ProfessionalSummaryEditor"
+          >
+            <textarea
+              data-testid="professional-summary"
+            >
+              &lt;p&gt;Builder of reliable systems.&lt;/p&gt;
+            </textarea>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-bvujjh"
+      >
         <div>
           SocialsForm
         </div>
@@ -447,8 +558,8 @@ exports[`AccountForm renders correctly 1`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for="_r_7_"
-              id="_r_7_-label"
+              for="_r_8_"
+              id="_r_8_-label"
             >
               Site Title
             </label>
@@ -458,7 +569,7 @@ exports[`AccountForm renders correctly 1`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-                id="_r_7_"
+                id="_r_8_"
                 name="siteTitle"
                 type="text"
                 value="John's Resume"
@@ -508,8 +619,8 @@ exports[`AccountForm renders correctly 1`] = `
             <label
               class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined css-113d811-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="true"
-              for="_r_8_"
-              id="_r_8_-label"
+              for="_r_9_"
+              id="_r_9_-label"
             >
               Site Description
             </label>
@@ -519,7 +630,7 @@ exports[`AccountForm renders correctly 1`] = `
               <input
                 aria-invalid="false"
                 class="MuiInputBase-input MuiOutlinedInput-input css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input"
-                id="_r_8_"
+                id="_r_9_"
                 name="siteDescription"
                 type="text"
                 value="This is John's resume."

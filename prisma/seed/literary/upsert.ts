@@ -84,6 +84,8 @@ async function upsertUser(character: LiteraryCharacter): Promise<{
     siteTitle: character.siteTitle,
     title: character.title,
     siteDescription: character.siteDescription,
+    summary: character.summary,
+    summaryTitle: character.summaryTitle ?? null,
   };
 
   const existing = await prisma.user.findFirst({
@@ -109,7 +111,9 @@ async function upsertUser(character: LiteraryCharacter): Promise<{
     stringsEqual(existing.location, desired.location) &&
     stringsEqual(existing.siteTitle, desired.siteTitle) &&
     stringsEqual(existing.title, desired.title) &&
-    stringsEqual(existing.siteDescription, desired.siteDescription);
+    stringsEqual(existing.siteDescription, desired.siteDescription) &&
+    stringsEqual(existing.summary, desired.summary) &&
+    stringsEqual(existing.summaryTitle, desired.summaryTitle);
 
   if (unchanged) {
     bump(counts, "unchanged");

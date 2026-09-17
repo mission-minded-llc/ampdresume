@@ -89,6 +89,8 @@ const ExtractedInformationContent = ({
           displayEmail: user.displayEmail,
           location: user.location,
           title: user.title,
+          summary: user.summary,
+          summaryTitle: user.summaryTitle,
         },
         skillIds: skills.map((skill) => skill.id),
         companies: companies,

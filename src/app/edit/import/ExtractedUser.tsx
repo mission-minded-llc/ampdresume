@@ -10,10 +10,14 @@ const UserField = memo(
     label,
     value,
     onChange,
+    multiline = false,
+    helperText,
   }: {
     label: string;
     value: string;
     onChange: (value: string) => void;
+    multiline?: boolean;
+    helperText?: string;
   }) => {
     const [localValue, setLocalValue] = useState(value);
 
@@ -35,6 +39,9 @@ const UserField = memo(
         onChange={handleChange}
         onBlur={handleBlur}
         fullWidth
+        multiline={multiline}
+        minRows={multiline ? 4 : undefined}
+        helperText={helperText}
         sx={{
           "& .MuiInputBase-input": { fontSize: "1rem" },
           "& .MuiInputLabel-root": { fontSize: "1rem" },
@@ -97,6 +104,18 @@ export const ExtractedUser = ({
           onChange={handleFieldChange("location")}
         />
         <UserField label="Title" value={user.title} onChange={handleFieldChange("title")} />
+        <UserField
+          label="Section Title"
+          value={user.summaryTitle}
+          onChange={handleFieldChange("summaryTitle")}
+          helperText="Leave blank to use Professional Summary."
+        />
+        <UserField
+          label="Professional Summary"
+          value={user.summary}
+          onChange={handleFieldChange("summary")}
+          multiline
+        />
       </Box>
     </Box>
   );

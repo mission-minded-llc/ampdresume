@@ -20,6 +20,8 @@ const mockUser = {
   title: "Engineer",
   siteTitle: "Jane",
   siteDescription: "Bio",
+  summary: "<p>Public summary</p>",
+  summaryTitle: "About Me",
   webThemeName: "default",
 } as User;
 
@@ -50,6 +52,8 @@ describe("filterUserData", () => {
     expect(filterUserData(mockUser, unauthenticatedContext)).toMatchObject({
       id: "user-1",
       name: "Jane Doe",
+      summary: "<p>Public summary</p>",
+      summaryTitle: "About Me",
       displayEmail: null,
       email: null,
     });

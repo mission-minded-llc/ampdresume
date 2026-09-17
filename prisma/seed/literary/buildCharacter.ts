@@ -54,6 +54,8 @@ export function defineCharacter(input: LiteraryCharacterInput): LiteraryCharacte
     location: input.location,
     siteTitle,
     siteDescription: input.siteDescription,
+    summary: input.summary ?? `<p>${input.siteDescription}</p>`,
+    summaryTitle: input.summaryTitle,
     affiliation: input.affiliation,
     socials: input.socials ?? [],
     companies: employmentThroughDeath(input.companies, input.died),
