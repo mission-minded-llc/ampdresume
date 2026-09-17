@@ -111,6 +111,19 @@ describe("SkillItem", () => {
       expect(button).toHaveAttribute("aria-disabled", "true");
     });
 
+    it("should be disabled when the description has no visible characters", () => {
+      const skillWithEmptyHtml = {
+        ...reactSkill,
+        description: "<p><br></p>",
+      };
+      renderWithTheme(skillWithEmptyHtml);
+      const button = screen.getByRole("button");
+      expect(button).toHaveAttribute("aria-disabled", "true");
+      expect(button).toHaveAttribute("data-interactive", "false");
+      fireEvent.click(button);
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
     it("marks skills with a description as interactive", () => {
       renderWithTheme(reactSkill);
       const button = screen.getByRole("button");

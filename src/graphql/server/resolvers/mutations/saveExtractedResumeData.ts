@@ -1,8 +1,9 @@
 import { ExtractedCompany, ExtractedEducation } from "@/app/edit/import/types";
 import { verifySessionOwnership } from "@/graphql/server/util";
-import { hasRichTextContent, plainTextToSummaryHtml } from "@/lib/professionalSummary";
+import { plainTextToSummaryHtml } from "@/lib/professionalSummary";
 import { prisma } from "@/lib/prisma";
 import { revalidatePublicResumeForUserId } from "@/lib/revalidatePublicResume";
+import { hasRichTextContent } from "@/lib/richText";
 import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export const saveExtractedResumeData = async (

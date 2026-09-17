@@ -1,10 +1,11 @@
 import "./SkillItemView.css";
 import { Box } from "@mui/material";
+import { hasRichTextContent } from "@/lib/richText";
 import { RichTextBlock } from "@/theme/components/RichTextBlock";
 import { SkillForUser } from "@/types";
 
 export const SkillItemView = ({ skill }: { skill: SkillForUser }) => {
-  if (!skill?.description) return null;
+  if (!hasRichTextContent(skill?.description)) return null;
 
   return (
     <Box className="skillDescription">
