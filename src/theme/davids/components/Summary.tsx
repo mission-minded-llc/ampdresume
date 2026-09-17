@@ -1,7 +1,8 @@
 import { Box, useTheme } from "@mui/material";
 import { RichTextBlock } from "@/theme/components/RichTextBlock";
 import { User } from "@/types";
-import { getProfessionalSummaryTitle, hasRichTextContent } from "@/lib/professionalSummary";
+import { getProfessionalSummaryTitle } from "@/lib/professionalSummary";
+import { hasRichTextContent } from "@/lib/richText";
 import { DavidsSectionTitle } from "./DavidsSectionTitle";
 
 interface SummaryProps {

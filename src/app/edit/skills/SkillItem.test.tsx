@@ -92,4 +92,16 @@ describe("SkillItem", () => {
       expect(container).toMatchSnapshot();
     });
   });
+
+  it("disables the button when the viewer cannot edit and the description has no visible characters", () => {
+    (usePathname as jest.Mock).mockReturnValue("/resume");
+    const skillWithEmptyHtml: SkillForUser = {
+      ...mockSkill,
+      description: "<p><br></p>",
+    };
+
+    const { getByRole } = render(<SkillItem skill={skillWithEmptyHtml} />);
+
+    expect(getByRole("button", { name: /javascript/i })).toBeDisabled();
+  });
 });

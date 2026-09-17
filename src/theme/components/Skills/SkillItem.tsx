@@ -3,6 +3,7 @@ import { Box, Dialog, DialogContent } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Icon } from "@iconify/react";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
+import { hasRichTextContent } from "@/lib/richText";
 import { SkillForProject, SkillForUser } from "@/types";
 import { SkillItemView } from "./SkillItemView";
 import { SkillsContext } from "./Skills";
@@ -16,6 +17,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUser | SkillForProject }) 
     skillType === "project"
       ? { ...projectSkill.skillForUser, description: projectSkill.description }
       : (skill as SkillForUser);
+  const hasDescription = hasRichTextContent(skillData.description);
 
   const SkillIcon = () =>
     skillData?.icon ? (
@@ -27,17 +29,19 @@ export const SkillItem = ({ skill }: { skill: SkillForUser | SkillForProject }) 
   return (
     <React.Fragment>
       <Button
-        disabled={!skill?.description}
+        disabled={!hasDescription}
         component="div"
         variant="outlined"
         color="primary"
-        onClick={() => setIsOpen(true)}
-        data-interactive={Boolean(skill?.description)}
+        onClick={() => {
+          if (!hasDescription) return;
+          setIsOpen(true);
+        }}
+        data-interactive={hasDescription}
         sx={(theme) => {
           const color = theme.palette.mode === "dark" ? "#fff" : theme.palette.primary.main;
           const backgroundColor =
             theme.palette.mode === "dark" ? "#2C2733" : theme.palette.background.paper;
-          const hasDescription = Boolean(skill?.description);
 
           return {
             padding: "4px 12px !important",

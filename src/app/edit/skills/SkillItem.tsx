@@ -8,6 +8,7 @@ import { Icon } from "@iconify/react";
 import { SkillItemEdit } from "@/app/edit/skills/SkillItemEdit";
 import { CustomDialogTitle } from "@/components/CustomDialogTitle";
 import { useDemoMode } from "@/app/components/onboarding/DemoModeContext";
+import { hasRichTextContent } from "@/lib/richText";
 
 export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
   const { data: session, status } = useSession();
@@ -26,7 +27,8 @@ export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
       status === "authenticated" &&
       session?.user?.id === skill.userId);
 
-  const buttonDisabled = !(skill?.description || userCanEdit);
+  const hasDescription = hasRichTextContent(skill?.description);
+  const buttonDisabled = !(hasDescription || userCanEdit);
 
   const SkillIcon = () => (icon ? <Icon icon={icon} /> : null);
 
@@ -49,7 +51,7 @@ export const SkillItem = ({ skill }: { skill: SkillForUser }) => {
           },
           textTransform: "none",
           gap: "8px",
-          borderColor: userCanEdit && skill?.description ? "lawngreen" : theme.palette.primary.dark,
+          borderColor: userCanEdit && hasDescription ? "lawngreen" : theme.palette.primary.dark,
         })}
       >
         <SkillIcon />

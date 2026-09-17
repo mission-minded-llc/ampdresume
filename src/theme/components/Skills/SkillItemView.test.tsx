@@ -30,6 +30,15 @@ describe("SkillItemView", () => {
     expect(container.firstChild).toBeNull();
   });
 
+  it("should not render anything when the description has no visible characters", () => {
+    const skillWithEmptyHtml = {
+      ...reactSkill,
+      description: "<p></p>",
+    };
+    const { container } = renderWithTheme(skillWithEmptyHtml);
+    expect(container.firstChild).toBeNull();
+  });
+
   it("should render with correct CSS class", () => {
     renderWithTheme(reactSkill);
     expect(screen.getByText(reactSkill.description!).parentElement).toHaveClass("skillDescription");

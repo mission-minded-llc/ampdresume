@@ -2,7 +2,6 @@ import { expect } from "@jest/globals";
 import {
   DEFAULT_PROFESSIONAL_SUMMARY_TITLE,
   getProfessionalSummaryTitle,
-  hasRichTextContent,
   plainTextToSummaryHtml,
 } from "./professionalSummary";
 
@@ -16,23 +15,6 @@ describe("getProfessionalSummaryTitle", () => {
 
   it("returns a custom trimmed title", () => {
     expect(getProfessionalSummaryTitle(" About Me ")).toBe("About Me");
-  });
-});
-
-describe("hasRichTextContent", () => {
-  it("is false for empty or placeholder HTML", () => {
-    expect(hasRichTextContent(undefined)).toBe(false);
-    expect(hasRichTextContent(null)).toBe(false);
-    expect(hasRichTextContent("")).toBe(false);
-    expect(hasRichTextContent("   ")).toBe(false);
-    expect(hasRichTextContent("<p></p>")).toBe(false);
-    expect(hasRichTextContent("<p><br></p>")).toBe(false);
-    expect(hasRichTextContent("<p>&nbsp;</p>")).toBe(false);
-  });
-
-  it("is true when visible text remains", () => {
-    expect(hasRichTextContent("Plain summary")).toBe(true);
-    expect(hasRichTextContent("<p>Hello <strong>world</strong></p>")).toBe(true);
   });
 });
 

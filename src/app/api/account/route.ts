@@ -8,9 +8,9 @@ import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import * as Sentry from "@sentry/node";
 import { authOptions } from "@/lib/auth";
-import { hasRichTextContent } from "@/lib/professionalSummary";
 import { prisma } from "@/lib/prisma";
 import { revalidatePublicResumeBySlug } from "@/lib/revalidatePublicResume";
+import { hasRichTextContent } from "@/lib/richText";
 import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 
 export async function POST(req: NextRequest) {
