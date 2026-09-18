@@ -40,7 +40,7 @@ export const themeDefinitions: Record<ThemeName, ThemeDefinition> = {
   },
   "retro-80s": {
     name: "Retro 80s",
-    published: false,
+    published: true,
     webComponent: ThemeRetro80s,
     pdfComponent: null,
     description:
