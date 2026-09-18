@@ -2,7 +2,7 @@
 
 import { useContext } from "react";
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
-import { ThemeDavids, ThemeDefault } from "@/theme";
+import { ThemeDavids, ThemeDefault, ThemeRetro80s } from "@/theme";
 import { themeDavidsSampleData } from "@/theme/davids/sampleData";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { ThemeName } from "@/types";
@@ -22,6 +22,19 @@ export const ResumeView = ({ themeName }: { themeName: ThemeName }) => {
           education={themeDavidsSampleData.data.resume.education}
           certifications={themeDavidsSampleData.data.resume.certifications || []}
           featuredProjects={themeDavidsSampleData.data.resume.featuredProjects || []}
+        />
+      );
+    case "retro-80s":
+      return (
+        <ThemeRetro80s
+          themeAppearance={themeAppearance}
+          user={themeDefaultSampleData.data.resume.user}
+          socials={themeDefaultSampleData.data.resume.socials}
+          skillsForUser={themeDefaultSampleData.data.resume.skillsForUser}
+          companies={themeDefaultSampleData.data.resume.companies}
+          education={themeDefaultSampleData.data.resume.education}
+          certifications={themeDefaultSampleData.data.resume.certifications || []}
+          featuredProjects={themeDefaultSampleData.data.resume.featuredProjects || []}
         />
       );
     case "default":
