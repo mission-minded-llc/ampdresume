@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-const themes = ["default", "davids"] as const;
+const themes = ["default", "davids", "retro-80s"] as const;
 
 describe("Demo themes", () => {
   themes.forEach((theme) => {

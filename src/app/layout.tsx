@@ -17,6 +17,16 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+// Press Start 2P (SIL Open Font License 1.1) is only used by the retro-80s resume
+// theme, so it is not preloaded on every page.
+const pressStart2P = localFont({
+  src: "./fonts/PressStart2P-Regular.woff2",
+  variable: "--font-press-start",
+  weight: "400",
+  display: "swap",
+  preload: false,
+});
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +40,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable}`}
       style={{ colorScheme: initialThemeAppearance ?? "light" }}
     >
       <head>

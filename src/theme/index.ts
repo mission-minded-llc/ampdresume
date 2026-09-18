@@ -2,9 +2,10 @@ import { ThemeDefinition, ThemeName } from "@/types";
 import { ThemeDavids } from "./davids/ThemeDavids";
 import { ThemeDefault } from "./default/ThemeDefault";
 import { ThemeDefaultPDF } from "./default/ThemeDefaultPDF";
+import { ThemeRetro80s } from "./retro-80s/ThemeRetro80s";
 
 // Using named exports here, because we want to be able to import the themes directly.
-export { ThemeDavids, ThemeDefault, ThemeDefaultPDF };
+export { ThemeDavids, ThemeDefault, ThemeDefaultPDF, ThemeRetro80s };
 
 export const themeDefinitions: Record<ThemeName, ThemeDefinition> = {
   default: {
@@ -34,6 +35,22 @@ export const themeDefinitions: Record<ThemeName, ThemeDefinition> = {
         name: "David Schurer",
         gitHubUrl: "https://github.com/davidschurer",
         linkedInUrl: "https://www.linkedin.com/in/david-schurer/",
+      },
+    ],
+  },
+  "retro-80s": {
+    name: "Retro 80s",
+    published: true,
+    webComponent: ThemeRetro80s,
+    pdfComponent: null,
+    description:
+      "An 8-bit arcade take on the Classic layout: pixel type, neon synthwave palette, and CRT scanlines.",
+    iconifyIcon: "fluent-emoji-flat:joystick",
+    authors: [
+      {
+        name: "Michael R. Dinerstein",
+        gitHubUrl: "https://github.com/missionmike",
+        linkedInUrl: "https://www.linkedin.com/in/michaeldinerstein/",
       },
     ],
   },
