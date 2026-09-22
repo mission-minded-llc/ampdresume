@@ -122,17 +122,18 @@ describe("EditEducation", () => {
     });
   });
 
-  it("renders no education message when no education data is found", async () => {
+  it("still renders the education list when no education data is found", async () => {
     (useSession as jest.Mock).mockReturnValue({
       data: mockSession,
       status: "authenticated",
     });
     (useQuery as jest.Mock).mockReturnValue({ isPending: false, data: [] });
 
-    const { getByText } = render(<EditEducation />);
+    const { getByText, queryByText } = render(<EditEducation />);
 
     await waitFor(() => {
-      expect(getByText("No education found.")).toBeInTheDocument();
+      expect(getByText("Your Education")).toBeInTheDocument();
+      expect(queryByText("No education found.")).not.toBeInTheDocument();
     });
   });
 });

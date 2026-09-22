@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Box, Button } from "@mui/material";
-import html2pdf from "html2pdf.js";
+import { Html2PdfFn, loadHtml2Pdf } from "@/lib/loadHtml2Pdf";
 import { ThemeDefaultPDF } from "@/theme/default/ThemeDefaultPDF";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { ThemeName } from "@/types";
@@ -13,17 +13,23 @@ interface PDFViewProps {
 
 export const PDFView = ({ themeName }: PDFViewProps) => {
   const pdfRef = useRef<HTMLDivElement>(null);
+  const [html2pdf, setHtml2pdf] = useState<Html2PdfFn | null>(null);
+
+  useEffect(() => {
+    // Wrap the function so React stores it instead of treating it as a setState updater.
+    loadHtml2Pdf().then((html2pdfFn) => setHtml2pdf(() => html2pdfFn));
+  }, []);
 
   const handleGeneratePdf = () => {
-    if (!pdfRef.current) return;
+    if (!pdfRef.current || !html2pdf) return;
 
     const options = {
-      margin: [0.75, 0.75, 0.75, 0.75], // top, right, bottom, left
+      margin: [0.75, 0.75, 0.75, 0.75] as [number, number, number, number], // top, right, bottom, left
       filename: "resume.pdf",
-      image: { type: "jpeg", quality: 0.98 },
+      image: { type: "jpeg" as const, quality: 0.98 },
       html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-      pagebreak: { mode: ["avoid-all"] },
+      jsPDF: { unit: "in", format: "letter" as const, orientation: "portrait" as const },
+      pagebreak: { mode: ["avoid-all"] as const },
     };
 
     html2pdf()
@@ -57,7 +63,7 @@ export const PDFView = ({ themeName }: PDFViewProps) => {
   return (
     <Box sx={{ color: "#000", pb: 12 }}>
       <Box sx={{ display: "flex", justifyContent: "center", mb: 2, mt: 2 }}>
-        <Button onClick={handleGeneratePdf} variant="contained">
+        <Button onClick={handleGeneratePdf} variant="contained" disabled={!html2pdf}>
           Generate PDF
         </Button>
       </Box>

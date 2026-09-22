@@ -1,11 +1,10 @@
 "use client";
 
 import { Certification, Company, Education, FeaturedProject, SkillForUser, User } from "@/types";
+import { Html2PdfFn, loadHtml2Pdf } from "@/lib/loadHtml2Pdf";
 import { themeDefinitions } from "@/theme";
 import { useEffect, useRef, useState } from "react";
 import { Box, Button } from "@mui/material";
-
-type Html2PdfType = typeof import("html2pdf.js").default;
 
 interface PDFViewProps {
   user: User;
@@ -25,13 +24,11 @@ export const PDFView = ({
   featuredProjects,
 }: PDFViewProps) => {
   const pdfRef = useRef<HTMLDivElement>(null);
-  const [html2pdf, setHtml2pdf] = useState<Html2PdfType | null>(null);
+  const [html2pdf, setHtml2pdf] = useState<Html2PdfFn | null>(null);
 
   useEffect(() => {
-    // Dynamically import html2pdf only on the client side
-    import("html2pdf.js").then((module) => {
-      setHtml2pdf(module.default as Html2PdfType);
-    });
+    // Wrap the function so React stores it instead of treating it as a setState updater.
+    loadHtml2Pdf().then((html2pdfFn) => setHtml2pdf(() => html2pdfFn));
   }, []);
 
   const handleGeneratePdf = () => {

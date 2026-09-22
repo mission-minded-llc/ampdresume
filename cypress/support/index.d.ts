@@ -13,6 +13,8 @@ declare global {
         year: string,
       ): Chainable<void>;
       aliasGraphql(operationName: string): Chainable<null>;
+      enableFeatureFlag(name: string): Chainable<null>;
+      disableFeatureFlag(name: string): Chainable<null>;
     }
   }
 }

@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { expect } from "@jest/globals";
 import { ExperienceDemo } from "./ExperienceDemo";
 
@@ -36,5 +36,13 @@ describe("ExperienceDemo", () => {
     expect(screen.getByDisplayValue("Northwind Labs")).toBeInTheDocument();
     expect(screen.getByDisplayValue("Senior Software Engineer")).toBeInTheDocument();
     expect(screen.getByTestId("rich-text-editor")).toBeInTheDocument();
+  });
+
+  it("expands automatically during autoplay and can be collapsed", () => {
+    render(<ExperienceDemo autoPlay />);
+
+    expect(screen.getByDisplayValue("Northwind Labs")).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("ExpandMoreIcon"));
+    expect(screen.getAllByText("Northwind Labs").length).toBeGreaterThan(0);
   });
 });
