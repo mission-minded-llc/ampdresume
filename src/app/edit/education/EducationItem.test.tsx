@@ -46,6 +46,9 @@ describe("EducationItem", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    mockEducation.school = "Test University";
+    mockEducation.degree = "Bachelor of Science";
+    mockEducation.dateAwarded = "2022-01-02T00:00:00.000Z";
     (useSession as jest.Mock).mockReturnValue({ data: mockSession });
     (useQueryClient as jest.Mock).mockReturnValue(mockQueryClient);
   });
@@ -152,6 +155,64 @@ describe("EducationItem", () => {
       expect(mockMutate).toHaveBeenCalledWith({
         userId: mockSession.user.id,
         id: mockEducation.id,
+      });
+    });
+  });
+
+  it("does not persist edits or deletes when the session is missing", async () => {
+    (useSession as jest.Mock).mockReturnValue({ data: null });
+    (useMutation as jest.Mock).mockImplementation(({ mutationFn, onSuccess }) => ({
+      mutate: async (variables: unknown) => {
+        await mutationFn(variables);
+        await onSuccess?.();
+      },
+    }));
+
+    const { getByText, getByLabelText } = render(
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <EducationItem
+          education={mockEducation}
+          expanded={mockEducation.id}
+          setExpanded={mockSetExpanded}
+        />
+      </LocalizationProvider>,
+    );
+
+    fireEvent.change(getByLabelText("School *"), { target: { value: "New University" } });
+    fireEvent.click(getByText("Save Education"));
+    fireEvent.click(getByText("Delete Education"));
+    fireEvent.click(getByText("Yes, Delete"));
+
+    await waitFor(() => {
+      expect(updateEducation).not.toHaveBeenCalled();
+    });
+  });
+
+  it("calls updateEducation through the mutation function when a session exists", async () => {
+    (useMutation as jest.Mock).mockImplementation(({ mutationFn, onSuccess }) => ({
+      mutate: async (variables: unknown) => {
+        await mutationFn(variables);
+        await onSuccess?.();
+      },
+    }));
+
+    const { getByText, getByLabelText } = render(
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <EducationItem
+          education={mockEducation}
+          expanded={mockEducation.id}
+          setExpanded={mockSetExpanded}
+        />
+      </LocalizationProvider>,
+    );
+
+    fireEvent.change(getByLabelText("School *"), { target: { value: "New University" } });
+    fireEvent.click(getByText("Save Education"));
+
+    await waitFor(() => {
+      expect(updateEducation).toHaveBeenCalled();
+      expect(mockQueryClient.invalidateQueries).toHaveBeenCalledWith({
+        queryKey: ["education"],
       });
     });
   });

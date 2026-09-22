@@ -52,6 +52,7 @@ export const EducationForm = ({
           fullWidth
           variant="outlined"
           label="School"
+          name="school"
           value={school}
           onChange={(e) => setSchool(e.target.value)}
           required
@@ -61,6 +62,7 @@ export const EducationForm = ({
           fullWidth
           variant="outlined"
           label="Degree / Award"
+          name="degree"
           value={degree}
           onChange={(e) => setDegree(e.target.value)}
         />
@@ -76,6 +78,7 @@ export const EducationForm = ({
       >
         <DatePicker
           label="Date Awarded"
+          name="dateAwarded"
           value={dateAwarded}
           onChange={(newValue) => setDateAwarded(newValue)}
           views={["month", "year"]}

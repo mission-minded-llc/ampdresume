@@ -8,6 +8,8 @@ import { expect } from "@jest/globals";
 import { Company } from "@/types";
 import { getResume } from "@/graphql/getResume";
 import { getCompaniesAi } from "@/graphql/getCompaniesAi";
+import { updateProject } from "@/graphql/updateProject";
+import { updateProjectSortIndexes } from "@/graphql/updateProjectSortIndexes";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
@@ -19,6 +21,14 @@ jest.mock("@/graphql/getResume", () => ({
 
 jest.mock("@/graphql/getCompaniesAi", () => ({
   getCompaniesAi: jest.fn(),
+}));
+
+jest.mock("@/graphql/updateProject", () => ({
+  updateProject: jest.fn().mockResolvedValue(undefined),
+}));
+
+jest.mock("@/graphql/updateProjectSortIndexes", () => ({
+  updateProjectSortIndexes: jest.fn().mockResolvedValue(undefined),
 }));
 
 jest.mock("../components/SectionTitle", () => ({
@@ -401,6 +411,45 @@ describe("AiAssist", () => {
 
       await waitFor(() => {
         expect(screen.queryByText(/Conferring with bots/)).not.toBeInTheDocument();
+      });
+    });
+  });
+
+  describe("saving AI changes", () => {
+    it("persists renamed projects and sort order", async () => {
+      renderAiAssist();
+      await waitFor(() => {
+        expect(screen.getByRole("button", { name: /Get AI Assistance/ })).toBeInTheDocument();
+      });
+
+      fireEvent.click(screen.getByRole("button", { name: /Get AI Assistance/ }));
+      await act(async () => {
+        fireEvent.change(screen.getByRole("textbox"), {
+          target: { value: "Senior developer role" },
+        });
+      });
+      await act(async () => {
+        fireEvent.click(screen.getByRole("button", { name: /Run it!/ }));
+      });
+
+      await waitFor(() => {
+        expect(screen.getByRole("button", { name: /Save AI changes/ })).not.toBeDisabled();
+      });
+
+      fireEvent.click(screen.getByRole("button", { name: /Save AI changes/ }));
+
+      await waitFor(() => {
+        expect(updateProjectSortIndexes).toHaveBeenCalledWith({
+          userId: "user-id",
+          positionId: "position-1",
+          projectSortIndexes: [{ id: "project-1", sortIndex: 0 }],
+        });
+        expect(updateProject).toHaveBeenCalledWith({
+          id: "project-1",
+          userId: "user-id",
+          projectName: "AI revised bullet one",
+          description: "",
+        });
       });
     });
   });
