@@ -39,4 +39,3 @@ describe("url helpers", () => {
     expect(validateUrl("not a url")).toBe(false);
   });
 });
-

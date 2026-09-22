@@ -61,4 +61,3 @@ describe("removeLeadingZero", () => {
     expect(removeLeadingZero("10")).toBe("10");
   });
 });
-
