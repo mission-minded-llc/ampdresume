@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
-const themes = ["default", "davids", "retro-80s"] as const;
-
 describe("Demo themes", () => {
+  const themes = ["default", "davids", "retro-80s"] as const;
+
   themes.forEach((theme) => {
     it(`should visit '${theme}' theme from the nav`, () => {
       cy.visit("/");
