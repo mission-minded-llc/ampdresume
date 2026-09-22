@@ -26,7 +26,7 @@ describe("public PDFView", () => {
     expect(screen.getByText("Generate PDF")).toBeInTheDocument();
     expect(screen.getByText(resume.user.name!)).toBeInTheDocument();
     await waitFor(() => {
-      expect(screen.getByText("Generate PDF")).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Generate PDF" })).toBeEnabled();
     });
   });
 });

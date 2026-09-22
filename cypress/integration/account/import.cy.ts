@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 import getParsedResumeAiResponse from "./data/getParsedResumeAiResponse.json";
+import getParsedResumeAiSaveResponse from "./data/getParsedResumeAiSaveResponse.json";
 
 /**
  * The Import section is a simple section that allows users to import a resume from a PDF file.
@@ -69,5 +70,30 @@ describe("Import Section", () => {
     cy.contains(lastSkill.name).should("be.visible");
     cy.get(`[data-testid="trash-icon-${lastSkill.id}"]`).click();
     cy.contains(lastSkill.name).should("not.exist");
+  });
+
+  it("should save extracted resume data onto the account", () => {
+    cy.intercept("POST", "/api/graphql", (req) => {
+      if (req.body.operationName === "getParsedResumeAi") {
+        req.reply(getParsedResumeAiSaveResponse);
+      }
+    }).as("getParsedResumeAi");
+
+    cy.get('input[type="file"]:enabled', { timeout: 10000 }).selectFile(
+      "cypress/fixtures/test-resume-1.pdf",
+    );
+    cy.wait("@getParsedResumeAi", { timeout: 10000 });
+
+    cy.contains("Imported Labs").should("be.visible");
+    cy.contains("State University").should("be.visible");
+
+    cy.aliasGraphql("saveExtractedResumeData");
+    cy.contains("button", "Save All").click();
+    cy.contains("button", "Yes, Update").click();
+    cy.wait("@saveExtractedResumeData");
+
+    cy.url().should("include", "/edit/experience");
+    cy.contains("strong", "Imported Labs").filter(":visible").should("be.visible");
+    cy.contains("Add New Company").should("be.visible");
   });
 });

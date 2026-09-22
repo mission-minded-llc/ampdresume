@@ -28,6 +28,47 @@ const filePlugin = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOption
     getMagicLink({ email }: { email: string }) {
       return waitForMagicLink(email);
     },
+    async enableFeatureFlag({ email, name }: { email: string; name: string }) {
+      const dotenv = await import("dotenv");
+      dotenv.config();
+      const { prisma } = await import("./src/lib/prisma");
+      const user = await prisma.user.findUnique({ where: { email } });
+      if (!user) {
+        throw new Error(`Cannot enable ${name}: no user for ${email}`);
+      }
+      await prisma.feature.upsert({
+        where: { userId_name: { userId: user.id, name } },
+        create: { userId: user.id, name, enabled: true },
+        update: { enabled: true },
+      });
+      return null;
+    },
+    async clearSocials({ email }: { email: string }) {
+      const dotenv = await import("dotenv");
+      dotenv.config();
+      const { prisma } = await import("./src/lib/prisma");
+      const user = await prisma.user.findUnique({ where: { email } });
+      if (!user) {
+        return null;
+      }
+      await prisma.social.deleteMany({ where: { userId: user.id } });
+      return null;
+    },
+    async disableFeatureFlag({ email, name }: { email: string; name: string }) {
+      const dotenv = await import("dotenv");
+      dotenv.config();
+      const { prisma } = await import("./src/lib/prisma");
+      const user = await prisma.user.findUnique({ where: { email } });
+      if (!user) {
+        return null;
+      }
+      await prisma.feature.upsert({
+        where: { userId_name: { userId: user.id, name } },
+        create: { userId: user.id, name, enabled: false },
+        update: { enabled: false },
+      });
+      return null;
+    },
   });
 
   return config;

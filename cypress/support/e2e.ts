@@ -107,6 +107,20 @@ Cypress.Commands.add(
   },
 );
 
+Cypress.Commands.add("enableFeatureFlag", (name: string) => {
+  return cy.task("enableFeatureFlag", {
+    email: cypressSpecEmail(Cypress.spec.relative),
+    name,
+  });
+});
+
+Cypress.Commands.add("disableFeatureFlag", (name: string) => {
+  return cy.task("disableFeatureFlag", {
+    email: cypressSpecEmail(Cypress.spec.relative),
+    name,
+  });
+});
+
 Cypress.Commands.add("aliasGraphql", (operationName: string) => {
   cy.intercept("POST", "/api/graphql", (req) => {
     if (req.body.operationName === operationName) {

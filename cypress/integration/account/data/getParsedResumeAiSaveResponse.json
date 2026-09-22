@@ -1,0 +1,42 @@
+{
+  "data": {
+    "parsedResumeAi": {
+      "user": {
+        "name": "Jordan Import",
+        "displayEmail": "jordan.import@example.com",
+        "location": "Austin, TX",
+        "title": "Software Engineer",
+        "summary": "Builds reliable web apps.",
+        "summaryTitle": "Professional Summary"
+      },
+      "skills": [],
+      "companies": [
+        {
+          "name": "Imported Labs",
+          "location": "Austin, TX",
+          "startDate": "2020-01",
+          "endDate": "2023-06",
+          "positions": [
+            {
+              "title": "Engineer",
+              "startDate": "2020-01",
+              "endDate": "2023-06",
+              "projects": [
+                {
+                  "name": "Shipped the import pipeline"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "education": [
+        {
+          "school": "State University",
+          "degree": "B.S. Computer Science",
+          "dateAwarded": "2019-05-01"
+        }
+      ]
+    }
+  }
+}

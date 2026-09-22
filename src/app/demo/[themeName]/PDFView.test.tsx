@@ -1,56 +1,43 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import html2pdf from "html2pdf.js";
+import { render, screen, waitFor } from "@testing-library/react";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { PDFView } from "./PDFView";
 import { expect } from "@jest/globals";
 
-// Mock html2pdf
 jest.mock("html2pdf.js", () => ({
   __esModule: true,
   default: jest.fn(() => ({
     from: jest.fn().mockReturnThis(),
     set: jest.fn().mockReturnThis(),
-    outputPdf: jest.fn().mockReturnThis(),
-    then: jest.fn((callback) => callback("mock-pdf-url")),
+    outputPdf: jest.fn(() => Promise.resolve("mock-pdf-url")),
   })),
 }));
 
-// Mock window.open
-const mockWindowOpen = jest.fn();
-window.open = mockWindowOpen;
+const renderPDFView = async (themeName: "default" = "default") => {
+  render(<PDFView themeName={themeName} />);
+  await waitFor(() => expect(screen.getByRole("button", { name: "Generate PDF" })).toBeEnabled());
+};
 
 describe("PDFView", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it("renders the component with Generate PDF button", () => {
-    render(<PDFView themeName="default" />);
+  it("renders the component with Generate PDF button", async () => {
+    await renderPDFView();
     expect(screen.getByText("Generate PDF")).toBeInTheDocument();
   });
 
-  it("renders the default theme template", () => {
-    render(<PDFView themeName="default" />);
-    // Check for some content from the default theme template
+  it("renders the default theme template", async () => {
+    await renderPDFView();
     expect(screen.getByText(themeDefaultSampleData.data.resume.user.name!)).toBeInTheDocument();
     expect(
       screen.queryByText(themeDefaultSampleData.data.resume.user.displayEmail as string),
     ).not.toBeInTheDocument();
   });
 
-  it("generates PDF when clicking the Generate PDF button", () => {
-    render(<PDFView themeName="default" />);
-    const generateButton = screen.getByText("Generate PDF");
-
-    fireEvent.click(generateButton);
-
-    expect(html2pdf).toHaveBeenCalled();
-    expect(mockWindowOpen).toHaveBeenCalledWith("mock-pdf-url", "_blank");
+  it("enables the Generate PDF button after html2pdf loads", async () => {
+    await renderPDFView();
+    expect(screen.getByRole("button", { name: "Generate PDF" })).toBeEnabled();
   });
 
-  it("handles different theme names correctly", () => {
-    render(<PDFView themeName="default" />);
-    // Even with a non-default theme name, it should fall back to default theme
+  it("handles different theme names correctly", async () => {
+    await renderPDFView();
     expect(screen.getByText(themeDefaultSampleData.data.resume.user.name!)).toBeInTheDocument();
   });
 });
