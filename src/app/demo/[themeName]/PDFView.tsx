@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Box, Button } from "@mui/material";
-import { Html2PdfFn, loadHtml2Pdf } from "@/lib/loadHtml2Pdf";
+import { PdfDocumentFrame } from "@/app/components/PdfDocumentFrame";
+import { getPdfThemeDefinition, resolvePdfThemeName } from "@/theme";
 import { ThemeDefaultPDF } from "@/theme/default/ThemeDefaultPDF";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { ThemeName } from "@/types";
@@ -12,75 +11,25 @@ interface PDFViewProps {
 }
 
 export const PDFView = ({ themeName }: PDFViewProps) => {
-  const pdfRef = useRef<HTMLDivElement>(null);
-  const [html2pdf, setHtml2pdf] = useState<Html2PdfFn | null>(null);
-
-  useEffect(() => {
-    // Wrap the function so React stores it instead of treating it as a setState updater.
-    loadHtml2Pdf().then((html2pdfFn) => setHtml2pdf(() => html2pdfFn));
-  }, []);
-
-  const handleGeneratePdf = () => {
-    if (!pdfRef.current || !html2pdf) return;
-
-    const options = {
-      margin: [0.75, 0.75, 0.75, 0.75] as [number, number, number, number], // top, right, bottom, left
-      filename: "resume.pdf",
-      image: { type: "jpeg" as const, quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter" as const, orientation: "portrait" as const },
-      pagebreak: { mode: ["avoid-all"] as const },
-    };
-
-    html2pdf()
-      .from(pdfRef.current)
-      .set(options)
-      .outputPdf("bloburl")
-      .then((pdfUrl: string) => {
-        window.open(pdfUrl, "_blank");
-      });
-  };
-
-  const PDFViewThemeTemplate = () => {
-    switch (themeName) {
-      case "davids":
-      case "default":
-      default:
-        return (
-          <ThemeDefaultPDF
-            user={{ ...themeDefaultSampleData.data.resume.user, displayEmail: null }}
-            skillsForUser={themeDefaultSampleData.data.resume.skillsForUser}
-            companies={themeDefaultSampleData.data.resume.companies}
-            education={themeDefaultSampleData.data.resume.education}
-            certifications={themeDefaultSampleData.data.resume.certifications || []}
-            featuredProjects={themeDefaultSampleData.data.resume.featuredProjects || []}
-            themeOptions={{ showSkillsInWorkExperience: false }}
-          />
-        );
-    }
+  const pdfThemeName = resolvePdfThemeName(themeName);
+  const PdfComponent = getPdfThemeDefinition(pdfThemeName).component;
+  const resume = themeDefaultSampleData.data.resume;
+  const pdfProps = {
+    user: { ...resume.user, displayEmail: null },
+    skillsForUser: resume.skillsForUser,
+    companies: resume.companies,
+    education: resume.education,
+    certifications: resume.certifications || [],
+    featuredProjects: resume.featuredProjects || [],
   };
 
   return (
-    <Box sx={{ color: "#000", pb: 12 }}>
-      <Box sx={{ display: "flex", justifyContent: "center", mb: 2, mt: 2 }}>
-        <Button onClick={handleGeneratePdf} variant="contained" disabled={!html2pdf}>
-          Generate PDF
-        </Button>
-      </Box>
-      <Box
-        sx={{
-          padding: "0.75in",
-          width: "8.5in",
-          minHeight: "11in",
-          margin: "auto",
-          backgroundColor: "white",
-          boxShadow: 3,
-        }}
-      >
-        <Box ref={pdfRef}>
-          <PDFViewThemeTemplate />
-        </Box>
-      </Box>
-    </Box>
+    <PdfDocumentFrame>
+      {pdfThemeName === "default" ? (
+        <ThemeDefaultPDF {...pdfProps} themeOptions={{ showSkillsInWorkExperience: false }} />
+      ) : (
+        <PdfComponent {...pdfProps} />
+      )}
+    </PdfDocumentFrame>
   );
 };

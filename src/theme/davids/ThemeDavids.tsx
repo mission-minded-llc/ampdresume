@@ -139,6 +139,10 @@ export const ThemeDavids = ({
   ].filter((section) => section.render !== null);
 
   const cycle = (delta: number) => {
+    if (sections.length === 0) {
+      return;
+    }
+
     setActive((prev) => (prev + delta + sections.length) % sections.length);
   };
 
@@ -362,86 +366,98 @@ export const ThemeDavids = ({
 
         <Summary user={user} />
 
-        {/* Tabs & Nav buttons */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            mt: 4,
-          }}
-        >
-          <IconButton
-            onClick={() => cycle(-1)}
-            aria-label="Previous section"
-            sx={{
-              color: themeColors.text,
-              backgroundColor:
-                themeAppearance === "dark" ? "rgba(96, 165, 250, 0.1)" : "rgba(13, 71, 161, 0.06)",
-              "& .MuiSvgIcon-root": {
-                color: themeColors.text,
-              },
-            }}
-          >
-            <NavigateBeforeIcon />
-          </IconButton>
-          <Tabs
-            value={active}
-            onChange={(_, v) => setActive(v)}
-            variant="scrollable"
-            scrollButtons="auto"
-            sx={{ mx: 1 }}
-          >
-            {sections.map((s, idx) => (
-              <Tab
-                key={s.label}
-                label={s.label}
-                value={idx}
+        {sections.length > 0 ? (
+          <>
+            {/* Tabs & Nav buttons */}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mt: 4,
+              }}
+            >
+              <IconButton
+                onClick={() => cycle(-1)}
+                aria-label="Previous section"
                 sx={{
                   color: themeColors.text,
-                  "&.Mui-selected": {
-                    color: themeColors.text,
-                  },
-                  "&:hover": {
+                  backgroundColor:
+                    themeAppearance === "dark"
+                      ? "rgba(96, 165, 250, 0.1)"
+                      : "rgba(13, 71, 161, 0.06)",
+                  "& .MuiSvgIcon-root": {
                     color: themeColors.text,
                   },
                 }}
-              />
-            ))}
-          </Tabs>
-          <IconButton
-            onClick={() => cycle(1)}
-            aria-label="Next section"
-            sx={{
-              color: themeColors.text,
-              backgroundColor:
-                themeAppearance === "dark" ? "rgba(96, 165, 250, 0.1)" : "rgba(13, 71, 161, 0.06)",
-              "& .MuiSvgIcon-root": {
-                color: themeColors.text,
-              },
-            }}
-          >
-            <NavigateNextIcon />
-          </IconButton>
-        </Box>
+              >
+                <NavigateBeforeIcon />
+              </IconButton>
+              <Tabs
+                value={active}
+                onChange={(_, v) => setActive(v)}
+                variant="scrollable"
+                scrollButtons="auto"
+                sx={{ mx: 1 }}
+              >
+                {sections.map((s, idx) => (
+                  <Tab
+                    key={s.label}
+                    label={s.label}
+                    value={idx}
+                    sx={{
+                      color: themeColors.text,
+                      "&.Mui-selected": {
+                        color: themeColors.text,
+                      },
+                      "&:hover": {
+                        color: themeColors.text,
+                      },
+                    }}
+                  />
+                ))}
+              </Tabs>
+              <IconButton
+                onClick={() => cycle(1)}
+                aria-label="Next section"
+                sx={{
+                  color: themeColors.text,
+                  backgroundColor:
+                    themeAppearance === "dark"
+                      ? "rgba(96, 165, 250, 0.1)"
+                      : "rgba(13, 71, 161, 0.06)",
+                  "& .MuiSvgIcon-root": {
+                    color: themeColors.text,
+                  },
+                }}
+              >
+                <NavigateNextIcon />
+              </IconButton>
+            </Box>
 
-        <Fade in key={active} timeout={500} unmountOnExit mountOnEnter>
-          <Box
-            sx={{
-              mt: 3,
-              px: { xs: 2, sm: 3 },
-              py: { xs: 2, sm: 3 },
-              borderRadius: 3,
-              backgroundColor:
-                themeAppearance === "dark" ? "rgba(30, 41, 59, 0.55)" : "rgba(227, 242, 253, 0.55)",
-              border: `1px solid ${
-                themeAppearance === "dark" ? "rgba(96, 165, 250, 0.18)" : "rgba(13, 71, 161, 0.1)"
-              }`,
-            }}
-          >
-            {sections[active]?.render}
-          </Box>
-        </Fade>
+            <Fade in key={active} timeout={500} unmountOnExit mountOnEnter>
+              <Box
+                sx={{
+                  mt: 3,
+                  px: { xs: 2, sm: 3 },
+                  py: { xs: 2, sm: 3 },
+                  borderRadius: 3,
+                  backgroundColor:
+                    themeAppearance === "dark"
+                      ? "rgba(30, 41, 59, 0.55)"
+                      : "rgba(227, 242, 253, 0.55)",
+                  border: `1px solid ${
+                    themeAppearance === "dark"
+                      ? "rgba(96, 165, 250, 0.18)"
+                      : "rgba(13, 71, 161, 0.1)"
+                  }`,
+                }}
+              >
+                {sections[active]?.render}
+              </Box>
+            </Fade>
+          </>
+        ) : null}
 
         <QRGenerator url={currentUrl} user={user} />
       </Box>

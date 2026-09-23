@@ -565,11 +565,7 @@ describe("ThemeDavids Component", () => {
       expect(nameHeading).toHaveTextContent("Jane Doe");
     });
 
-    // Note: Testing with all empty arrays would reveal a bug in the component
-    // where it tries to access sections[active] when sections is empty.
-    // This test is skipped to avoid the crash. The component should be fixed
-    // to handle empty sections gracefully.
-    it.skip("should handle all empty arrays", () => {
+    it("should handle all empty arrays", () => {
       render(
         <ThemeDavids
           themeAppearance="light"
@@ -587,8 +583,10 @@ describe("ThemeDavids Component", () => {
       const nameHeading = screen.getByRole("heading", { level: 1 });
       expect(nameHeading).toHaveTextContent("John Doe");
       expect(screen.getByRole("link", { name: "View PDF" })).toBeInTheDocument();
-      // No tabs should be rendered since all sections are empty
+      // No tabs or section nav should be rendered since all sections are empty
       expect(screen.queryByText("Skills")).not.toBeInTheDocument();
+      expect(screen.queryByLabelText("Previous section")).not.toBeInTheDocument();
+      expect(screen.queryByLabelText("Next section")).not.toBeInTheDocument();
     });
 
     it("should handle null user fields gracefully", () => {

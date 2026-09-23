@@ -23,6 +23,7 @@ const mockUser = {
   summary: "<p>Public summary</p>",
   summaryTitle: "About Me",
   webThemeName: "default",
+  pdfThemeName: "default",
 } as User;
 
 const unauthenticatedContext: GraphQLContext = {
@@ -54,6 +55,7 @@ describe("filterUserData", () => {
       name: "Jane Doe",
       summary: "<p>Public summary</p>",
       summaryTitle: "About Me",
+      pdfThemeName: "default",
       displayEmail: null,
       email: null,
     });
@@ -65,6 +67,7 @@ describe("filterUserData", () => {
     expect(result).toMatchObject({
       displayEmail: null,
       email: null,
+      pdfThemeName: "default",
     });
   });
 

@@ -1,10 +1,32 @@
 "use client";
 
-import { Certification, Company, Education, FeaturedProject, SkillForUser, User } from "@/types";
-import { Html2PdfFn, loadHtml2Pdf } from "@/lib/loadHtml2Pdf";
-import { themeDefinitions } from "@/theme";
-import { useEffect, useRef, useState } from "react";
-import { Box, Button } from "@mui/material";
+import { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { Icon } from "@iconify/react";
+import * as Sentry from "@sentry/react";
+import { Session } from "next-auth";
+import { FloatingThemePicker } from "@/app/components/FloatingThemePicker";
+import { PdfDocumentFrame } from "@/app/components/PdfDocumentFrame";
+import { updateUser } from "@/graphql/updateUser";
+import { getPdfThemeDefinition, pdfThemeDefinitions, resolvePdfThemeName } from "@/theme";
+import {
+  Certification,
+  Company,
+  Education,
+  FeaturedProject,
+  PdfThemeName,
+  SkillForUser,
+  User,
+} from "@/types";
+import { getEnvironmentName } from "@/util/url";
 
 interface PDFViewProps {
   user: User;
@@ -13,6 +35,9 @@ interface PDFViewProps {
   education: Education[];
   certifications: Certification[];
   featuredProjects: FeaturedProject[];
+  pdfThemeName?: string | null;
+  session?: Session | null;
+  slug?: string;
 }
 
 export const PDFView = ({
@@ -22,70 +47,98 @@ export const PDFView = ({
   education,
   certifications,
   featuredProjects,
+  pdfThemeName,
+  session = null,
+  slug,
 }: PDFViewProps) => {
-  const pdfRef = useRef<HTMLDivElement>(null);
-  const [html2pdf, setHtml2pdf] = useState<Html2PdfFn | null>(null);
+  const [selectedPdfTheme, setSelectedPdfTheme] = useState<PdfThemeName>(
+    resolvePdfThemeName(pdfThemeName),
+  );
+  const [isSaving, setIsSaving] = useState(false);
+  const [themePreview, setThemePreview] = useState(false);
+
+  const isProduction = getEnvironmentName() === "production";
+  const isOwner = Boolean(session?.user?.slug && slug && session.user.slug === slug);
+  const showPdfThemePicker = isOwner || themePreview;
 
   useEffect(() => {
-    // Wrap the function so React stores it instead of treating it as a setState updater.
-    loadHtml2Pdf().then((html2pdfFn) => setHtml2pdf(() => html2pdfFn));
+    const themePreviewCookie = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("theme-preview="));
+    setThemePreview(themePreviewCookie ? true : false);
   }, []);
 
-  const handleGeneratePdf = () => {
-    if (!pdfRef.current || !html2pdf) return;
-
-    const options = {
-      margin: [0.75, 0.75, 0.75, 0.75] as [number, number, number, number], // top, right, bottom, left
-      filename: "resume.pdf",
-      image: { type: "jpeg" as const, quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter" as const, orientation: "portrait" as const },
-      pagebreak: { mode: ["avoid-all"] as const },
-    };
-
-    html2pdf()
-      .from(pdfRef.current)
-      .set(options)
-      .outputPdf("bloburl")
-      .then((pdfUrl: string) => {
-        window.open(pdfUrl, "_blank");
-      });
+  const handlePdfThemeChange = (event: SelectChangeEvent<PdfThemeName>) => {
+    setSelectedPdfTheme(event.target.value as PdfThemeName);
   };
 
-  const ThemeDefaultPDF = themeDefinitions.default.pdfComponent;
+  const handleSavePdfTheme = async () => {
+    if (!session?.user?.id) return;
+
+    setIsSaving(true);
+    try {
+      await updateUser({
+        userId: session.user.id,
+        pdfThemeName: selectedPdfTheme,
+      });
+    } catch (error) {
+      Sentry.captureException(error);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const PdfComponent = getPdfThemeDefinition(selectedPdfTheme).component;
 
   return (
-    <Box sx={{ color: "#000", pb: 12 }}>
-      <Box sx={{ display: "flex", justifyContent: "center", mb: 2, mt: 2 }}>
-        <Button onClick={handleGeneratePdf} variant="contained" disabled={!html2pdf}>
-          Generate PDF
-        </Button>
-      </Box>
-      <Box
-        sx={{
-          padding: "0.75in",
-          width: "8.5in",
-          minHeight: "11in",
-          margin: "auto",
-          backgroundColor: "white",
-          boxShadow: 3,
-        }}
-      >
-        <Box ref={pdfRef}>
-          {ThemeDefaultPDF && (
-            <ThemeDefaultPDF
-              themeAppearance="light"
-              user={user}
-              socials={[]}
-              skillsForUser={skillsForUser}
-              companies={companies}
-              education={education}
-              certifications={certifications}
-              featuredProjects={featuredProjects}
-            />
-          )}
-        </Box>
-      </Box>
-    </Box>
+    <>
+      {showPdfThemePicker ? (
+        <FloatingThemePicker>
+          <FormControl fullWidth size="small">
+            <InputLabel id="pdf-theme-select-label">PDF Theme</InputLabel>
+            <Select
+              labelId="pdf-theme-select-label"
+              value={selectedPdfTheme}
+              label="PDF Theme"
+              onChange={handlePdfThemeChange}
+            >
+              {Object.entries(pdfThemeDefinitions).map(([key, value]) => {
+                if (isProduction && !value.published && !themePreview) return null;
+
+                return (
+                  <MenuItem key={key} value={key}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                      <Icon icon={value.iconifyIcon} width={16} height={16} />
+                      {value.name}
+                    </Box>
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={handleSavePdfTheme}
+            disabled={isSaving || !session?.user?.id}
+            sx={{ mt: 0.75 }}
+            fullWidth
+          >
+            {isSaving ? "Saving..." : "Save"}
+          </Button>
+        </FloatingThemePicker>
+      ) : null}
+      <PdfDocumentFrame>
+        <PdfComponent
+          user={user}
+          skillsForUser={skillsForUser}
+          companies={companies}
+          education={education}
+          certifications={certifications}
+          featuredProjects={featuredProjects}
+        />
+      </PdfDocumentFrame>
+    </>
   );
 };

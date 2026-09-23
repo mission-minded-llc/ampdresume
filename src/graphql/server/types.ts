@@ -13,6 +13,7 @@ export const types = gql`
     summary: String
     summaryTitle: String
     webThemeName: String
+    pdfThemeName: String
   }
 
   type Social {

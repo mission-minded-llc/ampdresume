@@ -6,13 +6,19 @@ import { ThemeRetro80s } from "./retro-80s/ThemeRetro80s";
 
 // Using named exports here, because we want to be able to import the themes directly.
 export { ThemeDavids, ThemeDefault, ThemeDefaultPDF, ThemeRetro80s };
+export {
+  DEFAULT_PDF_THEME_NAME,
+  getPdfThemeDefinition,
+  isPdfThemeName,
+  pdfThemeDefinitions,
+  resolvePdfThemeName,
+} from "./pdfThemes";
 
 export const themeDefinitions: Record<ThemeName, ThemeDefinition> = {
   default: {
     name: "Classic",
     published: true,
     webComponent: ThemeDefault,
-    pdfComponent: ThemeDefaultPDF,
     description: "The default theme for Amp'd Resume. Single-page resume with expanding sections.",
     iconifyIcon: "fluent-emoji-flat:high-voltage",
     authors: [
@@ -27,7 +33,6 @@ export const themeDefinitions: Record<ThemeName, ThemeDefinition> = {
     name: "David's Theme",
     published: true,
     webComponent: ThemeDavids,
-    pdfComponent: null,
     description: "The theme by David Schurer. Multi-page resume with a QR code to share.",
     iconifyIcon: "fluent-emoji-flat:memo",
     authors: [
@@ -42,7 +47,6 @@ export const themeDefinitions: Record<ThemeName, ThemeDefinition> = {
     name: "Retro 80s",
     published: true,
     webComponent: ThemeRetro80s,
-    pdfComponent: null,
     description:
       "An 8-bit arcade take on the Classic layout: pixel type, neon synthwave palette, and CRT scanlines.",
     iconifyIcon: "fluent-emoji-flat:joystick",

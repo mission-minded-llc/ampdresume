@@ -41,7 +41,6 @@ jest.mock("@/theme", () => {
         name: "Classic",
         published: true,
         webComponent: MockTheme,
-        pdfComponent: null,
         iconifyIcon: "fluent-emoji-flat:high-voltage",
         authors: [],
       },
@@ -49,7 +48,6 @@ jest.mock("@/theme", () => {
         name: "David's Theme",
         published: true,
         webComponent: MockTheme,
-        pdfComponent: null,
         iconifyIcon: "fluent-emoji-flat:memo",
         authors: [],
       },
@@ -57,7 +55,6 @@ jest.mock("@/theme", () => {
         name: "Retro 80s",
         published: false,
         webComponent: undefined,
-        pdfComponent: null,
         iconifyIcon: "fluent-emoji-flat:joystick",
         authors: [],
       },
@@ -66,7 +63,7 @@ jest.mock("@/theme", () => {
 });
 
 const resume = themeDefaultSampleData.data.resume;
-const user = { ...resume.user, webThemeName: "default" as const };
+const user = { ...resume.user, webThemeName: "default" as const, pdfThemeName: "default" };
 
 const ownerSession = {
   user: { id: user.id, slug: "taylor" },
@@ -108,17 +105,20 @@ describe("public ResumeView", () => {
   it("renders the selected theme without a preview control for visitors", () => {
     renderView();
 
+    expect(screen.getByTestId("resume-theme-default")).toBeInTheDocument();
     expect(screen.getByTestId("rendered-theme")).toBeInTheDocument();
     expect(screen.getByTestId("user-name")).toHaveTextContent(user.name || "");
-    expect(screen.queryByLabelText("Preview Theme")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Theme")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("PDF Theme")).not.toBeInTheDocument();
   });
 
   it("shows the theme picker for the resume owner and saves a theme", async () => {
     renderView({ session: ownerSession });
 
-    fireEvent.mouseDown(screen.getByLabelText("Preview Theme"));
+    fireEvent.mouseDown(screen.getByLabelText("Theme"));
     fireEvent.click(screen.getByRole("option", { name: /David's Theme/ }));
-    fireEvent.click(screen.getByRole("button", { name: "Save Theme" }));
+    expect(screen.getByTestId("resume-theme-davids")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Save" }));
 
     await waitFor(() => {
       expect(updateUser).toHaveBeenCalledWith({
@@ -128,16 +128,23 @@ describe("public ResumeView", () => {
     });
   });
 
+  it("does not show a PDF theme picker on the web resume", () => {
+    renderView({ session: ownerSession });
+
+    expect(screen.getByLabelText("Theme")).toBeInTheDocument();
+    expect(screen.queryByLabelText("PDF Theme")).not.toBeInTheDocument();
+  });
+
   it("captures save errors with Sentry", async () => {
     (updateUser as jest.Mock).mockRejectedValueOnce(new Error("save failed"));
     renderView({ session: ownerSession });
 
-    fireEvent.click(screen.getByRole("button", { name: "Save Theme" }));
+    fireEvent.click(screen.getByRole("button", { name: "Save" }));
 
     await waitFor(() => {
       expect(Sentry.captureException).toHaveBeenCalled();
     });
-    expect(screen.getByRole("button", { name: "Save Theme" })).not.toBeDisabled();
+    expect(screen.getByRole("button", { name: "Save" })).not.toBeDisabled();
   });
 
   it("disables save when the session has no user id", () => {
@@ -145,8 +152,8 @@ describe("public ResumeView", () => {
       session: { user: { slug: "taylor" }, expires: "2099-01-01" } as Session,
     });
 
-    expect(screen.getByRole("button", { name: "Save Theme" })).toBeDisabled();
-    fireEvent.click(screen.getByRole("button", { name: "Save Theme" }));
+    expect(screen.getByRole("button", { name: "Save" })).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "Save" }));
     expect(updateUser).not.toHaveBeenCalled();
   });
 
@@ -154,7 +161,7 @@ describe("public ResumeView", () => {
     (getEnvironmentName as jest.Mock).mockReturnValue("production");
     renderView({ session: ownerSession });
 
-    fireEvent.mouseDown(screen.getByLabelText("Preview Theme"));
+    fireEvent.mouseDown(screen.getByLabelText("Theme"));
     expect(screen.getByRole("option", { name: /Classic/ })).toBeInTheDocument();
     expect(screen.queryByRole("option", { name: /Retro 80s/ })).not.toBeInTheDocument();
   });
@@ -164,15 +171,16 @@ describe("public ResumeView", () => {
 
     renderView();
 
-    expect(await screen.findByLabelText("Preview Theme")).toBeInTheDocument();
+    expect(await screen.findByLabelText("Theme")).toBeInTheDocument();
   });
 
   it("falls back to the default theme when the selected theme has no web component", () => {
     renderView({ session: ownerSession });
 
-    fireEvent.mouseDown(screen.getByLabelText("Preview Theme"));
+    fireEvent.mouseDown(screen.getByLabelText("Theme"));
     fireEvent.click(screen.getByRole("option", { name: /Retro 80s/ }));
 
+    expect(screen.getByTestId("resume-theme-retro-80s")).toBeInTheDocument();
     expect(screen.getByTestId("rendered-theme")).toBeInTheDocument();
   });
 });

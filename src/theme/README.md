@@ -11,7 +11,8 @@ Use the existing `default` and `davids` themes as references.
 
 ```
 src/theme/
-├── index.ts                 # Register the theme in themeDefinitions
+├── index.ts                 # Register web themes in themeDefinitions
+├── pdfThemes.ts             # Register PDF views independently of web themes
 ├── components/              # Shared sections any theme can reuse
 ├── sampleData.ts            # Default theme demo data
 ├── <theme-slug>/
@@ -41,8 +42,10 @@ Required props (see `ThemeDefinition` in `src/types/index.ts`):
 - `certifications`
 - `featuredProjects`
 
-A PDF theme is optional. Set `pdfComponent` to `null` if you are not shipping one yet (David's Theme
-does this). Users then fall back to the Classic PDF.
+PDF views are independent from web themes. Do not attach a PDF component to a `themeDefinitions`
+entry. Register print layouts in `src/theme/pdfThemes.ts` and add the slug to `PdfThemeName`. Resume
+owners pick a PDF view separately from the interactive web theme; visitors see that stored
+selection. Unknown or missing PDF names fall back to Classic.
 
 Reuse shared sections from [`components/`](./components/) when they fit. Put unique layout or
 styling in your theme folder.
@@ -60,7 +63,6 @@ Wire the slug in every place the app looks up themes:
      name: "My Theme",
      published: false,
      webComponent: ThemeMyTheme,
-     pdfComponent: null,
      description: "A short description shown in the UI and SEO tags.",
      iconifyIcon: "fluent-emoji-flat:artist-palette",
      authors: [{ name: "Your Name", gitHubUrl: "https://github.com/you" }],
@@ -75,10 +77,11 @@ Wire the slug in every place the app looks up themes:
    with sample data. Live resumes at `/r/[slug]` read `webComponent` from `themeDefinitions`; the
    demo page does not, so this case is required.
 
-4. **`src/app/demo/[themeName]/PDFView.tsx`** — only if you ship a PDF component.
-
 Demo pages pick up the new slug automatically in the nav under **Demo Themes**. Preview at
 `http://localhost:3000/demo/<theme-slug>` after `npm run dev`.
+
+To add a PDF view, register it in `pdfThemeDefinitions` instead of nesting it under a web theme.
+Owners can then select it from **PDF Theme** on `/r/<slug>/pdf`.
 
 ## Sample data
 

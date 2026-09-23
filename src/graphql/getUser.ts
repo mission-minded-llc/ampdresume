@@ -25,6 +25,7 @@ export const getUser = async (slug: string): Promise<User> => {
           summary
           summaryTitle
           webThemeName
+          pdfThemeName
         }
       }
     `,
