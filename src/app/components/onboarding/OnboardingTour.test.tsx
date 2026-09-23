@@ -20,6 +20,10 @@ jest.mock("./demos/ExperienceDemo", () => ({
   ExperienceDemo: () => <div>Experience demo</div>,
 }));
 
+jest.mock("./demos/ThemesDemo", () => ({
+  ThemesDemo: () => <div>Themes demo</div>,
+}));
+
 const mountTourTarget = (id: string) => {
   const target = document.createElement("div");
   target.setAttribute("data-tour-id", id);
@@ -125,6 +129,25 @@ describe("OnboardingTour", () => {
     expect(screen.getByTestId("OnboardingDemoFooter")).toContainElement(
       screen.getByTestId("OnboardingBack"),
     );
+  });
+
+  it("shows theme and PDF theme instructions after the experience demo", async () => {
+    renderTour();
+
+    fireEvent.click(screen.getByTestId("OnboardingNext"));
+    await waitFor(() => expect(screen.getByText("Your main menu")).toBeInTheDocument());
+    fireEvent.click(screen.getByTestId("OnboardingNext"));
+    await waitFor(() =>
+      expect(screen.getByRole("heading", { name: "Edit Resume" })).toBeInTheDocument(),
+    );
+    fireEvent.click(screen.getByTestId("OnboardingNext"));
+    await waitFor(() => expect(screen.getByText("Skills demo")).toBeInTheDocument());
+    fireEvent.click(screen.getByTestId("OnboardingNext"));
+    await waitFor(() => expect(screen.getByText("Experience demo")).toBeInTheDocument());
+    fireEvent.click(screen.getByTestId("OnboardingNext"));
+
+    expect(screen.getByText("Themes demo")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Theme and PDF theme" })).toBeInTheDocument();
   });
 
   it("places the coach card next to the spotlighted element", async () => {
