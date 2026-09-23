@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Link } from "@mui/material";
+import { Box, Typography, Link } from "@mui/material";
 import { formatLongDate } from "@/lib/format";
 import { Certification } from "@/types";
 import { usePdfLayout } from "./pdfLayout";
@@ -13,7 +13,7 @@ export const Certifications = ({ certifications }: { certifications: Certificati
     <Section>
       <SectionTitle>Certifications</SectionTitle>
       {certifications.map((cert) => (
-        <React.Fragment key={cert.id}>
+        <Box key={cert.id} data-pdf-unit="">
           <Typography sx={{ fontSize: fontSize.subtitle, fontWeight: "bold", mt: 1 }}>
             {cert.name}
           </Typography>
@@ -46,7 +46,7 @@ export const Certifications = ({ certifications }: { certifications: Certificati
               Credential ID: {cert.credentialId}
             </Typography>
           )}
-        </React.Fragment>
+        </Box>
       ))}
     </Section>
   );

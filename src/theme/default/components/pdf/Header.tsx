@@ -1,9 +1,9 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { User } from "@/types";
 import { fontSize } from "./styled";
 
 export const Header = ({ user }: { user: User }) => (
-  <>
+  <Box data-pdf-unit="">
     <Typography sx={{ mt: 0, fontSize: fontSize.title, fontWeight: "bold" }}>
       {user.name}
     </Typography>
@@ -23,5 +23,5 @@ export const Header = ({ user }: { user: User }) => (
     >
       {user.title}
     </Typography>
-  </>
+  </Box>
 );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { formatLongDate } from "@/lib/format";
 import { Education as EducationType } from "@/types";
 import { usePdfLayout } from "./pdfLayout";
@@ -22,7 +22,7 @@ export const Education = ({ education }: { education: EducationType[] }) => {
     <Section>
       <SectionTitle>Education</SectionTitle>
       {Object.keys(educationGroupedBySchool).map((school) => (
-        <React.Fragment key={`education-${school}`}>
+        <Box key={`education-${school}`} data-pdf-unit="">
           <SectionSubtitle>{school}</SectionSubtitle>
           {educationGroupedBySchool[school].map((edu) => (
             <Typography
@@ -39,7 +39,7 @@ export const Education = ({ education }: { education: EducationType[] }) => {
               </Typography>
             </Typography>
           ))}
-        </React.Fragment>
+        </Box>
       ))}
     </Section>
   );

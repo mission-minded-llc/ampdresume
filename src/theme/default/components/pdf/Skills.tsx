@@ -14,22 +14,22 @@ export const Skills = ({ skillsForUser }: { skillsForUser: SkillForUser[] }) => 
   return (
     <Section>
       <SectionTitle>Skills</SectionTitle>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "auto 1fr",
-          gridTemplateRows: "auto",
-          width: "100%",
-          gap: "1px",
-          mb: 3,
-        }}
-      >
+      <Box sx={{ width: "100%", mb: 3 }}>
         {skillsForUserBySkill.map((skillsExperience) => {
           const totalYears = skillsExperience[0];
           const skillsList = skillsExperience[1];
 
           return (
-            <React.Fragment key={`skill-group-${skillsExperience[0]}`}>
+            <Box
+              key={`skill-group-${skillsExperience[0]}`}
+              data-pdf-unit=""
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "auto 1fr",
+                width: "100%",
+                gap: "1px",
+              }}
+            >
               <Box
                 sx={{
                   fontWeight: "bold",
@@ -62,7 +62,7 @@ export const Skills = ({ skillsForUser }: { skillsForUser: SkillForUser[] }) => 
                   </Typography>
                 ))}
               </Box>
-            </React.Fragment>
+            </Box>
           );
         })}
       </Box>

@@ -26,7 +26,7 @@ export const Header = ({ user }: { user: User }) => {
   const { fontSize, ink } = timesPdfLayout;
 
   return (
-    <Box sx={{ mb: 2.5 }}>
+    <Box sx={{ mb: 2.5 }} data-pdf-unit="">
       <Typography
         sx={{
           mt: 0,

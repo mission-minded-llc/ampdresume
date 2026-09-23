@@ -15,7 +15,7 @@ export const ProfessionalSummary = ({ user }: { user: User }) => {
   return (
     <Section>
       <SectionTitle>{getProfessionalSummaryTitle(user.summaryTitle)}</SectionTitle>
-      <Typography component="div" sx={{ fontSize: fontSize.body }}>
+      <Typography component="div" sx={{ fontSize: fontSize.body }} data-pdf-unit="">
         <RichTextBlock content={user.summary ?? null} />
       </Typography>
     </Section>

@@ -1,5 +1,4 @@
-import React from "react";
-import { Typography, Link } from "@mui/material";
+import { Box, Typography, Link } from "@mui/material";
 import { FeaturedProject } from "@/types";
 import { RichTextBlock } from "@/theme/components/RichTextBlock";
 import { usePdfLayout } from "./pdfLayout";
@@ -19,7 +18,7 @@ export const FeaturedProjects = ({ featuredProjects }: { featuredProjects: Featu
         const safeProject = { ...project, skillsForFeaturedProject };
 
         return (
-          <React.Fragment key={safeProject.id}>
+          <Box key={safeProject.id} data-pdf-unit="">
             <Typography sx={{ fontSize: fontSize.subtitle, fontWeight: "bold", mt: 1 }}>
               {safeProject.name}
               {safeProject.skillsForFeaturedProject.length > 0 && (
@@ -61,7 +60,7 @@ export const FeaturedProjects = ({ featuredProjects }: { featuredProjects: Featu
                 ))}
               </Typography>
             )}
-          </React.Fragment>
+          </Box>
         );
       })}
     </Section>

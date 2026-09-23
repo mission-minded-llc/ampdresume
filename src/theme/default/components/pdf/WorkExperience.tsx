@@ -17,13 +17,18 @@ export const WorkExperience = ({ companies, showSkills }: SectionWorkExperienceP
       <SectionTitle>Work Experience</SectionTitle>
       {companies.map((company, companyIndex) => (
         <Box key={company.id} sx={{ mb: 2 }} data-testid={`company-${companyIndex}`}>
-          <SectionSubtitle>
-            {company.name}
-            <span style={{ fontWeight: "normal" }}>
-              {company?.location ? ` - ${company.location}` : ""}
-            </span>
-          </SectionSubtitle>
-          <Divider />
+          <Box
+            data-pdf-unit=""
+            data-pdf-keep-with-next={company.positions?.length ? "true" : undefined}
+          >
+            <SectionSubtitle>
+              {company.name}
+              <span style={{ fontWeight: "normal" }}>
+                {company?.location ? ` - ${company.location}` : ""}
+              </span>
+            </SectionSubtitle>
+            <Divider sx={{ my: 0.75 }} />
+          </Box>
           {company?.positions?.map((position, positionIndex) => {
             return (
               <Box
@@ -31,51 +36,62 @@ export const WorkExperience = ({ companies, showSkills }: SectionWorkExperienceP
                 sx={{ mb: 2 }}
                 data-testid={`company-${companyIndex}-position-${positionIndex}`}
               >
-                <SectionSubtitle>
-                  {position.title}
-                  <Typography component="span" variant="body2" sx={{ fontSize: fontSize.subtitle }}>
-                    {" "}
-                    &mdash; {formatLongDate(position.startDate)} to{" "}
-                    {position?.endDate ? formatLongDate(position.endDate) : "present"}
-                  </Typography>
-                </SectionSubtitle>
+                <Box
+                  data-pdf-unit=""
+                  data-pdf-keep-with-next={position.projects?.length ? "true" : undefined}
+                >
+                  <SectionSubtitle>
+                    {position.title}
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      sx={{ fontSize: fontSize.subtitle }}
+                    >
+                      {" "}
+                      &mdash; {formatLongDate(position.startDate)} to{" "}
+                      {position?.endDate ? formatLongDate(position.endDate) : "present"}
+                    </Typography>
+                  </SectionSubtitle>
+                </Box>
                 {position?.projects?.map((project, projectIndex) => {
                   return (
-                    <Typography
+                    <Box
                       key={project.id}
+                      data-pdf-unit=""
                       data-testid={`company-${companyIndex}-position-${positionIndex}-project-${projectIndex}`}
                       sx={{
-                        pl: 2,
+                        display: "flex",
+                        alignItems: "flex-start",
+                        columnGap: "0.45em",
+                        pl: 1,
                         fontSize: fontSize.body,
                         mt: projectIndex === 0 ? 0.5 : 0.1,
-                        "&:before": {
-                          content: '"\\2022"',
-                          paddingRight: "0.5em",
-                          position: "absolute",
-                          marginTop: "-0.1em",
-                          marginLeft: "-0.5em",
-                        },
                       }}
                     >
-                      {project.name}{" "}
-                      {showSkills && project.skillsForProject.length > 0 ? (
-                        <>
-                          {project.skillsForProject.map((skill, skillIndex) => (
-                            <Typography
-                              key={skill.skillForUser.skill.name}
-                              component="span"
-                              sx={{
-                                fontSize: fontSize.body,
-                                color: skillColor,
-                              }}
-                            >
-                              {skill.skillForUser.skill.name}
-                              {skillIndex < project.skillsForProject.length - 1 ? ", " : ""}
-                            </Typography>
-                          ))}
-                        </>
-                      ) : null}
-                    </Typography>
+                      <Box component="span" aria-hidden sx={{ flexShrink: 0, lineHeight: 1.5 }}>
+                        {"\u2022"}
+                      </Box>
+                      <Typography component="span" sx={{ fontSize: fontSize.body, lineHeight: 1.5 }}>
+                        {project.name}{" "}
+                        {showSkills && project.skillsForProject.length > 0 ? (
+                          <>
+                            {project.skillsForProject.map((skill, skillIndex) => (
+                              <Typography
+                                key={skill.skillForUser.skill.name}
+                                component="span"
+                                sx={{
+                                  fontSize: fontSize.body,
+                                  color: skillColor,
+                                }}
+                              >
+                                {skill.skillForUser.skill.name}
+                                {skillIndex < project.skillsForProject.length - 1 ? ", " : ""}
+                              </Typography>
+                            ))}
+                          </>
+                        ) : null}
+                      </Typography>
+                    </Box>
                   );
                 })}
               </Box>
