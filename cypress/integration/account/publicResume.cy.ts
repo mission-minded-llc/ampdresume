@@ -35,8 +35,14 @@ describe("Public resume", () => {
     cy.skipOnboardingIfPresent();
     cy.closeMessageDialog();
 
+    // View Resume only renders once the session includes the claimed slug.
+    cy.request("/api/auth/session").its("body.user.slug").should("eq", testSlug);
+
     cy.get("[data-testid=NavPrimaryMenuIcon]").click();
-    cy.get("[data-testid=NavPrimaryMenuViewResume]").should("be.visible").click();
+    cy.get("[data-testid=NavPrimaryMenuViewResume]").should("be.visible");
+    // Session/nav re-renders remount this ListItem, so force the click
+    // instead of waiting for the original node to stay attached.
+    cy.get("[data-testid=NavPrimaryMenuViewResume]").click({ force: true });
     cy.url().should("include", `/r/${testSlug}`);
     cy.contains(displayName).should("be.visible");
     cy.contains("E2E Resume Tester").should("be.visible");

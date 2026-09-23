@@ -71,7 +71,10 @@ export const WorkExperience = ({ companies, showSkills }: SectionWorkExperienceP
                       <Box component="span" aria-hidden sx={{ flexShrink: 0, lineHeight: 1.5 }}>
                         {"\u2022"}
                       </Box>
-                      <Typography component="span" sx={{ fontSize: fontSize.body, lineHeight: 1.5 }}>
+                      <Typography
+                        component="span"
+                        sx={{ fontSize: fontSize.body, lineHeight: 1.5 }}
+                      >
                         {project.name}{" "}
                         {showSkills && project.skillsForProject.length > 0 ? (
                           <>
