@@ -1,6 +1,5 @@
 import { render } from "@testing-library/react";
 import { titleSuffix } from "@/constants";
-import { themeDefinitions } from "@/theme";
 import { ThemeName } from "@/types";
 import Page, { generateMetadata } from "./page";
 import { expect } from "@jest/globals";
@@ -24,45 +23,29 @@ describe("PDF Theme Page", () => {
   });
 
   describe("generateMetadata", () => {
-    it("generates correct metadata for default theme", async () => {
+    it("generates metadata from the independent PDF catalog", async () => {
       const metadata = await generateMetadata({ params: mockParams });
 
-      expect(metadata).toEqual({
-        title: `PDF Theme: Classic ${titleSuffix}`,
-        description: themeDefinitions.default.description,
-        authors: themeDefinitions.default.authors.map((author) => ({
-          name: author.name,
-          url: author.gitHubUrl || author.linkedInUrl || "",
-        })),
-        openGraph: {
-          title: `PDF Theme: Classic ${titleSuffix}`,
-          description: themeDefinitions.default.description,
-          images: [],
-        },
-      });
+      expect(metadata.title).toBe(`PDF Theme: Classic ${titleSuffix}`);
+      expect(metadata.description).toContain("print-optimized");
     });
 
-    it("generates correct metadata for custom theme with author", async () => {
+    it("uses Classic PDF metadata even when nested under a web theme without its own PDF view", async () => {
       const customThemeParams = Promise.resolve({
         themeName: "davids" as ThemeName,
       });
       const metadata = await generateMetadata({ params: customThemeParams });
 
-      expect(metadata).toEqual({
-        title: `PDF Theme: David's Theme ${titleSuffix}`,
-        description: themeDefinitions.davids.description,
-        authors: [
-          {
-            name: themeDefinitions.davids.authors[0].name,
-            url: themeDefinitions.davids.authors[0].gitHubUrl,
-          },
-        ],
-        openGraph: {
-          title: `PDF Theme: David's Theme ${titleSuffix}`,
-          description: themeDefinitions.davids.description,
-          images: [],
-        },
+      expect(metadata.title).toBe(`PDF Theme: Classic ${titleSuffix}`);
+    });
+
+    it("generates metadata for the Times PDF theme", async () => {
+      const metadata = await generateMetadata({
+        params: Promise.resolve({ themeName: "times" }),
       });
+
+      expect(metadata.title).toBe(`PDF Theme: Times ${titleSuffix}`);
+      expect(metadata.description).toContain("Times serif");
     });
   });
 });

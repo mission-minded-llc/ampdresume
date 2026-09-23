@@ -7,9 +7,11 @@ export const updateUser = async (
   {
     userId,
     webThemeName,
+    pdfThemeName,
   }: {
     userId: string;
     webThemeName?: string;
+    pdfThemeName?: string;
   },
 ) => {
   await verifySessionOwnership(userId);
@@ -17,7 +19,8 @@ export const updateUser = async (
   const user = await prisma.user.update({
     where: { id: userId },
     data: {
-      webThemeName,
+      ...(webThemeName !== undefined ? { webThemeName } : {}),
+      ...(pdfThemeName !== undefined ? { pdfThemeName } : {}),
     },
   });
 

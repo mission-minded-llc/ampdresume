@@ -50,6 +50,14 @@ describe("Onboarding", () => {
       .should("have.value", "Northwind Labs");
     nextStep();
 
+    cy.get("[data-testid=OnboardingThemesDemo]").should("be.visible");
+    cy.contains("h2", "Theme and PDF theme").should("be.visible");
+    cy.get("[data-testid=OnboardingThemesDemo]").contains("Live theme").should("be.visible");
+    cy.get("[data-testid=OnboardingThemesDemo]").contains("PDF theme").should("be.visible");
+    cy.get("[data-testid=OnboardingThemesDemo]").contains("View Resume").should("be.visible");
+    cy.get("[data-testid=OnboardingThemesDemo]").contains("PDF Theme picker").should("be.visible");
+    nextStep();
+
     cy.contains("h2", "Tools").should("be.visible");
     cy.get("[data-testid=NavPrimaryMenuEditImport]").should("be.visible");
     nextStep();
@@ -66,6 +74,8 @@ describe("Onboarding", () => {
 
     cy.get("[data-testid=OnboardingTips]").should("be.visible");
     cy.contains("Claim a clean URL").should("be.visible");
+    cy.contains("Pick a live theme").should("be.visible");
+    cy.contains("Pick a PDF theme separately").should("be.visible");
     cy.contains("Replay this tour anytime").should("be.visible");
     nextStep();
 

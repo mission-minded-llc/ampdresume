@@ -25,6 +25,7 @@ describe("WorkExperience", () => {
     expect(
       screen.getByText(/Transformed monolithic architecture into scalable microservices/),
     ).toBeInTheDocument();
+    expect(screen.getByTestId("company-0-position-0-project-0")).toHaveTextContent("\u2022");
   });
 
   it("shows skills when showSkills is true", () => {

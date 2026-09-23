@@ -12,7 +12,7 @@ jest.mock("html2pdf.js", () => ({
   })),
 }));
 
-const renderPDFView = async (themeName: "default" = "default") => {
+const renderPDFView = async (themeName: "default" | "davids" | "times" = "default") => {
   render(<PDFView themeName={themeName} />);
   await waitFor(() => expect(screen.getByRole("button", { name: "Generate PDF" })).toBeEnabled());
 };
@@ -36,8 +36,14 @@ describe("PDFView", () => {
     expect(screen.getByRole("button", { name: "Generate PDF" })).toBeEnabled();
   });
 
-  it("handles different theme names correctly", async () => {
-    await renderPDFView();
+  it("falls back to the Classic PDF view for web themes without a matching PDF", async () => {
+    await renderPDFView("davids");
+    expect(screen.getByText(themeDefaultSampleData.data.resume.user.name!)).toBeInTheDocument();
+  });
+
+  it("renders the Times PDF view when requested", async () => {
+    await renderPDFView("times");
+    expect(screen.getByTestId("pdf-theme-times")).toBeInTheDocument();
     expect(screen.getByText(themeDefaultSampleData.data.resume.user.name!)).toBeInTheDocument();
   });
 });

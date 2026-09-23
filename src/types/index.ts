@@ -21,6 +21,13 @@ export type ThemeAppearance = "dark" | "light";
 export type ThemeName = "default" | "davids" | "retro-80s"; // Add more themes here, e.g. "default" | "my-theme" | "another-theme"
 
 /**
+ * The name of a PDF view, which is independent from the interactive web theme.
+ * Resume owners pick a PDF view for job-application exports; visitors see that
+ * same selection. Add more PDF views here as they are published.
+ */
+export type PdfThemeName = "default" | "times";
+
+/**
  * The ThemeAuthor interface is used to define the author of a theme
  * and their social media links. These values are used to display the author's
  * name and links to their GitHub and LinkedIn profiles, and may appear in the footer
@@ -33,8 +40,9 @@ export type ThemeAuthor = {
 };
 
 /**
- * The ThemeDefinition interface is used to define the definition of a theme.
- * This interface is used to define the theme's name, description, and authors.
+ * The ThemeDefinition interface is used to define an interactive web theme.
+ * PDF views are registered separately in pdfThemeDefinitions and are chosen
+ * independently from the web theme.
  */
 export type ThemeDefinition = {
   // The name of the theme, which is used to display the theme in the UI.
@@ -66,16 +74,6 @@ export type ThemeDefinition = {
     certifications: Certification[];
     featuredProjects: FeaturedProject[];
   }>;
-  pdfComponent: React.ComponentType<{
-    themeAppearance: ThemeAppearance;
-    user: User;
-    socials: Social[];
-    skillsForUser: SkillForUser[];
-    companies: Company[];
-    education: Education[];
-    certifications: Certification[];
-    featuredProjects: FeaturedProject[];
-  }> | null;
 };
 
 /**
@@ -370,3 +368,29 @@ export interface Certification {
   // Credential ID
   credentialId?: string | null;
 }
+
+/**
+ * Shared resume data passed into a PDF view. PDF views are print layouts and
+ * do not receive the site appearance toggle or social icon row.
+ */
+export type PdfThemeProps = {
+  user: User;
+  skillsForUser: SkillForUser[];
+  companies: Company[];
+  education: Education[];
+  certifications: Certification[];
+  featuredProjects: FeaturedProject[];
+};
+
+/**
+ * The PdfThemeDefinition interface describes a print-oriented PDF view.
+ * Owners select a PDF view independently from their interactive web theme.
+ */
+export type PdfThemeDefinition = {
+  name: string;
+  published: boolean;
+  description: string;
+  iconifyIcon: string;
+  authors: ThemeAuthor[];
+  component: React.ComponentType<PdfThemeProps>;
+};

@@ -30,9 +30,14 @@ const TIPS = [
     body: "Use Featured Projects for work with links — GitHub, demos, or write-ups.",
   },
   {
-    icon: "fluent-color:person-16",
-    title: "Preview before you share",
-    body: "Open View Resume to check the live page, switch themes, and download a PDF.",
+    icon: "fluent-color:paint-brush-16",
+    title: "Pick a live theme",
+    body: "After you claim a URL, open View Resume. The Theme picker in the corner previews looks; Save keeps it for visitors.",
+  },
+  {
+    icon: "fluent-color:document-16",
+    title: "Pick a PDF theme separately",
+    body: "Open View PDF from your live resume. The PDF Theme picker is independent — choose a print layout without changing the public page.",
   },
   {
     icon: "fluent-color:book-open-lightbulb-20",

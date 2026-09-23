@@ -35,8 +35,14 @@ describe("Public resume", () => {
     cy.skipOnboardingIfPresent();
     cy.closeMessageDialog();
 
+    // View Resume only renders once the session includes the claimed slug.
+    cy.request("/api/auth/session").its("body.user.slug").should("eq", testSlug);
+
     cy.get("[data-testid=NavPrimaryMenuIcon]").click();
-    cy.get("[data-testid=NavPrimaryMenuViewResume]").should("be.visible").click();
+    cy.get("[data-testid=NavPrimaryMenuViewResume]").should("be.visible");
+    // Session/nav re-renders remount this ListItem, so force the click
+    // instead of waiting for the original node to stay attached.
+    cy.get("[data-testid=NavPrimaryMenuViewResume]").click({ force: true });
     cy.url().should("include", `/r/${testSlug}`);
     cy.contains(displayName).should("be.visible");
     cy.contains("E2E Resume Tester").should("be.visible");
@@ -45,9 +51,58 @@ describe("Public resume", () => {
   it("should render the public resume and PDF pages", () => {
     cy.visit(`/r/${testSlug}`);
     cy.contains(displayName).should("be.visible");
+    cy.contains("PDF Theme").should("not.exist");
 
     cy.visit(`/r/${testSlug}/pdf`);
     cy.contains("Generate PDF").should("be.visible");
     cy.contains(displayName).should("be.visible");
+    cy.get("[data-testid=owner-theme-picker]").should("be.visible");
+    cy.contains("PDF Theme").should("be.visible");
+  });
+
+  it("should save a web theme change and persist it after reload", () => {
+    const selectTheme = (label: string) => {
+      cy.get("[data-testid=owner-theme-picker] [role=combobox]").click();
+      cy.get('[role="listbox"]').should("be.visible").contains(label).click();
+    };
+
+    const saveTheme = (webThemeName: string) => {
+      cy.aliasGraphql("updateUser");
+      cy.get("[data-testid=owner-theme-picker]").contains("button", "Save").click();
+      cy.wait("@updateUser").then((interception) => {
+        expect(interception.request.body.variables.webThemeName).to.eq(webThemeName);
+        expect(interception.response?.statusCode).to.eq(200);
+        expect(interception.response?.body.data.updateUser.webThemeName).to.eq(webThemeName);
+      });
+    };
+
+    cy.visit(`/r/${testSlug}`);
+    cy.get("[data-testid=owner-theme-picker]").should("be.visible");
+
+    selectTheme("Classic");
+    cy.get("[data-testid=resume-theme-default]").should("exist");
+    cy.contains("Insert Coin").should("not.exist");
+    cy.contains("Share Your Resume").should("not.exist");
+
+    selectTheme("Retro 80s");
+    cy.get("[data-testid=resume-theme-retro-80s]").should("exist");
+    cy.contains("Insert Coin").should("be.visible");
+
+    saveTheme("retro-80s");
+    cy.reload();
+    cy.get("[data-testid=owner-theme-picker] [role=combobox]").should("contain", "Retro 80s");
+    cy.get("[data-testid=resume-theme-retro-80s]").should("exist");
+    cy.contains("Insert Coin").should("be.visible");
+
+    selectTheme("David's Theme");
+    cy.get("[data-testid=resume-theme-davids]").should("exist");
+    cy.contains("Share Your Resume").should("be.visible");
+    cy.contains("Insert Coin").should("not.exist");
+
+    saveTheme("davids");
+    cy.reload();
+    cy.get("[data-testid=owner-theme-picker] [role=combobox]").should("contain", "David's Theme");
+    cy.get("[data-testid=resume-theme-davids]").should("exist");
+    cy.contains("Share Your Resume").should("be.visible");
   });
 });

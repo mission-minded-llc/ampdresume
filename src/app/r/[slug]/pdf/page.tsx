@@ -55,6 +55,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       education={education}
       certifications={certifications}
       featuredProjects={featuredProjects}
+      pdfThemeName={resume.user.pdfThemeName}
+      session={session}
+      slug={slug}
     />
   );
 }

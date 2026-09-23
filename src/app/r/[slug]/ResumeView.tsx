@@ -23,6 +23,7 @@ import {
 } from "@mui/material";
 import { Icon } from "@iconify/react";
 import * as Sentry from "@sentry/react";
+import { FloatingThemePicker } from "@/app/components/FloatingThemePicker";
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
 import { UserWithTheme } from "@/graphql/getResume";
 import { updateUser } from "@/graphql/updateUser";
@@ -99,38 +100,26 @@ export const ResumeView = ({
     };
 
     const themeDefinition = themeDefinitions[selectedTheme];
+    const ThemeComponent =
+      themeDefinition?.webComponent ?? themeDefinitions["default"].webComponent;
 
-    if (!themeDefinition?.webComponent) {
-      const ThemeDefault = themeDefinitions["default"].webComponent;
-      return <ThemeDefault {...themeProps} />;
-    }
-
-    const ThemeComponent = themeDefinition.webComponent;
-    return <ThemeComponent {...themeProps} />;
+    return (
+      <Box data-testid={`resume-theme-${selectedTheme}`} sx={{ display: "contents" }}>
+        <ThemeComponent {...themeProps} />
+      </Box>
+    );
   };
 
   return (
     <>
       {(session?.user && session.user.slug === slug) || themePreview ? (
-        <Box
-          sx={{
-            position: "fixed",
-            bottom: 30,
-            right: 0,
-            minWidth: 250,
-            maxWidth: "100%",
-            zIndex: 1000,
-            padding: 2,
-            borderRadius: 3,
-            boxShadow: 2,
-          }}
-        >
-          <FormControl fullWidth>
-            <InputLabel id="theme-select-label">Preview Theme</InputLabel>
+        <FloatingThemePicker>
+          <FormControl fullWidth size="small">
+            <InputLabel id="theme-select-label">Theme</InputLabel>
             <Select
               labelId="theme-select-label"
               value={selectedTheme}
-              label="Preview Theme"
+              label="Theme"
               onChange={handleThemeChange}
             >
               {Object.entries(themeDefinitions).map(([key, value]) => {
@@ -139,7 +128,7 @@ export const ResumeView = ({
                 return (
                   <MenuItem key={key} value={key} selected={key === session?.user?.webThemeName}>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <Icon icon={value.iconifyIcon} />
+                      <Icon icon={value.iconifyIcon} width={16} height={16} />
                       {value.name}
                     </Box>
                   </MenuItem>
@@ -150,13 +139,15 @@ export const ResumeView = ({
           <Button
             variant="contained"
             color="primary"
+            size="small"
             onClick={handleSaveTheme}
             disabled={isSaving || !session?.user?.id}
-            sx={{ mt: 1 }}
+            sx={{ mt: 0.75 }}
+            fullWidth
           >
-            {isSaving ? "Saving..." : "Save Theme"}
+            {isSaving ? "Saving..." : "Save"}
           </Button>
-        </Box>
+        </FloatingThemePicker>
       ) : null}
       {renderTheme()}
     </>

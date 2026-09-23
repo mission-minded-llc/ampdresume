@@ -8,6 +8,7 @@ import { OnboardingCoachActions, OnboardingCoachCard } from "./OnboardingCoachCa
 import { OnboardingSpotlight } from "./OnboardingSpotlight";
 import { ExperienceDemo } from "./demos/ExperienceDemo";
 import { SkillsDemo } from "./demos/SkillsDemo";
+import { ThemesDemo } from "./demos/ThemesDemo";
 import { TipsSlide } from "./demos/TipsSlide";
 import { NavTourId, useNavPrimary } from "./NavPrimaryContext";
 import { ONBOARDING_STEPS } from "./steps";
@@ -132,7 +133,7 @@ export const OnboardingTour = ({
         <Dialog
           open
           fullWidth
-          maxWidth={step.kind === "demo" ? "md" : "sm"}
+          maxWidth={step.kind === "demo" && step.id !== "themes" ? "md" : "sm"}
           onClose={() => {}}
           aria-labelledby="onboarding-dialog-title"
           slotProps={{
@@ -161,6 +162,7 @@ export const OnboardingTour = ({
             <Box sx={{ px: 3, py: 2 }}>
               {step.id === "skills-demo" ? <SkillsDemo /> : null}
               {step.id === "experience-demo" ? <ExperienceDemo /> : null}
+              {step.id === "themes" ? <ThemesDemo /> : null}
               {step.id === "tips" ? <TipsSlide /> : null}
             </Box>
           </DialogContent>

@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { titleSuffix } from "@/constants";
-import { themeDefinitions } from "@/theme";
-import { ThemeName } from "@/types";
+import { getPdfThemeDefinition, isPdfThemeName, themeDefinitions } from "@/theme";
 import { PDFView } from "../PDFView";
 
 export async function generateMetadata({
@@ -11,15 +10,11 @@ export async function generateMetadata({
   params: Promise<{ themeName: string }>;
 }): Promise<Metadata> {
   const { themeName } = await params;
+  const pdfTheme = getPdfThemeDefinition(themeName);
 
-  const title = `PDF Theme: ${themeDefinitions[themeName as ThemeName]?.name} ${titleSuffix}`;
-
-  const description =
-    themeDefinitions[themeName as ThemeName]?.description ||
-    `This is the ${themeName} theme for Amp'd Resume.`;
-
-  const authors =
-    themeDefinitions[themeName as ThemeName]?.authors || themeDefinitions.default.authors;
+  const title = `PDF Theme: ${pdfTheme.name} ${titleSuffix}`;
+  const description = pdfTheme.description;
+  const authors = pdfTheme.authors;
 
   return {
     title,
@@ -36,10 +31,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: Promise<{ themeName: ThemeName }> }) {
+export default async function Page({ params }: { params: Promise<{ themeName: string }> }) {
   const { themeName } = await params;
 
-  if (!themeDefinitions[themeName]) {
+  // Nested demo PDF URLs stay under the web theme path so "View PDF" links keep working.
+  // Unknown web themes 404; known web themes without a matching PDF view fall back in PDFView.
+  if (!(themeName in themeDefinitions) && !isPdfThemeName(themeName)) {
     return notFound();
   }
 

@@ -12,7 +12,7 @@ import { gql } from "@apollo/client";
 import * as Sentry from "@sentry/react";
 import { getApolloClient } from "@/lib/apolloClient";
 
-export type UserWithTheme = User & { webThemeName: ThemeName };
+export type UserWithTheme = User & { webThemeName: ThemeName; pdfThemeName: string | null };
 
 export const getResume = async (slug: string) => {
   const client = getApolloClient();
@@ -42,6 +42,7 @@ export const getResume = async (slug: string) => {
               summary
               summaryTitle
               webThemeName
+              pdfThemeName
             }
             socials {
               id

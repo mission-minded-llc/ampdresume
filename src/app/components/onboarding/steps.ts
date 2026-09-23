@@ -9,6 +9,7 @@ export type OnboardingStepId =
   | "edit-resume"
   | "skills-demo"
   | "experience-demo"
+  | "themes"
   | "tools"
   | "import"
   | "import-location"
@@ -67,6 +68,13 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     kind: "demo",
     title: "Work experience",
     body: "History is nested: company → role → projects. Projects are the bullet points. Use the editor for a short write-up so curious readers can expand them.",
+    primaryLabel: "Next",
+  },
+  {
+    id: "themes",
+    kind: "demo",
+    title: "Theme and PDF theme",
+    body: "Your live resume and downloadable PDF have separate looks. Preview a theme, then Save.",
     primaryLabel: "Next",
   },
   {

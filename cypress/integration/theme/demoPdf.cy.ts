@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe("Demo PDF views", () => {
-  const themes = ["default", "davids", "retro-80s"] as const;
+  const themes = ["default", "davids", "retro-80s", "times"] as const;
 
   themes.forEach((theme) => {
     it(`should load the '${theme}' demo PDF page`, () => {
