@@ -25,7 +25,7 @@ export type ThemeName = "default" | "davids" | "retro-80s"; // Add more themes h
  * Resume owners pick a PDF view for job-application exports; visitors see that
  * same selection. Add more PDF views here as they are published.
  */
-export type PdfThemeName = "default";
+export type PdfThemeName = "default" | "times";
 
 /**
  * The ThemeAuthor interface is used to define the author of a theme

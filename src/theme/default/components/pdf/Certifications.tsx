@@ -2,9 +2,11 @@ import React from "react";
 import { Typography, Link } from "@mui/material";
 import { formatLongDate } from "@/lib/format";
 import { Certification } from "@/types";
+import { usePdfLayout } from "./pdfLayout";
 import { Section, SectionTitle } from "./styled";
 
 export const Certifications = ({ certifications }: { certifications: Certification[] }) => {
+  const { fontSize, ink } = usePdfLayout();
   if (!certifications || certifications.length === 0) return null;
 
   return (
@@ -12,30 +14,35 @@ export const Certifications = ({ certifications }: { certifications: Certificati
       <SectionTitle>Certifications</SectionTitle>
       {certifications.map((cert) => (
         <React.Fragment key={cert.id}>
-          <Typography sx={{ fontSize: 14, fontWeight: "bold", mt: 1 }}>{cert.name}</Typography>
-          <Typography sx={{ fontSize: 14, fontWeight: "bold", mt: 0.5 }}>
+          <Typography sx={{ fontSize: fontSize.subtitle, fontWeight: "bold", mt: 1 }}>
+            {cert.name}
+          </Typography>
+          <Typography sx={{ fontSize: fontSize.subtitle, fontWeight: "bold", mt: 0.5 }}>
             {cert.issuer}
             {cert.dateAwarded && (
-              <Typography component="span" sx={{ fontSize: 14, fontWeight: "normal" }}>
+              <Typography
+                component="span"
+                sx={{ fontSize: fontSize.subtitle, fontWeight: "normal" }}
+              >
                 {" "}
                 &mdash; {formatLongDate(cert.dateAwarded)}
               </Typography>
             )}
           </Typography>
           {cert.credentialUrl && (
-            <Typography sx={{ fontSize: 12, mt: 0.5 }}>
+            <Typography sx={{ fontSize: fontSize.body, mt: 0.5 }}>
               <Link
                 href={cert.credentialUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{ color: "#000" }}
+                sx={{ color: ink }}
               >
                 View Credential{cert.credentialId ? ` (${cert.credentialId})` : ""}
               </Link>
             </Typography>
           )}
           {cert.credentialId && !cert.credentialUrl && (
-            <Typography sx={{ fontSize: 12, mt: 0.5 }}>
+            <Typography sx={{ fontSize: fontSize.body, mt: 0.5 }}>
               Credential ID: {cert.credentialId}
             </Typography>
           )}

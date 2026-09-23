@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { titleSuffix } from "@/constants";
 import { getPdfThemeDefinition, isPdfThemeName, themeDefinitions } from "@/theme";
-import { ThemeName } from "@/types";
 import { PDFView } from "../PDFView";
 
 export async function generateMetadata({
@@ -32,12 +31,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: Promise<{ themeName: ThemeName }> }) {
+export default async function Page({ params }: { params: Promise<{ themeName: string }> }) {
   const { themeName } = await params;
 
   // Nested demo PDF URLs stay under the web theme path so "View PDF" links keep working.
   // Unknown web themes 404; known web themes without a matching PDF view fall back in PDFView.
-  if (!themeDefinitions[themeName] && !isPdfThemeName(themeName)) {
+  if (!(themeName in themeDefinitions) && !isPdfThemeName(themeName)) {
     return notFound();
   }
 

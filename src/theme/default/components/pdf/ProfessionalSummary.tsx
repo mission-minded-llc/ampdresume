@@ -3,9 +3,11 @@ import { RichTextBlock } from "@/theme/components/RichTextBlock";
 import { User } from "@/types";
 import { getProfessionalSummaryTitle } from "@/lib/professionalSummary";
 import { hasRichTextContent } from "@/lib/richText";
-import { Section, SectionTitle, fontSize } from "./styled";
+import { usePdfLayout } from "./pdfLayout";
+import { Section, SectionTitle } from "./styled";
 
 export const ProfessionalSummary = ({ user }: { user: User }) => {
+  const { fontSize } = usePdfLayout();
   if (!hasRichTextContent(user.summary)) {
     return null;
   }

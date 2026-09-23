@@ -2,9 +2,11 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { SkillForUser } from "@/types";
 import { groupSkillsForUserByYearExperience } from "@/util/structure";
-import { fontSize, Section, SectionTitle } from "./styled";
+import { usePdfLayout } from "./pdfLayout";
+import { Section, SectionTitle } from "./styled";
 
 export const Skills = ({ skillsForUser }: { skillsForUser: SkillForUser[] }) => {
+  const { fontSize, skillColor } = usePdfLayout();
   const skillsForUserBySkill = groupSkillsForUserByYearExperience(skillsForUser);
 
   if (skillsForUserBySkill.length === 0) return null;
@@ -52,7 +54,7 @@ export const Skills = ({ skillsForUser }: { skillsForUser: SkillForUser[] }) => 
                     sx={{
                       fontSize: fontSize.body,
                       lineHeight: 1,
-                      color: "maroon",
+                      color: skillColor,
                     }}
                   >
                     {skill.skill.name}

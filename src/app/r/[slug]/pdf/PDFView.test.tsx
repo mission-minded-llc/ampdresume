@@ -79,6 +79,15 @@ describe("public PDFView", () => {
     expect(screen.getByText(resume.user.name!)).toBeInTheDocument();
   });
 
+  it("can preview the Times PDF theme from the owner picker", async () => {
+    renderPDFView({ session: ownerSession });
+
+    fireEvent.mouseDown(screen.getByLabelText("PDF Theme"));
+    fireEvent.click(screen.getByRole("option", { name: /Times/ }));
+
+    expect(screen.getByTestId("pdf-theme-times")).toBeInTheDocument();
+  });
+
   it("shows the PDF theme picker for the resume owner and saves independently of the web theme", async () => {
     renderPDFView({ session: ownerSession });
 

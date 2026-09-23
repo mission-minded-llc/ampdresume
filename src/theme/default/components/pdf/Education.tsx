@@ -2,9 +2,11 @@ import React from "react";
 import { Typography } from "@mui/material";
 import { formatLongDate } from "@/lib/format";
 import { Education as EducationType } from "@/types";
+import { usePdfLayout } from "./pdfLayout";
 import { Section, SectionSubtitle, SectionTitle } from "./styled";
 
 export const Education = ({ education }: { education: EducationType[] }) => {
+  const { fontSize } = usePdfLayout();
   const educationGroupedBySchool: { [key: string]: EducationType[] } = {};
   education.map((edu) => {
     if (!edu?.school) return;
@@ -25,10 +27,13 @@ export const Education = ({ education }: { education: EducationType[] }) => {
           {educationGroupedBySchool[school].map((edu) => (
             <Typography
               key={`education-${edu.id}`}
-              sx={{ fontSize: 14, fontWeight: "bold", mt: 1 }}
+              sx={{ fontSize: fontSize.subtitle, fontWeight: "bold", mt: 1 }}
             >
               {edu.degree}
-              <Typography component="span" sx={{ fontSize: 14, fontWeight: "normal" }}>
+              <Typography
+                component="span"
+                sx={{ fontSize: fontSize.subtitle, fontWeight: "normal" }}
+              >
                 {" "}
                 &mdash; {formatLongDate(edu?.dateAwarded)}
               </Typography>

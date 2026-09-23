@@ -1,7 +1,8 @@
 import { Box, Divider, Typography } from "@mui/material";
 import { formatLongDate } from "@/lib/format";
 import { Company } from "@/types";
-import { fontSize, Section, SectionSubtitle, SectionTitle } from "./styled";
+import { usePdfLayout } from "./pdfLayout";
+import { Section, SectionSubtitle, SectionTitle } from "./styled";
 
 interface SectionWorkExperienceProps {
   companies: Company[];
@@ -9,6 +10,8 @@ interface SectionWorkExperienceProps {
 }
 
 export const WorkExperience = ({ companies, showSkills }: SectionWorkExperienceProps) => {
+  const { fontSize, skillColor } = usePdfLayout();
+
   return (
     <Section>
       <SectionTitle>Work Experience</SectionTitle>
@@ -63,7 +66,7 @@ export const WorkExperience = ({ companies, showSkills }: SectionWorkExperienceP
                               component="span"
                               sx={{
                                 fontSize: fontSize.body,
-                                color: "maroon",
+                                color: skillColor,
                               }}
                             >
                               {skill.skillForUser.skill.name}

@@ -3,9 +3,10 @@ import { ThemeDavids } from "./davids/ThemeDavids";
 import { ThemeDefault } from "./default/ThemeDefault";
 import { ThemeDefaultPDF } from "./default/ThemeDefaultPDF";
 import { ThemeRetro80s } from "./retro-80s/ThemeRetro80s";
+import { ThemeTimesPDF } from "./times/ThemeTimesPDF";
 
 // Using named exports here, because we want to be able to import the themes directly.
-export { ThemeDavids, ThemeDefault, ThemeDefaultPDF, ThemeRetro80s };
+export { ThemeDavids, ThemeDefault, ThemeDefaultPDF, ThemeRetro80s, ThemeTimesPDF };
 export {
   DEFAULT_PDF_THEME_NAME,
   getPdfThemeDefinition,

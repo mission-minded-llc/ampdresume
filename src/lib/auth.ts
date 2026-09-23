@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { ThemeName } from "@/types";
+import { PdfThemeName, ThemeName } from "@/types";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { getServerSession, NextAuthOptions, Session as NextAuthSession } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
@@ -188,7 +188,7 @@ export const authOptions: NextAuthOptions = {
       user: AdapterUser & {
         slug?: string;
         webThemeName?: ThemeName;
-        pdfThemeName?: ThemeName;
+        pdfThemeName?: PdfThemeName;
       };
     }) {
       // Add the user ID to the session for easier database operations.

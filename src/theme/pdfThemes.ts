@@ -1,5 +1,6 @@
 import { PdfThemeDefinition, PdfThemeName } from "@/types";
 import { ThemeDefaultPDF } from "./default/ThemeDefaultPDF";
+import { ThemeTimesPDF } from "./times/ThemeTimesPDF";
 
 export const DEFAULT_PDF_THEME_NAME: PdfThemeName = "default";
 
@@ -16,6 +17,21 @@ export const pdfThemeDefinitions: Record<PdfThemeName, PdfThemeDefinition> = {
     description:
       "A print-optimized single-column resume for job applications. Independent from the interactive web theme.",
     iconifyIcon: "fluent-emoji-flat:high-voltage",
+    authors: [
+      {
+        name: "Michael R. Dinerstein",
+        gitHubUrl: "https://github.com/missionmike",
+        linkedInUrl: "https://www.linkedin.com/in/michaeldinerstein/",
+      },
+    ],
+  },
+  times: {
+    name: "Times",
+    published: true,
+    component: ThemeTimesPDF,
+    description:
+      "The Classic single-column layout with a more formal Times serif treatment for print.",
+    iconifyIcon: "fluent-emoji-flat:newspaper",
     authors: [
       {
         name: "Michael R. Dinerstein",

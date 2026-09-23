@@ -4,10 +4,9 @@ import { PdfDocumentFrame } from "@/app/components/PdfDocumentFrame";
 import { getPdfThemeDefinition, resolvePdfThemeName } from "@/theme";
 import { ThemeDefaultPDF } from "@/theme/default/ThemeDefaultPDF";
 import { themeDefaultSampleData } from "@/theme/sampleData";
-import { ThemeName } from "@/types";
 
 interface PDFViewProps {
-  themeName: ThemeName;
+  themeName: string;
 }
 
 export const PDFView = ({ themeName }: PDFViewProps) => {

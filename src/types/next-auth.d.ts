@@ -1,4 +1,5 @@
 import { DefaultSession } from "next-auth";
+import type { PdfThemeName, ThemeName } from "@/types";
 
 declare module "next-auth" {
   interface Session {
@@ -9,7 +10,7 @@ declare module "next-auth" {
       slug?: string | null;
       image?: string | null;
       webThemeName?: ThemeName;
-      pdfThemeName?: ThemeName;
+      pdfThemeName?: PdfThemeName;
     } & DefaultSession["user"];
   }
 }

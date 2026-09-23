@@ -2,9 +2,11 @@ import React from "react";
 import { Typography, Link } from "@mui/material";
 import { FeaturedProject } from "@/types";
 import { RichTextBlock } from "@/theme/components/RichTextBlock";
-import { Section, SectionTitle, fontSize } from "./styled";
+import { usePdfLayout } from "./pdfLayout";
+import { Section, SectionTitle } from "./styled";
 
 export const FeaturedProjects = ({ featuredProjects }: { featuredProjects: FeaturedProject[] }) => {
+  const { fontSize, skillColor, ink } = usePdfLayout();
   if (!featuredProjects || featuredProjects.length === 0) return null;
 
   return (
@@ -18,7 +20,7 @@ export const FeaturedProjects = ({ featuredProjects }: { featuredProjects: Featu
 
         return (
           <React.Fragment key={safeProject.id}>
-            <Typography sx={{ fontSize: 14, fontWeight: "bold", mt: 1 }}>
+            <Typography sx={{ fontSize: fontSize.subtitle, fontWeight: "bold", mt: 1 }}>
               {safeProject.name}
               {safeProject.skillsForFeaturedProject.length > 0 && (
                 <>
@@ -30,7 +32,7 @@ export const FeaturedProjects = ({ featuredProjects }: { featuredProjects: Featu
                         component="span"
                         sx={{
                           fontSize: fontSize.body,
-                          color: "maroon",
+                          color: skillColor,
                         }}
                       >
                         {skillForFeaturedProject.skillForUser?.skill?.name}
@@ -45,14 +47,14 @@ export const FeaturedProjects = ({ featuredProjects }: { featuredProjects: Featu
               <RichTextBlock content={safeProject?.description} />
             </Typography>
             {safeProject.links && safeProject.links.length > 0 && (
-              <Typography sx={{ fontSize: 12, mt: 0.5 }}>
+              <Typography sx={{ fontSize: fontSize.body, mt: 0.5 }}>
                 {safeProject.links.map((link, idx) => (
                   <Link
                     key={idx}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    sx={{ color: "#000", mr: 1 }}
+                    sx={{ color: ink, mr: 1 }}
                   >
                     {link.label}
                   </Link>
