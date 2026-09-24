@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #
-# Seeds the public-domain literary resumes into production Neon.
+# Seeds literary and industry-vertical demo resumes into production Neon.
 # Fetches the connection string from Secret Manager for this process only:
 # it does not write .env and does not export DATABASE_URL into your shell.
 #
 # Usage:
-#   ./scripts/seed-literary-production.sh [--yes] [--project PROJECT_ID]
+#   ./scripts/seed-production.sh [--yes] [--project PROJECT_ID]
 #
 # Requires gcloud auth with access to Secret Manager. Uses the direct Neon
 # URL (same as CI migrations) so Prisma is not talking through the pooler.
@@ -115,7 +115,7 @@ if [ -f .env ]; then
 fi
 
 echo "Target: $(redact_database_url "$PROD_DATABASE_URL")" >&2
-echo "This writes literary demo users to production. Your .env and shell DATABASE_URL are not changed." >&2
+echo "This writes literary and industry-vertical demo users to production. Your .env and shell DATABASE_URL are not changed." >&2
 
 if [ "$YES" -ne 1 ]; then
   if [ ! -t 0 ] && [ ! -r /dev/tty ]; then
@@ -134,8 +134,9 @@ if [ "$YES" -ne 1 ]; then
   fi
 fi
 
-# Prefix only this child process. dotenv/config will not overwrite it.
+# Prefix only each child process. dotenv/config will not overwrite it.
 # Do not `export` here: this script is meant to be executed, not sourced.
 env DATABASE_URL="$PROD_DATABASE_URL" npm run prisma:seed:literary
+env DATABASE_URL="$PROD_DATABASE_URL" npm run prisma:seed:verticals
 
-echo "Literary production seed finished. Local DATABASE_URL is unchanged." >&2
+echo "Production demo seed finished. Local DATABASE_URL is unchanged." >&2

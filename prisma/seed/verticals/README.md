@@ -8,6 +8,16 @@ John/Jane demo data). Run it separately:
 npm run prisma:seed:verticals
 ```
 
+Production uses the same Neon wrapper as the literary seed so the URL never lands in `.env` or your
+shell. It reads `ampdresume-database-url-direct` from Secret Manager and runs both demo seeds:
+
+```bash
+./scripts/seed-production.sh
+```
+
+Pass `--project` if your gcloud default is not the production project, and `--yes` only when you
+cannot type the confirmation prompt.
+
 Re-running the script leaves records untouched when the seed data matches the database. Changed
 fields are updated; records removed from the seed are deleted for those vertical users only.
 
