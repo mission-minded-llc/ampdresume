@@ -16,6 +16,7 @@ import { Session } from "next-auth";
 import { FloatingThemePicker } from "@/app/components/FloatingThemePicker";
 import { PdfDocumentFrame } from "@/app/components/PdfDocumentFrame";
 import { updateUser } from "@/graphql/updateUser";
+import { isDemoResume } from "@/lib/demoResume";
 import { getPdfThemeDefinition, pdfThemeDefinitions, resolvePdfThemeName } from "@/theme";
 import {
   Certification,
@@ -129,7 +130,7 @@ export const PDFView = ({
           </Button>
         </FloatingThemePicker>
       ) : null}
-      <PdfDocumentFrame>
+      <PdfDocumentFrame showDemoTag={isDemoResume(user)}>
         <PdfComponent
           user={user}
           skillsForUser={skillsForUser}

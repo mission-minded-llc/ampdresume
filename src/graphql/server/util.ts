@@ -44,6 +44,7 @@ type FilteredUserData = {
   summaryTitle: string | null;
   webThemeName: string | null;
   pdfThemeName: string | null;
+  isDemo: boolean;
   displayEmail: null;
   email: null;
 };
@@ -77,6 +78,7 @@ export const filterUserData = (
       summaryTitle: user.summaryTitle,
       webThemeName: user.webThemeName,
       pdfThemeName: user.pdfThemeName,
+      isDemo: user.isDemo,
 
       // Explicitly set sensitive fields to null for unauthenticated users
       displayEmail: null,

@@ -2,6 +2,7 @@
 
 import { useContext } from "react";
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
+import { getDemoPlaceholderSocials } from "@/lib/demoSocials";
 import { ThemeDavids, ThemeDefault, ThemeRetro80s } from "@/theme";
 import { themeDavidsSampleData } from "@/theme/davids/sampleData";
 import { themeDefaultSampleData } from "@/theme/sampleData";
@@ -16,7 +17,7 @@ export const ResumeView = ({ themeName }: { themeName: ThemeName }) => {
         <ThemeDavids
           themeAppearance={themeAppearance}
           user={themeDavidsSampleData.data.resume.user}
-          socials={themeDavidsSampleData.data.resume.socials}
+          socials={getDemoPlaceholderSocials(themeDavidsSampleData.data.resume.user)}
           skillsForUser={themeDavidsSampleData.data.resume.skillsForUser}
           companies={themeDavidsSampleData.data.resume.companies}
           education={themeDavidsSampleData.data.resume.education}
@@ -29,7 +30,7 @@ export const ResumeView = ({ themeName }: { themeName: ThemeName }) => {
         <ThemeRetro80s
           themeAppearance={themeAppearance}
           user={themeDefaultSampleData.data.resume.user}
-          socials={themeDefaultSampleData.data.resume.socials}
+          socials={getDemoPlaceholderSocials(themeDefaultSampleData.data.resume.user)}
           skillsForUser={themeDefaultSampleData.data.resume.skillsForUser}
           companies={themeDefaultSampleData.data.resume.companies}
           education={themeDefaultSampleData.data.resume.education}
@@ -43,7 +44,7 @@ export const ResumeView = ({ themeName }: { themeName: ThemeName }) => {
         <ThemeDefault
           themeAppearance={themeAppearance}
           user={themeDefaultSampleData.data.resume.user}
-          socials={themeDefaultSampleData.data.resume.socials}
+          socials={getDemoPlaceholderSocials(themeDefaultSampleData.data.resume.user)}
           skillsForUser={themeDefaultSampleData.data.resume.skillsForUser}
           companies={themeDefaultSampleData.data.resume.companies}
           education={themeDefaultSampleData.data.resume.education}

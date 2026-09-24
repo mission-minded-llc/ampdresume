@@ -284,6 +284,25 @@ describe("ThemeDavids Component", () => {
       const pdfLink = screen.getByRole("link", { name: "View PDF" });
       expect(pdfLink).toHaveAttribute("href", `${mockPathname}/pdf`);
       expect(pdfLink).toHaveAttribute("target", "_blank");
+      expect(screen.queryByTestId("demo-resume-tag")).not.toBeInTheDocument();
+    });
+
+    it("shows a Demo tag next to View PDF for demo resumes", () => {
+      render(
+        <ThemeDavids
+          themeAppearance="light"
+          user={createMockUser({ isDemo: true })}
+          socials={[]}
+          skillsForUser={[createMockSkillForUser()]}
+          companies={[]}
+          education={[]}
+          certifications={[]}
+          featuredProjects={[]}
+        />,
+      );
+
+      expect(screen.getByTestId("demo-resume-tag")).toHaveTextContent("Demo");
+      expect(screen.getByRole("link", { name: "View PDF" })).toBeInTheDocument();
     });
 
     it("should handle empty socials array", () => {

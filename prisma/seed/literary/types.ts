@@ -51,11 +51,12 @@ export type LiteraryCertification = {
 export type LiteraryFeaturedProject = {
   name: string;
   description: string;
-  links: Array<{ label: string; url: string }>;
+  links?: Array<{ label: string; url: string }>;
   skills?: string[];
 };
 
-export type LiteraryCharacter = {
+/** Shared resume shape used by literary and industry-vertical seeds. */
+export type SeedResumeProfile = {
   slug: string;
   name: string;
   title: string;
@@ -64,7 +65,8 @@ export type LiteraryCharacter = {
   siteDescription: string;
   summary: string;
   summaryTitle?: string;
-  affiliation: LiteraryAffiliation;
+  displayEmail?: string | null;
+  isDemo: boolean;
   socials: LiterarySocial[];
   companies: LiteraryCompany[];
   education: LiteraryEducation[];
@@ -73,14 +75,17 @@ export type LiteraryCharacter = {
   featuredProjects: LiteraryFeaturedProject[];
 };
 
+export type LiteraryCharacter = SeedResumeProfile & {
+  affiliation: LiteraryAffiliation;
+};
+
 export type LiteraryCharacterInput = Omit<
   LiteraryCharacter,
-  "siteTitle" | "socials" | "summary" | "summaryTitle"
+  "siteTitle" | "socials" | "summary" | "summaryTitle" | "isDemo"
 > & {
   siteTitle?: string;
   summary?: string;
   summaryTitle?: string;
-  socials?: LiterarySocial[];
   /** Year of death, or last year of the source text if the character survives. */
   died?: number;
 };

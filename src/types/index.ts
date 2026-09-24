@@ -134,6 +134,9 @@ export interface User {
   // Optional heading for the professional summary. Themes default to
   // "Professional Summary" when this is blank.
   summaryTitle?: string | null;
+
+  // True for literary and industry-vertical seed profiles. Real accounts stay false.
+  isDemo?: boolean;
 }
 
 /**

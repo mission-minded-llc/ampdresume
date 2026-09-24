@@ -10,31 +10,10 @@
         "summary": "<p>Senior Software Engineer with over 7 years of experience designing, developing, and deploying robust, scalable web and backend applications across diverse industries including fintech, e-commerce, and enterprise SaaS. Proven track record of leading full-stack development projects, optimizing system architecture, and mentoring engineering teams to deliver high-quality software on time and within scope.</p>",
         "summaryTitle": "Professional Summary",
         "siteTitle": "Test User Resume",
-        "siteDescription": "Resume of Test User"
+        "siteDescription": "Resume of Test User",
+        "isDemo": true
       },
-      "socials": [
-        {
-          "id": "1",
-          "userId": "1",
-          "platform": "linkedin.com",
-          "ref": "testuser",
-          "sortIndex": 0
-        },
-        {
-          "id": "2",
-          "userId": "1",
-          "platform": "github.com",
-          "ref": "testuser",
-          "sortIndex": 1
-        },
-        {
-          "id": "3",
-          "userId": "1",
-          "platform": "twitter.com",
-          "ref": "testuser",
-          "sortIndex": 2
-        }
-      ],
+      "socials": [],
       "skillsForUser": [
         {
           "id": "1",

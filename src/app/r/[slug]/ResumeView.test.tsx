@@ -2,8 +2,9 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Session } from "next-auth";
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
-import { themeDefaultSampleData } from "@/theme/sampleData";
 import { updateUser } from "@/graphql/updateUser";
+import { getDemoPlaceholderSocials } from "@/lib/demoSocials";
+import { themeDefaultSampleData } from "@/theme/sampleData";
 import { getEnvironmentName } from "@/util/url";
 import { ResumeView } from "./ResumeView";
 import { expect } from "@jest/globals";
@@ -25,13 +26,18 @@ jest.mock("@/theme", () => {
   const MockTheme = ({
     themeAppearance,
     user,
+    socials,
   }: {
     themeAppearance: string;
     user: { name?: string | null };
+    socials: Array<{ platform: string; ref: string }>;
   }) => (
     <div data-testid="rendered-theme">
       <span data-testid="theme-appearance">{themeAppearance}</span>
       <span data-testid="user-name">{user.name}</span>
+      <span data-testid="socials">
+        {socials.map((social) => `${social.platform}:${social.ref}`).join(",")}
+      </span>
     </div>
   );
 
@@ -63,7 +69,12 @@ jest.mock("@/theme", () => {
 });
 
 const resume = themeDefaultSampleData.data.resume;
-const user = { ...resume.user, webThemeName: "default" as const, pdfThemeName: "default" };
+const user = {
+  ...resume.user,
+  isDemo: false,
+  webThemeName: "default" as const,
+  pdfThemeName: "default",
+};
 
 const ownerSession = {
   user: { id: user.id, slug: "taylor" },
@@ -110,6 +121,44 @@ describe("public ResumeView", () => {
     expect(screen.getByTestId("user-name")).toHaveTextContent(user.name || "");
     expect(screen.queryByLabelText("Theme")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("PDF Theme")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("demo-resume-tag")).not.toBeInTheDocument();
+  });
+
+  it("loads dummy placeholder socials when the resume is a demo", () => {
+    const storedSocials = [
+      {
+        id: "stored",
+        userId: user.id,
+        platform: "github",
+        ref: "maya-chen",
+        sortIndex: 0,
+      },
+    ];
+    const demoUser = { ...user, isDemo: true };
+    const placeholders = getDemoPlaceholderSocials(demoUser);
+
+    render(
+      <ThemeAppearanceContext.Provider
+        value={{ themeAppearance: "light", setThemeAppearance: jest.fn() }}
+      >
+        <ResumeView
+          session={null}
+          slug="maya-chen"
+          user={demoUser}
+          socials={storedSocials}
+          skillsForUser={resume.skillsForUser}
+          companies={resume.companies}
+          education={resume.education}
+          certifications={resume.certifications || []}
+          featuredProjects={resume.featuredProjects || []}
+        />
+      </ThemeAppearanceContext.Provider>,
+    );
+
+    expect(screen.getByTestId("socials")).toHaveTextContent(
+      placeholders.map((social) => `${social.platform}:${social.ref}`).join(","),
+    );
+    expect(screen.queryByText(/maya-chen/)).not.toBeInTheDocument();
   });
 
   it("shows the theme picker for the resume owner and saves a theme", async () => {

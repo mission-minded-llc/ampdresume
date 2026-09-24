@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
+import { getDemoPlaceholderSocials } from "@/lib/demoSocials";
 import { ThemeAppearance } from "@/types";
+import { generateSocialUrl } from "@/util/social";
 import { themeDefaultSampleData } from "../sampleData";
 import { ThemeDefault } from "./ThemeDefault";
 import { expect } from "@jest/globals";
@@ -8,7 +10,7 @@ describe("ThemeDefault", () => {
   const mockProps = {
     themeAppearance: "light" as ThemeAppearance,
     user: themeDefaultSampleData.data.resume.user,
-    socials: themeDefaultSampleData.data.resume.socials,
+    socials: getDemoPlaceholderSocials(themeDefaultSampleData.data.resume.user),
     skillsForUser: themeDefaultSampleData.data.resume.skillsForUser,
     companies: themeDefaultSampleData.data.resume.companies,
     education: themeDefaultSampleData.data.resume.education || [],
@@ -40,19 +42,11 @@ describe("ThemeDefault", () => {
 
     // Check if social links are rendered by checking their href attributes
     mockProps.socials.forEach((social) => {
-      if (social.platform === "github") {
-        expect(
-          screen.getByText("", {
-            selector: `a[href="https://github.com/${social.ref}"]`,
-          }),
-        ).toBeInTheDocument();
-      } else if (social.platform === "linkedin") {
-        expect(
-          screen.getByText("", {
-            selector: `a[href="https://www.linkedin.com/in/${social.ref}"]`,
-          }),
-        ).toBeInTheDocument();
-      }
+      expect(
+        screen.getByText("", {
+          selector: `a[href="${generateSocialUrl(social)}"]`,
+        }),
+      ).toBeInTheDocument();
     });
   });
 

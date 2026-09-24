@@ -1,6 +1,7 @@
 import { fileURLToPath } from "url";
 import { logTitle } from "../helpers/util";
-import { literaryCharacters } from "./characters";
+import { literaryCharacters, RETIRED_LITERARY_SLUGS } from "./characters";
+import { prisma } from "@/lib/prisma";
 import { LITERARY_SKILLS } from "./skills";
 import {
   addCounts,
@@ -29,6 +30,16 @@ export async function seedLiterary() {
   }
 
   console.log(`Characters in seed: ${literaryCharacters.length}`);
+
+  const stale = await prisma.user.deleteMany({
+    where: {
+      isDemo: true,
+      slug: { in: [...RETIRED_LITERARY_SLUGS] },
+    },
+  });
+  if (stale.count > 0) {
+    console.log(`Removed retired literary resumes: ${stale.count}`);
+  }
 
   const skillCounts = await upsertLiterarySkills(LITERARY_SKILLS);
   console.log(`Literary skills: ${formatCounts(skillCounts)}`);

@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { sanitizeHtmlServer } from "@/lib/secureHtmlParser";
 import { datesEqual, jsonEqual, numbersEqual, stringsEqual, toDate, toDateOrNull } from "./dates";
-import type { LiteraryCharacter } from "./types";
+import type { LiteraryCharacter, SeedResumeProfile } from "./types";
 import type { LiterarySkillDefinition } from "./skills";
 
 export type SeedCounts = {
@@ -30,7 +30,11 @@ function bump(counts: SeedCounts, action: keyof SeedCounts) {
   counts[action] += 1;
 }
 
-export async function upsertLiterarySkills(skills: LiterarySkillDefinition[]): Promise<SeedCounts> {
+export async function upsertSkillCatalog(
+  skills: LiterarySkillDefinition[],
+  options: { updateExisting?: boolean } = {},
+): Promise<SeedCounts> {
+  const updateExisting = options.updateExisting ?? true;
   const counts = emptyCounts();
 
   for (const skill of skills) {
@@ -48,6 +52,11 @@ export async function upsertLiterarySkills(skills: LiterarySkillDefinition[]): P
         },
       });
       bump(counts, "created");
+      continue;
+    }
+
+    if (!updateExisting) {
+      bump(counts, "unchanged");
       continue;
     }
 
@@ -70,7 +79,11 @@ export async function upsertLiterarySkills(skills: LiterarySkillDefinition[]): P
   return counts;
 }
 
-async function upsertUser(character: LiteraryCharacter): Promise<{
+export async function upsertLiterarySkills(skills: LiterarySkillDefinition[]): Promise<SeedCounts> {
+  return upsertSkillCatalog(skills);
+}
+
+async function upsertUser(character: SeedResumeProfile): Promise<{
   id: string;
   counts: SeedCounts;
 }> {
@@ -79,13 +92,14 @@ async function upsertUser(character: LiteraryCharacter): Promise<{
     email: null,
     name: character.name,
     slug: character.slug,
-    displayEmail: null,
+    displayEmail: character.displayEmail ?? null,
     location: character.location,
     siteTitle: character.siteTitle,
     title: character.title,
     siteDescription: character.siteDescription,
     summary: character.summary,
     summaryTitle: character.summaryTitle ?? null,
+    isDemo: character.isDemo,
   };
 
   const existing = await prisma.user.findFirst({
@@ -113,7 +127,8 @@ async function upsertUser(character: LiteraryCharacter): Promise<{
     stringsEqual(existing.title, desired.title) &&
     stringsEqual(existing.siteDescription, desired.siteDescription) &&
     stringsEqual(existing.summary, desired.summary) &&
-    stringsEqual(existing.summaryTitle, desired.summaryTitle);
+    stringsEqual(existing.summaryTitle, desired.summaryTitle) &&
+    existing.isDemo === desired.isDemo;
 
   if (unchanged) {
     bump(counts, "unchanged");
@@ -316,7 +331,7 @@ async function syncSkillsForUser(
   for (const skill of skills) {
     const parent = await prisma.skill.findUnique({ where: { name: skill.name } });
     if (!parent) {
-      throw new Error(`Literary skill "${skill.name}" is missing from the Skill catalog.`);
+      throw new Error(`Seed skill "${skill.name}" is missing from the Skill catalog.`);
     }
 
     const match = existing.find((row) => row.skillId === parent.id);
@@ -387,7 +402,7 @@ async function syncProjectSkills(
   for (const name of desiredNames) {
     const skillForUserId = skillForUserByName.get(name);
     if (!skillForUserId) {
-      throw new Error(`Project skill "${name}" is not on this character's resume.`);
+      throw new Error(`Project skill "${name}" is not on this resume.`);
     }
 
     const match = existing.find((row) => row.skillForUserId === skillForUserId);
@@ -613,7 +628,7 @@ async function syncFeaturedProjectSkills(
   for (const name of desiredNames) {
     const skillForUserId = skillForUserByName.get(name);
     if (!skillForUserId) {
-      throw new Error(`Featured project skill "${name}" is not on this character's resume.`);
+      throw new Error(`Featured project skill "${name}" is not on this resume.`);
     }
 
     const match = existing.find((row) => row.skillForUserId === skillForUserId);
@@ -651,6 +666,7 @@ async function syncFeaturedProjects(
 
   for (const project of featuredProjects) {
     const description = await sanitizeHtmlServer(project.description);
+    const links = project.links ?? [];
     const match = existing.find((row) => row.name === project.name && !keepIds.has(row.id));
 
     if (!match) {
@@ -659,7 +675,7 @@ async function syncFeaturedProjects(
           userId,
           name: project.name,
           description,
-          links: project.links as unknown as object,
+          links: links as unknown as object,
         },
       });
       keepIds.add(created.id);
@@ -673,8 +689,7 @@ async function syncFeaturedProjects(
 
     keepIds.add(match.id);
 
-    const unchanged =
-      stringsEqual(match.description, description) && jsonEqual(match.links, project.links);
+    const unchanged = stringsEqual(match.description, description) && jsonEqual(match.links, links);
 
     if (unchanged) {
       bump(counts, "unchanged");
@@ -683,7 +698,7 @@ async function syncFeaturedProjects(
         where: { id: match.id },
         data: {
           description,
-          links: project.links as unknown as object,
+          links: links as unknown as object,
         },
       });
       bump(counts, "updated");
@@ -705,24 +720,28 @@ async function syncFeaturedProjects(
   return counts;
 }
 
-export async function upsertLiteraryCharacter(character: LiteraryCharacter): Promise<SeedCounts> {
+export async function upsertResumeProfile(profile: SeedResumeProfile): Promise<SeedCounts> {
   const totals = emptyCounts();
 
-  const user = await upsertUser(character);
+  const user = await upsertUser(profile);
   addCounts(totals, user.counts);
 
-  addCounts(totals, await syncSocials(user.id, character.socials));
-  addCounts(totals, await syncEducation(user.id, character.education));
-  addCounts(totals, await syncCertifications(user.id, character.certifications));
+  addCounts(totals, await syncSocials(user.id, profile.socials));
+  addCounts(totals, await syncEducation(user.id, profile.education));
+  addCounts(totals, await syncCertifications(user.id, profile.certifications));
 
-  const skills = await syncSkillsForUser(user.id, character.skills);
+  const skills = await syncSkillsForUser(user.id, profile.skills);
   addCounts(totals, skills.counts);
 
-  addCounts(totals, await syncCompanies(user.id, character.companies, skills.skillForUserByName));
+  addCounts(totals, await syncCompanies(user.id, profile.companies, skills.skillForUserByName));
   addCounts(
     totals,
-    await syncFeaturedProjects(user.id, character.featuredProjects, skills.skillForUserByName),
+    await syncFeaturedProjects(user.id, profile.featuredProjects, skills.skillForUserByName),
   );
 
   return totals;
+}
+
+export async function upsertLiteraryCharacter(character: LiteraryCharacter): Promise<SeedCounts> {
+  return upsertResumeProfile(character);
 }

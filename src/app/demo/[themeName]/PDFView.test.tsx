@@ -21,6 +21,7 @@ describe("PDFView", () => {
   it("renders the component with Generate PDF button", async () => {
     await renderPDFView();
     expect(screen.getByText("Generate PDF")).toBeInTheDocument();
+    expect(screen.getByTestId("demo-resume-tag")).toHaveTextContent("Demo");
   });
 
   it("renders the default theme template", async () => {

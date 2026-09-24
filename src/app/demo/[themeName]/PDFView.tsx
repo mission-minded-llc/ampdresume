@@ -23,7 +23,7 @@ export const PDFView = ({ themeName }: PDFViewProps) => {
   };
 
   return (
-    <PdfDocumentFrame>
+    <PdfDocumentFrame showDemoTag>
       {pdfThemeName === "default" ? (
         <ThemeDefaultPDF {...pdfProps} themeOptions={{ showSkillsInWorkExperience: false }} />
       ) : (

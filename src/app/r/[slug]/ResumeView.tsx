@@ -27,6 +27,7 @@ import { FloatingThemePicker } from "@/app/components/FloatingThemePicker";
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
 import { UserWithTheme } from "@/graphql/getResume";
 import { updateUser } from "@/graphql/updateUser";
+import { resolveThemeSocials } from "@/lib/demoSocials";
 import { getEnvironmentName } from "@/util/url";
 
 export const ResumeView = ({
@@ -91,7 +92,7 @@ export const ResumeView = ({
     const themeProps = {
       themeAppearance,
       user,
-      socials,
+      socials: resolveThemeSocials(user, socials),
       skillsForUser,
       companies,
       education,
