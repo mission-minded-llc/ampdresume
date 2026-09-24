@@ -3,7 +3,12 @@ import { fireEvent, render } from "@testing-library/react";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { expect } from "@jest/globals";
 import { VERTICAL_DEMO_GROUPS } from "@/constants/verticalDemos";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { HomePageView } from "./HomePageView";
+
+jest.mock("@/hooks/useIsDesktop", () => ({
+  useIsDesktop: jest.fn(),
+}));
 
 function renderHome(userName: string | null) {
   return render(
@@ -14,6 +19,10 @@ function renderHome(userName: string | null) {
 }
 
 describe("HomePageView", () => {
+  beforeEach(() => {
+    (useIsDesktop as jest.Mock).mockReturnValue(false);
+  });
+
   it("renders a visible brand heading and guest CTAs", () => {
     const { getByRole, getAllByRole, getByText, container } = renderHome(null);
 
@@ -88,5 +97,27 @@ describe("HomePageView", () => {
     expect(getByRole("link", { name: "Robin Hood" })).toHaveAttribute("href", "/r/robin-hood");
     expect(queryByRole("link", { name: "Portia" })).not.toBeInTheDocument();
     expect(queryByRole("link", { name: "Maya Chen" })).not.toBeInTheDocument();
+  });
+
+  it("opens sample resumes in a new tab on desktop", () => {
+    (useIsDesktop as jest.Mock).mockReturnValue(true);
+    const open = jest.spyOn(window, "open").mockImplementation(() => null);
+
+    const { getByRole } = renderHome(null);
+    fireEvent.click(getByRole("link", { name: "Maya Chen" }));
+
+    expect(open).toHaveBeenCalledWith("/r/maya-chen", "_blank", "noopener,noreferrer");
+    open.mockRestore();
+  });
+
+  it("keeps sample resumes in the same tab on mobile", () => {
+    const open = jest.spyOn(window, "open").mockImplementation(() => null);
+
+    const { getByRole } = renderHome(null);
+    fireEvent.click(getByRole("link", { name: "Maya Chen" }));
+
+    expect(open).not.toHaveBeenCalled();
+    expect(getByRole("link", { name: "Maya Chen" })).toHaveAttribute("target", "_self");
+    open.mockRestore();
   });
 });

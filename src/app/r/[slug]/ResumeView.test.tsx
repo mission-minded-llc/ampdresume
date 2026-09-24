@@ -107,10 +107,23 @@ const renderView = ({
   );
 
 describe("public ResumeView", () => {
+  const originalScrollTo = window.scrollTo;
+
   beforeEach(() => {
     jest.clearAllMocks();
+    window.scrollTo = jest.fn();
     document.cookie = "theme-preview=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
     (getEnvironmentName as jest.Mock).mockReturnValue("development");
+  });
+
+  afterEach(() => {
+    window.scrollTo = originalScrollTo;
+  });
+
+  it("scrolls to the top when the resume view mounts", () => {
+    renderView();
+
+    expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: "instant" });
   });
 
   it("renders the selected theme without a preview control for visitors", () => {
