@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals";
 import { verticalProfiles } from "./profiles";
 import { VERTICAL_IDS, VERTICALS } from "./types";
 import { validateVerticalProfile, validateVerticalRoster } from "./validate";

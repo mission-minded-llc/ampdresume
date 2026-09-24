@@ -26,9 +26,10 @@ jest.mock("@sentry/react", () => ({
 }));
 
 const resume = themeDefaultSampleData.data.resume;
+const user = { ...resume.user, isDemo: false };
 
 const ownerSession = {
-  user: { id: resume.user.id, slug: "taylor" },
+  user: { id: user.id, slug: "taylor" },
   expires: "2099-01-01",
 } as Session;
 
@@ -43,7 +44,7 @@ const renderPDFView = ({
 } = {}) =>
   render(
     <PDFView
-      user={resume.user}
+      user={user}
       skillsForUser={resume.skillsForUser}
       companies={resume.companies}
       education={resume.education}
@@ -66,7 +67,7 @@ describe("public PDFView", () => {
     renderPDFView();
 
     expect(screen.getByText("Generate PDF")).toBeInTheDocument();
-    expect(screen.getByText(resume.user.name!)).toBeInTheDocument();
+    expect(screen.getByText(user.name!)).toBeInTheDocument();
     expect(screen.queryByLabelText("PDF Theme")).not.toBeInTheDocument();
     expect(screen.queryByTestId("demo-resume-tag")).not.toBeInTheDocument();
     await waitFor(() => {
@@ -77,7 +78,7 @@ describe("public PDFView", () => {
   it("shows a Demo tag for seeded demo resumes", () => {
     render(
       <PDFView
-        user={{ ...resume.user, isDemo: true }}
+        user={{ ...user, isDemo: true }}
         skillsForUser={resume.skillsForUser}
         companies={resume.companies}
         education={resume.education}
@@ -93,7 +94,7 @@ describe("public PDFView", () => {
   it("falls back to Classic when the stored PDF theme is unknown", () => {
     renderPDFView({ pdfThemeName: "retro-80s" });
 
-    expect(screen.getByText(resume.user.name!)).toBeInTheDocument();
+    expect(screen.getByText(user.name!)).toBeInTheDocument();
   });
 
   it("can preview the Times PDF theme from the owner picker", async () => {
@@ -113,7 +114,7 @@ describe("public PDFView", () => {
 
     await waitFor(() => {
       expect(updateUser).toHaveBeenCalledWith({
-        userId: resume.user.id,
+        userId: user.id,
         pdfThemeName: "default",
       });
     });
