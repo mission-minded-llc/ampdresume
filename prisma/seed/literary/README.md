@@ -9,11 +9,11 @@ npm run prisma:seed:literary
 ```
 
 Production uses a separate script so the Neon URL never lands in `.env` or your shell. It reads
-`ampdresume-database-url-direct` from Secret Manager and runs the seed with `DATABASE_URL` set for
-that process only:
+`ampdresume-database-url-direct` from Secret Manager and runs the literary and industry-vertical
+seeds with `DATABASE_URL` set for those processes only:
 
 ```bash
-./scripts/seed-literary-production.sh
+./scripts/seed-production.sh
 ```
 
 Pass `--project` if your gcloud default is not the production project, and `--yes` only when you
