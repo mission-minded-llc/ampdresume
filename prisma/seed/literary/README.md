@@ -20,8 +20,8 @@ Pass `--project` if your gcloud default is not the production project, and `--ye
 cannot type the confirmation prompt.
 
 Re-running the script leaves records untouched when the seed data matches the database. Changed
-fields are updated. Child records removed from a kept character are deleted. Users whose slugs
-are listed in `RETIRED_LITERARY_SLUGS` are deleted on the next run.
+fields are updated. Child records removed from a kept character are deleted. Users whose slugs are
+listed in `RETIRED_LITERARY_SLUGS` are deleted on the next run.
 
 ## Identity
 

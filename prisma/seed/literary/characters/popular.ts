@@ -58,7 +58,8 @@ export const popularCharacters = [
       },
       {
         name: "Boxing",
-        description: "Amateur boxer; uses fists when a walking stick and a waiting cab will not do.",
+        description:
+          "Amateur boxer; uses fists when a walking stick and a waiting cab will not do.",
         yearStarted: 1878,
       },
       {

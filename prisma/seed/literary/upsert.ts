@@ -689,8 +689,7 @@ async function syncFeaturedProjects(
 
     keepIds.add(match.id);
 
-    const unchanged =
-      stringsEqual(match.description, description) && jsonEqual(match.links, links);
+    const unchanged = stringsEqual(match.description, description) && jsonEqual(match.links, links);
 
     if (unchanged) {
       bump(counts, "unchanged");
