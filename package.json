@@ -37,7 +37,7 @@
     "prisma:seed": "tsx prisma/seed/all.ts",
     "prisma:seed:cypress": "tsx prisma/seed/cypress.ts",
     "prisma:seed:literary": "tsx prisma/seed/literary/index.ts",
-    "prisma:seed:literary:production": "./scripts/seed-literary-production.sh",
+    "prisma:seed:production": "./scripts/seed-production.sh",
     "prisma:seed:verticals": "tsx prisma/seed/verticals/index.ts",
     "terraform:validate": "cd terraform && terraform validate",
     "terraform:plan": "cd terraform && terraform plan",
