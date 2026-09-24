@@ -11,11 +11,6 @@ export const operationsProfiles = [
       "Plant manager who runs a Detroit stamping campus on lean standard work, TPM, and a daily management system that keeps overtime from becoming the plan.",
     summary:
       "<p>I run a 420-person stamping and assembly plant for Northline Stampings. The job is not a kaizen poster on the wall. It is a weekly cadence that keeps press uptime, die changes, and labor hours on the same board so supervisors can act before the weekend becomes the recovery plan.</p><p>I came up through production supervision in the Great Lakes corridor. The plants that stay solvent are the ones that treat changeover, safety, and staffing as one system. I install that system, then I stay on the floor long enough to see whether it holds on third shift.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "leila-haddad" },
-      { platform: "website", ref: "https://leilahaddad.example.com" },
-      { platform: "medium.com", ref: "leilahaddad" },
-    ],
     skills: [
       {
         name: "Lean Manufacturing",
@@ -235,10 +230,6 @@ export const operationsProfiles = [
       "Quality manager who treats SPC and the QMS as one system: the chart on the line and the audit trail in the office have to tell the same story.",
     summary:
       "<p>I run quality for Milwaukee Gauge Works, a 280-person precision machining house. Incoming, in-process, and dock audit sit on the same control plan. When a chart goes unstable, the reaction is a process change, not a stack of sort tickets.</p><p>I spent six years as a quality engineer before I took the manager seat. The work that stuck was teaching operators to read their own charts and teaching auditors to leave the floor with evidence, not opinions.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "hank-mueller" },
-      { platform: "website", ref: "https://hankmueller.example.com" },
-    ],
     skills: [
       {
         name: "SPC",
@@ -439,10 +430,6 @@ export const operationsProfiles = [
       "Production planner who keeps the master schedule, the ERP, and the floor in the same week. Mix changes land as a plan, not a surprise kit shortage.",
     summary:
       "<p>I own the master schedule for Ohio Valley Fasteners, a high-mix heading and threading plant. The work is finite capacity, not a wish list: heat-treat windows, tool changes, and customer dock dates sit in one ERP plan that the floor can actually run.</p><p>I started as a materials planner and learned that a pretty Gantt chart is worthless if the steel is still on a truck. I plan from inventory and confirmed supply, then I replan when the week breaks — which it will.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "rosa-delgado" },
-      { platform: "medium.com", ref: "rosadelgado" },
-    ],
     skills: [
       {
         name: "Production Planning",
@@ -630,11 +617,6 @@ export const operationsProfiles = [
       "Continuous improvement lead who runs Six Sigma and TPM as a plant system, not a project of the month. The savings have to show up in the P&L.",
     summary:
       "<p>I lead CI for Carolina Drive Systems, a 360-person gearbox and drive plant in Greenville. The portfolio is a mix of Six Sigma on chronic scrap and TPM on the assets that stop the whole line. I do not start a project that cannot name the dollar and the owner.</p><p>I came through process engineering and maintenance planning. The plants that improve are the ones that keep the same method after the champion leaves. I write the method down, train the supervisors, and then I audit whether they still use it on night shift.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "arjun-singh-ci" },
-      { platform: "website", ref: "https://arjunsingh.example.com" },
-      { platform: "medium.com", ref: "arjunsinghci" },
-    ],
     skills: [
       {
         name: "Six Sigma",
@@ -847,11 +829,6 @@ export const operationsProfiles = [
       "Demand planning manager who runs S&OP as a monthly decision, not a slide ritual. Forecast bias is a number with an owner.",
     summary:
       "<p>I lead demand planning for Prairie Brands Co-op, a Midwest CPG portfolio with 4,800 SKUs and a retail calendar that does not forgive a late shipper. The forecast is a statistical baseline plus a sales override that has to earn its keep in the monthly S&OP.</p><p>I measure bias and WAPE by family, not a single corporate MAPE that hides the damage. When a promotion overstates lift, it shows up as a name on the exception list, not a write-off in quarter close.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "nora-kim-demand" },
-      { platform: "website", ref: "https://norakim.example.com" },
-      { platform: "medium.com", ref: "norakimdemand" },
-    ],
     skills: [
       {
         name: "Demand Planning",
@@ -1030,10 +1007,6 @@ export const operationsProfiles = [
       "Network design lead who treats DC locations, lanes, and inventory as one model. The map has to beat the current cost-to-serve, or it stays a slide.",
     summary:
       "<p>I lead network design for Ridgeway Logistics, a 3PL and private-fleet operator serving grocery and industrial shippers out of the Southeast. The work is greenfield DC siting, lane redesign, and the inventory that has to move when the map changes.</p><p>I build the model in code, then I sit with operations until the recommended flow can actually be staffed. A cheaper network that the warehouses cannot run is not a cheaper network.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "mateo-cruz-network" },
-      { platform: "website", ref: "https://mateocruz.example.com" },
-    ],
     skills: [
       {
         name: "Network Optimization",
@@ -1246,11 +1219,6 @@ export const operationsProfiles = [
       "Procurement director who treats strategic sourcing as a P&L lever: should-cost, dual source, and a contract the plant can actually live with.",
     summary:
       "<p>I run procurement for Riverbend Sourcing, a $640M indirect and direct spend book for a Mid-South industrial group. The work is category strategy, should-cost, and contracts that operations will honor — not a savings slide that dies in the first change order.</p><p>I came up as a buyer on metals and MRO. The suppliers who stay are the ones who can explain a price move and still hit the dock date. I dual-source the risk, I do not pretend a single source is a partnership.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "faith-okoro" },
-      { platform: "website", ref: "https://faithokoro.example.com" },
-      { platform: "medium.com", ref: "faithokoro" },
-    ],
     skills: [
       {
         name: "Procurement",
@@ -1463,10 +1431,6 @@ export const operationsProfiles = [
       "Warehouse operations manager who runs WMS, slotting, and labor as one system. Inventory accuracy is a process, not a cycle-count holiday.",
     summary:
       "<p>I run a 720k sq ft ambient and cooler campus for Scioto Fulfillment in Columbus. The building ships grocery and industrial for three national accounts. The job is WMS discipline, a labor plan that matches the wave, and an inventory number the customer can audit.</p><p>I came up on nights in a cold-chain building. The warehouses that work are the ones that treat a mis-slot as a process failure, not a picker problem. I fix the location, the label, and the standard — then I measure whether it stays fixed.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "elliot-ward-wms" },
-      { platform: "website", ref: "https://elliotward.example.com" },
-    ],
     skills: [
       {
         name: "Warehouse Management",
@@ -1644,11 +1608,6 @@ export const operationsProfiles = [
       "Head of talent who treats hiring as a system: workforce plan, slate quality, and an offer the hiring manager will not reopen on Friday.",
     summary:
       "<p>I lead talent for Meridian Media Group, a 2,100-person media and events company. The brief is not more requisitions. It is a workforce plan that names the roles we will fill, a slate that is actually diverse and qualified, and a process hiring managers finish.</p><p>I ran agency and in-house desks before I took the function. The searches that close are the ones with a written scorecard and a debrief that happens the same week. I install that, then I hold the business to it when they want to 'just meet one more person.'</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "simone-blanchard" },
-      { platform: "website", ref: "https://simoneblanchard.example.com" },
-      { platform: "medium.com", ref: "simoneblanchard" },
-    ],
     skills: [
       {
         name: "Talent Acquisition",
@@ -1860,10 +1819,6 @@ export const operationsProfiles = [
       "Employee relations director who runs investigations and manager coaching as one practice. The file has to be clean, and the workplace has to get quieter.",
     summary:
       "<p>I lead employee relations for Great Lakes Mutual, a 4,400-person Midwest insurer. The caseload is investigations, policy, and the manager conversations that should have happened before a complaint landed. I measure time-to-close and repeat issues by leader, not a vanity 'open door' score.</p><p>I was an investigator and an HR generalist before I took the function. The work that lasts is a documented process managers can follow and a set of decisions that survive a later review. I write for the file and for the person who still has to come to work on Monday.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "craig-donovan-er" },
-      { platform: "website", ref: "https://craigdonovan.example.com" },
-    ],
     skills: [
       {
         name: "Employee Relations",
@@ -2047,11 +2002,6 @@ export const operationsProfiles = [
       "Compensation manager who builds bands, offers, and cycle math the business can defend. Pay is a system, not a negotiation that starts over every time.",
     summary:
       "<p>I run compensation for Bay Grid Software, a 1,600-person B2B SaaS company. The work is job architecture, bands, the annual cycle, and offers that do not blow up the range for the next hire. I publish the rules so managers stop treating every offer as a one-off.</p><p>I was a compensation analyst through two market spikes. The companies that held together were the ones that named a philosophy and then lived with it when a candidate asked for more. I write the philosophy, I model the cost, and I sit in the exception meeting.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "amina-traore" },
-      { platform: "website", ref: "https://aminatraore.example.com" },
-      { platform: "medium.com", ref: "aminatraore" },
-    ],
     skills: [
       {
         name: "Compensation",
@@ -2238,10 +2188,6 @@ export const operationsProfiles = [
       "HR business partner who sits in org design, workforce plans, and the HRIS — not a touring advice booth. The org chart and the headcount file have to match.",
     summary:
       "<p>I partner with product, engineering, and go-to-market at Hill Country Payments, a 900-person payments company in Austin. The work is org design, workforce planning, and the manager conversations that keep a reorg from becoming a six-month stall.</p><p>There is no HRBP skill on a resume that matters more than being able to read a headcount file, an HRIS, and a team that is about to break. I do that work, then I stay for the staffing and the ER follow-through.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "luis-ortega-hr" },
-      { platform: "website", ref: "https://luisortega.example.com" },
-    ],
     skills: [
       {
         name: "Organizational Design",
@@ -2419,11 +2365,6 @@ export const operationsProfiles = [
       "Brand director who treats architecture, campaigns, and the P&L as one system. A brand that cannot survive a promotion calendar is a mood board.",
     summary:
       "<p>I lead brand for Northstar Consumer, a 14-brand home and personal-care house. The work is architecture, the annual campaign system, and the guardrails that keep a retailer brief from becoming a different company on the shelf.</p><p>I came up as a brand manager and an agency strategist. The brands that compound are the ones that can say no to a tactic that would win the quarter and lose the next three. I write that no down, then I show the number.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "zoe-hart-brand" },
-      { platform: "website", ref: "https://zoehart.example.com" },
-      { platform: "medium.com", ref: "zoehartbrand" },
-    ],
     skills: [
       {
         name: "Brand Strategy",
@@ -2634,10 +2575,6 @@ export const operationsProfiles = [
       "Growth marketing lead who treats SEO, paid, and mix models as one acquisition system. A channel that cannot show incrementality loses budget.",
     summary:
       "<p>I lead growth for Fog City Software, a vertical SaaS company selling to facilities and property teams. The job is a growth system: SEO that compounds, paid that we can prove, and a mix model that stops us from funding last-click theater.</p><p>I was an SEO manager and a growth analyst before I took the lead seat. The work that stuck was killing channels that looked efficient in the ad platform and were invisible in the holdout. I still run that test.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "ian-fletcher-growth" },
-      { platform: "website", ref: "https://ianfletcher.example.com" },
-    ],
     skills: [
       {
         name: "SEO",
@@ -2815,11 +2752,6 @@ export const operationsProfiles = [
       "Product marketing manager who writes the narrative, the size of the bet, and the enablement sales will actually use. A launch is a decision, not a landing page.",
     summary:
       "<p>I run product marketing for Rainier Devices, a hardware-plus-software company selling field tools to utilities and contractors. The work is positioning, pricing narrative, and a launch kit that sales can open on a job site — not a 40-page manifesto.</p><p>I was a PMM and an associate at a Seattle cloud company before this. The launches that work are the ones that name the buyer, the job, and the competitive landmine before the SKU ships. I write that first, then I staff the campaign.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "priyanka-desai-pmm" },
-      { platform: "website", ref: "https://priyankadesai.example.com" },
-      { platform: "medium.com", ref: "priyankadesai" },
-    ],
     skills: [
       {
         name: "Product Marketing",
@@ -2997,10 +2929,6 @@ export const operationsProfiles = [
       "Marketing operations manager who treats the stack, the mix model, and the CRM as one system. If sales cannot trust the source, the campaign did not happen.",
     summary:
       "<p>I run marketing operations for Peachtree Commerce, a mid-market ecommerce platform. The job is the stack, the taxonomy, the SLA with sales, and a mix model that reallocates budget without a three-week argument about the spreadsheet.</p><p>I was a campaign analyst and an ops lead at a retail-media shop. The work that lasts is a definition of pipeline everyone will sign and a weekly pack that does not need a narrator. I build that, then I defend it when a channel owner wants a friendlier number.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "deshawn-carter-mops" },
-      { platform: "website", ref: "https://deshawncarter.example.com" },
-    ],
     skills: [
       {
         name: "Marketing Operations",
@@ -3177,11 +3105,6 @@ export const operationsProfiles = [
       "Enterprise AE who runs MEDDIC as a live file, not a coaching poster. A deal that cannot name the economic buyer and the metric does not stay in the forecast.",
     summary:
       "<p>I sell enterprise seats for Helios Cloud, a security and compliance platform, into Fortune 1000 security and risk orgs. Average deal size is $420k ACV. The process is MEDDIC with a written score on every stage, and a forecast I will defend in the Monday call.</p><p>I came through mid-market and an SDR desk. The deals that close are the ones where the champion can repeat the metric and the economic buyer has already seen the number. I do not keep a happy conversation in the commit column.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "rachel-kim-ae" },
-      { platform: "website", ref: "https://rachelkim.example.com" },
-      { platform: "medium.com", ref: "rachelkimae" },
-    ],
     skills: [
       {
         name: "MEDDIC",
@@ -3359,10 +3282,6 @@ export const operationsProfiles = [
       "Strategic account director who treats a named book as a portfolio: white space, political map, and paper that does not reopen every renewal.",
     summary:
       "<p>I run eight named financial-services and media accounts for Atlas Ledger, a close-and-consolidation platform. The book is $11M in ACV. The job is expansion, multi-thread, and a renewal that is a decision, not a hostage negotiation.</p><p>I sold as an enterprise AE before I took the named book. The accounts that grow are the ones where I can name the next buyer and the next metric before the current champion changes jobs. I write that map down every quarter.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "thomas-adler" },
-      { platform: "website", ref: "https://thomasadler.example.com" },
-    ],
     skills: [
       {
         name: "Account Planning",
@@ -3544,11 +3463,6 @@ export const operationsProfiles = [
       "Sales engineer who runs discovery, the demo, and the value model as one conversation. A technical win that cannot name the metric is a science fair.",
     summary:
       "<p>I am a sales engineer for Red River Systems, an integration and iPaaS platform selling into mid-market and enterprise IT. I sit in discovery, I run the technical evaluation, and I write the value model the AE will not be allowed to leave behind.</p><p>I came through implementation and solutions consulting. The evaluations that we win are the ones where the architect and the economic buyer heard the same number. I do not demo a feature the discovery did not earn.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "valentina-russo-se" },
-      { platform: "website", ref: "https://valentinarusso.example.com" },
-      { platform: "medium.com", ref: "valentinarusso" },
-    ],
     skills: [
       {
         name: "Sales Engineering",
@@ -3725,10 +3639,6 @@ export const operationsProfiles = [
       "Mid-market sales VP who treats forecast, inspection, and manager coaching as one operating system. A number that cannot be inspected is not a number.",
     summary:
       "<p>I lead mid-market sales for Lakeshore Payments, a 42-person team selling payments and payouts into Midwestern and national mid-market. The number is $38M. The job is a forecast I can inspect, managers who can run a deal review, and a hiring bar that does not lower in a miss month.</p><p>I carried a bag and then a region before I took the VP seat. The teams that hit are the ones that exit bad deals early and tell the truth on Monday. I install that cadence, then I sit in the reviews until it holds without me.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "malik-johnson-sales" },
-      { platform: "website", ref: "https://malikjohnson.example.com" },
-    ],
     skills: [
       {
         name: "Pipeline Forecasting",

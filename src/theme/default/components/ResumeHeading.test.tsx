@@ -1,5 +1,6 @@
 import { usePathname } from "next/navigation";
 import { render, screen } from "@testing-library/react";
+import { getDemoPlaceholderSocials } from "@/lib/demoSocials";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { generateSocialUrl, getSocialMediaPlatformByPlatformName } from "@/util/social";
 import { ResumeHeading } from "./ResumeHeading";
@@ -12,7 +13,7 @@ jest.mock("next/navigation", () => ({
 
 describe("ResumeHeading", () => {
   const sampleUser = themeDefaultSampleData.data.resume.user;
-  const sampleSocials = themeDefaultSampleData.data.resume.socials;
+  const sampleSocials = getDemoPlaceholderSocials(sampleUser);
 
   beforeEach(() => {
     (usePathname as jest.Mock).mockReturnValue("/theme/default");
@@ -53,7 +54,7 @@ describe("ResumeHeading", () => {
     const pdfLink = screen.getByRole("link", { name: "View PDF" });
     expect(pdfLink).toHaveAttribute("href", "/theme/default/pdf");
     expect(pdfLink).toHaveAttribute("target", "_blank");
-    expect(screen.queryByTestId("demo-resume-tag")).not.toBeInTheDocument();
+    expect(screen.getByTestId("demo-resume-tag")).toHaveTextContent("Demo");
   });
 
   it("shows a Demo tag next to View PDF for demo resumes", () => {

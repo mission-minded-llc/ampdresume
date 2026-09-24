@@ -177,7 +177,6 @@ export type VerticalProfileInput = {
   siteDescription: string;
   summary: string;
   summaryTitle?: string;
-  socials: SeedResumeProfile["socials"];
   skills: SeedResumeProfile["skills"];
   companies: SeedResumeProfile["companies"];
   education: SeedResumeProfile["education"];

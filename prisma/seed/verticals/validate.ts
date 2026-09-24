@@ -12,7 +12,9 @@ export function validateVerticalProfile(profile: VerticalProfile): string[] {
   if (!profile.location.trim()) errors.push(`${profile.slug}: missing location`);
   if (!profile.displayEmail?.trim()) errors.push(`${profile.slug}: missing display email`);
   if (!profile.summary.trim()) errors.push(`${profile.slug}: missing professional summary`);
-  if (profile.socials.length === 0) errors.push(`${profile.slug}: missing socials`);
+  if (profile.socials.length > 0) {
+    errors.push(`${profile.slug}: demo profiles must omit socials`);
+  }
   if (profile.skills.length === 0) errors.push(`${profile.slug}: missing skills`);
   if (profile.companies.length === 0) errors.push(`${profile.slug}: missing experience`);
   if (profile.education.length === 0) errors.push(`${profile.slug}: missing education`);

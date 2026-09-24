@@ -11,11 +11,6 @@ export const infrastructureProfiles = [
       "Commercial property underwriter in Hartford who prices habitational, habitational-adjacent, and mid-market industrial schedules against CAT, construction, and occupancy risk.",
     summary:
       "<p>Senior commercial property underwriter with a Hartford book of mid-market schedules, habitational towers, and light industrial risks. I bind accounts when COPE data, CAT output, and terms actually line up — not when a broker just needs a quote by Friday.</p><p>At Harborline Mutual I own a $420M TIV book with a 91% hit ratio on referred submissions and a combined ratio 6 points inside plan. Earlier specialty work taught me when to walk away from a coastal frame schedule that looks cheap until the hurricane model runs.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "bridget-callahan" },
-      { platform: "website", ref: "https://bridgetcallahan.example.com" },
-      { platform: "medium.com", ref: "bridget-callahan" },
-    ],
     skills: [
       {
         name: "Underwriting",
@@ -194,11 +189,6 @@ export const infrastructureProfiles = [
       "Personal auto pricing actuary in New York who builds GLMs, monitors rate adequacy, and files indications that survive a department hearing.",
     summary:
       "<p>Pricing actuary for personal auto in New York. I own the indication, the GLM that sits under it, and the filing narrative when a department asks why a territory factor moved.</p><p>At Keystone Auto Mutual I cut indicated vs. booked rate inadequacy from 9.4% to 2.1% across a 1.2M vehicle book. Earlier rating work taught me that a clever telematics factor is worthless if the residual market load is wrong.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "kenji-mori" },
-      { platform: "github.com", ref: "kenjimori" },
-      { platform: "website", ref: "https://kenjimori.example.com" },
-    ],
     skills: [
       {
         name: "Actuarial Pricing",
@@ -382,11 +372,6 @@ export const infrastructureProfiles = [
       "Complex-claims director in Chicago who runs large-loss property and casualty files from first notice through litigation and recovery.",
     summary:
       "<p>Claims director for complex commercial files in Chicago. I run large-loss property, extra-expense, and contested liability from first notice through settlement, and I do not let a coverage question sit in email for three weeks.</p><p>At Lakeshore Casualty I cut average cycle time on $1M+ files from 14 months to 9 and recovered $18M in subrogation over three years. Earlier field work taught me that a well-run site inspection beats a late reservation of rights.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "tessa-morin" },
-      { platform: "medium.com", ref: "tessa-morin" },
-      { platform: "website", ref: "https://tessamorin.example.com" },
-    ],
     skills: [
       {
         name: "Claims Management",
@@ -578,11 +563,6 @@ export const infrastructureProfiles = [
       "Treaty and facultative reinsurance broker in Stamford who places property and casualty programs for mid-size insurers and captives.",
     summary:
       "<p>Reinsurance broker in Stamford placing treaty and facultative property and casualty for regional insurers and captives. I build the submission, run the market, and hold the slip when a January 1 renewal is still short two days before inception.</p><p>At Atlantic Treaty Partners I placed $1.1B of treaty limit across 18 buyers last year, with 94% of programs bound before inception. Facultative work on peak CAT zones taught me that a pretty model will not save a late underwriting file.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "rafael-soto" },
-      { platform: "website", ref: "https://rafaelsoto.example.com" },
-      { platform: "medium.com", ref: "rafael-soto" },
-    ],
     skills: [
       {
         name: "Reinsurance",
@@ -771,11 +751,6 @@ export const infrastructureProfiles = [
       "Detection engineer in Arlington who writes SIEM analytics, tunes detections against ATT&CK, and hunts what the rules missed.",
     summary:
       "<p>Detection engineer in Arlington building SIEM analytics and hunt hypotheses for a federal-adjacent SOC. I write the rule, measure the false-positive rate, and retire the ones that only fire on Friday deploys.</p><p>At Sentinel Harbor I shipped 140 detections with a median time-to-detect of 9 minutes on high-severity tags and cut alert volume 38% without losing confirmed incidents. Earlier SOC work taught me that a pretty dashboard is not a detection program.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "nadia-elsayed" },
-      { platform: "github.com", ref: "nadia-elsayed" },
-      { platform: "website", ref: "https://nadiaelsayed.example.com" },
-    ],
     skills: [
       {
         name: "Detection Engineering",
@@ -954,11 +929,6 @@ export const infrastructureProfiles = [
       "Incident response lead in Austin who runs enterprise IR, forensics, and tabletop programs when a detection becomes a war room.",
     summary:
       "<p>Incident response lead in Austin. I take a confirmed intrusion from first pager to containment, forensics, and the board brief — and I keep the war room from becoming a status-meeting factory.</p><p>At Redline Forensics I led 28 major incidents in three years, including a ransomware event contained in 11 hours with no domain-wide encryption. Earlier MSSP nights taught me that a memory image collected late is just a story you tell later.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "chris-langford" },
-      { platform: "github.com", ref: "clangford" },
-      { platform: "medium.com", ref: "chris-langford" },
-    ],
     skills: [
       {
         name: "Incident Response",
@@ -1131,11 +1101,6 @@ export const infrastructureProfiles = [
       "GRC manager in Boston who turns Zero Trust policy, control frameworks, and audit evidence into something engineers will actually implement.",
     summary:
       "<p>GRC manager in Boston. I write Zero Trust and access policy that can survive an audit and a product launch, and I do not publish a control that no team owns.</p><p>At Beacon Trust Advisory I took three SaaS customers from a failed SOC 2 Type I to a clean Type II in one cycle and retired 60 zombie policies. Earlier internal-audit work taught me that a shared drive of PDFs is not a control environment.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "harper-quinn" },
-      { platform: "website", ref: "https://harperquinn.example.com" },
-      { platform: "medium.com", ref: "harper-quinn" },
-    ],
     skills: [
       {
         name: "GRC",
@@ -1319,11 +1284,6 @@ export const infrastructureProfiles = [
       "Cloud security architect in Seattle who designs AWS and IAM baselines, guardrails, and Zero Trust patterns for multi-account estates.",
     summary:
       "<p>Cloud security architect in Seattle. I design AWS multi-account baselines, IAM, and guardrails so a new account is born restricted — not opened up after the first incident.</p><p>At Cascade Cloud Guard I moved 120 accounts onto a Control Tower-style landing zone with no standing admin and a 70% drop in public-resource findings. Earlier platform work taught me that a 'break-glass' role used daily is just admin with extra steps.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "dinesh-iyer" },
-      { platform: "github.com", ref: "diyer-sec" },
-      { platform: "website", ref: "https://dineshiyer.example.com" },
-    ],
     skills: [
       {
         name: "Cloud Security",
@@ -1502,11 +1462,6 @@ export const infrastructureProfiles = [
       "California PE designing seismic-resistant buildings in Los Angeles, from mid-rise housing to special moment frames that have to survive peer review.",
     summary:
       "<p>Structural engineer and California PE in Los Angeles. I design seismic systems for mid-rise housing and commercial buildings and I stamp when the analysis, the detailing, and the peer review actually agree.</p><p>At Pacific Frame Engineers I delivered 1.4M sf of Type I and Type III work through LADBS and peer review, including a 12-story special moment-frame tower that stayed inside drift limits after two redesigns. Earlier production work taught me that a pretty Revit model is not a complete joint.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "sofia-alvarez-pe" },
-      { platform: "website", ref: "https://sofiaalvarez.example.com" },
-      { platform: "medium.com", ref: "sofia-alvarez-pe" },
-    ],
     skills: [
       {
         name: "Structural Analysis",
@@ -1690,10 +1645,6 @@ export const infrastructureProfiles = [
       "Massachusetts PE delivering transportation projects in Boston — roadway, transit civil, and the utility coordination that keeps a letting on the calendar.",
     summary:
       "<p>Civil engineer and Massachusetts PE in Boston. I deliver roadway and transit-civil packages through MassDOT and MBTA review, and I treat utility coordination as design work, not a surprise at pre-bid.</p><p>At Commonwealth Transit Design I brought $240M of transportation civil to advertisement with a 4% addendum rate. Earlier municipal work taught me that a pretty typical section fails if the drainage outfall was never permitted.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "patrick-oreilly-pe" },
-      { platform: "website", ref: "https://patrickoreilly.example.com" },
-    ],
     skills: [
       {
         name: "PE Stamping",
@@ -1872,11 +1823,6 @@ export const infrastructureProfiles = [
       "Illinois PE coordinating MEP systems in Chicago — HVAC, plumbing, and the clash-free BIM that has to survive a hospital or lab commissioning.",
     summary:
       "<p>Mechanical engineer and Illinois PE in Chicago. I coordinate HVAC and plumbing through BIM and I stamp when loads, clearances, and sequences will actually commission.</p><p>At Lakeside MEP Partners I led 2.1M sf of healthcare and lab MEP with clash counts under 12 per 100,000 sf at IFC. Earlier production work taught me that a duct that fits in the model can still miss a fire damper in the field.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "mei-lin-pe" },
-      { platform: "website", ref: "https://meilin-pe.example.com" },
-      { platform: "medium.com", ref: "mei-lin-pe" },
-    ],
     skills: [
       {
         name: "MEP Coordination",
@@ -2055,11 +2001,6 @@ export const infrastructureProfiles = [
       "Colorado PE designing hydraulics and stormwater systems in Denver — floodplain, detention, and the models that have to survive a Mile High storm.",
     summary:
       "<p>Water resources engineer and Colorado PE in Denver. I design stormwater, detention, and floodplain work that has to survive both a Mile High cloudburst and an Urban Drainage review.</p><p>At Front Range Waterworks I delivered 18 stormwater packages totaling $92M, including a regional detention facility that dropped a 100-year peak 34% for a 240-acre basin. Earlier municipal work taught me that a HEC-RAS plot is not a permit.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "jordan-hale-pe" },
-      { platform: "github.com", ref: "jordanhale" },
-      { platform: "website", ref: "https://jordanhale.example.com" },
-    ],
     skills: [
       {
         name: "Hydraulics",
@@ -2243,11 +2184,6 @@ export const infrastructureProfiles = [
       "Wholesale power markets analyst in Houston who prices ERCOT and multi-ISO books, hedges shape risk, and explains a $9,000 spike without a novel.",
     summary:
       "<p>Power markets analyst in Houston. I price wholesale power, build the hedge, and explain a scarcity spike to a desk that already knows it lost money.</p><p>At Gulf Coast Power Desk I cover a 4.2 GW ERCOT and PJM book with day-ahead vs. real-time leakage inside 80 bps of plan. Earlier ISO work taught me that a pretty forward curve is not a congestion story.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "anika-bose" },
-      { platform: "medium.com", ref: "anika-bose" },
-      { platform: "website", ref: "https://anikabose.example.com" },
-    ],
     skills: [
       {
         name: "Power Markets",
@@ -2431,11 +2367,6 @@ export const infrastructureProfiles = [
       "Reservoir engineer in Midland working unconventional oil — type curves, spacing, and the wells that have to pay out before the next rig walk.",
     summary:
       "<p>Reservoir engineer in Midland. I build type curves, spacing cases, and EURs for unconventional oil that a completions engineer and a CFO can both live with.</p><p>At Permian Basin Reservoir Co I own 420 producing wells and a 90-well annual program with type-curve error inside 8% at 18 months. Earlier operator work taught me that a pretty decline fit is not a spacing decision.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "levi-stanton" },
-      { platform: "website", ref: "https://levistanton.example.com" },
-      { platform: "medium.com", ref: "levi-stanton" },
-    ],
     skills: [
       {
         name: "Reservoir Engineering",
@@ -2614,11 +2545,6 @@ export const infrastructureProfiles = [
       "Grid operations manager in Portland running NERC compliance and SCADA for a balancing-authority desk that has to stay inside the BAAL.",
     summary:
       "<p>Grid operations manager in Portland. I run a balancing-authority desk, the SCADA that feeds it, and the NERC evidence that has to be true on a bad Tuesday, not just at audit.</p><p>At Cascadia Grid Cooperative I cut BAAL exceedances 62% and closed a CIP evidence gap that had sat open for two audit cycles. Earlier dispatcher work taught me that a quiet alarm page is not the same as a reliable grid.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "hannah-greer" },
-      { platform: "website", ref: "https://hannahgreer.example.com" },
-      { platform: "medium.com", ref: "hannah-greer" },
-    ],
     skills: [
       {
         name: "Grid Operations",
@@ -2797,10 +2723,6 @@ export const infrastructureProfiles = [
       "Process safety engineer in Baton Rouge running PSM, PHAs, and MOC for refiners that cannot treat a recommendation as a suggestion.",
     summary:
       "<p>Process safety engineer in Baton Rouge. I run PSM, PHAs, and MOC for refiners, and I treat an open recommendation as a leak until it is closed with evidence.</p><p>At Bayou Refining Safety I cut overdue PHA recommendations 71% across two sites and closed a PSI gap that had sat through two turnarounds. Earlier unit work taught me that a HAZOP sticky note is not a safeguard.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "yusuf-rahman-psm" },
-      { platform: "website", ref: "https://yusufrahman.example.com" },
-    ],
     skills: [
       {
         name: "Process Safety",
@@ -2979,11 +2901,6 @@ export const infrastructureProfiles = [
       "RF planning engineer in Dallas building 5G RAN layers — PCI, power, and the sites that have to carry mid-band without wrecking the LTE neighbor list.",
     summary:
       "<p>RF planning engineer in Dallas. I design 5G RAN layers — site selection, PCI, power, and neighbor lists — and I do not call a cluster 'on air' until the drive test matches the prediction.</p><p>At Lone Star Spectrum I planned 1,140 mid-band sites with a 9% prediction-to-drive error on RSRP and a 22% drop in intra-frequency interference after a PCI and PCI-confusion cleanup. Earlier LTE work taught me that a pretty coverage plot is not a capacity plan.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "bianca-moretti" },
-      { platform: "github.com", ref: "bmoretti" },
-      { platform: "website", ref: "https://biancamoretti.example.com" },
-    ],
     skills: [
       {
         name: "5G RAN Planning",
@@ -3167,11 +3084,6 @@ export const infrastructureProfiles = [
       "NOC and network-planning manager in Atlanta who keeps a multi-vendor core and transport network inside its SLAs.",
     summary:
       "<p>Network operations manager in Atlanta. I run a NOC and the planning that sits behind it so a fiber cut or a core failover is a drill, not a press release.</p><p>At Peachtree Network Ops I cut Sev-1 MTTR from 3.4 hours to 71 minutes and took change-related incidents down 44%. Earlier NOC nights taught me that a green dashboard is not the same as a tested failover.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "kwame-boateng" },
-      { platform: "website", ref: "https://kwameboateng.example.com" },
-      { platform: "medium.com", ref: "kwame-boateng" },
-    ],
     skills: [
       {
         name: "Network Planning",
@@ -3349,11 +3261,6 @@ export const infrastructureProfiles = [
       "Fiber product manager in Denver who takes FTTH from a construction schedule to a product customers can actually order.",
     summary:
       "<p>Fiber product manager in Denver. I take FTTH from a construction schedule to a product with a price, an install window, and a churn number that is not a surprise.</p><p>At Rockies Fiber Co I launched service in 42,000 passings with 31% take rate at month 12 and install cycle time of 9 days. Earlier planning work taught me that a pretty homepass count is not a product if drop inventory is a rumor.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "erin-walsh-fiber" },
-      { platform: "website", ref: "https://erinwalsh.example.com" },
-      { platform: "medium.com", ref: "erin-walsh" },
-    ],
     skills: [
       {
         name: "Fiber Deployment",
@@ -3532,11 +3439,6 @@ export const infrastructureProfiles = [
       "OSS/BSS architect in Newark designing inventory, order, and spectrum-adjacent systems that have to agree with the network they claim to represent.",
     summary:
       "<p>OSS/BSS architect in Newark. I design inventory, order management, and spectrum-adjacent systems so a service order, a radio license, and a live circuit are the same object — not three databases arguing.</p><p>At Hudson OSS Labs I retired two shadow inventories and cut order fallout from 11% to 2.4% on a 180k-subscriber stack. Earlier integration work taught me that a 'source of truth' with a nightly batch is just a delayed rumor.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "soren-lindqvist" },
-      { platform: "github.com", ref: "slindqvist" },
-      { platform: "website", ref: "https://sorenlindqvist.example.com" },
-    ],
     skills: [
       {
         name: "OSS/BSS",

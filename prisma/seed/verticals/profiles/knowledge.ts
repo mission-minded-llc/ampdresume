@@ -11,11 +11,6 @@ export const knowledgeProfiles = [
       "Staff engineer who designs multi-region control planes. Consensus, placement, and the APIs that keep clusters honest when a zone disappears.",
     summary:
       "<p>Builds distributed control planes for fleets that cannot pause for a region outage. Placement, lease management, and API deprecation are the day job; the night job is teaching other teams how not to invent a second source of truth.</p><p>At Northline, led the scheduler that cut cross-region failover from 90 seconds to 11 across 14 clusters. Before that, shipped Harborline's mesh and shard rebalancer, and learned packet-level telemetry at Rainier Packet Co.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "maya-chen" },
-      { platform: "github.com", ref: "mayachen" },
-      { platform: "website", ref: "https://mayachen.example.com" },
-    ],
     skills: [
       {
         name: "Distributed Systems",
@@ -230,11 +225,6 @@ export const knowledgeProfiles = [
       "Engineering manager for platform and developer experience. Golden paths, paved roads, and the tickets that stop existing when the path is actually paved.",
     summary:
       "<p>Runs platform teams that treat developer time as the scarce resource. Golden paths, paved CI, and internal platforms only count if a product squad can ship on Friday without filing a ticket on Thursday.</p><p>At Driftwood, cut median PR-to-prod time from 3.4 days to 11 hours for 22 squads. Previously built Copperline's self-service environments and Lantern's local toolchain before anyone called it DX.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "elias-navarro" },
-      { platform: "github.com", ref: "enavarro-eng" },
-      { platform: "website", ref: "https://eliasnavarro.example.com" },
-    ],
     skills: [
       {
         name: "Technical Leadership",
@@ -418,11 +408,6 @@ export const knowledgeProfiles = [
       "Senior frontend engineer who treats the design system as a product. React, tokens, and the components that stop every squad from inventing a second button.",
     summary:
       "<p>Owns design systems the way platform engineers own clusters: versioned APIs, adoption metrics, and a sunset date for the one-off components. React and TypeScript are the materials; the work is making 11 product squads look like one company.</p><p>At Kestrel, cut unique button implementations from 47 to 4 and dropped visual-regression escapes 62%. Earlier, built Vellum's token pipeline and Redcedar's first accessible component kit.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "aisha-rahman" },
-      { platform: "github.com", ref: "aisharahman" },
-      { platform: "medium.com", ref: "aisharahman" },
-    ],
     skills: [
       {
         name: "React",
@@ -593,11 +578,6 @@ export const knowledgeProfiles = [
       "Staff SRE for observability and Kubernetes. SLOs, traces, and the dashboards that make a 3 a.m. page mean one thing.",
     summary:
       "<p>Treats observability as a product with owners, SLOs, and a budget. Kubernetes is the substrate; the work is making a page name the failing dependency before the war room does.</p><p>At Highwater, cut MTTR from 47 minutes to 14 and dropped paging noise 58% across 9 clusters. Previously ran Summit's tracing mesh and Alpine's first on-call that did not page on every 5xx.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "cole-brennan" },
-      { platform: "github.com", ref: "colebrennan-sre" },
-      { platform: "website", ref: "https://colebrennan.example.com" },
-    ],
     skills: [
       {
         name: "Observability",
@@ -785,11 +765,6 @@ export const knowledgeProfiles = [
       "Sell-side M&A vice president. Process letters, buyer trees, and the models that keep a founder from taking the first number that sounds large.",
     summary:
       "<p>Runs sell-side processes for founder-owned and sponsor-backed companies in industrials and business services. Buyer trees, management presentations, and the close calendar are the craft; the job is getting a signed SPA that still looks like the CIM six months later.</p><p>At Riverton &amp; Hale, led eight announced sell-sides totaling $4.6B EV, including a 14-bidder auction that cleared 11.2x EBITDA. Earlier, built Calder Street's mid-market industrials practice and learned live deals as an analyst at Foxbridge.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "helena-voss" },
-      { platform: "website", ref: "https://helenavoss.example.com" },
-      { platform: "medium.com", ref: "helenavoss" },
-    ],
     skills: [
       {
         name: "Deal Execution",
@@ -983,11 +958,6 @@ export const knowledgeProfiles = [
       "Leveraged finance associate. LBO models, credit memos, and the commitment papers that still look true after the quality of earnings.",
     summary:
       "<p>Underwrites leveraged loans and high-yield packages for sponsor LBOs and dividend recaps. The model is the argument; the credit memo is the part the commitment committee actually reads.</p><p>At Ironwood, staffed $3.1B of committed facilities across 11 sponsor deals, including a 6.4x first-lien package that held through a 90 bps flex. Came up as an analyst at Pellam Brothers writing the first-pass LBOs that associates used to rewrite.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "julian-park-levfin" },
-      { platform: "website", ref: "https://julianpark.example.com" },
-      { platform: "medium.com", ref: "julianpark" },
-    ],
     skills: [
       {
         name: "LBO Analysis",
@@ -1153,11 +1123,6 @@ export const knowledgeProfiles = [
       "ECM vice president for IPOs and follow-ons. Order books, range-setting, and the roadshows that still have a bid when the window narrows.",
     summary:
       "<p>Runs European equity offerings for issuers who cannot afford a failed window. IPO positioning, follow-on execution, and the investor calendar are the craft; the job is a priced deal that the aftermarket does not punish on day six.</p><p>At Thames Gate, led four IPOs and nine follow-ons totaling £6.8B, including a £1.1B offering that priced at the top after a 2.4x covered book. Previously built Meridian Row's UK mid-cap franchise through a closed window and two reopened ones.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "naomi-adeyemi" },
-      { platform: "medium.com", ref: "naomiadeyemi" },
-      { platform: "website", ref: "https://naomiadeyemi.example.com" },
-    ],
     skills: [
       {
         name: "Capital Markets",
@@ -1351,10 +1316,6 @@ export const knowledgeProfiles = [
       "Industrials coverage analyst. Comps, CIMs, and the first-pass models that let a VP walk into a CEO meeting without a second all-nighter.",
     summary:
       "<p>Covers Midwest industrials for a Chicago boutique: packaging, specialty distribution, and the family-owned manufacturers that still fax a data tape. The job is a clean model, a buyer list that is not last year's logos, and a CIM a founder will actually send.</p><p>At Lakeshore, staffed 14 live processes and built the coverage book on 60 names. First-pass models now take associates 70 minutes to review, down from a rewrite. Summered at Fairmont Coverage Group, where he learned which strategics pay for route density.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "marcus-bellamy" },
-      { platform: "website", ref: "https://marcusbellamy.example.com" },
-    ],
     skills: [
       {
         name: "Industry Coverage",
@@ -1508,11 +1469,6 @@ export const knowledgeProfiles = [
       "Engagement manager for operations and supply. Issue trees that end in a plant, a DC, or a planning meeting — not another deck.",
     summary:
       "<p>Runs operations and supply engagements for industrials and CPG. The issue tree is the start; the work is a planning process, a DC network, or a changeover that still holds after the team leaves.</p><p>At Oakline, led a network redesign that cut landed cost 11% and a S&amp;OP reset that dropped forecast MAPE from 34% to 19%. Previously ran Fieldstone plant programs and learned the shop floor at Clearwater Operations.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "lina-okonkwo" },
-      { platform: "medium.com", ref: "linaokonkwo" },
-      { platform: "website", ref: "https://linaokonkwo.example.com" },
-    ],
     skills: [
       {
         name: "Hypothesis-Driven Problem Solving",
@@ -1692,10 +1648,6 @@ export const knowledgeProfiles = [
       "Principal for operations excellence with manufacturing clients. Throughput, yield, and the operating system that still runs after the team flies home.",
     summary:
       "<p>Sells and leads manufacturing transformations that have to print in the P&amp;L. Throughput, yield, and the management system are the product; a lean tour is not.</p><p>At Halcyon, led four multi-plant programs that released $86M in annualized conversion cost and lifted OEE 7–12 points on constraint assets. Previously built Northbridge's ops excellence practice from plant diagnostics into a booked pipeline.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "theo-marchetti" },
-      { platform: "website", ref: "https://theomarchetti.example.com" },
-    ],
     skills: [
       {
         name: "Lean Manufacturing",
@@ -1892,11 +1844,6 @@ export const knowledgeProfiles = [
       "Associate on digital transformation engagements. Operating models, adoption, and the workstreams that do not end at a slide titled 'roadmap.'",
     summary:
       "<p>Staffs digital transformation for mid-market software and industrial clients who already bought the licenses. The work is operating-model design, adoption, and the process that has to change before the tool does anything.</p><p>At Redwood, led workstreams that moved a CPQ rollout from 18% to 71% weekly active use and cut quote cycle time 36%. Previously at Vesper, sized markets and built the issue trees partners used in the room.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "sabine-keller" },
-      { platform: "medium.com", ref: "sabinekeller" },
-      { platform: "github.com", ref: "skeller-notes" },
-    ],
     skills: [
       {
         name: "Hypothesis-Driven Problem Solving",
@@ -2071,11 +2018,6 @@ export const knowledgeProfiles = [
       "Manager for public-sector strategy. Agency operating models, budget choices, and the memos that survive a hearing.",
     summary:
       "<p>Leads public-sector strategy for civilian agencies and large cities. The product is a decision the budget office can defend: a program to keep, a process to retire, or an org chart that matches the statute.</p><p>At Capitol Ridge, ran a grants-portfolio review that redirected $180M toward higher-performing programs and a permitting redesign that cut median cycle time 29%. Previously at Argent, built the policy trees partners used in front of deputy secretaries.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "rohan-mehta-dc" },
-      { platform: "website", ref: "https://rohanmehta.example.com" },
-      { platform: "medium.com", ref: "rohanmehta" },
-    ],
     skills: [
       {
         name: "Policy Analysis",
@@ -2256,10 +2198,6 @@ export const knowledgeProfiles = [
       "Middle-market banking director. Relationship portfolios, hold levels, and the calls that keep a $40M credit from becoming a surprise.",
     summary:
       "<p>Runs a Carolinas middle-market book: C&amp;I, owner-managed industrials, and the sponsors who still want a banker who answers. Credit is a team sport; the job is a portfolio that earns its hold without surprising the committee in Q4.</p><p>At Catawba, grew a $1.1B commitment book to $1.6B with criticized assets under 2.1%. Previously built Sycamore's treasury-attached calling model and the joint credit-treasury reviews that stuck.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "camille-duval" },
-      { platform: "website", ref: "https://camilleduval.example.com" },
-    ],
     skills: [
       {
         name: "Relationship Management",
@@ -2439,11 +2377,6 @@ export const knowledgeProfiles = [
       "Commercial credit vice president. Spreads, ratings, and the memos that keep a committee from buying a story the cash flow will not support.",
     summary:
       "<p>Underwrites C&amp;I and sponsor credits for a Southeast commercial bank. The memo is the product: cash flow through-cycle, the add-backs that die in a downturn, and a rating the ALLL can live with.</p><p>At Magnolia Trust, cleared $2.4B of commitments with a 4% return-to-analyst rate and no surprises at exam. Previously built Red Clay's spreading standard and the early-warning triggers that caught two covenant misses a month early.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "andre-whitfield" },
-      { platform: "website", ref: "https://andrewhitfield.example.com" },
-      { platform: "medium.com", ref: "andrewhitfield" },
-    ],
     skills: [
       {
         name: "Credit Analysis",
@@ -2619,10 +2552,6 @@ export const knowledgeProfiles = [
       "Relationship manager for treasury and lending. Operating accounts, revolvers, and the QBR that makes the credit conversation happen before covenant season.",
     summary:
       "<p>Covers North Texas middle-market companies that want one banker for the revolver and the operating account. Treasury is not a cross-sell slide; it is how the relationship earns its keep when the loan is quiet.</p><p>At Trinity River, grew a 31-name book to $420M commitments with treasury fees up 38% and no past-due borrowing-base certificates. Previously built Alamo's lockbox and fraud-control offering that kept two clients after a competitor priced the loan tighter.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "priya-shah-rm" },
-      { platform: "website", ref: "https://priyashah.example.com" },
-    ],
     skills: [
       {
         name: "Treasury Management",
@@ -2793,11 +2722,6 @@ export const knowledgeProfiles = [
       "Credit officer for energy borrowers. Risk ratings, reserve cases, and the memos that treat a barrel and a well as cash flow, not a logo.",
     summary:
       "<p>Underwrites E&amp;P, midstream, and oilfield services for a Houston commercial book. Ratings move with strip, hedge books, and the AFE the borrower will not discuss in the first meeting.</p><p>At Cypress Bend, recast 38 energy ratings after the 2022 strip move and kept criticized energy assets at 3.4% of the book. Previously built Gulfport's reserve-case template and the process-safety questions that belong in a credit file, not only an insurance binder.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "benito-alvarez" },
-      { platform: "website", ref: "https://benitoalvarez.example.com" },
-      { platform: "medium.com", ref: "benitoalvarez" },
-    ],
     skills: [
       {
         name: "Risk Rating",
@@ -2976,10 +2900,6 @@ export const knowledgeProfiles = [
       "Chief nursing officer for a multi-hospital system. Staffing, safety, and the huddles that keep a never-event from becoming a press release.",
     summary:
       "<p>Leads nursing across a Houston system that still staffs beds the hard way. The work is skill mix, safety, and a professional-practice model that holds on a Saturday night, not a poster in the lobby.</p><p>At Memorial Harbor, cut hospital-acquired pressure injuries 41%, dropped RN turnover from 22% to 14%, and stood up a safety huddle that moved serious safety events from 1.8 to 0.7 per 10,000 adjusted patient days. Previously ran Bayou's house-wide staffing office and the first night-shift council that had a budget.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "elena-vasquez-cno" },
-      { platform: "website", ref: "https://elenavasquez.example.com" },
-    ],
     skills: [
       {
         name: "Nursing Leadership",
@@ -3168,11 +3088,6 @@ export const knowledgeProfiles = [
       "Medical director for hospital medicine. Census, handoffs, and the operating rhythm that keeps a hospitalist group from becoming 40 solo practices.",
     summary:
       "<p>Runs a hospital medicine group as a clinical operating system: census caps, geographic rounding, and a handoff that a night team can trust. Quality is not a committee; it is the daily board.</p><p>At Cuyahoga Lakes, cut observed LOS 0.5 days on the hospitalist service, dropped 7-day revisits 18%, and moved geographic rounding to 86% of discharges. Previously built Lake Erie's nocturnist model and learned capacity math as a hospitalist physician in the same group.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "david-okello" },
-      { platform: "website", ref: "https://davidokello.example.com" },
-      { platform: "medium.com", ref: "davidokello" },
-    ],
     skills: [
       {
         name: "Clinical Operations",
@@ -3356,11 +3271,6 @@ export const knowledgeProfiles = [
       "Revenue cycle director. Clean claims, denials, and the work queues that keep a $40M AR from becoming a story the CFO tells the board.",
     summary:
       "<p>Runs hospital and professional billing as one cycle: coding, claim edits, and the denial that is a front-end problem until someone owns it. Cash is a process, not a month-end scramble.</p><p>At Schuylkill, lifted clean-claim rate from 81% to 94%, cut initial denial rate 6.8 points, and pulled $18M of aged AR under 90 days. Previously rebuilt Liberty Bell's denial taxonomy and the payer-edit library that stopped the same reject from landing twice.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "keisha-monroe" },
-      { platform: "website", ref: "https://keishamonroe.example.com" },
-      { platform: "medium.com", ref: "keishamonroe" },
-    ],
     skills: [
       {
         name: "Revenue Cycle",
@@ -3549,11 +3459,6 @@ export const knowledgeProfiles = [
       "Clinical quality manager. Measure design, EHR workflows, and the PDSA that still runs after the Joint Commission leaves.",
     summary:
       "<p>Builds quality programs that a unit can run: measure definitions, EHR capture, and a PDSA cadence that does not die after survey. The dashboard is a tool; the huddle is the product.</p><p>At North Star, lifted sepsis-bundle compliance from 72% to 91% and cut fall-with-injury 27% across 11 units. Previously at Twin Cities Quality Collaborative, designed the shared measure set 14 clinics still submit without a summer intern cleaning the file.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "nathan-brooks-cqm" },
-      { platform: "website", ref: "https://nathanbrooks.example.com" },
-      { platform: "medium.com", ref: "nathanbrookscqm" },
-    ],
     skills: [
       {
         name: "Quality Improvement",

@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
+import { getDemoPlaceholderSocials } from "@/lib/demoSocials";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { ResumeView } from "./ResumeView";
 import { expect } from "@jest/globals";
@@ -48,7 +49,7 @@ describe("ResumeView", () => {
       themeDefaultSampleData.data.resume.user.name || "",
     );
     expect(screen.getByTestId("socials-count")).toHaveTextContent(
-      String(themeDefaultSampleData.data.resume.socials.length),
+      String(getDemoPlaceholderSocials(themeDefaultSampleData.data.resume.user).length),
     );
     expect(screen.getByTestId("skills-count")).toHaveTextContent(
       String(themeDefaultSampleData.data.resume.skillsForUser.length),

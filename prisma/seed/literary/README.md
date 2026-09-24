@@ -26,7 +26,8 @@ fields are updated; records removed from the seed are deleted for those literary
 
 Each character is a `User` keyed by slug `{slug}` with no account or display email. Profiles are
 viewable at `/r/{slug}` after seed (for example `/r/sherlock-holmes`). Every literary user is tagged
-`isDemo: true` so the app can tell seeded resumes apart from real accounts.
+`isDemo: true` so the app can tell seeded resumes apart from real accounts. Social links are omitted
+from the seed; themes inject dummy placeholders when a demo user is loaded.
 
 Dates follow the source text's internal chronology or first-publication era. Ancient and legendary
 figures use early calendar dates so PostgreSQL can store them. Featured-project links point at

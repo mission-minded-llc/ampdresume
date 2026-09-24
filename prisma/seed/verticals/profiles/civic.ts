@@ -11,11 +11,6 @@ export const civicProfiles = [
       "Associate dean who treats curriculum as a governed product — outcomes, credit hours, and accreditation evidence in the same ledger.",
     summary:
       "<p>Associate dean who rebuilt Harborwell's general-education map and shepherded two NECHE self-studies without a focused visit. I treat curriculum as a governed product: learning outcomes, credit-hour audit, and faculty workload sit in the same ledger.</p><p>Before Harborwell I ran assessment at Fenwick College, where a 48-program inventory cut overlapping credits 18% and lifted first-year persistence four points. I still teach one seminar a year so the paperwork stays honest.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "helen-cho" },
-      { platform: "website", ref: "https://helencho.example.com" },
-      { platform: "medium.com", ref: "helencho" },
-    ],
     skills: [
       {
         name: "Curriculum Design",
@@ -206,10 +201,6 @@ export const civicProfiles = [
       "IR director who turns IPEDS, enrollment, and budget files into decisions the provost can defend in public.",
     summary:
       "<p>Director of institutional research at Great Lakes Collegium. I keep the census, the common data set, and the board dashboard on one pipeline so a headcount argument never starts from three spreadsheets.</p><p>Earlier I built Huron Valley University's IR shop from a two-person reporting desk into an office that cut the provost's ad-hoc request backlog 60% and published an equity scorecard the faculty senate still cites.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "samuel-wright-ir" },
-      { platform: "website", ref: "https://samuelwright.example.com" },
-    ],
     skills: [
       {
         name: "Institutional Research",
@@ -422,11 +413,6 @@ export const civicProfiles = [
       "Student-affairs director who rebuilt advising, conduct, and residence life as one pathway instead of three offices.",
     summary:
       "<p>Director of student affairs at Piedmont Ridge University. I pulled advising, conduct, and residence life onto one case map so a student in trouble is not handed across three waiting lists.</p><p>At Oakmere College I cut judicial backlog 40% and raised first-year housing retention three points by treating residence life as an advising site, not a bed inventory. The work is still the 2 a.m. call — the difference is the morning file is already open.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "imani-brooks" },
-      { platform: "medium.com", ref: "imanibrooks" },
-      { platform: "website", ref: "https://imanibrooks.example.com" },
-    ],
     skills: [
       {
         name: "Student Affairs",
@@ -610,10 +596,6 @@ export const civicProfiles = [
       "Grant administrator who writes, budgets, and closes sponsored projects without leaving PI's hanging on the drawdown.",
     summary:
       "<p>Grant administrator at Driftless University. I take proposals from the first budget narrative through closeout so PIs are not translating agency rules alone, and sponsored expenditures stay inside the award.</p><p>At Lakeshore Technical Institute I raised proposal hit rate from 18% to 31% and closed a $4.2M backlog of expired awards that finance had been carrying as open. The job is still the FOA — the difference is the file is audit-ready before the visit.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "paolo-ricci" },
-      { platform: "website", ref: "https://paoloricci.example.com" },
-    ],
     skills: [
       {
         name: "Grant Writing",
@@ -797,11 +779,6 @@ export const civicProfiles = [
       "Project architect who takes cultural and commercial work from design development through a coordinated Revit set.",
     summary:
       "<p>Project architect at Atelier Meridian. I own design development and the Revit model from SD handoff through CA, and I treat coordination as a weekly discipline, not a late-phase rescue.</p><p>At Langford + Voss I delivered two Midtown commercial interiors and a Brooklyn arts annex on GMP with RFI rates 30% below the studio average. The drawings still have to be beautiful — they also have to build.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "camille-renard" },
-      { platform: "website", ref: "https://camillerenard.example.com" },
-      { platform: "medium.com", ref: "camillerenard" },
-    ],
     skills: [
       {
         name: "Revit",
@@ -989,10 +966,6 @@ export const civicProfiles = [
       "Urban designer who turns corridor plans and specific plans into streets, blocks, and public space a city can adopt.",
     summary:
       "<p>Urban designer at Civic Grid Studio. I work the scale between a specific plan and a curb: street sections, block structure, and the public-space program a planning commission can vote on.</p><p>At Pacific Rim Urban Works I led two corridor plans that unlocked 4,200 housing units and 18 acres of open space without a successful CEQA challenge. The render is the argument; the adopted map is the work.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "diego-morales-urban" },
-      { platform: "website", ref: "https://diegomorales.example.com" },
-    ],
     skills: [
       {
         name: "Urban Design",
@@ -1176,11 +1149,6 @@ export const civicProfiles = [
       "Healthcare architect who designs inpatient and ambulatory buildings that clear FGI, life safety, and a working nurse's path.",
     summary:
       "<p>Healthcare architect at Halcyon Health Design. I take inpatient units and ambulatory platforms from programming through CA, and I treat FGI, life safety, and infection control as design constraints, not a late checklist.</p><p>At Gulf Coast Facilities Group I delivered a 180-bed replacement tower and two outpatient clinics with zero life-safety comments on the final inspection. The floor plate still has to work at 2 a.m. for the charge nurse — that is the review that matters.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "naomi-stein" },
-      { platform: "medium.com", ref: "naomistein" },
-      { platform: "website", ref: "https://naomistein.example.com" },
-    ],
     skills: [
       {
         name: "Building Codes",
@@ -1375,11 +1343,6 @@ export const civicProfiles = [
       "Sustainability lead who writes energy, carbon, and materials targets into the design, then keeps them through CA.",
     summary:
       "<p>Sustainability lead at Cascade Timber Practice. I set energy, embodied-carbon, and materials targets in SD and stay on the job through CA so the LEED plaque is not a surprise at occupancy.</p><p>At Northlight Architecture I took four civic and workplace projects to LEED Gold or better and cut modeled EUI 28% versus the 2018 baseline set. The point is not the plaque — it is a building the owner can operate on the energy model we sold.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "felix-huang" },
-      { platform: "website", ref: "https://felixhuang.example.com" },
-      { platform: "medium.com", ref: "felixhuang" },
-    ],
     skills: [
       {
         name: "Sustainable Design",
@@ -1563,10 +1526,6 @@ export const civicProfiles = [
       "Acquisitions associate who underwrites office and industrial deals in ARGUS and will not send a memo the IC cannot audit.",
     summary:
       "<p>Acquisitions associate at Meridian Gate Capital. I underwrite office and last-mile industrial in ARGUS, build the DCF the investment committee can audit, and stay on the deal through PSA and first close.</p><p>At Ashlar Realty Partners I underwrote $1.1B of bids, closed $340M, and killed two LOIs after rent rolls did not survive a unit-level check. The model is the argument — the rent roll is the evidence.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "alexandra-dunn" },
-      { platform: "website", ref: "https://alexandradunn.example.com" },
-    ],
     skills: [
       {
         name: "ARGUS",
@@ -1735,11 +1694,6 @@ export const civicProfiles = [
       "Asset manager who runs office and industrial NOI like an operating company, not a quarterly spreadsheet.",
     summary:
       "<p>Asset manager at Red Oak Asset Group. I own a $1.4B office and industrial book in Dallas–Fort Worth: budgets, leasing, capex, and the quarterly pack the investment committee actually reads.</p><p>At Trinity Corridor Holdings I lifted same-store NOI 9% in two years by treating vacancy as a leasing problem and recoveries as an operations problem. The building still has to cash flow after the roof and the tenant improvement.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "ryan-okafor" },
-      { platform: "website", ref: "https://ryanokafor.example.com" },
-      { platform: "medium.com", ref: "ryanokafor" },
-    ],
     skills: [
       {
         name: "Asset Management",
@@ -1923,10 +1877,6 @@ export const civicProfiles = [
       "Office broker who closes tenant-rep and landlord deals on the actual lease, not the tour.",
     summary:
       "<p>Office broker at Lakeshore Office Partners. I represent tenants and a short list of landlords in the Loop, River North, and Fulton Market, and I treat the lease as the product — economics, options, and the work letter, not the tour deck.</p><p>At Wacker Lease Advisory I closed 1.1 million sf over four years with a 92% retainer-to-close rate. The tour is the audition; the work letter is the deal.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "leila-mansour" },
-      { platform: "website", ref: "https://leilamansour.example.com" },
-    ],
     skills: [
       {
         name: "Lease Negotiation",
@@ -2103,11 +2053,6 @@ export const civicProfiles = [
       "CRE debt originator who prices, structures, and closes office and industrial loans the credit committee can defend.",
     summary:
       "<p>Debt originator at Golden Gate Credit Partners. I originate senior and stretch senior on West Coast office and industrial, from term sheet through the credit memo and close.</p><p>At Pacific Rim Debt Desk I closed $890M across 17 loans with one loss and a 94% term-sheet-to-close rate. The spread is the conversation; the structure is the job.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "peter-lang-debt" },
-      { platform: "website", ref: "https://peterlang.example.com" },
-      { platform: "medium.com", ref: "peterlang" },
-    ],
     skills: [
       {
         name: "Capital Markets",
@@ -2291,11 +2236,6 @@ export const civicProfiles = [
       "Program director who treats grants, evaluation, and delivery as one file so a site visit is not a scramble.",
     summary:
       "<p>Program director at Civic Commons Institute. I run a youth-employment and civic-education portfolio across six cities, and I keep grant, evaluation, and delivery on one calendar so a site visit reads the same file the board already saw.</p><p>At Atlas Neighborhood Fund I took three federal awards from proposal through closeout and raised on-time performance reports from 71% to 98%. The program still has to work on a Thursday night — the report is how we prove it.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "fatima-al-hassan" },
-      { platform: "website", ref: "https://fatimaalhassan.example.com" },
-      { platform: "medium.com", ref: "fatimaalhassan" },
-    ],
     skills: [
       {
         name: "Program Evaluation",
@@ -2486,10 +2426,6 @@ export const civicProfiles = [
       "Development director who treats major gifts, grants, and the gala as one pipeline with names, not a spreadsheet of hope.",
     summary:
       "<p>Development director at Harborlight Foundation. I own major gifts, institutional grants, and the annual gala as one pipeline, and I will not forecast a coffee as a close.</p><p>At North Atlantic Philanthropy I grew individual giving 38% in three years and cut lapsed major-donor rate from 22% to 9%. The thank-you is still the job — the difference is the next ask is already on a calendar.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "gabriel-santos-dev" },
-      { platform: "website", ref: "https://gabrielsantos.example.com" },
-    ],
     skills: [
       {
         name: "Donor Relations",
@@ -2673,11 +2609,6 @@ export const civicProfiles = [
       "M&E specialist who builds indicator systems program staff will actually keep, then uses them in the next design.",
     summary:
       "<p>Monitoring and evaluation specialist at MeasureWell Collaborative. I design indicator sets, data-quality checks, and learning reviews for education and health nonprofits that are tired of a dashboard no one trusts.</p><p>At Southern Outcomes Lab I cut missing outcome records from 21% to 5% across four partners and wrote the evaluation chapter of two funded federal proposals. The point of M&E is the next program decision — not a PDF for the binder.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "june-ellison" },
-      { platform: "medium.com", ref: "juneellison" },
-      { platform: "website", ref: "https://juneellison.example.com" },
-    ],
     skills: [
       {
         name: "Monitoring and Evaluation",
@@ -2861,11 +2792,6 @@ export const civicProfiles = [
       "Policy advocate who writes the brief, works the Hill, and counts the vote — not the press release.",
     summary:
       "<p>Policy advocate at Open Corridor Advocacy. I work housing, workforce, and appropriations files: the brief, the Hill meeting, and the vote count. A press release is not an outcome.</p><p>At Federal Policy Workshop I helped move two authorizing bills through committee and killed a rider that would have cut a $40M youth-employment set-aside. The meeting still happens in a hallway — the difference is the one-pager is already in the member's folder.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "colin-byrne-policy" },
-      { platform: "website", ref: "https://colinbyrne.example.com" },
-      { platform: "medium.com", ref: "colinbyrne" },
-    ],
     skills: [
       {
         name: "Policy Advocacy",
@@ -3049,10 +2975,6 @@ export const civicProfiles = [
       "Captain and check airman who treats line ops and the checkride as the same standard, not two different airlines.",
     summary:
       "<p>Captain and check airman at Horizon Line Airways. I fly the 737 line out of Dallas and conduct AQP checks and IOEs so the standard in the sim is the standard on a Friday night into LGA.</p><p>At Red Mesa Regional I wrote the CRM module the FAA accepted on the first review and cut repeat training events 18% in a year. The debrief is still the job — the difference is the event file is already in the SMS.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "sienna-walsh" },
-      { platform: "website", ref: "https://siennawalsh.example.com" },
-    ],
     skills: [
       {
         name: "Flight Operations",
@@ -3231,11 +3153,6 @@ export const civicProfiles = [
       "SOC director who keeps the operation legal, crewed, and recoverable when the day does not match the plan.",
     summary:
       "<p>Director of system operations control at Midcontinent Air Group. I own the day-of operation: schedule integrity, crew legality, and the IROPS plan when weather or a ground stop takes the bank apart.</p><p>At Prairie Hub Airlines I cut controllable cancellations 22% and recovered 91% of misconnects inside the next bank after we put dispatch, crew scheduling, and maintenance control on one floor. The plan is the morning product — the recover is the job.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "hiroshi-tanaka-soc" },
-      { platform: "website", ref: "https://hiroshitanaka.example.com" },
-      { platform: "medium.com", ref: "htanaka-soc" },
-    ],
     skills: [
       {
         name: "Airline Scheduling",
@@ -3418,11 +3335,6 @@ export const civicProfiles = [
       "Revenue-management analyst who prices O&D and fare classes against a forecast, then checks whether the flight actually closed that way.",
     summary:
       "<p>Revenue-management analyst at Atlantic Peak Air. I own O&D forecasts, fare-class mix, and the overbooking curve for a 90-city domestic network, and I close the week against flown revenue, not the Monday bid price.</p><p>At Sunbelt Yield Analytics I lifted unit revenue 4.2% on a 40-market test set and cut denied boardings 31% after we stopped treating no-show as a constant. The RM system is a recommendation — the analyst still owns the flight.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "megan-price-rm" },
-      { platform: "website", ref: "https://meganprice.example.com" },
-      { platform: "medium.com", ref: "meganprice" },
-    ],
     skills: [
       {
         name: "Revenue Management",
@@ -3606,10 +3518,6 @@ export const civicProfiles = [
       "Maintenance planning manager who keeps the AMP legal, the hangar loaded, and the SMS file current when a check slips.",
     summary:
       "<p>Maintenance planning manager at Tropic Line Maintenance. I own the aircraft maintenance program, the hangar load, and the parts forecast so a C-check does not become a three-day AOG because a panel was not kitted.</p><p>At Caribbean Heavy Check I raised on-time check completion from 71% to 89% and cut repeat findings 24% after configuration control and the SMS event file started talking to the work package. The hangar still has to close on Friday — the AMP is how we stay legal while it does.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "omar-khalil-mx" },
-      { platform: "website", ref: "https://omarkhalil.example.com" },
-    ],
     skills: [
       {
         name: "Maintenance Planning",

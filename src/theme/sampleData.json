@@ -10,38 +10,10 @@
         "summary": "<p>Full Stack Engineer specializing in modern web technologies, with a bias toward clear architecture and maintainable systems.</p>",
         "summaryTitle": "Professional Summary",
         "siteTitle": "Taylor Everglow's Professional Portfolio",
-        "siteDescription": "Full Stack Engineer specializing in modern web technologies"
+        "siteDescription": "Full Stack Engineer specializing in modern web technologies",
+        "isDemo": true
       },
-      "socials": [
-        {
-          "id": "cm6vo6u2m0001qjmta1uz8xgd",
-          "userId": "cm667ueei0000q8n1kuik8734",
-          "platform": "github",
-          "ref": "tayloreverglow-dev",
-          "sortIndex": 0
-        },
-        {
-          "id": "cm6vo6u6h0003qjmtqym93m8a",
-          "userId": "cm667ueei0000q8n1kuik8734",
-          "platform": "linkedin",
-          "ref": "taylor-everglow-developer",
-          "sortIndex": 1
-        },
-        {
-          "id": "cm6vo6u8f0005qjmt3anbw517",
-          "userId": "cm667ueei0000q8n1kuik8734",
-          "platform": "x",
-          "ref": "tayloreverglow",
-          "sortIndex": 2
-        },
-        {
-          "id": "cm6vo6uac0007qjmt6oo9zwit",
-          "userId": "cm667ueei0000q8n1kuik8734",
-          "platform": "website",
-          "ref": "https://www.tayloreverglow.dev",
-          "sortIndex": 3
-        }
-      ],
+      "socials": [],
       "skillsForUser": [
         {
           "id": "cm6vok39e001hqjmtrgutonaf",

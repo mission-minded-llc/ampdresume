@@ -86,7 +86,6 @@ export type LiteraryCharacterInput = Omit<
   siteTitle?: string;
   summary?: string;
   summaryTitle?: string;
-  socials?: LiterarySocial[];
   /** Year of death, or last year of the source text if the character survives. */
   died?: number;
 };

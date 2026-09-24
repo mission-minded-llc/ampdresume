@@ -14,6 +14,10 @@ describe("industry-vertical seed roster", () => {
     expect(verticalProfiles.every((profile) => profile.isDemo)).toBe(true);
   });
 
+  it("omits social links from demo profiles", () => {
+    expect(verticalProfiles.every((profile) => profile.socials.length === 0)).toBe(true);
+  });
+
   it("includes every supported resume section on each profile", () => {
     const errors = verticalProfiles.flatMap(validateVerticalProfile);
     expect(errors).toEqual([]);

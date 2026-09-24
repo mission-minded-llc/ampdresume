@@ -1,5 +1,6 @@
 import { usePathname } from "next/navigation";
 import { render, screen } from "@testing-library/react";
+import { getDemoPlaceholderSocials } from "@/lib/demoSocials";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { generateSocialUrl, getSocialMediaPlatformByPlatformName } from "@/util/social";
 import { ArcadeHeading } from "./ArcadeHeading";
@@ -11,7 +12,7 @@ jest.mock("next/navigation", () => ({
 
 describe("ArcadeHeading", () => {
   const sampleUser = themeDefaultSampleData.data.resume.user;
-  const sampleSocials = themeDefaultSampleData.data.resume.socials;
+  const sampleSocials = getDemoPlaceholderSocials(sampleUser);
 
   beforeEach(() => {
     (usePathname as jest.Mock).mockReturnValue("/demo/retro-80s");

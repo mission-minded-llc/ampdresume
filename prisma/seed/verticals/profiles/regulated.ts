@@ -11,11 +11,6 @@ export const regulatedProfiles = [
       "Clinical development lead in Cambridge running Phase II/III programs from protocol through CSR, with a bias for operationally honest endpoints.",
     summary:
       "<p>Clinical Development Lead at Helixbridge Therapeutics, accountable for two late-stage immunology programs and a 38-site U.S. network. I write protocols that sites can actually run, then stay in the room when recruitment, safety, and the SAP start to disagree.</p><p>Before Helixbridge I spent nine years moving from CRA work into clinical science at Northvale Biologics and Meridian Trial Sciences. I care about screen-fail rates, DSMB packets that arrive on time, and the difference between a clean database lock and a lock that just looks clean.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "yuna-takahashi" },
-      { platform: "website", ref: "https://www.yuna-takahashi.example.com" },
-      { platform: "medium.com", ref: "yunatakahashi" },
-    ],
     skills: [
       {
         name: "Clinical Development",
@@ -233,10 +228,6 @@ export const regulatedProfiles = [
       "Regulatory affairs director in New Brunswick who shepherds FDA submissions from pre-IND through labeling, with a taste for Type C meetings that actually decide something.",
     summary:
       "<p>Director of Regulatory Affairs at Crestline Pharma, owning the U.S. strategy for a late-stage neurology franchise and two earlier oncology INDs. I write the briefing book, sit in the room with the review division, and then translate the minutes into a plan CMC and clinical can execute.</p><p>I came up through submission management at Harborline Medicines and Alderwick Regulatory Group. The work I trust is a Module 2 that matches the Module 5 tables, a labeling negotiation that does not surprise commercial, and a complete response that does not invent new science on deadline.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "omar-haddad-ra" },
-      { platform: "website", ref: "https://www.omarhaddad.example.com" },
-    ],
     skills: [
       {
         name: "FDA Regulatory Affairs",
@@ -449,10 +440,6 @@ export const regulatedProfiles = [
       "Pharmacovigilance manager in Philadelphia who treats signal detection as a weekly habit, not a quarterly surprise.",
     summary:
       "<p>Pharmacovigilance Manager at Rivermark Life Sciences, accountable for the global safety database, aggregate reports, and the signal board for a 14-product book. I would rather find a weak signal early than explain a late one to a Qualified Person or an FDA reviewer.</p><p>I trained on case processing and PSUR clocks at Pinnacle Vigilance, then built a signal-detection rhythm at Solara Safety Partners. The work that matters is clean ICSR coding, a signal that has a method behind it, and a risk-management plan that medical and regulatory can both defend.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "francesca-rossi-pv" },
-      { platform: "medium.com", ref: "francescarossi" },
-    ],
     skills: [
       {
         name: "Pharmacovigilance",
@@ -661,11 +648,6 @@ export const regulatedProfiles = [
       "CMC project lead in Indianapolis who treats tech transfer as a process problem, not a shipping problem.",
     summary:
       "<p>CMC Project Lead at Oakridge Biomanufacturing, accountable for process characterization, PPQ, and the tech-transfer packets that move a drug-substance process from development into a second site. I measure success in batches that stay inside the proven acceptable range, not in slide decks about readiness.</p><p>I came up through process engineering at Westfield Drug Substance and Fairhaven Process Sciences. The work I trust is a control strategy that QA and the plant can both run, a PPQ campaign that does not invent new deviations, and a transfer that the receiving site could execute without the sending team in the room.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "grant-holloway-cmc" },
-      { platform: "website", ref: "https://www.grantholloway.example.com" },
-      { platform: "medium.com", ref: "grantholloway" },
-    ],
     skills: [
       {
         name: "CMC Development",
@@ -873,11 +855,6 @@ export const regulatedProfiles = [
       "GS-14 program analyst in Washington who evaluates whether a federal program did what the statute paid for, not what the briefing claimed.",
     summary:
       "<p>Program Analyst (GS-14) at the Civic Outcomes Bureau, leading evaluations for three grant-funded portfolios totaling $410M. I design the questions before the money moves, then come back with evidence that survives an IG or an appropriations staffer.</p><p>I started in monitoring at the Mid-Atlantic Grant Collaborative and learned evaluation design at Ridgeway Policy Lab. The work I trust is a logic model that matches the statute, a sample that is not a convenience sample, and a finding that program offices cannot edit into a success story.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "amara-dixon" },
-      { platform: "website", ref: "https://www.amaradixon.example.com" },
-      { platform: "medium.com", ref: "amaradixon" },
-    ],
     skills: [
       {
         name: "Program Evaluation",
@@ -1090,10 +1067,6 @@ export const regulatedProfiles = [
       "Warranted contracting officer in Arlington who treats source selection as a record you can defend, not a meeting you can win.",
     summary:
       "<p>Contracting Officer at Halcyon Acquisition Command with an unlimited warrant on civilian services and a $1.2B IDIQ book. I care about the evaluation notice that matches the RFP, the file that survives a GAO protest, and the modification that does not invent new scope.</p><p>I learned the FAR the slow way at the Arlington Procurement Office and Vesper Contracting Partners. The work I trust is a source-selection decision document that quotes the factors, a debrief that does not create a new protest ground, and a contractor that gets paid for what the contract actually said.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "wesley-cho-co" },
-      { platform: "website", ref: "https://www.wesleycho.example.com" },
-    ],
     skills: [
       {
         name: "Procurement",
@@ -1306,11 +1279,6 @@ export const regulatedProfiles = [
       "Policy advisor in Denver who writes the state-federal rule so an agency can implement it, not just announce it.",
     summary:
       "<p>Policy Advisor at the Intermountain Regulatory Council, writing the state-federal interface on air, water, and wildfire-mitigation rules. I draft the preamble, the implementation memo, and the letter to the regional office that has to live with the result.</p><p>I started in advocacy comments at Front Range Policy Works and spent four years inside the Colorado Compact Office. The work I trust is a rule that a regional staffer can implement without calling counsel, a comment-response that actually answers the comment, and a cooperative-federalism deal that still has a statute underneath it.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "noelle-hartman" },
-      { platform: "medium.com", ref: "noellehartman" },
-      { platform: "website", ref: "https://www.noellehartman.example.com" },
-    ],
     skills: [
       {
         name: "Regulatory Writing",
@@ -1523,10 +1491,6 @@ export const regulatedProfiles = [
       "Budget analyst in Sacramento who formulates the request, then stays for the mid-year execution when the allotment does not match the story.",
     summary:
       "<p>Budget Analyst at the Pacific Budget Institute, leading formulation and mid-year execution for a $2.4B civilian portfolio. I build the justification, the allotment plan, and the reprogramming package when the enacted bill does not match the request.</p><p>I learned formulation at the Sacramento Fiscal Office and execution at Cascade Appropriations Group. The work I trust is a decision unit that still makes sense in May, a vacancy factor that is not a wish, and a mid-year cut that program offices can actually take.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "isaac-flores-budget" },
-      { platform: "website", ref: "https://www.isaacflores.example.com" },
-    ],
     skills: [
       {
         name: "Budget Formulation",
@@ -1739,11 +1703,6 @@ export const regulatedProfiles = [
       "Systems engineer in Huntsville who keeps the SysML model, the requirements database, and the interface-control document telling the same story.",
     summary:
       "<p>Systems Engineer at Aetherion Defense Systems, owning MBSE and requirements for a ground-based interceptor support program. I would rather find a broken interface in the model than on the range.</p><p>I came up through requirements writing at Clearline Mission Engineering and model work at Redstone Model Works. The work I trust is a requirement that has a verification method, a block that matches the ICD, and a change that does not silently orphan a child requirement.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "rhea-kapoor-se" },
-      { platform: "website", ref: "https://www.rheakapoor.example.com" },
-      { platform: "medium.com", ref: "rheakapoor" },
-    ],
     skills: [
       {
         name: "Systems Engineering",
@@ -1957,10 +1916,6 @@ export const regulatedProfiles = [
       "Flight test engineer in Palmdale who writes the card, flies the point, and treats DO-178C evidence as part of the sortie, not a folder that gets filled in later.",
     summary:
       "<p>Flight Test Engineer at Skylance Flight Sciences, leading envelope-expansion and airworthiness cards on a remotely piloted test article. I plan the point, brief the crew, and close the data so the next card is not written from memory.</p><p>I started on instrumentation at Mojave Envelope Group and learned software airworthiness at Palmdale Airworthiness Lab. The work I trust is a test hazard analysis that changes the card, a DO-178C artifact that matches what flew, and a data package that FAA or the customer can read without a translator.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "tyler-grayson-fte" },
-      { platform: "website", ref: "https://www.tylergrayson.example.com" },
-    ],
     skills: [
       {
         name: "Flight Test",
@@ -2154,11 +2109,6 @@ export const regulatedProfiles = [
       "Avionics lead in Seattle who treats the load, the as-built, and the CM baseline as one configuration, not three stories.",
     summary:
       "<p>Avionics Lead at Cascadia Avionics, accountable for the flight-control and comms suite on a commercial-derivative special-mission aircraft. I own the box list, the software loads, and the change that would otherwise live in a technician's notebook.</p><p>I started in LRU integration at Puget Sound Flight Electronics and ran configuration at Rainier Config Systems. The work I trust is a baseline that matches the jet, a DO-178C load that has a release record, and a change board that happens before the next flight, not after.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "ingrid-solberg" },
-      { platform: "medium.com", ref: "ingridsolberg" },
-      { platform: "website", ref: "https://www.ingridsolberg.example.com" },
-    ],
     skills: [
       {
         name: "Avionics",
@@ -2374,10 +2324,6 @@ export const regulatedProfiles = [
       "Cleared program manager in Arlington who runs the IMS, the customer, and the subcontractors without letting any of them become the real baseline.",
     summary:
       "<p>Program Manager at Northline Defense Programs, accountable for a cleared C4ISR modernization effort with three subcontractors and a customer who reads the IMS. I hold cost, schedule, and the technical baseline in the same meeting.</p><p>I came up through systems and contracts at Potomac Mission Office and Tidewater Systems Group. The work I trust is a program that can explain a slip before the customer finds it, a subcontractor that is managed to the SOW, and a security posture that is not a weekend scramble before a visit.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "malcolm-reeves-pm" },
-      { platform: "website", ref: "https://www.malcolmreeves.example.com" },
-    ],
     skills: [
       {
         name: "Program Management",
@@ -2590,11 +2536,6 @@ export const regulatedProfiles = [
       "Corporate associate in New York who runs M&A closings and governance work like an operating system, not a last-minute closing binder.",
     summary:
       "<p>Corporate Associate at Calder Finch LLP, leading middle-market M&A and the governance work that keeps a board from inventing process in the middle of a deal. I draft the merger agreement, run the closing checklist, and write the minutes that will be read in the next dispute.</p><p>I started in general corporate at Hudson Deal Counsel and learned governance at Westbrook Corporate. The work I trust is a disclosure schedule that matches the data room, a stockholder consent that is actually authorized, and a closing that does not discover a lien at 11 p.m.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "danielle-okoye" },
-      { platform: "website", ref: "https://www.danielleokoye.example.com" },
-      { platform: "medium.com", ref: "danielleokoye" },
-    ],
     skills: [
       {
         name: "Corporate Law",
@@ -2788,10 +2729,6 @@ export const regulatedProfiles = [
       "Litigation counsel in Chicago who treats commercial cases and eDiscovery as one file: the theory, the custodians, and the exhibit that will actually be used.",
     summary:
       "<p>Litigation Counsel at Brannigan & Holt LLP, running commercial cases from complaint through the first serious settlement window. I write the theory, hold the discovery, and refuse to produce a million documents because someone was afraid to negotiate the request.</p><p>I learned eDiscovery at Midwest Discovery Group and case work at Lakeshore Litigation. The work I trust is a custodian list that matches the claims, a privilege log that a magistrate will not laugh at, and a motion that cites the record we have, not the record we wish we had.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "seth-greenberg-lit" },
-      { platform: "website", ref: "https://www.sethgreenberg.example.com" },
-    ],
     skills: [
       {
         name: "Litigation Strategy",
@@ -3004,11 +2941,6 @@ export const regulatedProfiles = [
       "In-house senior counsel in San Francisco who treats product, privacy, and the contract as one risk, not three tickets.",
     summary:
       "<p>Senior Counsel at Lumenora Health Cloud, owning product counseling and privacy for a clinical-data platform. I sit with engineering on the feature, with security on the DPA, and with the customer when the BAA does not match what the product actually does.</p><p>I came up through privacy and commercial work at Sutter & Lang LLP and Fairwinds Software. The work I trust is a product launch that has a legal design review, a DPA that matches the data map, and a regulator letter that does not invent a new product story.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "marisol-vega" },
-      { platform: "medium.com", ref: "marisolvega" },
-      { platform: "website", ref: "https://www.marisolvega.example.com" },
-    ],
     skills: [
       {
         name: "Regulatory Counseling",
@@ -3202,10 +3134,6 @@ export const regulatedProfiles = [
       "Regulatory attorney in Washington who counsels clients through the agency they actually have, not the agency they briefed the board about.",
     summary:
       "<p>Regulatory Attorney at Ashford Quill LLP, counseling life-sciences and consumer clients through FDA, FTC, and the state AGs that follow. I write the meeting package, sit in the room, and then translate the minutes into a plan the business can run.</p><p>I started in research at the Mid-Atlantic Regulatory Clinic and spent six years at Interstate Agency Practice. The work I trust is a comment that cites the docket, a warning-letter response that does not invent new science, and a counseling memo that names the risk instead of softening it.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "hugh-pemberton" },
-      { platform: "website", ref: "https://www.hughpemberton.example.com" },
-    ],
     skills: [
       {
         name: "Regulatory Counseling",
@@ -3441,11 +3369,6 @@ export const regulatedProfiles = [
       "Audit senior manager in New York who treats the file, the controls, and the opinion as one piece of work, not a busy season performance.",
     summary:
       "<p>Audit Senior Manager at Hartwell & Grey LLP, leading external audits for mid-cap issuers and a pair of large private companies. I plan the file, staff the risky accounts, and stay in the room when a control deficiency wants to become a conversation instead of a conclusion.</p><p>I came up through East River Assurance and Meridian Public Audit. The work I trust is a walkthrough that matches how the process actually runs, a sampling method that can be explained to a reviewer, and an opinion that is dated because the evidence was ready, not because the calendar was.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "claire-fontaine-cpa" },
-      { platform: "website", ref: "https://www.clairefontaine.example.com" },
-      { platform: "medium.com", ref: "clairefontaine" },
-    ],
     skills: [
       {
         name: "External Audit",
@@ -3657,10 +3580,6 @@ export const regulatedProfiles = [
       "SOX compliance manager in Dallas who treats internal controls as an operating system, not a binder that comes out in January.",
     summary:
       "<p>SOX Compliance Manager at PrairieLine Payments, owning ICFR scoping, testing, and deficiency evaluation for a newly public payments processor. I would rather retire a key control that nobody performs than test a narrative that last year's consultant left behind.</p><p>I started in external audit at Redbird Assurance and built the first in-house SOX program at Trinity Controls. The work I trust is a risk-and-control matrix that matches the process, a tester who has watched the control run, and a significant-deficiency call that the CFO hears before the auditor does.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "victor-nguyen-sox" },
-      { platform: "website", ref: "https://www.victornguyen.example.com" },
-    ],
     skills: [
       {
         name: "SOX Compliance",
@@ -3892,11 +3811,6 @@ export const regulatedProfiles = [
       "Tax manager in Chicago who treats the provision as a process with a close calendar, not a weekend miracle before the 10-K.",
     summary:
       "<p>Tax Manager at North Pier Industrials, owning the U.S. GAAP tax provision, quarterly forecast, and the return-to-provision true-up for a multi-state industrial. I close the provision on the same calendar as the controller, then explain the rate to a CFO who does not want a story.</p><p>I started in compliance at Calumet Tax Partners and learned provision work at Lakeshore Tax Advisors. The work I trust is a rate rec that ties, a deferred rollforward that matches the balance sheet, and a state position that is documented before the auditor asks why the ETR moved.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "jasmine-patel-tax" },
-      { platform: "medium.com", ref: "jasminepateltax" },
-      { platform: "website", ref: "https://www.jasminepatel.example.com" },
-    ],
     skills: [
       {
         name: "Tax Provision",
@@ -4109,10 +4023,6 @@ export const regulatedProfiles = [
       "Internal audit director in Minneapolis who treats analytics as the way you pick the audit, not a slide that proves you have a tool.",
     summary:
       "<p>Director of Internal Audit at Minnehaha Consumer Brands, leading a 14-person function across North American plants and a shared-service center. I would rather find the duplicate payment in the data than write a finding about a policy nobody reads.</p><p>I came up through external audit at Northland Mutual Assurance and analytics at Prairie Analytics. The work I trust is a risk assessment that changes the plan, a continuous-audit script that a plant controller cannot game, and a report the audit committee reads because it is short and specific.</p>",
-    socials: [
-      { platform: "linkedin.com", ref: "owen-mcallister" },
-      { platform: "website", ref: "https://www.owenmcallister.example.com" },
-    ],
     skills: [
       {
         name: "Audit Analytics",

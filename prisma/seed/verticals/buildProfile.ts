@@ -25,7 +25,7 @@ export function defineProfile(input: VerticalProfileInput): VerticalProfile {
     summaryTitle: input.summaryTitle ?? "Professional Summary",
     displayEmail: input.displayEmail ?? `${slug.replace(/-/g, ".")}@example.com`,
     isDemo: true,
-    socials: input.socials,
+    socials: [],
     companies: input.companies,
     education: input.education,
     certifications: input.certifications,

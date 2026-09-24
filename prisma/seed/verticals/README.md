@@ -19,8 +19,9 @@ viewable at `/r/{slug}` after seed (for example `/r/maya-chen`). Display emails 
 user is tagged `isDemo: true` so the app can tell seeded resumes apart from real accounts.
 
 Every resume includes the supported Amp'd Resume sections: profile info, professional summary,
-socials, skills, work experience (companies, positions, projects), featured projects, education, and
-certifications.
+skills, work experience (companies, positions, projects), featured projects, education, and
+certifications. Social links are omitted from the seed; themes inject dummy placeholders when a
+demo user is loaded.
 
 ## Adding a profile
 
