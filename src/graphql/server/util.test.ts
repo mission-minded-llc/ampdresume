@@ -24,6 +24,7 @@ const mockUser = {
   summaryTitle: "About Me",
   webThemeName: "default",
   pdfThemeName: "default",
+  isDemo: false,
 } as User;
 
 const unauthenticatedContext: GraphQLContext = {
@@ -56,8 +57,18 @@ describe("filterUserData", () => {
       summary: "<p>Public summary</p>",
       summaryTitle: "About Me",
       pdfThemeName: "default",
+      isDemo: false,
       displayEmail: null,
       email: null,
+    });
+  });
+
+  it("keeps the demo tag on public resume payloads", () => {
+    const demoUser = { ...mockUser, isDemo: true };
+
+    expect(filterUserData(demoUser, unauthenticatedContext)).toMatchObject({
+      isDemo: true,
+      displayEmail: null,
     });
   });
 

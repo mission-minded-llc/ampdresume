@@ -68,9 +68,26 @@ describe("public PDFView", () => {
     expect(screen.getByText("Generate PDF")).toBeInTheDocument();
     expect(screen.getByText(resume.user.name!)).toBeInTheDocument();
     expect(screen.queryByLabelText("PDF Theme")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("demo-resume-tag")).not.toBeInTheDocument();
     await waitFor(() => {
       expect(screen.getByRole("button", { name: "Generate PDF" })).toBeEnabled();
     });
+  });
+
+  it("shows a Demo tag for seeded demo resumes", () => {
+    render(
+      <PDFView
+        user={{ ...resume.user, isDemo: true }}
+        skillsForUser={resume.skillsForUser}
+        companies={resume.companies}
+        education={resume.education}
+        certifications={resume.certifications || []}
+        featuredProjects={resume.featuredProjects || []}
+        pdfThemeName="default"
+      />,
+    );
+
+    expect(screen.getByTestId("demo-resume-tag")).toHaveTextContent("Demo");
   });
 
   it("falls back to Classic when the stored PDF theme is unknown", () => {

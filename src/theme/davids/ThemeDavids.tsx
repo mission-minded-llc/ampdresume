@@ -26,6 +26,8 @@ import {
   User,
   Certification,
 } from "@/types";
+import { DemoResumeChip } from "@/app/components/DemoResumeTag";
+import { shouldShowDemoResumeTag } from "@/lib/demoResume";
 import { generateSocialUrl, getSocialIcon } from "@/util/social";
 import { QRGenerator } from "./components/QRGenerator";
 import { SkillsSection } from "./components/SkillsSection";
@@ -339,28 +341,31 @@ export const ThemeDavids = ({
                 </Box>
               );
             })}
-            <Typography
-              component="a"
-              href={pdfUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 0.75,
-                px: 1.5,
-                py: 0.6,
-                borderRadius: 999,
-                border: `1px solid ${themeColors.text}`,
-                color: themeColors.text,
-                textDecoration: "none",
-                fontSize: "0.9rem",
-                fontWeight: 650,
-              }}
-            >
-              <Icon icon="catppuccin:pdf" width="20" height="20" color={themeColors.text} />
-              View PDF
-            </Typography>
+            <Box sx={{ display: "inline-flex", alignItems: "center", gap: 1 }}>
+              {shouldShowDemoResumeTag(user, pathname) ? <DemoResumeChip /> : null}
+              <Typography
+                component="a"
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 0.75,
+                  px: 1.5,
+                  py: 0.6,
+                  borderRadius: 999,
+                  border: `1px solid ${themeColors.text}`,
+                  color: themeColors.text,
+                  textDecoration: "none",
+                  fontSize: "0.9rem",
+                  fontWeight: 650,
+                }}
+              >
+                <Icon icon="catppuccin:pdf" width="20" height="20" color={themeColors.text} />
+                View PDF
+              </Typography>
+            </Box>
           </Box>
         </Box>
 

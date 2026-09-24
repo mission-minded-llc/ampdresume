@@ -14,6 +14,7 @@ export const types = gql`
     summaryTitle: String
     webThemeName: String
     pdfThemeName: String
+    isDemo: Boolean!
   }
 
   type Social {

@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import { Box, Button, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
+import { DemoResumeChip } from "@/app/components/DemoResumeTag";
+import { shouldShowDemoResumeTag } from "@/lib/demoResume";
 import { Social, User } from "@/types";
 import {
   generateSocialUrl,
@@ -185,19 +187,22 @@ export const ArcadeHeading = ({ user, socials }: { user: User; socials: Social[]
             );
           })}
         </Box>
-        <Button
-          component="a"
-          href={pdfUrl}
-          target="_blank"
-          variant="contained"
-          startIcon={
-            <Box component="span" aria-hidden="true">
-              &#9654;
-            </Box>
-          }
-        >
-          View PDF
-        </Button>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          {shouldShowDemoResumeTag(user, pathname) ? <DemoResumeChip /> : null}
+          <Button
+            component="a"
+            href={pdfUrl}
+            target="_blank"
+            variant="contained"
+            startIcon={
+              <Box component="span" aria-hidden="true">
+                &#9654;
+              </Box>
+            }
+          >
+            View PDF
+          </Button>
+        </Box>
       </Box>
     </Box>
   );

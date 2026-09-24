@@ -2,10 +2,17 @@
 
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { Box, Button } from "@mui/material";
+import { DemoResumeChip } from "@/app/components/DemoResumeTag";
 import { Html2PdfFn, loadHtml2Pdf } from "@/lib/loadHtml2Pdf";
 import { paginatePdfContent } from "@/lib/paginatePdfContent";
 
-export const PdfDocumentFrame = ({ children }: { children: ReactNode }) => {
+export const PdfDocumentFrame = ({
+  children,
+  showDemoTag = false,
+}: {
+  children: ReactNode;
+  showDemoTag?: boolean;
+}) => {
   const pdfRef = useRef<HTMLDivElement>(null);
   const [html2pdf, setHtml2pdf] = useState<Html2PdfFn | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -51,7 +58,18 @@ export const PdfDocumentFrame = ({ children }: { children: ReactNode }) => {
 
   return (
     <Box sx={{ color: "#000", pb: 12 }}>
-      <Box sx={{ display: "flex", justifyContent: "center", mb: 2, mt: 2 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 1,
+          mb: 2,
+          mt: 2,
+          "@media print": { display: "none" },
+        }}
+      >
+        {showDemoTag ? <DemoResumeChip /> : null}
         <Button
           onClick={handleGeneratePdf}
           variant="contained"

@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import { Box, Button, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
+import { DemoResumeChip } from "@/app/components/DemoResumeTag";
+import { shouldShowDemoResumeTag } from "@/lib/demoResume";
 import { Social, User } from "@/types";
 import {
   generateSocialUrl,
@@ -106,17 +108,20 @@ export const ResumeHeading = ({ user, socials }: { user: User; socials: Social[]
               })
             : null}
         </Box>
-        <Button
-          component="a"
-          href={pdfUrl}
-          target="_blank"
-          variant="outlined"
-          color="secondary"
-          size="small"
-          startIcon={<Icon icon="catppuccin:pdf" width="20" height="20" />}
-        >
-          View PDF
-        </Button>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          {shouldShowDemoResumeTag(user, pathname) ? <DemoResumeChip /> : null}
+          <Button
+            component="a"
+            href={pdfUrl}
+            target="_blank"
+            variant="outlined"
+            color="secondary"
+            size="small"
+            startIcon={<Icon icon="catppuccin:pdf" width="20" height="20" />}
+          >
+            View PDF
+          </Button>
+        </Box>
       </Box>
     </Typography>
   );

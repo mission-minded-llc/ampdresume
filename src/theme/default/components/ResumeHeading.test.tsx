@@ -53,6 +53,21 @@ describe("ResumeHeading", () => {
     const pdfLink = screen.getByRole("link", { name: "View PDF" });
     expect(pdfLink).toHaveAttribute("href", "/theme/default/pdf");
     expect(pdfLink).toHaveAttribute("target", "_blank");
+    expect(screen.queryByTestId("demo-resume-tag")).not.toBeInTheDocument();
+  });
+
+  it("shows a Demo tag next to View PDF for demo resumes", () => {
+    render(<ResumeHeading user={{ ...sampleUser, isDemo: true }} socials={sampleSocials} />);
+
+    expect(screen.getByTestId("demo-resume-tag")).toHaveTextContent("Demo");
+    expect(screen.getByRole("link", { name: "View PDF" })).toBeInTheDocument();
+  });
+
+  it("shows a Demo tag on theme demo routes", () => {
+    (usePathname as jest.Mock).mockReturnValue("/demo/default");
+    render(<ResumeHeading user={sampleUser} socials={sampleSocials} />);
+
+    expect(screen.getByTestId("demo-resume-tag")).toHaveTextContent("Demo");
   });
 
   it("handles missing location", () => {

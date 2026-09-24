@@ -43,6 +43,7 @@ export const getResume = async (slug: string) => {
               summaryTitle
               webThemeName
               pdfThemeName
+              isDemo
             }
             socials {
               id

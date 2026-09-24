@@ -110,6 +110,7 @@ describe("public ResumeView", () => {
     expect(screen.getByTestId("user-name")).toHaveTextContent(user.name || "");
     expect(screen.queryByLabelText("Theme")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("PDF Theme")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("demo-resume-tag")).not.toBeInTheDocument();
   });
 
   it("shows the theme picker for the resume owner and saves a theme", async () => {

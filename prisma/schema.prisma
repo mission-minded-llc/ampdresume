@@ -70,6 +70,9 @@ model User {
   /// Used for PDF theme name, e.g. "default"
   pdfThemeName String?
 
+  /// True for literary and industry-vertical seed profiles. Real accounts stay false.
+  isDemo Boolean @default(false)
+
   /// All the relations to the user:
   accounts          Account[]
   company           Company[]

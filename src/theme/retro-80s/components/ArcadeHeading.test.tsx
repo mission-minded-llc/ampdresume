@@ -51,6 +51,7 @@ describe("ArcadeHeading", () => {
     const pdfLink = screen.getByRole("link", { name: /view pdf/i });
     expect(pdfLink).toHaveAttribute("href", "/demo/retro-80s/pdf");
     expect(pdfLink).toHaveAttribute("target", "_blank");
+    expect(screen.getByTestId("demo-resume-tag")).toHaveTextContent("Demo");
   });
 
   it("handles an empty socials array", () => {

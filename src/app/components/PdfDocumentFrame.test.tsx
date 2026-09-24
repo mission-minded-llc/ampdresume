@@ -52,10 +52,22 @@ describe("PdfDocumentFrame", () => {
     );
 
     expect(screen.getByText("Resume body")).toBeInTheDocument();
+    expect(screen.queryByTestId("demo-resume-tag")).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Generate PDF" })).toBeDisabled();
     await waitFor(() => {
       expect(screen.getByRole("button", { name: "Generate PDF" })).toBeEnabled();
     });
+  });
+
+  it("shows a Demo tag next to Generate PDF when requested", () => {
+    render(
+      <PdfDocumentFrame showDemoTag>
+        <div>Resume body</div>
+      </PdfDocumentFrame>,
+    );
+
+    expect(screen.getByTestId("demo-resume-tag")).toHaveTextContent("Demo");
+    expect(screen.getByRole("button", { name: "Generate PDF" })).toBeInTheDocument();
   });
 
   it("paginates the cloned resume before slicing pages", async () => {
