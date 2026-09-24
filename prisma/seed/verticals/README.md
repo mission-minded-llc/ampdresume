@@ -20,8 +20,8 @@ user is tagged `isDemo: true` so the app can tell seeded resumes apart from real
 
 Every resume includes the supported Amp'd Resume sections: profile info, professional summary,
 skills, work experience (companies, positions, projects), featured projects, education, and
-certifications. Social links are omitted from the seed; themes inject dummy placeholders when a demo
-user is loaded.
+certifications. Social links and featured-project links are omitted from the seed; themes inject
+dummy social placeholders when a demo user is loaded.
 
 ## Adding a profile
 

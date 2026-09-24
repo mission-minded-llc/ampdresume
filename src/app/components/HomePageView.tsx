@@ -2,21 +2,63 @@
 
 import { useState } from "react";
 import NextLink from "next/link";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Button,
-  Chip,
-  Container,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Chip, Container, Tab, Tabs, Theme, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
 import { MuiLink } from "@/components/MuiLink";
-import { LITERARY_DEMO_GROUPS } from "@/constants/literaryDemos";
+import { LITERARY_DEMOS } from "@/constants/literaryDemos";
+import { VERTICAL_DEMO_GROUPS } from "@/constants/verticalDemos";
 import { ThemeAwareLogo } from "./ThemeAwareLogo";
+
+const LITERARY_TAB_ID = "literary";
+
+const demoCardSx = (theme: Theme) => ({
+  borderRadius: "16px",
+  border: `1px solid ${theme.palette.divider}`,
+  bgcolor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.03)" : "#F7F2EC",
+  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+  "&:hover": {
+    transform: "translateY(-3px)",
+    boxShadow: theme.shadows[2],
+  },
+});
+
+const DemoResumeCard = ({ slug, name, title }: { slug: string; name: string; title: string }) => (
+  <Box component="li" sx={demoCardSx}>
+    <MuiLink
+      href={`/r/${slug}`}
+      aria-label={name}
+      sx={{
+        display: "block",
+        height: "100%",
+        p: 1.75,
+        fontWeight: 650,
+        textDecoration: "none",
+        "&:hover": { textDecoration: "none" },
+      }}
+    >
+      {name}
+      <Typography
+        component="span"
+        color="text.secondary"
+        sx={{ display: "block", mt: 0.5, fontSize: "0.9rem", lineHeight: 1.45 }}
+      >
+        {title}
+      </Typography>
+    </MuiLink>
+  </Box>
+);
+
+const demoGridSx = {
+  m: 0,
+  p: 0,
+  listStyle: "none",
+  display: "grid",
+  gridTemplateColumns: {
+    xs: "1fr",
+    sm: "repeat(2, minmax(0, 1fr))",
+  },
+  gap: 1.5,
+} as const;
 
 const features = [
   {
@@ -158,7 +200,10 @@ const JobApplicationMock = () => (
 );
 
 export const HomePageView = ({ userName }: { userName: string | null }) => {
-  const [openDemoGroup, setOpenDemoGroup] = useState<string | false>("detectives");
+  const [selectedDemoId, setSelectedDemoId] = useState(VERTICAL_DEMO_GROUPS[0].id);
+  const selectedVertical =
+    VERTICAL_DEMO_GROUPS.find((group) => group.id === selectedDemoId) ?? VERTICAL_DEMO_GROUPS[0];
+  const isLiteraryTab = selectedDemoId === LITERARY_TAB_ID;
 
   return (
     <Box>
@@ -350,85 +395,92 @@ export const HomePageView = ({ userName }: { userName: string | null }) => {
             color="text.secondary"
             sx={{ textAlign: "center", mx: "auto", maxWidth: 560, mb: 4, lineHeight: 1.7 }}
           >
-            Click a name to see how a finished resume looks.
+            Browse sample resumes by industry or literary character, then click a name to see a
+            finished resume.
           </Typography>
           <Box sx={{ maxWidth: { xs: 720, md: 1040 }, mx: "auto" }}>
-            {LITERARY_DEMO_GROUPS.map((group) => (
-              <Accordion
-                key={group.id}
-                expanded={openDemoGroup === group.id}
-                onChange={(_, isOpen) => setOpenDemoGroup(isOpen ? group.id : false)}
-                sx={{ mb: 1.5 }}
+            <Tabs
+              value={selectedDemoId}
+              onChange={(_, value: string) => setSelectedDemoId(value)}
+              variant="scrollable"
+              scrollButtons="auto"
+              allowScrollButtonsMobile
+              aria-label="Sample resumes"
+              sx={{
+                mb: 3,
+                "& .MuiTabs-flexContainer": { gap: 0.5 },
+                "& .MuiTab-root": {
+                  textTransform: "none",
+                  fontWeight: 650,
+                  minHeight: 44,
+                  px: 1.75,
+                },
+              }}
+            >
+              <Tab
+                value={LITERARY_TAB_ID}
+                label="Literary"
+                id={`demo-tab-${LITERARY_TAB_ID}`}
+                aria-controls={`demo-panel-${LITERARY_TAB_ID}`}
+              />
+              {VERTICAL_DEMO_GROUPS.map((group) => (
+                <Tab
+                  key={group.id}
+                  value={group.id}
+                  label={group.shortLabel}
+                  id={`demo-tab-${group.id}`}
+                  aria-controls={`demo-panel-${group.id}`}
+                />
+              ))}
+            </Tabs>
+            {isLiteraryTab ? (
+              <Box
+                role="tabpanel"
+                id={`demo-panel-${LITERARY_TAB_ID}`}
+                aria-labelledby={`demo-tab-${LITERARY_TAB_ID}`}
               >
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Box>
-                    <Typography variant="h6" sx={{ fontWeight: 750 }}>
-                      {group.label}
-                    </Typography>
-                    <Typography color="text.secondary" sx={{ mt: 0.25, lineHeight: 1.5 }}>
-                      {group.blurb}
-                    </Typography>
-                  </Box>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Box
-                    component="ul"
-                    sx={{
-                      m: 0,
-                      p: 0,
-                      listStyle: "none",
-                      display: "grid",
-                      gridTemplateColumns: {
-                        xs: "1fr",
-                        md: "repeat(2, minmax(0, 1fr))",
-                        lg: "repeat(3, minmax(0, 1fr))",
-                      },
-                      gap: 1.5,
-                    }}
-                  >
-                    {group.characters.map((character) => (
-                      <Box
-                        key={character.slug}
-                        component="li"
-                        sx={(theme) => ({
-                          borderRadius: "16px",
-                          border: `1px solid ${theme.palette.divider}`,
-                          bgcolor:
-                            theme.palette.mode === "dark" ? "rgba(255,255,255,0.03)" : "#F7F2EC",
-                          transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                          "&:hover": {
-                            transform: "translateY(-3px)",
-                            boxShadow: theme.shadows[2],
-                          },
-                        })}
-                      >
-                        <MuiLink
-                          href={`/r/${character.slug}`}
-                          aria-label={character.name}
-                          sx={{
-                            display: "block",
-                            height: "100%",
-                            p: 1.75,
-                            fontWeight: 650,
-                            textDecoration: "none",
-                            "&:hover": { textDecoration: "none" },
-                          }}
-                        >
-                          {character.name}
-                          <Typography
-                            component="span"
-                            color="text.secondary"
-                            sx={{ display: "block", mt: 0.5, fontSize: "0.9rem", lineHeight: 1.45 }}
-                          >
-                            {character.title}
-                          </Typography>
-                        </MuiLink>
-                      </Box>
-                    ))}
-                  </Box>
-                </AccordionDetails>
-              </Accordion>
-            ))}
+                <Typography variant="h6" component="h3" sx={{ fontWeight: 750 }}>
+                  Literary
+                </Typography>
+                <Typography color="text.secondary" sx={{ mt: 0.5, mb: 2.5, lineHeight: 1.6 }}>
+                  Four public-domain characters with finished interactive resumes — Holmes, Alice,
+                  Arthur, and Robin Hood.
+                </Typography>
+                <Box component="ul" sx={demoGridSx}>
+                  {LITERARY_DEMOS.map((character) => (
+                    <DemoResumeCard
+                      key={character.slug}
+                      slug={character.slug}
+                      name={character.name}
+                      title={character.title}
+                    />
+                  ))}
+                </Box>
+              </Box>
+            ) : (
+              <Box
+                role="tabpanel"
+                id={`demo-panel-${selectedVertical.id}`}
+                aria-labelledby={`demo-tab-${selectedVertical.id}`}
+              >
+                <Typography variant="h6" component="h3" sx={{ fontWeight: 750 }}>
+                  {selectedVertical.label}
+                </Typography>
+                <Typography color="text.secondary" sx={{ mt: 0.5, mb: 2.5, lineHeight: 1.6 }}>
+                  {selectedVertical.blurb}
+                </Typography>
+                <Box component="ul" sx={demoGridSx}>
+                  {selectedVertical.resumes.map((resume) => (
+                    <DemoResumeCard
+                      key={resume.slug}
+                      slug={resume.slug}
+                      name={resume.name}
+                      title={resume.title}
+                    />
+                  ))}
+                </Box>
+              </Box>
+            )}
           </Box>
         </Box>
 

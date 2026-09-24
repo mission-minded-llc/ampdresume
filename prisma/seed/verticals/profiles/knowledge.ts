@@ -74,21 +74,21 @@ export const knowledgeProfiles = [
             startDate: "2021-04-12",
             projects: [
               {
-                name: "Multi-region placement engine",
+                name: "Designed the multi-region scheduler that fails a zone in 11 seconds and cut dual-write incidents 73%",
                 description:
-                  "Designed the scheduler that places stateful workloads across 14 clusters and fails a zone in 11 seconds, down from 90. Cut dual-write incidents by 73% in the first two quarters.",
+                  "Designed the scheduler that places stateful workloads across 14 clusters and fails a zone in 11 seconds, down from 90. Placement is a lease plus a drain, not a hope that DNS will catch up. Cut dual-write incidents by 73% in the first two quarters, when product teams stopped opening a second writer.",
                 skills: ["Distributed Systems", "Kubernetes", "Go", "System Design"],
               },
               {
-                name: "Lease and membership service",
+                name: "Replaced ad-hoc heartbeats with a quorum lease API and cut leader flaps 81%",
                 description:
-                  "Replaced ad-hoc heartbeats with a quorum lease API. Leader flaps dropped 81% and on-call pages for split-brain went from weekly to two in a year.",
+                  "Replaced ad-hoc heartbeats with a quorum lease API that membership actually honors during a partition. Leader flaps dropped 81% and on-call pages for split-brain went from weekly to two in a year. The old ping loop is still in the repo, commented, as a warning.",
                 skills: ["Distributed Systems", "Go", "Observability"],
               },
               {
-                name: "Control-plane API deprecation",
+                name: "Versioned the public CRDs and shipped clients that 19 internal teams adopted in six months",
                 description:
-                  "Versioned the public CRDs and shipped TypeScript/Go clients so product teams stopped scraping etcd. Adoption reached 19 internal teams in six months.",
+                  "Versioned the public CRDs and shipped TypeScript/Go clients so product teams stopped scraping etcd for cluster state. Adoption reached 19 internal teams in six months, which is when the deprecation calendar stopped being a slide. The sunset date held; the unofficial watchers did not.",
                 skills: ["TypeScript", "Go", "Technical Leadership", "AWS"],
               },
             ],
@@ -109,15 +109,15 @@ export const knowledgeProfiles = [
             endDate: "2021-03-31",
             projects: [
               {
-                name: "Service mesh rollout",
+                name: "Rolled out a sidecar mesh across 46 services and cut p99 latency 28%",
                 description:
-                  "Moved 46 services onto a sidecar mesh with staged mTLS. p99 inter-service latency fell 28% after the retry and timeout defaults were made explicit.",
+                  "Moved 46 services onto a sidecar mesh with staged mTLS and a sunset date for the plaintext path. p99 inter-service latency fell 28% after retry and timeout defaults were made explicit instead of inherited from whoever copied the last YAML. On-call stopped treating timeouts as a personality trait.",
                 skills: ["Kubernetes", "Observability", "AWS"],
               },
               {
-                name: "Shard rebalancer",
+                name: "Wrote a Go rebalancer that drained hot shards and cut peak hotspot CPU from 94% to 61%",
                 description:
-                  "Wrote the Go rebalancer that drained hot shards without pausing writes. Peak hotspot CPU dropped from 94% to 61% during Black Friday traffic.",
+                  "Wrote the Go rebalancer that drained hot shards without pausing writes, which is the part the Friday-afternoon version never quite did. Peak hotspot CPU dropped from 94% to 61% during Black Friday traffic. The runbook is three commands; the design doc is why we did not pause the world.",
                 skills: ["Distributed Systems", "Go", "System Design"],
               },
             ],
@@ -128,15 +128,15 @@ export const knowledgeProfiles = [
             endDate: "2019-01-06",
             projects: [
               {
-                name: "Usage billing pipeline",
+                name: "Built the usage billing pipeline that cut late invoice events from 4.2% to 0.3%",
                 description:
-                  "Built the event pipeline that turned cluster-hours into invoices. Late events fell from 4.2% to 0.3% after exactly-once keys landed.",
+                  "Built the event pipeline that turned cluster-hours into invoices a finance team would actually send. Late events fell from 4.2% to 0.3% after exactly-once keys landed and the 'we will reconcile later' path was retired. Billing disputes dropped with the late events, which was the real product requirement.",
                 skills: ["TypeScript", "AWS", "System Design"],
               },
               {
-                name: "Cluster autoscaler hooks",
+                name: "Added drain-aware autoscaler hooks and cut node-replacement incidents 62% in two quarters",
                 description:
-                  "Added drain-aware hooks so scale-in stopped killing in-flight control loops. Node replacement incidents dropped 62% in two quarters.",
+                  "Added drain-aware hooks so scale-in stopped killing in-flight control loops mid-reconcile. Node replacement incidents dropped 62% in two quarters, and the 'why is the leader gone' page stopped pairing with a scale-in event. The hook is boring; the incidents it prevented were not.",
                 skills: ["Kubernetes", "AWS", "Observability"],
               },
             ],
@@ -157,15 +157,15 @@ export const knowledgeProfiles = [
             endDate: "2016-07-29",
             projects: [
               {
-                name: "Packet classifier rewrite",
+                name: "Ported the packet classifier to Go and cut 10 Gbps classification latency 41%",
                 description:
-                  "Ported the rule compiler from a Perl pipeline to Go. Classification latency at 10 Gbps fell 41% and rule-reload time went from 18 seconds to 2.",
+                  "Ported the rule compiler from a Perl pipeline to Go so a 10 Gbps classifier could reload without a coffee break. Classification latency fell 41% and rule-reload time went from 18 seconds to 2. The NOC noticed the reload first; marketing noticed the latency later.",
                 skills: ["Go", "System Design"],
               },
               {
-                name: "Edge telemetry exporter",
+                name: "Shipped a structured edge telemetry exporter that cut blackhole MTTD from 22 minutes to 6",
                 description:
-                  "Shipped the first structured exporter the NOC would trust. MTTD for blackhole routes improved from 22 minutes to 6.",
+                  "Shipped the first structured exporter the NOC would trust instead of a packet dump and a guess. MTTD for blackhole routes improved from 22 minutes to 6, which is the difference between a customer ticket and a page we already had. The schema is still the one they page from.",
                 skills: ["Observability", "AWS", "TypeScript"],
               },
             ],
@@ -196,20 +196,15 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Northline placement engine",
+        name: "Northline multi-region placement engine design notes",
         description:
-          "<p>Open design notes and a reference scheduler that places stateful workloads across regions and drains a failed zone in 11 seconds. Built for operators who are tired of a second etcd becoming the architecture.</p>",
-        links: [
-          { label: "Design notes", url: "https://www.example.com/maya-chen/placement" },
-          { label: "Reference repo", url: "https://www.example.com/maya-chen/scheduler" },
-        ],
+          "<p>Open design notes and a reference scheduler that places stateful workloads across regions and drains a failed zone in 11 seconds. Built for operators who are tired of a second etcd becoming the architecture. Includes the lease rules that kept dual-write incidents from returning with the next region.</p>",
         skills: ["Distributed Systems", "Kubernetes", "Go", "System Design"],
       },
       {
-        name: "Control-plane SLO playbook",
+        name: "Production control-plane SLO and paging playbook",
         description:
-          "<p>A public write-up of the reconcile-latency and leader-election SLOs Northline uses in production, including the dashboards that made split-brain pages rare.</p>",
-        links: [{ label: "Playbook", url: "https://www.example.com/maya-chen/slo-playbook" }],
+          "<p>A public write-up of the reconcile-latency and leader-election SLOs Northline uses in production, including the dashboards that made split-brain pages rare. Written so a new on-call can tell a burn from a noisy saturation without a war room.</p>",
         skills: ["Observability", "Technical Leadership"],
       },
     ],
@@ -288,9 +283,9 @@ export const knowledgeProfiles = [
             startDate: "2022-02-01",
             projects: [
               {
-                name: "Golden-path rollout",
+                name: "Replaced seven ad-hoc pipelines with one paved path and cut PR-to-prod from 3.4 days to 11 hours",
                 description:
-                  "Replaced seven ad-hoc pipelines with one paved path. Median PR-to-prod for 22 squads fell from 3.4 days to 11 hours; Friday deploys stopped being a rumor.",
+                  "Replaced seven ad-hoc pipelines with one paved path that 22 squads could actually ship on. Median PR-to-prod fell from 3.4 days to 11 hours; Friday deploys stopped being a rumor. The old pipelines still exist as a museum exhibit with a sunset date, which is how adoption happened.",
                 skills: [
                   "Technical Leadership",
                   "Change Management",
@@ -299,15 +294,15 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Internal developer portal",
+                name: "Shipped the catalog and scorecards that cut orphaned services from 61 to 9 and onboarding to 2 days",
                 description:
-                  "Shipped the catalog and scorecards that made ownership visible. Orphaned services dropped from 61 to 9; onboarding time for a new service went from 9 days to 2.",
+                  "Shipped the catalog and scorecards that made ownership visible instead of a tribal Slack thread. Orphaned services dropped from 61 to 9; onboarding time for a new service went from 9 days to 2. The portal is a product with a backlog, not a link farm with a search box.",
                 skills: ["TypeScript", "System Design", "Program Management"],
               },
               {
-                name: "Self-service preview environments",
+                name: "Launched per-PR preview environments on shared EKS and cut QA cycle time 44%",
                 description:
-                  "Per-PR environments on a shared EKS fleet. QA cycle time fell 44% and the #platform queue for 'need a staging slot' went quiet.",
+                  "Per-PR environments on a shared EKS fleet, with a TTL so they did not become a second staging. QA cycle time fell 44% and the #platform queue for a staging slot went quiet. Product squads stopped hoarding shared namespaces like they were conference rooms.",
                 skills: ["Kubernetes", "AWS", "Python"],
               },
             ],
@@ -328,15 +323,15 @@ export const knowledgeProfiles = [
             endDate: "2022-01-28",
             projects: [
               {
-                name: "Account vending factory",
+                name: "Automated AWS account vending and cut new-environment lead time from 12 days to 40 minutes",
                 description:
-                  "Automated AWS account and IAM boundary creation. New-environment lead time fell from 12 days to 40 minutes; audit exceptions on shared credentials went to zero.",
+                  "Automated AWS account and IAM boundary creation so a new environment was a request, not a ticket archaeology project. New-environment lead time fell from 12 days to 40 minutes; audit exceptions on shared credentials went to zero. Security liked the boundaries; product liked the 40 minutes.",
                 skills: ["AWS", "Python", "System Design"],
               },
               {
-                name: "Policy-as-code guardrails",
+                name: "Codified ten security guardrails as policy-as-code and blocked 230 public buckets in a year",
                 description:
-                  "Codified the ten rules security actually cared about. Blocked 230 misconfigured public buckets in the first year without a ticket per request.",
+                  "Codified the ten rules security actually cared about so a public bucket was a deny, not a conversation. Blocked 230 misconfigured public buckets in the first year without a ticket per request. The exceptions process is three people and a date; it is not a Slack emoji.",
                 skills: ["AWS", "Kubernetes", "Technical Leadership"],
               },
             ],
@@ -347,15 +342,15 @@ export const knowledgeProfiles = [
             endDate: "2020-01-12",
             projects: [
               {
-                name: "Local toolchain parity",
+                name: "Shipped a Python CLI that mirrored staging locally and cut platform laptop-only bugs 58%",
                 description:
-                  "Python CLI that mirrored staging networking on a laptop. 'Works on my machine' bugs filed against platform dropped 58%.",
+                  "Python CLI that mirrored staging networking on a laptop, including the parts people used to fake with a hosts file. Laptop-only bugs filed against platform dropped 58%. Local still is not prod; it is close enough that the remaining bugs are real.",
                 skills: ["Python", "TypeScript", "Change Management"],
               },
               {
-                name: "Shared CI templates",
+                name: "Collapsed 30 forked pipelines into shared CI templates and cut weekly pipeline minutes 36%",
                 description:
-                  "One set of pipelines instead of 30 forks. Mean pipeline minutes per week fell 36% after cache and image reuse landed.",
+                  "One set of pipelines instead of 30 forks that drifted the week after they were copied. Mean pipeline minutes per week fell 36% after cache and image reuse landed. The template is versioned; the forks are a support burden we stopped taking.",
                 skills: ["TypeScript", "Program Management", "AWS"],
               },
             ],
@@ -386,13 +381,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Paved-road scorecards",
+        name: "Paved-road golden-path scorecards for platform teams",
         description:
-          "<p>A public version of the Driftwood catalog rules: what a golden path must guarantee, how scorecards stay honest, and why a portal is not a platform.</p>",
-        links: [
-          { label: "Scorecard spec", url: "https://www.example.com/elias-navarro/scorecards" },
-          { label: "Talk slides", url: "https://www.example.com/elias-navarro/paved-road" },
-        ],
+          "<p>A public version of the Driftwood catalog rules: what a golden path must guarantee, how scorecards stay honest, and why a portal is not a platform. Includes the orphan-service definition that dropped the count from 61 to 9.</p>",
         skills: ["Technical Leadership", "System Design", "Program Management"],
       },
     ],
@@ -471,21 +462,21 @@ export const knowledgeProfiles = [
             startDate: "2021-06-01",
             projects: [
               {
-                name: "Kestrel design system v3",
+                name: "Rebuilt the React design system on tokens and cut unique buttons from 47 to 4",
                 description:
-                  "Rebuilt the React kit on tokens and headless primitives. Unique button implementations fell from 47 to 4; visual-regression escapes dropped 62% in two quarters.",
+                  "Rebuilt the React kit on tokens and headless primitives so a second brand could land without a fork. Unique button implementations fell from 47 to 4; visual-regression escapes dropped 62% in two quarters. The working group still reviews the PR that would have been button number 48.",
                 skills: ["React", "TypeScript", "System Design", "Technical Leadership"],
               },
               {
-                name: "Codemod migration program",
+                name: "Shipped a six-week codemod program that moved 11 squads to v3 and cut leftover one-offs 84%",
                 description:
-                  "Shipped codemods and a six-week office-hours cadence. 11 squads completed the v2-to-v3 cutover; leftover one-off components fell 84%.",
+                  "Shipped codemods and a six-week office-hours cadence so the v2-to-v3 cutover had a calendar, not a hope. 11 squads completed the migration; leftover one-off components fell 84%. Adoption was scheduled in the same spreadsheet as the sprint, which is why it finished.",
                 skills: ["Change Management", "Program Management", "TypeScript"],
               },
               {
-                name: "Component usage telemetry",
+                name: "Instrumented production component usage, removed 23 dead exports, and cut the kit bundle 18%",
                 description:
-                  "Instrumented production usage so unused primitives could be deleted with evidence. Removed 23 dead exports and cut bundle size for the kit 18%.",
+                  "Instrumented production usage so unused primitives could be deleted with evidence instead of a design-system eulogy. Removed 23 dead exports and cut bundle size for the kit 18%. If a primitive has no consumers, it is a candidate for deletion, not a case study.",
                 skills: ["Observability", "React", "AWS"],
               },
             ],
@@ -506,21 +497,21 @@ export const knowledgeProfiles = [
             endDate: "2021-05-28",
             projects: [
               {
-                name: "Token pipeline",
+                name: "Built the Figma-to-TypeScript token pipeline that turned weekly theme hotfixes into a monthly release",
                 description:
-                  "Built the Style Dictionary path from Figma tokens to TypeScript. Theme drift across three brands fell from weekly hotfixes to a monthly release.",
+                  "Built the Style Dictionary path from Figma tokens to TypeScript so three brands stopped hand-editing hex values in a pull request. Theme drift across those brands fell from weekly hotfixes to a monthly release. Designers ship tokens; engineers stop hunting for the unofficial gray.",
                 skills: ["TypeScript", "System Design", "AWS"],
               },
               {
-                name: "Accessible form kit",
+                name: "Replaced custom inputs with a WCAG 2.1 AA React form kit and cut form support tickets 31%",
                 description:
-                  "Replaced custom inputs with a React kit that passed WCAG 2.1 AA on the first audit. Form-related support tickets dropped 31%.",
+                  "Replaced custom inputs with a React kit that passed WCAG 2.1 AA on the first audit, which is not how the previous kit went. Form-related support tickets dropped 31%. The stories include the keyboard path; the old one-offs did not.",
                 skills: ["React", "Technical Leadership", "Change Management"],
               },
               {
-                name: "Docs site that designers use",
+                name: "Shipped a CloudFront docs site that lifted weekly design visitors from 6 to 48",
                 description:
-                  "Shipped the docs and playground on CloudFront. Weekly unique visitors from design went from 6 to 48; Slack 'how do I use X' questions fell by half.",
+                  "Shipped the docs and playground on CloudFront so designers had a URL that was not a Storybook someone forgot to deploy. Weekly unique visitors from design went from 6 to 48; Slack questions about how to use a component fell by half. The site is the contract; office hours are for the exceptions.",
                 skills: ["React", "AWS", "Program Management"],
               },
             ],
@@ -556,13 +547,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Headless primitive kit",
+        name: "Headless token-driven design system primitive kit",
         description:
-          "<p>Open reference components for buttons, menus, and dialogs with tokens as the only theme API. Written so a second brand can land without a fork.</p>",
-        links: [
-          { label: "Kit docs", url: "https://www.example.com/aisha-rahman/primitives" },
-          { label: "Migration notes", url: "https://www.example.com/aisha-rahman/v3-migration" },
-        ],
+          "<p>Open reference components for buttons, menus, and dialogs with tokens as the only theme API. Written so a second brand can land without a fork. The stories include the keyboard path the last kit treated as optional.</p>",
         skills: ["React", "TypeScript", "System Design"],
       },
     ],
@@ -641,21 +628,21 @@ export const knowledgeProfiles = [
             startDate: "2020-11-02",
             projects: [
               {
-                name: "SLO and paging contract",
+                name: "Replaced threshold alerts with error-budget burns and cut pages 58% while MTTR fell to 14 minutes",
                 description:
-                  "Replaced threshold alerts with error-budget burns on 31 services. Pages per week fell 58%; MTTR on customer-facing incidents went from 47 minutes to 14.",
+                  "Replaced threshold alerts with error-budget burns on 31 services so a page named a user-facing burn, not a noisy saturation. Pages per week fell 58%; MTTR on customer-facing incidents went from 47 minutes to 14. Saturation without a burn still goes to a ticket, which is how the pager got quiet.",
                 skills: ["Observability", "Technical Leadership", "Python"],
               },
               {
-                name: "Multi-cluster trace mesh",
+                name: "Unified traces across 9 EKS clusters and cut time-to-name-the-dependency from 18 minutes to 3",
                 description:
-                  "Unified traces across 9 EKS clusters with consistent baggage. Time-to-name-the-dependency in incidents dropped from 18 minutes to 3.",
+                  "Unified traces across 9 EKS clusters with consistent baggage so a request did not become three tools and a guess. Time-to-name-the-dependency in incidents dropped from 18 minutes to 3. The war room still happens; it starts with a trace ID instead of a theory.",
                 skills: ["Kubernetes", "Distributed Systems", "AWS", "Observability"],
               },
               {
-                name: "Cardinality budget service",
+                name: "Shipped a Go admission webhook that flattened time-series growth 71% and stopped surprise telemetry bills",
                 description:
-                  "Go admission webhook that rejects unbounded label sets. Time-series growth flattened 71% and the monthly telemetry bill stopped surprising finance.",
+                  "Go admission webhook that rejects unbounded label sets before they become a finance conversation. Time-series growth flattened 71% and the monthly telemetry bill stopped surprising finance. A new high-cardinality label is now a design review, which is the point of a budget.",
                 skills: ["Go", "System Design", "Kubernetes"],
               },
             ],
@@ -676,15 +663,15 @@ export const knowledgeProfiles = [
             endDate: "2020-10-30",
             projects: [
               {
-                name: "Client tracing standard",
+                name: "Defined a span contract six clients adopted and cut duplicate incident channels from 4 per outage to 1",
                 description:
-                  "Defined the span contract six clients adopted. Duplicate incident channels fell from 4 per outage to 1; postmortems started with a trace ID.",
+                  "Defined the span contract six clients adopted so an outage stopped opening four Slack channels with four clocks. Duplicate incident channels fell from 4 per outage to 1; postmortems started with a trace ID. The standard is a page, not a working group that never shipped.",
                 skills: ["Observability", "Distributed Systems", "Technical Leadership"],
               },
               {
-                name: "Node-pool isolation",
+                name: "Split noisy batch onto dedicated node pools and cut noisy-neighbor latency events 64%",
                 description:
-                  "Split noisy batch onto dedicated pools. Noisy-neighbor latency events fell 64% and the batch team stopped paging product on-call.",
+                  "Split noisy batch onto dedicated pools so a report job stopped being a latency incident for product. Noisy-neighbor latency events fell 64% and the batch team stopped paging product on-call. Isolation is cheaper than another apology in the incident channel.",
                 skills: ["Kubernetes", "AWS", "System Design"],
               },
             ],
@@ -695,15 +682,15 @@ export const knowledgeProfiles = [
             endDate: "2018-02-11",
             projects: [
               {
-                name: "First SLO dashboard",
+                name: "Mailed weekly SLO budget-burn reports that cut unowned 5xx alerts 40% once owners were named",
                 description:
-                  "Python reports that mailed weekly budget burn to service owners. Unowned 5xx alerts dropped 40% once names were on the page.",
+                  "Python reports that mailed weekly budget burn to service owners, with a name on the page instead of a shared inbox. Unowned 5xx alerts dropped 40% once names were on the dashboard. Leadership still reads the mail; that is why the names stayed accurate.",
                 skills: ["Python", "Observability"],
               },
               {
-                name: "Scrape-path hardening",
+                name: "Moved Prometheus scrape onto private links and cut accidental public metric endpoints from 11 to 0",
                 description:
-                  "Moved Prometheus scrape onto private links. Accidental public metric endpoints went from 11 to 0 in a quarter.",
+                  "Moved Prometheus scrape onto private links so a metrics endpoint stopped being a public API with worse auth. Accidental public metric endpoints went from 11 to 0 in a quarter. The scrape path is boring on purpose; the findings it closed were not.",
                 skills: ["AWS", "Go", "Kubernetes"],
               },
             ],
@@ -734,22 +721,15 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Paging contract template",
+        name: "Reusable SLO and paging contract template",
         description:
-          "<p>A reusable SLO and paging contract: burn-rate alerts, ownership fields, and the rule that saturation without a user-facing burn does not wake anyone.</p>",
-        links: [
-          { label: "Contract", url: "https://www.example.com/cole-brennan/paging-contract" },
-          { label: "Dashboard kit", url: "https://www.example.com/cole-brennan/slo-kit" },
-        ],
+          "<p>A reusable SLO and paging contract: burn-rate alerts, ownership fields, and the rule that saturation without a user-facing burn does not wake anyone. Includes the weekly budget-burn mail that kept names on the dashboard accurate.</p>",
         skills: ["Observability", "Technical Leadership", "Python"],
       },
       {
-        name: "Cardinality budget webhook",
+        name: "High-cardinality time series budget admission webhook",
         description:
-          "<p>Reference admission controller that keeps high-cardinality labels out of the time-series store. Written after a single deploy doubled a client's Prometheus bill.</p>",
-        links: [
-          { label: "Webhook notes", url: "https://www.example.com/cole-brennan/cardinality" },
-        ],
+          "<p>Reference admission controller that keeps high-cardinality labels out of the time-series store. Written after a single deploy doubled a client's Prometheus bill. A new unbounded label is a design review, not a surprise invoice.</p>",
         skills: ["Go", "Kubernetes", "System Design"],
       },
     ],
@@ -828,9 +808,9 @@ export const knowledgeProfiles = [
             startDate: "2021-01-04",
             projects: [
               {
-                name: "14-bidder industrials auction",
+                name: "Led a 14-bidder industrials auction to $780M EV at 11.2x EBITDA, 9% above the walk-away",
                 description:
-                  "Led a sell-side for a $780M EV components maker. 14 first-round bids, close at 11.2x EBITDA, 9% above the board's walk-away. Process ran 17 weeks, two days under the original calendar.",
+                  "Led a sell-side for a $780M EV components maker through 14 first-round bids and a close at 11.2x EBITDA, 9% above the board's walk-away. Process ran 17 weeks, two days under the original calendar, which is the part founders remember. The buyer tree was the work; the tombstone was the receipt.",
                 skills: [
                   "Deal Execution",
                   "Pitch Books",
@@ -839,9 +819,9 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Sponsor carve-out close",
+                name: "Closed a $410M logistics carve-out on a locked-box with an 8% indemnity cap and a nine-month TSA",
                 description:
-                  "Sold a $410M EV logistics carve-out with a locked-box and a TSA that expired on month nine. Working-capital peg survived QoE; indemnity cap closed at 8% of EV.",
+                  "Sold a $410M EV logistics carve-out with a locked-box and a TSA that expired on month nine, not the version that would be figured out in diligence. Working-capital peg survived QoE; indemnity cap closed at 8% of EV. Counsel marked the paper; the economics stayed on the banker's page.",
                 skills: [
                   "Deal Execution",
                   "Contract Negotiation",
@@ -850,9 +830,9 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Financing-aware sale process",
+                name: "Re-cut buyer outreach when loans widened 175 bps and kept six cash buyers in the second round",
                 description:
-                  "Re-cut buyer outreach when the leveraged loan market widened 175 bps mid-process. Kept six cash buyers in the second round; avoided a failed debt-dependent bid.",
+                  "Re-cut buyer outreach when the leveraged loan market widened 175 bps mid-process, which is when a debt-dependent bid becomes a press release. Kept six cash buyers in the second round and avoided a failed launch. The financing tape is part of the calendar, not a footnote after the CIM goes out.",
                 skills: ["Capital Markets", "Deal Execution", "Stakeholder Management"],
               },
             ],
@@ -873,15 +853,15 @@ export const knowledgeProfiles = [
             endDate: "2020-12-18",
             projects: [
               {
-                name: "Business-services dual-track",
+                name: "Ran a dual-track IPO explore and sale that closed at $620M EV after the public window shut",
                 description:
-                  "Ran a dual-track IPO explore and sale. Sale won at $620M EV after the public window closed; dual-track cost the client 11 extra days, not a failed process.",
+                  "Ran a dual-track IPO explore and sale for a business-services name. Sale won at $620M EV after the public window closed; dual-track cost the client 11 extra days, not a failed process. The explore file was current enough to kill, which is the only reason a dual-track is worth running.",
                 skills: ["Capital Markets", "Deal Execution", "Pitch Books"],
               },
               {
-                name: "Founder recap advisory",
+                name: "Modeled recap versus sale for a 72-year-old founder and closed a 61% sale with rollover economics",
                 description:
-                  "Modeled a recap vs. 100% sale for a 72-year-old founder. Board chose a 61% sale; Helena negotiated the rollover economics and the chair seat.",
+                  "Modeled a recap vs. 100% sale for a 72-year-old founder who wanted a number and a chair, not a lecture. Board chose a 61% sale; negotiated the rollover economics and the chair seat. The model survived the family meeting, which is the diligence that does not show up in a CIM.",
                 skills: [
                   "DCF Valuation",
                   "Financial Modeling",
@@ -897,15 +877,15 @@ export const knowledgeProfiles = [
             endDate: "2019-02-03",
             projects: [
               {
-                name: "Industrials CIM factory",
+                name: "Built industrials CIM templates that lifted first-round bids from 4.1 to 6.8 buyers per process",
                 description:
-                  "Built the coverage templates Calder Street still uses. First-round bid rate on launched processes rose from 4.1 to 6.8 buyers.",
+                  "Built the coverage templates Calder Street still uses, including the buyer page that has a reason for each name. First-round bid rate on launched processes rose from 4.1 to 6.8 buyers. Associates still open the file first; that is the definition of a factory that worked.",
                 skills: ["Pitch Books", "Industry Coverage", "Financial Modeling"],
               },
               {
-                name: "QoE-ready working-capital model",
+                name: "Standardized the working-capital peg model and cut average QoE dispute days from 9 to 2",
                 description:
-                  "Standardized the peg model so QoE stopped rewriting banker numbers. Average peg dispute days fell from 9 to 2.",
+                  "Standardized the peg model so QoE stopped rewriting banker numbers on a Sunday night. Average peg dispute days fell from 9 to 2, which is the difference between a close calendar and a renegotiation. The tabs match the QoE request list; that was the entire point.",
                 skills: ["Financial Modeling", "DCF Valuation"],
               },
             ],
@@ -936,13 +916,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Sell-side process letter archive",
+        name: "Riverton sell-side industrials process letter archive",
         description:
-          "<p>Anonymized process letters and buyer-tree templates from Riverton industrials auctions, including the 14-bidder case that cleared 11.2x. Written for associates who inherit a live calendar.</p>",
-        links: [
-          { label: "Process letters", url: "https://www.example.com/helena-voss/process-letters" },
-          { label: "Buyer-tree notes", url: "https://www.example.com/helena-voss/buyer-trees" },
-        ],
+          "<p>Anonymized process letters and buyer-tree templates from Riverton industrials auctions, including the 14-bidder case that cleared 11.2x. Written for associates who inherit a live calendar. The walk-away math is in the same folder as the letter.</p>",
         skills: ["Deal Execution", "Pitch Books", "Industry Coverage"],
       },
     ],
@@ -1021,21 +997,21 @@ export const knowledgeProfiles = [
             startDate: "2022-07-11",
             projects: [
               {
-                name: "6.4x first-lien LBO package",
+                name: "Modeled and syndicated a $640M first-lien 6.4x LBO that held through 90 bps of flex",
                 description:
-                  "Modeled and syndicated a $640M first-lien for a 6.4x LBO. Held through 90 bps of flex; closing leverage printed 6.25x. Sponsor returned for the dividend recap eight months later.",
+                  "Modeled and syndicated a $640M first-lien for a 6.4x LBO that had to clear a committee and a tape. Held through 90 bps of flex; closing leverage printed 6.25x. Sponsor returned for the dividend recap eight months later, which is the only tombstone that matters on a hold-level book.",
                 skills: ["LBO Analysis", "Loan Structuring", "Capital Markets", "Deal Execution"],
               },
               {
-                name: "Dividend recap credit memo",
+                name: "Wrote the $220M recap memo that cut an $8M add-back and still cleared at 5.1x",
                 description:
-                  "Wrote the committee memo for a $220M recap at 5.1x. Called the customer-concentration risk that cut the add-back by $8M; deal still cleared with a tighter ECF sweep.",
+                  "Wrote the committee memo for a $220M recap at 5.1x and called the customer-concentration risk that cut the add-back by $8M. Deal still cleared with a tighter ECF sweep, which is how you keep a yes without pretending the concentration is diversification. The page the committee read twice was the add-back page.",
                 skills: ["Credit Analysis", "Financial Modeling", "Pitch Books"],
               },
               {
-                name: "Rate-shock LBO library",
+                name: "Rebuilt the standard LBO with 100/150/200 bps rate cases and cut committee rate questions in half",
                 description:
-                  "Rebuilt the standard LBO with 100/150/200 bps rate cases and covenant headroom. Associates stopped maintaining five files; committee questions on rates fell by half.",
+                  "Rebuilt the standard LBO with 100/150/200 bps rate cases and covenant headroom so associates stopped maintaining five files. Committee questions on rates fell by half. The debt schedule is one tab; the old version was a scavenger hunt with a circular reference.",
                 skills: ["LBO Analysis", "Financial Modeling", "DCF Valuation"],
               },
             ],
@@ -1056,21 +1032,21 @@ export const knowledgeProfiles = [
             endDate: "2022-06-30",
             projects: [
               {
-                name: "First-pass LBO book",
+                name: "Built 27 first-pass LBOs that cut associate rewrite time from 6 hours to 90 minutes",
                 description:
-                  "Built 27 first-pass LBOs for mid-market sponsors. Average associate rewrite time fell from 6 hours to 90 minutes after the debt schedule template landed.",
+                  "Built 27 first-pass LBOs for mid-market sponsors with a debt schedule an associate could defend. Average rewrite time fell from 6 hours to 90 minutes after the template landed. The files were the ones they kept, which is the only analyst metric that counts.",
                 skills: ["LBO Analysis", "Financial Modeling", "DCF Valuation"],
               },
               {
-                name: "Covenant headroom tracker",
+                name: "Tracked leverage and FCCR on 9 live deals and flagged a springing covenant two weeks before a miss",
                 description:
-                  "Weekly tracker of leverage and FCCR vs. package for 9 live deals. Flagged a springing covenant two weeks before a missed test; amendment closed without a default.",
+                  "Weekly tracker of leverage and FCCR vs. package for 9 live deals, updated before the Sunday process email. Flagged a springing covenant two weeks before a missed test; amendment closed without a default. The tracker is a calendar, not a dashboard nobody opened.",
                 skills: ["Credit Analysis", "Loan Structuring", "Capital Markets"],
               },
               {
-                name: "Lender marketing slides",
+                name: "Built first-round lender decks for three launched deals that cleared at 1.8x oversubscription",
                 description:
-                  "First-round lender decks for three launched deals. Average oversubscription on launched paper was 1.8x; zero failed syndications on Julian's books.",
+                  "First-round lender decks for three launched deals, written so a holdco and a credit committee could both say yes. Average oversubscription on launched paper was 1.8x; zero failed syndications on the books. The slides are a credit argument; the logo page is page two.",
                 skills: ["Pitch Books", "Deal Execution", "Capital Markets"],
               },
             ],
@@ -1101,13 +1077,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Through-cycle LBO template",
+        name: "Through-cycle leveraged buyout model and memo template",
         description:
-          "<p>A public, anonymized LBO with rate shocks, ECF sweep, and covenant headroom. Built so an associate can defend the debt schedule without a second file.</p>",
-        links: [
-          { label: "Template notes", url: "https://www.example.com/julian-park/lbo-template" },
-          { label: "Credit memo outline", url: "https://www.example.com/julian-park/credit-memo" },
-        ],
+          "<p>A public, anonymized LBO with rate shocks, ECF sweep, and covenant headroom. Built so an associate can defend the debt schedule without a second file. The 100/150/200 bps cases are tabs, not a late-night copy.</p>",
         skills: ["LBO Analysis", "Financial Modeling", "Credit Analysis"],
       },
     ],
@@ -1186,9 +1158,9 @@ export const knowledgeProfiles = [
             startDate: "2021-03-01",
             projects: [
               {
-                name: "£1.1B top-of-range IPO",
+                name: "Led a £1.1B UK consumer IPO that priced at the top after a 2.4x covered book",
                 description:
-                  "Led a UK consumer IPO that priced at the top of a 310–360p range after a 2.4x covered book. Day-six close was +4.1%; greenshoe fully exercised.",
+                  "Led a UK consumer IPO that priced at the top of a 310–360p range after a 2.4x covered book. Day-six close was +4.1%; greenshoe fully exercised. The aftermarket is the part the chair lives with; the book was built so day six was not a surprise.",
                 skills: [
                   "Capital Markets",
                   "Deal Execution",
@@ -1197,15 +1169,15 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Accelerated follow-on",
+                name: "Executed a £420M overnight follow-on at a 4.8% discount with the book covered in 90 minutes",
                 description:
-                  "Executed a £420M overnight follow-on at a 4.8% discount when the primary window closed. Book covered in 90 minutes; issuer avoided a bought deal.",
+                  "Executed a £420M overnight follow-on at a 4.8% discount when the primary window closed and a bought deal was the alternative the board did not want. Book covered in 90 minutes; issuer avoided a bought deal. The list was warm because the closed-window work had been real.",
                 skills: ["Deal Execution", "Market Analysis", "Capital Markets"],
               },
               {
-                name: "Index-inclusion equity story",
+                name: "Repositioned a Nordic healthcare issuer around free-float and lifted index-aware follow-on demand 38%",
                 description:
-                  "Repositioned a Nordic healthcare issuer around free-float and FTSE inclusion. Follow-on demand from index-aware longs rose 38% vs. the prior roadshow.",
+                  "Repositioned a Nordic healthcare issuer around free-float and FTSE inclusion so the equity story matched the longs who actually show up. Follow-on demand from index-aware longs rose 38% vs. the prior roadshow. The comps still mattered; the free-float math is what moved the book.",
                 skills: [
                   "Market Analysis",
                   "Industry Coverage",
@@ -1231,15 +1203,15 @@ export const knowledgeProfiles = [
             endDate: "2021-02-26",
             projects: [
               {
-                name: "Closed-window issuer program",
+                name: "Kept 11 issuers warm through a closed IPO window so three launched inside 28 days of the reopen",
                 description:
-                  "Kept 11 issuers warm with a quarterly investor program while IPOs were paused. When the window reopened, three launched inside 28 days.",
+                  "Kept 11 issuers warm with a quarterly investor program while IPOs were paused, which is unglamorous work that pays when the window moves. When it reopened, three launched inside 28 days. The program was a calendar with named longs, not a newsletter.",
                 skills: ["Stakeholder Management", "Industry Coverage", "Capital Markets"],
               },
               {
-                name: "Follow-on discount study",
+                name: "Modeled UK mid-cap follow-on discounts and recommended prints 70 bps tighter with equal cover",
                 description:
-                  "Modeled UK mid-cap follow-on discounts vs. liquidity. Average recommended discount on her files was 70 bps tighter than the prior-year desk average, with equal cover.",
+                  "Modeled UK mid-cap follow-on discounts vs. liquidity so a Sunday board call had a number that was not last year's desk folklore. Average recommended discount on the files was 70 bps tighter than the prior-year desk average, with equal cover. Tighter is only useful if the book still prints.",
                 skills: ["Financial Modeling", "Market Analysis", "DCF Valuation"],
               },
             ],
@@ -1250,15 +1222,15 @@ export const knowledgeProfiles = [
             endDate: "2018-01-07",
             projects: [
               {
-                name: "Peer multiple book",
+                name: "Built the comps and DCF pack that stopped range-setting meetings from opening on a blank slide",
                 description:
-                  "Built the comps and DCF pack Meridian Row still opens first. Range-setting meetings stopped starting from a blank slide.",
+                  "Built the comps and DCF pack Meridian Row still opens first, including the free-float and index notes a range actually needs. Range-setting meetings stopped starting from a blank slide. The pack is a valuation argument; the logo wall is in the appendix.",
                 skills: ["Financial Modeling", "DCF Valuation", "Pitch Books"],
               },
               {
-                name: "Roadshow targeting map",
+                name: "Mapped 180 European longs by style and lifted first-week roadshow hit-rate from 54% to 71%",
                 description:
-                  "Mapped 180 European longs by holding period and style. First-week roadshow hit-rate rose from 54% to 71%.",
+                  "Mapped 180 European longs by holding period and style so the first week of a roadshow was a calendar, not a hope. First-week hit-rate rose from 54% to 71%. The map names who will still be there after allocation, which is the only targeting that matters.",
                 skills: ["Market Analysis", "Pitch Books", "Industry Coverage"],
               },
             ],
@@ -1294,13 +1266,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "IPO range-setting memo",
+        name: "Consumer IPO range-setting and book memo",
         description:
-          "<p>Anonymized range memo from the £1.1B consumer IPO: comps, DCF, free-float, and the book-building notes that supported a top-of-range print.</p>",
-        links: [
-          { label: "Range memo", url: "https://www.example.com/naomi-adeyemi/range-memo" },
-          { label: "Aftermarket notes", url: "https://www.example.com/naomi-adeyemi/aftermarket" },
-        ],
+          "<p>Anonymized range memo from the £1.1B consumer IPO: comps, DCF, free-float, and the book-building notes that supported a top-of-range print. Includes the day-six aftermarket notes the chair actually asked for.</p>",
         skills: ["Capital Markets", "Financial Modeling", "DCF Valuation", "Deal Execution"],
       },
     ],
@@ -1359,6 +1327,12 @@ export const knowledgeProfiles = [
           "Reads enough of the loan and HY tape to flag when a sale process is assuming leverage that is no longer printing.",
         yearStarted: 2023,
       },
+      {
+        name: "Credit Analysis",
+        description:
+          "Flags when a sale process is assuming leverage, working-capital, or a buyer credit box that will not clear. Coverage notes include the tape, not just the multiple.",
+        yearStarted: 2023,
+      },
     ],
     companies: [
       {
@@ -1373,21 +1347,21 @@ export const knowledgeProfiles = [
             startDate: "2023-07-10",
             projects: [
               {
-                name: "60-name industrials coverage book",
+                name: "Built a 60-name Midwest industrials book that lifted partner CEO meetings from 6 to 17 in two quarters",
                 description:
-                  "Built the live coverage book on 60 Midwest names with comps, end-markets, and a last-meeting note. Partner CEOs meetings rose from 6 to 17 in two quarters.",
+                  "Built the live coverage book on 60 Midwest names with comps, end-markets, and a last-meeting note a partner can read in a cab. Partner CEO meetings rose from 6 to 17 in two quarters. The book is current or it is a PDF; this one stayed current.",
                 skills: ["Industry Coverage", "Market Analysis", "Pitch Books"],
               },
               {
-                name: "Packaging sell-side CIM",
+                name: "Wrote the CIM and operating model for a $190M EV packaging converter that drew nine first-round bids",
                 description:
-                  "Wrote the CIM and operating model for a $190M EV converter. Nine first-round bids; process still live. Founder sent the CIM without a rewrite.",
-                skills: ["Pitch Books", "Financial Modeling", "Deal Execution"],
+                  "Wrote the CIM and operating model for a $190M EV converter. Nine first-round bids; process still live. Founder sent the CIM without a rewrite, which is the analyst test that does not show up on a staffing sheet. The buyer list had reasons, not last year's logos.",
+                skills: ["Pitch Books", "Financial Modeling", "Deal Execution", "Credit Analysis"],
               },
               {
-                name: "First-pass model standard",
+                name: "Templated three-statement and DCF files so associates review in 70 minutes instead of rebuilding overnight",
                 description:
-                  "Templated the three-statement and DCF so associates review in 70 minutes instead of rebuilding overnight. Used on 14 live processes.",
+                  "Templated the three-statement and DCF so associates review in 70 minutes instead of rebuilding overnight. Used on 14 live processes. The footnotes match the industry fade; the circulars are gone. That is the entire standard.",
                 skills: ["Financial Modeling", "DCF Valuation", "Capital Markets"],
               },
             ],
@@ -1408,15 +1382,15 @@ export const knowledgeProfiles = [
             endDate: "2022-08-12",
             projects: [
               {
-                name: "Distribution buyer tree",
+                name: "Mapped 32 distribution strategics by route overlap; two names appeared in a live process the next winter",
                 description:
-                  "Mapped 32 strategics by route overlap and prior-deal multiple. Two names from the tree showed up in a live process the following winter.",
+                  "Mapped 32 strategics by route overlap and prior-deal multiple, which is the version of a buyer tree that is not a logo wall. Two names from the tree showed up in a live process the following winter. Coverage work counts when a live process inherits the list.",
                 skills: ["Industry Coverage", "Pitch Books", "Market Analysis"],
               },
               {
-                name: "Input-cost pass-through deck",
+                name: "Built resin and freight pass-through slides used in 8 CEO sit-downs the same summer",
                 description:
-                  "Built the resin and freight pass-through slides the coverage team still drops into first meetings. Used in 8 CEO sit-downs that summer.",
+                  "Built the resin and freight pass-through slides the coverage team still drops into first meetings, because a multiple is earned or it is a hope. Used in 8 CEO sit-downs that summer. The page is volumes, freight, and who actually passed the cost through.",
                 skills: ["Market Analysis", "Financial Modeling", "DCF Valuation"],
               },
             ],
@@ -1447,13 +1421,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Midwest industrials coverage notes",
+        name: "Midwest industrials coverage and buyer-tree notes",
         description:
-          "<p>Anonymized coverage pages: comps, end-market volumes, and the buyer-tree logic for packaging and specialty distribution. Written so the next analyst does not start from a blank book.</p>",
-        links: [
-          { label: "Coverage notes", url: "https://www.example.com/marcus-bellamy/coverage" },
-          { label: "Model standard", url: "https://www.example.com/marcus-bellamy/model-standard" },
-        ],
+          "<p>Anonymized coverage pages: comps, end-market volumes, and the buyer-tree logic for packaging and specialty distribution. Written so the next analyst does not start from a blank book. Each name has a last-meeting note, or it is not in the book.</p>",
         skills: ["Industry Coverage", "Financial Modeling", "Pitch Books"],
       },
     ],
@@ -1532,9 +1502,9 @@ export const knowledgeProfiles = [
             startDate: "2021-09-07",
             projects: [
               {
-                name: "Midwest DC network redesign",
+                name: "Led a four-DC CPG network redesign that cut landed cost 11% and lifted OTIF to 96.4%",
                 description:
-                  "Led a four-DC redesign for a CPG client. Landed cost fell 11% and OTIF rose from 91% to 96.4% without adding inventory days.",
+                  "Led a four-DC redesign for a CPG client that had been solving service with inventory and freight with hope. Landed cost fell 11% and OTIF rose from 91% to 96.4% without adding inventory days. The closed branch was a DC, not a slide about agility.",
                 skills: [
                   "Issue Trees",
                   "Inventory Optimization",
@@ -1543,15 +1513,15 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "S&OP reset",
+                name: "Rebuilt the monthly S&OP cadence and cut forecast MAPE from 34% to 19%",
                 description:
-                  "Rebuilt the monthly planning cadence across sales, supply, and finance. Forecast MAPE dropped from 34% to 19%; bias flipped from +8% to +1%.",
+                  "Rebuilt the monthly planning cadence across sales, supply, and finance so a forecast had an owner before it had a dashboard. Forecast MAPE dropped from 34% to 19%; bias flipped from +8% to +1%. The meeting still happens; it now changes a production plan.",
                 skills: ["Demand Planning", "Change Management", "Slide Storytelling"],
               },
               {
-                name: "Changeover kaizen at two plants",
+                name: "Cut constraint changeover from 74 minutes to 41 and released 6.2 hours of weekly capacity",
                 description:
-                  "Cut average changeover from 74 minutes to 41 on the constraint lines. Released 6.2 hours of weekly capacity without a capex request.",
+                  "Ran changeover kaizen on the constraint lines at two plants with supervisors on the floor, not a war room. Average changeover fell from 74 minutes to 41 and released 6.2 hours of weekly capacity without a capex request. The boards were still in use at the 90-day revisit.",
                 skills: ["Lean Manufacturing", "Change Management", "Stakeholder Management"],
               },
             ],
@@ -1572,9 +1542,9 @@ export const knowledgeProfiles = [
             endDate: "2021-08-20",
             projects: [
               {
-                name: "Spare-parts inventory policy",
+                name: "Reset min/max on 4,200 spare SKUs, lifted critical service to 98.1%, and cut stores 17%",
                 description:
-                  "Reset min/max on 4,200 SKUs. Service on critical parts rose to 98.1% while stores inventory fell 17%.",
+                  "Reset min/max on 4,200 SKUs after the critical-part stockouts and the overstock lived in the same cage. Service on critical parts rose to 98.1% while stores inventory fell 17%. Planners kept the policy because it was a min/max they could defend, not a model they could not open.",
                 skills: [
                   "Inventory Optimization",
                   "Issue Trees",
@@ -1582,15 +1552,15 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Supervisor standard-work rollout",
+                name: "Coached 22 supervisors on leader standard work that held above 80% audit scores at 90 days",
                 description:
-                  "Wrote the leader standard work and coached 22 supervisors. Audit scores held above 80% at 90 days; the boards were still in use at the six-month revisit.",
+                  "Wrote the leader standard work and coached 22 supervisors through a Gemba that was a calendar, not a poster. Audit scores held above 80% at 90 days; the boards were still in use at the six-month revisit. Night shift kept the same standard, which is the only test that counts.",
                 skills: ["Lean Manufacturing", "Change Management", "Slide Storytelling"],
               },
               {
-                name: "Demand-review pilot",
+                name: "Stood up a weekly demand review that cut peak-season expedite freight 22%",
                 description:
-                  "Stood up a weekly demand review for a seasonal brand. Expedite freight fell 22% in the first peak season.",
+                  "Stood up a weekly demand review for a seasonal brand so a spike was a decision, not a Friday expedite. Expedite freight fell 22% in the first peak season. Sales still argued; they argued in the meeting instead of after the truck left.",
                 skills: ["Demand Planning", "Stakeholder Management"],
               },
             ],
@@ -1626,13 +1596,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Network redesign issue tree",
+        name: "Midwest DC network redesign issue tree",
         description:
-          "<p>Public version of the landed-cost tree Oakline used on the Midwest DC case: service, inventory, and freight as separate branches, with the decision that actually moved a DC.</p>",
-        links: [
-          { label: "Issue tree", url: "https://www.example.com/lina-okonkwo/network-tree" },
-          { label: "S&OP cadence", url: "https://www.example.com/lina-okonkwo/sop-cadence" },
-        ],
+          "<p>Public version of the landed-cost tree Oakline used on the Midwest DC case: service, inventory, and freight as separate branches, with the decision that actually moved a DC. Includes the OTIF and inventory-day constraints that kept the redesign from becoming a freight story.</p>",
         skills: ["Issue Trees", "Inventory Optimization", "Demand Planning"],
       },
     ],
@@ -1711,9 +1677,9 @@ export const knowledgeProfiles = [
             startDate: "2020-10-05",
             projects: [
               {
-                name: "Four-plant conversion-cost program",
+                name: "Led a four-plant PE program that released $86M annualized conversion cost and lifted constraint OEE 7–12 points",
                 description:
-                  "Led a PE portfolio program across four plants. Released $86M annualized conversion cost; constraint OEE rose 7–12 points. Two plants hit the year-two run-rate a quarter early.",
+                  "Led a PE portfolio program across four plants that had to print in the P&L, not in a lean tour. Released $86M annualized conversion cost; constraint OEE rose 7–12 points. Two plants hit the year-two run-rate a quarter early, which is when the operating partner stopped asking for another diagnostic.",
                 skills: [
                   "Lean Manufacturing",
                   "Six Sigma",
@@ -1722,15 +1688,15 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Ops organization redesign",
+                name: "Collapsed a central process-engineering matrix and cut yield-action close time from 19 days to 6",
                 description:
-                  "Collapsed a matrix that had process engineers reporting to a central COE. Time-to-close a yield action fell from 19 days to 6; attrition in the supervisor bench dropped 28%.",
+                  "Collapsed a matrix that had process engineers reporting to a central COE while supervisors owned the line. Time-to-close a yield action fell from 19 days to 6; attrition in the supervisor bench dropped 28%. Role charters survived the first reorg rumor, which is the actual deliverable.",
                 skills: ["Organizational Design", "Change Management", "Slide Storytelling"],
               },
               {
-                name: "Frozen-horizon planning reset",
+                name: "Installed a two-week frozen horizon that cut expedite overtime 31% and lifted on-time start to 91%",
                 description:
-                  "Installed a two-week frozen horizon and a weekly SIOP. Expedite overtime fell 31%; on-time start on the constraint rose from 72% to 91%.",
+                  "Installed a two-week frozen horizon and a weekly SIOP so sales stopped treating the constraint like a suggestion box. Expedite overtime fell 31%; on-time start on the constraint rose from 72% to 91%. The frozen week is a decision; the exception log is short on purpose.",
                 skills: [
                   "Production Planning",
                   "Hypothesis-Driven Problem Solving",
@@ -1755,15 +1721,15 @@ export const knowledgeProfiles = [
             endDate: "2020-09-15",
             projects: [
               {
-                name: "Yield DMAIC on a coating line",
+                name: "Cut coating-line first-pass yield loss 4.6 points and $4.1M annualized scrap with a 180-day control plan",
                 description:
-                  "Cut first-pass yield loss 4.6 points. Control plan held at 180 days; scrap dollars fell $4.1M annualized.",
+                  "Ran DMAIC on a coating line with the process owner who would keep the control plan after the team left. First-pass yield loss fell 4.6 points; scrap dollars fell $4.1M annualized. The control plan held at 180 days, which is longer than most belt projects survive a shift change.",
                 skills: ["Six Sigma", "Lean Manufacturing", "Hypothesis-Driven Problem Solving"],
               },
               {
-                name: "Plant diagnostic product",
+                name: "Productized a two-week plant diagnostic sold 22 times with 70% conversion to a transformation",
                 description:
-                  "Productized the two-week diagnostic Northbridge sold 22 times. Average identified loss was 9–14% of conversion cost; 70% converted to a transformation.",
+                  "Productized the two-week diagnostic Northbridge sold 22 times: where the hours go, which losses are projects, and which are a management-system gap. Average identified loss was 9–14% of conversion cost; 70% converted to a transformation. The board pack stops at the run-rate; the ANOVA stays in the appendix.",
                 skills: [
                   "Hypothesis-Driven Problem Solving",
                   "Slide Storytelling",
@@ -1778,15 +1744,15 @@ export const knowledgeProfiles = [
             endDate: "2016-07-10",
             projects: [
               {
-                name: "SMED on a stamping cell",
+                name: "Cut stamping-cell changeover from 96 minutes to 38 and released a Saturday shift",
                 description:
-                  "Cut changeover from 96 minutes to 38. Released a Saturday shift; overtime on that value stream fell 24%.",
+                  "Cut changeover from 96 minutes to 38 on a stamping cell that had been a showcase for everything except the bottleneck. Released a Saturday shift; overtime on that value stream fell 24%. Internal setups moved off the line; the Saturday crew went home, which was the point.",
                 skills: ["Lean Manufacturing", "Change Management"],
               },
               {
-                name: "Weekly production wheel",
+                name: "Replaced daily reshuffles with a published production wheel and lifted schedule adherence from 61% to 84%",
                 description:
-                  "Replaced daily reshuffles with a published wheel. Schedule adherence rose from 61% to 84% in 10 weeks.",
+                  "Replaced daily reshuffles with a published wheel so a hot order was an exception with a name, not the plan. Schedule adherence rose from 61% to 84% in 10 weeks. Sales still got a yes; they got it on Tuesday, not at 6 a.m. on the line.",
                 skills: ["Production Planning", "Stakeholder Management", "Slide Storytelling"],
               },
             ],
@@ -1822,13 +1788,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Two-week plant diagnostic",
+        name: "Two-week plant diagnostic method for manufacturers",
         description:
-          "<p>The loss-tree method Halcyon still sells: where the hours go, which losses are projects, and which are a management-system gap. Includes the board pack that stops at the run-rate.</p>",
-        links: [
-          { label: "Diagnostic outline", url: "https://www.example.com/theo-marchetti/diagnostic" },
-          { label: "Loss tree", url: "https://www.example.com/theo-marchetti/loss-tree" },
-        ],
+          "<p>The loss-tree method Halcyon still sells: where the hours go, which losses are projects, and which are a management-system gap. Includes the board pack that stops at the run-rate. The ANOVA stays in the appendix, where a steering committee will not live.</p>",
         skills: ["Hypothesis-Driven Problem Solving", "Lean Manufacturing", "Slide Storytelling"],
       },
     ],
@@ -1907,21 +1869,21 @@ export const knowledgeProfiles = [
             startDate: "2023-01-09",
             projects: [
               {
-                name: "CPQ adoption turnaround",
+                name: "Turned a stalled CPQ from 18% to 71% weekly active use and cut quote cycle time 36%",
                 description:
-                  "Took a stalled CPQ from 18% to 71% weekly active use in 16 weeks. Quote cycle time fell 36%; shadow spreadsheets on the named team went from 14 to 2.",
+                  "Took a stalled CPQ from 18% to 71% weekly active use in 16 weeks with named owners and a sunset for the shadow spreadsheet. Quote cycle time fell 36%; shadow spreadsheets on the named team went from 14 to 2. Usage was the metric; the kickoff slide was not.",
                 skills: ["Change Management", "Program Management", "Stakeholder Management"],
               },
               {
-                name: "Quote-to-cash issue tree",
+                name: "Split quote-to-cash leakage across pricing, approval, and handoff and kept a CRM rewrite out of wave one",
                 description:
-                  "Split leakage across pricing, approval, and handoff. The pricing branch paid back; the CRM rewrite the client wanted did not make the first wave.",
+                  "Split leakage across pricing, approval, and handoff so a digital program was not one workstream named CRM. The pricing branch paid back; the CRM rewrite the client wanted did not make the first wave. The tree is why the steering pack had a no on page one.",
                 skills: ["Issue Trees", "Hypothesis-Driven Problem Solving", "Slide Storytelling"],
               },
               {
-                name: "Digital PMO role design",
+                name: "Wrote charters for a four-person digital PMO and cut steering decision latency from 19 days to 6",
                 description:
-                  "Wrote charters for a four-person PMO and process owners in sales ops. Decision latency on the steering committee fell from 19 days to 6.",
+                  "Wrote charters for a four-person PMO and process owners in sales ops who would remain after the integrator left. Decision latency on the steering committee fell from 19 days to 6. The PMO is a clearance path, not a fourth meeting.",
                 skills: ["Organizational Design", "Program Management", "Stakeholder Management"],
               },
             ],
@@ -1942,9 +1904,9 @@ export const knowledgeProfiles = [
             endDate: "2022-12-20",
             projects: [
               {
-                name: "Industrial software TAM",
+                name: "Built a bottom-up SAM across 1,400 plants that the board used in Series C",
                 description:
-                  "Bottom-up SAM for a maintenance-software client across 1,400 plants. Board used the number in the Series C; variance vs. first-year bookings was 8%.",
+                  "Bottom-up SAM for a maintenance-software client across 1,400 plants, built from accounts and win rates, not a Gartner screenshot. Board used the number in the Series C; variance vs. first-year bookings was 8%. The partner took the file into the room unedited.",
                 skills: [
                   "Market Sizing",
                   "Hypothesis-Driven Problem Solving",
@@ -1952,15 +1914,15 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Process vs. platform diagnostic",
+                name: "Showed that 60% of a CRM problem was approval policy and paused a $2.4M license expansion",
                 description:
-                  "Showed that 60% of a 'CRM problem' was an approval policy. Client paused a $2.4M license expansion; restarted after the policy change.",
+                  "Showed that 60% of a so-called CRM problem was an approval policy, which is an unfashionable finding in a digital RFP. Client paused a $2.4M license expansion and restarted after the policy change. The license was not the constraint; the signature path was.",
                 skills: ["Issue Trees", "Change Management", "Organizational Design"],
               },
               {
-                name: "Steering-pack standard",
+                name: "Templated the weekly decision memo that cut no-decision meetings from 40% to 10%",
                 description:
-                  "Templated the weekly decision memo Vesper still uses. Meetings that ended without a decision fell from 4 in 10 to 1 in 10 on her cases.",
+                  "Templated the weekly decision memo Vesper still uses: one governing thought, an owner, and a date. Meetings that ended without a decision fell from 4 in 10 to 1 in 10 on her cases. Roadmaps without an owner do not ship, and they do not appear on page one.",
                 skills: ["Slide Storytelling", "Program Management"],
               },
             ],
@@ -1996,13 +1958,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Adoption-before-roadmap note",
+        name: "Working note on digital adoption before the roadmap",
         description:
           "<p>A short public note on why digital transformations fail at the spreadsheet, not the license. Includes the CPQ usage curve and the issue tree that kept a CRM rewrite out of wave one.</p>",
-        links: [
-          { label: "Essay", url: "https://www.example.com/sabine-keller/adoption" },
-          { label: "Issue tree", url: "https://www.example.com/sabine-keller/q2c-tree" },
-        ],
         skills: ["Change Management", "Issue Trees", "Hypothesis-Driven Problem Solving"],
       },
     ],
@@ -2081,9 +2039,9 @@ export const knowledgeProfiles = [
             startDate: "2021-05-03",
             projects: [
               {
-                name: "Grants-portfolio review",
+                name: "Evaluated 42 grant programs and redirected $180M toward higher-performing awards, sunsetting six",
                 description:
-                  "Evaluated 42 programs against outcome evidence and statutory fit. Redirected $180M toward higher-performing awards; six programs sunset on the client's own recommendation.",
+                  "Evaluated 42 programs against outcome evidence and statutory fit so a portfolio review was a decision, not a listening tour. Redirected $180M toward higher-performing awards; six programs sunset on the client's own recommendation. The budget office could defend the table in a hearing, which was the product.",
                 skills: [
                   "Program Evaluation",
                   "Budget Formulation",
@@ -2092,9 +2050,9 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "City permitting redesign",
+                name: "Mapped a 14-step commercial permit path and cut median cycle time 29% by removing five habitual clearances",
                 description:
-                  "Mapped a 14-step commercial permit path and cut median cycle time 29%. Two clearances were statutory; five were habit. The habit ones left.",
+                  "Mapped a 14-step commercial permit path and cut median cycle time 29%. Two clearances were statutory; five were habit. The habit ones left. Career staff kept the new path because the statutory two were named, not because a consultant called it modernization.",
                 skills: [
                   "Issue Trees",
                   "Hypothesis-Driven Problem Solving",
@@ -2103,9 +2061,9 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Agency operating-model charter",
+                name: "Redesigned a civilian bureau to match a new authorization and cut time-to-award 22%",
                 description:
-                  "Redesigned a civilian bureau's delivery org to match a new authorization. Time-to-award fell 22%; the IG later used the charter as the control narrative.",
+                  "Redesigned a civilian bureau's delivery org to match a new authorization so the org chart stopped fighting the statute. Time-to-award fell 22%; the IG later used the charter as the control narrative. A PMO was not added; a fourth clearance would have been the easy wrong answer.",
                 skills: ["Organizational Design", "Policy Analysis", "Stakeholder Management"],
               },
             ],
@@ -2126,21 +2084,21 @@ export const knowledgeProfiles = [
             endDate: "2021-04-30",
             projects: [
               {
-                name: "Passback options memo",
+                name: "Wrote a three-option mark for a $2.1B account that survived OMB with a 4% trim",
                 description:
-                  "Wrote the three-option mark for a $2.1B account. Leadership took option B; the table survived OMB with a 4% trim instead of a program kill.",
+                  "Wrote the three-option mark for a $2.1B account with statute, outcome evidence, and a table a deputy could take into passback. Leadership took option B; the table survived OMB with a 4% trim instead of a program kill. Option C was written so they did not invent one in the room.",
                 skills: ["Budget Formulation", "Policy Analysis", "Slide Storytelling"],
               },
               {
-                name: "Outcome-metric redesign",
+                name: "Replaced activity counts with four outcome measures that pulled continuation funding from two grantees on evidence",
                 description:
-                  "Replaced activity counts with four outcome measures a budget office accepted. Two grantees lost continuation funding on evidence, not politics.",
+                  "Replaced activity counts with four outcome measures a budget office accepted, including a counterfactual they could audit. Two grantees lost continuation funding on evidence, not politics. Evaluation was a decision tool; the journal-article version stayed in the appendix.",
                 skills: ["Program Evaluation", "Hypothesis-Driven Problem Solving", "Issue Trees"],
               },
               {
-                name: "Interagency working-group reset",
+                name: "Collapsed four overlapping interagency workstreams and cut duplicate field requests 40% in a quarter",
                 description:
-                  "Collapsed four overlapping workstreams into one decision body. Duplicate requests to the field dropped 40% in a quarter.",
+                  "Collapsed four overlapping workstreams into one decision body so the field stopped answering the same request on four letterheads. Duplicate requests to the field dropped 40% in a quarter. The working group is one government again, which is harder than adding a fifth.",
                 skills: ["Stakeholder Management", "Organizational Design", "Issue Trees"],
               },
             ],
@@ -2176,13 +2134,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Hearing-ready options memo",
+        name: "Hearing-ready three-option public sector budget memo",
         description:
           "<p>A public, anonymized three-option mark: statute, outcome evidence, and the budget table that survived review. Written for managers who have to put a number on a page before Friday.</p>",
-        links: [
-          { label: "Options memo", url: "https://www.example.com/rohan-mehta/options-memo" },
-          { label: "Evaluation frame", url: "https://www.example.com/rohan-mehta/evaluation" },
-        ],
         skills: ["Policy Analysis", "Budget Formulation", "Program Evaluation"],
       },
     ],
@@ -2261,9 +2215,9 @@ export const knowledgeProfiles = [
             startDate: "2020-08-03",
             projects: [
               {
-                name: "Carolinas portfolio build",
+                name: "Grew a Carolinas book from $1.1B to $1.6B with criticized assets under 2.1% and fee income up 24%",
                 description:
-                  "Grew commitments from $1.1B to $1.6B across 48 relationships. Criticized assets stayed under 2.1%; net interest plus treasury fee income rose 24%.",
+                  "Grew commitments from $1.1B to $1.6B across 48 relationships that still wanted a banker who answered. Criticized assets stayed under 2.1%; net interest plus treasury fee income rose 24%. The annual review was not a surprise, which is how a book that size stays clean through a rate-up cycle.",
                 skills: [
                   "Relationship Management",
                   "Commercial Lending",
@@ -2272,9 +2226,9 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Treasury-attached calling model",
+                name: "Required operating-account conversations on every annual review and lifted treasury penetration from 41% to 73%",
                 description:
-                  "Required an operating-account and lockbox conversation on every annual review. Treasury penetration rose from 41% to 73% of the book; deposit beta on the book lagged the region by 18 bps.",
+                  "Required an operating-account and lockbox conversation on every annual review so treasury was a hold decision, not a brochure. Treasury penetration rose from 41% to 73% of the book; deposit beta on the book lagged the region by 18 bps. The region copied the script; the 18 bps is why.",
                 skills: [
                   "Treasury Management",
                   "Stakeholder Management",
@@ -2282,9 +2236,9 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Watchlist early-warning cadence",
+                name: "Installed a monthly rating huddle on 12 names that closed two amendments before a missed test",
                 description:
-                  "Installed a monthly rating huddle on 12 names. Two amendments closed before a missed test; no unexpected downgrade reached committee in 2023.",
+                  "Installed a monthly rating huddle on 12 names so a watchlist was a calendar, not a year-end surprise. Two amendments closed before a missed test; no unexpected downgrade reached committee in 2023. Credit already knew the covenant conversation, which is the point of a huddle.",
                 skills: ["Risk Rating", "Credit Analysis", "Loan Structuring"],
               },
             ],
@@ -2305,21 +2259,21 @@ export const knowledgeProfiles = [
             endDate: "2020-07-31",
             projects: [
               {
-                name: "Owner-managed industrials book",
+                name: "Built a 22-name owner-managed industrials book averaging $18M hold with zero charge-offs",
                 description:
-                  "Built a 22-name book averaging $18M hold. Zero charge-offs; two successful sponsor exits refinanced in-house.",
+                  "Built a 22-name book averaging $18M hold for owner-managed industrials that still faxed a borrowing-base certificate. Zero charge-offs; two successful sponsor exits refinanced in-house. The calling cadence was the underwriting, which is how a community-sized hold stays off the watchlist.",
                 skills: ["Commercial Lending", "Financial Underwriting", "Relationship Management"],
               },
               {
-                name: "Borrowing-base rebuild",
+                name: "Reset ineligible definitions after a dilution spike and avoided a $6M over-advance that would have been a surprise",
                 description:
-                  "Reset ineligible definitions after a dilution spike. Availability fell 9% on paper and saved a $6M over-advance that would have been a surprise.",
+                  "Reset ineligible definitions after a dilution spike so availability on paper matched the collateral a field exam would find. Availability fell 9% on paper and saved a $6M over-advance that would have been a surprise. The borrower did not like the 9%; the committee liked the save.",
                 skills: ["Loan Structuring", "Credit Analysis", "Financial Underwriting"],
               },
               {
-                name: "Joint credit-treasury reviews",
+                name: "Paired annual credit reviews with treasury QBRs and lifted ACH and fraud-tool cross-sell 35%",
                 description:
-                  "Paired annual credit reviews with treasury QBRs. Cross-sell of ACH and fraud tools rose 35%; one fraud event was caught on the new dual-control.",
+                  "Paired annual credit reviews with treasury QBRs so the bank stopped selling two different relationships in two rooms. Cross-sell of ACH and fraud tools rose 35%; one fraud event was caught on the new dual-control. The QBR opens with cash, then products, which is the order that sticks.",
                 skills: ["Treasury Management", "Stakeholder Management", "Risk Rating"],
               },
             ],
@@ -2355,13 +2309,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Treasury-attached calling playbook",
+        name: "Annual calling playbook for treasury-attached middle-market reviews",
         description:
-          "<p>The annual-review script Catawba copied across the region: operating accounts, lockbox, and the RAROC math that makes treasury part of the hold decision.</p>",
-        links: [
-          { label: "Playbook", url: "https://www.example.com/camille-duval/calling-playbook" },
-          { label: "Watchlist cadence", url: "https://www.example.com/camille-duval/watchlist" },
-        ],
+          "<p>The annual-review script Catawba copied across the region: operating accounts, lockbox, and the RAROC math that makes treasury part of the hold decision. Includes the penetration target that moved the book from 41% to 73%.</p>",
         skills: ["Relationship Management", "Treasury Management", "Risk Rating"],
       },
     ],
@@ -2440,9 +2390,9 @@ export const knowledgeProfiles = [
             startDate: "2021-02-16",
             projects: [
               {
-                name: "Commitment clearing program",
+                name: "Cleared $2.4B of C&I and sponsor commitments with a 4% return-to-analyst rate and 11-day time-to-yes",
                 description:
-                  "Cleared $2.4B of C&I and sponsor commitments with a 4% return-to-analyst rate. Average time-to-yes fell from 18 days to 11 without a change in approval quality.",
+                  "Cleared $2.4B of C&I and sponsor commitments with a 4% return-to-analyst rate. Average time-to-yes fell from 18 days to 11 without a change in approval quality. The file was complete before the deadline, which is how exam week stayed an observation, not a matter requiring attention.",
                 skills: [
                   "Credit Analysis",
                   "Financial Underwriting",
@@ -2451,15 +2401,15 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Rating and ALLL alignment",
+                name: "Recalibrated obligor ratings against 6 years of loss history with no MRA on credit administration in two exams",
                 description:
-                  "Recalibrated obligor ratings against 6 years of loss history. Watchlist migration matched exam expectations; no MRA on credit administration in the last two exams.",
+                  "Recalibrated obligor ratings against 6 years of loss history so the ALLL and the rating page told the same story. Watchlist migration matched exam expectations; no MRA on credit administration in the last two exams. Observations we can live with; MRAs we do not write toward.",
                 skills: ["Risk Rating", "Financial Reporting", "Internal Controls"],
               },
               {
-                name: "Through-cycle model pack",
+                name: "Standardized downside LBO cases that declined two deals later amended at other banks",
                 description:
-                  "Standardized downside cases for sponsor LBOs. Two deals were declined on cash-flow coverage that the upside memo had buried; both later needed amendments at other banks.",
+                  "Standardized downside cases for sponsor LBOs so the upside memo could not bury a coverage hole. Two deals were declined on cash-flow coverage the upside memo had buried; both later needed amendments at other banks. The sensitivity is the page the committee asks for after lunch.",
                 skills: ["Financial Modeling", "Credit Analysis", "Loan Structuring"],
               },
             ],
@@ -2480,21 +2430,21 @@ export const knowledgeProfiles = [
             endDate: "2021-02-12",
             projects: [
               {
-                name: "Spreading standard",
+                name: "Wrote the spreading guide that cut analyst rewrite time 40% and exceptions from 12 per file to 3",
                 description:
-                  "Wrote the spreading guide that cut analyst rewrite time 40%. Exception logs fell from 12 per file to 3 after the related-party checklist landed.",
+                  "Wrote the spreading guide that cut analyst rewrite time 40%. Exception logs fell from 12 per file to 3 after the related-party checklist landed. Analysts still open the file first; that is the definition of a standard that survived a staffing change.",
                 skills: ["Financial Underwriting", "Financial Reporting", "Internal Controls"],
               },
               {
-                name: "Early-warning triggers",
+                name: "Built covenant and liquidity triggers that flagged two missed tests a month early as amendments, not defaults",
                 description:
-                  "Built covenant and liquidity triggers that flagged two missed tests a month early. Both closed as amendments, not defaults.",
+                  "Built covenant and liquidity triggers that flagged two missed tests a month early. Both closed as amendments, not defaults. The trigger is a date and a number, not a dashboard that pages nobody. RMs got the call before the certificate was late.",
                 skills: ["Risk Rating", "Loan Structuring", "Credit Analysis"],
               },
               {
-                name: "Sponsor add-back library",
+                name: "Catalogued sponsor add-backs that survive a downturn so run-rate EBITDA stopped being treated as fact",
                 description:
-                  "Catalogued add-backs that survived vs. died in downturn files. New sponsor memos stopped treating run-rate EBITDA as a fact.",
+                  "Catalogued add-backs that survived vs. died in downturn files so a new sponsor memo had a memory. New sponsor memos stopped treating run-rate EBITDA as a fact. The library is the page that kills a quality-of-earnings hope before it becomes a hold-level yes.",
                 skills: ["Financial Modeling", "Commercial Lending", "Credit Analysis"],
               },
             ],
@@ -2530,13 +2480,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Through-cycle credit memo outline",
+        name: "Outline for a through-cycle commercial credit memo",
         description:
           "<p>The Magnolia Trust memo skeleton: cash flow, add-backs that die, and the rating page the ALLL can live with. Written so an analyst can defend the file without a late-night rewrite.</p>",
-        links: [
-          { label: "Memo outline", url: "https://www.example.com/andre-whitfield/memo" },
-          { label: "Add-back library", url: "https://www.example.com/andre-whitfield/addbacks" },
-        ],
         skills: ["Credit Analysis", "Financial Underwriting", "Risk Rating"],
       },
     ],
@@ -2615,9 +2561,9 @@ export const knowledgeProfiles = [
             startDate: "2022-04-04",
             projects: [
               {
-                name: "North Texas book build",
+                name: "Grew a 31-name North Texas book to $420M commitments with treasury fees up 38% and no late certificates",
                 description:
-                  "Grew a 31-name book to $420M commitments. Treasury fee income rose 38%; no past-due borrowing-base certificates in six consecutive quarters.",
+                  "Grew a 31-name book to $420M commitments with one banker for the revolver and the operating account. Treasury fee income rose 38%; no past-due borrowing-base certificates in six consecutive quarters. The CRM had the calling notes a backup banker could run, or the call did not happen.",
                 skills: [
                   "Relationship Management",
                   "Commercial Lending",
@@ -2626,15 +2572,15 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Joint credit-treasury QBR",
+                name: "Installed a quarterly cash-and-covenant review that negotiated two amendments before a miss",
                 description:
-                  "Installed a quarterly review that opens with cash and covenants, then products. Two amendments were negotiated in the QBR instead of after a miss.",
+                  "Installed a quarterly review that opens with cash and covenants, then products, so credit is not hearing dilution for the first time in October. Two amendments were negotiated in the QBR instead of after a miss. The backup banker can run the agenda, which is the test.",
                 skills: ["Stakeholder Management", "Credit Analysis", "Loan Structuring"],
               },
               {
-                name: "Client 13-week cash views",
+                name: "Built shared 13-week cash models with six seasonal borrowers and cut over-advances from 5 a year to 1",
                 description:
-                  "Built shared 13-week models with six seasonal borrowers. Over-advance requests fell from 5 a year to 1; two clients used the view to time a term-out.",
+                  "Built shared 13-week models with six seasonal borrowers so the cash view was a conversation, not a banker file the CFO never saw. Over-advance requests fell from 5 a year to 1; two clients used the view to time a term-out. The model is simple on purpose.",
                 skills: ["Financial Modeling", "Treasury Management", "Relationship Management"],
               },
             ],
@@ -2655,21 +2601,21 @@ export const knowledgeProfiles = [
             endDate: "2022-03-31",
             projects: [
               {
-                name: "Lockbox and fraud-control offer",
+                name: "Packaged lockbox, positive pay, and dual-control wires that kept two clients after a 15 bp tighter loan",
                 description:
-                  "Packaged lockbox, positive pay, and dual-control wires. Two clients stayed after a competitor priced the loan 15 bps tighter; they would not move the operating account.",
+                  "Packaged lockbox, positive pay, and dual-control wires for companies whose banks treated cash as an afterthought. Two clients stayed after a competitor priced the loan 15 bps tighter; they would not move the operating account. Treasury spread is how a relationship earns its keep when the loan is quiet.",
                 skills: ["Treasury Management", "Stakeholder Management", "CRM"],
               },
               {
-                name: "Controller onboarding path",
+                name: "Cut new-client treasury implementation from 7 weeks to 18 days and implementation tickets 44%",
                 description:
-                  "Cut new-client treasury implementation from 7 weeks to 18 days. Implementation tickets per client fell 44%.",
+                  "Cut new-client treasury implementation from 7 weeks to 18 days with a path a controller could finish in a week that already had a close. Implementation tickets per client fell 44%. The onboarding is a calendar; the old version was a scavenger hunt with a welcome email.",
                 skills: ["Treasury Management", "CRM", "Relationship Management"],
               },
               {
-                name: "Seasonal revolver checklist",
+                name: "Wrote the borrowing-base checklist that cut late certificates on referred names from 18% to 4%",
                 description:
-                  "Wrote the borrowing-base and reporting checklist Alamo handed to partner banks. Late certificates on referred names dropped from 18% to 4%.",
+                  "Wrote the borrowing-base and reporting checklist Alamo handed to partner banks so a seasonal revolver had a certificate a controller could actually produce. Late certificates on referred names dropped from 18% to 4%. A late certificate is a structure problem; the checklist made that obvious.",
                 skills: ["Loan Structuring", "Credit Analysis", "Commercial Lending"],
               },
             ],
@@ -2700,13 +2646,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Joint QBR agenda",
+        name: "Joint credit and treasury QBR agenda",
         description:
           "<p>The Trinity River quarterly: cash, covenants, then products. Written so a backup banker can run the meeting and the credit officer is not hearing dilution for the first time.</p>",
-        links: [
-          { label: "QBR agenda", url: "https://www.example.com/priya-shah/qbr" },
-          { label: "13-week template", url: "https://www.example.com/priya-shah/13-week" },
-        ],
         skills: ["Relationship Management", "Treasury Management", "Credit Analysis"],
       },
     ],
@@ -2785,9 +2727,9 @@ export const knowledgeProfiles = [
             startDate: "2021-06-14",
             projects: [
               {
-                name: "Energy rating recast",
+                name: "Recast 38 energy ratings after the 2022 strip move and held criticized assets at 3.4%",
                 description:
-                  "Recast 38 energy obligor ratings after the 2022 strip move. Criticized energy assets held at 3.4% of the book; two RBLs were cut at redetermination instead of after a miss.",
+                  "Recast 38 energy obligor ratings after the 2022 strip move so ratings moved with hedges and reserve life, not with last year's EBITDA. Criticized energy assets held at 3.4% of the book; two RBLs were cut at redetermination instead of after a miss. The strip is a credit input; it is not a logo.",
                 skills: [
                   "Risk Rating",
                   "Credit Analysis",
@@ -2796,15 +2738,15 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Hedge-covenant rewrite",
+                name: "Reset hedge coverage on 11 RBLs and cut unhedged production into redetermination 40%",
                 description:
-                  "Reset hedge coverage and tenor tests on 11 RBLs. Unhedged production into a redetermination fell 40%; one amendment closed two weeks before a covenant miss.",
+                  "Reset hedge coverage and tenor tests on 11 RBLs so unhedged production stopped arriving as a surprise at redetermination. Unhedged production into a redetermination fell 40%; one amendment closed two weeks before a covenant miss. Structure is how an energy book survives a strip.",
                 skills: ["Loan Structuring", "Financial Modeling", "Credit Analysis"],
               },
               {
-                name: "Process-safety credit addendum",
+                name: "Added PSM findings to the energy file and downgraded two OFS names before an event hit the tape",
                 description:
-                  "Added PSM incident and inspection findings to the standard energy file. Two OFS names were downgraded on repeat findings before an operational event hit the tape.",
+                  "Added PSM incident and inspection findings to the standard energy file so a blowout was a credit event, not only an insurance binder. Two OFS names were downgraded on repeat findings before an operational event hit the tape. The addendum sits next to the hedges, which is where it belongs.",
                 skills: ["Process Safety", "Risk Rating", "Financial Underwriting"],
               },
             ],
@@ -2825,21 +2767,21 @@ export const knowledgeProfiles = [
             endDate: "2021-06-11",
             projects: [
               {
-                name: "Reserve-case template",
+                name: "Standardized PDP/PUD reserve cases that cut correspondent rewrite questions 50% and became two banks' internal form",
                 description:
-                  "Standardized PDP/PUD cases and strip decks. Correspondent rewrite questions fell 50%; two banks adopted the file as their internal form.",
+                  "Standardized PDP/PUD cases and strip decks so a correspondent file was not a scavenger hunt with a type curve. Rewrite questions fell 50%; two banks adopted the file as their internal form. The engineer footnote is on the page; that is the part other templates skip.",
                 skills: ["Financial Modeling", "Financial Underwriting", "Industry Coverage"],
               },
               {
-                name: "Midstream offtake review",
+                name: "Mapped contract versus interruptible offtake for 9 gatherers and declined a credit whose committed volumes were interruptible",
                 description:
-                  "Mapped contract vs. interruptible offtake for 9 gatherers. One credit was declined when 'committed' volumes were interruptible on page 14.",
+                  "Mapped contract vs. interruptible offtake for 9 gatherers so a volume forecast had a page number. One credit was declined when committed volumes were interruptible on page 14. The offtake is a contract or it is a hope; the memo now says which.",
                 skills: ["Credit Analysis", "Commercial Lending", "Loan Structuring"],
               },
               {
-                name: "Incident-to-rating bridge",
+                name: "Wrote process-safety questions used on 15 OFS files that moved three ratings on findings, not EBITDA",
                 description:
-                  "Wrote the first process-safety questions Gulfport put in an energy memo. Used on 15 OFS files; three ratings moved on findings, not on EBITDA.",
+                  "Wrote the first process-safety questions Gulfport put in an energy memo, next to the hedge schedule. Used on 15 OFS files; three ratings moved on findings, not on EBITDA. A repeat PSM finding is a rating event; it was not, until the questions existed.",
                 skills: ["Process Safety", "Risk Rating", "Credit Analysis"],
               },
             ],
@@ -2875,16 +2817,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Energy rating recast notes",
+        name: "Notes from the 2022 energy rating recast",
         description:
           "<p>Anonymized notes from the 2022 strip recast: how ratings moved with hedges, reserve life, and the two RBLs that were cut at redetermination instead of after a miss.</p>",
-        links: [
-          { label: "Recast notes", url: "https://www.example.com/benito-alvarez/rating-recast" },
-          {
-            label: "Reserve-case template",
-            url: "https://www.example.com/benito-alvarez/reserve-case",
-          },
-        ],
         skills: ["Risk Rating", "Financial Modeling", "Industry Coverage"],
       },
     ],
@@ -2963,9 +2898,9 @@ export const knowledgeProfiles = [
             startDate: "2020-09-01",
             projects: [
               {
-                name: "Serious safety huddle",
+                name: "Stood up a daily system safety huddle that cut serious events from 1.8 to 0.7 per 10,000 days",
                 description:
-                  "Stood up a daily system huddle with unit-level escalation. Serious safety events fell from 1.8 to 0.7 per 10,000 adjusted patient days in 24 months.",
+                  "Stood up a daily system huddle with unit-level escalation so a finding moved before it became a never-event. Serious safety events fell from 1.8 to 0.7 per 10,000 adjusted patient days in 24 months. The board accepted the definition; the night shift still runs the same huddle.",
                 skills: [
                   "Patient Safety",
                   "Nursing Leadership",
@@ -2974,16 +2909,16 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "HAPI reduction collaborative",
+                name: "Ran unit PDSA on hospital-acquired pressure injuries across 18 units and cut the HAPI rate 41%",
                 description:
-                  "Unit PDSA on hospital-acquired pressure injuries across 18 units. HAPI rate fell 41%; two units held zero for 9 consecutive months.",
+                  "Unit PDSA on hospital-acquired pressure injuries across 18 units, run by night-shift nurses without a project manager. HAPI rate fell 41%; two units held zero for 9 consecutive months. The collaborative is a Tuesday huddle; the consultant deck was never ordered.",
                 skills: ["Quality Improvement", "Patient Safety", "Care Coordination"],
               },
               {
-                name: "RN workforce redesign",
+                name: "Built a float pool and new-grad residency that cut RN turnover from 22% to 14%",
                 description:
-                  "Built a float pool and a new-grad residency that cut reliance on travel. RN turnover dropped from 22% to 14%; travel spend fell $9.4M annualized.",
-                skills: ["Workforce Planning", "Nursing Leadership", "HIPAA Compliance"],
+                  "Built a float pool and a new-grad residency that cut reliance on travel at 2x. RN turnover dropped from 22% to 14%; travel spend fell $9.4M annualized. Skill mix is a design problem; the Saturday night looks like a Tuesday, which is the staffing standard the board actually funded.",
+                skills: ["Workforce Planning", "Nursing Leadership", "Stakeholder Management"],
               },
             ],
           },
@@ -3003,15 +2938,15 @@ export const knowledgeProfiles = [
             endDate: "2020-08-21",
             projects: [
               {
-                name: "House-wide staffing office",
+                name: "Centralized house-wide staffing with a 4-hour prediction window and cut unplanned agency hours 33%",
                 description:
-                  "Centralized staffing with a 4-hour prediction window. Unplanned agency hours fell 33%; missed meal-break grievances dropped 28%.",
+                  "Centralized staffing with a 4-hour prediction window so a call-out was a deployment, not a group text. Unplanned agency hours fell 33%; missed meal-break grievances dropped 28%. The office still staffs beds the hard way; it just does it once, house-wide.",
                 skills: ["Workforce Planning", "Clinical Operations", "Nursing Leadership"],
               },
               {
-                name: "Night-shift practice council",
+                name: "Gave the night council a budget and a quality aim that cut night falls with injury 22%",
                 description:
-                  "Gave the night council a budget and a quality aim. Falls with injury on nights fell 22%; the council's first protocol became a house standard.",
+                  "Gave the night council a budget and a quality aim so it stopped being a suggestion box with sandwiches. Falls with injury on nights fell 22%; the council's first protocol became a house standard. A council without a budget is a listening tour; this one had both.",
                 skills: ["Quality Improvement", "Stakeholder Management", "Patient Safety"],
               },
             ],
@@ -3022,15 +2957,15 @@ export const knowledgeProfiles = [
             endDate: "2016-04-03",
             projects: [
               {
-                name: "Discharge barrier huddle",
+                name: "Ran a daily barrier huddle with case management that cut observed LOS 0.4 days without raising readmissions",
                 description:
-                  "Daily barrier huddle with case management. Observed LOS on two med-surg units fell 0.4 days; readmissions did not rise.",
+                  "Daily barrier huddle with case management so a discharge hold was a named barrier by 10 a.m., not a nursing failure at 4 p.m. Observed LOS on two med-surg units fell 0.4 days; readmissions did not rise. Case management is a partner on the huddle, not a ticket after noon.",
                 skills: ["Care Coordination", "Clinical Operations", "Quality Improvement"],
               },
               {
-                name: "Workstation privacy standard",
+                name: "Rewrote the minimum-necessary workstation standard and cut unit privacy events from 7 a year to 1",
                 description:
-                  "Rewrote the minimum-necessary standard after two incidents. Privacy events on the units fell from 7 a year to 1; the audit passed without a finding.",
+                  "Rewrote the minimum-necessary standard after two incidents so privacy was a practice habit at 3 a.m., not a module. Privacy events on the units fell from 7 a year to 1; the audit passed without a finding. The workstation timeout is a standard; the workaround is a finding.",
                 skills: ["HIPAA Compliance", "Nursing Leadership"],
               },
             ],
@@ -3066,13 +3001,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Daily safety huddle playbook",
+        name: "Hospital system daily safety huddle playbook",
         description:
-          "<p>The Memorial Harbor huddle: escalation rules, the serious-safety definition the board accepted, and the unit PDSA cadence that cut HAPI 41% without a consultant deck.</p>",
-        links: [
-          { label: "Huddle playbook", url: "https://www.example.com/elena-vasquez/huddle" },
-          { label: "Workforce redesign", url: "https://www.example.com/elena-vasquez/workforce" },
-        ],
+          "<p>The Memorial Harbor huddle: escalation rules, the serious-safety definition the board accepted, and the unit PDSA cadence that cut HAPI 41% without a consultant deck. Night shift still runs the same huddle.</p>",
         skills: ["Patient Safety", "Nursing Leadership", "Quality Improvement"],
       },
     ],
@@ -3151,22 +3082,22 @@ export const knowledgeProfiles = [
             startDate: "2021-07-01",
             projects: [
               {
-                name: "Geographic rounding rollout",
+                name: "Moved hospital medicine to unit-based teams and lifted geographic discharges from 41% to 86%",
                 description:
-                  "Moved the service to unit-based teams. Geographic discharges rose from 41% to 86%; observed LOS on the service fell 0.5 days without a rise in revisits.",
+                  "Moved the service to unit-based teams so a hospitalist group stopped being 40 solo practices with a shared pager. Geographic discharges rose from 41% to 86%; observed LOS on the service fell 0.5 days without a rise in revisits. The daily board with nursing is the operating system.",
                 skills: ["Clinical Operations", "Care Coordination", "Workforce Planning"],
               },
               {
-                name: "7-day revisit bundle",
+                name: "Standardized the discharge checklist and 48-hour call that cut 7-day revisits 18%",
                 description:
-                  "Standardized the discharge checklist and the 48-hour call. 7-day revisits fell 18%; the EHR order set made the bundle the default, not a reminder.",
+                  "Standardized the discharge checklist and the 48-hour call so a 7-day revisit was a design failure, not a courtesy missed. 7-day revisits fell 18%; the EHR order set made the bundle the default, not a reminder. Case management is on the rounding team, not a page after noon.",
                 skills: ["Quality Improvement", "Electronic Health Records", "Patient Safety"],
               },
               {
-                name: "Medical-staff compact",
+                name: "Rewrote the hospitalist medical-staff compact with a census cap the MEC backed and cut locums hours 27%",
                 description:
-                  "Rewrote the hospitalist compact with medical affairs: peer review, closed-loop consults, and a census cap the MEC backed. Locums hours fell 27%.",
-                skills: ["Medical Affairs", "Workforce Planning", "HIPAA Compliance"],
+                  "Rewrote the hospitalist compact with medical affairs: peer review, closed-loop consults, and a census cap the MEC backed. Locums hours fell 27%. The group is a service line, not a vendor; the compact is how medical staff stopped treating it like one.",
+                skills: ["Medical Affairs", "Workforce Planning", "Clinical Operations"],
               },
             ],
           },
@@ -3186,15 +3117,15 @@ export const knowledgeProfiles = [
             endDate: "2021-06-30",
             projects: [
               {
-                name: "Nocturnist coverage model",
+                name: "Replaced cross-cover chaos with a dedicated nocturnist and cut night pages to the day team 62%",
                 description:
-                  "Replaced cross-cover chaos with a dedicated nocturnist. Night pages to the day team fell 62%; two serious handoff events in the prior year did not recur.",
+                  "Replaced cross-cover chaos with a dedicated nocturnist so a night team inherited a handoff, not a census surprise. Night pages to the day team fell 62%; two serious handoff events in the prior year did not recur. Schedule is a safety control; locums at 2x is not a model.",
                 skills: ["Workforce Planning", "Patient Safety", "Clinical Operations"],
               },
               {
-                name: "Inbox and note redesign",
+                name: "Cut after-hours EHR time 41 minutes per hospitalist with team inbox pools and shorter notes",
                 description:
-                  "Cut the afternoon inbox with team pools and shorter notes. After-hours EHR time per hospitalist fell 41 minutes; documentation queries dropped 22%.",
+                  "Cut the afternoon inbox with team pools and shorter notes so the EHR stopped eating the family-meeting hour. After-hours EHR time per hospitalist fell 41 minutes; documentation queries dropped 22%. If the inbox is the bottleneck, it is an ops project, not a personal-resilience seminar.",
                 skills: ["Electronic Health Records", "Quality Improvement", "HIPAA Compliance"],
               },
             ],
@@ -3205,15 +3136,15 @@ export const knowledgeProfiles = [
             endDate: "2018-09-03",
             projects: [
               {
-                name: "Sepsis order-set adoption",
+                name: "Led hospitalist sepsis-bundle adoption that lifted time-to-antibiotics under 60 minutes from 68% to 89%",
                 description:
-                  "Led the unit adoption of the sepsis bundle. Time-to-antibiotics under 60 minutes rose from 68% to 89% on the hospitalist service.",
+                  "Led the unit adoption of the sepsis bundle so the order set was the default, not a reminder after the first lactate. Time-to-antibiotics under 60 minutes rose from 68% to 89% on the hospitalist service. Quality is the daily board; the committee minutes are the receipt.",
                 skills: ["Quality Improvement", "Electronic Health Records", "Care Coordination"],
               },
               {
-                name: "Family-update standard",
+                name: "Wrote the family-update standard after a privacy complaint and cut family complaints 30%",
                 description:
-                  "Wrote the update standard after a privacy complaint. Family complaints fell 30%; hallway updates stopped being the default.",
+                  "Wrote the update standard after a privacy complaint so a hallway consult stopped being the default family meeting. Family complaints fell 30%; hallway updates stopped being the default. Minimum-necessary is a habit on the unit, not a module assigned in January.",
                 skills: ["HIPAA Compliance", "Care Coordination", "Patient Safety"],
               },
             ],
@@ -3249,13 +3180,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Geographic rounding operating rhythm",
+        name: "Hospital medicine geographic rounding operating rhythm",
         description:
-          "<p>The daily board, census cap, and handoff standard Cuyahoga Lakes used to move geographic discharges to 86% and cut service LOS 0.5 days.</p>",
-        links: [
-          { label: "Operating rhythm", url: "https://www.example.com/david-okello/rounding" },
-          { label: "Revisit bundle", url: "https://www.example.com/david-okello/revisit-bundle" },
-        ],
+          "<p>The daily board, census cap, and handoff standard Cuyahoga Lakes used to move geographic discharges to 86% and cut service LOS 0.5 days. Includes the compact language the MEC actually backed.</p>",
         skills: ["Clinical Operations", "Care Coordination", "Quality Improvement"],
       },
     ],
@@ -3334,9 +3261,9 @@ export const knowledgeProfiles = [
             startDate: "2022-01-10",
             projects: [
               {
-                name: "Clean-claim lift",
+                name: "Rebuilt front-end edits and lifted clean-claim rate from 81% to 94% while cutting days in A/R to 39",
                 description:
-                  "Rebuilt front-end edits and coder feedback. Clean-claim rate rose from 81% to 94%; days in A/R fell from 48 to 39 in three quarters.",
+                  "Rebuilt front-end edits and coder feedback so a repeat reject became a rule, not a trainer. Clean-claim rate rose from 81% to 94%; days in A/R fell from 48 to 39 in three quarters. Cash is a process; month-end stopped being a scramble the CFO narrated to the board.",
                 skills: [
                   "Revenue Cycle",
                   "Electronic Health Records",
@@ -3345,15 +3272,15 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Denial workqueue redesign",
+                name: "Collapsed 14 denial queues into 5 families and pulled $18M of aged AR under 90 days",
                 description:
-                  "Collapsed 14 queues into 5 reason families with owners. Initial denial rate dropped 6.8 points; $18M of aged AR moved under 90 days.",
+                  "Collapsed 14 queues into 5 reason families with owners so a denial was a front-end problem someone owned. Initial denial rate dropped 6.8 points; $18M of aged AR moved under 90 days. The aging the CFO opens on Monday now has a name on each family.",
                 skills: ["Revenue Cycle", "Financial Reporting", "Program Management"],
               },
               {
-                name: "Clinical documentation huddle",
+                name: "Ran a weekly HIM and service-line huddle that cut query response time from 9 days to 3",
                 description:
-                  "Weekly huddle with HIM and two service lines on the top deny codes. Query response time fell from 9 days to 3; two codes left the top-10 list.",
+                  "Weekly huddle with HIM and two service lines on the top deny codes so documentation stopped being a billing attitude. Query response time fell from 9 days to 3; two codes left the top-10 list. Clinical documentation is in the room; the service-line chief stayed after the first two weeks.",
                 skills: ["Stakeholder Management", "HIPAA Compliance", "Quality Improvement"],
               },
             ],
@@ -3374,15 +3301,15 @@ export const knowledgeProfiles = [
             endDate: "2021-12-17",
             projects: [
               {
-                name: "Denial taxonomy",
+                name: "Mapped 200-plus payer remarks into 12 families and cut repeat rejects on the same edit 51%",
                 description:
-                  "Mapped 200+ payer remarks into 12 families. Repeat rejects on the same edit fell 51% after the library went live.",
+                  "Mapped 200-plus payer remarks into 12 families so the same reject stopped landing twice in two inboxes. Repeat rejects on the same edit fell 51% after the library went live. A remark is a family or it is folklore; the taxonomy made the difference operational.",
                 skills: ["Revenue Cycle", "Financial Reporting", "Electronic Health Records"],
               },
               {
-                name: "Payer go-live cutover",
+                name: "Ran a Medicaid MCO cutover that held first-pass yield at 90% in week one",
                 description:
-                  "Ran a Medicaid MCO cutover that held first-pass yield at 90% in week one. The prior cutover had dropped to 71% for a month.",
+                  "Ran a Medicaid MCO cutover that held first-pass yield at 90% in week one. The prior cutover had dropped to 71% for a month. The RAID log named the claim file, not a vibe, which is how a Monday go-live stayed a Monday.",
                 skills: ["Program Management", "Change Management", "HIPAA Compliance"],
               },
             ],
@@ -3393,15 +3320,15 @@ export const knowledgeProfiles = [
             endDate: "2018-02-11",
             projects: [
               {
-                name: "Aged-AR deep dive",
+                name: "Attributed $12M of 180-plus AR to five root causes and turned the registration two into a front-end project",
                 description:
-                  "Attributed $12M of 180+ AR to five root causes. Two were coding; three were registration. The registration two became a front-end project.",
+                  "Attributed $12M of 180-plus AR to five root causes. Two were coding; three were registration. The registration two became a front-end project instead of another coder memo. The residual is a coding problem or a payer problem; the report now says which.",
                 skills: ["Financial Reporting", "Revenue Cycle", "Stakeholder Management"],
               },
               {
-                name: "Workstation privacy audit",
+                name: "Closed a whole-chart access finding and cut open-chart events 70% without slowing clean-claim rate",
                 description:
-                  "Closed a billing-shop finding on whole-chart access. Minimum-necessary roles cut open-chart events 70% without slowing clean-claim rate.",
+                  "Closed a billing-shop finding on whole-chart access so minimum-necessary was a role, not a workaround. Minimum-necessary roles cut open-chart events 70% without slowing clean-claim rate. Privacy and a clean claim are the same workstation habit; the audit finally agreed.",
                 skills: ["HIPAA Compliance", "Electronic Health Records"],
               },
             ],
@@ -3437,13 +3364,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Denial taxonomy and edit library",
+        name: "Hospital denial taxonomy and claim-edit library",
         description:
-          "<p>The twelve-family denial map and the edit rules that stopped the same reject from landing twice. Includes the aging view the CFO now opens on Monday.</p>",
-        links: [
-          { label: "Taxonomy", url: "https://www.example.com/keisha-monroe/denial-taxonomy" },
-          { label: "Clean-claim notes", url: "https://www.example.com/keisha-monroe/clean-claim" },
-        ],
+          "<p>The twelve-family denial map and the edit rules that stopped the same reject from landing twice. Includes the aging view the CFO now opens on Monday. A remark is a family or it is folklore.</p>",
         skills: ["Revenue Cycle", "Financial Reporting", "Electronic Health Records"],
       },
     ],
@@ -3522,9 +3445,9 @@ export const knowledgeProfiles = [
             startDate: "2021-03-15",
             projects: [
               {
-                name: "Sepsis-bundle EHR capture",
+                name: "Moved sepsis-bundle elements into required EHR fields and lifted compliance from 72% to 91%",
                 description:
-                  "Moved bundle elements into required fields and a one-click order set. Compliance rose from 72% to 91%; abstractor hours on the measure fell 60%.",
+                  "Moved bundle elements into required fields and a one-click order set so the measure lived in the workflow, not in an abstractor army. Compliance rose from 72% to 91%; abstractor hours on the measure fell 60%. If the field is optional, the measure is a hope.",
                 skills: [
                   "Quality Improvement",
                   "Electronic Health Records",
@@ -3533,15 +3456,15 @@ export const knowledgeProfiles = [
                 ],
               },
               {
-                name: "Falls collaborative",
+                name: "Ran an 11-unit PDSA on falls with injury that cut the rate 27%",
                 description:
-                  "Eleven-unit PDSA on falls with injury. Rate fell 27%; two units held the new rate at 180 days with the huddle still on the board.",
+                  "Eleven-unit PDSA on falls with injury, assigned only where census made a twelfth aim survivable. Rate fell 27%; two units held the new rate at 180 days with the huddle still on the board. Survey readiness was a side effect; the Tuesday huddle was the product.",
                 skills: ["Patient Safety", "Quality Improvement", "Program Management"],
               },
               {
-                name: "Post-discharge reach standard",
+                name: "Aligned quality and case management on a 48-hour reach definition that lifted documented reach from 54% to 81%",
                 description:
-                  "Aligned quality and case management on a single 'reached' definition and a 48-hour call. Documented reach rose from 54% to 81%; 7-day revisits on the pilot service fell 12%.",
+                  "Aligned quality and case management on a single reached definition and a 48-hour call so the courtesy call became a process. Documented reach rose from 54% to 81%; 7-day revisits on the pilot service fell 12%. Both teams now mean the same thing by reached.",
                 skills: ["Care Coordination", "HIPAA Compliance", "Electronic Health Records"],
               },
             ],
@@ -3562,21 +3485,21 @@ export const knowledgeProfiles = [
             endDate: "2021-03-12",
             projects: [
               {
-                name: "Shared ambulatory measure set",
+                name: "Designed 18 EHR-submitted measures for 14 clinics and ended summer-intern file cleaning",
                 description:
-                  "Designed 18 measures 14 clinics submit from the EHR. Summer-intern cleaning of the file stopped; site-to-site variance on hypertension control became a real gap, not a definition fight.",
+                  "Designed 18 measures 14 clinics submit from the EHR so a hypertension gap was a real gap, not a definition fight. Summer-intern cleaning of the file stopped; site-to-site variance on hypertension control became something a medical director could act on. The shared set is still what they submit.",
                 skills: ["Quality Improvement", "Electronic Health Records", "Program Management"],
               },
               {
-                name: "Limited-data extract",
+                name: "Rebuilt the quality registry as a limited-data set and ended whole-chart access for abstractors",
                 description:
-                  "Rebuilt the registry extract as a limited-data set. Whole-chart access for abstractors ended; a privacy review closed with no findings.",
+                  "Rebuilt the registry extract as a limited-data set so a quality program did not need a whole chart. Whole-chart access for abstractors ended; a privacy review closed with no findings. Privacy is designed into the extract; the workaround was the old extract.",
                 skills: ["HIPAA Compliance", "Electronic Health Records", "Care Coordination"],
               },
               {
-                name: "Unit huddle kit",
+                name: "Shipped a one-page huddle and control plan that six clinic sites still ran at the two-year revisit",
                 description:
-                  "A one-page huddle and a control plan clinics could run without a project manager. Six sites still used the kit at the two-year revisit.",
+                  "A one-page huddle and a control plan clinics could run without a project manager, including a sunset for the shadow tracker. Six sites still used the kit at the two-year revisit. Adoption is a field-completion rate; the kit made that visible on Tuesday.",
                 skills: ["Change Management", "Patient Safety", "Clinical Operations"],
               },
             ],
@@ -3612,13 +3535,9 @@ export const knowledgeProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Measure-in-the-workflow kit",
+        name: "Kit for capturing sepsis-bundle measures in the workflow",
         description:
-          "<p>How North Star moved sepsis-bundle capture into required EHR fields and killed the abstractor army. Includes the huddle page units still run after survey.</p>",
-        links: [
-          { label: "Workflow kit", url: "https://www.example.com/nathan-brooks/measure-kit" },
-          { label: "Huddle page", url: "https://www.example.com/nathan-brooks/huddle" },
-        ],
+          "<p>How North Star moved sepsis-bundle capture into required EHR fields and killed the abstractor army. Includes the huddle page units still run after survey. If the field is optional, the measure is a hope.</p>",
         skills: ["Quality Improvement", "Electronic Health Records", "Patient Safety"],
       },
     ],

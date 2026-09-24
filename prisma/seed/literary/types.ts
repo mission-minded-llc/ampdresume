@@ -51,7 +51,7 @@ export type LiteraryCertification = {
 export type LiteraryFeaturedProject = {
   name: string;
   description: string;
-  links: Array<{ label: string; url: string }>;
+  links?: Array<{ label: string; url: string }>;
   skills?: string[];
 };
 

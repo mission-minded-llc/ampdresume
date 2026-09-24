@@ -74,15 +74,15 @@ export const regulatedProfiles = [
             startDate: "2021-03-01",
             projects: [
               {
-                name: "ATOPIC-310 Phase IIb",
+                name: "Cut ATOPIC-310 screen-fail from 41% to 27% after rewriting inclusion criteria",
                 description:
-                  "Led protocol design and operational standup for a 412-patient Phase IIb atopic dermatitis study across 38 U.S. sites. Cut screen-fail from 41% to 27% after an interim feasibility rewrite of inclusion criteria.",
+                  "Led protocol design and operational standup for a 412-patient Phase IIb atopic dermatitis study across 38 U.S. sites. After interim feasibility showed inclusion language sites could not apply, rewrote the criteria. Screen-fail dropped from 41% to 27%; sites posted the new flowchart in the workroom instead of paging medical monitors.",
                 skills: ["Clinical Development", "Trial Operations", "Quality Improvement"],
               },
               {
-                name: "LUPUS-301 pivotal start-up",
+                name: "Took LUPUS-301 from concept sheet to first patient in 11 months, six weeks ahead",
                 description:
-                  "Took a lupus nephritis pivotal from concept sheet to FPI in 11 months, including SAP alignment and a Type C meeting package. First 80 patients randomized 6 weeks ahead of the enrollment model.",
+                  "Took a lupus nephritis pivotal from concept sheet to FPI in 11 months, including SAP alignment and a Type C package that locked the renal endpoint. First 80 patients randomized 6 weeks ahead of the enrollment model. CMC and biostats stayed on one calendar so the briefing book did not invent a second design.",
                 skills: [
                   "Clinical Development",
                   "GCP",
@@ -91,9 +91,9 @@ export const regulatedProfiles = [
                 ],
               },
               {
-                name: "Investigator network rebuild",
+                name: "Rebuilt the U.S. investigator map around 14 academic sites and cut deviations 22%",
                 description:
-                  "Replaced an underperforming CRO country lead and rebuilt the U.S. investigator map around 14 high-enrolling academic sites. Protocol deviation rate dropped 22% in two quarters.",
+                  "Replaced an underperforming CRO country lead and rebuilt the U.S. investigator map around 14 high-enrolling academic sites that already knew the indication. Protocol deviation rate dropped 22% in two quarters. The new map killed three sites that looked busy on the feasibility call and empty in the EDC, which is the only audit that matters.",
                 skills: ["Clinical Operations", "Medical Affairs", "Trial Operations"],
               },
             ],
@@ -114,15 +114,15 @@ export const regulatedProfiles = [
             endDate: "2021-02-26",
             projects: [
               {
-                name: "Phase III CSR and database lock",
+                name: "Locked a 620-patient Phase III database 9 days after LPLV instead of the planned 21",
                 description:
-                  "Owned medical review for a 620-patient Phase III CSR and the last two data-cleaning cycles. Locked the database 9 days after LPLV instead of the planned 21.",
+                  "Owned medical review for a 620-patient Phase III CSR and the last two data-cleaning cycles, including the queries medical monitors keep for the weekend. Locked the database 9 days after LPLV instead of the planned 21. The CSR tables matched the lock listing on the first medical pass.",
                 skills: ["Clinical Development", "GCP", "Regulatory Writing"],
               },
               {
-                name: "DSMB packet discipline",
+                name: "Standardized DSMB packets across three studies so monitors stopped building slides overnight",
                 description:
-                  "Standardized DSMB open- and closed-session packets across three ongoing studies so medical monitors stopped assembling slides the night before.",
+                  "Standardized DSMB open- and closed-session packets across three ongoing studies so medical monitors stopped assembling slides the night before the call. Open-session tables shipped with a locked footnote set; closed-session listings no longer arrived as a personal Excel file. Chairs stopped asking which version was current, which had been the unofficial agenda item.",
                 skills: ["Medical Affairs", "Clinical Operations", "Stakeholder Management"],
               },
             ],
@@ -133,15 +133,15 @@ export const regulatedProfiles = [
             endDate: "2018-03-30",
             projects: [
               {
-                name: "Phase II dose-range protocol",
+                name: "Drafted the IL-17 dose-range protocol and cut medical-monitor queries by a third",
                 description:
-                  "Drafted the dose-range protocol and eligibility flowchart for a first-in-indication IL-17 asset. Medical monitor queries fell by a third after the flowchart shipped to sites.",
+                  "Drafted the dose-range protocol and eligibility flowchart for a first-in-indication IL-17 asset, including the stopping rules biostats would actually use. Medical monitor queries fell by a third after the flowchart shipped to sites. Investigators stopped inventing their own washout math, which had been the quiet source of the protocol deviations.",
                 skills: ["Clinical Development", "Regulatory Writing", "GCP"],
               },
               {
-                name: "Site feasibility scoring",
+                name: "Dropped 11 low-yield sites before SIV using a feasibility score and saved $1.4M",
                 description:
-                  "Built a feasibility score from prior enrollment, IRB cycle time, and competing studies. Dropped 11 low-yield sites before SIV and saved an estimated $1.4M in start-up.",
+                  "Built a feasibility score from prior enrollment, IRB cycle time, and competing studies instead of the usual PI enthusiasm call. Dropped 11 low-yield sites before SIV and saved an estimated $1.4M in start-up. Surviving sites had a coordinator who could name the last competing protocol.",
                 skills: ["Trial Operations", "Clinical Operations", "Quality Improvement"],
               },
             ],
@@ -162,15 +162,15 @@ export const regulatedProfiles = [
             endDate: "2016-05-20",
             projects: [
               {
-                name: "New England site monitoring",
+                name: "Closed 94% of critical queries inside 10 days across 19 New England Phase II sites",
                 description:
-                  "Monitored 19 sites across New England for two Phase II programs. Closed 94% of critical queries inside the 10-day window for four consecutive quarters.",
+                  "Monitored 19 sites across New England for two Phase II programs that look close on a map and take a full day in January. Closed 94% of critical queries inside the 10-day window for four consecutive quarters. Source-to-EDC mismatches were written up the same visit, not saved for a later letter.",
                 skills: ["GCP", "Trial Operations", "Clinical Operations"],
               },
               {
-                name: "TMF inspection drill",
+                name: "Led a mock FDA TMF inspection that found 47 gaps; the real inspection found none",
                 description:
-                  "Led a mock FDA TMF inspection that found 47 filing gaps; the real inspection six months later issued no TMF findings.",
+                  "Led a mock FDA TMF inspection that found 47 filing gaps, most of them certified copies everyone swore were already in the eTMF. The real inspection six months later issued no TMF findings. The drill report named owners, not departments, which is why the gaps closed.",
                 skills: ["GCP", "Quality Improvement"],
               },
             ],
@@ -206,13 +206,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "ATOPIC-310 operational playbook",
+        name: "ATOPIC-310 feasibility rewrite and site-scoring playbook",
         description:
-          "<p>Public write-up of the feasibility rewrite and site-scoring method used on Helixbridge's Phase IIb atopic program. Includes the screen-fail waterfall and the eligibility flowchart sites actually posted in the workroom.</p>",
-        links: [
-          { label: "Playbook", url: "https://www.example.com/helixbridge/atopic-310" },
-          { label: "Enrollment notes", url: "https://www.example.com/yuna-takahashi/enrollment" },
-        ],
+          "<p>Public write-up of the feasibility rewrite and site-scoring method used on Helixbridge's Phase IIb atopic program. Includes the screen-fail waterfall and the eligibility flowchart sites actually posted in the workroom. Written so a new country lead can run the next interim without inventing the method again.</p>",
         skills: ["Clinical Development", "Trial Operations", "Quality Improvement"],
       },
     ],
@@ -272,9 +268,9 @@ export const regulatedProfiles = [
         yearStarted: 2012,
       },
       {
-        name: "Legal Writing",
+        name: "Regulatory Counseling",
         description:
-          "Drafts labeling, REMS language, and correspondence that can survive both counsel and the review division.",
+          "Counsels labeling, REMS, and inspection responses so counsel and the review division hear the same story.",
         yearStarted: 2016,
       },
     ],
@@ -291,22 +287,22 @@ export const regulatedProfiles = [
             startDate: "2020-09-14",
             projects: [
               {
-                name: "NEURO-NDA-04 original submission",
+                name: "Directed the NEURO-NDA-04 original filing through 148 eCTD sequences to first-cycle acceptance",
                 description:
-                  "Directed the original NDA for a late-stage epilepsy asset, 148 eCTD sequences through filing. FDA accepted the application on first cycle and scheduled an advisory committee 7 months after NDA receipt.",
+                  "Directed the original NDA for a late-stage epilepsy asset, 148 eCTD sequences through filing, with Module 2 claims matching the Module 5 tables. FDA accepted on first cycle and scheduled an advisory committee 7 months after NDA receipt. The Type C that set the ad comm clock was written before CMC asked for another week.",
                 skills: ["FDA Regulatory Affairs", "Regulatory Writing", "Quality Management"],
               },
               {
-                name: "Oncology pre-IND pair",
+                name: "Opened two oncology INDs in 14 months after a pre-IND that reset the starting dose",
                 description:
-                  "Opened two oncology INDs in 14 months, including a pre-IND that moved the starting dose after FDA questioned the animal-to-human multiple. First-in-human opened 11 weeks after IND receipt.",
+                  "Opened two oncology INDs in 14 months, including a pre-IND that moved the starting dose after FDA questioned the animal-to-human multiple. First-in-human opened 11 weeks after IND receipt. The second IND reused the tox narrative that survived the first review, which is the only kind of template I will defend.",
                 skills: ["FDA Regulatory Affairs", "Clinical Development", "GCP"],
               },
               {
-                name: "Labeling and REMS negotiation",
+                name: "Kept a boxed warning from becoming a contraindication that would have blocked the primary-care launch",
                 description:
-                  "Led labeling and REMS talks with DMEPA and OSE. Kept a boxed warning the division wanted from expanding into a contraindication that would have blocked the primary care launch.",
-                skills: ["Legal Writing", "Stakeholder Management", "Policy Analysis"],
+                  "Led labeling and REMS talks with DMEPA and OSE on a neurology asset commercial wanted in primary care. Kept a boxed warning from expanding into a contraindication that would have blocked that launch. The REMS elements that survived were the ones a clinic can actually run.",
+                skills: ["Regulatory Counseling", "Stakeholder Management", "Policy Analysis"],
               },
             ],
           },
@@ -326,15 +322,15 @@ export const regulatedProfiles = [
             endDate: "2020-09-04",
             projects: [
               {
-                name: "End-of-Phase II meeting save",
+                name: "Rewrote a failed Type B package and locked a single pivotal design at the second EOP2",
                 description:
-                  "Rewrote a client's EOP2 package after a failed Type B. The second meeting locked a single pivotal design and avoided a second Phase II the board had already funded.",
+                  "Rewrote a client's EOP2 package after a failed Type B that had asked the division to bless two pivotal designs. The second meeting locked a single pivotal and avoided a second Phase II the board had already funded. Minutes matched the ask, so development did not restart.",
                 skills: ["FDA Regulatory Affairs", "Clinical Development", "Regulatory Writing"],
               },
               {
-                name: "Complete response strategy",
+                name: "Built a 505(b)(2) CRL response on new PK work and won resubmission approval in 6 months",
                 description:
-                  "Built the CRL response for a 505(b)(2) analgesic: new PK work, no new outcome trial. Resubmission approved in 6 months.",
+                  "Built the CRL response for a 505(b)(2) analgesic: new PK work, no new outcome trial, and a Module 2 that did not pretend the first review had asked for new science. Resubmission approved in 6 months. The PK protocol used the CRL language so CMC could not reopen the clinical question.",
                 skills: ["Regulatory Writing", "Policy Analysis", "Stakeholder Management"],
               },
             ],
@@ -345,16 +341,16 @@ export const regulatedProfiles = [
             endDate: "2017-07-07",
             projects: [
               {
-                name: "eCTD publishing standard",
+                name: "Cut ESG sequence rejection from 8% to under 1% with a publish-ready QC checklist",
                 description:
-                  "Installed a publish-ready QC checklist across 11 client dossiers. Sequence rejection at the ESG dropped from 8% to under 1%.",
+                  "Installed a publish-ready QC checklist across 11 client dossiers so hyperlink and leaf-title errors stopped being discovered at the ESG. Sequence rejection dropped from 8% to under 1%. Publishers stopped treating Module 1 as a last-night scramble, which is how most of those rejections had been earned.",
                 skills: ["Quality Management", "FDA Regulatory Affairs"],
               },
               {
-                name: "Orphan designation briefs",
+                name: "Wrote four orphan designation requests and won three on first review with reusable prevalence tables",
                 description:
-                  "Wrote four orphan designation requests; three granted on first review. Prevalence tables were the part clients kept recycling.",
-                skills: ["Regulatory Writing", "Policy Analysis", "Legal Writing"],
+                  "Wrote four orphan designation requests; three granted on first review. Prevalence tables were the part clients kept recycling, because the scientific rationale is easier than a denominator the agency will believe. The one that failed had a prevalence story that only worked if you ignored the broader ICD-10 bucket, which OOPD did not.",
+                skills: ["Regulatory Writing", "Policy Analysis", "Regulatory Counseling"],
               },
             ],
           },
@@ -374,16 +370,16 @@ export const regulatedProfiles = [
             endDate: "2015-02-20",
             projects: [
               {
-                name: "ANDA supplement factory",
+                name: "Cut average FDA information-request cycles from 47 days to 29 across 60-plus ANDA supplements",
                 description:
-                  "Managed 60-plus annual ANDA supplements for a mature generics book. Cut average FDA information-request cycle from 47 days to 29 by standardizing Module 3 change narratives.",
+                  "Managed 60-plus annual ANDA supplements for a mature generics book that generated change control faster than anyone wanted to write Module 3. Cut average FDA information-request cycle from 47 days to 29 by standardizing the change narratives. Reviewers stopped asking the same three questions about the same equipment swap.",
                 skills: ["FDA Regulatory Affairs", "Quality Management", "Regulatory Writing"],
               },
               {
-                name: "Inspection correspondence desk",
+                name: "Closed two 2014 site inspections VAI with no import alert after drafting the 483 responses",
                 description:
-                  "Drafted 483 and warning-letter responses with QA. Two site inspections in 2014 closed with voluntary action indicated and no import alert.",
-                skills: ["GCP", "Legal Writing", "Stakeholder Management"],
+                  "Drafted 483 and warning-letter responses with QA for Harborline's site inspections, matching the CAPA language to what the investigator actually wrote. Two site inspections in 2014 closed with voluntary action indicated and no import alert. The responses named the SOP that changed, not the training that would have been the easier paragraph.",
+                skills: ["GCP", "Regulatory Counseling", "Stakeholder Management"],
               },
             ],
           },
@@ -418,13 +414,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "NEURO-NDA-04 filing memo",
+        name: "Annotated NEURO-NDA-04 first-cycle filing strategy memo",
         description:
-          "<p>Annotated outline of the epilepsy NDA filing strategy: review-division mapping, Module 2 claims that match Module 5, and the Type C questions that decided the advisory-committee timing.</p>",
-        links: [
-          { label: "Filing memo", url: "https://www.example.com/crestline/neuro-nda-04" },
-          { label: "Meeting log", url: "https://www.example.com/omar-haddad/fda-meetings" },
-        ],
+          "<p>Annotated outline of the epilepsy NDA filing strategy: review-division mapping, Module 2 claims that match Module 5, and the Type C questions that decided the advisory-committee timing. The memo is the version CMC and clinical can execute, not the version that only survives a slide review.</p>",
         skills: ["FDA Regulatory Affairs", "Regulatory Writing", "Clinical Development"],
       },
     ],
@@ -503,21 +495,21 @@ export const regulatedProfiles = [
             startDate: "2022-01-10",
             projects: [
               {
-                name: "Weekly signal board",
+                name: "Moved two validated signals into RMP updates within 45 days of the first weekly board flag",
                 description:
-                  "Stood up a weekly quantitative signal board across 14 products using disproportionality plus case-series review. Two validated signals reached RMP updates inside 45 days of first flag.",
+                  "Stood up a weekly quantitative signal board across 14 products using disproportionality plus case-series review, with a chair who could kill a false flag in the room. Two validated signals reached RMP updates inside 45 days of first flag. Medical and regulatory left with the same action list.",
                 skills: ["Pharmacovigilance", "Patient Safety", "Medical Affairs"],
               },
               {
-                name: "ICSR quality reset",
+                name: "Cut serious-case coding error from 11% to 3.4% and late 15-day reports from 8 to 1",
                 description:
-                  "Cut serious-case coding error from 11% to 3.4% in two quarters by pairing MedDRA recoding audits with a vendor scorecard. Late 15-day reports fell from 8 per quarter to 1.",
+                  "Cut serious-case coding error from 11% to 3.4% in two quarters by pairing MedDRA recoding audits with a vendor scorecard that named the coder, not the company. Late 15-day reports fell from 8 per quarter to 1. The scorecard ended treating a late case as a system issue.",
                 skills: ["Pharmacovigilance", "Quality Management", "GCP"],
               },
               {
-                name: "PSUR / PBRER factory",
+                name: "Shipped six PSURs and four DSURs on time for two years after rebuilding the aggregate calendar",
                 description:
-                  "Rebuilt the aggregate-report calendar so six PSURs and four DSURs shipped on time for two consecutive years. Medical review moved from the last weekend to a locked two-week window.",
+                  "Rebuilt the aggregate-report calendar so six PSURs and four DSURs shipped on time for two consecutive years. Medical review moved from the last weekend to a locked two-week window with a frozen line listing. Authors stopped discovering a new fatal case on Saturday night, which had been the unofficial close process.",
                 skills: ["Regulatory Writing", "Pharmacovigilance", "Medical Affairs"],
               },
             ],
@@ -538,21 +530,21 @@ export const regulatedProfiles = [
             endDate: "2021-12-23",
             projects: [
               {
-                name: "Signal method for a thin book",
+                name: "Caught a hepatic signal on 19 cases a monthly disproportionality table had buried",
                 description:
-                  "Designed a case-series-first method for four pre-approval clients who did not have enough exposure for disproportionality. Caught a hepatic signal on 19 cases that the monthly table had buried.",
+                  "Designed a case-series-first method for four pre-approval clients who did not have enough exposure for disproportionality to mean anything. Caught a hepatic signal on 19 cases that the monthly table had buried under a reassuring PRR. The method note went into the DSUR.",
                 skills: ["Pharmacovigilance", "Patient Safety", "Regulatory Writing"],
               },
               {
-                name: "SAE reconciliation drill",
+                name: "Closed a 41-case SAE-to-EDC gap before database lock and kept the DSUR clock intact",
                 description:
-                  "Reconciled safety-database SAEs against EDC for three Phase III programs. Closed a 41-case gap before database lock and kept the DSUR clock intact.",
+                  "Reconciled safety-database SAEs against EDC for three Phase III programs in the weeks when everyone else is writing the lock plan. Closed a 41-case gap before database lock and kept the DSUR clock intact. Missing cases were mostly hospitalizations coded as protocol visits.",
                 skills: ["GCP", "Clinical Operations", "Quality Management"],
               },
               {
-                name: "Privacy-safe intake",
+                name: "Rewrote U.S. consumer intake so call-center notes stopped storing full SSNs beside AE narratives",
                 description:
-                  "Rewrote U.S. consumer intake so call-center notes stopped storing full SSNs next to adverse-event narratives.",
+                  "Rewrote U.S. consumer intake so call-center notes stopped storing full SSNs next to adverse-event narratives, a habit that had survived two vendor changes. Scripts now capture the minimum identifiers a valid ICSR needs. Privacy and safety signed the same SOP so turnover cannot undo it.",
                 skills: ["HIPAA Compliance", "Pharmacovigilance"],
               },
             ],
@@ -573,15 +565,15 @@ export const regulatedProfiles = [
             endDate: "2017-03-24",
             projects: [
               {
-                name: "Expedited case desk",
+                name: "Held 15-day compliance at 98.6% on 74 serious cases a month after a vendor backlog at 91%",
                 description:
-                  "Processed 74 serious U.S. and EU cases a month at peak. Held 15-day compliance at 98.6% for 2015–2016 after a vendor backlog that had sat at 91%.",
+                  "Processed 74 serious U.S. and EU cases a month at peak, including weekend clocks that do not care about a vendor ticket queue. Held 15-day compliance at 98.6% for 2015–2016 after a vendor backlog that had sat at 91%. The daily aging list named the case, not the workstream.",
                 skills: ["Pharmacovigilance", "GCP", "Quality Management"],
               },
               {
-                name: "Literature surveillance rota",
+                name: "Converted 23 literature articles into valid ICSRs marketing had never sent to safety",
                 description:
-                  "Ran weekly literature review for nine products and converted 23 articles into valid ICSRs that marketing had never sent to safety.",
+                  "Ran weekly literature review for nine products and converted 23 articles into valid ICSRs that marketing had never sent to safety, mostly congress abstracts with a hospitalization buried in the poster. The rota assigned a reviewer by product. Marketing learned a published case is still a case.",
                 skills: ["Pharmacovigilance", "Medical Affairs", "Patient Safety"],
               },
             ],
@@ -617,22 +609,15 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Signal board operating model",
+        name: "Weekly quantitative signal board operating model",
         description:
-          "<p>Description of the weekly quantitative-plus-case-series board Francesca installed at Rivermark, including the two signals that reached RMP updates inside 45 days.</p>",
-        links: [
-          { label: "Operating model", url: "https://www.example.com/rivermark/signal-board" },
-          { label: "Case study", url: "https://www.example.com/francesca-rossi/signals" },
-        ],
+          "<p>Description of the weekly quantitative-plus-case-series board Francesca installed at Rivermark, including the two signals that reached RMP updates inside 45 days. Names the chair, the kill criteria for a false flag, and the handoff into the RMP so the board is not a slide ritual.</p>",
         skills: ["Pharmacovigilance", "Patient Safety", "Quality Management"],
       },
       {
-        name: "Aggregate report calendar",
+        name: "PSUR and DSUR aggregate report calendar",
         description:
-          "<p>The PSUR and DSUR calendar that moved medical review off the last weekend and kept ten aggregate reports on time for two years.</p>",
-        links: [
-          { label: "Calendar notes", url: "https://www.example.com/rivermark/pbrer-calendar" },
-        ],
+          "<p>The PSUR and DSUR calendar that moved medical review off the last weekend and kept ten aggregate reports on time for two years. Includes the frozen line-listing window so a new fatal case stops arriving as a Saturday surprise.</p>",
         skills: ["Regulatory Writing", "Pharmacovigilance"],
       },
     ],
@@ -711,21 +696,21 @@ export const regulatedProfiles = [
             startDate: "2021-06-01",
             projects: [
               {
-                name: "Site-to-site mAb tech transfer",
+                name: "Landed three mAb PPQ lots inside PAR on a 2,000 L site-to-site transfer",
                 description:
-                  "Transferred a 2,000 L mAb DS process from the sending development suite to a second Oakridge train. Three PPQ lots landed inside PAR; the receiving team ran lot 3 without the sending MSAT lead on the floor.",
+                  "Transferred a 2,000 L mAb DS process from the sending development suite to a second Oakridge train. Three PPQ lots landed inside PAR; the receiving team ran lot 3 without the sending MSAT lead on the floor. Batch-record redlines were finished before the first CIP.",
                 skills: ["CMC Development", "Program Management", "Technical Leadership"],
               },
               {
-                name: "PPQ campaign for a small-molecule API",
+                name: "Executed a five-lot high-potency API PPQ with Cpk above 1.4 and zero critical deviations",
                 description:
-                  "Designed and executed a five-lot PPQ for a high-potency API after a solvent swap. Cpk on the critical impurity stayed above 1.4; zero critical deviations in the campaign.",
+                  "Designed and executed a five-lot PPQ for a high-potency API after a solvent swap that had already rewritten the relief-device calc. Cpk on the critical impurity stayed above 1.4; zero critical deviations in the campaign. Operators ran the new charge sequence on engineering lots, not on PPQ-1.",
                 skills: ["CMC Development", "Six Sigma", "Quality Management"],
               },
               {
-                name: "PHA on the new hydrogenation suite",
+                name: "Forced a hydrogenation vent redesign at 400 L that would have been a late qualification finding",
                 description:
-                  "Led the process-hazard analysis before a hydrogenation scale-up moved from 50 L to 400 L. Two scenarios forced a vent redesign that would have been a late finding in qualification.",
+                  "Led the process-hazard analysis before a hydrogenation scale-up moved from 50 L to 400 L, with operations and EHS in the room. Two scenarios forced a vent redesign that would have been a late finding in qualification. The timeline slipped six weeks on purpose; the alternative was a finding with a lot number.",
                 skills: ["Process Safety", "Stakeholder Management", "Production Planning"],
               },
             ],
@@ -746,15 +731,15 @@ export const regulatedProfiles = [
             endDate: "2021-05-21",
             projects: [
               {
-                name: "Control strategy rewrite",
+                name: "Rebuilt the spray-dried intermediate control strategy and recovered capability without new capital",
                 description:
-                  "Rebuilt the control strategy for a client's spray-dried intermediate after three commercial lots drifted on residual solvent. Capability recovered without a new capital project.",
+                  "Rebuilt the control strategy for a client's spray-dried intermediate after three commercial lots drifted on residual solvent. Capability recovered without a new capital project, mostly by moving a drying endpoint from a clock to a PAT reading the operators already trusted. QA stopped opening deviations that were really a specification written for a different dryer.",
                 skills: ["CMC Development", "Six Sigma", "Quality Management"],
               },
               {
-                name: "Receiving-site playbook",
+                name: "Wrote the receiving-site playbook used on four later transfers, from redlines to day-one QA questions",
                 description:
-                  "Wrote the receiving-site playbook used on four subsequent transfers: batch-record redlines, sampling maps, and the questions QA always asks on day one.",
+                  "Wrote the receiving-site playbook used on four subsequent transfers: batch-record redlines, sampling maps, PAR tables, and the questions QA always asks on day one. Sending teams stopped treating the receive as a shipping project. The packet still gets handed to MSAT before the first CIP, which is the only time it is useful.",
                 skills: ["Technical Leadership", "Program Management", "Stakeholder Management"],
               },
             ],
@@ -765,15 +750,15 @@ export const regulatedProfiles = [
             endDate: "2018-08-31",
             projects: [
               {
-                name: "DoE on a crystallization",
+                name: "Moved a crystallization from 62% to 81% isolated yield and retired a second mill pass",
                 description:
-                  "Ran a 16-run designed experiment that moved a crystallization from 62% to 81% isolated yield and tightened PSD enough for the downstream mill to retire a second pass.",
+                  "Ran a 16-run designed experiment that moved a crystallization from 62% to 81% isolated yield and tightened PSD enough for the downstream mill to retire a second pass. The design included the seed load operators had been adjusting by eye. Process chemistry kept the setpoints; manufacturing kept the cycle time.",
                 skills: ["Six Sigma", "CMC Development"],
               },
               {
-                name: "Engineering-lot schedule",
+                name: "Built an engineering-lot calendar around a sold-out line so characterization did not steal Friday",
                 description:
-                  "Built the engineering-lot calendar around a sold-out commercial line so characterization did not steal the Friday slot for two months running.",
+                  "Built the engineering-lot calendar around a sold-out commercial line so characterization did not steal the Friday slot for two months running. Planning and MSAT signed the same freeze date. The commercial planner stopped discovering a characterization batch on the board on Thursday, which had been the unofficial scheduling process.",
                 skills: ["Production Planning", "Program Management"],
               },
             ],
@@ -794,15 +779,15 @@ export const regulatedProfiles = [
             endDate: "2016-05-06",
             projects: [
               {
-                name: "Night-shift deviation reduction",
+                name: "Cut night-shift documentation deviations 38% in a year by rewriting the steps operators skipped",
                 description:
-                  "Cut documentation deviations on the night shift by 38% in a year by rewriting the batch-record steps operators actually skipped.",
+                  "Cut documentation deviations on the night shift by 38% in a year by rewriting the batch-record steps operators actually skipped, mostly checks that duplicated a DCS interlock. The rewrite sat with the night lead, not the day-shift author. QA kept the critical checks and lost the ones that had been training people to initial fiction.",
                 skills: ["Quality Management", "Production Planning", "Technical Leadership"],
               },
               {
-                name: "Solvent-swap PHA",
+                name: "Changed a methylene-chloride-to-acetonitrile timeline by six weeks after the PHA rewrote the relief calc",
                 description:
-                  "Ran the first formal PHA on a methylene-chloride-to-acetonitrile swap. The relief-device calculation changed the project timeline by six weeks and avoided a later near miss.",
+                  "Ran the first formal PHA on a methylene-chloride-to-acetonitrile swap that process chemistry had treated as a drop-in. The relief-device calculation changed the project timeline by six weeks and avoided a later near miss. EHS kept the new calc; the project kept the solvent.",
                 skills: ["Process Safety", "CMC Development"],
               },
             ],
@@ -833,13 +818,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Receiving-site transfer playbook",
+        name: "Receiving-site tech-transfer playbook for MSAT teams",
         description:
-          "<p>The packet Grant still hands a receiving MSAT team on day one: redlined batch records, sampling maps, PAR tables, and the PHA questions that stop a transfer from becoming a shipping project.</p>",
-        links: [
-          { label: "Playbook", url: "https://www.example.com/oakridge/tech-transfer" },
-          { label: "PPQ notes", url: "https://www.example.com/grant-holloway/ppq" },
-        ],
+          "<p>The packet Grant still hands a receiving MSAT team on day one: redlined batch records, sampling maps, PAR tables, and the PHA questions that stop a transfer from becoming a shipping project. Used on four later transfers without rewriting the first chapter.</p>",
         skills: ["CMC Development", "Program Management", "Process Safety"],
       },
     ],
@@ -918,21 +899,21 @@ export const regulatedProfiles = [
             startDate: "2020-11-02",
             projects: [
               {
-                name: "Workforce grant portfolio evaluation",
+                name: "Found 28% of a $180M workforce portfolio could not document the employment outcome they were paid for",
                 description:
-                  "Led a mixed-methods evaluation of a $180M workforce grant portfolio across 41 states. Found 28% of sites could not document the employment outcome they were paid for; the next NOFO dropped that indicator.",
+                  "Led a mixed-methods evaluation of a $180M workforce grant portfolio across 41 states, using a sample that was not a convenience sample. Found 28% of sites could not document the employment outcome they were paid for; the next NOFO dropped that indicator. Program offices got a methods note, not a success story.",
                 skills: ["Program Evaluation", "Monitoring and Evaluation", "Grant Management"],
               },
               {
-                name: "PRA clearance for a new survey",
+                name: "Cleared a 12,000-respondent OMB Part A/B package in 91 days after the prior package sat 8 months",
                 description:
-                  "Wrote the OMB Part A/B package for a 12,000-respondent grantee survey and cleared it in 91 days. The prior package had sat 8 months.",
+                  "Wrote the OMB Part A/B package for a 12,000-respondent grantee survey and cleared it in 91 days. The prior package had sat 8 months on a burden estimate nobody could defend. Part B named the sampling frame the contractor actually had, which is the only way a PRA package leaves the building.",
                 skills: ["Regulatory Writing", "Policy Analysis", "Stakeholder Management"],
               },
               {
-                name: "Passback justification from findings",
+                name: "Protected $62M and cut $19M from a demonstration that had never met its own logic model",
                 description:
-                  "Turned two evaluation reports into a passback justification that protected $62M and cut $19M from a demonstration that had never met its own logic model.",
+                  "Turned two evaluation reports into a passback justification that protected $62M and cut $19M from a demonstration that had never met its own logic model. Budget and evaluation sat in the same room so the cut list cited evidence, not a target. The demonstration office appealed; the evidence-act file was the exhibit that ended it.",
                 skills: ["Budget Formulation", "Policy Analysis", "Change Management"],
               },
             ],
@@ -953,15 +934,15 @@ export const regulatedProfiles = [
             endDate: "2020-10-23",
             projects: [
               {
-                name: "Implementation study, housing counseling",
+                name: "Showed the NOFO fidelity measure did not match how 63 housing-counseling grantees actually spent time",
                 description:
-                  "Designed an implementation study of 63 housing-counseling grantees. Site visits showed the fidelity measure in the NOFO did not match how counselors actually spent time.",
+                  "Designed an implementation study of 63 housing-counseling grantees, including site visits that watched the hour, not the workplan. The fidelity measure in the NOFO did not match how counselors actually spent time. The next award announcement dropped the measure rather than train counselors to perform it for the monitor.",
                 skills: ["Program Evaluation", "Monitoring and Evaluation", "Grant Management"],
               },
               {
-                name: "IG liaison on a contested finding",
+                name: "Walked an IG team through sampling after a program office claimed bias; the public finding stood",
                 description:
-                  "Walked an IG team through sampling and weighting after a program office claimed the sample was biased. The finding stood in the public report.",
+                  "Walked an IG team through sampling and weighting after a program office claimed the sample was biased against the cooperative grantees. The finding stood in the public report. The liaison file had the frame, the nonresponse, and the one email that asked us to drop a site, which is why the conversation stayed technical.",
                 skills: ["Stakeholder Management", "Program Evaluation", "Policy Analysis"],
               },
             ],
@@ -972,15 +953,15 @@ export const regulatedProfiles = [
             endDate: "2018-06-08",
             projects: [
               {
-                name: "Logic-model rewrite clinic",
+                name: "Rebuilt 11 program logic models so outputs stopped being labeled outcomes; four later survived OMB review",
                 description:
-                  "Ran a clinic that rebuilt 11 program logic models so outputs stopped being labeled outcomes. Four of those models later survived OMB evidence-act review.",
+                  "Ran a clinic that rebuilt 11 program logic models so outputs stopped being labeled outcomes. Four of those models later survived OMB evidence-act review. Program offices left with a one-page model they could not quietly re-inflate in the justification book, which had been the usual after-action.",
                 skills: ["Program Evaluation", "Change Management", "Regulatory Writing"],
               },
               {
-                name: "Indicator data-quality audit",
+                name: "Found 17% of a $90M portfolio reused the prior quarter's numerator and built the automatic check",
                 description:
-                  "Audited quarterly indicator files for a $90M portfolio and found 17% of records reused the prior quarter's numerator. Built the check that caught it automatically.",
+                  "Audited quarterly indicator files for a $90M portfolio and found 17% of records reused the prior quarter's numerator. Built the check that caught it automatically before the dashboard published. Grantees stopped calling it a system glitch once the check named the award number, which is the only language that changes a file.",
                 skills: ["Monitoring and Evaluation", "Grant Management"],
               },
             ],
@@ -1001,15 +982,15 @@ export const regulatedProfiles = [
             endDate: "2016-07-22",
             projects: [
               {
-                name: "On-site award monitoring",
+                name: "Documented $2.1M in questioned costs across 34 on-site reviews that the awarding agency later disallowed",
                 description:
-                  "Completed 34 on-site reviews in two years. Documented $2.1M in questioned costs that the federal awarding agency later disallowed.",
+                  "Completed 34 on-site reviews in two years, reading the drawdown against the activity the award actually paid for. Documented $2.1M in questioned costs that the federal awarding agency later disallowed. The reports named the invoice, not the vibe of the site visit, which is why the disallowance survived the grantee letter.",
                 skills: ["Grant Management", "Monitoring and Evaluation", "Policy Analysis"],
               },
               {
-                name: "NOFO comment letter",
+                name: "Moved a rural match requirement from 50% to 25% after documenting the actual local-revenue base",
                 description:
-                  "Drafted a comment letter that moved a match requirement from 50% to 25% for rural grantees after documenting the actual local-revenue base.",
+                  "Drafted a comment letter that moved a match requirement from 50% to 25% for rural grantees after documenting the actual local-revenue base, not the one implied by a metro county. The preamble quoted the revenue table. Rural applicants stopped being designed out of a competition that claimed to want them.",
                 skills: ["Regulatory Writing", "Grant Management", "Policy Analysis"],
               },
             ],
@@ -1045,13 +1026,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Workforce portfolio evaluation",
+        name: "Workforce grant portfolio evaluation and NOFO change",
         description:
-          "<p>Public summary of the $180M workforce evaluation: sampling, the 28% documentation gap, and the NOFO change that followed. Written so an appropriations staffer can read it in one sitting.</p>",
-        links: [
-          { label: "Evaluation brief", url: "https://www.example.com/civic-outcomes/workforce" },
-          { label: "Methods note", url: "https://www.example.com/amara-dixon/methods" },
-        ],
+          "<p>Public summary of the $180M workforce evaluation: sampling, the 28% documentation gap, and the NOFO change that followed. Written so an appropriations staffer can read it in one sitting, and so the next NOFO cannot quietly restore the unpaid-for indicator.</p>",
         skills: ["Program Evaluation", "Monitoring and Evaluation", "Policy Analysis"],
       },
     ],
@@ -1130,21 +1107,21 @@ export const regulatedProfiles = [
             startDate: "2021-04-12",
             projects: [
               {
-                name: "ATLAS professional-services IDIQ",
+                name: "Awarded a $1.2B multiple-award IDIQ; GAO denied the only protest in 88 days on the SSDD",
                 description:
-                  "Awarded a $1.2B multiple-award IDIQ after a 15.3 competition with 19 proposals. One protest; GAO denied in 88 days because the SSDD quoted the factors the RFP actually used.",
+                  "Awarded a $1.2B multiple-award IDIQ after a 15.3 competition with 19 proposals. One protest; GAO denied in 88 days because the SSDD quoted the factors the RFP actually used. Consensus notes were written to the factors, not to a favorite offeror, which is the only protest record that holds.",
                 skills: ["Procurement", "Regulatory Writing", "Legal Research"],
               },
               {
-                name: "Cost-realism discussions",
+                name: "Held cost realism on an $84M task order 31% below the IGE and awarded with no protest",
                 description:
-                  "Led discussions and FPRs on a $84M task order where the apparent winner was 31% below the IGE. Cost realism held; the award went to the second-lowest, and the debrief produced no protest.",
+                  "Led discussions and FPRs on a $84M task order where the apparent winner was 31% below the IGE. Cost realism held; the award went to the second-lowest, and the debrief produced no protest. The realism narrative named the labor mix that could not staff the PWS.",
                 skills: ["Contract Negotiation", "Procurement", "Stakeholder Management"],
               },
               {
-                name: "OCI cleanup before award",
+                name: "Stopped an award 11 days out after OCI showed a subcontractor had written the PWS",
                 description:
-                  "Stopped an award 11 days out after an OCI review showed a subcontractor had written the PWS. Recompeted the work; the file later survived an IG sample.",
+                  "Stopped an award 11 days out after an OCI review showed a subcontractor had written the PWS, which is the finding everyone hopes stays in the email thread. Recompeted the work; the file later survived an IG sample. The mitigation the contractor offered was a firewall slide; the file got a new competition instead.",
                 skills: ["GRC", "Policy Analysis", "Legal Research"],
               },
             ],
@@ -1165,15 +1142,15 @@ export const regulatedProfiles = [
             endDate: "2021-04-02",
             projects: [
               {
-                name: "Source-selection file rebuild",
+                name: "Rebuilt a contaminated evaluation file mid-competition and awarded in 47 days with no protest",
                 description:
-                  "Rebuilt a contaminated evaluation file after a CO left mid-competition. New consensus report, new SSDD, award in 47 days; no protest.",
+                  "Rebuilt a contaminated evaluation file after a CO left mid-competition, including a consensus report that had been edited after the ratings were signed. New consensus, new SSDD, award in 47 days; no protest. The new file quoted the evaluation notices, not the hallway ranking that had been living in a spreadsheet.",
                 skills: ["Procurement", "Regulatory Writing", "Program Management"],
               },
               {
-                name: "Class-deviation tracker",
+                name: "Built a CAAC and agency class-deviation tracker so COs stopped citing expired flexibilities in RFPs",
                 description:
-                  "Built the shop's tracker for CAAC and agency class deviations so COs stopped citing expired flexibilities in RFPs.",
+                  "Built the shop's tracker for CAAC and agency class deviations so COs stopped citing expired flexibilities in RFPs that would have to be explained in a protest. The tracker named the sunset date next to the clause. Policy stopped being a shared drive folder that was current as of whoever last cared.",
                 skills: ["Policy Analysis", "GRC", "Regulatory Writing"],
               },
             ],
@@ -1184,15 +1161,15 @@ export const regulatedProfiles = [
             endDate: "2018-03-16",
             projects: [
               {
-                name: "BPA call discipline",
+                name: "Forced a fair-opportunity memo on every BPA call over the SAT and drove call protests to zero",
                 description:
-                  "Wrote the call-order template that forced a fair-opportunity memo on every BPA call over the SAT. Call protests in that office went to zero for 18 months.",
+                  "Wrote the call-order template that forced a fair-opportunity memo on every BPA call over the SAT, including the ones program offices wanted to send to the incumbent. Call protests in that office went to zero for 18 months. The memo was short enough that people used it.",
                 skills: ["Procurement", "Regulatory Writing"],
               },
               {
-                name: "Small-business set-aside analysis",
+                name: "Documented the Rule of Two that moved a $19M IT buy to 8(a) and held on protest",
                 description:
-                  "Documented the Rule of Two analysis that moved a $19M IT support buy from unrestricted to 8(a). Award held on protest.",
+                  "Documented the Rule of Two analysis that moved a $19M IT support buy from unrestricted to 8(a) after market research showed two capable firms, not a vibe. Award held on protest. The file had the capability statements, not a small-business goal chart, which is what GAO actually reads.",
                 skills: ["Policy Analysis", "Legal Research", "Stakeholder Management"],
               },
             ],
@@ -1213,15 +1190,15 @@ export const regulatedProfiles = [
             endDate: "2016-01-22",
             projects: [
               {
-                name: "Simplified acquisition desk",
+                name: "Cut commercial-item award time from 34 days to 19 across 200-plus SAP actions under a $5M warrant",
                 description:
-                  "Closed 200-plus SAP actions a year under a $5M warrant. Average award time on commercial items dropped from 34 days to 19 after a clause library rewrite.",
+                  "Closed 200-plus SAP actions a year under a $5M warrant, the work that looks simple until the clause set is wrong. Average award time on commercial items dropped from 34 days to 19 after a clause library rewrite. Specialists stopped retyping FAR 52.212-4 from memory, which is how most of those 34 days were spent.",
                 skills: ["Procurement", "Contract Negotiation", "Program Management"],
               },
               {
-                name: "First protest support",
+                name: "Assembled the agency report on a $3.2M protest that GAO denied on the evaluation notices",
                 description:
-                  "Assembled the agency report on a $3.2M protest. GAO denied; the evaluation notices were the exhibit that mattered.",
+                  "Assembled the agency report on a $3.2M protest, including the evaluation notices the CO had actually sent. GAO denied; those notices were the exhibit that mattered. Counsel stopped asking for a narrative that improved the file after the fact, which is the only way a first protest stays a first protest.",
                 skills: ["Legal Research", "Regulatory Writing", "Stakeholder Management"],
               },
             ],
@@ -1257,13 +1234,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "ATLAS IDIQ source-selection record",
+        name: "ATLAS $1.2B IDIQ source-selection protest record",
         description:
-          "<p>Redacted walkthrough of the $1.2B ATLAS competition: evaluation plan, consensus, SSDD excerpts, and why the protest record held at GAO.</p>",
-        links: [
-          { label: "Record brief", url: "https://www.example.com/halcyon/atlas-idiq" },
-          { label: "Debrief notes", url: "https://www.example.com/wesley-cho/debriefs" },
-        ],
+          "<p>Redacted walkthrough of the $1.2B ATLAS competition: evaluation plan, consensus, SSDD excerpts, and why the protest record held at GAO. The SSDD quotes the factors the RFP actually used, which is the only protest exhibit that matters.</p>",
         skills: ["Procurement", "Contract Negotiation", "Legal Research"],
       },
     ],
@@ -1342,21 +1315,21 @@ export const regulatedProfiles = [
             startDate: "2022-03-07",
             projects: [
               {
-                name: "Wildfire-mitigation implementation memo",
+                name: "Wrote the seven-state wildfire-mitigation memo regional offices used as the inspection checklist",
                 description:
-                  "Wrote the seven-state implementation memo for a federal wildfire-mitigation rule. Regional offices used the memo as the inspection checklist; informal guidance emails dropped by half in the first season.",
+                  "Wrote the seven-state implementation memo for a federal wildfire-mitigation rule so regional offices had one inspection checklist instead of seven informal readings. Informal guidance emails dropped by half in the first season. The memo named the inspection item and the citation, which is how unofficial guidance stops becoming the real rule.",
                 skills: ["Regulatory Writing", "Change Management", "Stakeholder Management"],
               },
               {
-                name: "More-stringent analysis, ozone",
+                name: "Documented where three state ozone rules exceeded the federal minimum; two states rewrote their SIP narratives",
                 description:
-                  "Documented where three state ozone rules exceeded the federal minimum and where they only looked like they did. Two states rewrote their SIP narrative before EPA asked.",
+                  "Documented where three state ozone rules exceeded the federal minimum and where they only looked like they did in the SIP narrative. Two states rewrote that narrative before EPA asked. The table put the state language next to the federal floor, which is the only format that ends the more-stringent argument.",
                 skills: ["Policy Analysis", "Legal Writing", "Regulatory Writing"],
               },
               {
-                name: "Comment-response on a water docket",
+                name: "Staffed a 1,400-comment water-quality docket so form letters got one answer and technical comments got citations",
                 description:
-                  "Staffed the comment-response for a 1,400-comment water-quality docket. Every form-letter cluster got one answer; the unique technical comments got citations.",
+                  "Staffed the comment-response for a 1,400-comment water-quality docket. Every form-letter cluster got one answer; the unique technical comments got citations to the record, not a thank-you sentence. The preamble could be read by someone who had filed a real comment, which is rarer than the process memo claims.",
                 skills: ["Policy Advocacy", "Legal Writing", "Stakeholder Management"],
               },
             ],
@@ -1377,15 +1350,15 @@ export const regulatedProfiles = [
             endDate: "2022-02-25",
             projects: [
               {
-                name: "Cooperative-federalism MOU",
+                name: "Drafted the inspection-split MOU cited in two later lawsuits, and the split held",
                 description:
-                  "Drafted the MOU that split inspection responsibility on a federal land-management rule. The MOU was cited in two later lawsuits and held.",
+                  "Drafted the MOU that split inspection responsibility on a federal land-management rule between the state and the federal field office. The MOU was cited in two later lawsuits and held. Counsel kept the statute in the first paragraph so the split could not be reread as a delegation the agency did not have.",
                 skills: ["Legal Writing", "Policy Analysis", "Stakeholder Management"],
               },
               {
-                name: "Reporting-burden evaluation",
+                name: "Cut a quarterly reporting form by a third after 41% of fields went unused in enforcement",
                 description:
-                  "Evaluated a quarterly reporting rule after two years and showed 41% of fields were never used in enforcement. The next revision cut the form by a third.",
+                  "Evaluated a quarterly reporting rule after two years and showed 41% of fields were never used in an enforcement file, a dashboard, or a referral. The next revision cut the form by a third. Program staff kept the fields they actually queried; counsel lost the ones that existed for completeness theater.",
                 skills: ["Program Evaluation", "Regulatory Writing", "Change Management"],
               },
             ],
@@ -1396,15 +1369,15 @@ export const regulatedProfiles = [
             endDate: "2019-05-03",
             projects: [
               {
-                name: "Implementation grant for rural counties",
+                name: "Wrote the workplan that pulled $4.6M in federal implementation money for 11 rural counties",
                 description:
-                  "Wrote the workplan that pulled $4.6M in federal implementation money for 11 rural counties that could not hire their own rule staff.",
+                  "Wrote the workplan that pulled $4.6M in federal implementation money for 11 rural counties that could not hire their own rule staff. The budget named shared inspectors, not eleven desk officers. Those counties stopped being the ones who learn a rule from an enforcement letter.",
                 skills: ["Grant Writing", "Policy Advocacy", "Policy Analysis"],
               },
               {
-                name: "Hearing testimony book",
+                name: "Built testimony books for three legislative hearings so members quoted the docket instead of the lobby one-pager",
                 description:
-                  "Built the testimony book for three legislative hearings so members quoted the docket instead of the lobby one-pager.",
+                  "Built the testimony book for three legislative hearings so members quoted the docket instead of the lobby one-pager that had been circulating since breakfast. Q-and-A tabs cited the comment-response, not a talking point. The hearing record sounded like the rulemaking, which is the only win that counts after the cameras leave.",
                 skills: ["Policy Advocacy", "Legal Writing"],
               },
             ],
@@ -1425,15 +1398,15 @@ export const regulatedProfiles = [
             endDate: "2016-12-22",
             projects: [
               {
-                name: "County comment factory",
+                name: "Drafted 40-plus docket comments; eight were quoted in final preambles and two changed a compliance deadline",
                 description:
-                  "Drafted 40-plus docket comments in three years. Eight were quoted in final preambles; two changed a compliance deadline.",
+                  "Drafted 40-plus docket comments in three years for counties that would otherwise have sent a late letter about unfunded mandates. Eight were quoted in final preambles; two changed a compliance deadline. The comments that landed had a local fact and a citation, not a mood.",
                 skills: ["Policy Advocacy", "Regulatory Writing", "Policy Analysis"],
               },
               {
-                name: "Stakeholder workshop series",
+                name: "Ran 12 county workshops whose attendance notes became the consultation record the state later filed",
                 description:
-                  "Ran 12 county workshops on a pending air rule. Attendance notes became the consultation record the state later filed.",
+                  "Ran 12 county workshops on a pending air rule, with attendance notes that named who spoke and what they asked. Those notes became the consultation record the state later filed. The workshops were scheduled before the draft was frozen, which is the only time consultation is not theater.",
                 skills: ["Stakeholder Management", "Change Management"],
               },
             ],
@@ -1469,13 +1442,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Wildfire-mitigation implementation memo",
+        name: "Seven-state wildfire rule implementation checklist memo",
         description:
-          "<p>The seven-state memo regional offices used as an inspection checklist, plus the consultation log that kept unofficial guidance from becoming the real rule.</p>",
-        links: [
-          { label: "Memo", url: "https://www.example.com/intermountain/wildfire-memo" },
-          { label: "Consultation log", url: "https://www.example.com/noelle-hartman/consultation" },
-        ],
+          "<p>The seven-state memo regional offices used as an inspection checklist, plus the consultation log that kept unofficial guidance from becoming the real rule. Each inspection item carries the citation so informal emails stop being the implementation.</p>",
         skills: ["Regulatory Writing", "Policy Analysis", "Stakeholder Management"],
       },
     ],
@@ -1554,21 +1523,21 @@ export const regulatedProfiles = [
             startDate: "2021-08-16",
             projects: [
               {
-                name: "FY23–FY25 formulation cycle",
+                name: "Freed $31M with a vacancy-factor rewrite and protected two evidence-backed decision units in passback",
                 description:
-                  "Led formulation for a $2.4B portfolio across four bureaus. Vacancy-factor rewrite freed $31M without a program cut; the passback protected two evidence-backed decision units and reduced a demonstration that had never spent its first-year allotment.",
+                  "Led formulation for a $2.4B portfolio across four bureaus. A vacancy-factor rewrite freed $31M without a program cut; the passback protected two evidence-backed decision units and reduced a demonstration that had never spent its first-year allotment. The request that left the building could still be explained in May, which is the test.",
                 skills: ["Budget Formulation", "Financial Modeling", "Program Evaluation"],
               },
               {
-                name: "Mid-year reprogramming",
+                name: "Moved $47M in a mid-year package the control agency approved on first review after a hire freeze",
                 description:
-                  "Built the mid-year package that moved $47M after a delayed hire freeze. Every line cited the allotment, not the original request, and the control agency approved on first review.",
+                  "Built the mid-year package that moved $47M after a delayed hire freeze left allotments sitting on vacant lines. Every line cited the allotment, not the original request, and the control agency approved on first review. Program offices stopped treating the request as the legal ceiling, which it had never been.",
                 skills: ["Financial Reporting", "Stakeholder Management", "GAAP"],
               },
               {
-                name: "Pass-through grant execution",
+                name: "Separated obligated pass-through awards from expended amounts after the prior report overstated execution by 9%",
                 description:
-                  "Separated obligated pass-through awards from expended amounts in the monthly close. The prior report had overstated execution by 9% in two quarters.",
+                  "Separated obligated pass-through awards from expended amounts in the monthly close after the prior report had been adding them together for two quarters. Execution had been overstated by 9%. The dashboard that survived showed cash out the door, not a grant that had been awarded and then admired.",
                 skills: ["Grant Management", "Financial Reporting", "Policy Analysis"],
               },
             ],
@@ -1589,15 +1558,15 @@ export const regulatedProfiles = [
             endDate: "2021-08-06",
             projects: [
               {
-                name: "Personal-services model",
+                name: "Rebuilt the personal-services model so salary savings stopped being a plug, landing $18M closer to execution",
                 description:
-                  "Rebuilt the personal-services model so salary savings stopped being a plug. The next request was $18M closer to actual execution.",
+                  "Rebuilt the personal-services model so salary savings stopped being a plug that made the request look disciplined. The next request was $18M closer to actual execution. HR and budget used the same onboard date assumptions, which is the only way a vacancy factor is not a wish.",
                 skills: ["Financial Modeling", "Budget Formulation", "GAAP"],
               },
               {
-                name: "Cut-list workshop",
+                name: "Ran the mid-year cut workshop that produced a ranked list instead of an across-the-board percent",
                 description:
-                  "Ran the mid-year cut workshop that produced a ranked list instead of an across-the-board percent. Three bureaus took the list; one appealed and lost on the evidence.",
+                  "Ran the mid-year cut workshop that produced a ranked list instead of an across-the-board percent that would have punished the bureaus that had already executed. Three bureaus took the list; one appealed and lost on the evidence. The ranking cited unobligated balances and the evaluation file, not who spoke last.",
                 skills: ["Stakeholder Management", "Program Evaluation", "Policy Analysis"],
               },
             ],
@@ -1608,15 +1577,15 @@ export const regulatedProfiles = [
             endDate: "2018-10-31",
             projects: [
               {
-                name: "Monthly execution close",
+                name: "Brought a $620M bureau monthly close from day 18 to day 9 by locking journal-source rules",
                 description:
-                  "Closed monthly execution for a $620M bureau. Brought the average close from day 18 to day 9 by locking journal-source rules.",
+                  "Closed monthly execution for a $620M bureau. Brought the average close from day 18 to day 9 by locking journal-source rules so late entries stopped arriving as tribal knowledge. The trial balance that published on day 9 was the same one the analysts had, which had not been true when close was a negotiation.",
                 skills: ["Financial Reporting", "GAAP"],
               },
               {
-                name: "One-time vs. ongoing split",
+                name: "Tagged one-time funds so they could not hide in the base and surfaced a $12M out-year cliff",
                 description:
-                  "Tagged one-time funds so they could not hide in the base. The next out-year showed a $12M cliff the program office had not briefed.",
+                  "Tagged one-time funds so they could not hide in the base and reappear as a permanent decision unit. The next out-year showed a $12M cliff the program office had not briefed. The justification book lost a paragraph that had been doing a lot of quiet work.",
                 skills: ["Budget Formulation", "Financial Modeling", "Policy Analysis"],
               },
             ],
@@ -1637,15 +1606,15 @@ export const regulatedProfiles = [
             endDate: "2016-08-26",
             projects: [
               {
-                name: "Justification book tables",
+                name: "Caught a $6.4M double-count in object-class tables before the book went to the control agency",
                 description:
-                  "Owned the object-class tables for three decision units. Caught a $6.4M double-count before the book went to the control agency.",
+                  "Owned the object-class tables for three decision units and reconciled them to the account-level request, not the narrative. Caught a $6.4M double-count before the book went to the control agency. The table that shipped could be added up, which is a lower bar than it sounds.",
                 skills: ["Budget Formulation", "Financial Reporting"],
               },
               {
-                name: "Grant-match schedule",
+                name: "Built a match schedule that treated local match as a constraint and resized two awards before the NOFO",
                 description:
-                  "Built the first match schedule that showed state and local match as a constraint, not a footnote. Two awards were resized before the NOFO dropped.",
+                  "Built the first match schedule that showed state and local match as a constraint, not a footnote under the federal share. Two awards were resized before the NOFO dropped. Applicants stopped being set up to fail a match they could not raise, which had been the unofficial design.",
                 skills: ["Grant Management", "Policy Analysis"],
               },
             ],
@@ -1681,13 +1650,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Vacancy-factor rewrite",
+        name: "FY23 vacancy-factor rewrite that freed $31M",
         description:
-          "<p>How the FY23 personal-services model stopped treating vacancy as a plug and freed $31M without a program cut. Includes the mid-year reprogramming that followed when hiring still lagged.</p>",
-        links: [
-          { label: "Model note", url: "https://www.example.com/pacific-budget/vacancy" },
-          { label: "Execution brief", url: "https://www.example.com/isaac-flores/execution" },
-        ],
+          "<p>How the FY23 personal-services model stopped treating vacancy as a plug and freed $31M without a program cut. Includes the mid-year reprogramming that followed when hiring still lagged, and the onboard-date assumptions HR and budget finally shared.</p>",
         skills: ["Budget Formulation", "Financial Modeling", "Financial Reporting"],
       },
     ],
@@ -1766,9 +1731,9 @@ export const regulatedProfiles = [
             startDate: "2021-02-01",
             projects: [
               {
-                name: "Interceptor support SysML baseline",
+                name: "Generated 1,140 requirements and 86 ICDs from the SysML baseline and cut inconsistency comments 40%",
                 description:
-                  "Built the program SysML baseline used at SRR and PDR. Generated 1,140 requirements and 86 ICDs from the model; customer review comments on inconsistency dropped 40% versus the prior document-based cycle.",
+                  "Built the program SysML baseline used at SRR and PDR. Generated 1,140 requirements and 86 ICDs from the model; customer review comments on inconsistency dropped 40% versus the prior document-based cycle. If it was not in the model it was not in the program.",
                 skills: [
                   "Model-Based Systems Engineering",
                   "Requirements Management",
@@ -1776,9 +1741,9 @@ export const regulatedProfiles = [
                 ],
               },
               {
-                name: "Interface change board",
+                name: "Closed 63 ICD deltas in two quarters with a weekly interface board and zero orphaned child requirements",
                 description:
-                  "Stood up a weekly interface board that closed 63 ICD deltas in two quarters. Zero orphaned child requirements after the first month of CM discipline.",
+                  "Stood up a weekly interface board that closed 63 ICD deltas in two quarters, with the owning IPT in the room instead of on the distribution. Zero orphaned child requirements after the first month of CM discipline. Hardware leads stopped marking up a PDF in the hallway, which had been the unofficial ICD process.",
                 skills: [
                   "Configuration Management",
                   "Systems Engineering",
@@ -1786,9 +1751,9 @@ export const regulatedProfiles = [
                 ],
               },
               {
-                name: "Verification method cleanup",
+                name: "Rewrote 210 shalls that had verify-by-analysis with no owner so TRR entry criteria stopped being a negotiation",
                 description:
-                  "Rewrote 210 shalls that had 'verify by analysis' with no analysis owner. TRR entry criteria stopped being a negotiation.",
+                  "Rewrote 210 shalls that had 'verify by analysis' with no analysis owner, no product, and no due date. TRR entry criteria stopped being a negotiation. Test and analysis leads signed the method before the shall was baselined, which is the only order that works.",
                 skills: ["Requirements Management", "Systems Engineering", "Program Management"],
               },
             ],
@@ -1809,9 +1774,9 @@ export const regulatedProfiles = [
             endDate: "2021-01-22",
             projects: [
               {
-                name: "Model-to-spec pipeline",
+                name: "Automated spec generation from SysML so the Word baseline stopped drifting from the model after PDR",
                 description:
-                  "Automated spec generation from SysML so the Word baseline stopped drifting from the model within a week of PDR.",
+                  "Automated spec generation from SysML so the Word baseline stopped drifting from the model within a week of PDR. Spec authors edited the model, not a checkout copy that became truth by seniority. Configuration management finally had one object to put a number on.",
                 skills: [
                   "Model-Based Systems Engineering",
                   "Configuration Management",
@@ -1819,9 +1784,9 @@ export const regulatedProfiles = [
                 ],
               },
               {
-                name: "Functional allocation workshop",
+                name: "Moved 19 software functions off an overloaded processor before CDR drawings froze",
                 description:
-                  "Ran allocation workshops that moved 19 software functions off an overloaded processor before CDR drawings froze.",
+                  "Ran allocation workshops that moved 19 software functions off an overloaded processor before CDR drawings froze the box list. Software and hardware leads left with the same allocation table. The processor that would have failed timing analysis kept the functions it could actually run, which is a kindness you only get before CDR.",
                 skills: ["System Design", "Systems Engineering", "Stakeholder Management"],
               },
             ],
@@ -1842,15 +1807,15 @@ export const regulatedProfiles = [
             endDate: "2016-04-01",
             projects: [
               {
-                name: "Shall-statement rewrite",
+                name: "Rewrote 400-plus compound shalls into verifiable singles that test planning used without a translation spreadsheet",
                 description:
-                  "Rewrote 400-plus compound shalls into verifiable singles. Test planning used the new set without a translation spreadsheet.",
+                  "Rewrote 400-plus compound shalls into verifiable singles so a requirement no longer hid three tests and a hope. Test planning used the new set without a translation spreadsheet. The customer accepted the rewrite because each shall still traced to the same parent, which is the only way a cleanup does not become a scope fight.",
                 skills: ["Requirements Management", "Systems Engineering"],
               },
               {
-                name: "Trace matrix rescue",
+                name: "Rebuilt a broken parent-child trace before audit; the customer found two gaps instead of 70 hidden ones",
                 description:
-                  "Rebuilt a broken parent-child trace before a customer audit. The audit found two gaps instead of the 70 the draft matrix had hidden.",
+                  "Rebuilt a broken parent-child trace before a customer audit, starting from the model instead of the spreadsheet that had been 'reconciling' for a month. The audit found two gaps instead of the 70 the draft matrix had hidden. Those two had owners before the in-brief, which is the only acceptable number.",
                 skills: [
                   "Requirements Management",
                   "Configuration Management",
@@ -1890,13 +1855,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Interceptor SysML baseline",
+        name: "Interceptor support SysML baseline for SRR and PDR",
         description:
-          "<p>How the Aetherion model became the SRR and PDR source of truth: generated requirements, ICDs, and the change-board rule that stopped orphaned children.</p>",
-        links: [
-          { label: "Baseline note", url: "https://www.example.com/aetherion/sysml-baseline" },
-          { label: "Trace method", url: "https://www.example.com/rhea-kapoor/trace" },
-        ],
+          "<p>How the Aetherion model became the SRR and PDR source of truth: generated requirements, ICDs, and the change-board rule that stopped orphaned children. If it is not in the model it is not in the program, which is how a baseline earns the name.</p>",
         skills: [
           "Model-Based Systems Engineering",
           "Requirements Management",
@@ -1979,21 +1940,21 @@ export const regulatedProfiles = [
             startDate: "2020-06-08",
             projects: [
               {
-                name: "Envelope expansion, Block 3",
+                name: "Led 41 Block 3 envelope-expansion sorties, closed 28 flying-qualities shalls, and rewrote two cards after the THA",
                 description:
-                  "Led 41 envelope-expansion sorties on Block 3. Closed 28 flying-qualities shalls; two cards were rewritten after the THA, not after a near miss.",
+                  "Led 41 envelope-expansion sorties on Block 3, including the points that look routine on the card and interesting on the TM. Closed 28 flying-qualities shalls; two cards were rewritten after the THA, not after a near miss. The rewrite named the condition that had been implied, which is how implied conditions become incidents.",
                 skills: ["Flight Test", "Safety Management Systems", "Requirements Management"],
               },
               {
-                name: "Software build-to-sortie evidence",
+                name: "Tied each sortie to a DO-178C build and caught two configuration mismatches on the ground before flight",
                 description:
-                  "Tied each sortie to a DO-178C software build and objective set. A configuration mismatch was caught on the ground twice; it had been the source of a prior no-score flight.",
+                  "Tied each sortie to a DO-178C software build and objective set so the card, the load, and the evidence folder told the same story. A configuration mismatch was caught on the ground twice; it had been the source of a prior no-score flight. Quality stopped treating the build as a dispatch-sheet note.",
                 skills: ["DO-178C", "Avionics", "Quality Management"],
               },
               {
-                name: "Experimental-certificate renewal",
+                name: "Rebuilt the experimental-certificate package so the ASI visit kept operating limitations and answered 14 oral-tradition questions",
                 description:
-                  "Rebuilt the experimental-certificate package for the ASI visit. Operating limitations stayed intact; the data package answered the 14 questions that had been oral tradition.",
+                  "Rebuilt the experimental-certificate package for the ASI visit so the data package answered the 14 questions that had been oral tradition in the hangar. Operating limitations stayed intact. The ASI left with a binder, not a phone tree, which is the only way a renewal stays a renewal.",
                 skills: ["FAA Compliance", "Systems Engineering", "Flight Test"],
               },
             ],
@@ -2014,15 +1975,15 @@ export const regulatedProfiles = [
             endDate: "2020-05-29",
             projects: [
               {
-                name: "Level C objective closeout",
+                name: "Closed 94 DO-178C Level C objectives after rewriting the trace; the DER accepted on the second cycle",
                 description:
-                  "Closed 94 DO-178C Level C objectives for a flight-control load. The DER accepted the package on the second cycle after Tyler rewrote the trace, not the tests.",
+                  "Closed 94 DO-178C Level C objectives for a flight-control load. The DER accepted the package on the second cycle after the trace was rewritten, not the tests. The tests had been fine; the matrix had been a novel. That is usually the ratio.",
                 skills: ["DO-178C", "Requirements Management", "Quality Management"],
               },
               {
-                name: "Load-control desk",
+                name: "Ran load-control for three test articles with zero unauthorized loads in 22 months after a two-person verify rule",
                 description:
-                  "Ran the software load-control desk for three test articles. Zero unauthorized loads in 22 months after a two-person verify rule.",
+                  "Ran the software load-control desk for three test articles, including the weekend loads that used to happen because someone had a cable. Zero unauthorized loads in 22 months after a two-person verify rule. The second person was on the hangar floor, not on a distribution list, which is why the rule held.",
                 skills: ["Avionics", "Quality Management", "FAA Compliance"],
               },
             ],
@@ -2043,15 +2004,15 @@ export const regulatedProfiles = [
             endDate: "2015-02-20",
             projects: [
               {
-                name: "Telemetry package rebuild",
+                name: "Cut high-g data loss on 12 critical TM parameters from 8% of frames to under 0.4%",
                 description:
-                  "Rebuilt the TM package so 12 critical parameters stopped dropping on high-g points. Data loss on those parameters went from 8% of frames to under 0.4%.",
+                  "Rebuilt the TM package so 12 critical parameters stopped dropping on high-g points that were exactly the points the card cared about. Data loss on those parameters went from 8% of frames to under 0.4%. The next THA used the parameter, not a reconstruction, which is the difference between a score and a story.",
                 skills: ["Flight Test", "Avionics", "Systems Engineering"],
               },
               {
-                name: "Card-to-parameter map",
+                name: "Mapped card success criteria to TM parameters before the brief and delayed two cards missing on the jet",
                 description:
-                  "Mapped each card's success criteria to TM parameters before the brief. Two cards were delayed because the parameter was not on the jet; that was the point.",
+                  "Mapped each card's success criteria to TM parameters before the brief, not after the debrief when everyone is already sure they saw it. Two cards were delayed because the parameter was not on the jet; that was the point. The map lived with the card so a late load could not quietly unscore a point.",
                 skills: ["Flight Test", "Requirements Management", "Safety Management Systems"],
               },
             ],
@@ -2087,13 +2048,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Build-to-sortie evidence method",
+        name: "Palmdale flight-test DO-178C build-to-sortie evidence method",
         description:
-          "<p>The method that ties each Palmdale sortie to a DO-178C build and objective set, plus the two ground catches that used to become no-score flights.</p>",
-        links: [
-          { label: "Method", url: "https://www.example.com/skylance/build-to-sortie" },
-          { label: "Card notes", url: "https://www.example.com/tyler-grayson/cards" },
-        ],
+          "<p>The method that ties each Palmdale sortie to a DO-178C build and objective set, plus the two ground catches that used to become no-score flights. The card, the load, and the evidence folder finally tell the same story before the jet moves.</p>",
         skills: ["Flight Test", "DO-178C", "Quality Management"],
       },
     ],
@@ -2172,21 +2129,21 @@ export const regulatedProfiles = [
             startDate: "2022-05-02",
             projects: [
               {
-                name: "As-flown baseline recovery",
+                name: "Found 11 undocumented software deltas on two aircraft and rebaselined both jets before the next customer flight",
                 description:
-                  "Reconciled as-designed vs. as-flown on two aircraft after a load-control drift. Found 11 undocumented software deltas; both jets were rebaselined before the next customer flight.",
+                  "Reconciled as-designed vs. as-flown on two aircraft after a load-control drift that had been living in technician notebooks. Found 11 undocumented software deltas; both jets were rebaselined before the next customer flight. The release gate that followed required the as-built record, not a verbal 'it's the same as the other tail.'",
                 skills: ["Configuration Management", "Avionics", "Quality Management"],
               },
               {
-                name: "Flight-control load release",
+                name: "Released a DO-178C Level B flight-control load locked to three tails; the DER accepted on first cycle",
                 description:
-                  "Released a DO-178C Level B flight-control load with effectivity locked to three tail numbers. The DER accepted the package on first cycle.",
+                  "Released a DO-178C Level B flight-control load with effectivity locked to three tail numbers, including the load-control record the hangar had been treating as optional. The DER accepted the package on first cycle. Effectivity was in the release, not in a spreadsheet someone updated after the jet left the hangar.",
                 skills: ["DO-178C", "FAA Compliance", "Technical Leadership"],
               },
               {
-                name: "Comms suite ICD freeze",
+                name: "Froze the comms ICD after 27 shop-floor notes and cut integration defects 35% in a quarter",
                 description:
-                  "Froze the comms ICD after 27 late changes had been arriving as shop-floor notes. Subsequent changes went through the board; integration defects dropped 35% in a quarter.",
+                  "Froze the comms ICD after 27 late changes had been arriving as shop-floor notes that never quite made it to the model. Subsequent changes went through the board; integration defects dropped 35% in a quarter. Lab techs stopped being the configuration-management system, which they had not asked to be.",
                 skills: ["Systems Engineering", "Requirements Management", "Avionics"],
               },
             ],
@@ -2207,15 +2164,15 @@ export const regulatedProfiles = [
             endDate: "2022-04-22",
             projects: [
               {
-                name: "Single CM record",
+                name: "Merged three CM tools into one as-built record and cut fleet configuration findings from 22 to 3",
                 description:
-                  "Merged three CM tools into one as-built record for a 14-aircraft fleet. Audit findings on configuration dropped from 22 to 3 in a year.",
+                  "Merged three CM tools into one as-built record for a 14-aircraft fleet so a tail number finally had one configuration story. Audit findings on configuration dropped from 22 to 3 in a year. The remaining three were real; the other nineteen had been tool disagreements wearing a finding number.",
                 skills: ["Configuration Management", "Quality Management", "Technical Leadership"],
               },
               {
-                name: "Change-board SLA",
+                name: "Cut average avionics change-board cycle from 19 days to 6 by requiring a shall and an effectivity",
                 description:
-                  "Cut average avionics change-board cycle from 19 days to 6 by forcing a shall and an effectivity on every request.",
+                  "Cut average avionics change-board cycle from 19 days to 6 by forcing a shall and an effectivity on every request, including the ones that arrived as 'just a wire.' Requests without both sat in a queue that was visible. The board started deciding changes instead of translating them.",
                 skills: [
                   "Requirements Management",
                   "Configuration Management",
@@ -2230,15 +2187,15 @@ export const regulatedProfiles = [
             endDate: "2018-09-28",
             projects: [
               {
-                name: "Load-control two-person rule",
+                name: "Installed a two-person load-control rule after an unauthorized field load, with no repeat in 18 months",
                 description:
-                  "Installed a two-person load-control rule after an unauthorized field load. No repeat in 18 months of hangar operations.",
+                  "Installed a two-person load-control rule after an unauthorized field load that had been justified as a Saturday urgency. No repeat in 18 months of hangar operations. The second signature was physical, on the load sheet, which is the only place a field load actually happens.",
                 skills: ["Avionics", "Quality Management", "DO-178C"],
               },
               {
-                name: "DER data package",
+                name: "Assembled the first complete major-alteration data package the shop shipped without a DER rewrite",
                 description:
-                  "Assembled the first complete major-alteration data package the shop had shipped without a DER rewrite.",
+                  "Assembled the first complete major-alteration data package the shop had shipped without a DER rewrite, including the drawings and the ground-structure that had previously arrived as attachments to an apology. The DER marked comments, not a rebuild. The shop learned what 'complete' meant before the next alteration, which is the actual deliverable.",
                 skills: ["FAA Compliance", "Avionics"],
               },
             ],
@@ -2258,15 +2215,15 @@ export const regulatedProfiles = [
             endDate: "2016-07-29",
             projects: [
               {
-                name: "Bench-to-jet correlation",
+                name: "Correlated bench and first-flight bus logs and found a radio timing issue the room-temperature bench had masked",
                 description:
-                  "Correlated bench bus logs with first-flight logs on a new radio suite. Found a timing issue the bench had masked at room temperature.",
+                  "Correlated bench bus logs with first-flight logs on a new radio suite. Found a timing issue the bench had masked at room temperature and would have become a flight card if the overlay had waited. Integration kept the bench; they also kept a temperature point, which is cheaper than a sortie.",
                 skills: ["Avionics", "Systems Engineering"],
               },
               {
-                name: "ICD discrepancy log",
+                name: "Closed 40 of 61 ICD discrepancies before first flight instead of turning them into flight cards",
                 description:
-                  "Opened the first formal ICD discrepancy log the lab kept. 40 of 61 items closed before first flight instead of becoming flight cards.",
+                  "Opened the first formal ICD discrepancy log the lab kept, instead of a hallway list that reset every Monday. 40 of 61 items closed before first flight instead of becoming flight cards. The remaining 21 had owners and effectivity, which is a better first-flight story than 61 surprises.",
                 skills: ["Requirements Management", "Avionics", "Configuration Management"],
               },
             ],
@@ -2302,13 +2259,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "As-flown baseline recovery",
+        name: "As-flown configuration baseline recovery for two jets",
         description:
-          "<p>How Cascadia reconciled two jets after load-control drift: the 11 undocumented deltas, the rebaseline, and the release gate that followed.</p>",
-        links: [
-          { label: "Recovery note", url: "https://www.example.com/cascadia/as-flown" },
-          { label: "CM rule", url: "https://www.example.com/ingrid-solberg/cm" },
-        ],
+          "<p>How Cascadia reconciled two jets after load-control drift: the 11 undocumented deltas, the rebaseline, and the release gate that followed. The gate requires the as-built record, not a verbal claim that one tail matches the other.</p>",
         skills: ["Configuration Management", "Avionics", "DO-178C"],
       },
     ],
@@ -2387,21 +2340,21 @@ export const regulatedProfiles = [
             startDate: "2020-10-19",
             projects: [
               {
-                name: "C4ISR increment 2 IMS recovery",
+                name: "Recovered a 14-week increment 2 slip to 11 days late and held the award-fee score",
                 description:
-                  "Recovered a 14-week slip on increment 2 by replanning two subcontractors against the true critical path. Delivered increment 2 11 days late instead of a quarter late; award-fee score held.",
+                  "Recovered a 14-week slip on increment 2 by replanning two subcontractors against the true critical path, not the path on the award-fee slide. Delivered increment 2 11 days late instead of a quarter late; award-fee score held. The IMS that survived had ICD freeze on it, which is how increment 3 starts honest.",
                 skills: ["Program Management", "Stakeholder Management", "Contract Negotiation"],
               },
               {
-                name: "Scope-control CCB",
+                name: "Sized 47 customer asks in a year, funding 19 mods and deferring 28 with written shalls",
                 description:
-                  "Installed a CCB that sized 47 customer asks in a year. 19 became funded mods; 28 were deferred with a written shall so they could not re-enter as 'small'.",
+                  "Installed a CCB that sized 47 customer asks in a year. 19 became funded mods; 28 were deferred with a written shall so they could not re-enter as 'small.' The customer still got a no, but it had a number and a slot, which is the only no that stays a no.",
                 skills: ["Change Management", "Requirements Management", "Technical Leadership"],
               },
               {
-                name: "Cleared-subcontractor posture",
+                name: "Brought three subcontractors onto a common visitor and artifact-control process; the security review closed with two observations",
                 description:
-                  "Brought three subcontractors onto a common visitor and artifact-control process before a customer security review. The review closed with two observations and no findings.",
+                  "Brought three subcontractors onto a common visitor and artifact-control process before a customer security review that would have found three different badge stories. The review closed with two observations and no findings. The process was boring on purpose; exciting security processes are the ones that fail the in-brief.",
                 skills: ["GRC", "Program Management", "Systems Engineering"],
               },
             ],
@@ -2422,15 +2375,15 @@ export const regulatedProfiles = [
             endDate: "2020-10-09",
             projects: [
               {
-                name: "Subcontract SOW rewrite",
+                name: "Rewrote two subcontract SOWs off slide-deck management and halved earned-value variance on those CLINs",
                 description:
-                  "Rewrote two subcontract SOWs after the vendors were managing to a slide, not a shall. Earned-value variance on those CLINs halved in two quarters.",
+                  "Rewrote two subcontract SOWs after the vendors were managing to a slide, not a shall, and invoicing to the slide. Earned-value variance on those CLINs halved in two quarters. The new SOWs had CDRLs a CAM could refuse, which is the only language a subcontract understands.",
                 skills: ["Contract Negotiation", "Requirements Management", "Program Management"],
               },
               {
-                name: "SE-on-the-path",
+                name: "Put systems engineering back on the critical path so PDR stopped inventing 40 interface issues in the hallway",
                 description:
-                  "Moved ICD freeze onto the IMS critical path. The next PDR did not invent 40 interface issues in the hallway.",
+                  "Moved ICD freeze onto the IMS critical path so systems engineering stopped being a weekend activity before PDR. The next PDR did not invent 40 interface issues in the hallway. Hardware leads complained about the freeze date and then used it, which is the usual adoption curve.",
                 skills: ["Systems Engineering", "Program Management", "Technical Leadership"],
               },
             ],
@@ -2441,15 +2394,15 @@ export const regulatedProfiles = [
             endDate: "2017-06-09",
             projects: [
               {
-                name: "Weekly customer rhythm",
+                name: "Cut customer surprise items from a dozen a quarter to two by walking the IMS weekly",
                 description:
-                  "Replaced a monthly slide dump with a weekly IMS walk. Customer surprise items dropped from a dozen a quarter to two.",
+                  "Replaced a monthly slide dump with a weekly IMS walk that showed the true critical path, including the subcontractor that had been green by optimism. Customer surprise items dropped from a dozen a quarter to two. The walk took forty minutes; the monthly dump had taken two hours and answered fewer questions.",
                 skills: ["Stakeholder Management", "Program Management"],
               },
               {
-                name: "First CCB",
+                name: "Stood up the IPT CCB so informal email changes stopped being the way hardware got redesigned",
                 description:
-                  "Stood up the IPT CCB. Informal email changes stopped being the way hardware got redesigned.",
+                  "Stood up the IPT CCB after hardware had been redesigned by email threads that never quite reached configuration management. Informal email changes stopped being the way a box picked up a new connector. The first three requests were messy; the fourth already had a shall, which is how a board becomes real.",
                 skills: ["Change Management", "Requirements Management", "GRC"],
               },
             ],
@@ -2470,15 +2423,15 @@ export const regulatedProfiles = [
             endDate: "2014-01-24",
             projects: [
               {
-                name: "Shipboard interface package",
+                name: "Owned the shipboard C4I interface package on two hulls and finished both installs inside the yard window",
                 description:
-                  "Owned the interface package for a shipboard C4I install on two hulls. Both installs completed inside the yard window.",
+                  "Owned the interface package for a shipboard C4I install on two hulls, including the yard constraints that do not care about a program IMS. Both installs completed inside the yard window. The ICD that shipped had the cable that existed on the ship, not the cable in the proposal drawing.",
                 skills: ["Systems Engineering", "Requirements Management", "Technical Leadership"],
               },
               {
-                name: "Customer design review",
+                name: "Briefed the design review without a program manager and closed 16 of 18 actions before the next review",
                 description:
-                  "Briefed the first design review Malcolm ran without a program manager in the room. The action list had owners and dates; 16 of 18 closed before the next review.",
+                  "Briefed the first design review run without a program manager in the room, which is when you find out whether the IPT actually owns the design. The action list had owners and dates; 16 of 18 closed before the next review. The two that slipped had a written reason, not a vibe.",
                 skills: ["Stakeholder Management", "Systems Engineering"],
               },
             ],
@@ -2514,13 +2467,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Increment 2 recovery",
+        name: "C4ISR increment 2 critical-path recovery brief",
         description:
-          "<p>How increment 2 came back from a 14-week slip: the real critical path, the two subcontract replans, and the CCB that stopped unofficial scope from returning.</p>",
-        links: [
-          { label: "Recovery brief", url: "https://www.example.com/northline/increment-2" },
-          { label: "CCB rule", url: "https://www.example.com/malcolm-reeves/ccb" },
-        ],
+          "<p>How increment 2 came back from a 14-week slip: the real critical path, the two subcontract replans, and the CCB that stopped unofficial scope from returning. The IMS that survived has ICD freeze on it, which is how increment 3 starts honest.</p>",
         skills: ["Program Management", "Change Management", "Contract Negotiation"],
       },
     ],
@@ -2599,21 +2548,21 @@ export const regulatedProfiles = [
             startDate: "2021-09-13",
             projects: [
               {
-                name: "Harborline sale, $410M",
+                name: "Closed a $410M specialty-distributor sale on the announced date after a 72-hour disclosure-schedule recut",
                 description:
-                  "Led buy-side documents on a $410M sale of a specialty distributor. Closed on the announced date; the disclosure schedule matched the data room after a 72-hour recut that caught three unscheduled contracts.",
+                  "Led buy-side documents on a $410M sale of a specialty distributor. Closed on the announced date; the disclosure schedule matched the data room after a 72-hour recut that caught three unscheduled contracts. Those contracts would have been a post-closing letter; they became a price conversation while there was still a price conversation.",
                 skills: ["Corporate Law", "Deal Execution", "Contract Negotiation"],
               },
               {
-                name: "Board refresh and committee charters",
+                name: "Rebuilt board minutes, consents, and the audit-committee charter so the next financing needed no cleanup memo",
                 description:
-                  "Rebuilt a portfolio company's board minutes, consents, and audit-committee charter after a sponsor add-on. The next financing used the minute book without a cleanup memo.",
+                  "Rebuilt a portfolio company's board minutes, consents, and audit-committee charter after a sponsor add-on that had been running on email approvals and optimism. The next financing used the minute book without a cleanup memo. The audit committee finally had a charter that matched the meetings it was already having.",
                 skills: ["Corporate Governance", "Legal Writing", "Stakeholder Management"],
               },
               {
-                name: "HSR and CFIUS workstream",
+                name: "Stood up HSR and short-form CFIUS on a defense-adjacent add-on 19 days after signing without moving close",
                 description:
-                  "Stood up HSR and a short-form CFIUS analysis on a defense-adjacent add-on 19 days after signing. Neither became the reason closing moved.",
+                  "Stood up HSR and a short-form CFIUS analysis on a defense-adjacent add-on 19 days after signing, while the rest of the deal was still arguing working capital. Neither filing became the reason closing moved. The CFIUS memo named the contracts that looked like critical infrastructure and the ones that only looked like a press release.",
                 skills: ["Regulatory Counseling", "Legal Research", "Deal Execution"],
               },
             ],
@@ -2634,15 +2583,15 @@ export const regulatedProfiles = [
             endDate: "2021-09-03",
             projects: [
               {
-                name: "Written-consent factory",
+                name: "Standardized stockholder and board consents across 22 portfolio companies so email approvals stopped issuing equity",
                 description:
-                  "Standardized stockholder and board consents for a sponsor with 22 portfolio companies. Unauthorized 'email approvals' stopped being the way equity was issued.",
+                  "Standardized stockholder and board consents for a sponsor with 22 portfolio companies that had been issuing equity on reply-all threads. Unauthorized email approvals stopped being the way options were granted. The template was short enough that deal teams used it, which is the only governance program a sponsor will keep.",
                 skills: ["Corporate Governance", "Corporate Law", "Legal Writing"],
               },
               {
-                name: "Credit-doc corporate opinions",
+                name: "Managed corporate-authority opinions on four facilities and slipped a week rather than opine on a missing consent",
                 description:
-                  "Managed the corporate-authority opinions on four credit facilities. One deal slipped a week after Danielle refused to opine on a consent that did not exist.",
+                  "Managed the corporate-authority opinions on four credit facilities, including the one where the consent everyone remembered did not exist in the minute book. That deal slipped a week. The opinion that shipped had a consent behind it, which is the only kind I will sign my name under.",
                 skills: ["Legal Research", "Corporate Law", "Stakeholder Management"],
               },
             ],
@@ -2663,15 +2612,15 @@ export const regulatedProfiles = [
             endDate: "2017-12-22",
             projects: [
               {
-                name: "Closing checklist discipline",
+                name: "Moved UCC checks to T-3 across 11 closings so a late lien search became a morning problem",
                 description:
-                  "Ran closing checklists on 11 deals. One 11 p.m. lien search became a morning problem after she moved UCC checks to T-3.",
+                  "Ran closing checklists on 11 deals and moved UCC checks to T-3 so an 11 p.m. lien search became a morning problem with time left to call the bank. One deal would have closed with a surprise filing. The checklist was boring on purpose; exciting closings are the ones that generate the morning-after memo.",
                 skills: ["Deal Execution", "Corporate Law"],
               },
               {
-                name: "First indemnity markup",
+                name: "Owned the first indemnity and escrow markup; only the basket and sandbagging sentence survived the call",
                 description:
-                  "Marked the first indemnity and escrow package Danielle owned. The basket and the sandbagging sentence were the only fights that survived the call.",
+                  "Marked the first indemnity and escrow package I owned, after sitting through enough of other people's markups to know which fights are real. The basket and the sandbagging sentence were the only fights that survived the call. Everything else was a style preference wearing a redline.",
                 skills: ["Contract Negotiation", "Legal Writing", "Legal Research"],
               },
             ],
@@ -2707,13 +2656,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Harborline closing record",
+        name: "Harborline $410M sale closing record walkthrough",
         description:
-          "<p>Redacted walkthrough of the $410M Harborline sale: the disclosure-schedule recut, the consent trail, and the HSR/CFIUS workstream that stayed off the critical path.</p>",
-        links: [
-          { label: "Deal note", url: "https://www.example.com/calder-finch/harborline" },
-          { label: "Checklist", url: "https://www.example.com/danielle-okoye/closings" },
-        ],
+          "<p>Redacted walkthrough of the $410M Harborline sale: the disclosure-schedule recut, the consent trail, and the HSR/CFIUS workstream that stayed off the critical path. The three unscheduled contracts became a price conversation while there was still a price conversation.</p>",
         skills: ["Corporate Law", "Deal Execution", "Corporate Governance"],
       },
     ],
@@ -2792,21 +2737,21 @@ export const regulatedProfiles = [
             startDate: "2020-03-02",
             projects: [
               {
-                name: "Supply-contract bench trial",
+                name: "Won a $27M supply-contract bench verdict after dropping a fraud count the custodian review could not support",
                 description:
-                  "Tried a $27M supply-contract case to a bench verdict in the Northern District. Judgment for the client on the contract claim; the fraud count was dropped after a custodian review that did not support it.",
+                  "Tried a $27M supply-contract case to a bench verdict in the Northern District. Judgment for the client on the contract claim; the fraud count was dropped after a custodian review that did not support it. The court got one theory. The other side got a cleaner record than they wanted and a worse result.",
                 skills: ["Litigation Strategy", "Legal Writing", "Legal Research"],
               },
               {
-                name: "TAR instead of a million docs",
+                name: "Negotiated a TAR protocol that cut 2.1M documents to 180k and dropped production cost 62%",
                 description:
-                  "Negotiated a TAR protocol that cut a 2.1M-document review to 180k with a 75% recall validation. Production cost dropped 62% versus the vendor's linear estimate.",
+                  "Negotiated a TAR protocol that cut a 2.1M-document review to 180k with a 75% recall validation the requesting party accepted in writing. Production cost dropped 62% versus the vendor's linear estimate. The seed set was built from known-good productions, not from whoever yelled first in the protocol draft.",
                 skills: ["eDiscovery", "Contract Negotiation", "Stakeholder Management"],
               },
               {
-                name: "Legal-hold rescue",
+                name: "Installed a hold 11 days after a demand letter while two key custodians still had intact mail",
                 description:
-                  "Installed a hold 11 days after a demand letter on a case that had been 'waiting to see.' Two key custodians still had intact mail; the spoliation letter the other side sent went nowhere.",
+                  "Installed a hold 11 days after a demand letter on a case that had been 'waiting to see' whether it would get serious. Two key custodians still had intact mail; the spoliation letter the other side sent went nowhere. The hold notice named the systems, not the vibe of a litigation hold.",
                 skills: ["GRC", "eDiscovery", "Litigation Strategy"],
               },
             ],
@@ -2827,15 +2772,15 @@ export const regulatedProfiles = [
             endDate: "2020-02-21",
             projects: [
               {
-                name: "Summary-judgment record",
+                name: "Built the non-compete SJ record the court granted in part, with a facts section the opinion quoted",
                 description:
-                  "Built the SJ record on a non-compete case. The court granted in part; the facts section was the part the opinion quoted.",
+                  "Built the SJ record on a non-compete case from the emails the client wished were shorter and the ones that were actually helpful. The court granted in part; the facts section was the part the opinion quoted. Legal argument is cheaper when the facts are already in the order you need.",
                 skills: ["Legal Writing", "Legal Research", "Litigation Strategy"],
               },
               {
-                name: "Privilege-log rebuild",
+                name: "Rebuilt a 4,200-entry privilege log after a magistrate called the first version a novel; the redo survived",
                 description:
-                  "Rebuilt a 4,200-entry privilege log after a magistrate called the first version 'a novel.' The redo used a consistent taxonomy and survived.",
+                  "Rebuilt a 4,200-entry privilege log after a magistrate called the first version 'a novel,' which was generous. The redo used a consistent taxonomy and survived. Entries named a privilege and a subject, not a paragraph of argument, which is how a log stops being a brief in disguise.",
                 skills: ["eDiscovery", "Legal Writing", "GRC"],
               },
             ],
@@ -2846,15 +2791,15 @@ export const regulatedProfiles = [
             endDate: "2017-11-03",
             projects: [
               {
-                name: "First ESI protocol",
+                name: "Negotiated an ESI protocol that tested search terms on a sample before they were ordered",
                 description:
-                  "Negotiated Seth's first ESI protocol. Search terms were tested on a sample before they were ordered; the fishing expedition died in the draft.",
+                  "Negotiated the first ESI protocol I owned. Search terms were tested on a sample before they were ordered; the fishing expedition died in the draft instead of in a motion. The other side still got a production. They did not get a keyword list that would have collected every all-hands email for three years.",
                 skills: ["eDiscovery", "Contract Negotiation"],
               },
               {
-                name: "AG-adjacent commercial case",
+                name: "Flagged a consumer-fraud overlay before the answer so parallel AG interest used one set of facts",
                 description:
-                  "Flagged a consumer-fraud overlay before the client answered. Parallel AG interest was managed with one set of facts, not two stories.",
+                  "Flagged a consumer-fraud overlay before the client answered a commercial complaint that looked like a contract case and smelled like a statute. Parallel AG interest was managed with one set of facts, not two stories. The answer that shipped could be handed to the AG without a second memo.",
                 skills: ["Regulatory Counseling", "Stakeholder Management", "Litigation Strategy"],
               },
             ],
@@ -2875,15 +2820,15 @@ export const regulatedProfiles = [
             endDate: "2015-08-28",
             projects: [
               {
-                name: "Custodian scoping",
+                name: "Cut a 90-custodian ask to 22 with a use-case memo and dropped review spend $410k",
                 description:
-                  "Cut a 90-custodian ask to 22 with a use-case memo the requesting party accepted. Review spend dropped $410k on that matter.",
+                  "Cut a 90-custodian ask to 22 with a use-case memo the requesting party accepted, built from who actually touched the contract and the systems that stored it. Review spend dropped $410k on that matter. The memo named roles, not org-chart proximity, which is how 90 names become 22.",
                 skills: ["eDiscovery", "Litigation Strategy", "Stakeholder Management"],
               },
               {
-                name: "Production QC",
+                name: "Caught a family-break error in QC before a 400k production so the receiving party never saw it",
                 description:
-                  "Built the QC sample that caught a family-break error before a 400k production. The vendor fixed it; the receiving party never saw it.",
+                  "Built the QC sample that caught a family-break error before a 400k production, the kind of error that turns a clean production into a redo and a letter. The vendor fixed it; the receiving party never saw it. The sample was drawn from families, not a random 1%.",
                 skills: ["eDiscovery", "GRC", "Legal Research"],
               },
             ],
@@ -2919,13 +2864,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "TAR protocol and the $27M trial",
+        name: "TAR protocol that funded the $27M trial record",
         description:
-          "<p>How a negotiated TAR protocol funded the trial record, and how the custodian review killed a fraud count that would have been a bad exhibit.</p>",
-        links: [
-          { label: "Case note", url: "https://www.example.com/brannigan-holt/supply-trial" },
-          { label: "TAR method", url: "https://www.example.com/seth-greenberg/tar" },
-        ],
+          "<p>How a negotiated TAR protocol funded the trial record, and how the custodian review killed a fraud count that would have been a bad exhibit. The seed set came from known-good productions, not from whoever yelled first in the protocol draft.</p>",
         skills: ["Litigation Strategy", "eDiscovery", "Legal Writing"],
       },
     ],
@@ -3004,21 +2945,21 @@ export const regulatedProfiles = [
             startDate: "2021-01-11",
             projects: [
               {
-                name: "Feature design review",
+                name: "Installed a legal design review on every PHI or cross-border launch; two features were redesigned before GA",
                 description:
-                  "Installed a legal design review on every launch that touches PHI or cross-border processing. Two features were redesigned before GA; one customer BAA fight never started because the product no longer needed the extra use.",
+                  "Installed a legal design review on every launch that touches PHI or cross-border processing, with product and security in the room before the ticket is done. Two features were redesigned before GA; one customer BAA fight never started because the product no longer needed the extra use. The alternative is a launch-day memo.",
                 skills: ["Regulatory Counseling", "HIPAA Compliance", "Stakeholder Management"],
               },
               {
-                name: "DPA and BAA rebuild",
+                name: "Rebuilt the DPA/BAA stack against the real data map and cut enterprise cycle time 12 days",
                 description:
-                  "Rebuilt the DPA/BAA stack against the actual data map. Subprocessor list shrank from 31 names sales had promised to the 14 that process; enterprise cycle time dropped 12 days.",
+                  "Rebuilt the DPA/BAA stack against the actual data map, not the one sales had been reciting. Subprocessor list shrank from 31 names sales had promised to the 14 that process; enterprise cycle time dropped 12 days. Customers stopped negotiating ghosts, which is most of a DPA fight.",
                 skills: ["Contract Negotiation", "Legal Writing", "GRC"],
               },
               {
-                name: "Incident escalation to the board",
+                name: "Wrote the board incident paper after a vendor misconfiguration and notified OCR on the statutory clock",
                 description:
-                  "Wrote the incident paper that went to the board after a vendor misconfiguration. OCR was notified on the statutory clock; the product story in the letter matched the IR timeline.",
+                  "Wrote the incident paper that went to the board after a vendor misconfiguration, with a timeline that matched the IR ticket instead of the comms draft. OCR was notified on the statutory clock; the product story in the letter matched that timeline. The board got one narrative. The agency got the same one.",
                 skills: ["Corporate Governance", "HIPAA Compliance", "Legal Research"],
               },
             ],
@@ -3039,15 +2980,15 @@ export const regulatedProfiles = [
             endDate: "2020-12-23",
             projects: [
               {
-                name: "CCPA launch pack",
+                name: "Shipped CCPA notice, request flow, and vendor addendum in 11 weeks and held a 28-day request SLA",
                 description:
-                  "Shipped the first CCPA notice, request flow, and vendor addendum in 11 weeks. Request SLA held at 28 days for the first two quarters.",
+                  "Shipped the first CCPA notice, request flow, and vendor addendum in 11 weeks, including the delete path engineering said would be 'later.' Request SLA held at 28 days for the first two quarters. Privacy and product signed the same flow, which is the only way a notice is not a decoration.",
                 skills: ["Regulatory Counseling", "Legal Writing", "GRC"],
               },
               {
-                name: "Enterprise paper discipline",
+                name: "Moved enterprise deals onto a four-fallback playbook and cut legal cycle time from 34 days to 16",
                 description:
-                  "Moved enterprise deals off a 40-page customer paper fight and onto a playbook with four fallbacks. Legal cycle time on those deals dropped from 34 days to 16.",
+                  "Moved enterprise deals off a 40-page customer-paper fight and onto a playbook with four fallbacks counsel could grant without a partner consult. Legal cycle time on those deals dropped from 34 days to 16. Sales got a faster yes; legal got fewer midnight redlines on points that had already been decided.",
                 skills: ["Contract Negotiation", "Stakeholder Management", "Legal Research"],
               },
             ],
@@ -3068,15 +3009,15 @@ export const regulatedProfiles = [
             endDate: "2017-03-24",
             projects: [
               {
-                name: "BAA diligence series",
+                name: "Diligence on 18 hospital-system BAAs dropped three vendors whose subprocessors could not be named",
                 description:
-                  "Diligence on 18 BAAs for a hospital-system vendor. Three vendors were dropped after their subprocessors could not be named.",
+                  "Diligence on 18 BAAs for a hospital-system vendor, reading the subprocessor list instead of the security one-pager. Three vendors were dropped after their subprocessors could not be named. The hospital system kept the ones who could draw the map, which is the only HIPAA conversation that ends well.",
                 skills: ["HIPAA Compliance", "Legal Research", "Contract Negotiation"],
               },
               {
-                name: "OCR inquiry response",
+                name: "Drafted the OCR chronology that closed the inquiry without a resolution agreement",
                 description:
-                  "Drafted the factual chronology for an OCR inquiry. The inquiry closed without a resolution agreement; the chronology was the exhibit that mattered.",
+                  "Drafted the factual chronology for an OCR inquiry from the IR tickets, the notice clock, and the emails people wished were shorter. The inquiry closed without a resolution agreement; the chronology was the exhibit that mattered. Counsel did not get a second story to reconcile, which is how inquiries stay inquiries.",
                 skills: ["Legal Writing", "HIPAA Compliance", "Corporate Governance"],
               },
             ],
@@ -3112,13 +3053,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Legal design review",
+        name: "Product legal design review for PHI launches",
         description:
-          "<p>The product-counseling review Marisol installed at Lumenora: when a feature touches PHI, who is in the room, and the two launches that changed before GA.</p>",
-        links: [
-          { label: "Review model", url: "https://www.example.com/lumenora/design-review" },
-          { label: "DPA notes", url: "https://www.example.com/marisol-vega/dpa" },
-        ],
+          "<p>The product-counseling review Marisol installed at Lumenora: when a feature touches PHI, who is in the room, and the two launches that changed before GA. One customer BAA fight never started because the product no longer needed the extra use.</p>",
         skills: ["Regulatory Counseling", "HIPAA Compliance", "Contract Negotiation"],
       },
     ],
@@ -3197,15 +3134,15 @@ export const regulatedProfiles = [
             startDate: "2022-07-18",
             projects: [
               {
-                name: "Warning-letter response, device client",
+                name: "Closed a Class II device warning letter in 7 months without a consent decree",
                 description:
-                  "Led the warning-letter response for a Class II device client. CAPA and the legal narrative matched; FDA closed the letter in 7 months without a consent decree.",
+                  "Led the warning-letter response for a Class II device client, matching the CAPA to the observation the investigator wrote, not the one quality wished had been written. FDA closed the letter in 7 months without a consent decree. The legal narrative and the shop-floor change had the same date.",
                 skills: ["FDA Regulatory Affairs", "Legal Writing", "GRC"],
               },
               {
-                name: "Type B meeting package",
+                name: "Locked a single clinical path at Type B after the client had briefed the board on two",
                 description:
-                  "Wrote the Type B package that locked a single clinical path after the client had briefed the board on two. The minutes matched the ask; development did not restart.",
+                  "Wrote the Type B package that locked a single clinical path after the client had briefed the board on two and funded the optimism. The minutes matched the ask; development did not restart. CMC and clinical sat in the same outline so the division was not asked to choose a science project.",
                 skills: [
                   "FDA Regulatory Affairs",
                   "Regulatory Counseling",
@@ -3213,9 +3150,9 @@ export const regulatedProfiles = [
                 ],
               },
               {
-                name: "FTC and AG follow-on",
+                name: "Counseled a consumer-health client through an FTC CID and two AG letters from one factual chronology",
                 description:
-                  "Counseled a consumer-health client through an FTC CID and two state AG letters from one factual chronology. No second story leaked into the public file.",
+                  "Counseled a consumer-health client through an FTC CID and two state AG letters from one factual chronology, built before the second letter arrived. No second story leaked into the public file. The marketing claim that caused the CID was pulled the same week as the first response.",
                 skills: ["Regulatory Counseling", "Legal Research", "Corporate Law"],
               },
             ],
@@ -3236,15 +3173,15 @@ export const regulatedProfiles = [
             endDate: "2022-07-08",
             projects: [
               {
-                name: "Promo-review rebuild",
+                name: "Rebuilt advertising review after three untitled letters and delivered 24 months with zero untitled or warning letters",
                 description:
-                  "Rebuilt a client's advertising review after three untitled letters in 18 months. The next 24 months had zero untitled or warning letters on promo.",
+                  "Rebuilt a client's advertising review after three untitled letters in 18 months, the kind of streak that means the process is decorative. The next 24 months had zero untitled or warning letters on promo. Medical, legal, and marketing signed the same claim table, which is how a review becomes a gate.",
                 skills: ["FDA Regulatory Affairs", "GRC", "Policy Analysis"],
               },
               {
-                name: "Docket comment on a rule",
+                name: "Drafted a 40-page comment three trade associations reused; two requested changes appeared in the final preamble",
                 description:
-                  "Drafted a 40-page comment that three trade associations reused. Two of the requested changes appeared in the final preamble.",
+                  "Drafted a 40-page comment that three trade associations reused instead of filing a mood. Two of the requested changes appeared in the final preamble. The comment had a docket citation and a proposed sentence, which is the only format an agency can actually adopt.",
                 skills: ["Legal Writing", "Policy Analysis", "Regulatory Counseling"],
               },
             ],
@@ -3255,15 +3192,15 @@ export const regulatedProfiles = [
             endDate: "2018-08-31",
             projects: [
               {
-                name: "483 response desk",
+                name: "Drafted 483 responses for four device inspections; two closed VAI and none became warning letters",
                 description:
-                  "Drafted 483 responses with quality for four device inspections. Two closed VAI; none became warning letters on Hugh's watch.",
+                  "Drafted 483 responses with quality for four device inspections, matching the CAPA to the observation instead of to the inspection-close slide. Two closed VAI; none became warning letters on my watch. The responses named the SOP revision, not the training that would have been the cheaper paragraph.",
                 skills: ["FDA Regulatory Affairs", "Legal Writing", "Stakeholder Management"],
               },
               {
-                name: "Deal-condition diligence",
+                name: "Turned a hidden 483 into a closing condition on a $220M deal instead of a post-closing surprise",
                 description:
-                  "Diligence on FDA correspondence for a $220M deal. A hidden 483 became a closing condition instead of a post-closing surprise.",
+                  "Diligence on FDA correspondence for a $220M deal, reading the letters the data room had filed under 'quality' and the ones it had not. A hidden 483 became a closing condition instead of a post-closing surprise. The purchase agreement got a schedule; the buyer got a fact.",
                 skills: ["Corporate Law", "Legal Research", "Regulatory Counseling"],
               },
             ],
@@ -3284,15 +3221,15 @@ export const regulatedProfiles = [
             endDate: "2015-01-23",
             projects: [
               {
-                name: "Citizen-petition research",
+                name: "Built the research book for two citizen petitions; one was granted in part on the prior-agency-action table",
                 description:
-                  "Built the research book for two citizen petitions. One was granted in part; the table of prior agency action was the exhibit the agency cited.",
+                  "Built the research book for two citizen petitions, including the table of prior agency action that is usually the only exhibit the agency cites. One was granted in part. The other lost on a distinction the table made visible early, which is cheaper than discovering it in the denial.",
                 skills: ["Legal Research", "Policy Analysis", "Legal Writing"],
               },
               {
-                name: "Small-client counseling clinic",
+                name: "Counseled 30-plus small firms on labeling and promo; the memo-takers had fewer repeat questions",
                 description:
-                  "Counseled 30-plus small firms on labeling and promo. The ones who took the memo home had fewer repeat questions; the ones who did not came back with a letter.",
+                  "Counseled 30-plus small firms on labeling and promo, the ones who cannot afford a standing review board and will invent one in Slack. Firms that took the memo home had fewer repeat questions; the ones who did not came back with a letter. The memo named the claim and the regulation.",
                 skills: ["Regulatory Counseling", "Stakeholder Management"],
               },
             ],
@@ -3303,15 +3240,15 @@ export const regulatedProfiles = [
             endDate: "2011-09-02",
             projects: [
               {
-                name: "Guidance digest",
+                name: "Kept the clinic's monthly guidance digest so fellows stopped citing withdrawn documents after the second issue",
                 description:
-                  "Kept the clinic's monthly guidance digest. Fellows stopped citing withdrawn documents after the second issue.",
+                  "Kept the clinic's monthly guidance digest, including the withdrawn documents that fellows otherwise treat as current because they are still on a shared drive. Fellows stopped citing withdrawn documents after the second issue. Partners started forwarding the digest, which is the only adoption metric that counts.",
                 skills: ["Policy Analysis", "Legal Research"],
               },
               {
-                name: "Intake memos",
+                name: "Wrote intake memos naming the agency, the statute, and the first clock that partners used as file openers",
                 description:
-                  "Wrote intake memos that named the agency, the statute, and the first clock. Partners used them as the file openers.",
+                  "Wrote intake memos that named the agency, the statute, and the first clock, instead of a fact pattern that buried the deadline in paragraph four. Partners used them as the file openers. The clock that mattered was on page one, which is how a clinic file stops missing a comment date.",
                 skills: ["Legal Writing", "Regulatory Counseling"],
               },
             ],
@@ -3347,13 +3284,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Warning-letter closeout",
+        name: "Class II device warning-letter closeout in seven months",
         description:
-          "<p>How the Class II device warning letter closed in 7 months: CAPA that matched the legal narrative, and the meeting minutes that kept development from restarting.</p>",
-        links: [
-          { label: "Closeout note", url: "https://www.example.com/ashford-quill/warning-letter" },
-          { label: "Meeting package", url: "https://www.example.com/hugh-pemberton/type-b" },
-        ],
+          "<p>How the Class II device warning letter closed in 7 months: CAPA that matched the legal narrative, and the meeting minutes that kept development from restarting. The shop-floor change and the letter to the agency carry the same date.</p>",
         skills: ["FDA Regulatory Affairs", "Regulatory Counseling", "Legal Writing"],
       },
     ],
@@ -3432,21 +3365,21 @@ export const regulatedProfiles = [
             startDate: "2020-08-03",
             projects: [
               {
-                name: "First-year issuer audit",
+                name: "Filed a first-year $1.1B issuer audit on time with no PCAOB Part I findings on owned accounts",
                 description:
-                  "Led a first-year audit of a $1.1B revenue issuer after a firm rotation. Filed on time; PCAOB inspection of the file produced no Part I findings on the accounts Claire owned.",
+                  "Led a first-year audit of a $1.1B revenue issuer after a firm rotation, including the accounts the prior firm had treated as known. Filed on time; PCAOB inspection produced no Part I findings on the accounts I owned. The planning memo named what we did not know yet.",
                 skills: ["External Audit", "Quality Management", "Stakeholder Management"],
               },
               {
-                name: "Revenue analytics redesign",
+                name: "Replaced a haphazard revenue sample with journal-entry analytics; planning exceptions rose 2.4x and year-end surprises halved",
                 description:
-                  "Replaced a haphazard revenue sample with a journal-entry and contract-analytics approach. Exceptions found in planning rose 2.4x; year-end surprise adjustments fell by half.",
+                  "Replaced a haphazard revenue sample with a journal-entry and contract-analytics approach that looked at the population before it looked at the binder. Exceptions found in planning rose 2.4x; year-end surprise adjustments fell by half. The sample that remained was smaller and meaner, which is the point of the analytics.",
                 skills: ["Audit Analytics", "GAAP", "External Audit"],
               },
               {
-                name: "ICFR deficiency evaluation",
+                name: "Evaluated a late ITGC finding to a significant deficiency so the 10-K disclosure matched the AS 2201 conclusion",
                 description:
-                  "Evaluated a late ITGC finding through to a significant deficiency, not a hallway conversation. The 10-K disclosure and the AS 2201 conclusion matched.",
+                  "Evaluated a late ITGC finding through to a significant deficiency, not a hallway conversation that hoped it would stay unrated until after the 10-K. The disclosure and the AS 2201 conclusion matched. The audit committee got the rating before the printer did, which is the only order that is defensible.",
                 skills: ["SOX Compliance", "Internal Controls", "Financial Reporting"],
               },
             ],
@@ -3467,15 +3400,15 @@ export const regulatedProfiles = [
             endDate: "2020-07-24",
             projects: [
               {
-                name: "ASC 606 conversion file",
+                name: "Led first-year ASC 606 for a multi-element software issuer; national office signed and SAB 74 disclosures held",
                 description:
-                  "Led the first-year ASC 606 file for a multi-element software issuer. National office signed the memo; the 10-K SAB 74 and adoption disclosures held through review.",
+                  "Led the first-year ASC 606 file for a multi-element software issuer, including the performance obligations sales had been bundling by habit. National office signed the memo; the 10-K SAB 74 and adoption disclosures held through review. The memo used the contract, not the rate card, which is how 606 files survive.",
                 skills: ["GAAP", "Financial Reporting", "External Audit"],
               },
               {
-                name: "Multi-location scoping",
+                name: "Rescoped a 22-location private audit so four sites carried 81% coverage and fieldwork fell to 9 weeks",
                 description:
-                  "Rescoped a 22-location private audit so four locations carried 81% of coverage. Fieldwork weeks dropped from 14 to 9 without a scope exception.",
+                  "Rescoped a 22-location private audit so four locations carried 81% of coverage instead of a tour that made every plant feel chosen. Fieldwork weeks dropped from 14 to 9 without a scope exception. The locations that lost a visit kept a desktop procedure, which is how you stop pretending coverage is a plane ticket.",
                 skills: ["External Audit", "Internal Controls", "Quality Management"],
               },
             ],
@@ -3486,15 +3419,15 @@ export const regulatedProfiles = [
             endDate: "2017-09-01",
             projects: [
               {
-                name: "Lease walkthroughs",
+                name: "Rewrote lease walkthroughs after ASC 842 so the process narrative stopped describing a spreadsheet nobody used",
                 description:
-                  "Rewrote lease walkthroughs after ASC 842 so the process narrative stopped describing a spreadsheet that nobody used.",
+                  "Rewrote lease walkthroughs after ASC 842 so the process narrative stopped describing a spreadsheet that nobody used and a control that lived in a shared inbox. The new walkthrough named the system and the reviewer. SOX testing finally had a population that existed, which is a lower bar than it sounds.",
                 skills: ["Internal Controls", "GAAP", "SOX Compliance"],
               },
               {
-                name: "EQCR comment close",
+                name: "Closed 31 EQCR comments on a first-year file in nine days by rewriting the revenue memo",
                 description:
-                  "Closed 31 EQCR comments on a first-year file in nine days by rewriting the revenue memo instead of adding appendices.",
+                  "Closed 31 EQCR comments on a first-year file in nine days by rewriting the revenue memo instead of adding appendices that would have made the file heavier and the answer worse. The engagement partner could defend the memo in one sitting. EQCR stopped asking the same question in three places.",
                 skills: ["Quality Management", "Financial Reporting", "Stakeholder Management"],
               },
             ],
@@ -3514,15 +3447,15 @@ export const regulatedProfiles = [
             endDate: "2014-12-19",
             projects: [
               {
-                name: "Cash-to-revenue tick and tie",
+                name: "Found a 2012 cutoff error that became a $4.1M adjusting entry the client had missed",
                 description:
-                  "Owned cash, AR, and the first revenue samples. A cut-off error Claire found in 2012 became a $4.1M adjusting entry the client had missed.",
+                  "Owned cash, AR, and the first revenue samples, the work that looks junior until a cutoff is wrong. A cut-off error I found in 2012 became a $4.1M adjusting entry the client had missed. The tick-and-tie was to the shipping log, not the invoice date, which is how cutoff errors hide.",
                 skills: ["External Audit", "GAAP", "Financial Reporting"],
               },
               {
-                name: "Control testing that matched the floor",
+                name: "Redid AP control testing after watching the floor, where the three-way match existed only in the memo",
                 description:
-                  "Redid AP control testing after watching the process. The 'three-way match' existed in the memo and not in the plant.",
+                  "Redid AP control testing after watching the process on the plant floor. The 'three-way match' existed in the memo and not in the plant; receiving used a stamp and a habit. The test that shipped described the stamp. The significant-deficiency conversation started from a fact, not a narrative.",
                 skills: ["Internal Controls", "SOX Compliance"],
               },
             ],
@@ -3558,13 +3491,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "First-year issuer file",
+        name: "First-year $1.1B issuer audit planning file",
         description:
-          "<p>Planning-through-opinion notes from the $1.1B first-year audit: the analytics redesign, the ITGC deficiency evaluation, and the inspection that stayed clean on Claire's accounts.</p>",
-        links: [
-          { label: "File note", url: "https://www.example.com/hartwell-grey/first-year" },
-          { label: "Analytics method", url: "https://www.example.com/claire-fontaine/analytics" },
-        ],
+          "<p>Planning-through-opinion notes from the $1.1B first-year audit: the analytics redesign, the ITGC deficiency evaluation, and the inspection that stayed clean on Claire's accounts. The planning memo names what the first-year team did not know yet.</p>",
         skills: ["External Audit", "Audit Analytics", "SOX Compliance"],
       },
     ],
@@ -3643,21 +3572,21 @@ export const regulatedProfiles = [
             startDate: "2021-05-17",
             projects: [
               {
-                name: "Year-two SOX program",
+                name: "Took SOX in-house in year two, retired 38 unperformed key controls, and dropped testing hours 29%",
                 description:
-                  "Took SOX in-house in year two. Retired 38 key controls that nobody performed; testing hours dropped 29% while coverage of revenue and settlement risks increased.",
+                  "Took SOX in-house in year two after a consultant inventory that had grown every control anyone was afraid to delete. Retired 38 key controls that nobody performed; testing hours dropped 29% while coverage of revenue and settlement risks increased. The surviving matrix could be walked in a day.",
                 skills: ["SOX Compliance", "Internal Controls", "Stakeholder Management"],
               },
               {
-                name: "ITGC and access analytics",
+                name: "Found 17 terminated IDs still active and briefed the significant-deficiency call two weeks before the auditor walkthrough",
                 description:
-                  "Rebuilt ITGC testing around joiner-mover-leaver analytics. Found 17 terminated IDs still active; the significant-deficiency call went to the CFO two weeks before the auditor's walkthrough.",
+                  "Rebuilt ITGC testing around joiner-mover-leaver analytics instead of a sample of access forms that always looked fine. Found 17 terminated IDs still active; the significant-deficiency call went to the CFO two weeks before the auditor's walkthrough. The IDs were disabled before the walkthrough. The rating was not.",
                 skills: ["Audit Analytics", "GRC", "SOX Compliance"],
               },
               {
-                name: "Auditor reliance package",
+                name: "Got external-auditor reliance on 22 of 31 key business controls and cut direct-assist hours by a third",
                 description:
-                  "Built the reliance package the external auditor used on 22 of 31 key business controls. Direct-assist hours on those cycles fell by a third.",
+                  "Built the reliance package the external auditor used on 22 of 31 key business controls, with reperformance evidence that did not require a guided tour. Direct-assist hours on those cycles fell by a third. The auditor still tested. They stopped re-walking processes we had already watched.",
                 skills: ["External Audit", "Internal Controls", "Financial Reporting"],
               },
             ],
@@ -3678,15 +3607,15 @@ export const regulatedProfiles = [
             endDate: "2021-05-07",
             projects: [
               {
-                name: "IPO-readiness SOX",
+                name: "Stood up first-year SOX for a $700M issuer with zero material weaknesses on the cycles scoped",
                 description:
-                  "Stood up a first-year SOX program for a $700M revenue issuer. Year-one material-weakness count: zero on the cycles Victor scoped; two IT findings were closed before the auditor's opinion date.",
+                  "Stood up a first-year SOX program for a $700M revenue issuer that had been running on tribal close procedures. Year-one material-weakness count: zero on the cycles I scoped; two IT findings were closed before the auditor's opinion date. The walkthroughs matched the current ERP, which is rarer in year one than the readiness deck claims.",
                 skills: ["SOX Compliance", "GRC", "GAAP"],
               },
               {
-                name: "Process-narrative rewrite",
+                name: "Threw out 2014 ERP consultant narratives and deleted 14 controls that no longer matched the settlement process",
                 description:
-                  "Threw out consultant narratives that described a 2014 ERP. New walkthroughs matched the current settlement process; 14 controls were deleted on the spot.",
+                  "Threw out consultant narratives that described a 2014 ERP and a close that no longer existed. New walkthroughs matched the current settlement process; 14 controls were deleted on the spot. Operators recognized the new narratives, which is the only validation that counts.",
                 skills: ["Internal Controls", "Stakeholder Management", "Financial Reporting"],
               },
             ],
@@ -3697,15 +3626,15 @@ export const regulatedProfiles = [
             endDate: "2018-08-10",
             projects: [
               {
-                name: "SOC-report mapping",
+                name: "Mapped 11 vendor SOC 1s and wrote complementary controls for four risks that were not actually covered",
                 description:
-                  "Mapped 11 vendor SOC 1s to user-entity controls. Four 'covered' risks were not covered; complementary controls were written before year-end testing.",
+                  "Mapped 11 vendor SOC 1s to user-entity controls instead of filing the reports under 'covered.' Four 'covered' risks were not covered; complementary controls were written before year-end testing. The mapping named the complementary control owner, not the vendor, which is how a SOC 1 stops being a comfort object.",
                 skills: ["GRC", "External Audit", "Internal Controls"],
               },
               {
-                name: "Journal-entry analytics pilot",
+                name: "Piloted JE analytics that found a recurring manual entry with no reviewer and made it a key control",
                 description:
-                  "Piloted JE analytics that found a recurring manual entry with no reviewer. It became a key control instead of a year-end surprise.",
+                  "Piloted JE analytics that found a recurring manual entry with no reviewer, posted late in close by someone who also prepared it. It became a key control instead of a year-end surprise. The analytic ran on the full population, which is the only reason a lonely entry shows up.",
                 skills: ["Audit Analytics", "SOX Compliance"],
               },
             ],
@@ -3726,15 +3655,15 @@ export const regulatedProfiles = [
             endDate: "2016-02-26",
             projects: [
               {
-                name: "ICFR testing for a payments client",
+                name: "Found the reconciler and reviewer were the same person on a payments-issuer walkthrough I insisted on watching",
                 description:
-                  "Tested ICFR on a payments issuer. A walkthrough Victor insisted on watching found the reconciler and the reviewer were the same person.",
+                  "Tested ICFR on a payments issuer and insisted on watching the walkthrough instead of accepting the narrative. The reconciler and the reviewer were the same person on Thursdays, when the backup was out. The control that shipped described that fact. The deficiency conversation started that afternoon.",
                 skills: ["External Audit", "Internal Controls", "SOX Compliance"],
               },
               {
-                name: "Revenue assertion mapping",
+                name: "Mapped revenue controls to occurrence and cutoff after a restatement risk, leaving fewer, better samples",
                 description:
-                  "Mapped revenue controls to occurrence and cutoff after a restatement risk. The next file had fewer, better samples.",
+                  "Mapped revenue controls to occurrence and cutoff after a restatement risk that had been treated as a disclosure problem. The next file had fewer, better samples. The map killed three controls that addressed completeness and called it occurrence, which is how restatements get a second chance.",
                 skills: ["GAAP", "Financial Reporting", "External Audit"],
               },
             ],
@@ -3745,15 +3674,15 @@ export const regulatedProfiles = [
             endDate: "2013-09-27",
             projects: [
               {
-                name: "First SOX samples",
+                name: "Failed two first-owned SOX samples because the evidence was a screenshot of a screenshot",
                 description:
-                  "Pulled and tested the first SOX samples Victor owned. Two controls failed because the evidence was a screenshot of a screenshot.",
+                  "Pulled and tested the first SOX samples I owned. Two controls failed because the evidence was a screenshot of a screenshot, dated after the period, from a login that was not the reviewer's. The failures were written up. The screenshots were not remediated into a pass.",
                 skills: ["SOX Compliance", "Internal Controls"],
               },
               {
-                name: "Cash and settlement",
+                name: "Owned cash and settlement testing on two files; a one-day cutoff miss became a $2.6M adjustment",
                 description:
-                  "Owned cash and settlement testing on two files. A one-day cutoff miss became a $2.6M adjustment.",
+                  "Owned cash and settlement testing on two files, including the reconciling items that close teams treat as personality. A one-day cutoff miss became a $2.6M adjustment. The tie was to the settlement report, not the GL date, which is how a day disappears.",
                 skills: ["External Audit", "GAAP"],
               },
             ],
@@ -3789,13 +3718,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "In-house year-two SOX",
+        name: "In-house year-two SOX program rebuild note",
         description:
-          "<p>How PrairieLine retired 38 paper controls, rebuilt ITGC around access analytics, and still increased coverage of settlement risk.</p>",
-        links: [
-          { label: "Program note", url: "https://www.example.com/prairieline/sox-year-two" },
-          { label: "Access method", url: "https://www.example.com/victor-nguyen/itgc" },
-        ],
+          "<p>How PrairieLine retired 38 paper controls, rebuilt ITGC around access analytics, and still increased coverage of settlement risk. The matrix that survived can be walked in a day, which is the only matrix operators will tell the truth about.</p>",
         skills: ["SOX Compliance", "Internal Controls", "Audit Analytics"],
       },
     ],
@@ -3874,21 +3799,21 @@ export const regulatedProfiles = [
             startDate: "2022-02-14",
             projects: [
               {
-                name: "Provision close on the controller's calendar",
+                name: "Moved the quarterly provision from T+18 to T+8 and dropped late ETR changes to zero",
                 description:
-                  "Moved the quarterly provision from T+18 to T+8 by locking the current-tax calc and deferred rollforward before the rest of close. Two quarters of late ETR changes dropped to zero.",
+                  "Moved the quarterly provision from T+18 to T+8 by locking the current-tax calc and deferred rollforward before the rest of close asked for another day. Two quarters of late ETR changes dropped to zero. The controller got a rate that could be briefed; tax stopped being the function that reopens earnings on Thursday.",
                 skills: ["Tax Provision", "Financial Reporting", "Internal Controls"],
               },
               {
-                name: "State apportionment model",
+                name: "Rebuilt multi-state apportionment in Python from 40 workbooks and caught a $1.7M recycled current-tax overstatement",
                 description:
-                  "Rebuilt multi-state apportionment in Python from 40 workbooks. The first quarter caught a $1.7M current-tax overstatement that the old model had recycled.",
+                  "Rebuilt multi-state apportionment in Python from 40 workbooks that had been passing factors by copy-paste. The first quarter caught a $1.7M current-tax overstatement that the old model had recycled from a closed year. The new model had a test for that. The workbooks had a prayer.",
                 skills: ["Python", "Tax Provision", "Financial Modeling"],
               },
               {
-                name: "VAL and UTPs before earnings",
+                name: "Documented a valuation-allowance release and two UTPs before earnings so the auditor sampled with no rate surprise",
                 description:
-                  "Documented a valuation-allowance release and two UTPs before the disclosure committee. The auditor sampled the memos; no year-end surprise on the rate.",
+                  "Documented a valuation-allowance release and two UTPs before the disclosure committee, with memos the auditor could sample without a guided tour. No year-end surprise on the rate. The release had a schedule of evidence, not a hope that next year's forecast would stay friendly.",
                 skills: ["GAAP", "External Audit", "Stakeholder Management"],
               },
             ],
@@ -3909,15 +3834,15 @@ export const regulatedProfiles = [
             endDate: "2022-02-04",
             projects: [
               {
-                name: "First-year public provision",
+                name: "Built the first public-company provision for a newly listed manufacturer; footnote and SAB 74 language held through review",
                 description:
-                  "Built the first public-company provision for a newly listed manufacturer. Footnote and SAB 74 language held through the first 10-K review.",
+                  "Built the first public-company provision for a newly listed manufacturer that had been closing tax like a private company with a good accountant. Footnote and SAB 74 language held through the first 10-K review. The rate walk that shipped could be read by someone who does not live in the provision file.",
                 skills: ["Tax Provision", "Financial Reporting", "GAAP"],
               },
               {
-                name: "Return-to-provision factory",
+                name: "Standardized RTP true-ups across 11 clients and cut average true-up from 140 bps of ETR to 35",
                 description:
-                  "Standardized RTP true-ups across 11 clients. Average true-up dropped from 140 bps of ETR to 35 after the current-tax calc stopped being a black box.",
+                  "Standardized RTP true-ups across 11 clients so the current-tax calc stopped being a black box that got 'trued up' by personality. Average true-up dropped from 140 bps of ETR to 35. Reviewers could find the return position and the provision position on the same page, which is how 140 bps becomes 35.",
                 skills: ["Tax Provision", "Financial Modeling", "External Audit"],
               },
             ],
@@ -3928,15 +3853,15 @@ export const regulatedProfiles = [
             endDate: "2018-11-09",
             projects: [
               {
-                name: "Deferred rollforward cleanup",
+                name: "Tied a client's deferred rollforward to the balance sheet for the first time in three years",
                 description:
-                  "Tied a client's deferred rollforward to the balance sheet for the first time in three years. Four accounts had been plug figures.",
+                  "Tied a client's deferred rollforward to the balance sheet for the first time in three years. Four accounts had been plug figures that moved when the ETR needed to. The rollforward that survived had a schedule for each account. The plugs had a funeral.",
                 skills: ["GAAP", "Tax Provision", "Internal Controls"],
               },
               {
-                name: "Provision PBC pack",
+                name: "Built a provision PBC pack the auditor could sample without a tour, cutting review hours by a week",
                 description:
-                  "Built the first PBC pack an auditor could sample without a guided tour. Review hours on that file fell by a week.",
+                  "Built the first PBC pack an auditor could sample without a guided tour of folders named 'final_v7.' Review hours on that file fell by a week. The pack had the rate walk, the deferred rollforward, and the UTPs in the order the workpapers already used, which is how a tour becomes a sample.",
                 skills: ["External Audit", "Stakeholder Management", "Financial Reporting"],
               },
             ],
@@ -3957,15 +3882,15 @@ export const regulatedProfiles = [
             endDate: "2016-05-27",
             projects: [
               {
-                name: "Multi-state return desk",
+                name: "Reviewed 80-plus state returns a season; a 2014 nexus position later saved a client from a wrong-start-date assessment",
                 description:
-                  "Prepared and reviewed 80-plus state returns a season. A nexus position Jasmine documented in 2014 later saved a client from an assessment that used the wrong start date.",
+                  "Prepared and reviewed 80-plus state returns a season, including the nexus positions that look like a checkbox until an assessment arrives. A nexus position documented in 2014 later saved a client from an assessment that used the wrong start date. The memo had the facts; the assessment did not.",
                 skills: ["Tax Provision", "GAAP", "Financial Modeling"],
               },
               {
-                name: "Workpaper discipline",
+                name: "Installed a workpaper index reviewers actually used so review notes dropped once people could find the apportionment",
                 description:
-                  "Installed a workpaper index the reviewers actually used. Review notes per return dropped after people could find the apportionment, not hunt for it.",
+                  "Installed a workpaper index the reviewers actually used, instead of a cover sheet that pointed to a folder named 'tax.' Review notes per return dropped after people could find the apportionment, not hunt for it. The index was short. The hunting had been the review.",
                 skills: ["Internal Controls", "Financial Reporting"],
               },
             ],
@@ -4001,13 +3926,9 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "T+8 provision close",
+        name: "T+8 quarterly tax provision close note",
         description:
-          "<p>How North Pier moved the quarterly provision onto the controller's calendar, plus the Python apportionment model that caught a $1.7M recycled overstatement.</p>",
-        links: [
-          { label: "Close note", url: "https://www.example.com/north-pier/provision" },
-          { label: "Model notes", url: "https://www.example.com/jasmine-patel/apportionment" },
-        ],
+          "<p>How North Pier moved the quarterly provision onto the controller's calendar, plus the Python apportionment model that caught a $1.7M recycled overstatement. Late ETR changes dropped to zero once the current-tax calc locked before the rest of close.</p>",
         skills: ["Tax Provision", "Python", "Financial Reporting"],
       },
     ],
@@ -4086,21 +4007,21 @@ export const regulatedProfiles = [
             startDate: "2020-12-01",
             projects: [
               {
-                name: "P2P continuous audit",
+                name: "Found $2.4M in duplicate and early AP payments and recovered $1.1M with a control change that stuck",
                 description:
-                  "Stood up monthly Python tests on the full AP population. Found $2.4M in duplicate and early payments in the first two quarters; recovery hit $1.1M and the control change stuck.",
+                  "Stood up monthly Python tests on the full AP population, not a sample that always looked fine. Found $2.4M in duplicate and early payments in the first two quarters; recovery hit $1.1M and the control change stuck. AP stopped treating a duplicate as a vendor personality once the test named the invoice.",
                 skills: ["Audit Analytics", "Python", "Internal Controls"],
               },
               {
-                name: "Risk-based plan that moved",
+                name: "Pulled two plants forward after shrink analytics and issued high-rated findings the 2024 rotational plan would have missed",
                 description:
-                  "Replaced a rotational plant plan with a risk assessment that pulled two plants forward after analytics flagged inventory shrink. Both audits issued high-rated findings the rotational plan would have reached in 2024.",
+                  "Replaced a rotational plant plan with a risk assessment that pulled two plants forward after analytics flagged inventory shrink the cycle-count program had been smoothing. Both audits issued high-rated findings the rotational plan would have reached in 2024. The committee got the plants that were loud in the data.",
                 skills: ["Audit Analytics", "Stakeholder Management", "GAAP"],
               },
               {
-                name: "SOX direct-assist reset",
+                name: "Got external-auditor reliance on 18 IA-tested SOX controls so plants hosted one walkthrough cycle instead of two",
                 description:
-                  "Renegotiated IA's SOX direct assist so the external auditor relied on 18 IA-tested controls. Plants hosted one walkthrough cycle instead of two.",
+                  "Renegotiated IA's SOX direct assist so the external auditor relied on 18 IA-tested controls, with reperformance they did not have to invent on site. Plants hosted one walkthrough cycle instead of two. Operators stopped telling the story twice, which is how walkthroughs start matching the floor.",
                 skills: ["SOX Compliance", "External Audit", "Financial Reporting"],
               },
             ],
@@ -4121,15 +4042,15 @@ export const regulatedProfiles = [
             endDate: "2020-11-20",
             projects: [
               {
-                name: "JE continuous monitoring",
+                name: "Caught a recurring unreviewed manual JE that became a SOX key control the next year",
                 description:
-                  "Built monthly JE analytics for a 30-entity close. Caught a recurring manual entry with no reviewer; it became a SOX key control the next year.",
+                  "Built monthly JE analytics for a 30-entity close and caught a recurring manual entry with no reviewer, posted by the same preparer late in the cycle. It became a SOX key control the next year. The analytic ran on the full population, which is the only reason a lonely entry has a chance.",
                 skills: ["Audit Analytics", "Python", "SOX Compliance"],
               },
               {
-                name: "T&E full-population test",
+                name: "Replaced a 25-item T&E sample with a full-population test that found 8x the policy-break dollars",
                 description:
-                  "Replaced a 25-item T&E sample with a full-population test. Policy-break dollars were 8x the sample estimate; the policy, not the sample size, changed.",
+                  "Replaced a 25-item T&E sample with a full-population test that did not care how tidy the sample folder looked. Policy-break dollars were 8x the sample estimate; the policy, not the sample size, changed. Finance stopped arguing about sample size once the dollars had a vendor name.",
                 skills: ["Audit Analytics", "Internal Controls", "Stakeholder Management"],
               },
             ],
@@ -4140,15 +4061,15 @@ export const regulatedProfiles = [
             endDate: "2017-07-07",
             projects: [
               {
-                name: "First Python AP script",
+                name: "Wrote a production AP script whose duplicate-invoice logic found hits the vendor dashboard had been filtering out",
                 description:
-                  "Wrote Owen's first production AP script. Duplicate-invoice logic was ugly and correct; the vendor dashboard it replaced had been filtering out the hits.",
+                  "Wrote the first production AP script I owned. Duplicate-invoice logic was ugly and correct; the vendor dashboard it replaced had been filtering out the hits as 'possible matches' nobody opened. The script's first month paid for the time it took to write. The dashboard kept the charts.",
                 skills: ["Python", "Audit Analytics"],
               },
               {
-                name: "Plant inventory analytics",
+                name: "Used cycle-count and shipment data to pick two plants whose shrink the cycle-count program had been smoothing",
                 description:
-                  "Used cycle-count and shipment data to pick two plants for inventory audits. Both had shrink the cycle-count program had been smoothing.",
+                  "Used cycle-count and shipment data to pick two plants for inventory audits instead of the ones that were next on the rotation. Both had shrink the cycle-count program had been smoothing by recounting the friendly bins. The findings had a quantity; the cycle-count program had a green dashboard.",
                 skills: ["Audit Analytics", "GAAP", "Internal Controls"],
               },
             ],
@@ -4169,15 +4090,15 @@ export const regulatedProfiles = [
             endDate: "2015-03-27",
             projects: [
               {
-                name: "Inventory observations that counted",
+                name: "Found a wall of finished goods missing from the listing that became a $3.2M inventory adjustment",
                 description:
-                  "Ran inventory observations at four plants. A wall of finished goods that was not on the listing became a $3.2M adjustment.",
+                  "Ran inventory observations at four plants and walked the floor instead of the listing. A wall of finished goods that was not on the listing became a $3.2M adjustment. The observation that mattered was the wall, not the count sheet the client had pre-reconciled.",
                 skills: ["External Audit", "GAAP", "Internal Controls"],
               },
               {
-                name: "IA reliance first attempt",
+                name: "Tried to rely on IA work that had no reperformance and learned what reliance actually requires",
                 description:
-                  "Tried to rely on IA work that had no reperformance. The file taught Owen what reliance actually requires.",
+                  "Tried to rely on IA work that had no reperformance, a tidy memo, and a sample that could not be re-pulled. The file taught me what reliance actually requires. The next attempt started with the reperformance, not the memo, which is the only order that survives a reviewer.",
                 skills: ["External Audit", "SOX Compliance", "Financial Reporting"],
               },
             ],
@@ -4188,15 +4109,15 @@ export const regulatedProfiles = [
             endDate: "2012-09-28",
             projects: [
               {
-                name: "Cash and AP",
+                name: "Owned cash and AP on two CPG files; a vendor-rebate cutoff miss became the first real adjusting entry",
                 description:
-                  "Owned cash and AP on two CPG files. A cutoff miss on a vendor rebate became Owen's first real adjusting entry.",
+                  "Owned cash and AP on two CPG files, including the vendor rebates that close teams treat as a timing story. A cutoff miss on a vendor rebate became my first real adjusting entry. The tie was to the credit memo date, not the GL hope, which is how rebates hide a period.",
                 skills: ["External Audit", "GAAP"],
               },
               {
-                name: "Control testing on the floor",
+                name: "Found the matcher and approver shared a Thursday login after watching the three-way match on the floor",
                 description:
-                  "Tested AP controls after watching the three-way match. The matcher and the approver shared a login on Thursdays.",
+                  "Tested AP controls after watching the three-way match, not the narrative that described a segregation nobody could demonstrate. The matcher and the approver shared a login on Thursdays. The test that shipped said so. The deficiency was dated that Thursday, which is more precise than most control reports.",
                 skills: ["Internal Controls", "SOX Compliance"],
               },
             ],
@@ -4232,20 +4153,15 @@ export const regulatedProfiles = [
     ],
     featuredProjects: [
       {
-        name: "P2P continuous audit",
+        name: "P2P continuous audit on the full AP population",
         description:
-          "<p>The monthly AP tests that found $2.4M in duplicate and early payments, the $1.1M recovered, and the control change that lasted past the finding.</p>",
-        links: [
-          { label: "Program note", url: "https://www.example.com/minnehaha/p2p-continuous" },
-          { label: "Script notes", url: "https://www.example.com/owen-mcallister/analytics" },
-        ],
+          "<p>The monthly AP tests that found $2.4M in duplicate and early payments, the $1.1M recovered, and the control change that lasted past the finding. The test names the invoice, which is how a duplicate stops being treated as a vendor personality.</p>",
         skills: ["Audit Analytics", "Python", "Internal Controls"],
       },
       {
-        name: "Risk-based plant plan",
+        name: "Risk-based plant audit plan driven by inventory analytics",
         description:
-          "<p>How inventory analytics pulled two plants forward and produced high-rated findings the old rotational plan would have missed for years.</p>",
-        links: [{ label: "Plan note", url: "https://www.example.com/minnehaha/risk-plan" }],
+          "<p>How inventory analytics pulled two plants forward and produced high-rated findings the old rotational plan would have missed for years. The cycle-count program had been smoothing shrink by recounting the friendly bins; the plan stopped waiting for 2024.</p>",
         skills: ["Audit Analytics", "Stakeholder Management", "GAAP"],
       },
     ],

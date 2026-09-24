@@ -666,6 +666,7 @@ async function syncFeaturedProjects(
 
   for (const project of featuredProjects) {
     const description = await sanitizeHtmlServer(project.description);
+    const links = project.links ?? [];
     const match = existing.find((row) => row.name === project.name && !keepIds.has(row.id));
 
     if (!match) {
@@ -674,7 +675,7 @@ async function syncFeaturedProjects(
           userId,
           name: project.name,
           description,
-          links: project.links as unknown as object,
+          links: links as unknown as object,
         },
       });
       keepIds.add(created.id);
@@ -689,7 +690,7 @@ async function syncFeaturedProjects(
     keepIds.add(match.id);
 
     const unchanged =
-      stringsEqual(match.description, description) && jsonEqual(match.links, project.links);
+      stringsEqual(match.description, description) && jsonEqual(match.links, links);
 
     if (unchanged) {
       bump(counts, "unchanged");
@@ -698,7 +699,7 @@ async function syncFeaturedProjects(
         where: { id: match.id },
         data: {
           description,
-          links: project.links as unknown as object,
+          links: links as unknown as object,
         },
       });
       bump(counts, "updated");

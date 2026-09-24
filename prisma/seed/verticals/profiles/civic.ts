@@ -74,21 +74,21 @@ export const civicProfiles = [
             startDate: "2021-07-01",
             projects: [
               {
-                name: "NECHE decennial self-study",
+                name: "Led the NECHE decennial self-study that closed with no focused visit",
                 description:
-                  "Coordinated 11 standard teams and 2,400 pieces of evidence. The commission accepted the report with no focused visit and two commendations on assessment.",
+                  "Coordinated 11 standard teams and 2,400 pieces of evidence across every NECHE criterion, then sat in the mock visit so chairs heard their own gaps before the team did. The commission accepted the report with no focused visit and two commendations on assessment.",
                 skills: ["Accreditation", "Program Evaluation", "Stakeholder Management"],
               },
               {
-                name: "General-education redesign",
+                name: "Redesigned general education so first-years finish the core in 32 credits",
                 description:
-                  "Collapsed 14 distribution menus into six outcome clusters. Faculty senate passed the map 71–19; first-year students now finish the core in 32 credits instead of 40.",
+                  "Collapsed 14 distribution menus into six outcome clusters and walked the map through senate, registrar, and student government in the same room. Faculty senate passed it 71–19; first-year students now finish the core in 32 credits instead of 40, without shrinking any major.",
                 skills: ["Curriculum Design", "Change Management", "Academic Advising"],
               },
               {
-                name: "Credit-hour compliance audit",
+                name: "Ran the credit-hour audit that dropped documentation exceptions from 11% to 2%",
                 description:
-                  "Sampled 180 courses across 9 colleges. Documentation exceptions fell from 11% to 2% in two catalog years.",
+                  "Sampled 180 courses across 9 colleges and installed an annual credit-hour file the chairs now update themselves. Documentation exceptions fell from 11% to 2% in two catalog years, and summer documentation work no longer collides with registration.",
                 skills: ["Quality Improvement", "Program Management", "Accreditation"],
               },
             ],
@@ -109,15 +109,15 @@ export const civicProfiles = [
             endDate: "2021-06-30",
             projects: [
               {
-                name: "Forty-eight-program inventory",
+                name: "Inventoried 48 programs and cut overlapping 100-level credits by 18%",
                 description:
-                  "Catalogued overlapping requirements across every undergraduate major. Shared 100-level credits dropped 18% and released 6 FTE of instructional capacity.",
+                  "Catalogued overlapping requirements across every undergraduate major and put the shared 100-level list in front of 48 chairs before anyone lost a course. Shared credits dropped 18% and released 6 FTE of instructional capacity the provost could reinvest.",
                 skills: ["Curriculum Design", "Program Evaluation", "Quality Improvement"],
               },
               {
-                name: "Advising syllabus project",
+                name: "Built the first-year advising syllabus that lifted undeclared persistence four points",
                 description:
-                  "Gave every first-year adviser a common syllabus and a two-year planner. Persistence from fall to fall rose four points in the undeclared cohort.",
+                  "Gave every first-year adviser a common syllabus and a two-year planner so undeclared students left orientation with a map, not a brochure. Persistence from fall to fall rose four points in the undeclared cohort, and the registrar stopped fielding the same add-drop questions in September.",
                 skills: ["Academic Advising", "Stakeholder Management"],
               },
             ],
@@ -128,15 +128,15 @@ export const civicProfiles = [
             endDate: "2017-06-30",
             projects: [
               {
-                name: "First-year seminar redesign",
+                name: "Replaced a one-credit orientation hour with a seminar that cut withdrawals",
                 description:
-                  "Replaced a 1-credit orientation hour with a 3-credit inquiry seminar. Withdrawals in the first semester fell from 9% to 5%.",
+                  "Replaced a 1-credit orientation hour with a 3-credit inquiry seminar so first-years met a faculty member before they met the registrar's hold list. Withdrawals in the first semester fell from 9% to 5%, and the seminar still carries the college's writing outcome.",
                 skills: ["Curriculum Design", "Academic Advising"],
               },
               {
-                name: "Department program-review cycle",
+                name: "Wrote the five-year program-review cycle that retired three low-enrollment certificates",
                 description:
-                  "Wrote the five-year review template later adopted campus-wide. Three certificates closed; two new minors opened with documented demand.",
+                  "Wrote the five-year review template later adopted campus-wide, with a data packet chairs could not ignore and a close-out memo the provost could act on. Three certificates closed; two new minors opened with documented demand instead of a hopeful enrollment slide.",
                 skills: ["Program Evaluation", "Program Management"],
               },
             ],
@@ -172,20 +172,15 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Harborwell Curriculum Atlas",
+        name: "Harborwell undergraduate curriculum atlas and gap watch",
         description:
-          "<p>Public map of every undergraduate requirement, outcome, and assessment artifact. Chairs update their own nodes; the dean's office watches the gaps.</p>",
-        links: [
-          { label: "Atlas", url: "https://www.example.com/harborwell-curriculum-atlas" },
-          { label: "Method note", url: "https://www.example.com/harborwell-atlas-method" },
-        ],
+          "<p>Public map of every undergraduate requirement, outcome, and assessment artifact. Chairs update their own nodes; the dean's office watches the gaps. Accreditation evidence now lives on the same map, so a missing artifact is a gap the chair can see before the visit.</p>",
         skills: ["Curriculum Design", "Accreditation", "Program Management"],
       },
       {
-        name: "Fenwick Program Review Playbook",
+        name: "Fenwick five-year program-review playbook for chairs",
         description:
-          "<p>Five-year review kit used by 48 programs: data packet, faculty prompt, and a close-out memo the provost can act on.</p>",
-        links: [{ label: "Playbook", url: "https://www.example.com/fenwick-program-review" }],
+          "<p>Five-year review kit used by 48 programs: data packet, faculty prompt, and a close-out memo the provost can act on. Chairs who used to invent their own templates now finish in one cycle.</p>",
         skills: ["Program Evaluation", "Quality Improvement"],
       },
     ],
@@ -264,21 +259,21 @@ export const civicProfiles = [
             startDate: "2020-09-01",
             projects: [
               {
-                name: "Official census warehouse",
+                name: "Built the official census warehouse that ended monthly cabinet headcount fights",
                 description:
-                  "Collapsed 11 shadow extracts into one Python-built warehouse. Census disputes at cabinet dropped from monthly to twice a year.",
+                  "Collapsed 11 shadow extracts into one Python-built warehouse so IPEDS, the common data set, and the board packet share a timestamp. Census disputes at cabinet dropped from monthly to twice a year, and enrollment stopped arriving with a second spreadsheet.",
                 skills: ["Institutional Research", "Python", "Stakeholder Management"],
               },
               {
-                name: "Board academic dashboard",
+                name: "Published the board academic dashboard the trustees now use every census",
                 description:
-                  "Eight metrics, refreshed each census: yield, retention, six-year graduation, net tuition, SCH cost, and three equity gaps.",
+                  "Eight metrics, refreshed each census: yield, retention, six-year graduation, net tuition, SCH cost, and three equity gaps. Trustees stopped asking for a side deck, and finance finally used the same net-tuition number IR published each cycle.",
                 skills: ["Financial Reporting", "Quality Improvement", "Institutional Research"],
               },
               {
-                name: "HLC evidence tables",
+                name: "Delivered HLC evidence tables 90 days early with a clean data chapter",
                 description:
-                  "Delivered the federal compliance worksheet 90 days early. Peer reviewers cited the data integrity chapter as a strength.",
+                  "Delivered the federal compliance worksheet 90 days early and kept the evidence tables on the same warehouse as the official census. Peer reviewers cited the data integrity chapter as a strength, and the visit year skipped the usual last-minute scramble.",
                 skills: ["Accreditation", "Program Evaluation"],
               },
             ],
@@ -299,15 +294,15 @@ export const civicProfiles = [
             endDate: "2020-08-14",
             projects: [
               {
-                name: "Equity scorecard",
+                name: "Published the equity scorecard faculty senate adopted as the annual packet",
                 description:
-                  "Published first-to-second-year retention and gateway-course gaps by race, Pell, and first-generation status. Faculty senate adopted it as the annual review packet.",
+                  "Published first-to-second-year retention and gateway-course gaps by race, Pell, and first-generation status, with the same definitions the official census uses. Faculty senate adopted it as the annual review packet, and deans stopped bringing their own gap tables to the meeting.",
                 skills: ["Program Evaluation", "Institutional Research", "Stakeholder Management"],
               },
               {
-                name: "Ad-hoc request intake",
+                name: "Stood up ad-hoc request intake that cut the provost backlog 60%",
                 description:
-                  "Stood up a ticketed service catalog. Provost-office backlog fell 60% in 14 months; median turnaround went from 18 days to 7.",
+                  "Stood up a ticketed service catalog so offices stopped emailing raw dumps and calling them research. Provost-office backlog fell 60% in 14 months; median turnaround went from 18 days to 7, and IR finally had a queue it could defend.",
                 skills: ["Quality Improvement", "Python"],
               },
             ],
@@ -318,15 +313,15 @@ export const civicProfiles = [
             endDate: "2017-06-30",
             projects: [
               {
-                name: "Peer comparison set",
+                name: "Replaced informal peer lists with a 14-institution set trustees voted to keep",
                 description:
-                  "Replaced an informal list of 'schools we like' with a 14-institution set the trustees voted to keep for five years.",
+                  "Replaced an informal list of 'schools we like' with a 14-institution set built on Carnegie, size, and aid mix. The trustees voted to keep it for five years, and peer arguments stopped restarting every budget cycle.",
                 skills: ["Market Analysis", "Institutional Research"],
               },
               {
-                name: "Instructional cost by college",
+                name: "Tied instructional cost to SCH so two colleges retired low-margin certificates",
                 description:
-                  "Tied SCH to faculty effort and net tuition. Two colleges used the file to retire low-margin certificates before the next budget.",
+                  "Tied SCH to faculty effort and net tuition so budget hearings used the same file as IR. Two colleges used it to retire low-margin certificates before the next budget, and the cost conversation finally had a denominator.",
                 skills: ["Financial Reporting", "Program Evaluation"],
               },
             ],
@@ -347,15 +342,15 @@ export const civicProfiles = [
             endDate: "2015-07-31",
             projects: [
               {
-                name: "First fact book on a schedule",
+                name: "Moved the annual fact book from a June surprise to a March release",
                 description:
-                  "Moved the annual fact book from a June surprise to a March release aligned with the official census.",
+                  "Moved the annual fact book from a June surprise to a March release aligned with the official census, so the president stopped quoting last year's headcount in April. Campus offices now wait for the book instead of building their own extracts.",
                 skills: ["Institutional Research", "Quality Improvement"],
               },
               {
-                name: "Developmental math funnel",
+                name: "Tracked the developmental math funnel that let the college cut a redundant sequence",
                 description:
-                  "Tracked placement-to-gateway completion. The college used the file to cut a redundant algebra sequence.",
+                  "Tracked placement-to-gateway completion through the two-course algebra sequence and put the leak in front of the math chair with names, not anecdotes. The college used the file to cut a redundant algebra sequence, and gateway completion finally had a funnel instead of a rumor.",
                 skills: ["Program Evaluation", "Python"],
               },
             ],
@@ -391,13 +386,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Great Lakes Census Warehouse",
+        name: "Great Lakes official census warehouse and IPEDS pipeline",
         description:
-          "<p>Python pipeline that turns SIS extracts into the official census, IPEDS, and the board dashboard. One number, one timestamp.</p>",
-        links: [
-          { label: "Warehouse notes", url: "https://www.example.com/glc-census-warehouse" },
-          { label: "Metric dictionary", url: "https://www.example.com/glc-metric-dictionary" },
-        ],
+          "<p>Python pipeline that turns SIS extracts into the official census, IPEDS, and the board dashboard. One number, one timestamp. Cabinet stopped arguing about which extract was official.</p>",
         skills: ["Institutional Research", "Python", "Financial Reporting"],
       },
     ],
@@ -476,21 +467,21 @@ export const civicProfiles = [
             startDate: "2022-06-01",
             projects: [
               {
-                name: "Unified CARE case map",
+                name: "Merged advising, conduct, and housing into one CARE map that cut outreach from 9 days to 3",
                 description:
-                  "Merged advising flags, conduct holds, and housing incidents into one CARE file. Median time from first flag to outreach fell from 9 days to 3.",
+                  "Merged advising flags, conduct holds, and housing incidents into one CARE file so a student in trouble is not handed across three waiting lists. Median time from first flag to outreach fell from 9 days to 3, and the morning meeting finally opened one case, not three inboxes.",
                 skills: ["Student Affairs", "Organizational Design", "Change Management"],
               },
               {
-                name: "Residence-hall advising nights",
+                name: "Put first-year advisers in residence halls and lifted housing retention three points",
                 description:
-                  "Put first-year advisers in two halls two evenings a week. Undeclared students reached a planner 12 days faster; fall-to-spring housing retention rose 3 points.",
+                  "Put first-year advisers in two halls two evenings a week so undeclared students did not have to find the advising office before they found a planner. They reached a planner 12 days faster; fall-to-spring housing retention rose 3 points, and the halls stopped being only a bed inventory.",
                 skills: ["Academic Advising", "Student Affairs", "Workforce Planning"],
               },
               {
-                name: "Parent and family council",
+                name: "Built the parent and family council that cut dean-cell escalations 70%",
                 description:
-                  "Stood up a monthly council and a shared FAQ. Escalations to the dean's cell dropped 70% in the first academic year.",
+                  "Stood up a monthly council and a shared FAQ so families heard the same answer the residence director already had. Escalations to the dean's cell dropped 70% in the first academic year, and the 2 a.m. call still happens — it just no longer starts from scratch.",
                 skills: ["Relationship Management", "Stakeholder Management"],
               },
             ],
@@ -511,15 +502,15 @@ export const civicProfiles = [
             endDate: "2022-05-20",
             projects: [
               {
-                name: "Conduct calendar rebuild",
+                name: "Rebuilt the conduct calendar and cut the judicial backlog 40%",
                 description:
-                  "Cut the judicial backlog 40% by giving hearing officers protected hours and a 10-day clock. Appeals fell as students saw dates, not delays.",
+                  "Cut the judicial backlog 40% by giving hearing officers protected hours and a 10-day clock instead of leftover Thursday afternoons. Appeals fell as students saw dates, not delays, and campus police finally had a protocol that matched counsel's memo.",
                 skills: ["Student Affairs", "Program Management", "Stakeholder Management"],
               },
               {
-                name: "Arrival-to-week-six program",
+                name: "Treated orientation through week six as one program with same-week outreach",
                 description:
-                  "Treated orientation through the sixth week as one program. First-year students who missed two events got a same-week outreach, not a November letter.",
+                  "Treated orientation through the sixth week as one program with a single after-action, not three offices running competing welcome weeks. First-year students who missed two events got a same-week outreach, not a November letter, and the CARE file opened while there was still time to act.",
                 skills: ["Program Management", "Academic Advising"],
               },
             ],
@@ -530,15 +521,15 @@ export const civicProfiles = [
             endDate: "2019-07-31",
             projects: [
               {
-                name: "RA staffing model",
+                name: "Rewrote RA staffing so every building had overnight coverage without overtime spikes",
                 description:
-                  "Rewrote duty rosters so every building had a trained responder overnight without a 22% overtime spike.",
+                  "Rewrote duty rosters so every building had a trained responder overnight without a 22% overtime spike, and incident coverage actually went to 24/7 instead of a hope and a cell phone. Night reports finally named a person, not a building.",
                 skills: ["Workforce Planning", "Student Affairs"],
               },
               {
-                name: "Housing as advising site",
+                name: "Trained RAs to hand academic flags to advisers and cut mid-semester leaves 11%",
                 description:
-                  "Trained RAs to spot academic withdrawal signs and hand off to advisers the next morning. Mid-semester leaves from housing dropped 11%.",
+                  "Trained RAs to spot academic withdrawal signs and hand off to advisers the next morning instead of waiting for a missed class report in week ten. Mid-semester leaves from housing dropped 11%, and residence life stopped pretending a quiet floor was a healthy one.",
                 skills: ["Academic Advising", "Change Management"],
               },
             ],
@@ -574,13 +565,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Piedmont Ridge CARE Map",
+        name: "Piedmont Ridge unified CARE case map",
         description:
-          "<p>Shared case protocol for advising, housing, and conduct. A student in trouble gets one outreach plan, not three offices guessing.</p>",
-        links: [
-          { label: "CARE protocol", url: "https://www.example.com/piedmont-care-map" },
-          { label: "Staff guide", url: "https://www.example.com/piedmont-care-staff-guide" },
-        ],
+          "<p>Shared case protocol for advising, housing, and conduct. A student in trouble gets one outreach plan, not three offices guessing. Median time from first flag to outreach fell from nine days to three once the lists merged.</p>",
         skills: ["Student Affairs", "Organizational Design", "Academic Advising"],
       },
     ],
@@ -659,21 +646,21 @@ export const civicProfiles = [
             startDate: "2021-01-15",
             projects: [
               {
-                name: "NSF and USDA portfolio",
+                name: "Administered a $27M NSF and USDA portfolio and lifted on-time reports to 96%",
                 description:
-                  "Administer 38 active awards totaling $27M. On-time annual reports rose from 74% to 96% after a shared calendar and a 21-day reminder.",
+                  "Administer 38 active awards totaling $27M across STEM and education, with drawdowns and rebudgets on the same calendar as the PI. On-time annual reports rose from 74% to 96% after a shared calendar and a 21-day reminder, and sponsored expenditures stayed inside the award.",
                 skills: ["Grant Management", "Program Management", "Stakeholder Management"],
               },
               {
-                name: "Uniform Guidance closeout sweep",
+                name: "Closed 22 expired awards and returned $180K with auditor-ready documentation",
                 description:
-                  "Closed 22 expired awards in nine months and returned $180K in unspent funds with documentation the auditor accepted.",
+                  "Closed 22 expired awards in nine months and returned $180K in unspent funds with documentation the auditor accepted on the first pass. Awards now close inside 90 days of the end date instead of lingering into the next fiscal year as someone else's problem.",
                 skills: ["Grant Management", "Financial Reporting", "Nonprofit Finance"],
               },
               {
-                name: "Multi-college NSF proposal",
+                name: "Coordinated a $6.4M multi-college NSF bid that awarded on the first submission",
                 description:
-                  "Led budget and narrative coordination across three colleges for a $6.4M research-traineeship bid. Awarded on the first submission.",
+                  "Led budget and narrative coordination across three colleges for a $6.4M research-traineeship bid so F&A, cost share, and the evaluation plan survived sponsored-programs on the first pass. Awarded on the first submission, and the three chairs stayed on one timeline through the site visit.",
                 skills: ["Grant Writing", "Budget Formulation", "Program Evaluation"],
               },
             ],
@@ -694,15 +681,15 @@ export const civicProfiles = [
             endDate: "2021-01-08",
             projects: [
               {
-                name: "Proposal hit-rate rebuild",
+                name: "Rebuilt proposal review so federal hit rate rose from 18% to 31%",
                 description:
-                  "Installed a pink-team review and a 10-day budget lock. Hit rate on competitive federal proposals rose from 18% to 31% over three cycles.",
+                  "Installed a pink-team review and a 10-day budget lock so narratives stopped arriving with a personnel table the controller would not sign. Hit rate on competitive federal proposals rose from 18% to 31% over three cycles, and PIs stopped treating the FOA as optional reading.",
                 skills: ["Grant Writing", "Budget Formulation", "Program Evaluation"],
               },
               {
-                name: "Expired-award backlog",
+                name: "Closed a $4.2M expired-award backlog and wrote the controller's closeout SOP",
                 description:
-                  "Finance had $4.2M sitting in expired funds. Closed the file to under $200K and wrote the closeout SOP the controller still uses.",
+                  "Finance had $4.2M sitting in expired funds that nobody wanted to touch after the PI left. Closed the file to under $200K and wrote the closeout SOP the controller still uses, with drawdown and FFATA steps the next officer can follow without a phone call.",
                 skills: ["Grant Management", "Financial Reporting", "Nonprofit Finance"],
               },
             ],
@@ -713,15 +700,15 @@ export const civicProfiles = [
             endDate: "2018-06-30",
             projects: [
               {
-                name: "First NSF ATE award",
+                name: "Wrote the budget and evaluation plan for the institute's first NSF ATE award",
                 description:
-                  "Wrote the budget narrative and evaluation plan for a technician-education grant. $900K over three years; the PI kept the reporting calendar.",
+                  "Wrote the budget narrative and evaluation plan for a technician-education grant the institute had never won before. $900K over three years; the PI kept the reporting calendar, and workforce partners finally appeared in the objectives instead of the letters-of-support appendix.",
                 skills: ["Grant Writing", "Program Evaluation"],
               },
               {
-                name: "Subaward packet",
+                name: "Standardized subaward packets and cut late subrecipient invoices from 28% to 6%",
                 description:
-                  "Standardized subrecipient risk review and FFATA filing. Late subaward invoices dropped from 28% to 6%.",
+                  "Standardized subrecipient risk review and FFATA filing so a late partner did not become a June surprise on the FFR. Late subaward invoices dropped from 28% to 6%, and department chairs stopped signing packets they had not read.",
                 skills: ["Grant Management", "Stakeholder Management"],
               },
             ],
@@ -757,13 +744,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Driftless Closeout Desk",
+        name: "Driftless sponsored-award closeout desk and PI packet",
         description:
-          "<p>Shared closeout checklist, drawdown calendar, and PI packet. Awards now close inside 90 days of the end date instead of lingering into the next fiscal year.</p>",
-        links: [
-          { label: "Closeout desk", url: "https://www.example.com/driftless-closeout-desk" },
-          { label: "PI packet", url: "https://www.example.com/driftless-pi-packet" },
-        ],
+          "<p>Shared closeout checklist, drawdown calendar, and PI packet. Awards now close inside 90 days of the end date instead of lingering into the next fiscal year. Finance stopped carrying expired awards as open while the PI was still on campus.</p>",
         skills: ["Grant Management", "Financial Reporting", "Program Management"],
       },
     ],
@@ -842,21 +825,21 @@ export const civicProfiles = [
             startDate: "2022-04-01",
             projects: [
               {
-                name: "Harbor Pier Arts Annex",
+                name: "Led Harbor Pier Arts Annex from design development through 210 closed RFIs",
                 description:
-                  "68,000 sf adaptive reuse on the Brooklyn waterfront. Led DD through CA; coordinated structure and MEP in Revit and closed 210 RFIs in 11 months.",
+                  "68,000 sf adaptive reuse of a 1920s pier shed on the Brooklyn waterfront into galleries, education, and a public hall. Led DD through CA; coordinated structure and MEP in Revit and closed 210 RFIs in 11 months without turning coordination into a late-phase rescue.",
                 skills: ["Revit", "Design Development", "Construction Administration"],
               },
               {
-                name: "West 26th commercial loft",
+                name: "Cleared the West 26th loft on the second DOB filing and cut ceiling clashes 40%",
                 description:
-                  "142,000 sf multi-tenant loft conversion. Building-code and egress package cleared DOB on the second filing; ceiling coordination cut clashes 40% from DD to IFC.",
+                  "142,000 sf multi-tenant loft conversion with an egress and accessibility package that went to DOB before DD, not after the first rejection. Building-code review cleared on the second filing; ceiling coordination cut clashes 40% from DD to IFC, and the GC recognized the clash log.",
                 skills: ["Building Codes", "MEP Coordination", "Construction Documents"],
               },
               {
-                name: "Studio typical-detail library",
+                name: "Rebuilt the studio typical-detail library and cut junior redline hours 15%",
                 description:
-                  "Rebuilt 80 typical wall, door, and ceiling details as a shared Revit library. Junior hours on redlines fell about 15% the next two jobs.",
+                  "Rebuilt 80 typical wall, door, and ceiling details as a shared Revit library so juniors stopped redrawing the same head condition on every job. Junior hours on redlines fell about 15% the next two jobs, and the sheet index finally matched what the shop was building.",
                 skills: ["Revit", "Construction Documents", "Stakeholder Management"],
               },
             ],
@@ -877,9 +860,9 @@ export const civicProfiles = [
             endDate: "2022-03-18",
             projects: [
               {
-                name: "Fifth Avenue lobby and amenity",
+                name: "Delivered the Fifth Avenue lobby renovation 30% below the studio RFI rate",
                 description:
-                  "22,000 sf lobby, conference, and amenity renovation on GMP. RFI rate landed 30% below the studio average; CA closed two weeks ahead of the TCO target.",
+                  "22,000 sf lobby, conference, and amenity renovation on GMP, with a decision log that kept finishes from reopening after the number locked. RFI rate landed 30% below the studio average; CA closed two weeks ahead of the TCO target, and the owner still got the lobby they priced.",
                 skills: [
                   "Construction Administration",
                   "Design Development",
@@ -887,9 +870,9 @@ export const civicProfiles = [
                 ],
               },
               {
-                name: "Bryant Park tenant stack",
+                name: "Produced the Bryant Park tenant-stack CD set with one ceiling revision",
                 description:
-                  "Four floors of speculative office. Produced the CD set and coordinated MEP risers; the first tenant took occupancy with one ceiling revision.",
+                  "Four floors of speculative office with MEP risers coordinated before the first tenant's architect arrived with a ceiling they could not build. Produced the CD set; the first tenant took occupancy with one ceiling revision, and the typical details survived the shop drawings.",
                 skills: ["Construction Documents", "MEP Coordination", "Revit"],
               },
             ],
@@ -900,15 +883,15 @@ export const civicProfiles = [
             endDate: "2018-12-31",
             projects: [
               {
-                name: "Madison Avenue test fits",
+                name: "Ran 30-plus Madison Avenue test fits that survived landlord review unchanged",
                 description:
-                  "Ran 30+ test fits in AutoCAD and Revit for a 400,000 sf tower. Two tenants signed on plans that survived landlord review unchanged.",
+                  "Ran 30+ test fits in AutoCAD and Revit for a 400,000 sf tower, checking egress and occupancy before the broker promised a headcount. Two tenants signed on plans that survived landlord review unchanged, and the rest at least died on a drawing instead of a tour.",
                 skills: ["AutoCAD", "Revit", "Building Codes"],
               },
               {
-                name: "Core restroom typicals",
+                name: "Drew the core restroom typical that cleared accessibility comments to zero",
                 description:
-                  "Drew the restroom typical used on three subsequent jobs. Accessibility comments from the code consultant dropped to zero after the second revision.",
+                  "Drew the restroom typical later used on three subsequent jobs, with clearances the code consultant could check without a redline novel. Accessibility comments dropped to zero after the second revision, and interiors stopped inventing a new lavatory layout on every floor.",
                 skills: ["Construction Documents", "Building Codes"],
               },
             ],
@@ -944,13 +927,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Harbor Pier Arts Annex",
+        name: "Harbor Pier Arts Annex adaptive-reuse drawing set",
         description:
-          "<p>Adaptive reuse of a 1920s pier shed into galleries, education, and a public hall. I owned the Revit model from DD through CA.</p>",
-        links: [
-          { label: "Project", url: "https://www.example.com/harbor-pier-arts-annex" },
-          { label: "Drawing set excerpt", url: "https://www.example.com/harbor-pier-dd-excerpt" },
-        ],
+          "<p>Adaptive reuse of a 1920s pier shed into galleries, education, and a public hall. I owned the Revit model from DD through CA. Structure and MEP stayed in the same model, and 210 RFIs closed in eleven months.</p>",
         skills: ["Revit", "Design Development", "Construction Administration"],
       },
     ],
@@ -1029,21 +1008,21 @@ export const civicProfiles = [
             startDate: "2021-03-01",
             projects: [
               {
-                name: "Vermont Corridor specific plan",
+                name: "Wrote the Vermont Corridor specific plan that unlocked 2,100 housing units",
                 description:
-                  "3.2-mile corridor framework adopted in 2024. Form-based code and street sections support 2,100 units and a continuous shade canopy standard.",
+                  "3.2-mile corridor framework adopted in 2024, with a form-based code and street sections public works would maintain. The map supports 2,100 units and a continuous shade canopy standard, and the hearing was not the first time merchants saw their own curb.",
                 skills: ["Urban Design", "Sustainable Design", "Stakeholder Management"],
               },
               {
-                name: "Sepulveda civic blocks",
+                name: "Reset Sepulveda civic-block retail from 80% to 45% so the frontage could lease",
                 description:
-                  "Four-block civic and housing mix next to a new Metro station. Market analysis reset ground-floor retail from 80% to 45% so the frontage could lease.",
+                  "Four-block civic and housing mix next to a new Metro station, tested against absorption instead of a rendering full of cafes. Market analysis reset ground-floor retail from 80% to 45% so the frontage could lease, and the typical-block model survived the planning commission.",
                 skills: ["Market Analysis", "Design Development", "Revit"],
               },
               {
-                name: "Public-works kit of parts",
+                name: "Designed the public-works kit of parts the bureau would actually maintain",
                 description:
-                  "Typical benches, tree wells, and lighting the bureau would maintain. AutoCAD exhibits attached to the ordinance without a rewrite.",
+                  "Typical benches, tree wells, and lighting the bureau would maintain, not a furniture catalog the city would rip out in year three. AutoCAD exhibits attached to the ordinance without a rewrite, and the kit of parts survived public-works review intact.",
                 skills: ["AutoCAD", "Design Development", "Program Management"],
               },
             ],
@@ -1064,15 +1043,15 @@ export const civicProfiles = [
             endDate: "2021-02-19",
             projects: [
               {
-                name: "Long Beach boulevard plan",
+                name: "Led the Long Beach boulevard plan that unlocked 2,100 units without a CEQA loss",
                 description:
-                  "Unlocked 2,100 housing units and 11 acres of open space. No successful CEQA challenge; the street sections survived public works review intact.",
+                  "Unlocked 2,100 housing units and 11 acres of open space on a corridor that had been stuck in vision-plan mode. No successful CEQA challenge; the street sections survived public works review intact, and the adopted map — not the render — is what the city is building.",
                 skills: ["Urban Design", "Program Management", "Stakeholder Management"],
               },
               {
-                name: "El Monte downtown code",
+                name: "Wrote the El Monte downtown code that entitled two projects in 14 months",
                 description:
-                  "Form-based code and a 12-block regulating plan. First two projects entitled under the code in 14 months.",
+                  "Form-based code and a 12-block regulating plan with a unit mix that could actually absorb, not a vacant podium with a pretty section. First two projects entitled under the code in 14 months, and planning staff attached the exhibits without a second consultant pass.",
                 skills: ["Urban Design", "Market Analysis", "AutoCAD"],
               },
             ],
@@ -1083,15 +1062,15 @@ export const civicProfiles = [
             endDate: "2018-03-31",
             projects: [
               {
-                name: "San Gabriel campus framework",
+                name: "Planned the San Gabriel campus framework that cut surface parking 22%",
                 description:
-                  "Community-college campus plan: pedestrian spine, 18 acres of open space, and a parking district that cut surface lots 22%.",
+                  "Community-college campus plan with a pedestrian spine, 18 acres of open space, and a parking district that cut surface lots 22%. Shade and stormwater standards sat in the regulating plan, not a LEED appendix, and the college could phase the spine without stranded lots.",
                 skills: ["Sustainable Design", "Urban Design", "Design Development"],
               },
               {
-                name: "Bilingual corridor workshops",
+                name: "Ran bilingual corridor workshops that dropped property-owner opposition at hearing",
                 description:
-                  "Twelve workshops in English and Spanish. Property-owner opposition at hearing dropped after merchants saw their own curb in section.",
+                  "Twelve workshops in English and Spanish, plus property-owner hours, so the hearing was not the first time a merchant saw the curb cut. Property-owner opposition at hearing dropped after they saw their own curb in section, and the coalition letter matched what the field could live with.",
                 skills: ["Stakeholder Management", "Program Management"],
               },
             ],
@@ -1127,13 +1106,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Vermont Corridor Specific Plan",
+        name: "Vermont Corridor adopted specific plan and street sections",
         description:
-          "<p>Adopted corridor plan with a form-based code, shade standards, and street sections public works will maintain. 2,100 units entitled under the new map.</p>",
-        links: [
-          { label: "Plan", url: "https://www.example.com/vermont-corridor-specific-plan" },
-          { label: "Street sections", url: "https://www.example.com/vermont-street-sections" },
-        ],
+          "<p>Adopted corridor plan with a form-based code, shade standards, and street sections public works will maintain. 2,100 units entitled under the new map. The bureau attached the sections to the ordinance without a rewrite.</p>",
         skills: ["Urban Design", "Sustainable Design", "Stakeholder Management"],
       },
     ],
@@ -1212,21 +1187,21 @@ export const civicProfiles = [
             startDate: "2020-11-01",
             projects: [
               {
-                name: "Bayou Memorial replacement tower",
+                name: "Led the Bayou Memorial tower typical unit that closed inspection with zero life-safety comments",
                 description:
-                  "180-bed inpatient tower. Led typical-unit DD and the life-safety package; final inspection closed with zero life-safety comments.",
+                  "180-bed inpatient tower with typical units designed against FGI, NFPA 101, and a charge-nurse path that works at 2 a.m. Led typical-unit DD and the life-safety package; final inspection closed with zero life-safety comments, and Texas licensing was confirming, not redesigning.",
                 skills: ["Building Codes", "Design Development", "Revit"],
               },
               {
-                name: "Westchase ambulatory platform",
+                name: "Coordinated Westchase isolation and OR suites before ceiling close with 1.4% equipment misses",
                 description:
-                  "92,000 sf clinic with imaging and an ASC. MEP coordination on isolation and OR suites finished before ceiling close; equipment misses at turnover were 1.4%.",
+                  "92,000 sf clinic with imaging and an ASC, with medical gas, isolation rooms, and OR air changes coordinated before the ceiling closed. Equipment misses at turnover were 1.4%, and the clash log was one the GC and the clinical planner both trusted.",
                 skills: ["MEP Coordination", "Construction Documents", "Quality Management"],
               },
               {
-                name: "Night-shift user walks",
+                name: "Walked two med-surg units at 2 a.m. and relocated four nurse-server doors",
                 description:
-                  "Walked two med-surg units with charge nurses at 2 a.m. before punch. Relocated four nurse-server doors and avoided a first-week work order storm.",
+                  "Walked two med-surg units with charge nurses at 2 a.m. before punch so the first night shift was not the first design review. Relocated four nurse-server doors and avoided a first-week work order storm, and nursing signed the path they actually walk.",
                 skills: ["Construction Administration", "Stakeholder Management"],
               },
             ],
@@ -1247,15 +1222,15 @@ export const civicProfiles = [
             endDate: "2020-10-23",
             projects: [
               {
-                name: "Pasadena outpatient clinics",
+                name: "Delivered two Pasadena clinics that cleared Texas licensing in one comment cycle",
                 description:
-                  "Two 28,000 sf clinics on a shared typical. Texas licensing comments closed in one cycle; both clinics opened inside the original GMP.",
+                  "Two 28,000 sf clinics on a shared typical, with infection-control partitions and equipment plans the installer could follow. Texas licensing comments closed in one cycle; both clinics opened inside the original GMP, and the second clinic did not invent a new nurse-server.",
                 skills: ["Building Codes", "Construction Documents", "Quality Management"],
               },
               {
-                name: "ED expansion ICRA",
+                name: "Phased a 24-bay ED expansion so the existing trauma bay never went dark",
                 description:
-                  "Phased 24-bay ED expansion in an occupied hospital. ICRA partitions and above-ceiling work sequenced so the existing trauma bay never went dark.",
+                  "Phased 24-bay ED expansion in an occupied hospital, with ICRA partitions and above-ceiling work sequenced against the live trauma bay. The existing bay never went dark, and infection prevention sat in the same user group as facilities so the med-room door did not move twice.",
                 skills: [
                   "Construction Administration",
                   "MEP Coordination",
@@ -1270,15 +1245,15 @@ export const civicProfiles = [
             endDate: "2017-08-31",
             projects: [
               {
-                name: "Med-surg typical bay",
+                name: "Drew the 32-bed med-surg typical nursing signed on the second workshop",
                 description:
-                  "Drew the 32-bed typical later reused on three floors. Nursing signed the nurse-server and toilet-room layout on the second workshop.",
+                  "Drew the 32-bed typical later reused on three floors, converting the functional program into room data sheets and a nurse-server layout the unit manager would sign. Nursing signed the toilet-room layout on the second workshop, and the bay survived the next two floors without a redo.",
                 skills: ["Design Development", "Revit", "Stakeholder Management"],
               },
               {
-                name: "Equipment plan discipline",
+                name: "Built the equipment-plan checklist that cut missing outlets at punch from 19 to 4",
                 description:
-                  "Built a room-data and equipment checklist the PM still uses. First job that used it cut missing outlets at punch from 19 to 4.",
+                  "Built a room-data and equipment checklist the PM still uses, room by room against the functional program instead of a furniture list the vendor invented. First job that used it cut missing outlets at punch from 19 to 4, and equipment misses on later jobs stayed under 2% at turnover.",
                 skills: ["Quality Management", "Construction Documents"],
               },
             ],
@@ -1314,20 +1289,15 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Bayou Memorial Replacement Tower",
+        name: "Bayou Memorial 180-bed replacement tower typical unit",
         description:
-          "<p>180-bed inpatient tower with typical units designed against FGI and a night-shift nursing walk. Final life-safety inspection closed clean.</p>",
-        links: [
-          { label: "Project", url: "https://www.example.com/bayou-memorial-tower" },
-          { label: "Typical unit", url: "https://www.example.com/bayou-typical-unit" },
-        ],
+          "<p>180-bed inpatient tower with typical units designed against FGI and a night-shift nursing walk. Final life-safety inspection closed clean. Charge nurses walked the unit at 2 a.m. before punch so the first night shift was not the first review.</p>",
         skills: ["Building Codes", "Design Development", "Revit"],
       },
       {
-        name: "Westchase Ambulatory Platform",
+        name: "Westchase ambulatory platform with isolation and ASC",
         description:
-          "<p>Clinic, imaging, and ASC on one platform. Isolation and OR air were coordinated before the ceiling closed.</p>",
-        links: [{ label: "Project", url: "https://www.example.com/westchase-ambulatory" }],
+          "<p>Clinic, imaging, and ASC on one platform. Isolation and OR air were coordinated before the ceiling closed. Equipment misses at turnover landed at 1.4 percent because the clash log closed first.</p>",
         skills: ["MEP Coordination", "Construction Documents", "Quality Management"],
       },
     ],
@@ -1406,21 +1376,21 @@ export const civicProfiles = [
             startDate: "2023-01-09",
             projects: [
               {
-                name: "Willamette Civic Hall",
+                name: "Locked Willamette Civic Hall's EUI 24 target in design development before value engineering",
                 description:
-                  "Mass-timber civic building targeting EUI 24 and LEED Platinum. Locked envelope and HVAC narratives in DD; owner signed the EUI before VE.",
+                  "Mass-timber civic building targeting EUI 24 and LEED Platinum, with envelope and HVAC narratives locked in DD so the plaque was not a surprise at occupancy. Owner signed the EUI before VE, and sustainability stayed on the job through CA instead of arriving as a closeout consultant.",
                 skills: ["Sustainable Design", "Design Development", "Stakeholder Management"],
               },
               {
-                name: "Studio embodied-carbon ledger",
+                name: "Built the studio embodied-carbon ledger that cut A1–A3 carbon 11% on two jobs",
                 description:
-                  "Revit takeoff plus a materials ledger on every job over 20,000 sf. Two projects swapped steel stairs for timber and cut A1–A3 carbon 11%.",
+                  "Revit takeoff plus a materials ledger on every job over 20,000 sf, from the same model the documents come from. Two projects swapped steel stairs for timber and cut A1–A3 carbon 11%, and the studio finally had a carbon number it could defend in SD, not a late LEED credit.",
                 skills: ["Revit", "Quality Management", "Sustainable Design"],
               },
               {
-                name: "Oregon stretch-code playbook",
+                name: "Wrote the Oregon stretch-code playbook that cleared energy review in one comment cycle",
                 description:
-                  "Internal guide for envelope, lighting, and commissioning notes. First three jobs using it cleared energy review with one comment cycle.",
+                  "Internal guide for envelope, lighting, and commissioning notes that survive Oregon energy-code and stretch-code plan review. First three jobs using it cleared energy review with one comment cycle, and credits stopped being left to the last month of CA.",
                 skills: ["Building Codes", "Construction Documents", "Program Management"],
               },
             ],
@@ -1441,15 +1411,15 @@ export const civicProfiles = [
             endDate: "2022-12-22",
             projects: [
               {
-                name: "Four-project Gold run",
+                name: "Took four civic and workplace projects to LEED Gold with EUI 28% below baseline",
                 description:
-                  "Took four civic and workplace jobs to LEED Gold or Platinum. Modeled EUI averaged 28% below the 2018 baseline the studio had been using.",
+                  "Took four civic and workplace jobs to LEED Gold or Platinum and kept the energy model honest through CA. Modeled EUI averaged 28% below the 2018 baseline the studio had been using, and the owners could operate on the model we sold, not a plaque.",
                 skills: ["Sustainable Design", "Program Management", "Quality Management"],
               },
               {
-                name: "First-year energy closeout",
+                name: "Closed first-year energy within 8% of the model on two workplace buildings",
                 description:
-                  "Compared metered energy to the model on two workplaces. Variance stayed inside 8%; the owner kept the same mechanical sequence we designed.",
+                  "Compared metered energy to the model on two workplaces and walked the sequences with the operator before anyone blamed the envelope. Variance stayed inside 8%; the owner kept the same mechanical sequence we designed, and the first-year file matched the SD target.",
                 skills: ["Quality Management", "Stakeholder Management"],
               },
             ],
@@ -1460,15 +1430,15 @@ export const civicProfiles = [
             endDate: "2018-05-31",
             projects: [
               {
-                name: "Daylight and envelope studies",
+                name: "Cut west glass 18% on a 90,000 sf workplace and kept the daylight target",
                 description:
-                  "Glazing-ratio and shading studies in Revit for a 90,000 sf workplace. Cut west glass 18% and kept the daylight target.",
+                  "Glazing-ratio and shading studies in Revit for a 90,000 sf workplace, translating the EUI target into a wall assembly the engineer would own. Cut west glass 18% and kept the daylight target, and the owner signed the glass ratio before DD, not after value engineering.",
                 skills: ["Revit", "Design Development", "Sustainable Design"],
               },
               {
-                name: "Materials spec rewrite",
+                name: "Rewrote materials specs so three jobs reused VOC limits without a substitution fight",
                 description:
-                  "Rewrote Division 09 and 12 specs for VOC and recycled-content limits. Three subsequent jobs reused the language without a substitution fight.",
+                  "Rewrote Division 09 and 12 specs so they named the product, the VOC limit, and the commissioning requirement in the same paragraph. Three subsequent jobs reused the language without a substitution fight, and the GC stopped treating the materials appendix as optional.",
                 skills: ["Construction Documents", "Building Codes"],
               },
             ],
@@ -1504,13 +1474,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Willamette Civic Hall",
+        name: "Willamette Civic Hall mass-timber energy target",
         description:
-          "<p>Mass-timber civic hall with an EUI 24 target locked in design development. Sustainability stayed on the job through CA, not as a closeout consultant.</p>",
-        links: [
-          { label: "Project", url: "https://www.example.com/willamette-civic-hall" },
-          { label: "Energy narrative", url: "https://www.example.com/willamette-eui-narrative" },
-        ],
+          "<p>Mass-timber civic hall with an EUI 24 target locked in design development. Sustainability stayed on the job through CA, not as a closeout consultant. The owner signed the EUI before value engineering.</p>",
         skills: ["Sustainable Design", "Design Development", "Building Codes"],
       },
     ],
@@ -1589,21 +1555,21 @@ export const civicProfiles = [
             startDate: "2022-08-15",
             projects: [
               {
-                name: "Newark last-mile portfolio",
+                name: "Underwrote and closed a $128M Newark last-mile portfolio at a 6.1% cap",
                 description:
-                  "Underwrote a four-building, 612,000 sf industrial portfolio. ARGUS and DCF survived IC; closed $128M at a 6.1% going-in cap in 68 days.",
+                  "Underwrote a four-building, 612,000 sf industrial portfolio with rent rolls, recoveries, and a cash-flow the IC could open without a translator. ARGUS and DCF survived committee; closed $128M at a 6.1% going-in cap in 68 days, and the debt quote lived in the same assumption table.",
                 skills: ["ARGUS", "DCF Valuation", "Deal Execution"],
               },
               {
-                name: "Midtown recap kill",
+                name: "Killed a Midtown recap after 14% of in-place income failed a unit-level check",
                 description:
-                  "Unit-level rent-roll check showed 14% of 'in-place' income was month-to-month with notice already given. Killed the LOI before deposits went hard.",
+                  "Unit-level rent-roll check showed 14% of 'in-place' income was month-to-month with notice already given, which the OM had buried in a footnote. Killed the LOI before deposits went hard, and the next file got a unit check before anyone drafted a love letter.",
                 skills: ["Underwriting", "Financial Underwriting", "Market Analysis"],
               },
               {
-                name: "IC memo standard",
+                name: "Rewrote the IC memo so ARGUS, debt, and the DCF share one assumption table",
                 description:
-                  "Rewrote the acquisitions memo so ARGUS, debt quotes, and the DCF share one assumption table. Partners stopped asking which file was official.",
+                  "Rewrote the acquisitions memo so ARGUS, debt quotes, and the DCF share one assumption table the CFO can audit. Partners stopped asking which file was official, and exclusivity-to-close stopped depending on which intern owned the latest tab.",
                 skills: ["Financial Modeling", "Capital Markets", "ARGUS"],
               },
             ],
@@ -1624,21 +1590,21 @@ export const civicProfiles = [
             endDate: "2022-08-05",
             projects: [
               {
-                name: "Northeast bid book",
+                name: "Underwrote $1.1B of Northeast bids and closed $340M after two rent-roll kills",
                 description:
-                  "Underwrote $1.1B of bids across 22 files. Closed $340M; two LOIs died after rent rolls failed a unit-level audit.",
+                  "Underwrote $1.1B of bids across 22 office and industrial files from Boston to D.C. Closed $340M; two LOIs died after rent rolls failed a unit-level audit, and walking those two saved more reputation than winning them would have.",
                 skills: ["Underwriting", "ARGUS", "Deal Execution"],
               },
               {
-                name: "Jersey City office recap",
+                name: "Built the Jersey City office recap that closed equity in 74 days",
                 description:
-                  "Built the DCF and debt case for a 420,000 sf recapitalization. Debt desk priced inside the IC hurdle; equity closed in 74 days.",
+                  "Built the DCF and debt case for a 420,000 sf recapitalization so leverage was a decision in the memo, not a late tab. Debt desk priced inside the IC hurdle; equity closed in 74 days, and the promote survived first close without a rebuild.",
                 skills: ["DCF Valuation", "Capital Markets", "Financial Modeling"],
               },
               {
-                name: "Submarket rent bands",
+                name: "Maintained submarket rent bands brokers stopped beating with trailing-twelve anecdotes",
                 description:
-                  "Maintained vacancy and asking-rent bands for six office and four industrial submarkets. Brokers stopped winning arguments with trailing-twelve anecdotes.",
+                  "Maintained vacancy and asking-rent bands for six office and four industrial submarkets, updated against absorption rather than a broker's favorite tour. Brokers stopped winning arguments with trailing-twelve anecdotes, and IC finally had a rent case that survived rebuttal.",
                 skills: ["Market Analysis", "Financial Underwriting"],
               },
             ],
@@ -1669,16 +1635,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Newark Last-Mile Portfolio",
+        name: "Newark last-mile industrial portfolio underwriting close",
         description:
-          "<p>Four-building industrial close at $128M. The ARGUS file, the DCF, and the debt quote shared one assumption table the IC could audit.</p>",
-        links: [
-          { label: "Deal note", url: "https://www.example.com/newark-last-mile-portfolio" },
-          {
-            label: "Underwriting excerpt",
-            url: "https://www.example.com/newark-underwriting-excerpt",
-          },
-        ],
+          "<p>Four-building industrial close at $128M. The ARGUS file, the DCF, and the debt quote shared one assumption table the IC could audit. Exclusivity-to-close ran 68 days, and partners stopped asking which file was official.</p>",
         skills: ["ARGUS", "DCF Valuation", "Deal Execution"],
       },
     ],
@@ -1757,21 +1716,21 @@ export const civicProfiles = [
             startDate: "2021-05-01",
             projects: [
               {
-                name: "DFW industrial hold/sell",
+                name: "Reunderwrote 11 DFW industrial assets, sold two, and lifted hold-set NOI 7%",
                 description:
-                  "Reunderwrote 11 industrial assets. Sold two at a 5.4% cap, held nine; same-store NOI on the hold set is up 7% since the review.",
+                  "Reunderwrote 11 industrial assets with hold/sell DCFs the CFO would reuse without rebuilding the tabs. Sold two at a 5.4% cap, held nine; same-store NOI on the hold set is up 7% since the review, and the buildings still have to cash flow after the roof.",
                 skills: ["Asset Management", "Financial Modeling", "Market Analysis"],
               },
               {
-                name: "Office recovery cleanup",
+                name: "Recovered $1.1M in CAM and taxes and closed controllable expenses 1.8% under",
                 description:
-                  "Found $1.1M of unrecovered CAM and taxes across four towers. Recast the 2023 budget; controllable expenses closed 1.8% under.",
+                  "Found $1.1M of unrecovered CAM and taxes across four towers that property managers had been treating as a rounding error. Recast the 2023 budget; controllable expenses closed 1.8% under, and recoveries became an operations problem instead of a year-end surprise.",
                 skills: ["Budget Formulation", "Financial Reporting", "Asset Management"],
               },
               {
-                name: "Top-20 tenant circuit",
+                name: "Ran a top-20 tenant circuit that closed two industrial renewals in-house",
                 description:
-                  "Quarterly ops calls with the twenty largest tenants. Two industrial renewals closed in-house at +9% and +6% cash.",
+                  "Quarterly ops calls with the twenty largest tenants so a broken dock or a slow work order did not become a brokered renewal. Two industrial renewals closed in-house at +9% and +6% cash, and the ops issue was already fixed before anyone priced TI.",
                 skills: ["Relationship Management", "Lease Negotiation", "Stakeholder Management"],
               },
             ],
@@ -1792,15 +1751,15 @@ export const civicProfiles = [
             endDate: "2021-04-23",
             projects: [
               {
-                name: "Same-store NOI lift",
+                name: "Lifted same-store NOI 9% in two years by treating vacancy as a leasing problem",
                 description:
-                  "Nine-asset office and flex book. Same-store NOI up 9% in two years: vacancy treated as leasing, recoveries as operations.",
+                  "Nine-asset office and flex book along the Stemmons and LBJ corridors. Same-store NOI up 9% in two years: vacancy treated as leasing, recoveries as operations, and the quarterly pack finally showed variance instead of a narrative surprise.",
                 skills: ["Asset Management", "Budget Formulation", "Lease Negotiation"],
               },
               {
-                name: "Lender pack rewrite",
+                name: "Rewrote the lender pack so covenant questions dropped to one follow-up a quarter",
                 description:
-                  "One quarterly pack for three lenders: occupancy, NOI, debt yield, and exceptions. Covenant questions dropped to a single follow-up a quarter.",
+                  "One quarterly pack for three lenders: occupancy, NOI, debt yield, and a one-page exception list partners could read. Covenant questions dropped to a single follow-up a quarter, and nobody asked for a second file after the first cycle.",
                 skills: ["Financial Reporting", "Stakeholder Management"],
               },
             ],
@@ -1811,15 +1770,15 @@ export const civicProfiles = [
             endDate: "2018-02-28",
             projects: [
               {
-                name: "First annual budgets",
+                name: "Built first-year building budgets that closed controllable opex inside 3%",
                 description:
-                  "Built building-level opex and TI budgets for 14 assets. Year-one variance on controllable opex landed inside 3%.",
+                  "Built building-level opex and TI budgets for 14 assets the property managers could actually live with, not a spreadsheet that ignored the roof. Year-one variance on controllable opex landed inside 3%, and the CFO reused the tabs at reforecast.",
                 skills: ["Budget Formulation", "Financial Modeling"],
               },
               {
-                name: "Vacancy heatmap",
+                name: "Mapped vacancy against absorption so two buildings leased as-is without extra TI",
                 description:
-                  "Mapped vacant suites against submarket absorption. Two buildings deferred TI and leased as-is within a quarter.",
+                  "Mapped vacant suites against submarket absorption so we spent TI where demand existed and waited where it did not. Two buildings deferred TI and leased as-is within a quarter, and the heatmap decided the hold conversation before the broker did.",
                 skills: ["Market Analysis", "Asset Management"],
               },
             ],
@@ -1855,13 +1814,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "DFW Industrial Hold/Sell",
+        name: "DFW industrial hold-sell and same-store NOI review",
         description:
-          "<p>Eleven-asset review that sold two buildings and kept nine. Same-store NOI on the hold set is up 7% since the memo.</p>",
-        links: [
-          { label: "Review note", url: "https://www.example.com/dfw-industrial-hold-sell" },
-          { label: "Pack excerpt", url: "https://www.example.com/red-oak-quarterly-pack" },
-        ],
+          "<p>Eleven-asset review that sold two buildings and kept nine. Same-store NOI on the hold set is up 7% since the memo. Two sales printed a 5.4% cap; the nine we held still have to cash flow after the roof.</p>",
         skills: ["Asset Management", "Financial Modeling", "Market Analysis"],
       },
     ],
@@ -1939,21 +1894,21 @@ export const civicProfiles = [
             startDate: "2020-10-01",
             projects: [
               {
-                name: "Fulton Market creative stack",
+                name: "Closed a 92,000 sf Fulton Market deal $4 under the landlord's first ask",
                 description:
-                  "Represented a 140,000 sf software tenant across three buildings. Closed 92,000 sf at $4 under the first ask; work letter survived legal on the second redline.",
+                  "Represented a 140,000 sf software tenant across three buildings and treated the work letter as the deal, not the tour deck. Closed 92,000 sf at $4 under the first ask; the work letter survived legal on the second redline, and economics stayed inside the tenant's walk-away.",
                 skills: ["Lease Negotiation", "Contract Negotiation", "Deal Execution"],
               },
               {
-                name: "Loop landlord recast",
+                name: "Recast River North concessions and leased 31,000 sf in two transactions",
                 description:
-                  "Recast concessions and a 40,000 sf availability for a River North owner. Leased 31,000 sf in two transactions inside one quarter.",
+                  "Recast concessions and a 40,000 sf availability for a River North owner after the old ask was pricing the building empty. Leased 31,000 sf in two transactions inside one quarter, and the asset manager stopped reopening the work letter twice.",
                 skills: ["Market Analysis", "Opportunity Management", "Stakeholder Management"],
               },
               {
-                name: "Multi-site occupancy plans",
+                name: "Built two-year occupancy plans that put three expirations in exclusive early",
                 description:
-                  "Two-year maps for four tenants with 6–11 suburban and downtown sites. Three expirations last year were already in exclusive before the 12-month mark.",
+                  "Two-year maps for four tenants with 6–11 suburban and downtown sites so the next expiration was a project, not a surprise. Three expirations last year were already in exclusive before the 12-month mark, and half of last year's sf came from people I had already housed once.",
                 skills: ["Account Planning", "Relationship Management"],
               },
             ],
@@ -1973,15 +1928,15 @@ export const civicProfiles = [
             endDate: "2020-09-18",
             projects: [
               {
-                name: "Four-year close book",
+                name: "Closed 1.1 million sf over four years at a 92% retainer-to-close rate",
                 description:
-                  "Closed 1.1 million sf with a 92% retainer-to-close rate. Average exclusive-to-lease was 11 weeks.",
+                  "Closed 1.1 million sf with a 92% retainer-to-close rate and an 11-week exclusive-to-lease average on mid-market tickets. I do not forecast a tour as a 70% close, and the pipeline by stage finally matched what legal was actually redlining.",
                 skills: ["Deal Execution", "Lease Negotiation", "Opportunity Management"],
               },
               {
-                name: "Concession band file",
+                name: "Published monthly concession bands that stopped tenants from overbidding unused TI",
                 description:
-                  "Monthly free-rent and TI bands for the Loop and West Loop. Tenants stopped overbidding TI they would not use.",
+                  "Monthly free-rent and TI bands for the Loop and West Loop, updated against net absorption instead of last quarter's rumor. Tenants stopped overbidding TI they would not use, and landlord responses started answering economics, options, and the work letter on the same grid.",
                 skills: ["Market Analysis", "Contract Negotiation"],
               },
             ],
@@ -1992,15 +1947,15 @@ export const civicProfiles = [
             endDate: "2016-12-31",
             projects: [
               {
-                name: "First 200,000 sf",
+                name: "Closed 200,000 sf as the junior and brought two tenants back without a bake-off",
                 description:
-                  "Toured, RFPed, and closed 200,000 sf as the junior on eight files. Two tenants brought the next search back without a bake-off.",
+                  "Toured, RFPed, and closed 200,000 sf as the junior on eight files, writing the commencement memo so legal was not inventing business terms at 11 p.m. Two tenants brought the next search back without a bake-off, and the relationship outlasted the tour.",
                 skills: ["Relationship Management", "Lease Negotiation"],
               },
               {
-                name: "RFP discipline",
+                name: "Standardized the office RFP and cut landlord response time by a week",
                 description:
-                  "Standardized the RFP so economics, options, and the work letter were answered in the same grid. Landlord response time fell by a week.",
+                  "Standardized the RFP so economics, options, and the work letter were answered in the same grid instead of three attachments and a hope. Landlord response time fell by a week, and tenant legal, facilities, and the asset manager finally sat in one thread.",
                 skills: ["Stakeholder Management", "Deal Execution"],
               },
             ],
@@ -2031,13 +1986,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Fulton Market Creative Stack",
+        name: "Fulton Market creative-office tenant-rep lease close",
         description:
-          "<p>140,000 sf search closed at 92,000 sf and $4 under the first ask. The work letter survived legal on the second redline.</p>",
-        links: [
-          { label: "Deal note", url: "https://www.example.com/fulton-market-creative-stack" },
-          { label: "Market file", url: "https://www.example.com/lakeshore-fulton-bands" },
-        ],
+          "<p>140,000 sf search closed at 92,000 sf and $4 under the first ask. The work letter survived legal on the second redline. Economics stayed inside the tenant's walk-away, and the tour did not get to reopen the deal.</p>",
         skills: ["Lease Negotiation", "Contract Negotiation", "Deal Execution"],
       },
     ],
@@ -2116,21 +2067,21 @@ export const civicProfiles = [
             startDate: "2022-02-01",
             projects: [
               {
-                name: "South San Francisco industrial club",
+                name: "Structured a $186M South San Francisco industrial club that funded in 49 days",
                 description:
-                  "Structured a $186M senior club on 1.1M sf. Debt yield 9.4% in-place; funded in 49 days with a springing lockbox the sponsor accepted on the second draft.",
+                  "Structured a $186M senior club on 1.1M sf with amortization, carve-outs, and cash-management credit could defend. Debt yield 9.4% in-place; funded in 49 days with a springing lockbox the sponsor accepted on the second draft, and the term sheet matched the memo.",
                 skills: ["Loan Structuring", "Capital Markets", "Deal Execution"],
               },
               {
-                name: "Peninsula office refinance kill",
+                name: "Withdrew a Peninsula office refinance after in-place DSCR printed 1.05",
                 description:
-                  "In-place DSCR printed 1.05 after a tenant concentration check. Withdrew the term sheet before deposits went hard; sponsor refinanced elsewhere at a lower LTV.",
+                  "In-place DSCR printed 1.05 after a tenant concentration check the OM had treated as a footnote. Withdrew the term sheet before deposits went hard; the sponsor refinanced elsewhere at a lower LTV, and credit did not have to defend a hope.",
                 skills: ["Credit Analysis", "Underwriting", "Market Analysis"],
               },
               {
-                name: "Credit memo standard",
+                name: "Standardized the credit memo so the model, term sheet, and rent roll matched",
                 description:
-                  "One assumption table across the model, the term sheet, and the memo. Credit stopped asking which rent roll was official.",
+                  "One assumption table across the model, the term sheet, and the memo so a structure change was a call, not a surprise redline. Credit stopped asking which rent roll was official, and the monthly cash-flow file opened without a translator tab.",
                 skills: ["Financial Modeling", "Underwriting", "Relationship Management"],
               },
             ],
@@ -2151,15 +2102,15 @@ export const civicProfiles = [
             endDate: "2022-01-21",
             projects: [
               {
-                name: "Seventeen-loan book",
+                name: "Closed $890M across 17 loans with one loss and a 94% term-sheet hit rate",
                 description:
-                  "Closed $890M across 17 loans, one loss, 94% term-sheet-to-close. Average exclusivity-to-funding was 52 days.",
+                  "Closed $890M across 17 West Coast office and industrial loans with one loss and a 94% term-sheet-to-close rate. Average exclusivity-to-funding was 52 days, and the spread was the conversation — the structure, not the rumor, was the job.",
                 skills: ["Deal Execution", "Capital Markets", "Loan Structuring"],
               },
               {
-                name: "Oakland flex refinance",
+                name: "Recast an Oakland flex refinance to 25-year amort that credit approved first pass",
                 description:
-                  "Recast a 420,000 sf flex park from I/O to 25-year amort after a tenant roll. Credit approved on the first memo.",
+                  "Recast a 420,000 sf flex park from I/O to 25-year amort after a tenant roll that would have broken interest-only. Credit approved on the first memo, and the sweep and refinance cases lived in the same file the committee opened.",
                 skills: ["Loan Structuring", "Credit Analysis", "Financial Modeling"],
               },
             ],
@@ -2170,15 +2121,15 @@ export const civicProfiles = [
             endDate: "2018-08-31",
             projects: [
               {
-                name: "First credit memos",
+                name: "Wrote 22 first credit memos so the ten that died died in credit, not at the table",
                 description:
-                  "Wrote 22 memos as the junior. Twelve funded; the ten that died died in credit, not at the table.",
+                  "Wrote 22 memos as the junior, with in-place DSCR, debt yield, and tenant concentration on the page before the term sheet went out. Twelve funded; the ten that died died in credit, not at the table, which is the only kind of no that still leaves a relationship.",
                 skills: ["Underwriting", "Credit Analysis"],
               },
               {
-                name: "Broker coverage map",
+                name: "Built a 40-broker coverage map that sourced half of 2017 volume from four relationships",
                 description:
-                  "Built a 40-broker coverage list by submarket. Half of 2017 volume came from four relationships that started as coffee, not a bid.",
+                  "Built a 40-broker coverage list by West Coast submarket so the desk heard one market, not three rumors. Half of 2017 volume came from four relationships that started as coffee, not a bid, and a structure change was a call instead of a surprise memo.",
                 skills: ["Relationship Management", "Market Analysis"],
               },
             ],
@@ -2214,13 +2165,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "South San Francisco Industrial Club",
+        name: "South San Francisco industrial senior-loan club",
         description:
-          "<p>$186M senior club on 1.1 million square feet. Debt yield 9.4% in-place; funded in 49 days with a lockbox the sponsor signed on the second draft.</p>",
-        links: [
-          { label: "Deal note", url: "https://www.example.com/ssf-industrial-club" },
-          { label: "Structure excerpt", url: "https://www.example.com/ssf-loan-structure" },
-        ],
+          "<p>$186M senior club on 1.1 million square feet. Debt yield 9.4% in-place; funded in 49 days with a lockbox the sponsor signed on the second draft. Credit opened one assumption table across the model, the term sheet, and the memo.</p>",
         skills: ["Loan Structuring", "Capital Markets", "Deal Execution"],
       },
     ],
@@ -2299,22 +2246,22 @@ export const civicProfiles = [
             startDate: "2021-04-01",
             projects: [
               {
-                name: "Six-city youth employment",
+                name: "Ran six-city youth employment to 84% completion against a 70% target",
                 description:
-                  "1,140 youth across six sites. Completions hit 84% against a 70% target; one underperforming site closed after the annual learning review.",
+                  "1,140 youth across six sites on one delivery calendar with city agencies and school partners in the same monthly. Completions hit 84% against a 70% target; one underperforming site closed after the annual learning review, and the Thursday-night program still had to work.",
                 skills: ["Program Management", "Program Evaluation", "Stakeholder Management"],
               },
               {
-                name: "DOL and foundation portfolio",
+                name: "Managed a $4.1M DOL and foundation portfolio the last site visit reused from the board packet",
                 description:
-                  "Three active awards totaling $4.1M. Monthly drawdowns and a shared indicator set; the last site visit reused the board packet.",
+                  "Three active awards totaling $4.1M with monthly drawdowns, rebudgets, and a shared indicator set program staff could keep. The last site visit reused the board packet, and grant, evaluation, and delivery finally sat on one calendar.",
                 skills: ["Grant Management", "Monitoring and Evaluation", "Nonprofit Finance"],
               },
               {
-                name: "Site-level program budgets",
+                name: "Built site-level program budgets that closed 2.1% under without cutting stipends",
                 description:
-                  "Restricted and unrestricted budgets by city. Fiscal year closed 2.1% under on program expense without cutting stipends.",
-                skills: ["Budget Formulation", "Grant Writing", "Nonprofit Finance"],
+                  "Restricted and unrestricted budgets by city, with cost share booked like a ledger instead of a promise in a proposal. Fiscal year closed 2.1% under on program expense without cutting stipends, and finance could see the restricted balance before the auditor asked.",
+                skills: ["Budget Formulation", "Program Management", "Nonprofit Finance"],
               },
             ],
           },
@@ -2334,15 +2281,15 @@ export const civicProfiles = [
             endDate: "2021-03-19",
             projects: [
               {
-                name: "Three-award closeout run",
+                name: "Took three federal awards through closeout and lifted on-time reports from 71% to 98%",
                 description:
-                  "Took three federal awards from proposal through closeout. On-time performance reports rose from 71% to 98%.",
+                  "Took three federal awards from proposal through closeout so a site visit read the same file the board already saw. On-time performance reports rose from 71% to 98%, and the report stopped being a scramble the week the PPR was due.",
                 skills: ["Grant Management", "Grant Writing", "Program Evaluation"],
               },
               {
-                name: "Baltimore after-school cohort",
+                name: "Built the Baltimore after-school indicator set and cut attendance data issues from 18% to 4%",
                 description:
-                  "Eight school partners, 620 youth. Built the indicator set staff could keep; attendance data quality issues fell from 18% to 4%.",
+                  "Eight school partners, 620 youth, and an indicator set staff could keep without a second job. Attendance data quality issues fell from 18% to 4%, and the learning review used numbers the site directors recognized from their own rosters.",
                 skills: [
                   "Monitoring and Evaluation",
                   "Program Management",
@@ -2357,15 +2304,15 @@ export const civicProfiles = [
             endDate: "2018-05-31",
             projects: [
               {
-                name: "First DOL proposal",
+                name: "Wrote the $2.2M DOL youth-employment proposal that funded on the first submission",
                 description:
-                  "Wrote the narrative and budget for a $2.2M youth-employment award. Funded on the first submission; finance signed the cost-share table.",
+                  "Wrote the narrative and budget for a $2.2M youth-employment award with objectives the sites could actually keep. Funded on the first submission; finance signed the cost-share table, and the evaluation chapter matched the indicator set we later used.",
                 skills: ["Grant Writing", "Budget Formulation"],
               },
               {
-                name: "Subgrantee risk review",
+                name: "Standardized subgrantee risk review and cut late invoices from 24% to 7%",
                 description:
-                  "Standardized fiscal and program-risk review for 14 subgrantees. Late invoices dropped from 24% to 7%.",
+                  "Standardized fiscal and program-risk review for 14 subgrantees so a late invoice was a documented exception, not a surprise drawdown. Late invoices dropped from 24% to 7%, and the auditor could follow promised, booked, and documented without a scavenger hunt.",
                 skills: ["Grant Management", "Nonprofit Finance"],
               },
             ],
@@ -2401,16 +2348,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Civic Commons Six-City Portfolio",
+        name: "Civic Commons six-city youth-employment delivery portfolio",
         description:
-          "<p>Youth-employment and civic-education delivery across six cities. Completions at 84% against a 70% target, with grant and evaluation on the same calendar as the board packet.</p>",
-        links: [
-          { label: "Portfolio", url: "https://www.example.com/civic-commons-six-city" },
-          {
-            label: "Learning review",
-            url: "https://www.example.com/civic-commons-learning-review",
-          },
-        ],
+          "<p>Youth-employment and civic-education delivery across six cities. Completions at 84% against a 70% target, with grant and evaluation on the same calendar as the board packet. One underperforming site closed after the annual learning review; stipends were not the first cut.</p>",
         skills: ["Program Management", "Program Evaluation", "Grant Management"],
       },
     ],
@@ -2489,21 +2429,21 @@ export const civicProfiles = [
             startDate: "2020-07-01",
             projects: [
               {
-                name: "Major-gifts rebuild",
+                name: "Rebuilt the $10K+ major-gifts portfolio to 60 households with 54% repeat revenue",
                 description:
-                  "Rebuilt the $10K+ portfolio to 60 households with a 12-month cadence. Repeat gifts were 54% of $10K+ revenue last year; the conservative forecast closed 4% over.",
+                  "Rebuilt the $10K+ portfolio to 60 households with a 12-month cadence so coffee was no longer forecast as a close. Repeat gifts were 54% of $10K+ revenue last year; the conservative forecast closed 4% over, and the next ask was already on a calendar.",
                 skills: ["Donor Relations", "Relationship Management", "Budget Formulation"],
               },
               {
-                name: "Institutional grants desk",
+                name: "Stood up an institutional grants desk that put report drafts in front of program 21 days out",
                 description:
-                  "Eight foundation relationships, $2.4M in awards. Program staff now see the report draft 21 days out, not the night before.",
+                  "Eight foundation relationships, $2.4M in awards, with reports the program staff would recognize as their own work. Program staff now see the report draft 21 days out, not the night before, and finance can book the restricted gift instead of a development-only forecast.",
                 skills: ["Grant Writing", "Stakeholder Management", "Nonprofit Finance"],
               },
               {
-                name: "Harborlight gala",
+                name: "Ran the Harborlight gala as stewardship and netted $1.1M with spring asks already booked",
                 description:
-                  "Ran the gala as a stewardship program, not a party. Net revenue $1.1M; 40% of tables were prior-year major donors with a spring ask already booked.",
+                  "Ran the gala as a stewardship program, not a party, with the same case for support the board uses in a living room. Net revenue $1.1M; 40% of tables were prior-year major donors with a spring ask already booked, and the after-action fed the pipeline instead of a thank-you pile.",
                 skills: ["Program Management", "Donor Relations", "Policy Advocacy"],
               },
             ],
@@ -2524,15 +2464,15 @@ export const civicProfiles = [
             endDate: "2020-06-19",
             projects: [
               {
-                name: "Individual-giving lift",
+                name: "Grew individual giving 38% and cut the $10K+ lapse rate from 22% to 9%",
                 description:
-                  "Grew individual giving 38% in three years. Lapsed rate on $10K+ donors fell from 22% to 9% after a written stewardship cadence.",
+                  "Grew individual giving 38% in three years with a written stewardship cadence the thank-you notes actually followed. Lapsed rate on $10K+ donors fell from 22% to 9%, and half of last year's $10K+ gifts were repeats instead of a new-name scramble.",
                 skills: ["Donor Relations", "Relationship Management", "Program Management"],
               },
               {
-                name: "Restricted-gift agreements",
+                name: "Moved restricted gifts onto agreements finance could book and ended year-end receivable fights",
                 description:
-                  "Moved major restricted gifts onto agreements finance could book. Year-end receivable fights dropped to zero in the second year.",
+                  "Moved major restricted gifts onto agreements finance could book, so a restricted ask no longer surprised the operating budget in December. Year-end receivable fights dropped to zero in the second year, and the ED, finance, and program sat in the same gift conversation.",
                 skills: ["Nonprofit Finance", "Stakeholder Management"],
               },
             ],
@@ -2543,15 +2483,15 @@ export const civicProfiles = [
             endDate: "2017-07-31",
             projects: [
               {
-                name: "First foundation portfolio",
+                name: "Built the first foundation portfolio and lifted $100K+ hit rate to 41%",
                 description:
-                  "Wrote and reported on 11 foundation grants. Hit rate on $100K+ asks reached 41% by the third cycle.",
+                  "Wrote and reported on 11 foundation grants the program staff recognized when the report came due. Hit rate on $100K+ asks reached 41% by the third cycle, and the operating budget for development closed against a forecast by stage, not hope.",
                 skills: ["Grant Writing", "Budget Formulation"],
               },
               {
-                name: "Board solicitor briefings",
+                name: "Wrote board solicitor briefs that doubled board-sourced gifts in two years",
                 description:
-                  "One-page briefs for board asks. Board-sourced gifts doubled in two years because the case matched the living-room conversation.",
+                  "One-page briefs for board asks so the case for support was the same in a hearing and a living room. Board-sourced gifts doubled in two years because the solicitor finally had a page they would actually read, and the ask survived contact with a real person.",
                 skills: ["Policy Advocacy", "Donor Relations"],
               },
             ],
@@ -2587,13 +2527,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Harborlight Major-Gifts Rebuild",
+        name: "Harborlight major-gifts portfolio and stewardship cadence",
         description:
-          "<p>Sixty-household $10K+ portfolio with a 12-month cadence. Repeat gifts were more than half of major revenue, and the conservative forecast closed over plan.</p>",
-        links: [
-          { label: "Program note", url: "https://www.example.com/harborlight-major-gifts" },
-          { label: "Stewardship cadence", url: "https://www.example.com/harborlight-stewardship" },
-        ],
+          "<p>Sixty-household $10K+ portfolio with a 12-month cadence. Repeat gifts were more than half of major revenue, and the conservative forecast closed over plan. Coffee was no longer forecast as a close.</p>",
         skills: ["Donor Relations", "Relationship Management", "Budget Formulation"],
       },
     ],
@@ -2672,21 +2608,21 @@ export const civicProfiles = [
             startDate: "2022-09-01",
             projects: [
               {
-                name: "Four-partner data-quality loop",
+                name: "Built a four-partner data-quality loop that cut missing outcome records from 14% to 3%",
                 description:
-                  "Weekly miss lists and a Python matching job. Missing outcome records across four partners fell from 14% to 3% in two quarters.",
+                  "Weekly miss lists and a Python matching job so the person who collects the data sees the miss before the board does. Missing outcome records across four partners fell from 14% to 3% in two quarters, and the dashboard is now an extract, not a weekend project.",
                 skills: ["Monitoring and Evaluation", "Python", "Quality Improvement"],
               },
               {
-                name: "Federal PPR extract",
+                name: "Mapped federal PPR indicators so the last four reports filed on time without a rewrite",
                 description:
-                  "Mapped indicators to two DOL awards so the PPR is an extract. Last four reports filed on time without a weekend rewrite.",
+                  "Mapped indicators to two DOL awards so the PPR is an extract, not a rewrite the night before the portal closes. Last four reports filed on time without a weekend rewrite, and the award, the indicator, and the field office calendar finally matched.",
                 skills: ["Grant Management", "Program Evaluation", "Program Management"],
               },
               {
-                name: "Board learning reviews",
+                name: "Wrote eight-page board learning reviews that retired one site and doubled another",
                 description:
-                  "Eight-page reviews, not 80. One partner retired a Saturday site and doubled a weekday cohort after the spring review.",
+                  "Eight-page reviews, not 80, with an outcome framework the ED could use to retire or double a site. One partner retired a Saturday site and doubled a weekday cohort after the spring review, and the evaluation line was costed honestly enough to survive the restricted-budget cut.",
                 skills: ["Program Evaluation", "Stakeholder Management", "Nonprofit Finance"],
               },
             ],
@@ -2707,15 +2643,15 @@ export const civicProfiles = [
             endDate: "2022-08-19",
             projects: [
               {
-                name: "Twenty-one to five",
+                name: "Cut missing outcome records from 21% to 5% across four partners with a monthly cleaning job",
                 description:
-                  "Cut missing outcome records from 21% to 5% across four partners with a data-quality protocol and a monthly cleaning job.",
+                  "Cut missing outcome records from 21% to 5% across four partners with a data-quality protocol and a monthly cleaning job program staff could keep. Error rates dropped once the weekly miss list went to the person who collected the row, not a dashboard no one trusted.",
                 skills: ["Monitoring and Evaluation", "Python", "Quality Improvement"],
               },
               {
-                name: "Two funded evaluation chapters",
+                name: "Wrote two funded federal evaluation chapters that kept the indicator set we designed",
                 description:
-                  "Wrote the evaluation design for two federal proposals. Both funded; both kept the indicator set we designed.",
+                  "Wrote the evaluation design for two federal proposals in a session with program, finance, and the evaluator so the indicator was collectable and fundable. Both funded; both kept the indicator set we designed, and the PPR later extracted from the same map.",
                 skills: ["Program Evaluation", "Grant Management", "Stakeholder Management"],
               },
             ],
@@ -2726,15 +2662,15 @@ export const civicProfiles = [
             endDate: "2019-02-28",
             projects: [
               {
-                name: "First indicator dictionary",
+                name: "Wrote the first shared indicator dictionary and collapsed five completion definitions into one",
                 description:
-                  "A shared dictionary for eight workforce programs. Duplicate 'completion' definitions dropped from five to one.",
+                  "A shared dictionary for eight workforce programs so 'completion' stopped meaning five different things in five partner exports. Duplicate definitions dropped from five to one, and the monthly quality job finally had a column it could match without a footnote novel.",
                 skills: ["Monitoring and Evaluation", "Program Management"],
               },
               {
-                name: "Honest evaluation line",
+                name: "Costed the evaluation line at 7–9% so M&E survived the restricted-budget cut",
                 description:
-                  "Costed M&E as 7–9% of program expense on two proposals so the line survived the restricted-budget cut.",
+                  "Costed M&E as 7–9% of program expense on two proposals so the line survived the restricted-budget cut instead of becoming the first nice-to-have. Finance could book the evaluation work, and the next program decision still had a file behind it.",
                 skills: ["Nonprofit Finance", "Grant Management"],
               },
             ],
@@ -2770,13 +2706,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "MeasureWell Data-Quality Loop",
+        name: "MeasureWell four-partner weekly outcome data-quality loop",
         description:
-          "<p>Weekly miss lists and a matching job that dropped missing outcome records from 14% to 3% across four partners. The dashboard is now an extract, not a weekend project.</p>",
-        links: [
-          { label: "Method", url: "https://www.example.com/measurewell-data-quality" },
-          { label: "Indicator dictionary", url: "https://www.example.com/measurewell-indicators" },
-        ],
+          "<p>Weekly miss lists and a matching job that dropped missing outcome records from 14% to 3% across four partners. The dashboard is now an extract, not a weekend project. Program staff see the miss list, so the person who collects the data is the person who fixes it.</p>",
         skills: ["Monitoring and Evaluation", "Python", "Quality Improvement"],
       },
     ],
@@ -2855,22 +2787,22 @@ export const civicProfiles = [
             startDate: "2021-08-16",
             projects: [
               {
-                name: "Youth-employment set-aside",
+                name: "Killed the rider that would have cut a $40M youth-employment set-aside",
                 description:
-                  "Killed a rider that would have cut a $40M set-aside. Vote count, one-pager, and a 22-group letter that field offices could live with.",
+                  "Killed a rider that would have cut a $40M set-aside with a vote count, a one-pager, and a 22-group letter field offices could live with. The member folder already had the district table, and a press release was not the outcome we counted.",
                 skills: ["Policy Advocacy", "Policy Analysis", "Stakeholder Management"],
               },
               {
-                name: "Housing authorizing markup",
+                name: "Drafted the housing authorizing markup that put two provisions through committee",
                 description:
-                  "Drafted the coalition markup and the comment letter counsel filed. Two provisions survived committee; one died on purpose.",
+                  "Drafted the coalition markup and the comment letter counsel filed without rewriting the operative language. Two provisions survived committee; one died on purpose, and the coalition had agreed the ask before anyone staffed a slogan.",
                 skills: ["Legal Writing", "Policy Advocacy", "Change Management"],
               },
               {
-                name: "Fly-in and hearing calendar",
+                name: "Ran three fly-ins and two hearings as one program with 19 return-visit asks",
                 description:
-                  "Three fly-ins and two hearings as one program. 41 member meetings; 19 were return visits with a specific ask already in the folder.",
-                skills: ["Program Management", "Relationship Management", "Grant Writing"],
+                  "Three fly-ins and two hearings as one program with a single after-action, not three offices running competing hill days. 41 member meetings; 19 were return visits with a specific ask already in the folder, and half of last year's meetings were not cold drops.",
+                skills: ["Program Management", "Relationship Management", "Policy Analysis"],
               },
             ],
           },
@@ -2890,15 +2822,15 @@ export const civicProfiles = [
             endDate: "2021-08-06",
             projects: [
               {
-                name: "Two bills through committee",
+                name: "Staffed two workforce-authorizing bills through committee that set the next Congress's text",
                 description:
-                  "Staffed two workforce-authorizing bills through committee. Neither became law that Congress; both set the text the next Congress started from.",
+                  "Staffed two workforce-authorizing bills through committee with a statute, a dollar, and a district impact on the same page. Neither became law that Congress; both set the text the next Congress started from, which is still more than a press release.",
                 skills: ["Policy Advocacy", "Policy Analysis", "Legal Writing"],
               },
               {
-                name: "Coalition whip list",
+                name: "Built a 30-group coalition whip list so letters stopped arriving with three dollar figures",
                 description:
-                  "A 30-group coalition with a written ask and a whip list. Letters stopped arriving with three different dollar figures.",
+                  "A 30-group coalition with a written ask and a whip list, moved from a slogan to a vote target the field could live with. Letters stopped arriving with three different dollar figures, and I would not staff a letter the sites could not defend.",
                 skills: ["Stakeholder Management", "Change Management"],
               },
             ],
@@ -2909,15 +2841,15 @@ export const civicProfiles = [
             endDate: "2018-03-30",
             projects: [
               {
-                name: "District-impact tables",
+                name: "Built the district-impact tables members' staff still reuse on housing and workforce files",
                 description:
-                  "Built the district tables members' staff still reuse. The one-pager named the statute, the dollar, and the county.",
+                  "Built the district tables members' staff still reuse, naming the statute, the dollar, and the county on one page. Return visits got easier because the folder already had the table, and the hallway meeting finally had a number that survived contact with legislative counsel.",
                 skills: ["Policy Analysis", "Relationship Management"],
               },
               {
-                name: "First c3/c4 split",
+                name: "Wrote the first c3/c4 capacity proposal that funded the shop without mixing ledgers",
                 description:
-                  "Wrote the capacity proposal that funded the shop without mixing the ledgers. Counsel signed the time-allocation memo.",
+                  "Wrote the capacity proposal that funded the shop without mixing the c3 and c4 ledgers, with a time-allocation memo counsel would file. Counsel signed it, and advocacy capacity stopped depending on a restricted grant that could not pay for a lobby visit.",
                 skills: ["Grant Writing", "Program Management"],
               },
             ],
@@ -2953,13 +2885,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Youth-Employment Set-Aside Defense",
+        name: "Youth-employment set-aside rider defense on the Hill",
         description:
-          "<p>Killed a rider that would have cut a $40 million set-aside. The vote count, the one-pager, and a 22-group letter the field could live with.</p>",
-        links: [
-          { label: "Brief", url: "https://www.example.com/youth-employment-set-aside" },
-          { label: "Coalition letter", url: "https://www.example.com/set-aside-coalition-letter" },
-        ],
+          "<p>Killed a rider that would have cut a $40 million set-aside. The vote count, the one-pager, and a 22-group letter the field could live with. The member folder already had the district table before the hallway meeting.</p>",
         skills: ["Policy Advocacy", "Policy Analysis", "Stakeholder Management"],
       },
     ],
@@ -3038,21 +2966,21 @@ export const civicProfiles = [
             startDate: "2020-06-01",
             projects: [
               {
-                name: "AQP line-check standard",
+                name: "Aligned 14 check airmen to one AQP debrief form inside a single score band",
                 description:
-                  "Aligned 14 check airmen to one debrief form. Inter-rater spread on CRM items fell inside one score band; PMI reviewed the file without a finding.",
+                  "Aligned 14 check airmen to one debrief form so the standard in the sim is the standard on a Friday night into LGA. Inter-rater spread on CRM items fell inside one score band; the PMI reviewed the file without a finding, and no enforcement action sits on the check-airman record.",
                 skills: ["FAA Compliance", "Crew Resource Management", "Quality Management"],
               },
               {
-                name: "MAX differences IOE",
+                name: "Ran MAX differences IOE for 62 captains with zero training failures in 90 days",
                 description:
-                  "Ran IOE for 62 captains moving NG to MAX. Avionics and HUD differences taught on the line; zero training failures in the first 90 days.",
+                  "Ran IOE for 62 captains moving NG to MAX, teaching avionics and HUD differences on the line instead of as a slide in ground school. Zero training failures in the first 90 days, and the upgrade calendar matched the bid so we did not cancel a check for lack of a seat.",
                 skills: ["Flight Operations", "Avionics", "Workforce Planning"],
               },
               {
-                name: "Same-day SMS events",
+                name: "Put check and line events into SMS the same day and cut late reports to one a month",
                 description:
-                  "Check and line events that meet the threshold now enter SMS the same day. Late event reports from training dropped from 11 a month to 1.",
+                  "Check and line events that meet the threshold now enter SMS the same day, not after the monthly meeting when the story has already hardened. Late event reports from training dropped from 11 a month to 1, and the debrief file is already in the system when the chief pilot asks.",
                 skills: ["Safety Management Systems", "Stakeholder Management"],
               },
             ],
@@ -3073,15 +3001,15 @@ export const civicProfiles = [
             endDate: "2020-05-22",
             projects: [
               {
-                name: "CRM module rewrite",
+                name: "Rewrote the CRM module the FAA accepted first review and cut repeat events 18%",
                 description:
-                  "Rewrote the CRM module the FAA PMI accepted on the first review. Repeat training events fell 18% the following year.",
+                  "Rewrote the CRM module the FAA PMI accepted on the first review, with the same callouts I use on the check and on the line. Repeat training events fell 18% the following year, and the union training committee saw the change before it hit the bid pack.",
                 skills: ["Crew Resource Management", "FAA Compliance", "Quality Management"],
               },
               {
-                name: "Upgrade IOE pipeline",
+                name: "Mapped upgrade IOE to the bid so winter 2019 ran without a cancelled check",
                 description:
-                  "Mapped upgrade IOE to the bid. Winter 2019 ran without a cancelled check for lack of a seat.",
+                  "Mapped upgrade IOE to the new-hire and upgrade bid so the check calendar was a staffing product, not a hope. Winter 2019 ran without a cancelled check for lack of a seat, and new captains saw the same callouts I use on the line.",
                 skills: ["Workforce Planning", "Flight Operations", "Stakeholder Management"],
               },
             ],
@@ -3092,15 +3020,15 @@ export const civicProfiles = [
             endDate: "2016-08-31",
             projects: [
               {
-                name: "CRJ line flying",
+                name: "Logged 3,100 CRJ hours, upgraded in 2015, and filed two ASAP reports that changed a briefing",
                 description:
-                  "3,100 hours in the CRJ-700/900. Upgraded in 2015; no check failures and two ASAP reports that changed a briefing item.",
+                  "3,100 hours in the CRJ-700/900, including the failures I still teach in the sim because the line still sees them. Upgraded in 2015; no check failures and two ASAP reports that changed a briefing item, which is the only kind of report that still teaches the next crew.",
                 skills: ["Flight Operations", "Avionics"],
               },
               {
-                name: "First ASAP-to-SMS loop",
+                name: "Turned two line ASAP reports into the first items in the monthly SMS review",
                 description:
-                  "Two line events I filed became the first training items the chief pilot put into the monthly SMS review.",
+                  "Two line events I filed became the first training items the chief pilot put into the monthly SMS review, instead of dying in an ASAP inbox. The debrief stayed the job — the difference is the event file was already in the system when training rewrote the briefing.",
                 skills: ["Safety Management Systems", "Crew Resource Management"],
               },
             ],
@@ -3131,13 +3059,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Horizon Line AQP Check Standard",
+        name: "Horizon Line AQP line-check debrief standard",
         description:
-          "<p>One debrief form for 14 check airmen. Inter-rater spread on CRM items fell inside one score band, and the PMI opened the file without a finding.</p>",
-        links: [
-          { label: "Standard", url: "https://www.example.com/horizon-aqp-check-standard" },
-          { label: "CRM notes", url: "https://www.example.com/horizon-crm-debrief" },
-        ],
+          "<p>One debrief form for 14 check airmen. Inter-rater spread on CRM items fell inside one score band, and the PMI opened the file without a finding. IOE and line checks now use the same callouts, so Friday night into LGA is not a different airline from the sim.</p>",
         skills: ["Crew Resource Management", "FAA Compliance", "Flight Operations"],
       },
     ],
@@ -3216,21 +3140,21 @@ export const civicProfiles = [
             startDate: "2021-02-01",
             projects: [
               {
-                name: "Single-floor SOC",
+                name: "Moved dispatch, crew, and maintenance onto one floor and recovered 91% of misconnects",
                 description:
-                  "Moved dispatch, crew scheduling, and maintenance control onto one floor and one IROPS bridge. Misconnect recovery inside the next bank hit 91% last winter.",
+                  "Moved dispatch, crew scheduling, and maintenance control onto one floor and one IROPS bridge so the floor talks before the delay code is filed. Misconnect recovery inside the next bank hit 91% last winter, and stations heard the same passenger message as the operation.",
                 skills: ["Flight Operations", "Airline Scheduling", "Stakeholder Management"],
               },
               {
-                name: "Crew legality watch",
+                name: "Built the crew-legality watch that ran three years with zero legality events",
                 description:
-                  "A legality board the POI can open. Zero legality events in three years; winter 2024 ran without a cancel for a crew we failed to position.",
+                  "A legality board the POI can open, covering crew legality, dispatch release, and the records that used to live in two buildings. Zero legality events in three years; winter 2024 ran without a cancel for a crew we failed to position, and the next-day recovery started from a legal lineup.",
                 skills: ["FAA Compliance", "Workforce Planning", "Quality Management"],
               },
               {
-                name: "Same-shift SMS",
+                name: "Put IROPS and delay events into SMS the same shift and cut late SOC reports to two",
                 description:
-                  "IROPS and delay events that meet the threshold enter SMS before the shift ends. Late reports from SOC dropped from 14 a month to 2.",
+                  "IROPS and delay events that meet the threshold enter SMS before the shift ends, not in the monthly wash-up when the code has already been argued. Late reports from SOC dropped from 14 a month to 2, and controllable codes that were really weather fell after the audit started.",
                 skills: ["Safety Management Systems", "Program Management"],
               },
             ],
@@ -3251,15 +3175,15 @@ export const civicProfiles = [
             endDate: "2021-01-22",
             projects: [
               {
-                name: "Controllable-cancellation cut",
+                name: "Cut controllable cancellations 22% with spare-aircraft rules stations could not game",
                 description:
-                  "Controllable cancellations down 22% in two years after spare-aircraft rules and a shared delay code the stations could not game.",
+                  "Controllable cancellations down 22% in two years after spare-aircraft rules and a shared delay code the stations could not game. Controllable codes that were really weather fell from 9% to 2%, and the after-action actually changed the next storm instead of reprinting the last one.",
                 skills: ["Airline Scheduling", "Quality Management", "Program Management"],
               },
               {
-                name: "IROPS playbook",
+                name: "Wrote the irregular-operations playbook that put stations and commercial on one passenger message",
                 description:
-                  "One playbook for ground stops and hub thunderstorms. Commercial and stations heard the same passenger message as the operation.",
+                  "One playbook for ground stops and hub thunderstorms, with stations, ATC, and the commercial team on one bridge. Commercial and stations heard the same passenger message as the operation, and the recover — not the morning plan — is still the job.",
                 skills: [
                   "Stakeholder Management",
                   "Flight Operations",
@@ -3274,15 +3198,15 @@ export const civicProfiles = [
             endDate: "2016-10-31",
             projects: [
               {
-                name: "Dispatch release standard",
+                name: "Rewrote the dispatch-release checklist after two near-legality events the POI accepted",
                 description:
-                  "Rewrote the release checklist after two near-legality events. The POI accepted the change; the events did not repeat.",
+                  "Rewrote the release checklist after two near-legality events that would have been a finding if they had gone out. The POI accepted the change; the events did not repeat, and dispatch, crew, and maintenance control finally talked before the release went final.",
                 skills: ["FAA Compliance", "Flight Operations"],
               },
               {
-                name: "Crew-positioning board",
+                name: "Built the crew-positioning board that stopped winter deadheads from being a 2 a.m. surprise",
                 description:
-                  "First version of the legality and positioning board later used in Chicago. Winter deadheads stopped being a 2 a.m. surprise.",
+                  "First version of the legality and positioning board later used in Chicago, staffing dispatchers and crews against the bank instead of hoping a legal crew appeared. Winter deadheads stopped being a 2 a.m. surprise, and we did not cancel a turn for a crew we failed to position.",
                 skills: ["Workforce Planning", "Airline Scheduling"],
               },
             ],
@@ -3313,13 +3237,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Midcontinent Single-Floor SOC",
+        name: "Midcontinent single-floor SOC and IROPS bridge",
         description:
-          "<p>Dispatch, crew scheduling, and maintenance control on one floor and one IROPS bridge. Next-bank misconnect recovery hit 91% last winter.</p>",
-        links: [
-          { label: "SOC note", url: "https://www.example.com/midcontinent-single-floor-soc" },
-          { label: "IROPS playbook", url: "https://www.example.com/midcontinent-irops-playbook" },
-        ],
+          "<p>Dispatch, crew scheduling, and maintenance control on one floor and one IROPS bridge. Next-bank misconnect recovery hit 91% last winter. Stations and commercial hear the same passenger message as the operation.</p>",
         skills: ["Flight Operations", "Airline Scheduling", "Stakeholder Management"],
       },
     ],
@@ -3398,21 +3318,21 @@ export const civicProfiles = [
             startDate: "2023-03-06",
             projects: [
               {
-                name: "Ninety-city O&D close",
+                name: "Closed a 90-city O&D forecast against flown revenue every week instead of the Monday bid",
                 description:
-                  "Weekly close of forecast vs flown revenue on 90 cities. Bid-price exceptions that did not pay for themselves are now a Tuesday conversation, not a quarterly surprise.",
+                  "Weekly close of forecast vs flown revenue on 90 cities so the bid-price story has to match the P&L. Bid-price exceptions that did not pay for themselves are now a Tuesday conversation, not a quarterly surprise, and the RM system stays a recommendation the analyst still owns.",
                 skills: ["Revenue Management", "Financial Modeling", "Python"],
               },
               {
-                name: "Group-demand exception list",
+                name: "Built the group-demand exception list that requires a named owner before inventory moves",
                 description:
-                  "Sales, scheduling, and RM on one list. Group dumps that used to blow a Tuesday departure now require a named owner before inventory moves.",
+                  "Sales, scheduling, and RM on one list so a group dump is a decision, not a surprise on a Tuesday departure. Those dumps now require a named owner before inventory moves, and booking curves update mid-week instead of waiting for the Sunday batch.",
                 skills: ["Stakeholder Management", "Demand Planning", "Airline Scheduling"],
               },
               {
-                name: "Competitor fare watch",
+                name: "Automated competitor fare watch so we stopped opening a class for a single-departure sale",
                 description:
-                  "Python job that flags hostile fare-and-capacity moves by O&D. We stopped opening a class for a single-departure sale.",
+                  "Python job that flags hostile fare-and-capacity moves by O&D before the inventory desk does. We stopped opening a class for a single-departure sale, and a competitor's one-off does not get to rewrite the fare-class mix for the week.",
                 skills: ["Market Analysis", "Python", "Revenue Management"],
               },
             ],
@@ -3433,15 +3353,15 @@ export const civicProfiles = [
             endDate: "2023-02-24",
             projects: [
               {
-                name: "Forty-market unit-revenue test",
+                name: "Rebuilt fare-class mix on 40 markets and lifted unit revenue 4.2% versus control",
                 description:
-                  "Rebuilt fare-class mix and booking curves on 40 markets. Unit revenue up 4.2% versus a matched control set over two quarters.",
+                  "Rebuilt fare-class mix and booking curves on 40 markets and closed the week against flown revenue, not the Monday bid price. Unit revenue up 4.2% versus a matched control set over two quarters, and the analyst still owned the flight when the system wanted to dump inventory.",
                 skills: ["Revenue Management", "Demand Planning", "Financial Modeling"],
               },
               {
-                name: "No-show curve rewrite",
+                name: "Rewrote no-show as a curve and cut denied boardings 31% while load factor held",
                 description:
-                  "Stopped treating no-show as a constant. Denied boardings fell 31% while load factor held; overbooking became a curve by departure hour.",
+                  "Stopped treating no-show as a constant and built the curve by departure hour so overbooking was a forecast, not a habit. Denied boardings fell 31% while load factor held, and the Monday bid price had to survive the Thursday close.",
                 skills: ["Quality Improvement", "Python", "Revenue Management"],
               },
             ],
@@ -3452,15 +3372,15 @@ export const civicProfiles = [
             endDate: "2019-09-30",
             projects: [
               {
-                name: "First weekly close",
+                name: "Built the first weekly close that made the Monday bid-price story match the Thursday P&L",
                 description:
-                  "Flew revenue versus bid price on one client. The Monday story had to match the P&L by Thursday or the class mix changed.",
+                  "Flew revenue versus bid price on one client so spill and spoilage had to explain themselves by Thursday. The Monday story had to match the P&L or the class mix changed, and consulting RM finally had a close the airline finance team would reuse.",
                 skills: ["Financial Modeling", "Market Analysis"],
               },
               {
-                name: "Bank-structure notes",
+                name: "Wrote the bank-structure notes that stopped RM from asking inventory to save a broken bank",
                 description:
-                  "Wrote the first scheduling memo RM used to stop asking inventory to save a broken connecting bank.",
+                  "Wrote the first scheduling memo RM used to stop asking inventory to save a broken connecting bank. Gauge and bank structure became a conversation with scheduling before I asked RM to rescue a departure that was never going to connect.",
                 skills: ["Airline Scheduling", "Stakeholder Management"],
               },
             ],
@@ -3496,13 +3416,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Sunbelt Forty-Market RM Test",
+        name: "Sunbelt forty-market unit-revenue test and no-show curve",
         description:
-          "<p>Fare-class mix and booking curves rebuilt on 40 markets. Unit revenue rose 4.2% against a matched control, and denied boardings fell after no-show stopped being a constant.</p>",
-        links: [
-          { label: "Test note", url: "https://www.example.com/sunbelt-forty-market-rm" },
-          { label: "No-show curve", url: "https://www.example.com/sunbelt-noshow-curve" },
-        ],
+          "<p>Fare-class mix and booking curves rebuilt on 40 markets. Unit revenue rose 4.2% against a matched control, and denied boardings fell after no-show stopped being a constant. Overbooking became a curve by departure hour, and the Monday bid price had to survive Thursday.</p>",
         skills: ["Revenue Management", "Demand Planning", "Quality Improvement"],
       },
     ],
@@ -3581,25 +3497,25 @@ export const civicProfiles = [
             startDate: "2022-01-10",
             projects: [
               {
-                name: "AMP and hangar load",
+                name: "Rebuilt the 18-month AMP and hangar load so winter C-checks stayed booked",
                 description:
-                  "Rebuilt the 18-month check calendar against the flying program. Last winter we did not drop a C-check for a hangar slot we failed to book.",
+                  "Rebuilt the 18-month check calendar against the flying program so a C-check did not become a three-day AOG because a hangar was a rumor. Last winter we did not drop a C-check for a slot we failed to book, and the AMP stayed legal while the hangar still closed on Friday.",
                 skills: ["Maintenance Planning", "Program Management", "FAA Compliance"],
               },
               {
-                name: "Kitting before arrival",
+                name: "Kitted parts 72 hours before arrival and cut AOG hours from missing panels 41%",
                 description:
-                  "Parts and cards kitted 72 hours before the aircraft. AOG hours from missing panels fell 41% in two quarters.",
+                  "Parts and cards kitted 72 hours before the aircraft, including avionics and IFE cards with the right effectivity instead of a fleet-wide guess. AOG hours from missing panels fell 41% in two quarters, and cards that used to be written on the floor are now in the kit.",
                 skills: ["Maintenance Planning", "Quality Management", "Avionics"],
               },
               {
-                name: "Same-shift SMS from the card",
+                name: "Filed check findings into SMS when the card closed and cut late events to one a month",
                 description:
-                  "Findings and deferrals that meet the threshold enter SMS when the card closes. Late events from planning dropped from 8 a month to 1.",
+                  "Findings and deferrals that meet the threshold enter SMS when the card closes, the same shift, not after the monthly wash-up. Late events from planning dropped from 8 a month to 1, and configuration status finally talked to the work package before the next induction.",
                 skills: [
                   "Safety Management Systems",
                   "Configuration Management",
-                  "Workforce Planning",
+                  "Quality Management",
                 ],
               },
             ],
@@ -3620,15 +3536,15 @@ export const civicProfiles = [
             endDate: "2021-12-23",
             projects: [
               {
-                name: "On-time check lift",
+                name: "Lifted on-time C-check completion from 71% to 89% after kitting and effectivity talks",
                 description:
-                  "On-time C-check completion from 71% to 89% after kitting, effectivity, and a hangar-load meeting that actually changed the next induction.",
+                  "On-time C-check completion from 71% to 89% after kitting, effectivity, and a hangar-load meeting that actually changed the next induction. The hangar still had to close on Friday — the AMP is how we stayed legal while it did, and repeat findings stopped arriving as a surprise on day two.",
                 skills: ["Maintenance Planning", "Quality Management", "Program Management"],
               },
               {
-                name: "Wrong-config repeat findings",
+                name: "Tied SB status to the work package and cut wrong-config repeat findings 24%",
                 description:
-                  "Tied SB status and as-maintained effectivity to the work package. Repeat findings from wrong-config cards fell 24%.",
+                  "Tied SB status and as-maintained effectivity to the work package so a card was not a fleet-wide guess. Repeat findings from wrong-config cards fell 24%, and the PMI can open the as-maintained file without finding a side spreadsheet.",
                 skills: ["Configuration Management", "Avionics", "FAA Compliance"],
               },
             ],
@@ -3639,15 +3555,15 @@ export const civicProfiles = [
             endDate: "2017-04-30",
             projects: [
               {
-                name: "First AMP revision",
+                name: "Drafted the AMP revision the PMI closed in one comment cycle",
                 description:
-                  "Drafted the AMP revision the PMI closed in one comment cycle. Escalation tasks stopped living in a side spreadsheet.",
+                  "Drafted the AMP revision the PMI closed in one comment cycle, with MEL and escalation tasks in the program instead of a side spreadsheet. Last two program revisions closed the same way, and planning stopped hoping the next check would remember the task.",
                 skills: ["FAA Compliance", "Maintenance Planning"],
               },
               {
-                name: "Night-shift crew mix",
+                name: "Rewrote the night-shift crew mix so overtime held inside 8% while inductions rose 12%",
                 description:
-                  "Rewrote the check crew mix. Overtime held inside 8% while induction count rose 12%.",
+                  "Rewrote the check crew mix against the hangar load so night-shift coverage held without a 20% overtime spike. Overtime held inside 8% while induction count rose 12%, and the crew that closed the card was the crew we had planned on Monday.",
                 skills: ["Workforce Planning", "Safety Management Systems"],
               },
             ],
@@ -3678,13 +3594,9 @@ export const civicProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Tropic Line AMP and Hangar Load",
+        name: "Tropic Line AMP calendar and hangar-load plan",
         description:
-          "<p>Eighteen-month check calendar rebuilt against the flying program. C-checks stay legal and kitted; last winter we did not drop a slot we failed to book.</p>",
-        links: [
-          { label: "Planning note", url: "https://www.example.com/tropic-amp-hangar-load" },
-          { label: "Kitting standard", url: "https://www.example.com/tropic-kitting-standard" },
-        ],
+          "<p>Eighteen-month check calendar rebuilt against the flying program. C-checks stay legal and kitted; last winter we did not drop a slot we failed to book. Parts and cards are kitted 72 hours before the aircraft arrives.</p>",
         skills: ["Maintenance Planning", "FAA Compliance", "Program Management"],
       },
     ],

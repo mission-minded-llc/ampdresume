@@ -30,7 +30,10 @@ export function defineProfile(input: VerticalProfileInput): VerticalProfile {
     education: input.education,
     certifications: input.certifications,
     skills: input.skills,
-    featuredProjects: input.featuredProjects,
+    featuredProjects: input.featuredProjects.map((project) => ({
+      ...project,
+      links: [],
+    })),
     vertical: input.vertical,
     gender: input.gender,
   };

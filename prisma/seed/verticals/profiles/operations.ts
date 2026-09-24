@@ -74,21 +74,21 @@ export const operationsProfiles = [
             startDate: "2021-04-01",
             projects: [
               {
-                name: "Press-line lean conversion",
+                name: "Converted three transfer presses to SMED kits and cut changeover from 47 to 18 minutes",
                 description:
-                  "Converted three transfer presses to SMED kits and a single-minute die-change standard. Average changeover fell from 47 to 18 minutes and released 9 hours of weekly capacity.",
+                  "Converted three transfer presses to SMED kits, staged fasteners, and a single-minute die-change standard the setup crews could run on third shift. Average changeover fell from 47 to 18 minutes and released 9 hours of weekly capacity without adding a fourth crew.",
                 skills: ["Lean Manufacturing", "TPM", "Technical Leadership"],
               },
               {
-                name: "Daily management and staffing model",
+                name: "Installed a three-shift daily board that cut unplanned overtime 22% while holding delivery",
                 description:
-                  "Installed a three-shift board for OEE, scrap, and labor hours. Cut unplanned overtime 22% while holding on-time delivery above 98.4%.",
+                  "Installed a three-shift board for OEE, scrap, and labor hours so supervisors could act before Friday became the recovery plan. Cut unplanned overtime 22% while holding on-time delivery above 98.4%, and the weekend float stopped being the default answer to a mix change.",
                 skills: ["Workforce Planning", "Production Planning", "Change Management"],
               },
               {
-                name: "Die-set safety reset",
+                name: "Rewrote crane and lockout rules after a near miss and cut recordables from 3.4 to 1.1",
                 description:
-                  "Rewrote crane and lockout rules with the trades and the safety committee after a near miss. Recordables fell from 3.4 to 1.1 in 18 months.",
+                  "Rewrote crane and lockout rules with the trades and the safety committee after a near miss in the die-set pit. Recordables fell from 3.4 to 1.1 in 18 months, and the new cards were the ones third shift actually used, not a binder in the office.",
                 skills: ["Process Safety", "Stakeholder Management"],
               },
             ],
@@ -109,15 +109,15 @@ export const operationsProfiles = [
             endDate: "2021-03-31",
             projects: [
               {
-                name: "Melt-to-machine flow",
+                name: "Pulled melt, shakeout, and machining onto one system and cut work-in-process 28%",
                 description:
-                  "Pulled melt, shakeout, and machining onto one pull system. Work-in-process fell 28% and late shipments to the Detroit customer dropped from 6.1% to 1.8%.",
+                  "Pulled melt, shakeout, and machining onto one pull system so a hot heat no longer sat waiting on a batch queue. Work-in-process fell 28% and late shipments to the Detroit customer dropped from 6.1% to 1.8% without adding a buffer of finished housings.",
                 skills: ["Lean Manufacturing", "Production Planning"],
               },
               {
-                name: "Weekend recovery retirement",
+                name: "Replaced Saturday catch-up with a Friday close that cut weekend hours 41%",
                 description:
-                  "Replaced Saturday catch-up with a Friday close checklist and a skilled-trades float. Weekend hours fell 41% over two years.",
+                  "Replaced Saturday catch-up with a Friday close checklist and a skilled-trades float that supervisors could staff from the weekday bench. Weekend hours fell 41% over two years, and the union committee stopped treating Saturday as unpaid planning someone else would fix.",
                 skills: ["Workforce Planning", "Change Management", "Stakeholder Management"],
               },
             ],
@@ -128,15 +128,15 @@ export const operationsProfiles = [
             endDate: "2018-06-30",
             projects: [
               {
-                name: "B-shift standard work",
+                name: "Wrote B-shift molding standard work for 34 operators and raised first-pass yield 4.2 points",
                 description:
-                  "Wrote the first standard work for the B-shift molding line and trained 34 operators. First-pass yield rose 4.2 points.",
+                  "Wrote the first standard work for the B-shift molding line and trained 34 operators who had been running from memory and the day-shift leftover notes. First-pass yield rose 4.2 points, and the night crew finally had a sequence that survived a relief operator.",
                 skills: ["Lean Manufacturing", "Technical Leadership"],
               },
               {
-                name: "Autonomous maintenance start",
+                name: "Stood up operator TPM checks on six molders and cut unplanned downtime 19%",
                 description:
-                  "Stood up operator TPM checks on six molding machines. Unplanned downtime on those assets fell 19% in two quarters.",
+                  "Stood up operator TPM checks on six molding machines, including the greasing and guard checks that maintenance had been skipping on nights. Unplanned downtime on those assets fell 19% in two quarters, and the lockout cards rode with the route so a check did not become a safety miss.",
                 skills: ["TPM", "Process Safety"],
               },
             ],
@@ -157,15 +157,15 @@ export const operationsProfiles = [
             endDate: "2016-02-28",
             projects: [
               {
-                name: "Cell redesign on Line 4",
+                name: "Collapsed a Line 4 batch cell into one-piece flow and ran the same rate with two fewer operators",
                 description:
-                  "Collapsed a batch machining cell into a one-piece-flow U-cell. Travel distance dropped 60% and the cell ran with two fewer operators at the same rate.",
+                  "Collapsed a batch machining cell into a one-piece-flow U-cell so shafts stopped traveling the aisle between operations. Travel distance dropped 60% and the cell ran with two fewer operators at the same rate, which gave the skilled-trades bench back two people without a layoff story.",
                 skills: ["Lean Manufacturing", "Workforce Planning"],
               },
               {
-                name: "Lockout refresh for CNC cells",
+                name: "Rewrote CNC lockout cards with maintenance and cleared the next corporate safety review",
                 description:
-                  "Rewrote lockout cards with maintenance after an audit finding. The cell passed the next corporate safety review with zero majors.",
+                  "Rewrote lockout cards with maintenance after an audit finding that the old cards still showed a retired disconnect. The cell passed the next corporate safety review with zero majors, and operators could point to the card on the cabinet instead of calling a supervisor to guess.",
                 skills: ["Process Safety", "Technical Leadership"],
               },
             ],
@@ -201,20 +201,15 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Northline daily management system",
+        name: "Plant-wide daily management system at Northline",
         description:
-          "<p>A plant-level operating system that puts OEE, scrap, labor hours, and safety on one board for three shifts. Supervisors run the huddle; escalation is time-boxed to the hour, not the next staff meeting.</p>",
-        links: [
-          { label: "Operating system overview", url: "https://www.example.com/northline-dms" },
-          { label: "Supervisor guide", url: "https://www.example.com/northline-dms-guide" },
-        ],
+          "<p>A plant-level operating system that puts OEE, scrap, labor hours, and safety on one board for three shifts. Supervisors run the huddle; escalation is time-boxed to the hour, not the next staff meeting. Unplanned overtime fell 22% once the weekend float stopped being the default plan.</p>",
         skills: ["Lean Manufacturing", "Change Management", "Workforce Planning"],
       },
       {
-        name: "SMED kits for transfer presses",
+        name: "SMED kits and pit standard for transfer presses",
         description:
-          "<p>Die-change kits, staged fasteners, and a pit standard that cut average changeover from 47 to 18 minutes across three presses without adding a fourth setup crew.</p>",
-        links: [{ label: "Changeover case", url: "https://www.example.com/northline-smed" }],
+          "<p>Die-change kits, staged fasteners, and a pit standard that cut average changeover from 47 to 18 minutes across three presses without adding a fourth setup crew. The same kits run on third shift, which is where a poster standard usually dies.</p>",
         skills: ["Lean Manufacturing", "TPM"],
       },
     ],
@@ -273,6 +268,12 @@ export const operationsProfiles = [
           "Run the customer quality reviews and the registrar visits. Same packet, same owners, no surprise findings.",
         yearStarted: 2018,
       },
+      {
+        name: "Change Management",
+        description:
+          "Turns a special-status containment into a control-plan rewrite operators will run. Adoption is a reaction plan on the cell, not a poster in the break room.",
+        yearStarted: 2016,
+      },
     ],
     companies: [
       {
@@ -287,21 +288,26 @@ export const operationsProfiles = [
             startDate: "2020-08-01",
             projects: [
               {
-                name: "In-process SPC on 14 cells",
+                name: "Moved 14 CNC cells onto live SPC charts and raised flagship Cpk from 1.12 to 1.48",
                 description:
-                  "Moved bore and grind checks from end-of-shift samples to real-time charts with documented reaction plans. Cpk on the flagship family rose from 1.12 to 1.48.",
+                  "Moved bore and grind checks from end-of-shift samples to real-time charts with reaction plans operators actually ran, not a stack of sort tickets after the fact. Cpk on the flagship family rose from 1.12 to 1.48, and the auditor could walk the cell and see the same story the chart told.",
                 skills: ["SPC", "Quality Improvement", "Six Sigma"],
               },
               {
-                name: "QMS and layered audit reset",
+                name: "Rewrote control plans and layered audits after special status and cleared it in seven months",
                 description:
-                  "Rewrote control plans and layered process audits after a customer special status. Cleared the status in seven months with zero majors on the next registrar visit.",
-                skills: ["Quality Management", "Internal Controls", "Stakeholder Management"],
+                  "Rewrote control plans and layered process audits after a customer special status that had turned every shipment into a containment exercise. Cleared the status in seven months with zero majors on the next registrar visit, and the management review stopped recycling last year's open actions.",
+                skills: [
+                  "Quality Management",
+                  "Internal Controls",
+                  "Stakeholder Management",
+                  "Change Management",
+                ],
               },
               {
-                name: "ERP lot-release lock",
+                name: "Blocked dock shipment in the ERP until the lab released the lot and ended inspection escapes",
                 description:
-                  "Blocked dock shipment in the ERP until the lab released the lot. Escapes tied to skipped inspection dropped to zero in the following two quarters.",
+                  "Blocked dock shipment in the ERP until the lab released the lot, so a traveler could not print a shipper the certificate had not earned. Escapes tied to skipped inspection dropped to zero in the following two quarters, and the dock stopped asking quality to 'just sign it' at 4 p.m.",
                 skills: ["ERP", "Internal Controls"],
               },
             ],
@@ -322,15 +328,15 @@ export const operationsProfiles = [
             endDate: "2020-07-31",
             projects: [
               {
-                name: "Leak-test capability study",
+                name: "Ran a leak-tester Six Sigma study that cut false fails 54% and restored standard sampling",
                 description:
-                  "Ran a Six Sigma project on the end-of-line leak tester. False fails fell 54% and the customer returned the line to standard sampling.",
+                  "Ran a Six Sigma project on the end-of-line leak tester after false fails had flooded the sort bay and the customer had tightened sampling. False fails fell 54% and the customer returned the line to standard sampling once the gage and the fixture stopped arguing with each other.",
                 skills: ["Six Sigma", "SPC", "Quality Improvement"],
               },
               {
-                name: "Supplier PPAP recovery",
+                name: "Rebuilt PPAP evidence for three chronic suppliers and cut their incoming PPM 71%",
                 description:
-                  "Rebuilt incoming inspection and PPAP evidence for three chronic suppliers. Incoming PPM from those sources fell 71%.",
+                  "Rebuilt incoming inspection and PPAP evidence for three chronic suppliers who had been living on concessions and a handshake. Incoming PPM from those sources fell 71%, and the next launch packet had dimensional data the customer did not send back for a rewrite.",
                 skills: ["Quality Management", "Stakeholder Management"],
               },
             ],
@@ -341,15 +347,15 @@ export const operationsProfiles = [
             endDate: "2017-12-31",
             projects: [
               {
-                name: "First control plans for new manifold",
+                name: "Wrote the launch control plan and MSA for a new manifold and held launch PPM under 80",
                 description:
-                  "Wrote the launch control plan and MSA for a new manifold family. Launch PPM stayed under 80 against a 250 target.",
+                  "Wrote the launch control plan and MSA for a new manifold family before the first production heat, not after the first customer complaint. Launch PPM stayed under 80 against a 250 target, and the reaction plan was posted on the cell instead of living in a shared drive nobody opened.",
                 skills: ["Quality Management", "SPC"],
               },
               {
-                name: "Hold-tag discipline",
+                name: "Closed the gap between red-tag inventory and the system so every tagged lot sat in the hold cage",
                 description:
-                  "Closed the gap between red-tag inventory and the system of record. A physical audit found 100% of tagged lots in the hold cage.",
+                  "Closed the gap between red-tag inventory and the system of record after a walk found tagged lots still on the dock. A physical audit found 100% of tagged lots in the hold cage, and a concession could no longer print a shipper without a signed disposition.",
                 skills: ["Internal Controls", "ERP"],
               },
             ],
@@ -369,15 +375,15 @@ export const operationsProfiles = [
             endDate: "2014-01-31",
             projects: [
               {
-                name: "Pour-temperature charts",
+                name: "Put SPC on pour temperature and chemistry and cut misrun and hard-spot scrap 16%",
                 description:
-                  "Put SPC on pour temperature and chemistry. Scrap from misruns and hard spots fell 16% in the first year.",
+                  "Put SPC on pour temperature and chemistry so a cold heat no longer became a surprise in machining. Scrap from misruns and hard spots fell 16% in the first year, and the melt deck finally had a reaction plan that was not 'pour it anyway and sort later.'",
                 skills: ["SPC", "Quality Improvement"],
               },
               {
-                name: "Dimensional layout lab",
+                name: "Stood up a foundry layout bench and gage R&R cadence so machining stopped guessing at variation",
                 description:
-                  "Stood up a layout bench and a gage R&R cadence so machining could stop guessing at foundry variation.",
+                  "Stood up a layout bench and a gage R&R cadence so machining could stop guessing whether a bore miss started in the mold or on the mill. Foundry variation had a number, not a shrug, and the next capability study used the same fixtures the floor would run.",
                 skills: ["Quality Management", "SPC"],
               },
             ],
@@ -408,13 +414,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Real-time SPC for precision bores",
+        name: "Real-time SPC program for precision bore cells",
         description:
-          "<p>Fourteen CNC cells on live control charts with reaction plans operators actually run. Capability on the flagship bore family moved from 1.12 to 1.48 Cpk without adding inspectors.</p>",
-        links: [
-          { label: "SPC program", url: "https://www.example.com/mueller-spc" },
-          { label: "Reaction plan kit", url: "https://www.example.com/mueller-spc-kit" },
-        ],
+          "<p>Fourteen CNC cells on live control charts with reaction plans operators actually run. Capability on the flagship bore family moved from 1.12 to 1.48 Cpk without adding inspectors. The auditor can walk the cell and see the same story the chart tells.</p>",
         skills: ["SPC", "Quality Improvement", "Six Sigma"],
       },
     ],
@@ -493,21 +495,21 @@ export const operationsProfiles = [
             startDate: "2022-01-10",
             projects: [
               {
-                name: "Finite-capacity master schedule",
+                name: "Rebuilt the weekly master schedule around heat-treat windows and raised adherence from 81% to 94%",
                 description:
-                  "Rebuilt the weekly schedule around heat-treat windows and heading-cell constraints. Schedule adherence rose from 81% to 94% in three quarters.",
+                  "Rebuilt the weekly schedule around heat-treat windows and heading-cell changeovers so a promotion no longer printed as a wish the floor could not run. Schedule adherence rose from 81% to 94% in three quarters, and the Friday fire drill stopped being the plan of record.",
                 skills: ["Production Planning", "ERP", "Lean Manufacturing"],
               },
               {
-                name: "Safety-stock and lot-size reset",
+                name: "Reset safety stock and lot sizes by family and lifted turns from 6.1 to 8.4",
                 description:
-                  "Recalculated safety stock and order multiples by family. Turns rose from 6.1 to 8.4 and A-item fill stayed above 98.7%.",
+                  "Recalculated safety stock and order multiples by fastener family from actual demand and setup cost, not tribal min/max. Turns rose from 6.1 to 8.4 and A-item fill stayed above 98.7%, which meant the C-item bins finally stopped hiding a second plant's worth of steel.",
                 skills: ["Inventory Optimization", "Demand Planning"],
               },
               {
-                name: "S&OP capacity pack",
+                name: "Brought a one-page capacity story to S&OP so promotions stopped landing on full families",
                 description:
-                  "Brought a one-page capacity story to monthly S&OP so promotions stopped landing on already-full families.",
+                  "Brought a one-page capacity story to monthly S&OP so sales could see which families were already full before they promised a circular. Promotions stopped landing on already-loaded heading cells, and the plant stopped finding out about a lift in the same week the steel was due.",
                 skills: ["S&OP", "Stakeholder Management", "Change Management"],
               },
             ],
@@ -528,15 +530,15 @@ export const operationsProfiles = [
             endDate: "2021-12-31",
             projects: [
               {
-                name: "Line-load model for e-coat",
+                name: "Built an e-coat hang-density and cure-window model that raised on-time finish 11 points",
                 description:
-                  "Built a hang-density and cure-window model so the e-coat line stopped overbooking Thursday. On-time finish rose 11 points.",
+                  "Built a hang-density and cure-window model so the e-coat line stopped overbooking Thursday and then apologizing to the dock on Friday. On-time finish rose 11 points, and the ERP work center finally told the truth about how many racks a shift could actually hang.",
                 skills: ["Production Planning", "ERP"],
               },
               {
-                name: "Exception-queue hygiene",
+                name: "Cut the MRP exception list from 900 to under 120 by fixing lead times and phantom BOMs",
                 description:
-                  "Cut the MRP exception list from 900 to under 120 by fixing lead times and phantom BOMs. Planners stopped living in firefighting.",
+                  "Cut the MRP exception list from 900 to under 120 by fixing lead times and phantom BOMs that had been generating noise since the last ERP cutover. Planners stopped living in firefighting, and the Monday meeting finally had a list of real breaks instead of a scroll of ghosts.",
                 skills: ["ERP", "Change Management", "Stakeholder Management"],
               },
             ],
@@ -547,15 +549,15 @@ export const operationsProfiles = [
             endDate: "2019-05-31",
             projects: [
               {
-                name: "Resin and pigment coverage",
+                name: "Reset min/max on 80 process chemicals and cut A-resin stockouts from 9 a quarter to 1",
                 description:
-                  "Reset min/max on 80 process chemicals. Stockouts of A resins dropped from 9 a quarter to 1.",
+                  "Reset min/max on 80 process chemicals after the floor had been stealing pigment from the next job to keep a line up. Stockouts of A resins dropped from 9 a quarter to 1, and purchasing stopped placing emergency drums at a premium because someone forgot the coverage report.",
                 skills: ["Inventory Optimization", "Demand Planning"],
               },
               {
-                name: "Customer forecast reconciliation",
+                name: "Started a monthly forecast-bias review with two distributors and cut overbuilds on specials 34%",
                 description:
-                  "Started a monthly bias review with the two largest distributors. Overbuilds on their specials fell 34%.",
+                  "Started a monthly bias review with the two largest distributors so their specials stopped arriving as a surprise the week after we had already headed the stock program. Overbuilds on their specials fell 34%, and the leftover custom lots stopped aging in the finished-goods cage.",
                 skills: ["Demand Planning", "S&OP"],
               },
             ],
@@ -588,20 +590,13 @@ export const operationsProfiles = [
       {
         name: "Finite-capacity schedule for a fastener plant",
         description:
-          "<p>A weekly master schedule that respects heat-treat windows and heading-cell changeovers. Adherence moved from 81% to 94% and the Friday fire drill stopped being the plan.</p>",
-        links: [
-          { label: "Scheduling model", url: "https://www.example.com/delgado-finite-schedule" },
-        ],
+          "<p>A weekly master schedule that respects heat-treat windows and heading-cell changeovers. Adherence moved from 81% to 94% and the Friday fire drill stopped being the plan. The ERP work centers finally tell the truth about what a shift can run.</p>",
         skills: ["Production Planning", "ERP", "Lean Manufacturing"],
       },
       {
-        name: "Inventory policy by fastener family",
+        name: "Inventory policy reset by fastener family",
         description:
-          "<p>Safety stock and lot sizes reset from actual demand and setup cost, not tribal min/max. Turns rose from 6.1 to 8.4 with A-item fill still above 98.7%.</p>",
-        links: [
-          { label: "Policy paper", url: "https://www.example.com/delgado-inventory-policy" },
-          { label: "Family scorecard", url: "https://www.example.com/delgado-inventory-scorecard" },
-        ],
+          "<p>Safety stock and lot sizes reset from actual demand and setup cost, not tribal min/max. Turns rose from 6.1 to 8.4 with A-item fill still above 98.7%. The C-item bins finally stopped hiding a second plant's worth of steel.</p>",
         skills: ["Inventory Optimization", "Demand Planning"],
       },
     ],
@@ -680,21 +675,21 @@ export const operationsProfiles = [
             startDate: "2021-09-01",
             projects: [
               {
-                name: "Assembly-spine TPM",
+                name: "Rolled TPM across 18 spine assets and lifted OEE from 61% to 74% while cutting weekend recovery 36%",
                 description:
-                  "Autonomous and planned maintenance on 18 assets that gate the spine. OEE rose from 61% to 74% and weekend recovery hours fell 36%.",
+                  "Stood up autonomous and planned maintenance on the 18 assets that gate the assembly spine, with lockout folded into the route so a maintenance win did not become a safety miss. OEE rose from 61% to 74% and weekend recovery hours fell 36%, which meant Saturday stopped being the unofficial third shift.",
                 skills: ["TPM", "Maintenance Planning", "Process Safety"],
               },
               {
-                name: "Seal-leak Six Sigma",
+                name: "Closed a chronic seal leak at press-fit and cut customer returns on that family 81%",
                 description:
-                  "DMAIC on a chronic seal leak. Process change at press-fit, not another 100% air test. Customer returns on that family dropped 81%.",
+                  "Ran DMAIC on a chronic seal leak and changed the press-fit instead of adding another 100% air test that the night crew would eventually skip. Customer returns on that family dropped 81%, and the dollar showed up in the P&L as scrap and warranty, not as a kaizen poster.",
                 skills: ["Six Sigma", "Quality Improvement"],
               },
               {
-                name: "CI slate and A3 academy",
+                name: "Ran a 12-project CI slate with A3 training and closed 10 on the committed date",
                 description:
-                  "Twelve-project portfolio with team-lead A3 training. 10 of 12 projects closed on the committed date with finance-signed savings.",
+                  "Ran a twelve-project CI portfolio with team-lead A3 training so improvement was not a staff function that visited the floor. 10 of 12 projects closed on the committed date with finance-signed savings, and the two that slipped had a named reason instead of a quiet burial.",
                 skills: ["Program Management", "Change Management", "Lean Manufacturing"],
               },
             ],
@@ -715,15 +710,15 @@ export const operationsProfiles = [
             endDate: "2021-08-15",
             projects: [
               {
-                name: "Slitter changeover SMED",
+                name: "Cut slitter changeover from 52 to 24 minutes and released a sixth run per shift",
                 description:
-                  "Cut slitter changeover from 52 to 24 minutes with staged knives and a two-person standard. Released a sixth run per shift.",
+                  "Cut slitter changeover from 52 to 24 minutes with staged knives and a two-person standard the crews could run without waiting on a setup specialist. Released a sixth run per shift, and the leftover changeover minutes stopped hiding in a 'we'll catch it on Saturday' note.",
                 skills: ["Lean Manufacturing", "Change Management"],
               },
               {
-                name: "Dye-lot variation",
+                name: "Ran Six Sigma on dye-lot shade variation and cut rework yards 44%",
                 description:
-                  "Six Sigma on shade variation. Rework yards fell 44% after the recipe and hold-time controls stuck.",
+                  "Ran Six Sigma on shade variation after the finishing floor had been living on extra inspection and a hope that the next lot would match. Rework yards fell 44% after the recipe and hold-time controls stuck, and the customer stopped sending back rolls that looked fine under the plant lights.",
                 skills: ["Six Sigma", "Quality Improvement"],
               },
             ],
@@ -734,15 +729,15 @@ export const operationsProfiles = [
             endDate: "2018-02-28",
             projects: [
               {
-                name: "Finishing-line standard work",
+                name: "Wrote finishing-line standard work for both shifts and raised first-pass yield 3.6 points",
                 description:
-                  "Wrote the first standard work for the finishing line and trained both shifts. First-pass yield rose 3.6 points.",
+                  "Wrote the first standard work for the finishing line and trained both shifts, including the relief operators who had been inventing a sequence each time someone called in. First-pass yield rose 3.6 points, and the night crew finally had a method that survived a mix change.",
                 skills: ["Lean Manufacturing", "Quality Improvement"],
               },
               {
-                name: "Planned-maintenance calendar",
+                name: "Replaced the copied OEM PM list with a failure-history calendar and cut emergency work 22%",
                 description:
-                  "Replaced the copied OEM PM list with a calendar from failure history. Emergency work orders fell 22% in a year.",
+                  "Replaced the copied OEM PM list with a calendar built from failure history so the crew stopped greasing what never failed and ignoring what always did. Emergency work orders fell 22% in a year, and the planned window finally had a job that matched the asset, not the binder.",
                 skills: ["Maintenance Planning", "TPM"],
               },
             ],
@@ -763,15 +758,15 @@ export const operationsProfiles = [
             endDate: "2014-12-19",
             projects: [
               {
-                name: "Work-order backlog purge",
+                name: "Closed or killed 600 stale work orders and lifted planned maintenance hours from 31% to 58%",
                 description:
-                  "Closed or killed 600 stale work orders and stood up a weekly planning meeting. Planned work rose from 31% to 58% of hours.",
+                  "Closed or killed 600 stale work orders and stood up a weekly planning meeting so the backlog stopped being a museum of jobs nobody would ever do. Planned work rose from 31% to 58% of hours, and the trades finally had a week they could staff instead of a scroll of ghosts.",
                 skills: ["Maintenance Planning", "Program Management"],
               },
               {
-                name: "Lockout cards on grinders",
+                name: "Wrote equipment-specific lockout cards on the grinders and cleared the next insurance finding",
                 description:
-                  "Wrote equipment-specific lockout cards with the trades. The next insurance survey cleared the prior finding.",
+                  "Wrote equipment-specific lockout cards with the trades after an insurance survey found generic cards that still showed a retired disconnect. The next survey cleared the prior finding, and a grinder stoppage no longer started with a debate about which breaker was the real one.",
                 skills: ["Process Safety", "TPM"],
               },
             ],
@@ -807,13 +802,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Gearbox spine TPM system",
+        name: "TPM operating system on the gearbox assembly spine",
         description:
-          "<p>Autonomous and planned maintenance on the 18 assets that gate assembly. OEE moved from 61% to 74%, and the weekend became a planned window instead of a rescue.</p>",
-        links: [
-          { label: "TPM system", url: "https://www.example.com/singh-tpm" },
-          { label: "Route cards", url: "https://www.example.com/singh-tpm-routes" },
-        ],
+          "<p>Autonomous and planned maintenance on the 18 assets that gate assembly. OEE moved from 61% to 74%, and the weekend became a planned window instead of a rescue. Lockout rides with the route so a maintenance win does not become a safety miss.</p>",
         skills: ["TPM", "Maintenance Planning", "Process Safety"],
       },
     ],
@@ -892,21 +883,21 @@ export const operationsProfiles = [
             startDate: "2021-02-01",
             projects: [
               {
-                name: "Override policy and bias review",
+                name: "Required a reason code on every sales override and cut A-item WAPE from 31% to 19%",
                 description:
-                  "Required a reason code and a lookback for every sales override. A-item WAPE fell from 31% to 19% and unearned lift stopped flooding the plants.",
+                  "Required a reason code and a lookback for every sales override so a 'just add 10%' habit had to survive a 15-minute challenge. A-item WAPE fell from 31% to 19% and unearned lift stopped flooding the plants, which meant the exception list finally had names instead of a corporate MAPE that hid the damage.",
                 skills: ["Demand Planning", "Stakeholder Management", "Change Management"],
               },
               {
-                name: "Monthly S&OP decision log",
+                name: "Replaced a 60-slide S&OP pack with a one-page decision log and held volume inside 4%",
                 description:
-                  "Replaced a 60-slide pack with a one-page decision log. Consensus volume finished the year inside 4% of actuals.",
+                  "Replaced a 60-slide pack with a one-page decision log that named the call, the owner, and the number sales, marketing, and supply would live with. Consensus volume finished the year inside 4% of actuals, and the monthly meeting stopped being a recitation of last month's misses.",
                 skills: ["S&OP", "Market Analysis"],
               },
               {
-                name: "Safety-stock from variability",
+                name: "Recut safety stock from demand variability and dropped $6.2M of C-item excess",
                 description:
-                  "Recut safety stock by family using demand variability and lead time. Excess on C items dropped $6.2M; A-item fill held at 98.1%.",
+                  "Recut safety stock by family using demand variability and lead time instead of a flat weeks-of-cover that treated every SKU like an A item. Excess on C items dropped $6.2M; A-item fill held at 98.1%, and the ERP forecast of record finally drove the min/max instead of a shadow workbook.",
                 skills: ["Inventory Optimization", "ERP", "Python"],
               },
             ],
@@ -927,15 +918,15 @@ export const operationsProfiles = [
             endDate: "2021-01-15",
             projects: [
               {
-                name: "Store-cluster forecasts",
+                name: "Split the forecast into four store clusters and cut produce shrink 12% in two seasons",
                 description:
-                  "Split the forecast into four store clusters instead of one chain number. Produce shrink fell 12% in the first two seasons.",
+                  "Split the forecast into four store clusters instead of one chain number that averaged a urban flagship with a rural independent. Produce shrink fell 12% in the first two seasons, and the buyers stopped shipping a city circular into stores that had never moved that SKU.",
                 skills: ["Demand Planning", "Market Analysis", "Python"],
               },
               {
-                name: "Promotional lift model",
+                name: "Built a promotional lift model from two years of circulars and cut holiday overbuilds 29%",
                 description:
-                  "Built a simple lift model from two years of circulars. Overbuilds on holiday shippers fell 29%.",
+                  "Built a simple lift model from two years of circulars so a holiday shipper had to earn its case pack against actuals, not last year's hope. Overbuilds on holiday shippers fell 29%, and the leftover displays stopped dying in the back room after week two.",
                 skills: ["Demand Planning", "S&OP"],
               },
             ],
@@ -946,15 +937,15 @@ export const operationsProfiles = [
             endDate: "2018-08-31",
             projects: [
               {
-                name: "ERP forecast of record",
+                name: "Moved grocery and HBC forecasts into the ERP so purchasing stopped placing from a stale workbook",
                 description:
-                  "Moved grocery and HBC forecasts out of a shared workbook into the ERP. Purchasing stopped placing from a stale copy.",
+                  "Moved grocery and HBC forecasts out of a shared workbook into the ERP as the forecast of record. Purchasing stopped placing from a stale copy that had been emailed on a Tuesday and edited on a Thursday, and the exception queue finally matched what the system would buy.",
                 skills: ["ERP", "Change Management"],
               },
               {
-                name: "Exception queue for A items",
+                name: "Built a daily exception list for the top 200 SKUs and cut stockouts on those items 18%",
                 description:
-                  "Daily exception list for the top 200 SKUs. Stockouts on those items dropped 18% in two quarters.",
+                  "Stood up a daily exception list for the top 200 SKUs so an A-item miss showed up as a name before the store called. Stockouts on those items dropped 18% in two quarters, and the planners stopped discovering a hole when the order was already late.",
                 skills: ["Demand Planning", "Inventory Optimization"],
               },
             ],
@@ -985,13 +976,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "S&OP that decides, not recites",
+        name: "Monthly S&OP that decides instead of reciting",
         description:
-          "<p>A monthly demand and supply review with a one-page decision log. Consensus volume finished inside 4% of actuals, and overrides had to survive a 15-minute challenge.</p>",
-        links: [
-          { label: "S&OP pack", url: "https://www.example.com/nora-kim-sop" },
-          { label: "Override policy", url: "https://www.example.com/nora-kim-overrides" },
-        ],
+          "<p>A monthly demand and supply review with a one-page decision log. Consensus volume finished inside 4% of actuals, and overrides had to survive a 15-minute challenge. The 60-slide pack retired; the exception list has names.</p>",
         skills: ["S&OP", "Demand Planning", "Stakeholder Management"],
       },
     ],
@@ -1070,21 +1057,21 @@ export const operationsProfiles = [
             startDate: "2022-03-01",
             projects: [
               {
-                name: "Carolinas DC greenfield",
+                name: "Sited a 420k sq ft Carolinas DC that modeled 8.4% landed-cost reduction on a $210M base",
                 description:
-                  "Sited a 420k sq ft DC near Concord to pull volume off Atlanta and Savannah. Modeled 8.4% landed-cost reduction on a $210M base; the board funded it.",
+                  "Sited a 420k sq ft DC near Concord to pull volume off Atlanta and Savannah after the model beat the current cost-to-serve, not a map that looked tidy. Modeled 8.4% landed-cost reduction on a $210M base; the board funded it, and operations signed the labor and dock-door assumptions before the slide left the room.",
                 skills: ["Network Optimization", "Financial Modeling", "Stakeholder Management"],
               },
               {
-                name: "Flow-path and inventory reposition",
+                name: "Reassigned 1,100 SKUs and rebuilt safety stock so the new node did not starve in week three",
                 description:
-                  "Reassigned 1,100 SKUs and rebuilt safety stock for the new node. The inventory move was in the case, not a week-three surprise.",
+                  "Reassigned 1,100 SKUs and rebuilt safety stock for the new node so the inventory move was in the business case, not a week-three surprise when Atlanta still held the A items. Slotting, dock-door, and labor assumptions were the ones the DC managers would sign, not a solver default.",
                 skills: ["Inventory Optimization", "Warehouse Management", "Network Planning"],
               },
               {
-                name: "TMS-actual cost layer",
+                name: "Replaced the rate-card cost layer with 12 months of TMS tenders and killed two false savings lanes",
                 description:
-                  "Replaced the rate-card layer with 12 months of TMS tenders and accessorials. Two 'savings' lanes died when real cost showed up.",
+                  "Replaced the rate-card layer with 12 months of TMS tenders and accessorials so a lane recommendation had to survive a month of real cost. Two 'savings' lanes died when the accessorials showed up, which is cheaper than opening a door on a lie.",
                 skills: ["TMS", "Python", "Network Optimization"],
               },
             ],
@@ -1105,15 +1092,15 @@ export const operationsProfiles = [
             endDate: "2022-02-28",
             projects: [
               {
-                name: "Cross-dock consolidation",
+                name: "Closed an underused cross-dock, re-routed 18 lanes, and cut cost per hundredweight 6.1%",
                 description:
-                  "Closed one underused cross-dock and re-routed 18 lanes. Transportation cost per hundredweight fell 6.1% with service still inside the SLA.",
+                  "Closed one underused cross-dock and re-routed 18 lanes after the volume could not pay for the doors. Transportation cost per hundredweight fell 6.1% with service still inside the SLA, and the remaining docks finally had a night they could staff.",
                 skills: ["Network Optimization", "TMS", "Network Planning"],
               },
               {
-                name: "Cost-to-serve by shipper",
+                name: "Built a shipper cost-to-serve map that sales used to reprice or exit two unprofitable accounts",
                 description:
-                  "Built a cost-to-serve map that sales could use in pricing. Two unprofitable shippers were repriced or exited.",
+                  "Built a cost-to-serve map that sales could use in pricing instead of a blended average that hid the expensive shippers. Two unprofitable accounts were repriced or exited, and the next bid started from actual cost, not last year's hope.",
                 skills: ["Financial Modeling", "Python", "Stakeholder Management"],
               },
             ],
@@ -1124,15 +1111,15 @@ export const operationsProfiles = [
             endDate: "2019-04-30",
             projects: [
               {
-                name: "Lane-rate sanity check",
+                name: "Reconciled TMS rates to invoices on the top 40 lanes and found $1.3M in accessorial leakage",
                 description:
-                  "Reconciled TMS rates to invoices on the top 40 lanes. Found $1.3M in accessorial leakage in the first year.",
+                  "Reconciled TMS rates to invoices on the top 40 lanes after the rate card and the bill had stopped telling the same story. Found $1.3M in accessorial leakage in the first year, and the next bid packet used the invoice, not the brochure.",
                 skills: ["TMS", "Financial Modeling"],
               },
               {
-                name: "Saturday pool redesign",
+                name: "Redrew Saturday grocery pool routes and raised on-time delivery 5 points without adding tractors",
                 description:
-                  "Redrew Saturday pool routes for grocery. On-time delivery rose 5 points without adding tractors.",
+                  "Redrew Saturday pool routes for grocery so the late stores were not always the ones at the end of a hope-and-a-map run. On-time delivery rose 5 points without adding tractors, and the dock could stage the pool before the first tractor idled in the yard.",
                 skills: ["Network Planning", "Warehouse Management"],
               },
             ],
@@ -1153,15 +1140,15 @@ export const operationsProfiles = [
             endDate: "2016-07-15",
             projects: [
               {
-                name: "Drayage lane model",
+                name: "Modeled drayage versus rail for inland points and shifted 12% of volume to rail",
                 description:
-                  "Modeled drayage vs. rail for inland points. Shifted 12% of volume to rail with a two-day service hold.",
+                  "Modeled drayage versus rail for inland points so a container did not default to a truck because that was how last year moved. Shifted 12% of volume to rail with a two-day service hold, and the importers who needed the faster lane kept it with a number, not a habit.",
                 skills: ["Network Optimization", "Python"],
               },
               {
-                name: "Dwell dashboard",
+                name: "Built a daily dwell and chassis report that cut average yard dwell 0.6 days",
                 description:
-                  "Daily dwell and chassis report for the yard team. Average dwell fell 0.6 days in two quarters.",
+                  "Built a daily dwell and chassis report for the yard team so a box that had been sitting since Tuesday had a name on it by Wednesday morning. Average dwell fell 0.6 days in two quarters, and the chassis pool stopped being a scavenger hunt at the gate.",
                 skills: ["TMS", "Stakeholder Management"],
               },
             ],
@@ -1197,13 +1184,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Carolinas greenfield network case",
+        name: "Carolinas greenfield DC and network case",
         description:
-          "<p>A DC siting and flow-path study that used TMS actuals, not the rate card. The board funded a 420k sq ft node after the model showed 8.4% landed-cost reduction on a $210M base.</p>",
-        links: [
-          { label: "Network case", url: "https://www.example.com/cruz-carolinas-dc" },
-          { label: "Scenario pack", url: "https://www.example.com/cruz-carolinas-scenarios" },
-        ],
+          "<p>A DC siting and flow-path study that used TMS actuals, not the rate card. The board funded a 420k sq ft node after the model showed 8.4% landed-cost reduction on a $210M base. Operations signed the labor and dock-door assumptions before the slide left the room.</p>",
         skills: ["Network Optimization", "Financial Modeling", "TMS"],
       },
     ],
@@ -1282,21 +1265,21 @@ export const operationsProfiles = [
             startDate: "2020-06-01",
             projects: [
               {
-                name: "Metals should-cost and dual source",
+                name: "Rebid hot-roll and bar with a should-cost model and validated $11M on a $190M book",
                 description:
-                  "Rebid hot-roll and bar with a should-cost model and a second qualified mill. Validated $11M on a $190M metals book without a quality escape.",
+                  "Rebid hot-roll and bar with a should-cost model and a second qualified mill so a steel move did not become an emergency PO at the spot price. Validated $11M on a $190M metals book without a quality escape, and the index clause was signed after the second mill could actually ship.",
                 skills: ["Procurement", "Contract Negotiation", "Program Management"],
               },
               {
-                name: "Approved-vendor and ERP match",
+                name: "Collapsed six plant vendor lists into one and cut maverick spend from 14% to 4%",
                 description:
-                  "Collapsed six plant vendor lists into one and turned on three-way match. Maverick spend fell from 14% to 4% of addressable PO dollars.",
+                  "Collapsed six plant vendor lists into one and turned on three-way match so maverick spend had nowhere to hide behind a local favorite. Maverick spend fell from 14% to 4% of addressable PO dollars, and the 'we've always used them' exception now needed a VP signature.",
                 skills: ["ERP", "Change Management", "Stakeholder Management"],
               },
               {
-                name: "MRO consignment reset",
+                name: "Moved inserts, bearings, and PPE onto consignment and cut stores inventory 18%",
                 description:
-                  "Moved inserts, bearings, and PPE onto consignment and VMI. Stores inventory dropped 18% and line-down stockouts on those items went to zero.",
+                  "Moved inserts, bearings, and PPE onto consignment and VMI so the crib stopped being a second distributor. Stores inventory dropped 18% and line-down stockouts on those items went to zero, which meant a missing insert was a process miss, not a 2 a.m. truck.",
                 skills: ["Inventory Optimization", "Relationship Management"],
               },
             ],
@@ -1317,15 +1300,15 @@ export const operationsProfiles = [
             endDate: "2020-05-31",
             projects: [
               {
-                name: "Motor and drive category",
+                name: "Consolidated four motor and drive brands to two and cut unit cost 9% with a dual-source clause",
                 description:
-                  "Consolidated four brands to two with a dual-source clause. Unit cost fell 9% and lead-time variability dropped by a week.",
+                  "Consolidated four motor and drive brands to two with a dual-source clause so a single OEM could not hold a launch hostage. Unit cost fell 9% and lead-time variability dropped by a week, and the plants still had a second name they could actually order.",
                 skills: ["Procurement", "Contract Negotiation", "Relationship Management"],
               },
               {
-                name: "Packaging rebid",
+                name: "Rebid corrugate and dunnage across three plants and landed $3.4M with a shared spec",
                 description:
-                  "Rebid corrugate and dunnage across three plants. $3.4M savings with a shared spec engineering signed.",
+                  "Rebid corrugate and dunnage across three plants after each site had been buying its own 'special' box that was the same RSC with a different part number. $3.4M savings with a shared spec engineering signed, so the next change order could not reopen the price.",
                 skills: ["Procurement", "Stakeholder Management", "Program Management"],
               },
             ],
@@ -1336,15 +1319,15 @@ export const operationsProfiles = [
             endDate: "2016-12-31",
             projects: [
               {
-                name: "MRO punchout and item master",
+                name: "Stood up MRO punchout catalogs, cleaned 8,000 items, and stopped five-SKU insert spot buys",
                 description:
-                  "Stood up punchout catalogs and cleaned 8,000 MRO items. Spot buys of the same insert under five SKUs stopped.",
+                  "Stood up punchout catalogs and cleaned 8,000 MRO items so the same insert stopped living under five SKUs and a night-shift spot buy. The crib could finally search one name, and the next PO matched the item master instead of a typed description that purchasing had to decode.",
                 skills: ["ERP", "Procurement"],
               },
               {
-                name: "Expedite discipline",
+                name: "Required a reason code and plant sign-off for expedites and cut premium freight 37%",
                 description:
-                  "Required a reason code and a plant sign-off for expedites. Premium freight on my book fell 37% in a year.",
+                  "Required a reason code and a plant sign-off for expedites so a missed forecast could not hide inside a hot truck. Premium freight on my book fell 37% in a year, and the Monday review finally had owners instead of a stack of invoices nobody wanted to explain.",
                 skills: ["Change Management", "Stakeholder Management"],
               },
             ],
@@ -1365,15 +1348,15 @@ export const operationsProfiles = [
             endDate: "2014-02-28",
             projects: [
               {
-                name: "Mill allocation book",
+                name: "Kept the mill allocation book and the spot book separate so a promise did not eat the reserve",
                 description:
-                  "Kept the allocation book and the spot book separate so a customer promise did not eat the mill reserve.",
+                  "Kept the allocation book and the spot book separate so a customer promise did not eat the mill reserve the next heat was already sold against. Sales could still say yes; they just had to say it against the book that could actually ship.",
                 skills: ["Procurement", "Inventory Optimization"],
               },
               {
-                name: "Claim and debit file",
+                name: "Closed mill quality claims inside 30 days and recovered $410k that had been dying in email",
                 description:
-                  "Closed quality claims with mills inside 30 days. Recovered $410k in a year that had been dying in email.",
+                  "Closed quality claims with mills inside 30 days instead of letting a debit sit in a thread until the mill 'needed more pictures.' Recovered $410k in a year that had been dying in email, and the next claim had a file the mill could not pretend it had never seen.",
                 skills: ["Contract Negotiation", "Relationship Management"],
               },
             ],
@@ -1409,13 +1392,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Metals dual-source program",
+        name: "Should-cost and dual-source program for metals",
         description:
-          "<p>A should-cost and dual-source program on hot-roll and bar. $11M validated on a $190M book, with a second mill qualified before the index clause was signed.</p>",
-        links: [
-          { label: "Category case", url: "https://www.example.com/okoro-metals" },
-          { label: "Should-cost outline", url: "https://www.example.com/okoro-should-cost" },
-        ],
+          "<p>A should-cost and dual-source program on hot-roll and bar. $11M validated on a $190M book, with a second mill qualified before the index clause was signed. A steel move no longer becomes an emergency PO at the spot price.</p>",
         skills: ["Procurement", "Contract Negotiation", "Program Management"],
       },
     ],
@@ -1494,21 +1473,21 @@ export const operationsProfiles = [
             startDate: "2021-11-01",
             projects: [
               {
-                name: "Slotting and walk-path rewrite",
+                name: "Reslotted A items to the golden zone and raised units per labor hour 17% while cutting travel 24%",
                 description:
-                  "Reslotted A items to the golden zone and rewrote pick paths. Units per labor hour rose 17% and travel per pick fell 24%.",
+                  "Reslotted A items to the golden zone and rewrote pick paths so a grocery wave no longer walked the building for a case that should have been at the hip. Units per labor hour rose 17% and travel per pick fell 24%, and the labor plan finally matched the wave instead of a hope.",
                 skills: ["Warehouse Management", "Lean Manufacturing", "Workforce Planning"],
               },
               {
-                name: "Cycle-count without a shutdown",
+                name: "Installed ABC cycle counts that hold 99.4% accuracy without an annual wall-to-wall shutdown",
                 description:
-                  "Location-audit and ABC cycle counts that hold 99.4% accuracy. The annual wall-to-wall became a sample, not a holiday.",
+                  "Installed location-audit and ABC cycle counts that hold 99.4% accuracy so the annual wall-to-wall became a sample, not a holiday that shut the building. A mis-slot was a process failure with an owner, and the WMS and ERP stayed in balance at the hour, not the week.",
                 skills: ["Inventory Optimization", "ERP"],
               },
               {
-                name: "Yard and dock-door appointments",
+                name: "Tied WMS dock doors to TMS appointments and cut average carrier dwell from 94 to 41 minutes",
                 description:
-                  "Tied WMS dock doors to TMS appointments. Average carrier dwell fell from 94 to 41 minutes.",
+                  "Tied WMS dock doors to TMS appointments so carriers were not staged in the yard for two hours waiting on a door that had never been theirs. Average carrier dwell fell from 94 to 41 minutes, and the yard stopped being an unpaid waiting room with a forklift risk.",
                 skills: ["TMS", "Stakeholder Management", "Process Safety"],
               },
             ],
@@ -1528,15 +1507,15 @@ export const operationsProfiles = [
             endDate: "2021-10-15",
             projects: [
               {
-                name: "Cooler wave discipline",
+                name: "Stopped releasing cooler waves the crew could not pick and cut refrigerated A-item shorts 38%",
                 description:
-                  "Stopped releasing waves the cooler could not pick. Shorts on refrigerated A items fell 38%.",
+                  "Stopped releasing waves the cooler could not pick after the night crew had been living on shorts and a radio call for more people. Shorts on refrigerated A items fell 38%, and the labor plan finally respected the doors and the hours instead of a wave that looked good in the WMS.",
                 skills: ["Warehouse Management", "Workforce Planning"],
               },
               {
-                name: "PIT and racking reset",
+                name: "Retrained PIT operators, repaired 40 damaged bays, and cut equipment recordables by half",
                 description:
-                  "Retrained PIT operators and repaired 40 damaged bays. Recordables tied to equipment fell by half in a year.",
+                  "Retrained PIT operators and repaired 40 damaged bays after a racking hit had become a shrug and a cone. Recordables tied to equipment fell by half in a year, and a damaged upright was a work order the same shift, not a story for the next safety meeting.",
                 skills: ["Process Safety", "Workforce Planning"],
               },
             ],
@@ -1547,15 +1526,15 @@ export const operationsProfiles = [
             endDate: "2018-08-31",
             projects: [
               {
-                name: "Night-shift standard work",
+                name: "Wrote night-shift receiving and putaway standard work and cut mis-slots on that crew 41%",
                 description:
-                  "Wrote receiving and putaway standard work for nights. Mis-slots on the night crew dropped 41%.",
+                  "Wrote receiving and putaway standard work for nights after the day crew had been inheriting a building the night shift had invented. Mis-slots on the night crew dropped 41%, and a label that did not match the location was a process miss, not a picker problem.",
                 skills: ["Warehouse Management", "Lean Manufacturing"],
               },
               {
-                name: "WMS–ERP nightly recon",
+                name: "Built a nightly WMS-to-ERP reconciliation that caught inventory drift before the cycle count",
                 description:
-                  "Closed the nightly inventory recon before first wave. The morning surprise count ended.",
+                  "Closed the nightly inventory recon before first wave so a WMS move that never hit the ERP could not hide until the customer audit. The morning surprise count ended, and the reconciling journal became an exception with an owner instead of the close process itself.",
                 skills: ["ERP", "Inventory Optimization"],
               },
             ],
@@ -1586,13 +1565,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Columbus campus slotting program",
+        name: "Columbus campus slotting and walk-path program",
         description:
-          "<p>A golden-zone slotting and walk-path rewrite for a 720k sq ft campus. Units per labor hour rose 17%, travel per pick fell 24%, and the labor plan finally matched the wave.</p>",
-        links: [
-          { label: "Slotting program", url: "https://www.example.com/ward-slotting" },
-          { label: "Labor model", url: "https://www.example.com/ward-labor-model" },
-        ],
+          "<p>A golden-zone slotting and walk-path rewrite for a 720k sq ft campus. Units per labor hour rose 17%, travel per pick fell 24%, and the labor plan finally matched the wave. A mis-slot is a process failure with an owner, not a picker problem.</p>",
         skills: ["Warehouse Management", "Lean Manufacturing", "Workforce Planning"],
       },
     ],
@@ -1671,21 +1646,21 @@ export const operationsProfiles = [
             startDate: "2022-01-03",
             projects: [
               {
-                name: "Scorecard and same-week debrief",
+                name: "Required a written scorecard and same-week debrief and cut time-to-offer on priority roles from 62 to 38 days",
                 description:
-                  "Required a written scorecard and a debrief inside five business days. Time-to-offer on priority roles fell from 62 to 38 days.",
+                  "Required a written scorecard and a debrief inside five business days so a hiring manager could not keep a search open by 'just meeting one more person.' Time-to-offer on priority roles fell from 62 to 38 days, and interviewer training became a prerequisite, not a suggestion the ELT could skip.",
                 skills: ["Talent Acquisition", "Change Management", "Stakeholder Management"],
               },
               {
-                name: "Headcount plan that closes reqs",
+                name: "Tied the annual hiring plan to funded seats and cut open requisitions 22%",
                 description:
-                  "Tied the annual hiring plan to funded seats. Open reqs dropped 22% and the leftover-req pile disappeared.",
+                  "Tied the annual hiring plan to funded seats so leftover reqs could not sit open as a comfort blanket. Open reqs dropped 22% and the leftover-req pile disappeared, which meant the ATS finally showed roles the business could staff and pay for.",
                 skills: ["Workforce Planning", "Organizational Design", "HRIS"],
               },
               {
-                name: "Careers narrative reset",
+                name: "Rewrote the careers narrative and raised senior editorial offer-accept from 61% to 78%",
                 description:
-                  "Rewrote the careers site and employee stories. Senior editorial offer-accept rose from 61% to 78% in three quarters.",
+                  "Rewrote the careers site and employee stories so the company stopped losing senior editors to a louder brand with a thinner bench. Senior editorial offer-accept rose from 61% to 78% in three quarters, and the passive candidates we already knew finally had a story worth returning a call for.",
                 skills: ["Brand Strategy", "Relationship Management", "Talent Acquisition"],
               },
             ],
@@ -1706,15 +1681,15 @@ export const operationsProfiles = [
             endDate: "2021-12-17",
             projects: [
               {
-                name: "Retained editor-in-chief slate",
+                name: "Closed four editor-in-chief searches in 11 months with slates the boards actually chose from",
                 description:
-                  "Closed four EIC searches in 11 months with slates the boards actually chose from. No search reopened after kickoff.",
+                  "Closed four EIC searches in 11 months with slates the boards actually chose from, not a single favorite dressed up as a process. No search reopened after kickoff, and the scorecard was written before the first outreach, which is when it still has a chance.",
                 skills: ["Talent Acquisition", "Stakeholder Management"],
               },
               {
-                name: "Silver-medalist bench",
+                name: "Kept a living bench of 80 finalists so two sudden VP searches started with a shortlist",
                 description:
-                  "Kept a living bench of 80 finalists. Two sudden VP searches started with a shortlist, not a Boolean.",
+                  "Kept a living bench of 80 silver-medalist and passive finalists so a sudden VP search did not start from a blank Boolean. Two of those searches opened with a shortlist, and the clients stopped paying retainers to watch us rebuild a slate from scratch.",
                 skills: ["Relationship Management", "Workforce Planning"],
               },
             ],
@@ -1725,15 +1700,15 @@ export const operationsProfiles = [
             endDate: "2018-05-31",
             projects: [
               {
-                name: "Consumer-brand volume desk",
+                name: "Filled 70 brand and marketing seats a year with a 28-day median time-to-slate",
                 description:
-                  "Filled 70 brand and marketing seats a year with a 28-day median time-to-slate.",
+                  "Filled 70 brand and marketing seats a year from a volume desk that treated the ATS as the system of record, not a graveyard. Median time-to-slate held at 28 days, and the clients stopped asking where the other two candidates were hiding in a spreadsheet.",
                 skills: ["Talent Acquisition", "HRIS"],
               },
               {
-                name: "Structured interview kit",
+                name: "Wrote the first structured interview kit the firm sent with a slate and lifted conversion 9 points",
                 description:
-                  "Wrote the first structured kit the firm sent with a slate. Client interview-to-offer conversion rose 9 points.",
+                  "Wrote the first structured interview kit the firm sent with a slate so a client could not run a vibe-based panel and then blame the search. Interview-to-offer conversion rose 9 points, and the debrief finally had evidence instead of 'we just didn't click.'",
                 skills: ["Change Management", "Talent Acquisition"],
               },
             ],
@@ -1753,15 +1728,15 @@ export const operationsProfiles = [
             endDate: "2015-03-20",
             projects: [
               {
-                name: "Editorial contract bench",
+                name: "Built a 200-person editorial contract bench and cut fill time on those requisitions from 12 days to 4",
                 description:
-                  "Built a 200-person contract bench for copy and production. Fill time on those reqs fell from 12 days to 4.",
+                  "Built a 200-person contract bench for copy and production so a last-minute book close did not start with a panicked Boolean. Fill time on those reqs fell from 12 days to 4, and the people we called had already said they wanted the work.",
                 skills: ["Talent Acquisition", "Relationship Management"],
               },
               {
-                name: "ATS hygiene",
+                name: "Cleaned 4,000 stale ATS records so the desk stopped calling people who had asked to be left alone",
                 description:
-                  "Cleaned 4,000 stale records so the desk stopped calling people who had asked to be left alone.",
+                  "Cleaned 4,000 stale records so the desk stopped calling people who had asked to be left alone and then blaming 'the market' when they hung up. The ATS became a bench again, and the next outreach list had a date and a permission, not a 2011 resume.",
                 skills: ["HRIS", "Stakeholder Management"],
               },
             ],
@@ -1797,13 +1772,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Hiring system for a media company",
+        name: "Hiring operating system for a media company",
         description:
-          "<p>Scorecards, same-week debriefs, and a funded headcount plan. Time-to-offer on priority roles fell from 62 to 38 days, and the leftover-req pile went away.</p>",
-        links: [
-          { label: "Hiring system", url: "https://www.example.com/blanchard-hiring-system" },
-          { label: "Scorecard kit", url: "https://www.example.com/blanchard-scorecards" },
-        ],
+          "<p>Scorecards, same-week debriefs, and a funded headcount plan. Time-to-offer on priority roles fell from 62 to 38 days, and the leftover-req pile went away. Interviewer training is a prerequisite; 'just one more candidate' now needs a reason.</p>",
         skills: ["Talent Acquisition", "Workforce Planning", "Change Management"],
       },
     ],
@@ -1882,21 +1853,21 @@ export const operationsProfiles = [
             startDate: "2020-09-14",
             projects: [
               {
-                name: "Investigation standard and case system",
+                name: "Wrote the investigation standard, moved cases off email, and cut median close from 38 to 22 days",
                 description:
-                  "Wrote the investigation standard and moved cases off email into a tracked system. Median close fell from 38 to 22 days; two audits of the process came back clean.",
+                  "Wrote the investigation standard and moved cases off email into a tracked system so a file could survive later review and a person still had to come to work on Monday. Median close fell from 38 to 22 days; two audits of the process came back clean, and hold notices finally had a log.",
                 skills: ["Employee Relations", "Internal Controls", "Program Management"],
               },
               {
-                name: "Manager ER playbook",
+                name: "Trained 280 people leaders on an ER playbook and cut informal issues that became formal cases 24%",
                 description:
-                  "Trained 280 people leaders on intake, documentation, and when to call ER. Informal issues that became formal cases dropped 24%.",
+                  "Trained 280 people leaders on intake, documentation, and when to call ER so a complaint did not have to become a case before a manager would write anything down. Informal issues that became formal cases dropped 24%, and the leaders who called early stopped being the ones who showed up in the risk pack.",
                 skills: ["Change Management", "Relationship Management", "Stakeholder Management"],
               },
               {
-                name: "Chronic-pattern org reviews",
+                name: "Used repeat-case data to trigger org-design reviews and redesigned two high-volume desks",
                 description:
-                  "Used repeat-case data to trigger span and team-design reviews. Two high-volume desks were redesigned instead of investigated again.",
+                  "Used repeat-case data to trigger span and team-design reviews when a chronic ER pattern was actually a desk that could not be managed. Two high-volume desks were redesigned instead of investigated again, and the next intake had a structure that could hold, not another coaching memo.",
                 skills: ["Organizational Design", "Workforce Planning", "Employee Relations"],
               },
             ],
@@ -1917,15 +1888,15 @@ export const operationsProfiles = [
             endDate: "2020-08-31",
             projects: [
               {
-                name: "Contact-center conduct reset",
+                name: "Rebuilt contact-center attendance and conduct standards and cut grievances on those policies 31%",
                 description:
-                  "Rebuilt attendance and conduct standards with the center leaders. Grievances on those policies fell 31% after the rewrite.",
+                  "Rebuilt attendance and conduct standards with the center leaders after the old rules had been generating grievances faster than they generated attendance. Grievances on those policies fell 31% after the rewrite, and the union and the floor finally had one fact pattern instead of two stories.",
                 skills: ["Employee Relations", "Stakeholder Management", "Change Management"],
               },
               {
-                name: "Privilege and hold protocol",
+                name: "Installed legal-hold and privilege logging with counsel so the next external review found complete files",
                 description:
-                  "Installed legal-hold and privilege logging with counsel. The next external review found the files complete.",
+                  "Installed legal-hold and privilege logging with counsel so a later review did not discover the file in a personal inbox. The next external review found the files complete, and a hold notice had an owner and a date instead of a hope that someone had saved the thread.",
                 skills: ["Internal Controls", "Program Management"],
               },
             ],
@@ -1936,15 +1907,15 @@ export const operationsProfiles = [
             endDate: "2017-03-31",
             projects: [
               {
-                name: "Claims-office ER desk",
+                name: "Covered four claims offices as first-line ER so managers called before they issued the warning",
                 description:
-                  "Covered four claims offices as the first-line ER partner. Managers started calling before they issued the warning.",
+                  "Covered four claims offices as the first-line ER partner so a performance conversation did not have to become a complaint before anyone called. Managers started calling before they issued the warning, and the file that landed on Monday was one we had already helped write.",
                 skills: ["Employee Relations", "Relationship Management"],
               },
               {
-                name: "Policy FAQ for people leaders",
+                name: "Wrote a people-leader policy FAQ that cut repeat questions on leave and attendance by half",
                 description:
-                  "Wrote a short policy FAQ that cut repeat questions on leave and attendance by half.",
+                  "Wrote a short policy FAQ that cut repeat questions on leave and attendance by half after the same three scenarios had been eating the inbox every Monday. Managers could answer the ordinary case without waiting on HR, and the exceptions that still came in were actually exceptions.",
                 skills: ["Change Management", "Stakeholder Management"],
               },
             ],
@@ -1980,13 +1951,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "ER operating system",
+        name: "Employee-relations operating system and case file",
         description:
-          "<p>An investigation standard, a case system, and a manager playbook. Median time-to-close fell from 38 to 22 days, and two audits of the process came back with zero findings.</p>",
-        links: [
-          { label: "ER operating system", url: "https://www.example.com/donovan-er-system" },
-          { label: "Manager playbook", url: "https://www.example.com/donovan-er-playbook" },
-        ],
+          "<p>An investigation standard, a case system, and a manager playbook. Median time-to-close fell from 38 to 22 days, and two audits of the process came back with zero findings. I write for the file and for the person who still has to come to work on Monday.</p>",
         skills: ["Employee Relations", "Internal Controls", "Change Management"],
       },
     ],
@@ -2065,21 +2032,21 @@ export const operationsProfiles = [
             startDate: "2021-06-01",
             projects: [
               {
-                name: "Job architecture and salary bands",
+                name: "Rebuilt levels and bands for 140 job families and cut off-cycle exceptions 41%",
                 description:
-                  "Rebuilt levels and bands for 140 job families. Range penetration is now visible by org, and off-cycle exceptions dropped 41%.",
+                  "Rebuilt levels and bands for 140 job families so range penetration is visible by org, not a year-end surprise in a slide. Off-cycle exceptions dropped 41%, and two title-inflation waves were walked back before they hit the cycle and made the next hire unpayable.",
                 skills: ["Compensation", "Organizational Design", "HRIS"],
               },
               {
-                name: "Annual cycle with a closed pool",
+                name: "Modeled the annual cycle with finance before lock and landed spend within 1.4% of the pool",
                 description:
-                  "Modeled the cycle with finance before lock. Spend landed within 1.4% of the approved pool and the leftover 'we will find it' habit died.",
+                  "Modeled the cycle with finance before lock so the leftover 'we will find it' habit could not reopen the pool in week three. Spend landed within 1.4% of the approved pool, and the board pack used the same cost and equity-burn numbers finance had already signed.",
                 skills: ["Workforce Planning", "Financial Modeling", "Stakeholder Management"],
               },
               {
-                name: "Offer guidelines and exception path",
+                name: "Published offer guidelines and a dual-approval path so new-hire premiums stopped blowing the range",
                 description:
-                  "Published offer guidelines and a dual-approval exception path. New-hire premiums stopped blowing the range for the next person in the seat.",
+                  "Published offer guidelines and a dual-approval exception path so a candidate ask could not blow the range for the next person in the seat. The answer in the exception meeting is a band and a rationale, not a vibe, and the shadow spreadsheet for special deals was retired.",
                 skills: ["Compensation", "Internal Controls", "Market Analysis"],
               },
             ],
@@ -2100,15 +2067,15 @@ export const operationsProfiles = [
             endDate: "2021-05-14",
             projects: [
               {
-                name: "Engineering market cut",
+                name: "Re-cut survey data for hardware versus software engineering so offers stopped missing on hardware",
                 description:
-                  "Re-cut survey data for hardware vs. software engineering so offers stopped missing on the hardware side.",
+                  "Re-cut survey data for hardware versus software engineering so offers stopped missing on the hardware side while software looked 'on market' in a blended cut. Hiring managers finally had a number they could defend, and we stopped paying a software premium for a board-layout seat.",
                 skills: ["Market Analysis", "Compensation", "Stakeholder Management"],
               },
               {
-                name: "Equity refresh model",
+                name: "Built an equity refresh model by level and performance and cut unplanned off-cycle grants 33%",
                 description:
-                  "Built a refresh model by level and performance. Unplanned off-cycle grants fell 33% the next year.",
+                  "Built a refresh model by level and performance so an off-cycle grant had to survive the same math as the cycle. Unplanned off-cycle grants fell 33% the next year, and the exception path had dual approval instead of a hallway yes that showed up in the burn.",
                 skills: ["Financial Modeling", "Compensation", "Internal Controls"],
               },
             ],
@@ -2119,15 +2086,15 @@ export const operationsProfiles = [
             endDate: "2018-11-30",
             projects: [
               {
-                name: "First salary-band book",
+                name: "Wrote the first internally published salary-band book so managers stopped inventing titles to dodge a range",
                 description:
-                  "Wrote the first band book the company would publish internally. Managers stopped inventing titles to dodge a range.",
+                  "Wrote the first band book the company would publish internally so a manager could not invent a title to dodge a range and then act surprised at cycle. Job codes and bands lived in the HRIS, and the next offer started from a level the architecture could actually hold.",
                 skills: ["Compensation", "Organizational Design", "HRIS"],
               },
               {
-                name: "Offer-letter system of record",
+                name: "Moved offer letters into the HRIS with job-code checks and retired the shadow Word docs",
                 description:
-                  "Moved offer letters into the HRIS with job-code checks. Shadow Word docs lost.",
+                  "Moved offer letters into the HRIS with job-code checks so a special deal could not hide in a Word doc on someone's desktop. Shadow Word docs lost, and the audit trail for who got what survived a later review instead of a search through email.",
                 skills: ["HRIS", "Internal Controls"],
               },
             ],
@@ -2165,14 +2132,7 @@ export const operationsProfiles = [
       {
         name: "Job architecture for a 1,600-person SaaS company",
         description:
-          "<p>Levels, bands, and offer guidelines that managers can defend. Off-cycle exceptions dropped 41%, and range penetration stopped being a year-end surprise.</p>",
-        links: [
-          {
-            label: "Architecture overview",
-            url: "https://www.example.com/traore-job-architecture",
-          },
-          { label: "Offer guidelines", url: "https://www.example.com/traore-offer-guidelines" },
-        ],
+          "<p>Levels, bands, and offer guidelines that managers can defend. Off-cycle exceptions dropped 41%, and range penetration stopped being a year-end surprise. The exception meeting answers with a band and a rationale, not a vibe.</p>",
         skills: ["Compensation", "Organizational Design", "HRIS"],
       },
     ],
@@ -2250,21 +2210,21 @@ export const operationsProfiles = [
             startDate: "2022-04-11",
             projects: [
               {
-                name: "Product-org redesign",
+                name: "Redrew product and engineering around three platforms and landed the hiring map the same week, with no freeze",
                 description:
-                  "Redrew product and engineering around three platforms. Hiring map and HRIS orgs landed the same week as the announcement; no freeze.",
+                  "Redrew product and engineering around three platforms so the announcement and the HRIS orgs were the same file. Hiring map and supervisory orgs landed the same week as the announcement; no freeze, and engagement dips recovered inside a quarter because managers had a toolkit instead of a rumor.",
                 skills: ["Organizational Design", "HRIS", "Change Management"],
               },
               {
-                name: "Quarterly funded-seat plan",
+                name: "Tied open requisitions to a funded quarterly plan and cut unfunded leftover reqs from 34 to 6",
                 description:
-                  "Tied open reqs to a funded quarterly plan with finance. Unfunded leftover reqs dropped from 34 to 6 in two quarters.",
+                  "Tied open reqs to a funded quarterly plan with finance so a wish list could not hide as a requisition. Unfunded leftover reqs dropped from 34 to 6 in two quarters, and TA stopped working seats the GM had not paid for.",
                 skills: ["Workforce Planning", "Stakeholder Management", "Talent Acquisition"],
               },
               {
-                name: "Manager ER and performance cadence",
+                name: "Installed a monthly performance and ER huddle for 45 leaders and cut formal cases from skipped conversations 27%",
                 description:
-                  "Installed a monthly performance and ER huddle for 45 people leaders. Formal cases from skipped conversations fell 27%.",
+                  "Installed a monthly performance and ER huddle for 45 people leaders so a conflict did not have to wait for a specialist or become a case. Formal cases from skipped conversations fell 27%, and the leaders who called early were no longer the ones who showed up in the file.",
                 skills: ["Employee Relations", "Relationship Management"],
               },
             ],
@@ -2285,15 +2245,15 @@ export const operationsProfiles = [
             endDate: "2022-03-31",
             projects: [
               {
-                name: "GTM split into three regions",
+                name: "Split GTM into three regions and moved 90 people without a skip in quota credit",
                 description:
-                  "Designed the regional GTM org and moved 90 people without a skip in quota credit. HRIS and comp changes landed on the same Monday.",
+                  "Designed the regional GTM org and moved 90 people without a skip in quota credit, which is the part that usually breaks the quarter. HRIS and comp changes landed on the same Monday, and the skip-level cadence kept the engagement dip inside one quarter.",
                 skills: ["Organizational Design", "HRIS", "Change Management"],
               },
               {
-                name: "Headcount lock with finance",
+                name: "Stopped mid-quarter requisitions with no budget so the quarterly plan became the only way a seat opened",
                 description:
-                  "Stopped mid-quarter reqs that had no budget. The quarterly plan became the only way a seat opened.",
+                  "Stopped mid-quarter reqs that had no budget after the company had been opening seats in a slide and then arguing with finance in week six. The quarterly plan became the only way a seat opened, and the GM, finance, and I used one headcount number.",
                 skills: ["Workforce Planning", "Stakeholder Management"],
               },
             ],
@@ -2304,16 +2264,16 @@ export const operationsProfiles = [
             endDate: "2019-12-31",
             projects: [
               {
-                name: "First HRIS org structure",
+                name: "Stood up supervisory orgs and job codes at 250 people and retired the spreadsheet org chart",
                 description:
-                  "Stood up supervisory orgs and job codes when the company passed 250. The spreadsheet org chart retired.",
+                  "Stood up supervisory orgs and job codes when the company passed 250 and the slide org had stopped matching anyone's manager. The spreadsheet org chart retired, and position management in the HRIS became the file we used for headcount, not a picture we redrew after the fact.",
                 skills: ["HRIS", "Organizational Design"],
               },
               {
-                name: "Hiring intake with founders",
+                name: "Wrote the first founder intake and scorecard and cut time-to-offer on engineering seats 16 days",
                 description:
-                  "Wrote the first intake and scorecard the founders would use. Time-to-offer on engineering seats fell 16 days.",
-                skills: ["Talent Acquisition", "Relationship Management", "Employee Relations"],
+                  "Wrote the first intake and scorecard the founders would use so a priority engineering seat did not sit open while we debated the level in a hallway. Time-to-offer on those seats fell 16 days, and TA finally had a written brief instead of a vibe.",
+                skills: ["Talent Acquisition", "Relationship Management", "Stakeholder Management"],
               },
             ],
           },
@@ -2343,13 +2303,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Product-org redesign without a freeze",
+        name: "Product-org redesign that landed without a freeze",
         description:
-          "<p>An org design, HRIS cutover, and hiring map that landed the same week as the announcement. Two platform teams stood up without a six-month stall.</p>",
-        links: [
-          { label: "Design brief", url: "https://www.example.com/ortega-product-org" },
-          { label: "Change toolkit", url: "https://www.example.com/ortega-change-toolkit" },
-        ],
+          "<p>An org design, HRIS cutover, and hiring map that landed the same week as the announcement. Two platform teams stood up without a six-month stall. Manager toolkits and skip-levels kept the engagement dip inside one quarter.</p>",
         skills: ["Organizational Design", "HRIS", "Change Management"],
       },
     ],
@@ -2427,21 +2383,21 @@ export const operationsProfiles = [
             startDate: "2021-03-01",
             projects: [
               {
-                name: "House architecture reset",
+                name: "Merged two overlapping cleaners, killed a third-place brand, and cut marketing cost 120 bps with share still up",
                 description:
-                  "Merged two overlapping cleaners and killed a third-place brand in a declining aisle. Marketing cost as a percent of sales fell 120 bps with share still up on the survivors.",
+                  "Merged two overlapping cleaners and killed a third-place brand in a declining aisle instead of funding another revitalization. Marketing cost as a percent of sales fell 120 bps with share still up on the survivors, and the $40M TAM we sized was the one that did not get a team.",
                 skills: ["Brand Strategy", "Market Analysis", "Market Sizing"],
               },
               {
-                name: "National campaign with a holdout",
+                name: "Ran the hero campaign against a retailer holdout and landed 18% incremental lift on the hero SKU",
                 description:
-                  "Ran the hero campaign against a retailer holdout. Incremental lift landed at 18% on the hero SKU; we cut the channels that did not move it.",
+                  "Ran the hero campaign against a retailer holdout so incrementality had a number, not a vanity-reach slide. Incremental lift landed at 18% on the hero SKU; we cut the channels that did not move it, and sales could reuse the content without rewriting the brand every circular.",
                 skills: ["Campaign Analytics", "Content Strategy", "Product Marketing"],
               },
               {
-                name: "Retailer sell-in system",
+                name: "Replaced custom banner decks with one 12-page sell-in story and hit 78% year-one ACV",
                 description:
-                  "One 12-page story for category captains instead of a custom deck per banner. Year-one ACV on the latest innovation hit 78%.",
+                  "Wrote one 12-page story for category captains instead of a custom deck per banner that became a different company on the shelf. Year-one ACV on the latest innovation hit 78% against a 65% target, and the second brief was the one I refused.",
                 skills: ["Slide Storytelling", "Stakeholder Management", "Product Marketing"],
               },
             ],
@@ -2462,15 +2418,15 @@ export const operationsProfiles = [
             endDate: "2021-02-12",
             projects: [
               {
-                name: "Club-channel restage",
+                name: "Restaged the club pack and aisle story and lifted club velocity 14% without a list-price cut",
                 description:
-                  "Restaged the club pack and the aisle story. Club velocity rose 14% without a list-price cut.",
+                  "Restaged the club pack and the aisle story so a warehouse club did not get a smaller grocery pack with a louder claim. Club velocity rose 14% without a list-price cut, and the category captains finally had a story they did not have to rewrite in the room.",
                 skills: ["Brand Strategy", "Market Analysis", "Stakeholder Management"],
               },
               {
-                name: "Always-on content calendar",
+                name: "Replaced one-off agency films with a quarterly content system and cut asset waste by a third",
                 description:
-                  "Replaced one-off agency films with a quarterly content system sales could reuse. Asset waste fell by a third.",
+                  "Replaced one-off agency films with a quarterly content system sales could reuse without inventing a new brand every circular. Asset waste fell by a third, and incrementality—not vanity reach—decided which films got another quarter of budget.",
                 skills: ["Content Strategy", "Campaign Analytics"],
               },
             ],
@@ -2481,15 +2437,15 @@ export const operationsProfiles = [
             endDate: "2018-01-31",
             projects: [
               {
-                name: "Spring innovation sell-in",
+                name: "Wrote the first sell-in category managers stopped rewriting and beat prior-year spring distribution by 9 ACV points",
                 description:
-                  "Wrote the first sell-in that category managers stopped rewriting. Distribution on the spring SKU beat the prior year by 9 ACV points.",
+                  "Wrote the first sell-in that category managers stopped rewriting after they had been turning every deck into their own brand. Distribution on the spring SKU beat the prior year by 9 ACV points, and the 12-page story survived a 20-minute meeting.",
                 skills: ["Product Marketing", "Slide Storytelling"],
               },
               {
-                name: "Category size for a new wipe",
+                name: "Sized the wipe adjacent before tooling and killed the project at a $40M TAM",
                 description:
-                  "Sized the wipe adjacent before we tooled a line. The $40M TAM killed the project in time.",
+                  "Sized the wipe adjacent before we tooled a line so a 'new platform' had to clear a TAM that could pay for a team. The $40M TAM killed the project in time, and we stopped funding the third-place idea in a declining aisle.",
                 skills: ["Market Sizing", "Market Analysis"],
               },
             ],
@@ -2509,15 +2465,15 @@ export const operationsProfiles = [
             endDate: "2015-07-15",
             projects: [
               {
-                name: "Architecture for a four-brand client",
+                name: "Recommended killing a four-brand client's flanker that was stealing from the hero, and hero share rose 1.6 points",
                 description:
-                  "Recommended killing a flanker that was stealing from the hero. The client did it; hero share rose 1.6 points.",
+                  "Recommended killing a flanker that was stealing from the hero instead of 'revitalizing' a name that only won on the slide. The client did it; hero share rose 1.6 points, and the architecture finally had the courage the P&L had been asking for.",
                 skills: ["Brand Strategy", "Market Sizing"],
               },
               {
-                name: "Retailer war-room decks",
+                name: "Wrote 12-page retailer war-room stories that survived a 20-minute category meeting",
                 description:
-                  "Wrote the 12-page stories that survived a 20-minute category meeting.",
+                  "Wrote the 12-page stories that survived a 20-minute category meeting instead of a 70-page archaeology of every test. Sales, the agency, and the category captain used one brief, and the second brief was the one that did not enter the room.",
                 skills: ["Slide Storytelling", "Stakeholder Management"],
               },
             ],
@@ -2553,13 +2509,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Fourteen-brand architecture reset",
+        name: "House architecture reset across fourteen consumer brands",
         description:
-          "<p>A house architecture that merged two overlapping brands and killed a third-place name in a declining aisle. Marketing cost as a percent of sales fell 120 bps while share rose on the brands that remained.</p>",
-        links: [
-          { label: "Architecture case", url: "https://www.example.com/hart-architecture" },
-          { label: "Holdout campaign", url: "https://www.example.com/hart-holdout" },
-        ],
+          "<p>A house architecture that merged two overlapping brands and killed a third-place name in a declining aisle. Marketing cost as a percent of sales fell 120 bps while share rose on the brands that remained. The $40M TAM we sized was the one that did not get a team.</p>",
         skills: ["Brand Strategy", "Market Analysis", "Campaign Analytics"],
       },
     ],
@@ -2638,21 +2590,21 @@ export const operationsProfiles = [
             startDate: "2022-02-01",
             projects: [
               {
-                name: "Information-architecture rewrite",
+                name: "Rebuilt the public site around jobs-to-be-done hubs and lifted non-brand organic pipeline 62%",
                 description:
-                  "Rebuilt the public site around jobs-to-be-done and crawlable hubs. Non-brand organic pipeline rose 62% in 18 months.",
+                  "Rebuilt the public site around jobs-to-be-done and crawlable hubs so a facilities buyer could find the job, not a keyword dump. Non-brand organic pipeline rose 62% in 18 months, and share-of-search decided which cluster we staffed next instead of a leftover blog calendar.",
                 skills: ["SEO", "Content Strategy", "Market Analysis"],
               },
               {
-                name: "Quarterly mix-model reallocation",
+                name: "Stood up quarterly MMM, moved 14% of paid budget, and lifted incremental sign-ups 9% on flat spend",
                 description:
-                  "Stood up MMM and moved 14% of paid budget off last-click winners. Incremental sign-ups rose 9% on a flat spend.",
+                  "Stood up MMM and moved 14% of paid budget off last-click winners that looked efficient in the ad platform and were invisible in the holdout. Incremental sign-ups rose 9% on a flat spend, and the two paid-social campaigns that went flat lost their budget the next Monday.",
                 skills: ["Marketing Mix Modeling", "Campaign Analytics", "Python"],
               },
               {
-                name: "CRM pipeline contract with sales",
+                name: "Redefined the MQL and CRM handoff with sales and cut bounced marketing-sourced opportunities from 31% to 12%",
                 description:
-                  "Redefined MQL and handoff with sales. Bounce rate on marketing-sourced opportunities fell from 31% to 12%.",
+                  "Redefined MQL and handoff with sales so growth was scored on pipeline sales would accept, not sessions. Bounce rate on marketing-sourced opportunities fell from 31% to 12%, and UTM discipline finally matched the CRM fields the desk would fill.",
                 skills: ["CRM", "Marketing Operations", "Campaign Analytics"],
               },
             ],
@@ -2672,15 +2624,15 @@ export const operationsProfiles = [
             endDate: "2022-01-21",
             projects: [
               {
-                name: "Programmatic comparison pages",
+                name: "Shipped 120 comparison and integration pages and lifted organic demo requests 38%",
                 description:
-                  "Shipped 120 comparison and integration pages with a template sales would not disown. Organic demo requests rose 38%.",
+                  "Shipped 120 comparison and integration pages with a template sales would not disown, mapped to jobs instead of a scraped feature grid. Organic demo requests rose 38%, and the CRM could finally tell which page had earned the opportunity.",
                 skills: ["SEO", "Content Strategy", "CRM"],
               },
               {
-                name: "Technical crawl debt",
+                name: "Killed 4,000 thin URLs, fixed canonicals, and recovered rankings on the 40 money pages",
                 description:
-                  "Killed 4,000 thin URLs and fixed canonicals. Index bloat fell and rankings recovered on the 40 money pages.",
+                  "Killed 4,000 thin URLs and fixed canonicals after index bloat had buried the pages that actually converted. Rankings recovered on the 40 money pages, and the anomaly alerts caught the next crawl mess before the weekly pack had to explain it.",
                 skills: ["SEO", "Python"],
               },
             ],
@@ -2691,15 +2643,15 @@ export const operationsProfiles = [
             endDate: "2018-12-31",
             projects: [
               {
-                name: "First holdout on paid social",
+                name: "Geo-split two paid-social campaigns that looked efficient in-platform and cut the one that was flat",
                 description:
-                  "Geo-split two campaigns that looked efficient in-platform. One was flat; we cut it the next Monday.",
+                  "Geo-split two campaigns that looked efficient in-platform after last-click theater had been funding both. One was flat; we cut it the next Monday, and incrementality—not the ad platform's ROAS—became the number that kept a budget.",
                 skills: ["Campaign Analytics", "Marketing Operations"],
               },
               {
-                name: "UTM and source-of-truth cleanup",
+                name: "Wrote the UTM standard and CRM mapping and cut dark traffic from paid by half",
                 description:
-                  "Wrote the UTM standard and the CRM mapping. Dark traffic from paid fell by half.",
+                  "Wrote the UTM standard and the CRM mapping so paid could not hide as direct and then claim the pipeline. Dark traffic from paid fell by half, and the weekly pack finally had a source sales would accept.",
                 skills: ["Marketing Operations", "CRM", "Python"],
               },
             ],
@@ -2730,13 +2682,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Growth system with a mix model",
+        name: "Growth acquisition system with a quarterly mix model",
         description:
-          "<p>SEO that compounds, paid that has to survive a holdout, and a quarterly mix model that moved 14% of budget. Incremental sign-ups rose 9% on flat spend.</p>",
-        links: [
-          { label: "Growth system", url: "https://www.example.com/fletcher-growth-system" },
-          { label: "MMM note", url: "https://www.example.com/fletcher-mmm" },
-        ],
+          "<p>SEO that compounds, paid that has to survive a holdout, and a quarterly mix model that moved 14% of budget. Incremental sign-ups rose 9% on flat spend. Channels that look efficient in the ad platform and go flat in the holdout lose the budget.</p>",
         skills: ["SEO", "Marketing Mix Modeling", "Campaign Analytics"],
       },
     ],
@@ -2815,22 +2763,22 @@ export const operationsProfiles = [
             startDate: "2021-08-16",
             projects: [
               {
-                name: "Line-two launch and battlecards",
+                name: "Positioned a new handheld against two incumbents and lifted competitive win rate 7 points with field battlecards",
                 description:
-                  "Positioned a new handheld against two incumbents and shipped battlecards the field would open. Competitive win rate rose 7 points in two quarters.",
+                  "Positioned a new handheld against two incumbents and shipped battlecards the field would open on a job site, not a 40-page manifesto. Competitive win rate rose 7 points in two quarters, and the 6-slide field version was the one sales actually used.",
                 skills: ["Product Marketing", "Content Strategy", "Slide Storytelling"],
               },
               {
-                name: "SAM check before tooling",
+                name: "Sized a proposed handheld at $28M SAM with a price-only set and stopped the tooling PO",
                 description:
-                  "Sized a proposed SKU at $28M SAM with a price-only competitive set. The PO was not written.",
+                  "Sized a proposed SKU at $28M SAM with a price-only competitive set after the teardown showed a crowded segment we would have to buy. The PO was not written, and product, sales, and the channel heard the kill in the room instead of after the line was tooled.",
                 skills: ["Market Sizing", "Market Analysis", "Stakeholder Management"],
               },
               {
-                name: "Day-90 launch score",
+                name: "Scored the last launch at day 90 on pipeline and win rate and cut two channels",
                 description:
-                  "Scored the last launch on pipeline and win rate at day 90, not launch-week traffic. Two channels were cut; two were funded.",
-                skills: ["Campaign Analytics", "Brand Strategy", "Product Marketing"],
+                  "Scored the last launch on pipeline and win rate at day 90, not launch-week traffic that vanishes by week three. Two channels were cut; two were funded, and the brand stayed inside the company voice so a new SKU did not invent a second story.",
+                skills: ["Campaign Analytics", "Stakeholder Management", "Product Marketing"],
               },
             ],
           },
@@ -2849,15 +2797,15 @@ export const operationsProfiles = [
             endDate: "2021-08-01",
             projects: [
               {
-                name: "Platform narrative rewrite",
+                name: "Replaced a feature-list platform narrative with a job-to-be-done story and shortened new-logo cycles 11 days",
                 description:
-                  "Replaced a feature list with a job-to-be-done story. Sales cycle on new logos shortened 11 days.",
+                  "Replaced a feature list with a job-to-be-done story the economic buyer could repeat, inside the company brand so a new SKU did not invent a second voice. Sales cycle on new logos shortened 11 days, and the 10-slide version was the one that entered the room.",
                 skills: ["Product Marketing", "Brand Strategy", "Slide Storytelling"],
               },
               {
-                name: "Win/loss program",
+                name: "Ran 30 structured win/loss interviews a quarter and killed two roadmap items the teardown could not defend",
                 description:
-                  "Thirty structured win/loss interviews a quarter. Two roadmap items were killed; one pricing pack was rewritten.",
+                  "Ran thirty structured win/loss interviews a quarter so product would read the competitive landmine before staffing it. Two roadmap items were killed; one pricing pack was rewritten, and the next launch named the buyer and the job before the SKU shipped.",
                 skills: ["Market Analysis", "Stakeholder Management"],
               },
             ],
@@ -2868,16 +2816,16 @@ export const operationsProfiles = [
             endDate: "2019-02-28",
             projects: [
               {
-                name: "First demo script",
+                name: "Wrote the demo script SEs still use and cut trial time-to-first-value from 14 days to 6",
                 description:
-                  "Wrote the demo script SEs still use as the spine. Time-to-first-value in the trial dropped from 14 days to 6.",
+                  "Wrote the demo script SEs still use as the spine so a trial did not start with a feature tour the discovery had not earned. Time-to-first-value in the trial dropped from 14 days to 6, and sales reuse of the launch assets hit the number we later measured at 71%.",
                 skills: ["Content Strategy", "Product Marketing"],
               },
               {
-                name: "Category size for payroll add-on",
+                name: "Sized the payroll adjacent before staffing it and gave the $90M SAM a team",
                 description:
-                  "Sized the payroll adjacent before we staffed it. The $90M SAM got a team; a smaller adjacent did not.",
-                skills: ["Market Sizing", "Market Analysis", "Campaign Analytics"],
+                  "Sized the payroll adjacent before we staffed it so a smaller idea could not sneak in on enthusiasm. The $90M SAM got a team; a smaller adjacent did not, and the score at day 90 later used pipeline, not launch-week traffic, to decide what stayed funded.",
+                skills: ["Market Sizing", "Market Analysis", "Stakeholder Management"],
               },
             ],
           },
@@ -2907,13 +2855,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Field-tool launch kit",
+        name: "Field-tool launch kit and day-90 score",
         description:
-          "<p>Positioning, battlecards, and a day-90 score for a handheld line. Competitive win rate rose 7 points, and a $28M SAM SKU never got a tooling PO.</p>",
-        links: [
-          { label: "Launch kit", url: "https://www.example.com/desai-launch-kit" },
-          { label: "Win/loss note", url: "https://www.example.com/desai-win-loss" },
-        ],
+          "<p>Positioning, battlecards, and a day-90 score for a handheld line. Competitive win rate rose 7 points, and a $28M SAM SKU never got a tooling PO. The field uses a 6-slide story; the 40-page manifesto stays in the appendix.</p>",
         skills: ["Product Marketing", "Market Analysis", "Slide Storytelling"],
       },
     ],
@@ -2991,21 +2935,21 @@ export const operationsProfiles = [
             startDate: "2020-10-01",
             projects: [
               {
-                name: "Pipeline contract with sales",
+                name: "Rewrote the MQL and routing contract with sales and lifted accepted marketing-sourced pipeline from 69% to 91%",
                 description:
-                  "Rewrote MQL, routing, and accepted-pipeline rules with sales ops. Accepted marketing-sourced pipeline rose from 69% to 91%.",
+                  "Rewrote MQL, routing, and accepted-pipeline rules with sales ops so a campaign that sales could not trust did not count as a campaign. Accepted marketing-sourced pipeline rose from 69% to 91%, and the second definition of pipeline was the one I refused.",
                 skills: ["Marketing Operations", "CRM", "Stakeholder Management"],
               },
               {
-                name: "Quarterly mix-model cycle",
+                name: "Stood up quarterly MMM on paid, email, and partner and lifted incremental pipeline 8% on flat spend",
                 description:
-                  "Stood up MMM on paid, email, and partner. Moved 11% of budget; incremental pipeline rose 8% on flat spend.",
+                  "Stood up MMM on paid, email, and partner so a budget move did not take a three-week argument about the spreadsheet. Moved 11% of budget; incremental pipeline rose 8% on flat spend, and two always-on programs were sunset after three flat holdouts.",
                 skills: ["Marketing Mix Modeling", "Campaign Analytics", "Python"],
               },
               {
-                name: "UTM and naming standard",
+                name: "Moved seven channel owners onto one UTM taxonomy and cut dark traffic from paid and events by half",
                 description:
-                  "One taxonomy for seven channel owners. Dark traffic from paid and events fell by half in two quarters.",
+                  "Moved seven campaign owners onto a single UTM and naming standard so paid and events could not collide in the same source. Dark traffic from paid and events fell by half in two quarters, and the shadow tracker died in week four.",
                 skills: ["Change Management", "Marketing Operations", "SEO"],
               },
             ],
@@ -3025,15 +2969,15 @@ export const operationsProfiles = [
             endDate: "2020-09-18",
             projects: [
               {
-                name: "Client scorecard automation",
+                name: "Replaced a Monday spreadsheet with a weekly incrementality pack and expanded two clients who could see holdout lift",
                 description:
-                  "Replaced a Monday spreadsheet with a weekly incrementality pack. Two clients expanded after they could see holdout lift.",
+                  "Replaced a Monday spreadsheet with a weekly incrementality pack that did not need a narrator. Two clients expanded after they could see holdout lift, and a channel owner who wanted a friendlier number had to argue with the same pack finance used.",
                 skills: ["Campaign Analytics", "Python", "Stakeholder Management"],
               },
               {
-                name: "CRM for a 40-rep sales desk",
+                name: "Installed CRM routing and attribution a 40-rep desk would use and cut unattributed revenue from 22% to 7%",
                 description:
-                  "Routing and attribution that the desk would use. Unattributed revenue on the books fell from 22% to 7%.",
+                  "Installed routing and attribution that the 40-rep desk would actually fill, so events could not hide as dark pipeline. Unattributed revenue on the books fell from 22% to 7%, and the SLA with sales finally had a source both sides would sign.",
                 skills: ["CRM", "Marketing Operations"],
               },
             ],
@@ -3044,15 +2988,15 @@ export const operationsProfiles = [
             endDate: "2017-11-30",
             projects: [
               {
-                name: "Circular incrementality tests",
+                name: "Geo-split circulars for three grocers and killed a high-ROI insert the holdout showed was flat",
                 description:
-                  "Geo-split circulars for three grocers. One 'high ROI' insert was flat; we said so.",
-                skills: ["Campaign Analytics", "Marketing Mix Modeling"],
+                  "Geo-split circulars for three grocers after a 'high ROI' insert had been living on last-click theater. One insert was flat; we said so, and the weekly pack used incrementality instead of a circular that looked efficient in the platform and did nothing in the holdout.",
+                skills: ["Campaign Analytics", "Python"],
               },
               {
-                name: "First UTM dictionary",
+                name: "Wrote the UTM dictionary the shop still uses so paid and email stopped colliding in the same source",
                 description:
-                  "Wrote the dictionary the shop still uses. Paid and email stopped colliding in the same source.",
+                  "Wrote the UTM dictionary the shop still uses after paid and email had been colliding in the same source and then arguing about credit. The naming standard held, and the organic pipeline dashboard finally stopped inheriting paid sessions that had forgotten their tags.",
                 skills: ["Marketing Operations", "Change Management", "SEO"],
               },
             ],
@@ -3083,13 +3027,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Marketing ops system of record",
+        name: "Marketing operations stack and pipeline system of record",
         description:
-          "<p>A pipeline contract, a taxonomy, and a quarterly mix model. Sales accepted 91% of marketing-sourced pipeline, and 11% of budget moved to channels that actually lifted it.</p>",
-        links: [
-          { label: "Ops system", url: "https://www.example.com/carter-mops" },
-          { label: "MMM cycle", url: "https://www.example.com/carter-mmm" },
-        ],
+          "<p>A pipeline contract, a taxonomy, and a quarterly mix model. Sales accepted 91% of marketing-sourced pipeline, and 11% of budget moved to channels that actually lifted it. If sales cannot trust the source, the campaign did not happen.</p>",
         skills: ["Marketing Operations", "Marketing Mix Modeling", "CRM"],
       },
     ],
@@ -3168,21 +3108,21 @@ export const operationsProfiles = [
             startDate: "2021-01-04",
             projects: [
               {
-                name: "Named-account MEDDIC file",
+                name: "Ran 12 named accounts on a live MEDDIC file and closed $5.1M against a $4.8M quota",
                 description:
-                  "Ran 12 named accounts with a live MEDDIC score. Closed $5.1M against a $4.8M quota; commit accuracy 91%.",
+                  "Ran 12 named accounts with a live MEDDIC score so a happy conversation could not hide in the commit column. Closed $5.1M against a $4.8M quota; commit accuracy 91%, and a deal that could not name the economic buyer and the metric did not stay in the forecast.",
                 skills: ["MEDDIC", "Account Planning", "Pipeline Forecasting"],
               },
               {
-                name: "Sourced enterprise pipeline",
+                name: "Multi-threaded security, risk, and procurement before RFPs and sourced 38% of the pipeline",
                 description:
-                  "Multi-threaded security, risk, and procurement before RFPs. 38% of pipeline was sourced; two seven-figure deals started as a cold thread.",
+                  "Multi-threaded security, risk, and procurement before RFPs so inbound was not the only way a Fortune 1000 seat opened. 38% of pipeline was sourced; two seven-figure deals started as a cold thread, and if it was not in the CRM fields it was not in the forecast.",
                 skills: ["Enterprise Prospecting", "Opportunity Management", "CRM"],
               },
               {
-                name: "Business-case close",
+                name: "Closed on audit hours and control-gap cost instead of a bake-off and held average discount at 9%",
                 description:
-                  "Closed on audit hours and control-gap cost instead of a feature bake-off. Average discount on the book held at 9%.",
+                  "Closed on audit hours and control-gap cost instead of a feature bake-off so procurement could not reopen the metric that won the deal. Average discount on the book held at 9%, and MSA cycle averaged 34 days because the paper already had the number legal would not give away.",
                 skills: ["Value Selling", "Contract Negotiation", "MEDDIC"],
               },
             ],
@@ -3202,15 +3142,15 @@ export const operationsProfiles = [
             endDate: "2020-12-18",
             projects: [
               {
-                name: "First MEDDIC on the mid-market desk",
+                name: "Brought MEDDIC to a mid-market desk that lived in next-step theater and lifted stage-3-to-close 11 points",
                 description:
-                  "Brought MEDDIC to a desk that lived in next-step theater. Stage-3-to-close rose 11 points in three quarters.",
+                  "Brought MEDDIC to a desk that lived in next-step theater so a stalled deal was exited, not aged. Stage-3-to-close rose 11 points in three quarters, and the weekly forecast came from scores, not hope that a champion would 'circle back.'",
                 skills: ["MEDDIC", "Opportunity Management", "Pipeline Forecasting"],
               },
               {
-                name: "Procurement-ready paper",
+                name: "Built a legal redline playbook and cut post-verbal cycle time from 52 to 29 days",
                 description:
-                  "Built a redline playbook with legal so deals stopped dying in paper. Cycle time after verbal fell from 52 to 29 days.",
+                  "Built a redline playbook with legal so deals stopped dying in paper after a verbal yes. Cycle time after verbal fell from 52 to 29 days, and the value case stayed in the CRM so procurement could not reopen the metric that had already won.",
                 skills: ["Contract Negotiation", "CRM", "Value Selling"],
               },
             ],
@@ -3221,15 +3161,15 @@ export const operationsProfiles = [
             endDate: "2018-06-30",
             projects: [
               {
-                name: "Security-buyer outbound",
+                name: "Built the first outbound motion into CISOs and GRC leads and sourced $2.1M in pipeline",
                 description:
-                  "Built the first outbound motion into CISOs and GRC leads. Sourced $2.1M in pipeline in the last full year on the desk.",
+                  "Built the first outbound motion into CISOs and GRC leads so a security buyer did not have to find us in an inbound form. Sourced $2.1M in pipeline in the last full year on the desk, and every thread lived in the CRM or it did not count.",
                 skills: ["Enterprise Prospecting", "CRM"],
               },
               {
-                name: "Handoff that AEs would take",
+                name: "Wrote the SDR handoff note AEs stopped bouncing and lifted accepted meetings from 61% to 84%",
                 description:
-                  "Wrote the handoff note AEs stopped bouncing. Accepted meetings rose from 61% to 84%.",
+                  "Wrote the handoff note AEs stopped bouncing after meetings had been landing without a metric, a champion, or a next step. Accepted meetings rose from 61% to 84%, and the account plan started at handoff instead of at the first 'who is this?' email.",
                 skills: ["Opportunity Management", "Account Planning"],
               },
             ],
@@ -3260,13 +3200,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Enterprise MEDDIC operating system",
+        name: "Enterprise MEDDIC file and forecast operating system",
         description:
-          "<p>A live MEDDIC file, sourced pipeline, and a forecast I will defend. $5.1M on a $4.8M quota, 91% commit accuracy, and a 9% average discount.</p>",
-        links: [
-          { label: "Operating system", url: "https://www.example.com/rkim-meddic" },
-          { label: "Forecast notes", url: "https://www.example.com/rkim-forecast" },
-        ],
+          "<p>A live MEDDIC file, sourced pipeline, and a forecast I will defend. $5.1M on a $4.8M quota, 91% commit accuracy, and a 9% average discount. A deal that cannot name the economic buyer and the metric does not stay in commit.</p>",
         skills: ["MEDDIC", "Pipeline Forecasting", "Value Selling"],
       },
     ],
@@ -3344,21 +3280,21 @@ export const operationsProfiles = [
             startDate: "2020-05-01",
             projects: [
               {
-                name: "Eight-account portfolio plan",
+                name: "Wrote quarterly white-space maps for an $11M book and grew four accounts over 25% through two CFO changes",
                 description:
-                  "Quarterly white-space and political maps for an $11M book. Four accounts grew over 25%; two CFO changes did not slip a renewal.",
+                  "Wrote quarterly white-space and political maps for an $11M book so a champion leaving did not zero the account. Four accounts grew over 25%; two CFO changes did not slip a renewal, and the map lived in the CRM, not a slide that was already stale.",
                 skills: ["Account Planning", "Relationship Management", "CRM"],
               },
               {
-                name: "Multi-year paper",
+                name: "Moved five named accounts onto 36-month paper with a price-hold so December reopeners stopped being the plan",
                 description:
-                  "Moved five accounts onto 36-month paper with a price-hold. December reopeners stopped being the plan.",
+                  "Moved five accounts onto 36-month paper with a price-hold so procurement could not reopen the metric every December. Finance, internal audit, and the controller's office sat on the same map, and a deal that only had IT did not get forecasted.",
                 skills: ["Contract Negotiation", "Value Selling", "Stakeholder Management"],
               },
               {
-                name: "Renewal vs. expansion forecast",
+                name: "Split renewal and expansion in the forecast so expansion could not hide, and held commit inside 6%",
                 description:
-                  "Split the forecast so expansion could not hide inside a renewal. Commit on the book held inside 6%.",
+                  "Split the forecast so expansion could not hide inside a renewal and a 'good relationship' could not sit in the commit column. Commit on the book held inside 6%, and every opportunity had a next step with a date and a name.",
                 skills: ["Pipeline Forecasting", "Opportunity Management"],
               },
             ],
@@ -3379,15 +3315,15 @@ export const operationsProfiles = [
             endDate: "2020-04-17",
             projects: [
               {
-                name: "Media-holding-company land",
+                name: "Landed a six-entity media group at $720k ACV after a 14-month multi-thread that survived a champion leaving",
                 description:
-                  "Landed a six-entity media group at $720k ACV after a 14-month multi-thread. The first champion had left in month six.",
+                  "Landed a six-entity media group at $720k ACV after a 14-month multi-thread. The first champion had left in month six, and the next buyer already had a metric because the map had named them before the job change. Average expansion ACV on later books still traces to that habit.",
                 skills: ["Relationship Management", "Account Planning", "Value Selling"],
               },
               {
-                name: "Procurement without a bake-off tax",
+                name: "Took two deals through procurement on a written business case and landed discount at 11%",
                 description:
-                  "Took two deals through procurement on a written business case instead of a feature matrix. Discount landed at 11%.",
+                  "Took two deals through procurement on a written business case instead of a feature matrix that always ends in a bake-off tax. Discount landed at 11%, and the next step had a date so the deal could not age as a 'good relationship' in commit.",
                 skills: [
                   "Contract Negotiation",
                   "Stakeholder Management",
@@ -3402,15 +3338,15 @@ export const operationsProfiles = [
             endDate: "2017-06-30",
             projects: [
               {
-                name: "Mid-market finance desk",
+                name: "Carried a $1.4M mid-market finance quota and hit 108% and 121% in the last two years",
                 description:
-                  "Carried a $1.4M quota selling reporting suites into controllers' offices. Hit 108% and 121% in the last two years on the desk.",
+                  "Carried a $1.4M quota selling reporting suites into controllers' offices, with a next step and a date on every opportunity. Hit 108% and 121% in the last two years on the desk, and if it was not in the CRM it was not in the forecast I asked my manager to inspect.",
                 skills: ["Opportunity Management", "Pipeline Forecasting", "CRM"],
               },
               {
-                name: "First written account plans",
+                name: "Wrote inspectable account plans and lifted expansion from the existing book from 12% to 21% of the number",
                 description:
-                  "Wrote plans the manager could inspect. Expansion from the existing book rose from 12% to 21% of the number.",
+                  "Wrote plans the manager could inspect so a named account was more than a holiday card. Expansion from the existing book rose from 12% to 21% of the number, and I stayed two threads deep so a champion leaving did not zero the relationship.",
                 skills: ["Account Planning", "Relationship Management"],
               },
             ],
@@ -3441,13 +3377,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Named-account portfolio system",
+        name: "Named-account portfolio system for an $11M book",
         description:
-          "<p>Quarterly maps, multi-year paper, and a forecast that separates renewal from expansion. An $11M book with four accounts over 25% growth and commit inside 6%.</p>",
-        links: [
-          { label: "Portfolio system", url: "https://www.example.com/adler-portfolio" },
-          { label: "Account-plan template", url: "https://www.example.com/adler-account-plan" },
-        ],
+          "<p>Quarterly maps, multi-year paper, and a forecast that separates renewal from expansion. An $11M book with four accounts over 25% growth and commit inside 6%. Two CFO changes last year and neither renewal slipped.</p>",
         skills: ["Account Planning", "Relationship Management", "Pipeline Forecasting"],
       },
     ],
@@ -3525,21 +3457,21 @@ export const operationsProfiles = [
             startDate: "2022-06-01",
             projects: [
               {
-                name: "POV with an exit date",
+                name: "Required metrics, champion, and decision criteria before a POV and held a 74% technical-win rate",
                 description:
-                  "Required metrics, champion, and decision criteria before a POV. Technical-win rate on those POVs is 74%; open-ended evals were declined.",
+                  "Required metrics, champion, and decision criteria before a POV so an open-ended 'let us keep exploring' could not hide as a technical win. Technical-win rate on those POVs is 74%; open-ended evals were declined, and every POV had an exit date on the opportunity.",
                 skills: ["Sales Engineering", "MEDDIC", "Opportunity Management"],
               },
               {
-                name: "Value model in buyer units",
+                name: "Wrote integration-hour and failed-job value models and lifted average supported ACV from $180k to $260k",
                 description:
-                  "Wrote integration-hour and failed-job models the AE left behind. Average supported deal size rose from $180k to $260k ACV.",
+                  "Wrote integration-hour and failed-job models the AE was not allowed to leave behind, in a 12-slide readout the economic buyer could repeat. Average supported deal size rose from $180k to $260k ACV, and the architecture appendix stayed in the appendix.",
                 skills: ["Value Selling", "Slide Storytelling", "CRM"],
               },
               {
-                name: "Security and architect one-plan",
+                name: "Ran one security-and-architect evaluation plan so a side demo could not path around a no",
                 description:
-                  "One evaluation plan for security, the architect, and ops. Side demos stopped being the path around a no.",
+                  "Wrote one evaluation plan for security, the architect, and ops so a side demo for one persona could not become the path around a no. Unqualified demos on the paired book dropped once discovery had to earn the meeting, and the scope lived on the CRM opportunity.",
                 skills: ["Stakeholder Management", "Technical Leadership", "Sales Engineering"],
               },
             ],
@@ -3559,15 +3491,15 @@ export const operationsProfiles = [
             endDate: "2022-05-20",
             projects: [
               {
-                name: "Discovery-before-demo rule",
+                name: "Stopped demoing features discovery had not earned and lifted demo-to-POV conversion 16 points",
                 description:
-                  "Stopped demoing features discovery had not earned. Demo-to-POV conversion rose 16 points.",
+                  "Stopped demoing features discovery had not earned and coached AEs on what a meeting had to produce before a demo. Demo-to-POV conversion rose 16 points, and unqualified demos on the paired book dropped because MEDDIC had to name metrics and a champion first.",
                 skills: ["Sales Engineering", "Technical Leadership", "MEDDIC"],
               },
               {
-                name: "Shared readout template",
+                name: "Wrote a 12-slide POV readout AEs could present without me and cut post-POV cycle time 8 days",
                 description:
-                  "A 12-slide POV readout AEs could present without me in the room. Cycle time after POV fell 8 days.",
+                  "Wrote a 12-slide POV readout AEs could present without me in the room, with the value model in the buyer's units. Cycle time after POV fell 8 days, and the architecture appendix stayed in the appendix instead of becoming the meeting.",
                 skills: ["Slide Storytelling", "Value Selling", "CRM"],
               },
             ],
@@ -3578,15 +3510,15 @@ export const operationsProfiles = [
             endDate: "2019-07-31",
             projects: [
               {
-                name: "First 40 customer go-lives",
+                name: "Onboarded the first 40 mid-market customers and cut time-to-first-value from 11 weeks to 6",
                 description:
-                  "Onboarded 40 mid-market customers and fed the failure modes back to sales. Time-to-first-value dropped from 11 weeks to 6.",
+                  "Onboarded 40 mid-market customers and fed the failure modes back to sales so the next deal did not promise a connector we did not have. Time-to-first-value dropped from 11 weeks to 6, and the architect and the ops lead heard the same go-live number.",
                 skills: ["Technical Leadership", "Stakeholder Management"],
               },
               {
-                name: "Scope file on the opportunity",
+                name: "Moved implementation scope onto the CRM opportunity so sales stopped promising a connector we did not have",
                 description:
-                  "Moved implementation scope onto the CRM opportunity so sales stopped promising a connector we did not have.",
+                  "Moved implementation scope onto the CRM opportunity so a promised connector could not hide in a deck and then fail at legal. Sales stopped selling what we did not ship, and a POV that could not name an exit date was a loss, not an open-ended explore.",
                 skills: ["CRM", "Opportunity Management", "Sales Engineering"],
               },
             ],
@@ -3617,13 +3549,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "POV system with a value model",
+        name: "POV system with an exit date and value model",
         description:
-          "<p>Discovery has to earn the POV, the POV has an exit date, and the value model is in the buyer's units. Technical-win rate 74%, and average supported ACV moved from $180k to $260k.</p>",
-        links: [
-          { label: "POV system", url: "https://www.example.com/russo-pov" },
-          { label: "Value-model kit", url: "https://www.example.com/russo-value-model" },
-        ],
+          "<p>Discovery has to earn the POV, the POV has an exit date, and the value model is in the buyer's units. Technical-win rate 74%, and average supported ACV moved from $180k to $260k. A side demo for one persona is a risk, not a favor.</p>",
         skills: ["Sales Engineering", "Value Selling", "MEDDIC"],
       },
     ],
@@ -3702,21 +3630,21 @@ export const operationsProfiles = [
             startDate: "2021-07-01",
             projects: [
               {
-                name: "Inspectable forecast cadence",
+                name: "Installed weekly commit inspection from opportunity scores and held two-quarter accuracy on a $38M number inside 5%",
                 description:
-                  "Weekly inspection of commit from opportunity scores, not manager roll-up. Two-quarter accuracy on a $38M number held inside 5%.",
+                  "Installed weekly inspection of commit from opportunity scores, not manager roll-up, so a number that could not be inspected was not a number. Two-quarter accuracy on a $38M number held inside 5%, and I did not run a private forecast for the board.",
                 skills: ["Pipeline Forecasting", "CRM", "Stakeholder Management"],
               },
               {
-                name: "Deal-review and kill dates",
+                name: "Required next step, economic buyer, and kill date in reviews and cut stale stage-3 deals 44%",
                 description:
-                  "Required a next step, an economic buyer, and a kill date in every review. Stale stage-3 deals fell 44%.",
+                  "Required a next step, an economic buyer, and a kill date in every review so a bad deal exited early and Monday stayed honest. Stale stage-3 deals fell 44%, and the team moved onto a payments-cost case that dropped average discount from 18% to 11%.",
                 skills: ["Opportunity Management", "Value Selling", "Change Management"],
               },
               {
-                name: "Territory and ICP coverage",
+                name: "Rewrote territories and named-account plans for 42 sellers and lifted ICP coverage from 61% to 88%",
                 description:
-                  "Rewrote territories and named-account plans for 42 sellers. ICP coverage rose from 61% to 88%.",
+                  "Rewrote territories and named-account plans for 42 sellers so coverage of the ICP list was a managed number, not a hope. ICP coverage rose from 61% to 88%, and the regional managers called a miss in week two instead of week twelve.",
                 skills: ["Account Planning", "Relationship Management"],
               },
             ],
@@ -3736,9 +3664,9 @@ export const operationsProfiles = [
             endDate: "2021-06-15",
             projects: [
               {
-                name: "Central-region operating rhythm",
+                name: "Ran 11 AEs on Monday forecasts and Thursday reviews and hit 104%, 97%, and 112% over three years",
                 description:
-                  "Ran 11 AEs on a Monday forecast and a Thursday deal review. The region hit 104%, 97%, and 112% in three years.",
+                  "Ran 11 AEs on a Monday forecast and a Thursday deal review so a miss was called in week two, not week twelve. The region hit 104%, 97%, and 112% in three years, and the CRM stages were the ones I inspected, not a shadow spreadsheet.",
                 skills: [
                   "Pipeline Forecasting",
                   "Opportunity Management",
@@ -3746,9 +3674,9 @@ export const operationsProfiles = [
                 ],
               },
               {
-                name: "Discount guardrail",
+                name: "Installed a value-case requirement above 12% off and cut the region's average discount from 19% to 12%",
                 description:
-                  "Installed a value-case requirement above 12% off. Average discount on the region fell from 19% to 12%.",
+                  "Installed a value-case requirement above 12% off so a discount could not hide as 'what it takes to win.' Average discount on the region fell from 19% to 12%, and finance and the CRO saw the same guardrail I used in the review.",
                 skills: ["Value Selling", "Change Management", "Stakeholder Management"],
               },
             ],
@@ -3759,15 +3687,15 @@ export const operationsProfiles = [
             endDate: "2017-12-31",
             projects: [
               {
-                name: "Distributor desk",
+                name: "Carried a $1.1M Midwest distributor quota and hit 118% and 126% in the last two years",
                 description:
-                  "Carried a $1.1M quota into Midwest distributors. 118% and 126% in the last two years on the bag.",
+                  "Carried a $1.1M quota into Midwest distributors with named-account plans and a next step the manager could see in the CRM. Hit 118% and 126% in the last two years on the bag, and a deal that could not be inspected did not stay in my number.",
                 skills: ["Opportunity Management", "Account Planning", "CRM"],
               },
               {
-                name: "First written forecast",
+                name: "Moved my own book off a private spreadsheet so the manager could inspect the forecast",
                 description:
-                  "Moved my own book off a private spreadsheet. The manager could inspect it; I kept the habit.",
+                  "Moved my own book off a private spreadsheet so the manager could inspect the forecast instead of taking my word on Monday. I kept the habit when I took a region: if it is not in the CRM, it is not in the number.",
                 skills: ["Pipeline Forecasting", "CRM"],
               },
             ],
@@ -3803,13 +3731,9 @@ export const operationsProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Mid-market sales operating system",
+        name: "Mid-market sales forecast and inspection system",
         description:
-          "<p>An inspectable forecast, deal reviews with kill dates, and territories that cover the ICP. $38M number inside 5% commit accuracy, and stale stage-3 deals down 44%.</p>",
-        links: [
-          { label: "Operating system", url: "https://www.example.com/johnson-mm-os" },
-          { label: "Deal-review guide", url: "https://www.example.com/johnson-deal-review" },
-        ],
+          "<p>An inspectable forecast, deal reviews with kill dates, and territories that cover the ICP. $38M number inside 5% commit accuracy, and stale stage-3 deals down 44%. A number that cannot be inspected is not a number.</p>",
         skills: ["Pipeline Forecasting", "Opportunity Management", "Account Planning"],
       },
     ],

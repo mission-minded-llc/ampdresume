@@ -63,6 +63,9 @@ export function defineCharacter(input: LiteraryCharacterInput): LiteraryCharacte
     education: input.education,
     certifications: input.certifications,
     skills: input.skills.map((skill) => skillThroughDeath(skill, input.died)),
-    featuredProjects: input.featuredProjects,
+    featuredProjects: input.featuredProjects.map((project) => ({
+      ...project,
+      links: [],
+    })),
   };
 }

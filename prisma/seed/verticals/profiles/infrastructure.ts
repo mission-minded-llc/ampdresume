@@ -74,21 +74,21 @@ export const infrastructureProfiles = [
             startDate: "2021-03-01",
             projects: [
               {
-                name: "Hartford habitational schedule rebuild",
+                name: "Re-underwrote 86 Hartford habitational schedules totaling $180M TIV after a convective year",
                 description:
-                  "Re-underwrote 86 garden and mid-rise accounts totaling $180M TIV after a convective year. Raised deductibles on 31 locations and non-renewed 9 frame schedules; book combined ratio improved 8 points at the following renewal.",
+                  "Re-underwrote 86 garden and mid-rise accounts totaling $180M TIV after a convective year that exposed thin deductibles and frame construction we had been waving through. Raised deductibles on 31 locations and non-renewed 9 frame schedules once CAT output and occupancy actually lined up. Book combined ratio improved 8 points at the following renewal.",
                 skills: ["Underwriting", "Loss Modeling", "Risk Rating"],
               },
               {
-                name: "Broker referral desk",
+                name: "Cut referred-submission quote turnaround from 9 days to 4 and lifted hit ratio to 91%",
                 description:
-                  "Cut average quote turnaround from 9 days to 4 on referred submissions by standardizing COPE checklists and inspection triggers. Hit ratio on mid-market new business rose from 74% to 91%.",
+                  "Cut average quote turnaround from 9 days to 4 on referred submissions by standardizing COPE checklists and inspection triggers so brokers stopped sending half-empty location schedules. Mid-market new-business hit ratio rose from 74% to 91% once loss control and underwriting saw the same file before bind.",
                 skills: ["Policy Administration", "Stakeholder Management", "Market Analysis"],
               },
               {
-                name: "Manuscript vacancy wording",
+                name: "Negotiated manuscript vacancy and protective-safeguard wording on 14 industrial files",
                 description:
-                  "Negotiated protective-safeguard and vacancy clauses on 14 industrial files so sprinkler impairment and 60-day vacancy no longer sat in silent coverage.",
+                  "Negotiated protective-safeguard and vacancy clauses on 14 industrial files so sprinkler impairment and 60-day vacancy no longer sat in silent coverage while the binder looked clean. Brokers wanted the ISO form as written; we held manuscript language until occupancy and inspection actually matched the terms.",
                 skills: ["Contract Negotiation", "Financial Underwriting"],
               },
             ],
@@ -109,15 +109,15 @@ export const infrastructureProfiles = [
             endDate: "2021-02-12",
             projects: [
               {
-                name: "Coastal frame non-renewal program",
+                name: "Pulled 22 coastal frame locations off the book after a $41M PML review",
                 description:
-                  "Pulled 22 coastal frame locations off the book after a PML review showed $41M of limit sitting inside a 100-year wind contour. Replaced $12M of that capacity with inland masonry that stayed inside appetite.",
+                  "Pulled 22 coastal frame locations off the book after a PML review showed $41M of limit sitting inside a 100-year wind contour we had been treating as inland appetite. Replaced $12M of that capacity with inland masonry that stayed inside guidelines, and told the brokers which occupancies we would still write.",
                 skills: ["Loss Modeling", "Underwriting", "Risk Rating"],
               },
               {
-                name: "Surplus-lines appetite map",
+                name: "Published a quarterly admitted-versus-E&S appetite map for 40 Northeast brokers",
                 description:
-                  "Published a quarterly admitted-vs-E&S appetite note for 40 Northeast brokers so habitational and warehouse submissions stopped arriving in the wrong market.",
+                  "Published a quarterly admitted-versus-E&S appetite note for 40 Northeast brokers so habitational and warehouse submissions stopped arriving in the wrong market and dying on the referral desk. Brokers used it; inbound mix improved and we stopped quoting schedules we were going to decline after the CAT run.",
                 skills: ["Market Analysis", "Stakeholder Management"],
               },
             ],
@@ -128,15 +128,15 @@ export const infrastructureProfiles = [
             endDate: "2018-03-31",
             projects: [
               {
-                name: "Location schedule cleanup",
+                name: "Reconciled 310 locations and corrected $27M of mis-coded TIV before renewal",
                 description:
-                  "Reconciled 310 locations across 48 policies where TIV, construction, and year built disagreed with the inspection file. Corrected $27M of mis-coded TIV before renewal.",
+                  "Reconciled 310 locations across 48 policies where TIV, construction, and year built disagreed with the inspection file and the rating worksheet. Corrected $27M of mis-coded TIV before renewal so the next indication was not priced on a schedule we already knew was wrong.",
                 skills: ["Policy Administration", "Underwriting"],
               },
               {
-                name: "First-year loss-cost calibration",
+                name: "Calibrated warehouse loss costs and recommended a 6-point deviation pricing later adopted",
                 description:
-                  "Compared ISO loss costs to three years of company experience on warehouse occupancy and recommended a 6-point deviation that pricing later adopted.",
+                  "Compared ISO loss costs to three years of company experience on warehouse occupancy and recommended a 6-point deviation that pricing later adopted. The first-year exercise taught me that a statewide loss cost is a starting point, not a rate, once Hartford construction and protection class show up in the data.",
                 skills: ["Risk Rating", "Financial Underwriting"],
               },
             ],
@@ -167,13 +167,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "COPE-to-bind playbook",
+        name: "COPE-to-bind underwriting playbook for mid-market property",
         description:
-          "<p>A public write-up of how Harborline Mutual turns a broker submission into a bind: required COPE fields, CAT triggers, and the vacancy clauses that keep a mid-market property file from leaking at claim time.</p>",
-        links: [
-          { label: "Playbook", url: "https://www.example.com/harborline-cope-playbook" },
-          { label: "Appetite note", url: "https://www.example.com/harborline-appetite" },
-        ],
+          "<p>A public write-up of how Harborline Mutual turns a broker submission into a bind: required COPE fields, CAT triggers, and the vacancy clauses that keep a mid-market property file from leaking at claim time. It is the checklist I wish I had as an associate, when a Friday quote request was still missing year built.</p>",
         skills: ["Underwriting", "Policy Administration", "Loss Modeling"],
       },
     ],
@@ -252,21 +248,21 @@ export const infrastructureProfiles = [
             startDate: "2020-08-17",
             projects: [
               {
-                name: "New York personal auto indication",
+                name: "Rebuilt the New York personal auto indication and closed a 9.4% rate inadequacy",
                 description:
-                  "Rebuilt the NY indication on a 12-quarter triangle and a GLM with 18 rating variables. Closed a 9.4% rate inadequacy to 2.1% over two filing cycles without a hearing rejection.",
+                  "Rebuilt the NY indication on a 12-quarter triangle and a GLM with 18 rating variables after booked rate had drifted 9.4% behind indicated need. Closed that gap to 2.1% over two filing cycles without a hearing rejection, and wrote the narrative the department actuary actually read.",
                 skills: ["Actuarial Pricing", "Loss Modeling", "Financial Modeling"],
               },
               {
-                name: "Telematics factor integration",
+                name: "Integrated a telematics score for 210k vehicles with 11% collision-frequency lift",
                 description:
-                  "Added a usage-based score to the rating algorithm for 210k enrolled vehicles. Lift on collision frequency was 11% in the holdout; residual-market leakage stayed under 40 bps.",
+                  "Added a usage-based score to the rating algorithm for 210k enrolled vehicles and mapped it through policy admin so the factor survived the first endorsement. Lift on collision frequency was 11% in the holdout; residual-market leakage stayed under 40 bps, which is the part a clever score usually blows.",
                 skills: ["Python", "Risk Rating", "Policy Administration"],
               },
               {
-                name: "Competitor filing watch",
+                name: "Tracked 14 competitor New York filings so the 2023 rate take matched the market",
                 description:
-                  "Tracked 14 competitor NY filings and residual-market share so the 2023 take was sized against the market, not just the triangle.",
+                  "Tracked 14 competitor NY filings and residual-market share so the 2023 take was sized against the market, not just the triangle. The watch stopped us from filing a double-digit indication into a market that had already moved, and the audit pack reconciled earned premium before the exhibit left the desk.",
                 skills: ["Market Analysis", "Audit Analytics"],
               },
             ],
@@ -287,15 +283,15 @@ export const infrastructureProfiles = [
             endDate: "2020-08-07",
             projects: [
               {
-                name: "PIP severity study",
+                name: "Re-fit PIP severity after an 18% statute-driven jump and published a member circular",
                 description:
-                  "Re-fit PIP severity after a statute change moved average paid severity 18%. Published a member circular that 9 companies used in their next indication.",
+                  "Re-fit PIP severity after a statute change moved average paid severity 18% and the old trend factors started lying. Published a member circular that 9 companies used in their next indication, with the credibility notes a filing unit can defend.",
                 skills: ["Loss Modeling", "Actuarial Pricing"],
               },
               {
-                name: "Territory definition refresh",
+                name: "Collapsed 140 New York territories into 96 statistically credible rating cells",
                 description:
-                  "Collapsed 140 NY territories into 96 statistically credible cells and documented the credibility standard for the next loss-cost filing.",
+                  "Collapsed 140 NY territories into 96 statistically credible cells and documented the credibility standard for the next loss-cost filing. Thin cells had been swinging factors on weather years; the refresh made the map boring in the way a regulator prefers.",
                 skills: ["Risk Rating", "Python", "Audit Analytics"],
               },
             ],
@@ -306,15 +302,15 @@ export const infrastructureProfiles = [
             endDate: "2017-12-29",
             projects: [
               {
-                name: "Accident-year triangle rebuild",
+                name: "Reconstructed collision and BI triangles after a conversion dropped 3% of car-years",
                 description:
-                  "Reconstructed collision and BI triangles from raw claims extracts after a system conversion dropped 3% of earned car-years.",
+                  "Reconstructed collision and BI triangles from raw claims extracts after a system conversion dropped 3% of earned car-years and made the accident-year view look better than it was. Reconciled earned premium before anyone used the broken triangle in an indication.",
                 skills: ["Audit Analytics", "Policy Administration"],
               },
               {
-                name: "First GLM notebook",
+                name: "Moved the collision frequency GLM into a reviewed Python notebook with lift charts",
                 description:
-                  "Moved a collision frequency model off a desktop GLM package into a reviewed Python notebook with residual plots and lift charts.",
+                  "Moved a collision frequency model off a desktop GLM package into a reviewed Python notebook with residual plots and lift charts. Reviewers could finally see which variables were doing the work instead of trusting a black-box coefficient dump.",
                 skills: ["Python", "Loss Modeling"],
               },
             ],
@@ -350,13 +346,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "NY auto indication notebook",
+        name: "New York personal auto indication notebook",
         description:
-          "<p>An open walkthrough of a New York personal auto indication: triangle construction, GLM diagnostics, and the filing exhibits a department actuary actually reads.</p>",
-        links: [
-          { label: "Notebook", url: "https://www.example.com/keystone-ny-indication" },
-          { label: "Filing exhibits", url: "https://www.example.com/keystone-ny-exhibits" },
-        ],
+          "<p>An open walkthrough of a New York personal auto indication: triangle construction, GLM diagnostics, and the filing exhibits a department actuary actually reads. The notebook is the part I would hand a new analyst before anyone opens the rating manual.</p>",
         skills: ["Actuarial Pricing", "Python", "Loss Modeling"],
       },
     ],
@@ -435,15 +427,15 @@ export const infrastructureProfiles = [
             startDate: "2022-01-10",
             projects: [
               {
-                name: "Large-loss cycle-time program",
+                name: "Cut average cycle time on $1M+ files from 14 months to 9 on 64 claims",
                 description:
-                  "Reset the $1M+ playbook across 11 adjusters: site inspection in 72 hours, coverage letter in 10 days, reserve review at day 30. Average cycle time fell from 14 months to 9 on 64 files.",
+                  "Reset the $1M+ playbook across 11 adjusters: site inspection in 72 hours, coverage letter in 10 days, reserve review at day 30. Average cycle time fell from 14 months to 9 on 64 files once the clocks were real and not a hope on the diary. Brokers noticed; the files stopped aging in email.",
                 skills: ["Claims Management", "Change Management", "Stakeholder Management"],
               },
               {
-                name: "Subrogation recovery desk",
+                name: "Stood up a fire and water recovery desk that closed $18M in subrogation",
                 description:
-                  "Stood up a dedicated recovery review on fire and water files. Closed $18M in subrogation over three years, $6.2M of it in the first full year.",
+                  "Stood up a dedicated recovery review on fire and water files that had been closing without a second look at liable third parties. Closed $18M in subrogation over three years, $6.2M of it in the first full year, once counsel and the desk shared a trigger list instead of a hope.",
                 skills: ["Contract Negotiation", "Claims Management", "Policy Administration"],
               },
             ],
@@ -454,15 +446,15 @@ export const infrastructureProfiles = [
             endDate: "2022-01-09",
             projects: [
               {
-                name: "Warehouse fire extra-expense file",
+                name: "Led a $14M warehouse fire and extra-expense claim to settlement in 11 months",
                 description:
-                  "Led a $14M fire and extra-expense claim on a food-distribution warehouse. Settled quantum in 11 months with a 22% reduction from the public adjuster's first demand.",
+                  "Led a $14M fire and extra-expense claim on a food-distribution warehouse where the public adjuster's first demand treated every extra shift as covered. Settled quantum in 11 months with a 22% reduction from that demand after the extra-expense model and the policy form finally agreed.",
                 skills: ["Loss Modeling", "Contract Negotiation", "Relationship Management"],
               },
               {
-                name: "Underwriting feedback loop",
+                name: "Sent quarterly occupancy loss notes that re-rated three account families and non-renewed two",
                 description:
-                  "Sent quarterly occupancy loss notes to underwriting on restaurants and cold storage. Three account families were re-rated; two were non-renewed.",
+                  "Sent quarterly occupancy loss notes to underwriting on restaurants and cold storage so a third water loss did not keep the same rate. Three account families were re-rated; two were non-renewed. Claims stopped being a surprise the underwriter read about in the loss run.",
                 skills: ["Risk Rating", "Policy Administration"],
               },
             ],
@@ -483,15 +475,15 @@ export const infrastructureProfiles = [
             endDate: "2020-01-24",
             projects: [
               {
-                name: "Midwest hail CAT deployment",
+                name: "Ran a 9-adjuster hail CAT team that closed 410 commercial roofs in 11 weeks",
                 description:
-                  "Ran a 9-adjuster CAT team after a 2018 hail event. Closed 410 commercial roofs in 11 weeks with a 4% reopened-file rate.",
+                  "Ran a 9-adjuster CAT team after a 2018 hail event across Illinois commercial roofs that all wanted to be total losses by Thursday. Closed 410 commercial roofs in 11 weeks with a 4% reopened-file rate once scoping, photos, and the carrier diary shared one standard.",
                 skills: ["Claims Management", "Stakeholder Management"],
               },
               {
-                name: "Coverage investigation unit",
+                name: "Built a late-notice and vacancy investigation checklist adopted on 70 habitational assignments",
                 description:
-                  "Built a late-notice and vacancy investigation checklist that carriers adopted on 70 habitational assignments.",
+                  "Built a late-notice and vacancy investigation checklist that carriers adopted on 70 habitational assignments after too many files reserved as covered before anyone asked when the unit went empty. Adjusters finally had a script that survived a coverage letter and a later examination under oath.",
                 skills: ["Policy Administration", "Claims Management"],
               },
             ],
@@ -502,15 +494,15 @@ export const infrastructureProfiles = [
             endDate: "2016-02-28",
             projects: [
               {
-                name: "First-party water loss desk",
+                name: "Handled 180-plus water and freeze files a year with cycle time under 45 days",
                 description:
-                  "Handled 180+ water and freeze files a year for three regional carriers, with average cycle time under 45 days on non-litigated claims.",
+                  "Handled 180+ water and freeze files a year for three regional carriers, with average cycle time under 45 days on non-litigated claims. The work was unglamorous and the lesson was the same every winter: a same-week inspection beats a late reservation of rights.",
                 skills: ["Claims Management", "Relationship Management"],
               },
               {
-                name: "Reserve accuracy review",
+                name: "Cut average reserve miss from 31% to 14% across 90 casualty files",
                 description:
-                  "Compared initial reserves to close on 90 casualty files and cut average reserve miss from 31% to 14%.",
+                  "Compared initial reserves to close on 90 casualty files and cut average reserve miss from 31% to 14%. The misses were not mystery severity; they were files that reserved on the first notice and never looked again after discovery actually arrived.",
                 skills: ["Loss Modeling", "Risk Rating"],
               },
             ],
@@ -541,13 +533,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Large-loss playbook",
+        name: "Commercial large-loss cycle-time and recovery playbook",
         description:
-          "<p>The Lakeshore Casualty large-loss playbook: inspection clocks, coverage-letter standards, reserve gates, and the subrogation triggers that recovered $18M on fire and water files.</p>",
-        links: [
-          { label: "Playbook", url: "https://www.example.com/lakeshore-large-loss" },
-          { label: "Recovery notes", url: "https://www.example.com/lakeshore-subrogation" },
-        ],
+          "<p>The Lakeshore Casualty large-loss playbook: inspection clocks, coverage-letter standards, reserve gates, and the subrogation triggers that recovered $18M on fire and water files. It is the desk standard I still hand a new complex adjuster before the first $1M file lands.</p>",
         skills: ["Claims Management", "Change Management", "Contract Negotiation"],
       },
     ],
@@ -626,21 +614,21 @@ export const infrastructureProfiles = [
             startDate: "2021-01-11",
             projects: [
               {
-                name: "January 1 property treaty panel",
+                name: "Placed 11 property catastrophe treaties totaling $740M of limit before January 1",
                 description:
-                  "Led placement of 11 property catastrophe treaties totaling $740M of limit. Bound 10 of 11 before inception; the last closed with a 4-point rate-on-line increase instead of a capacity shortfall.",
+                  "Led placement of 11 property catastrophe treaties totaling $740M of limit for a January 1 panel that was still short in mid-December. Bound 10 of 11 before inception; the last closed with a 4-point rate-on-line increase instead of a capacity shortfall. The sequencing of markets mattered more than the model book.",
                 skills: ["Reinsurance", "Market Analysis", "Contract Negotiation"],
               },
               {
-                name: "Captive per-risk facultative desk",
+                name: "Built a captive facultative desk that placed $180M of per-risk limit across 26 slips",
                 description:
-                  "Built a facultative desk for three captives writing large habitational and industrial schedules. Placed $180M of per-risk limit across 26 slips with average turnaround under 8 days.",
+                  "Built a facultative desk for three captives writing large habitational and industrial schedules that had been shopping every risk as a one-off email. Placed $180M of per-risk limit across 26 slips with average turnaround under 8 days once underwriting files arrived complete.",
                 skills: ["Underwriting", "Risk Rating", "Relationship Management"],
               },
               {
-                name: "Structure alternatives for a mutual",
+                name: "Modeled a higher attachment versus extra limit for a $2.1B TIV mutual",
                 description:
-                  "Modeled a higher attachment vs. extra limit for a $2.1B TIV mutual. The board bought $50M more limit at a 90 bps cheaper rate-on-line than the incumbent structure.",
+                  "Modeled a higher attachment vs. extra limit for a $2.1B TIV mutual that wanted more protection without paying last year's rate-on-line for it. The board bought $50M more limit at a 90 bps cheaper rate-on-line than the incumbent structure after seeing cost per dollar of recoveries, not just the slip.",
                 skills: ["Financial Modeling", "Loss Modeling"],
               },
             ],
@@ -661,15 +649,15 @@ export const infrastructureProfiles = [
             endDate: "2020-12-18",
             projects: [
               {
-                name: "Coastal facultative panel",
+                name: "Placed 90-plus coastal facultative slips a year with 88% bound on requested terms",
                 description:
-                  "Placed 90+ facultative slips a year on coastal commercial property, with 88% bound inside the cedent's requested terms after a 2017 market hardening.",
+                  "Placed 90+ facultative slips a year on coastal commercial property, with 88% bound inside the cedent's requested terms after a 2017 market hardening that made late files die. The panel held because the submissions showed occupancy and PML the way a London underwriter actually reads them.",
                 skills: ["Reinsurance", "Underwriting", "Market Analysis"],
               },
               {
-                name: "Hours-clause rewrite",
+                name: "Renegotiated hours and occurrence language on 7 programs after a stacked wind event",
                 description:
-                  "Renegotiated hours and occurrence language on 7 programs after a multi-day wind event stacked two events into one. Saved an estimated $9M of disputed recovery.",
+                  "Renegotiated hours and occurrence language on 7 programs after a multi-day wind event stacked two events into one recovery argument. Saved an estimated $9M of disputed recovery once the hours clause and the hours-and-hours wording said the same thing the modelers thought they had bought.",
                 skills: ["Contract Negotiation", "Loss Modeling"],
               },
             ],
@@ -690,16 +678,16 @@ export const infrastructureProfiles = [
             endDate: "2016-03-25",
             projects: [
               {
-                name: "Treaty submission rebuild",
+                name: "Rebuilt the annual property treaty submission and cut market questions in half",
                 description:
-                  "Rebuilt the annual property treaty submission with exposure, PML, and claims exhibits that cut market questions by half at the next renewal.",
+                  "Rebuilt the annual property treaty submission with exposure, PML, and claims exhibits that cut market questions by half at the next renewal. Reinsurers stopped asking for the same occupancy split three times because it was finally in the pack the first time.",
                 skills: ["Reinsurance", "Financial Modeling", "Relationship Management"],
               },
               {
-                name: "Bordereau quality review",
+                name: "Reconciled ceded premium and loss bordereaux that had been 3% short for two years",
                 description:
-                  "Reconciled ceded premium and loss bordereaux that had been 3% short on subject premium for two years.",
-                skills: ["Risk Rating", "Underwriting"],
+                  "Reconciled ceded premium and loss bordereaux that had been 3% short on subject premium for two years and quietly understated the cession. The fix was not a new model; it was matching policy admin to the treaty definition of subject before the next renewal meeting.",
+                skills: ["Financial Modeling", "Underwriting"],
               },
             ],
           },
@@ -729,13 +717,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Treaty placement brief",
+        name: "January 1 property treaty placement brief",
         description:
-          "<p>A public brief on how Atlantic Treaty Partners builds a January 1 property panel: submission exhibits, market sequencing, and the contract clauses that decide whether a wind event is one occurrence or two.</p>",
-        links: [
-          { label: "Placement brief", url: "https://www.example.com/atlantic-treaty-brief" },
-          { label: "Structure note", url: "https://www.example.com/atlantic-structure-note" },
-        ],
+          "<p>A public brief on how Atlantic Treaty Partners builds a January 1 property panel: submission exhibits, market sequencing, and the contract clauses that decide whether a wind event is one occurrence or two. It is also the hours-clause note I wish every cedent read before the first binder is initialed.</p>",
         skills: ["Reinsurance", "Contract Negotiation", "Market Analysis"],
       },
     ],
@@ -814,21 +798,21 @@ export const infrastructureProfiles = [
             startDate: "2021-05-03",
             projects: [
               {
-                name: "ATT&CK coverage map",
+                name: "Mapped 140 detections to ATT&CK and cut high-severity time-to-detect from 27 minutes to 9",
                 description:
-                  "Mapped 140 shipped detections to ATT&CK techniques and closed 22 high-priority gaps in credential access and defense evasion. Median time-to-detect on high-severity tags fell from 27 minutes to 9.",
+                  "Mapped 140 shipped detections to ATT&CK techniques and closed 22 high-priority gaps in credential access and defense evasion that the SOC had been calling 'covered' because a noisy rule existed. Median time-to-detect on high-severity tags fell from 27 minutes to 9 once the map drove the backlog instead of tribal memory.",
                 skills: ["Detection Engineering", "SIEM", "Observability"],
               },
               {
-                name: "Cloud control-plane hunt pack",
+                name: "Wrote cloud control-plane hunts that caught 3 confirmed incidents existing rules missed",
                 description:
-                  "Wrote Python hunt notebooks and SIEM content for IAM key creation, role assumption, and public S3 changes across 46 AWS accounts. Caught 3 confirmed incidents the existing rules missed.",
+                  "Wrote Python hunt notebooks and SIEM content for IAM key creation, role assumption, and public S3 changes across 46 AWS accounts the SOC claimed to monitor. Caught 3 confirmed incidents the existing rules missed, all of them the boring kind of privilege abuse that never looks like malware.",
                 skills: ["Threat Hunting", "Cloud Security", "Python"],
               },
               {
-                name: "Kubernetes audit detections",
+                name: "Shipped Kubernetes audit detections for privileged pods with a 6% false-positive rate",
                 description:
-                  "Added audit-log detections for privileged pods, hostPath mounts, and exec into kube-system. False-positive rate on the first 60 days was 6% after two tuning passes.",
+                  "Added audit-log detections for privileged pods, hostPath mounts, and exec into kube-system so a cluster was not invisible until it phoned home. False-positive rate on the first 60 days was 6% after two tuning passes, which is the part that decides whether a SOC will keep the rule.",
                 skills: ["Kubernetes", "Detection Engineering", "Incident Response"],
               },
             ],
@@ -849,15 +833,15 @@ export const infrastructureProfiles = [
             endDate: "2021-04-23",
             projects: [
               {
-                name: "Alert-volume cutover",
+                name: "Tuned 40 noisy use cases and cut alert volume 38% without losing confirmed incidents",
                 description:
-                  "Tuned the noisiest 40 use cases and retired 11 that never produced a true positive. Alert volume dropped 38% while confirmed incidents held flat.",
+                  "Tuned the noisiest 40 use cases and retired 11 that never produced a true positive, most of them Friday-deploy noise wearing a high-severity tag. Alert volume dropped 38% while confirmed incidents held flat, which is the only volume cut that counts.",
                 skills: ["SIEM", "Detection Engineering", "Observability"],
               },
               {
-                name: "Identity hunt series",
+                name: "Hunted impossible travel and consent-grant phishing and recovered 7 confirmed account takeovers",
                 description:
-                  "Ran a quarterly hunt on impossible travel and consent-grant phishing. Produced 7 confirmed account takeovers that ticket queues had labeled low.",
+                  "Ran a quarterly hunt on impossible travel and consent-grant phishing after the ticket queue kept labeling mailbox anomalies as low. Produced 7 confirmed account takeovers that had already sat in a queue, which is how you learn that severity is not the same as attention.",
                 skills: ["Threat Hunting", "Incident Response"],
               },
             ],
@@ -868,15 +852,15 @@ export const infrastructureProfiles = [
             endDate: "2018-06-29",
             projects: [
               {
-                name: "Parser and CIM cleanup",
+                name: "Fixed Windows and firewall parsers that had been dropping 12% of events",
                 description:
-                  "Fixed Windows and firewall parsers that had been dropping 12% of events, restoring the fields detections actually needed.",
+                  "Fixed Windows and firewall parsers that had been dropping 12% of events and quietly starving detections of the fields they needed. Coverage charts looked fine until you noticed the CIM holes; restoring the fields made old rules start firing on purpose.",
                 skills: ["SIEM", "Python"],
               },
               {
-                name: "Tier-1 playbook rewrite",
+                name: "Rewrote phishing and malware playbooks so new analysts escalated with artifacts",
                 description:
-                  "Rewrote phishing and malware playbooks so a new analyst could escalate with artifacts instead of a ticket that said 'looks bad.'",
+                  "Rewrote phishing and malware playbooks so a new analyst could escalate with artifacts instead of a ticket that said 'looks bad.' IR stopped asking for the same screenshot twice, and Tier-1 finally had a definition of done that was not 'I opened the alert.'",
                 skills: ["Incident Response", "Detection Engineering"],
               },
             ],
@@ -907,13 +891,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Detection quality scorecard",
+        name: "SOC detection quality and ATT&CK scorecard",
         description:
-          "<p>How Sentinel Harbor scores a detection before it ships: ATT&CK coverage, false-positive budget, data-source health, and the IR handoff packet the SOC actually uses.</p>",
-        links: [
-          { label: "Scorecard", url: "https://www.example.com/sentinel-detection-scorecard" },
-          { label: "Hunt pack", url: "https://www.example.com/sentinel-cloud-hunts" },
-        ],
+          "<p>How Sentinel Harbor scores a detection before it ships: ATT&CK coverage, false-positive budget, data-source health, and the IR handoff packet the SOC actually uses. If a rule cannot pass the scorecard, it does not get a high-severity tag just to feel important.</p>",
         skills: ["Detection Engineering", "SIEM", "Observability"],
       },
     ],
@@ -992,15 +972,15 @@ export const infrastructureProfiles = [
             startDate: "2022-03-14",
             projects: [
               {
-                name: "Ransomware containment in 11 hours",
+                name: "Contained a manufacturer ransomware event in 11 hours with encryption under 4% of endpoints",
                 description:
-                  "Led a 14-person response on a mid-market manufacturer. Isolated the beachhead, killed the GPO push, and kept encryption under 4% of endpoints. Domain rebuild was not required.",
+                  "Led a 14-person response on a mid-market manufacturer after the pager hit at a bad hour. Isolated the beachhead, killed the GPO push, and kept encryption under 4% of endpoints. Domain rebuild was not required, which is the outcome that decides whether the board brief is a recovery story or a rebuild story.",
                 skills: ["Incident Response", "Technical Leadership", "Stakeholder Management"],
               },
               {
-                name: "Post-incident detection backlog",
+                name: "Converted 28 major incidents into 41 detections that later fired on 9 customers",
                 description:
-                  "Converted 28 major incidents into 41 SIEM and EDR detections. 9 of those fired on a later customer within 90 days.",
+                  "Converted 28 major incidents into 41 SIEM and EDR detections that would have fired on the first hop, not the last. 9 of those fired on a later customer within 90 days, which is the only after-action metric I trust more than a slide titled lessons learned.",
                 skills: ["Detection Engineering", "SIEM", "Python"],
               },
             ],
@@ -1011,15 +991,15 @@ export const infrastructureProfiles = [
             endDate: "2022-03-13",
             projects: [
               {
-                name: "Business-email-compromise desk",
+                name: "Ran 19 BEC cases and stopped a $2.4M wire after MFA-fatigue on a finance mailbox",
                 description:
-                  "Ran 19 BEC cases, including a $2.4M outbound-wire attempt stopped after MFA-fatigue on a finance mailbox. Average time-to-contain was 3.5 hours.",
+                  "Ran 19 BEC cases, including a $2.4M outbound-wire attempt stopped after MFA-fatigue on a finance mailbox that looked like a tired executive. Average time-to-contain was 3.5 hours once identity, bank callback, and mailbox rules sat on the same bridge.",
                 skills: ["Incident Response", "Cloud Security", "Threat Hunting"],
               },
               {
-                name: "Tabletop program",
+                name: "Designed and ran 12 executive tabletops that funded deferred EDR coverage at three customers",
                 description:
-                  "Designed and ran 12 executive tabletops. Three customers used the findings to fund EDR coverage they had been deferring.",
+                  "Designed and ran 12 executive tabletops that forced a containment decision before the domain was already gone. Three customers used the findings to fund EDR coverage they had been deferring, which is the only tabletop outcome that is not just a catering invoice.",
                 skills: ["Stakeholder Management", "Technical Leadership"],
               },
             ],
@@ -1040,15 +1020,15 @@ export const infrastructureProfiles = [
             endDate: "2020-05-22",
             projects: [
               {
-                name: "Memory-first collection standard",
+                name: "Moved the IR runbook to memory-first collection and recovered C2 configs on 11 cases",
                 description:
-                  "Moved the IR runbook to memory and disk collection before reimage. Recovered credentials and C2 configs on 11 cases that would have been closed as 'malware cleaned.'",
+                  "Moved the IR runbook to memory and disk collection before reimage, after too many nights of 'malware cleaned' with nothing left to explain how it got there. Recovered credentials and C2 configs on 11 cases that would have been closed as a tidy endpoint story.",
                 skills: ["Incident Response", "Python", "Threat Hunting"],
               },
               {
-                name: "SIEM timeline kit",
+                name: "Built a Python SIEM-EDR-DHCP merge that cut a 48-hour timeline from a day to 40 minutes",
                 description:
-                  "Built a Python merge of SIEM, EDR, and DHCP so a 48-hour intrusion timeline took 40 minutes instead of a day.",
+                  "Built a Python merge of SIEM, EDR, and DHCP so a 48-hour intrusion timeline took 40 minutes instead of a day of copy-paste. Analysts stopped arguing about whose clock was right and started arguing about the hop that actually mattered.",
                 skills: ["SIEM", "Python", "Detection Engineering"],
               },
             ],
@@ -1079,13 +1059,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "War-room runbook",
+        name: "Incident war-room containment and collection runbook",
         description:
-          "<p>Redline Forensics' public IR runbook: who is on the bridge, what gets collected first, and how a ransomware containment decision is made before the domain is already gone.</p>",
-        links: [
-          { label: "Runbook", url: "https://www.example.com/redline-war-room" },
-          { label: "Tabletop kit", url: "https://www.example.com/redline-tabletop" },
-        ],
+          "<p>Redline Forensics' public IR runbook: who is on the bridge, what gets collected first, and how a ransomware containment decision is made before the domain is already gone. The collection order is the part people skip, and then they wonder why the memory image is a story they tell later.</p>",
         skills: ["Incident Response", "Technical Leadership", "Stakeholder Management"],
       },
     ],
@@ -1164,21 +1140,21 @@ export const infrastructureProfiles = [
             startDate: "2021-02-08",
             projects: [
               {
-                name: "SOC 2 Type II recovery",
+                name: "Took three SaaS customers from a failed SOC 2 Type I to a clean Type II",
                 description:
-                  "Took three SaaS customers from a failed Type I to a clean Type II in one 12-month cycle. Closed 47 exceptions and cut overdue evidence requests from 31% to 4%.",
+                  "Took three SaaS customers from a failed Type I to a clean Type II in one 12-month cycle after a shared drive of PDFs had been passed off as a control environment. Closed 47 exceptions and cut overdue evidence requests from 31% to 4% once every control had an owner.",
                 skills: ["GRC", "Internal Controls", "Stakeholder Management"],
               },
               {
-                name: "Zero Trust access policy",
+                name: "Wrote Zero Trust access policy that removed 220 standing admin grants at a 900-person firm",
                 description:
-                  "Wrote device, identity, and network-segmentation policy for a 900-person health-tech firm. IAM implemented MFA on 100% of privileged roles and removed 220 standing admin grants.",
+                  "Wrote device, identity, and network-segmentation policy for a 900-person health-tech firm that had been treating Zero Trust as a slide. IAM implemented MFA on 100% of privileged roles and removed 220 standing admin grants once the policy named owners instead of aspirations.",
                 skills: ["Zero Trust", "IAM", "Policy Analysis"],
               },
               {
-                name: "Vendor risk scoring reset",
+                name: "Replaced a 400-vendor spreadsheet with tiered scoring and cut critical vendors from 90 to 28",
                 description:
-                  "Replaced a spreadsheet of 400 vendors with a tiered rating. Critical vendors dropped from 90 to 28; questionnaires stopped going to the parking-lot SaaS tool.",
+                  "Replaced a spreadsheet of 400 vendors with a tiered rating so a parking-lot SaaS tool stopped getting the same questionnaire as the claims processor. Critical vendors dropped from 90 to 28; questionnaires stopped going to tools that could not see production data.",
                 skills: ["Risk Rating", "Cloud Security"],
               },
             ],
@@ -1199,15 +1175,15 @@ export const infrastructureProfiles = [
             endDate: "2021-01-29",
             projects: [
               {
-                name: "Access-review rebuild",
+                name: "Rebuilt quarterly access reviews and cut exception aging from 64 days to 11",
                 description:
-                  "Moved quarterly access reviews off email attachments. Exception aging fell from 64 days to 11; auditors sampled 40 reviews with no failed tests.",
+                  "Moved quarterly access reviews off email attachments that aged in inboxes until the next quarter started. Exception aging fell from 64 days to 11; auditors sampled 40 reviews with no failed tests once joiner-mover-leaver actually had a system of record.",
                 skills: ["IAM", "Internal Controls", "GRC"],
               },
               {
-                name: "Policy library cull",
+                name: "Retired 60 ownerless policies and left 42 with sponsors and evidence paths",
                 description:
-                  "Retired 60 policies that had no owner and no control mapping. The remaining 42 each had an executive sponsor and an evidence path.",
+                  "Retired 60 policies that had no owner and no control mapping, most of them written for an audit that had already ended. The remaining 42 each had an executive sponsor and an evidence path, which is the only policy count that is not vanity.",
                 skills: ["Policy Analysis", "Stakeholder Management"],
               },
             ],
@@ -1218,15 +1194,15 @@ export const infrastructureProfiles = [
             endDate: "2018-08-31",
             projects: [
               {
-                name: "Cloud evidence pack",
+                name: "Built the first AWS evidence pack so auditors stopped asking for console tours",
                 description:
-                  "Built the first AWS evidence pack for change management and logging so the external auditor stopped asking for console tours.",
+                  "Built the first AWS evidence pack for change management and logging so the external auditor stopped asking for console tours of a sandbox account. The pack named the production account, the control, and the export path, which is what 'we are in the cloud' had been missing.",
                 skills: ["Cloud Security", "Internal Controls"],
               },
               {
-                name: "Finding risk ratings",
+                name: "Introduced consistent IT finding ratings and cut criticals open past 90 days from 12 to 2",
                 description:
-                  "Introduced a consistent risk rating for IT findings. Criticals that sat open past 90 days dropped from 12 to 2.",
+                  "Introduced a consistent risk rating for IT findings so the backlog was ordered by exposure, not by whoever emailed last. Criticals that sat open past 90 days dropped from 12 to 2 once a critical had a due date an owner could miss in public.",
                 skills: ["Risk Rating", "GRC"],
               },
             ],
@@ -1262,13 +1238,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Zero Trust policy kit",
+        name: "Zero Trust policy kit mapped to SOC 2",
         description:
-          "<p>Beacon Trust's public Zero Trust policy kit: identity, device, and segmentation controls mapped to SOC 2, with owners and evidence — not a poster that says never trust.</p>",
-        links: [
-          { label: "Policy kit", url: "https://www.example.com/beacon-zero-trust" },
-          { label: "SOC 2 map", url: "https://www.example.com/beacon-soc2-map" },
-        ],
+          "<p>Beacon Trust's public Zero Trust policy kit: identity, device, and segmentation controls mapped to SOC 2, with owners and evidence — not a poster that says never trust. The kit is what I hand a product team when they ask for the shortest path that will still survive an auditor.</p>",
         skills: ["Zero Trust", "GRC", "IAM"],
       },
     ],
@@ -1347,21 +1319,21 @@ export const infrastructureProfiles = [
             startDate: "2021-09-07",
             projects: [
               {
-                name: "120-account landing zone",
+                name: "Moved 120 AWS accounts onto a landing zone and cut public-resource findings 70%",
                 description:
-                  "Moved 120 AWS accounts onto a vended landing zone with SCPs, Config, and no standing admin. Public-resource findings dropped 70% in two quarters; account vending time fell from 9 days to 4 hours.",
+                  "Moved 120 AWS accounts onto a vended landing zone with SCPs, Config, and no standing admin so a new account was born restricted. Public-resource findings dropped 70% in two quarters; account vending time fell from 9 days to 4 hours once the ticket was not a hallway conversation.",
                 skills: ["AWS", "Cloud Security", "System Design"],
               },
               {
-                name: "IAM permission-boundary program",
+                name: "Rolled permission boundaries to 800 engineers and cut standing admin grants from 146 to 6",
                 description:
-                  "Rolled permission boundaries and role-based access to 800 engineers. Standing admin grants went from 146 to 6 break-glass roles with 15-minute sessions.",
+                  "Rolled permission boundaries and role-based access to 800 engineers who had been treating admin as a convenience. Standing admin grants went from 146 to 6 break-glass roles with 15-minute sessions, which is what 'break-glass' is supposed to mean.",
                 skills: ["IAM", "Zero Trust", "Python"],
               },
               {
-                name: "EKS IRSA and admission baseline",
+                name: "Standardized IRSA and admission controls across 18 EKS clusters and closed node-role assumption paths",
                 description:
-                  "Standardized IRSA, network policy, and admission webhooks across 18 EKS clusters. Closed node-role assumption paths that two threat models had flagged.",
+                  "Standardized IRSA, network policy, and admission webhooks across 18 EKS clusters so a pod could not assume the node role and call it a platform feature. Closed node-role assumption paths that two threat models had flagged and that production had been living with anyway.",
                 skills: ["Kubernetes", "Cloud Security", "Detection Engineering"],
               },
             ],
@@ -1382,15 +1354,15 @@ export const infrastructureProfiles = [
             endDate: "2021-08-27",
             projects: [
               {
-                name: "GuardDuty and CloudTrail detections",
+                name: "Shipped 24 CloudTrail and GuardDuty detections and cut critical ticket time from 2 days to 20 minutes",
                 description:
-                  "Shipped 24 CloudTrail and GuardDuty detections for key creation, role assumption, and public snapshot sharing. Mean time to ticket on critical findings fell from 2 days to 20 minutes.",
+                  "Shipped 24 CloudTrail and GuardDuty detections for key creation, role assumption, and public snapshot sharing so CloudTrail was not just a log archive. Mean time to ticket on critical findings fell from 2 days to 20 minutes once someone owned the page.",
                 skills: ["Detection Engineering", "AWS", "Python"],
               },
               {
-                name: "CI identity cutover",
+                name: "Replaced long-lived CI keys with OIDC roles and revoked 310 access keys",
                 description:
-                  "Replaced long-lived CI keys with OIDC roles. Revoked 310 access keys; deploy failures from expired keys went to zero.",
+                  "Replaced long-lived CI keys with OIDC roles after the usual ritual of expired keys breaking Friday deploys. Revoked 310 access keys; deploy failures from expired keys went to zero, and the next leaked key at least was not a pipeline credential from 2017.",
                 skills: ["IAM", "Zero Trust"],
               },
             ],
@@ -1401,15 +1373,15 @@ export const infrastructureProfiles = [
             endDate: "2018-10-31",
             projects: [
               {
-                name: "First multi-account split",
+                name: "Split a leaked production account into log, security, and workload accounts to contain blast radius",
                 description:
-                  "Split a single production account into log, security, and workload accounts after a contractor key leaked. Blast radius on the next incident stayed in one account.",
+                  "Split a single production account into log, security, and workload accounts after a contractor key leaked and could have walked the whole estate. Blast radius on the next incident stayed in one account, which is the sentence that justifies the ticket you did not want to file.",
                 skills: ["AWS", "System Design", "Cloud Security"],
               },
               {
-                name: "EKS bootstrap",
+                name: "Bootstrapped the first production EKS cluster with IRSA and private API access",
                 description:
-                  "Stood up the first production EKS cluster with IRSA and private API access, replacing a set of EC2 pets that had SSH from the office CIDR.",
+                  "Stood up the first production EKS cluster with IRSA and private API access, replacing a set of EC2 pets that had SSH from the office CIDR and a node role that every pod quietly inherited. The landing-zone story started there, even if we did not call it that yet.",
                 skills: ["Kubernetes", "AWS"],
               },
             ],
@@ -1440,13 +1412,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Landing-zone reference",
+        name: "AWS multi-account landing-zone and IAM-boundary reference",
         description:
-          "<p>Cascade Cloud Guard's AWS landing-zone reference: account vending, SCP baselines, IAM boundaries, and the detections that fire when someone opens a public snapshot anyway.</p>",
-        links: [
-          { label: "Reference", url: "https://www.example.com/cascade-landing-zone" },
-          { label: "IAM boundaries", url: "https://www.example.com/cascade-iam-boundaries" },
-        ],
+          "<p>Cascade Cloud Guard's AWS landing-zone reference: account vending, SCP baselines, IAM boundaries, and the detections that fire when someone opens a public snapshot anyway. It is the architecture I wish we had drawn before the first account was vended by hallway request.</p>",
         skills: ["AWS", "IAM", "Cloud Security"],
       },
     ],
@@ -1525,21 +1493,21 @@ export const infrastructureProfiles = [
             startDate: "2020-04-06",
             projects: [
               {
-                name: "12-story special moment-frame tower",
+                name: "Stamped a 12-story Koreatown special moment-frame that cleared LADBS after two drift redesigns",
                 description:
-                  "Engineer of record on a 12-story steel SMF in Koreatown. Two redesigns kept story drift inside ASCE 7 limits; the project cleared LADBS and peer review on the second cycle with 38 RFIs in CA.",
+                  "Engineer of record on a 12-story steel SMF in Koreatown that wanted to drift more than ASCE 7 would allow. Two redesigns kept story drift inside limits; the project cleared LADBS and peer review on the second cycle with 38 RFIs in CA.",
                 skills: ["Structural Analysis", "PE Stamping", "Building Codes"],
               },
               {
-                name: "Type III housing package",
+                name: "Delivered 420 Type III wood-over-podium units and cut shaft clashes from 90 to 7 at IFC",
                 description:
-                  "Delivered 420 units of Type III wood over podium across three sites. Coordinated Revit with architect and MEP so shaft clashes dropped from 90 at 50% CD to 7 at IFC.",
+                  "Delivered 420 units of Type III wood over podium across three sites that wanted shafts to move after permit. Coordinated Revit with architect and MEP so shaft clashes dropped from 90 at 50% CD to 7 at IFC, which is when a beam stops landing in a duct.",
                 skills: ["Revit", "Construction Documents", "Sustainable Design"],
               },
               {
-                name: "Steel shop-drawing turnaround",
+                name: "Cut steel shop-drawing review from 14 days to 6 on a 180-ton package",
                 description:
-                  "Cut average shop-drawing review from 14 days to 6 on a 180-ton package so the mill date held.",
+                  "Cut average shop-drawing review from 14 days to 6 on a 180-ton package so the mill date held. The reviews were not slower because the joints were hard; they were slower because comments lived in email instead of on the sheet the fabricator needed.",
                 skills: ["Construction Administration", "AutoCAD"],
               },
             ],
@@ -1560,15 +1528,15 @@ export const infrastructureProfiles = [
             endDate: "2020-03-27",
             projects: [
               {
-                name: "Adaptive-reuse office to housing",
+                name: "Designed gravity and seismic upgrades for a 1924 concrete frame converted to 96 units",
                 description:
-                  "Designed gravity and seismic upgrades for a 1924 concrete frame converted to 96 units. Existing-to-new load path was the peer-review fight; we won it with in-situ testing, not extra shear walls.",
+                  "Designed gravity and seismic upgrades for a 1924 concrete frame converted to 96 units, where the existing-to-new load path was the peer-review fight. We won it with in-situ testing, not extra shear walls that would have eaten the units the developer was counting.",
                 skills: ["Structural Analysis", "Building Codes", "Construction Documents"],
               },
               {
-                name: "School modernization package",
+                name: "Produced CD and CA for two LAUSD modernizations totaling 110,000 sf through two DSA cycles",
                 description:
-                  "Produced CD and CA for two LAUSD modernizations totaling 110,000 sf, including DSA comments closed in two cycles.",
+                  "Produced CD and CA for two LAUSD modernizations totaling 110,000 sf, including DSA comments closed in two cycles. The comments were the usual mix of detailing and accessibility; closing them twice is how you keep a summer occupancy from slipping a semester.",
                 skills: ["PE Stamping", "Construction Administration", "Revit"],
               },
             ],
@@ -1579,15 +1547,15 @@ export const infrastructureProfiles = [
             endDate: "2016-08-31",
             projects: [
               {
-                name: "Connection typicals library",
+                name: "Built the office AutoCAD typicals library for wood shear walls and steel braces",
                 description:
-                  "Built the office AutoCAD typicals for wood shear walls and steel braces that junior staff still use.",
+                  "Built the office AutoCAD typicals for wood shear walls and steel braces that junior staff still use, because a pretty Revit model is not a complete joint. The library cut the 'which hold-down?' questions that used to arrive the night before a permit set.",
                 skills: ["AutoCAD", "Construction Documents"],
               },
               {
-                name: "First stamped calculations",
+                name: "Prepared calculation packages under a supervising PE for 14 Type V housing projects",
                 description:
-                  "Prepared calculation packages under a supervising PE for 14 Type V housing projects and learned which notes inspectors mark in red.",
+                  "Prepared calculation packages under a supervising PE for 14 Type V housing projects and learned which notes inspectors mark in red. The education was not the software; it was writing a load path that survived a plan-check comment without a new wall.",
                 skills: ["Structural Analysis", "Building Codes"],
               },
             ],
@@ -1623,13 +1591,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Koreatown SMF case study",
+        name: "Koreatown special moment-frame design case study",
         description:
-          "<p>Design notes from a 12-story special moment-frame in Los Angeles: drift, connection design, and the peer-review comments that forced two redesigns before the stamp.</p>",
-        links: [
-          { label: "Case study", url: "https://www.example.com/pacific-frame-smf" },
-          { label: "Detail set", url: "https://www.example.com/pacific-frame-details" },
-        ],
+          "<p>Design notes from a 12-story special moment-frame in Los Angeles: drift, connection design, and the peer-review comments that forced two redesigns before the stamp. The second cycle is the one I would show a new PE, because that is when the analysis and the detailing finally agreed.</p>",
         skills: ["Structural Analysis", "PE Stamping", "Building Codes"],
       },
     ],
@@ -1708,21 +1672,21 @@ export const infrastructureProfiles = [
             startDate: "2020-01-13",
             projects: [
               {
-                name: "Silver Line extension civil package",
+                name: "Led civil on a 1.8-mile busway advertised on the programmed letting with a 4% addendum rate",
                 description:
-                  "Lead civil on a 1.8-mile busway and station package. Coordinated 14 utility relocations and advertised on the programmed letting with a 4% addendum rate.",
+                  "Lead civil on a 1.8-mile busway and station package that wanted utilities to be a surprise at pre-bid. Coordinated 14 utility relocations and advertised on the programmed letting with a 4% addendum rate, which is how you keep a corridor from slipping a season.",
                 skills: ["Construction Documents", "Program Management", "Stakeholder Management"],
               },
               {
-                name: "Corridor drainage redesign",
+                name: "Re-sized 2.4 miles of roadway drainage after a climate-updated rainfall atlas",
                 description:
-                  "Re-sized 2.4 miles of roadway drainage after a climate-updated rainfall atlas. Avoided a late outfall redesign that would have slipped the advertisement by a season.",
+                  "Re-sized 2.4 miles of roadway drainage after a climate-updated rainfall atlas made the old typical section look like a hope. Avoided a late outfall redesign that would have slipped the advertisement by a season, and stamped the package once the peaks and the permit actually agreed.",
                 skills: ["Hydraulics", "PE Stamping", "Building Codes"],
               },
               {
-                name: "Night-shift CA on I-93 ramp",
+                name: "Handled 61 RFIs and 22 shop-drawing packages on an active I-93 ramp reconstruction",
                 description:
-                  "Handled 61 RFIs and 22 shop-drawing packages on an active ramp reconstruction without a weather-related claim on drainage.",
+                  "Handled 61 RFIs and 22 shop-drawing packages on an active ramp reconstruction without a weather-related claim on drainage. Night shift does not wait for a pretty response; the answers had to keep the pour and the detour on the same calendar.",
                 skills: ["Construction Administration", "AutoCAD"],
               },
             ],
@@ -1743,15 +1707,15 @@ export const infrastructureProfiles = [
             endDate: "2019-12-20",
             projects: [
               {
-                name: "Complete-streets program",
+                name: "Designed 6.2 miles of complete-streets work that bid within 8% of estimate across six contracts",
                 description:
-                  "Designed 6.2 miles of complete-streets work across three towns. All six contracts bid within 8% of estimate after quantity reviews.",
+                  "Designed 6.2 miles of complete-streets work across three towns that each wanted a different typical section and the same bid day. All six contracts bid within 8% of estimate after quantity reviews that caught the sidewalk ramps the first takeoff had treated as decoration.",
                 skills: ["Construction Documents", "Building Codes", "Stakeholder Management"],
               },
               {
-                name: "Culvert replacement package",
+                name: "Replaced four undersized culverts with hydraulically adequate structures that held through two spring freshets",
                 description:
-                  "Replaced four undersized culverts with hydraulically adequate structures and temporary water plans that held through two spring freshets.",
+                  "Replaced four undersized culverts with hydraulically adequate structures and temporary water plans that held through two spring freshets. The temporary works were the part that decides whether a culvert job becomes a change-order novel instead of a letting.",
                 skills: ["Hydraulics", "PE Stamping", "Construction Administration"],
               },
             ],
@@ -1762,15 +1726,15 @@ export const infrastructureProfiles = [
             endDate: "2015-03-31",
             projects: [
               {
-                name: "CADD standards adoption",
+                name: "Moved the office onto MassDOT CADD standards and cut sheet production time 25%",
                 description:
-                  "Moved the office onto MassDOT CADD standards and Civil 3D data shortcuts, cutting sheet production time 25% on the next three jobs.",
+                  "Moved the office onto MassDOT CADD standards and Civil 3D data shortcuts, cutting sheet production time 25% on the next three jobs. The CADD review stopped being a second design cycle once alignments and surfaces lived in one place.",
                 skills: ["AutoCAD", "Construction Documents"],
               },
               {
-                name: "Sidewalk ADA inventory",
+                name: "Surveyed and designed 3.1 miles of sidewalk ramps to current ADA standards",
                 description:
-                  "Surveyed and designed 3.1 miles of sidewalk ramps to current ADA standards for a Boston neighborhood reconstruction.",
+                  "Surveyed and designed 3.1 miles of sidewalk ramps to current ADA standards for a Boston neighborhood reconstruction that had been treating existing ramps as grandfathered. The inventory was the design; the sheets were just the part that went to advertisement.",
                 skills: ["Building Codes", "Stakeholder Management"],
               },
             ],
@@ -1801,13 +1765,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Busway civil case study",
+        name: "Silver Line busway civil package case study",
         description:
-          "<p>How Commonwealth Transit Design took a 1.8-mile busway from 30% to advertisement: utility matrix, drainage redesign, and the PS&E checks that kept addenda under 4%.</p>",
-        links: [
-          { label: "Case study", url: "https://www.example.com/commonwealth-busway" },
-          { label: "Utility matrix", url: "https://www.example.com/commonwealth-utilities" },
-        ],
+          "<p>How Commonwealth Transit Design took a 1.8-mile busway from 30% to advertisement: utility matrix, drainage redesign, and the PS&E checks that kept addenda under 4%. The utility matrix is the page I would show a new PE, because that is where a letting actually dies.</p>",
         skills: ["Construction Documents", "Program Management", "Hydraulics"],
       },
     ],
@@ -1886,21 +1846,21 @@ export const infrastructureProfiles = [
             startDate: "2021-03-15",
             projects: [
               {
-                name: "Hospital tower MEP coordination",
+                name: "Led mechanical on a 14-story hospital tower with 11 clashes per 100,000 sf at IFC",
                 description:
-                  "Lead mechanical on a 14-story hospital tower. Clash count at IFC was 11 per 100,000 sf; commissioning of air-handling systems finished 3 weeks ahead of the owner milestone.",
+                  "Lead mechanical on a 14-story hospital tower where a duct that fits in the model can still miss a fire damper in the field. Clash count at IFC was 11 per 100,000 sf; commissioning of air-handling systems finished 3 weeks ahead of the owner milestone once sequences and air-change rates were honest.",
                 skills: ["MEP Coordination", "Revit", "PE Stamping"],
               },
               {
-                name: "Lab exhaust energy recovery",
+                name: "Redesigned 90,000-cfm lab exhaust with energy recovery that cut estimated annual energy 18%",
                 description:
-                  "Redesigned a 90,000-cfm lab exhaust with energy recovery that cut estimated annual energy 18% and still met IMC and owner air-change rates.",
+                  "Redesigned a 90,000-cfm lab exhaust with energy recovery that cut estimated annual energy 18% and still met IMC and owner air-change rates. The first pass had oversized 'to be safe'; the stamp waited until the recovery wheel and the stack actually shared a sequence.",
                 skills: ["Sustainable Design", "Building Codes", "Construction Documents"],
               },
               {
-                name: "Air-handler submittal desk",
+                name: "Turned 27 long-lead air-handler submittals in 8 business days so pad and steel dates held",
                 description:
-                  "Turned 27 long-lead air-handler submittals in 8 business days so pad and steel dates held.",
+                  "Turned 27 long-lead air-handler submittals in 8 business days so pad and steel dates held. The reviews were less about fan curves than about catching a unit that would not fit the shaft after the steel was already in the air.",
                 skills: ["Construction Administration", "AutoCAD"],
               },
             ],
@@ -1921,15 +1881,15 @@ export const infrastructureProfiles = [
             endDate: "2021-03-05",
             projects: [
               {
-                name: "High-rise residential HVAC package",
+                name: "Designed HVAC for a 38-story residential tower with 0.6 mechanical RFIs per 10,000 sf",
                 description:
-                  "Designed HVAC for an 38-story residential tower. Coordinated fan-coil and shaft layouts in Revit; field RFIs on mechanical were 0.6 per 10,000 sf.",
+                  "Designed HVAC for a 38-story residential tower that wanted fan-coil units and shafts to share a ceiling with structure and wet trades. Coordinated layouts in Revit; field RFIs on mechanical were 0.6 per 10,000 sf, which is how you know the model was actually used.",
                 skills: ["Revit", "MEP Coordination", "Construction Documents"],
               },
               {
-                name: "IECC envelope and systems review",
+                name: "Closed Chicago IECC comments on five tenant jobs in one cycle with documented efficiencies",
                 description:
-                  "Closed Chicago IECC comments on five tenant jobs in one cycle by documenting equipment efficiencies and control sequences up front.",
+                  "Closed Chicago IECC comments on five tenant jobs in one cycle by documenting equipment efficiencies and control sequences up front. The comments stop being a late surprise when the COMcheck and the schedules tell the same story on the first submission.",
                 skills: ["Building Codes", "Sustainable Design", "PE Stamping"],
               },
             ],
@@ -1940,15 +1900,15 @@ export const infrastructureProfiles = [
             endDate: "2017-01-31",
             projects: [
               {
-                name: "Riser-diagram standard",
+                name: "Created the office AutoCAD riser standard for readable plumbing and hydronic stacks",
                 description:
-                  "Created the office AutoCAD riser standard that made plumbing and hydronic stacks readable on 30x42 sheets.",
+                  "Created the office AutoCAD riser standard that made plumbing and hydronic stacks readable on 30x42 sheets. A 3D crop is not always the right place for a stack; the 2D sheet is still what a balancer and an inspector will actually hold.",
                 skills: ["AutoCAD", "Construction Documents"],
               },
               {
-                name: "Clash-detection cadence",
+                name: "Set a weekly Navisworks cadence that cut late duct reroutes 40% on the next three jobs",
                 description:
-                  "Set a weekly Navisworks cadence with structure and fire protection that cut late duct reroutes 40% on the next three jobs.",
+                  "Set a weekly Navisworks cadence with structure and fire protection that cut late duct reroutes 40% on the next three jobs. The meeting was useful only because clashes were closed in the model the same week, not parked in a spreadsheet until IFC.",
                 skills: ["MEP Coordination", "Revit"],
               },
             ],
@@ -1979,13 +1939,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Hospital MEP coordination brief",
+        name: "Hospital tower clash-budget and commissioning brief",
         description:
-          "<p>How Lakeside MEP Partners coordinated a 14-story hospital: clash budgets, sequence of operations, and the commissioning notes that kept air-change rates honest.</p>",
-        links: [
-          { label: "Coordination brief", url: "https://www.example.com/lakeside-hospital-mep" },
-          { label: "Sequence notes", url: "https://www.example.com/lakeside-sequences" },
-        ],
+          "<p>How Lakeside MEP Partners coordinated a 14-story hospital: clash budgets, sequence of operations, and the commissioning notes that kept air-change rates honest. The brief is what I hand a new mechanical PE before the first coordination meeting turns into a hallway negotiation.</p>",
         skills: ["MEP Coordination", "Revit", "Building Codes"],
       },
     ],
@@ -2064,21 +2020,21 @@ export const infrastructureProfiles = [
             startDate: "2020-09-08",
             projects: [
               {
-                name: "Regional detention for a 240-acre basin",
+                name: "Designed a regional detention pond that dropped the 100-year peak 34% for a 240-acre basin",
                 description:
-                  "Designed a regional pond that dropped the 100-year peak 34% and met water-quality capture volume. Urban Drainage approved on the second cycle; construction finished $1.1M under the engineer's estimate.",
+                  "Designed a regional pond that dropped the 100-year peak 34% and met water-quality capture volume instead of being only a peak-shave hole. Urban Drainage approved on the second cycle; construction finished $1.1M under the engineer's estimate after the outlet structure and the grading finally agreed.",
                 skills: ["Hydraulics", "Sustainable Design", "PE Stamping"],
               },
               {
-                name: "Floodplain map revision package",
+                name: "Prepared a CLOMR/LOMR package for 1.6 miles of channel that FEMA issued in 11 months",
                 description:
-                  "Prepared a CLOMR/LOMR package for 1.6 miles of improved channel. FEMA issued the LOMR 11 months after construction without a conditional-to-final remodel.",
+                  "Prepared a CLOMR/LOMR package for 1.6 miles of improved channel that had to survive both a Mile High storm and a floodplain administrator. FEMA issued the LOMR 11 months after construction without a conditional-to-final remodel, which is the sentence that means the as-builts matched the model.",
                 skills: ["Hydraulics", "Building Codes", "Stakeholder Management"],
               },
               {
-                name: "Python hydrograph batcher",
+                name: "Scripted 40-basin hydrograph and rating-curve checks that cut model QA from two days to three hours",
                 description:
-                  "Scripted 40-basin hydrograph and rating-curve checks that cut model QA from two days to three hours before each submittal.",
+                  "Scripted 40-basin hydrograph and rating-curve checks that cut model QA from two days to three hours before each submittal. A weekend of copy-paste is how a pond ships with the wrong weir; the batcher made the wrong curve obvious before the city saw it.",
                 skills: ["Python", "Hydraulics", "Construction Documents"],
               },
             ],
@@ -2099,15 +2055,15 @@ export const infrastructureProfiles = [
             endDate: "2020-08-28",
             projects: [
               {
-                name: "Outfall CIP package",
+                name: "Designed three storm outfalls totaling $18M that bid within 7% of estimate",
                 description:
-                  "Designed three storm outfalls totaling $18M. All three bid within 7% of estimate after a quantity and utility review that caught a conflicting sanitary crossing.",
+                  "Designed three storm outfalls totaling $18M. All three bid within 7% of estimate after a quantity and utility review that caught a conflicting sanitary crossing before it became a change order. The crossing was the kind of thing a pretty profile sheet hides until construction.",
                 skills: ["Construction Documents", "AutoCAD", "PE Stamping"],
               },
               {
-                name: "Development review desk",
+                name: "Reviewed 90-plus drainage reports a year and cut first-review comments 30% with a published checklist",
                 description:
-                  "Reviewed 90+ drainage reports a year. First-review comment counts dropped 30% after publishing a criteria checklist developers actually used.",
+                  "Reviewed 90+ drainage reports a year from developers who treated Urban Drainage criteria as optional until the first comment letter. First-review comment counts dropped 30% after publishing a checklist they actually used, which is cheaper than writing the same outfall comment ninety times.",
                 skills: ["Building Codes", "Stakeholder Management", "Hydraulics"],
               },
             ],
@@ -2118,15 +2074,15 @@ export const infrastructureProfiles = [
             endDate: "2017-02-28",
             projects: [
               {
-                name: "Green-street pilot",
+                name: "Designed the city's first three green-street blocks that captured WQCV without flooding driveways",
                 description:
-                  "Designed the city's first three green-street blocks with water-quality planters that captured the WQCV without flooding driveways.",
+                  "Designed the city's first three green-street blocks with water-quality planters that captured the WQCV without flooding driveways. A planter that looks green and still ponds the sidewalk is not green infrastructure; it is a maintenance complaint waiting for the next storm.",
                 skills: ["Sustainable Design", "AutoCAD", "Construction Documents"],
               },
               {
-                name: "Rainfall atlas update support",
+                name: "Re-ran 12 CIP models against an updated rainfall atlas and flagged three ponds that missed peak release",
                 description:
-                  "Re-ran 12 CIP models against an updated rainfall atlas and flagged three ponds that no longer met peak release.",
+                  "Re-ran 12 CIP models against an updated rainfall atlas and flagged three ponds that no longer met peak release. The atlas change was not academic; those three ponds would have been accepted as adequate until the next cloudburst made the outlet look optimistic.",
                 skills: ["Hydraulics", "Python"],
               },
             ],
@@ -2162,13 +2118,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Regional detention case study",
+        name: "Front Range regional detention facility case study",
         description:
-          "<p>Design notes from a 240-acre Front Range detention facility: peak shaving, water-quality volume, and the Urban Drainage comments that decided the outlet structure.</p>",
-        links: [
-          { label: "Case study", url: "https://www.example.com/frontrange-detention" },
-          { label: "Model notes", url: "https://www.example.com/frontrange-hydraulics" },
-        ],
+          "<p>Design notes from a 240-acre Front Range detention facility: peak shaving, water-quality volume, and the Urban Drainage comments that decided the outlet structure. The outlet is the page I would show a new PE, because that is where a pond stops being a hole and starts being a permit.</p>",
         skills: ["Hydraulics", "Sustainable Design", "PE Stamping"],
       },
     ],
@@ -2247,21 +2199,21 @@ export const infrastructureProfiles = [
             startDate: "2021-06-01",
             projects: [
               {
-                name: "ERCOT day-ahead vs. real-time leakage",
+                name: "Rebuilt DAM/RT attribution on a 4.2 GW book and cut leakage from 210 bps to 80",
                 description:
-                  "Rebuilt the DAM/RT attribution for a 4.2 GW book. Leakage fell from 210 bps to 80 bps of plan after we stopped treating West Hub as a single story.",
+                  "Rebuilt the DAM/RT attribution for a 4.2 GW book that had been blaming weather for basis we already understood. Leakage fell from 210 bps to 80 bps of plan after we stopped treating West Hub as a single story and started tagging constraint hours separately.",
                 skills: ["Power Markets", "Financial Modeling", "Python"],
               },
               {
-                name: "Summer shape hedge",
+                name: "Sized a July-August hedge on 1.1 GW of retail load that held margin inside 4% of plan",
                 description:
-                  "Sized a July-August hedge on 1.1 GW of retail load using a heat-driven load forecast. Gross margin held inside 4% of plan through a 12-day heat event.",
+                  "Sized a July-August hedge on 1.1 GW of retail load using a heat-driven load forecast instead of last year's shape plus hope. Gross margin held inside 4% of plan through a 12-day heat event, which is when a pretty forward curve stops being a congestion story.",
                 skills: ["Pipeline Forecasting", "Market Analysis", "Risk Rating"],
               },
               {
-                name: "Constraint brief for origination",
+                name: "Wrote weekly constraint briefs that stopped originators selling fixed-price load behind a binding Houston import",
                 description:
-                  "Wrote weekly constraint briefs so originators stopped selling fixed-price load behind a frequently binding Houston import.",
+                  "Wrote weekly constraint briefs so originators stopped selling fixed-price load behind a frequently binding Houston import and calling the loss a market surprise. The brief used the same outage ticket the real-time desk already had, which is how a $9,000 interval gets one story.",
                 skills: ["Grid Operations", "Stakeholder Management"],
               },
             ],
@@ -2282,15 +2234,15 @@ export const infrastructureProfiles = [
             endDate: "2021-05-21",
             projects: [
               {
-                name: "Congestion atlas",
+                name: "Published a monthly ERCOT congestion atlas that predicted 7 of 10 expensive summer 2020 constraints",
                 description:
-                  "Published a monthly ERCOT congestion atlas used by 11 generator clients. Predicted 7 of the 10 most expensive constraints in summer 2020 inside a 15% shadow-price band.",
+                  "Published a monthly ERCOT congestion atlas used by 11 generator clients who were tired of learning about a path from the settlement. Predicted 7 of the 10 most expensive constraints in summer 2020 inside a 15% shadow-price band, which is better than a vibe about gas.",
                 skills: ["Power Markets", "Market Analysis", "Grid Operations"],
               },
               {
-                name: "Settlement true-up monitor",
+                name: "Automated true-up versus initial settlement checks and caught $2.4M of missing DAM awards",
                 description:
-                  "Automated true-up vs. initial settlement checks in Python. Caught $2.4M of missing DAM awards across four clients in the first year.",
+                  "Automated true-up vs. initial settlement checks in Python after a missing DAM award had been treated as a rounding story. Caught $2.4M of missing DAM awards across four clients in the first year, which is the kind of money that only shows up if you look every morning.",
                 skills: ["Python", "Financial Modeling"],
               },
             ],
@@ -2301,15 +2253,15 @@ export const infrastructureProfiles = [
             endDate: "2018-08-03",
             projects: [
               {
-                name: "Load-shape library",
+                name: "Built weather-normalized load shapes for 40 Texas weather zones still used for strip pricing",
                 description:
-                  "Built weather-normalized load shapes for 40 Texas weather zones that the retail team still uses for strip pricing.",
+                  "Built weather-normalized load shapes for 40 Texas weather zones that the retail team still uses for strip pricing. A naked summer week is usually a shape problem dressed up as a price problem, and the library made that argument quantitative.",
                 skills: ["Pipeline Forecasting", "Python"],
               },
               {
-                name: "Counterparty scorecard",
+                name: "Scored 60 counterparties on collateral, default history, and nodal concentration instead of a handshake",
                 description:
-                  "Scored 60 counterparties on collateral, default history, and nodal concentration so credit limit was not a handshake.",
+                  "Scored 60 counterparties on collateral, default history, and nodal concentration so credit limit was not a handshake. Limit started going to the basis we understood, not the name that had been around the longest on the desk.",
                 skills: ["Risk Rating", "Stakeholder Management"],
               },
             ],
@@ -2345,13 +2297,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "ERCOT leakage note",
+        name: "ERCOT day-ahead versus real-time leakage note",
         description:
-          "<p>How Gulf Coast Power Desk attributes day-ahead vs. real-time leakage: hub basis, constraint hours, and the load-shape mistakes that look like bad luck until you plot them.</p>",
-        links: [
-          { label: "Leakage note", url: "https://www.example.com/gulfcoast-leakage" },
-          { label: "Congestion atlas", url: "https://www.example.com/gulfcoast-congestion" },
-        ],
+          "<p>How Gulf Coast Power Desk attributes day-ahead vs. real-time leakage: hub basis, constraint hours, and the load-shape mistakes that look like bad luck until you plot them. The note is what I would hand a new analyst before anyone blames West Hub for a book that was never one story.</p>",
         skills: ["Power Markets", "Financial Modeling", "Market Analysis"],
       },
     ],
@@ -2430,21 +2378,21 @@ export const infrastructureProfiles = [
             startDate: "2020-03-02",
             projects: [
               {
-                name: "Midland Basin type-curve reset",
+                name: "Re-fit type curves on 420 wells and cut 18-month cumulative error from 17% to 8%",
                 description:
-                  "Re-fit type curves on 420 wells after a completion change. 18-month cumulative error fell from 17% to 8%; the next AFE round used one curve family instead of four.",
+                  "Re-fit type curves on 420 wells after a completion change that had left four curve families arguing in the same reserve meeting. 18-month cumulative error fell from 17% to 8%; the next AFE round used one curve family instead of four, which is how a pretty decline fit becomes a spacing decision.",
                 skills: ["Reservoir Engineering", "Python", "Quality Management"],
               },
               {
-                name: "Parent-child spacing study",
+                name: "Modeled 660- versus 880-ft spacing and recommended 880 on the child-prone bench",
                 description:
-                  "Modeled 660- vs. 880-ft spacing on two benches. Recommended 880 on the child-prone bench; first 16 wells paid out 3 months faster than the tight-spacing case.",
+                  "Modeled 660- vs. 880-ft spacing on two benches after child wells started telling on the tighter pattern. Recommended 880 on the child-prone bench; first 16 wells paid out 3 months faster than the tight-spacing case, which is the money conversation geology and completions can both live with.",
                 skills: ["Reservoir Engineering", "Financial Modeling", "Stakeholder Management"],
               },
               {
-                name: "90-well program sequence",
+                name: "Sequenced a 90-well year against takeaway and deferred 6 wells that would have hit a constrained battery",
                 description:
-                  "Sequenced a 90-well year against tank, gas takeaway, and offset frac hits. Deferred 6 wells that would have flowed into a constrained battery.",
+                  "Sequenced a 90-well year against tank, gas takeaway, and offset wells we could not frac into. Deferred 6 wells that would have flowed into a constrained battery, which is how a rig walk stays a schedule instead of a flaring story.",
                 skills: ["Production Planning", "Process Safety", "Market Analysis"],
               },
             ],
@@ -2465,15 +2413,15 @@ export const infrastructureProfiles = [
             endDate: "2020-02-21",
             projects: [
               {
-                name: "Reserve category cleanup",
+                name: "Rebooked 180 wells to a consistent PDP/PUD split and cut year-end auditor variance from 11% to 3%",
                 description:
-                  "Rebooked 180 wells to a consistent PDP/PUD split after two engineers had used different decline cutoffs. Year-end reserve variance vs. auditor dropped from 11% to 3%.",
+                  "Rebooked 180 wells to a consistent PDP/PUD split after two engineers had used different decline cutoffs on the same well. Year-end reserve variance vs. auditor dropped from 11% to 3% once the cutoff lived in a standard, not a personality.",
                 skills: ["Quality Management", "Reservoir Engineering", "Financial Modeling"],
               },
               {
-                name: "Flowback MOC",
+                name: "Wrote the flowback MOC with operations after a high-pressure incident and recorded zero repeats on 40 wells",
                 description:
-                  "Wrote the flowback MOC with operations after a high-pressure incident. Zero repeat events on the next 40 wells.",
+                  "Wrote the flowback MOC with operations after a high-pressure incident that had treated simultaneous operations as a suggestion. Zero repeat events on the next 40 wells, which is the only MOC metric that is not a signature on a form.",
                 skills: ["Process Safety", "Stakeholder Management"],
               },
             ],
@@ -2484,15 +2432,15 @@ export const infrastructureProfiles = [
             endDate: "2016-12-30",
             projects: [
               {
-                name: "Decline batch notebook",
+                name: "Moved decline fits off 180 spreadsheets into a reviewed Python notebook with a plot per well",
                 description:
-                  "Moved decline fits off 180 spreadsheets into a Python notebook with a review plot for each well.",
+                  "Moved decline fits off 180 spreadsheets into a Python notebook with a review plot for each well. Two engineers could finally book the same well the same way, and the wells that left the type curve showed up before the reserve meeting.",
                 skills: ["Python", "Reservoir Engineering"],
               },
               {
-                name: "Strip and differential pack",
+                name: "Built the monthly price and Midland differential pack the AFE process still uses",
                 description:
-                  "Built the monthly price and Midland differential pack the AFE process still uses.",
+                  "Built the monthly price and Midland differential pack the AFE process still uses, so a type curve was not an oil-price hope. Strip and differential sat next to EUR and capex, which is how a spacing case becomes a money decision.",
                 skills: ["Market Analysis", "Financial Modeling"],
               },
             ],
@@ -2523,13 +2471,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Spacing and type-curve note",
+        name: "Midland type-curve and spacing decision note",
         description:
-          "<p>How Permian Basin Reservoir Co reset Midland type curves and chose 880-ft spacing on a child-prone bench: decline fits, payout, and the wells we did not drill into a constrained battery.</p>",
-        links: [
-          { label: "Type-curve note", url: "https://www.example.com/permian-typecurves" },
-          { label: "Spacing study", url: "https://www.example.com/permian-spacing" },
-        ],
+          "<p>How Permian Basin Reservoir Co reset Midland type curves and chose 880-ft spacing on a child-prone bench: decline fits, payout, and the wells we did not drill into a constrained battery. The note is the argument I would take to a completions meeting before anyone walks another rig into a tighter pattern.</p>",
         skills: ["Reservoir Engineering", "Financial Modeling", "Production Planning"],
       },
     ],
@@ -2608,22 +2552,22 @@ export const infrastructureProfiles = [
             startDate: "2020-11-02",
             projects: [
               {
-                name: "BAAL exceedance program",
+                name: "Rebuilt ACE/BAAL procedures and training and cut exceedances 62% in 18 months",
                 description:
-                  "Rebuilt ACE/BAAL procedures, alarm deadbands, and the real-time training drill. Exceedances dropped 62% in 18 months; the RC stopped calling about the same path every heat week.",
+                  "Rebuilt ACE/BAAL procedures, alarm deadbands, and the real-time training drill after a quiet alarm page had been mistaken for a reliable grid. Exceedances dropped 62% in 18 months; the RC stopped calling about the same path every heat week.",
                 skills: ["Grid Operations", "SCADA", "Technical Leadership"],
               },
               {
-                name: "CIP evidence closeout",
+                name: "Closed a two-cycle CIP evidence gap with 40 sampled tickets and no potential noncompliance",
                 description:
-                  "Closed a two-cycle CIP evidence gap on BES cyber-system access and change tickets. The next audit sampled 40 tickets with no potential noncompliance.",
+                  "Closed a two-cycle CIP evidence gap on BES cyber-system access and change tickets that had sat open because the evidence lived in someone's inbox. The next audit sampled 40 tickets with no potential noncompliance, which is what a walkthrough looks like when the tickets are true on a bad Tuesday.",
                 skills: ["NERC Compliance", "Change Management", "Stakeholder Management"],
               },
               {
-                name: "Operator pipeline",
+                name: "Stood up an 18-month NERC certification pipeline that filled 5 desk seats and cut overtime 19%",
                 description:
-                  "Stood up a 18-month NERC certification pipeline. Filled 5 desk seats internally and cut overtime 19% without dropping coverage.",
-                skills: ["Workforce Planning", "Power Markets"],
+                  "Stood up an 18-month NERC certification pipeline after the desk was one retirement from a hole. Filled 5 desk seats internally and cut overtime 19% without dropping coverage, which is the only staffing story that is not a contractor invoice.",
+                skills: ["Workforce Planning", "NERC Compliance"],
               },
             ],
           },
@@ -2643,15 +2587,15 @@ export const infrastructureProfiles = [
             endDate: "2020-10-23",
             projects: [
               {
-                name: "Alarm rationalization",
+                name: "Cut standing SCADA alarms from 140 to 38 and raised critical acknowledgment from 71% to 96%",
                 description:
-                  "Cut standing SCADA alarms from 140 to 38 on the main display. Operator-acknowledged critical alarms rose from 71% to 96% in 90 days.",
+                  "Cut standing SCADA alarms from 140 to 38 on the main display after operators had learned to ignore a wall of stale analogs. Operator-acknowledged critical alarms rose from 71% to 96% in 90 days, which is how you know the page is being read again.",
                 skills: ["SCADA", "Grid Operations", "Change Management"],
               },
               {
-                name: "TOP-001 operating plan rewrite",
+                name: "Rewrote SOL and IROL procedures after a path-rating change that neighboring BAs adopted",
                 description:
-                  "Rewrote SOL and IROL procedures after a path-rating change. Neighboring BAs adopted the same outage-notification timeline.",
+                  "Rewrote SOL and IROL procedures after a path-rating change that would have left the night shift working last year's limits. Neighboring BAs adopted the same outage-notification timeline, which is the only rewrite that counts as coordination instead of a binder update.",
                 skills: ["NERC Compliance", "Stakeholder Management"],
               },
             ],
@@ -2662,16 +2606,16 @@ export const infrastructureProfiles = [
             endDate: "2017-03-31",
             projects: [
               {
-                name: "ICCP point cleanup",
+                name: "Reconciled 600 ICCP points and found 44 stale analogs driving false ACE contributions",
                 description:
-                  "Reconciled 600 ICCP points with the neighboring BA; 44 stale analogs had been driving false ACE contributions.",
+                  "Reconciled 600 ICCP points with the neighboring BA after ACE had been blaming operators for a telemetry lie. 44 stale analogs had been driving false ACE contributions; cleaning them was less glamorous than a new display and more useful.",
                 skills: ["SCADA", "Grid Operations"],
               },
               {
-                name: "Real-time market coordination",
+                name: "Wrote the desk's first real-time coordination note so constraints and price spikes shared one outage ticket",
                 description:
-                  "Wrote the desk's first real-time coordination note with the market group so a constraint and a price spike used the same outage ticket.",
-                skills: ["Power Markets", "Workforce Planning"],
+                  "Wrote the desk's first real-time coordination note with the market group so a constraint and a price spike used the same outage ticket. Dispatch and the desk finally spoke one language at 02:00, which is when a binding path and a strip should not be two stories.",
+                skills: ["Power Markets", "Stakeholder Management"],
               },
             ],
           },
@@ -2701,13 +2645,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "BAAL and CIP operating brief",
+        name: "BAAL performance and CIP evidence operating brief",
         description:
-          "<p>Cascadia Grid Cooperative's public brief on BAAL performance, alarm rationalization, and the CIP evidence path that survived a two-cycle gap closeout.</p>",
-        links: [
-          { label: "Operating brief", url: "https://www.example.com/cascadia-baal" },
-          { label: "CIP evidence note", url: "https://www.example.com/cascadia-cip" },
-        ],
+          "<p>Cascadia Grid Cooperative's public brief on BAAL performance, alarm rationalization, and the CIP evidence path that survived a two-cycle gap closeout. It is the packet I would hand an auditor and a night-shift operator, because both of them need the same truth on a bad Tuesday.</p>",
         skills: ["Grid Operations", "NERC Compliance", "SCADA"],
       },
     ],
@@ -2786,21 +2726,21 @@ export const infrastructureProfiles = [
             startDate: "2021-04-12",
             projects: [
               {
-                name: "PHA recommendation closeout",
+                name: "Cleared a 210-item PHA backlog and cut overdues 71% across two refinery sites",
                 description:
-                  "Cleared a 210-item overdue backlog across two sites. Overdues fell 71% in 14 months; high-consequence LOPA gaps went from 18 to 2 before the next turnaround.",
+                  "Cleared a 210-item overdue backlog across two sites that had been treating recommendations as suggestions. Overdues fell 71% in 14 months; high-consequence LOPA gaps went from 18 to 2 before the next turnaround, which is when a unit is allowed to start up.",
                 skills: ["Process Safety", "Risk Rating", "Program Management"],
               },
               {
-                name: "PSI and P&ID reconciliation",
+                name: "Reconciled PSI against as-built P&IDs and closed 64 drawing gaps before PHA revalidation",
                 description:
-                  "Reconciled PSI against as-built P&IDs on a crude unit that had drifted through two turnarounds. Closed 64 drawing gaps before the PHA revalidation.",
+                  "Reconciled PSI against as-built P&IDs on a crude unit that had drifted through two turnarounds and was about to be studied on last turnaround's drawing. Closed 64 drawing gaps before the PHA revalidation, which is the only way a HAZOP is not a fiction.",
                 skills: ["Quality Management", "Internal Controls", "Change Management"],
               },
               {
-                name: "Turnaround MOC gate",
+                name: "Added a process-safety turnaround gate so 11 open recommendations could not slip past startup",
                 description:
-                  "Added a process-safety gate to the turnaround schedule so 11 open recommendations could not be deferred past startup.",
+                  "Added a process-safety gate to the turnaround schedule so 11 open recommendations could not be deferred past startup. Operations, maintenance, and the superintendent finally shared one gate, which is how a high-consequence LOPA gap stops being next turnaround's problem.",
                 skills: ["Stakeholder Management", "Safety Management Systems"],
               },
             ],
@@ -2821,15 +2761,15 @@ export const infrastructureProfiles = [
             endDate: "2021-04-02",
             projects: [
               {
-                name: "Hydroprocessing HAZOP/LOPA",
+                name: "Facilitated a hydroprocessing HAZOP/LOPA that found 9 paper IPLs and made 7 real before restart",
                 description:
-                  "Facilitated a HAZOP/LOPA on a hydroprocessing unit after a catalyst change. Identified 9 IPLs that existed only on paper; 7 were made real before restart.",
+                  "Facilitated a HAZOP/LOPA on a hydroprocessing unit after a catalyst change that had been treated as a chemistry problem. Identified 9 IPLs that existed only on paper; 7 were made real before restart, which is the difference between a sticky note and a safeguard.",
                 skills: ["Process Safety", "Risk Rating", "Stakeholder Management"],
               },
               {
-                name: "Temporary MOC purge",
+                name: "Closed 38 temporary MOCs older than 90 days including hoses and blinds that had become normal line-up",
                 description:
-                  "Closed 38 'temporary' MOCs older than 90 days, including hoses and blinds that had become the normal line-up.",
+                  "Closed 38 'temporary' MOCs older than 90 days, including hoses and blinds that had become the normal line-up. A temporary hose that survives two PHAs is not temporary; it is an undocumented change wearing a work-order number.",
                 skills: ["Change Management", "Internal Controls"],
               },
             ],
@@ -2840,15 +2780,15 @@ export const infrastructureProfiles = [
             endDate: "2017-09-01",
             projects: [
               {
-                name: "Action-item tracker",
+                name: "Replaced a shared spreadsheet with an owned tracker and lifted on-time closure from 54% to 88%",
                 description:
-                  "Replaced a shared spreadsheet with an owned tracker. On-time closure rose from 54% to 88% in a year.",
+                  "Replaced a shared spreadsheet with an owned tracker that had owners and due dates an auditor could sample without a war story. On-time closure rose from 54% to 88% in a year once a missed date had a name next to it.",
                 skills: ["Program Management", "Quality Management"],
               },
               {
-                name: "Incident-to-safeguard reviews",
+                name: "Mapped 12 unit incidents to missing safeguards and fed them into the next PHA",
                 description:
-                  "Mapped 12 unit incidents to missing safeguards and fed them into the next PHA instead of a safety-meeting slide.",
+                  "Mapped 12 unit incidents to missing safeguards and fed them into the next PHA instead of a safety-meeting slide. The SMS connection mattered: a learning that does not become an IPL is just a story the next crew has to rediscover.",
                 skills: ["Safety Management Systems", "Process Safety"],
               },
             ],
@@ -2879,13 +2819,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "PSM closeout playbook",
+        name: "PHA closeout and turnaround MOC playbook",
         description:
-          "<p>Bayou Refining Safety's playbook for overdue PHA recommendations, PSI reconciliation, and the turnaround gate that keeps a high-consequence LOPA gap from slipping past startup.</p>",
-        links: [
-          { label: "Playbook", url: "https://www.example.com/bayou-psm-playbook" },
-          { label: "MOC gate", url: "https://www.example.com/bayou-moc-gate" },
-        ],
+          "<p>Bayou Refining Safety's playbook for overdue PHA recommendations, PSI reconciliation, and the turnaround gate that keeps a high-consequence LOPA gap from slipping past startup. It is the closeout standard I hand a unit superintendent before anyone calls an open recommendation a suggestion.</p>",
         skills: ["Process Safety", "Program Management", "Change Management"],
       },
     ],
@@ -2964,21 +2900,21 @@ export const infrastructureProfiles = [
             startDate: "2021-02-01",
             projects: [
               {
-                name: "Mid-band 5G cluster plan",
+                name: "Planned 1,140 mid-band 5G sites across DFW with 9% prediction-to-drive RSRP error",
                 description:
-                  "Planned 1,140 mid-band sites across DFW. Prediction-to-drive RSRP error landed at 9%; first-month accessibility held above 99.2% on 18 of 20 clusters.",
+                  "Planned 1,140 mid-band sites across DFW and did not call a cluster on air until the drive test matched the prediction. Prediction-to-drive RSRP error landed at 9%; first-month accessibility held above 99.2% on 18 of 20 clusters, which is a coverage plot that is also a capacity plan.",
                 skills: ["5G RAN Planning", "Network Planning", "System Design"],
               },
               {
-                name: "PCI and interference cleanup",
+                name: "Audited PCI confusion across 2,400 cells and cut intra-frequency interference tickets 22%",
                 description:
-                  "Audited PCI and PCI-confusion in Python across 2,400 cells. Intra-frequency interference tickets dropped 22% in the quarter after retune.",
+                  "Audited PCI and PCI-confusion in Python across 2,400 cells after a new carrier started colliding with the one next door. Intra-frequency interference tickets dropped 22% in the quarter after retune, which is the part a pretty PCI plan usually skips.",
                 skills: ["Spectrum Management", "Python", "Network Optimization"],
               },
               {
-                name: "Competitor coverage overlay",
+                name: "Mapped competitor mid-band against search rings and moved 40 proposed sites before lease spend",
                 description:
-                  "Mapped competitor mid-band against our search rings so 40 proposed sites were moved before lease spend.",
+                  "Mapped competitor mid-band against our search rings so 40 proposed sites were moved before lease spend. A new site is not a win if the other carrier already owns the grid, and site-dev finally saw that before the landlord conversation.",
                 skills: ["Market Analysis", "Stakeholder Management"],
               },
             ],
@@ -2999,15 +2935,15 @@ export const infrastructureProfiles = [
             endDate: "2021-01-22",
             projects: [
               {
-                name: "LTE 1900 overlay",
+                name: "Designed a 1900 overlay on 310 sites that cut dropped-call rate 18% after a tilt pass",
                 description:
-                  "Designed a 1900 overlay on 310 sites. Post-launch dropped-call rate fell 18% in the target zip codes after a tilt pass.",
+                  "Designed a 1900 overlay on 310 sites that needed capacity without wrecking the LTE neighbor list. Post-launch dropped-call rate fell 18% in the target zip codes after a tilt pass, which is when a prediction error stops living in the KPI for a year.",
                 skills: ["Network Optimization", "Network Planning", "Spectrum Management"],
               },
               {
-                name: "Small-cell overlay study",
+                name: "Sized a 90-node downtown small-cell overlay that offloaded 14% of busy-hour volume in six months",
                 description:
-                  "Sized a 90-node small-cell overlay for a downtown grid. Traffic offload hit 14% of busy-hour volume in six months.",
+                  "Sized a 90-node small-cell overlay for a downtown grid that macros could not carry at busy hour. Traffic offload hit 14% of busy-hour volume in six months once low-band coverage, mid-band capacity, and the overlay were designed as one stack.",
                 skills: ["System Design", "5G RAN Planning", "Market Analysis"],
               },
             ],
@@ -3018,16 +2954,16 @@ export const infrastructureProfiles = [
             endDate: "2018-03-02",
             projects: [
               {
-                name: "Drive-test join toolkit",
+                name: "Built the Python prediction-to-drive-test join the planning team still uses for cluster acceptance",
                 description:
-                  "Built the Python join of prediction and drive-test that the planning team still uses for cluster acceptance.",
+                  "Built the Python join of prediction and drive-test that the planning team still uses for cluster acceptance. A cluster that looks green in the tool and red in the van is not on air; the join made that argument quantitative instead of a weekend in a spreadsheet.",
                 skills: ["Python", "Network Optimization"],
               },
               {
-                name: "Neighbor-list hygiene",
+                name: "Cleaned missing and one-way neighbors on 800 cells and cut handover failures 11% on the next cluster",
                 description:
-                  "Cleaned missing and one-way neighbors on 800 cells; handover failures dropped 11% on the next cluster.",
-                skills: ["Spectrum Management", "Stakeholder Management"],
+                  "Cleaned missing and one-way neighbors on 800 cells after handover failures had been blamed on RF that was actually a list problem. Handover failures dropped 11% on the next cluster once PCI, PRACH, and the neighbor plan were policed together.",
+                skills: ["Spectrum Management", "Network Optimization"],
               },
             ],
           },
@@ -3062,13 +2998,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "DFW mid-band plan",
+        name: "Dallas-Fort Worth mid-band 5G cluster plan",
         description:
-          "<p>How Lone Star Spectrum planned 1,140 mid-band 5G sites in DFW: prediction-to-drive error, PCI hygiene, and the competitor overlay that moved 40 search rings before lease spend.</p>",
-        links: [
-          { label: "Cluster plan", url: "https://www.example.com/lonestar-midband" },
-          { label: "PCI audit", url: "https://www.example.com/lonestar-pci" },
-        ],
+          "<p>How Lone Star Spectrum planned 1,140 mid-band 5G sites in DFW: prediction-to-drive error, PCI hygiene, and the competitor overlay that moved 40 search rings before lease spend. The plan is what I hand a new RF engineer before anyone calls a cluster on air from a pretty plot.</p>",
         skills: ["5G RAN Planning", "Spectrum Management", "Network Optimization"],
       },
     ],
@@ -3147,21 +3079,21 @@ export const infrastructureProfiles = [
             startDate: "2020-07-06",
             projects: [
               {
-                name: "Sev-1 MTTR program",
+                name: "Rewrote Sev-1 runbooks and cut MTTR from 3.4 hours to 71 minutes on 46 events",
                 description:
-                  "Rewrote Sev-1 runbooks, vendor bridges, and paging. MTTR fell from 3.4 hours to 71 minutes on 46 events; customer-facing SLA credits dropped 58%.",
+                  "Rewrote Sev-1 runbooks, vendor bridges, and paging after a green dashboard had been mistaken for a tested failover. MTTR fell from 3.4 hours to 71 minutes on 46 events; customer-facing SLA credits dropped 58% once the bridge had a name and a clock.",
                 skills: ["Technical Leadership", "Observability", "Stakeholder Management"],
               },
               {
-                name: "Change-related incident cut",
+                name: "Installed a freeze calendar and mandatory backout that cut change-related Sev-2s 44% in two quarters",
                 description:
-                  "Installed a freeze calendar, peer review, and mandatory backout. Change-related Sev-2s fell 44% in two quarters.",
-                skills: ["Change Management", "OSS/BSS", "Workforce Planning"],
+                  "Installed a freeze calendar, peer review, and mandatory backout after change night kept becoming an incident. Change-related Sev-2s fell 44% in two quarters once people used the backout they had already written instead of inventing one on the bridge.",
+                skills: ["Change Management", "OSS/BSS", "Technical Leadership"],
               },
               {
-                name: "Core capacity plan",
+                name: "Built an 18-month core and peering plan that pulled two 90% links forward before a traffic spike",
                 description:
-                  "Built an 18-month core and peering plan that pulled two 90% links forward a quarter before a football-season traffic spike.",
+                  "Built an 18-month core and peering plan that pulled two 90% links forward a quarter before a football-season traffic spike. A busy season is not supposed to be the first time anyone notices a link; the plan made the 90% visible while there was still a purchase order.",
                 skills: ["Network Planning", "Network Optimization"],
               },
             ],
@@ -3181,15 +3113,15 @@ export const infrastructureProfiles = [
             endDate: "2020-06-26",
             projects: [
               {
-                name: "Failover drill calendar",
+                name: "Ran quarterly core and DWDM failover drills that found two protection paths existing only in inventory",
                 description:
-                  "Ran quarterly core and DWDM failover drills. Two drills found protection paths that only existed in inventory; both were fixed before a real cut.",
+                  "Ran quarterly core and DWDM failover drills after a fiber cut had been treated as a press-release risk instead of a drill. Two drills found protection paths that only existed in inventory; both were fixed before a real cut, which is the only inventory that counts.",
                 skills: ["Network Optimization", "OSS/BSS", "Change Management"],
               },
               {
-                name: "Follow-the-sun staffing",
+                name: "Moved the NOC to follow-the-sun staffing that cut overtime 21% and halved overnight Sev-1 page-ack time",
                 description:
-                  "Moved the desk to a follow-the-sun model with a partner NOC. Overtime fell 21% and overnight Sev-1 page-ack time halved.",
+                  "Moved the desk to a follow-the-sun model with a partner NOC after overnight coverage was one resignation from a hole. Overtime fell 21% and overnight Sev-1 page-ack time halved, which is a staffing story with a clock on it.",
                 skills: ["Workforce Planning", "Technical Leadership"],
               },
             ],
@@ -3200,15 +3132,15 @@ export const infrastructureProfiles = [
             endDate: "2017-02-03",
             projects: [
               {
-                name: "Circuit inventory cleanup",
+                name: "Reconciled 1,800 transport circuits against the OSS and found 9% undocumented or wrongly protected",
                 description:
-                  "Reconciled 1,800 transport circuits against the OSS. 9% were undocumented or wrongly protected; the next fiber cut failed over as designed.",
+                  "Reconciled 1,800 transport circuits against the OSS after the NOC had been troubleshooting circuits that were never turned up. 9% were undocumented or wrongly protected; the next fiber cut failed over as designed, which is what inventory is for.",
                 skills: ["OSS/BSS", "Network Planning"],
               },
               {
-                name: "Latency SLO dashboards",
+                name: "Stood up latency and loss SLOs on 40 on-net paths so the NOC stopped arguing about 'feels slow'",
                 description:
-                  "Stood up latency and loss SLOs on 40 on-net paths so the NOC stopped arguing about 'feels slow.'",
+                  "Stood up latency and loss SLOs on 40 on-net paths so the NOC stopped arguing about 'feels slow.' Ticket age and path health finally shared a target, which is how a customer complaint becomes a number instead of a vibe.",
                 skills: ["Observability", "Stakeholder Management"],
               },
             ],
@@ -3239,13 +3171,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "NOC Sev-1 playbook",
+        name: "NOC Sev-1 MTTR and change-freeze playbook",
         description:
-          "<p>Peachtree Network Ops' Sev-1 playbook: who is on the bridge, how MTTR is measured, and the change freeze that cut change-related incidents 44%.</p>",
-        links: [
-          { label: "Playbook", url: "https://www.example.com/peachtree-sev1" },
-          { label: "Capacity plan", url: "https://www.example.com/peachtree-capacity" },
-        ],
+          "<p>Peachtree Network Ops' Sev-1 playbook: who is on the bridge, how MTTR is measured, and the change freeze that cut change-related incidents 44%. It is the runbook I hand a new supervisor before a fiber cut becomes a status-meeting factory.</p>",
         skills: ["Technical Leadership", "Network Planning", "Change Management"],
       },
     ],
@@ -3324,22 +3252,22 @@ export const infrastructureProfiles = [
             startDate: "2021-01-11",
             projects: [
               {
-                name: "42,000-passing launch",
+                name: "Launched FTTH in 42,000 passings with a 31% month-12 take rate and 9-day install cycle",
                 description:
-                  "Launched FTTH in 42,000 passings across four Front Range cities. Month-12 take rate was 31%; install cycle time averaged 9 days after a drop-inventory fix.",
+                  "Launched FTTH in 42,000 passings across four Front Range cities that had a construction schedule and not yet a product. Month-12 take rate was 31%; install cycle time averaged 9 days after a drop-inventory fix, because a pretty homepass count is not a product if the drop is a rumor.",
                 skills: ["Fiber Deployment", "Program Management", "Pipeline Forecasting"],
               },
               {
-                name: "Overbuild market model",
+                name: "Built a take-rate model that killed two overbuild markets and funded a third at 28% take",
                 description:
-                  "Built the take-rate and competitor-price model that killed two overbuild markets and funded a third that hit 28% take at month 8.",
+                  "Built the take-rate and competitor-price model that killed two overbuild markets and funded a third that hit 28% take at month 8. The model had to survive a competitor price cut, which is the only take-rate story that is not a hockey stick on a slide.",
                 skills: ["Market Analysis", "Network Planning", "Stakeholder Management"],
               },
               {
-                name: "Order-to-install cutover",
+                name: "Moved order-to-install onto a single OSS path and cut bad-address truck-roll fails 36%",
                 description:
-                  "Moved order-to-install onto a single OSS path. In-flight orders were not dropped; truck-roll fails from bad addresses fell 36%.",
-                skills: ["Change Management", "Relationship Management"],
+                  "Moved order-to-install onto a single OSS path without losing the 400 orders already in flight. In-flight orders were not dropped; truck-roll fails from bad addresses fell 36% once construction, OSS, and the city permit desk shared one identifier.",
+                skills: ["Change Management", "Stakeholder Management"],
               },
             ],
           },
@@ -3359,15 +3287,15 @@ export const infrastructureProfiles = [
             endDate: "2020-12-18",
             projects: [
               {
-                name: "Grant-funded town build",
+                name: "Ran a 6,200-passing grant-funded town build that finished 5% under budget with every pledged passing serviceable",
                 description:
-                  "Ran a 6,200-passing town build on a state grant. Construction finished 5% under budget; every pledged passing was serviceable at closeout.",
+                  "Ran a 6,200-passing town build on a state grant that wanted every pledged passing serviceable, not just advertised. Construction finished 5% under budget; every pledged passing was serviceable at closeout, which is the closeout a grant officer can actually sample.",
                 skills: ["Fiber Deployment", "Program Management", "Stakeholder Management"],
               },
               {
-                name: "HOA access program",
+                name: "Negotiated fiber access with 14 HOAs so a feeder was not stranded behind a locked gate",
                 description:
-                  "Negotiated access with 14 HOAs so a feeder was not stranded behind a locked gate. 11 signed before construction; 3 after a redesigned drop plan.",
+                  "Negotiated access with 14 HOAs so a feeder was not stranded behind a locked gate after construction had already spent the money. 11 signed before construction; 3 after a redesigned drop plan, which is cheaper than discovering the gate on splice day.",
                 skills: ["Relationship Management", "Network Planning"],
               },
             ],
@@ -3378,15 +3306,15 @@ export const infrastructureProfiles = [
             endDate: "2018-03-30",
             projects: [
               {
-                name: "Passing and take-rate forecast",
+                name: "Built the first rolling passings-and-installs forecast that finance used for three budget cycles",
                 description:
-                  "Built the first rolling forecast of passings and installs that finance used for three budget cycles.",
+                  "Built the first rolling forecast of passings and installs that finance used for three budget cycles. Permit delays stopped becoming hockey sticks in the model, which is how a construction slip stays a calendar problem instead of a surprise in churn.",
                 skills: ["Pipeline Forecasting", "Market Analysis"],
               },
               {
-                name: "Permit calendar",
+                name: "Mapped city permit SLAs against the construction calendar and stopped two launches slipping a season",
                 description:
-                  "Mapped city permit SLAs against the construction calendar so two launches stopped slipping a season for a ROW delay.",
+                  "Mapped city permit SLAs against the construction calendar so two launches stopped slipping a season for a ROW delay. A launch date that is also a council meeting needs one calendar, not three teams guessing when the trench can open.",
                 skills: ["Change Management", "Fiber Deployment"],
               },
             ],
@@ -3417,13 +3345,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "FTTH launch brief",
+        name: "Front Range 42,000-passing FTTH launch brief",
         description:
-          "<p>How Rockies Fiber Co launched 42,000 passings: take-rate model, drop inventory, and the order-to-install path that cut truck-roll fails 36%.</p>",
-        links: [
-          { label: "Launch brief", url: "https://www.example.com/rockies-ftth-launch" },
-          { label: "Take-rate model", url: "https://www.example.com/rockies-takerate" },
-        ],
+          "<p>How Rockies Fiber Co launched 42,000 passings: take-rate model, drop inventory, and the order-to-install path that cut truck-roll fails 36%. The brief is what I hand a new PM before anyone treats a homepass count as a product customers can order.</p>",
         skills: ["Fiber Deployment", "Market Analysis", "Pipeline Forecasting"],
       },
     ],
@@ -3501,21 +3425,21 @@ export const infrastructureProfiles = [
             startDate: "2020-05-04",
             projects: [
               {
-                name: "Inventory consolidation",
+                name: "Retired two shadow inventories and cut order fallout from 11% to 2.4% on a 180k-subscriber stack",
                 description:
-                  "Retired two shadow inventories into one service-and-resource model. Order fallout fell from 11% to 2.4% on a 180k-subscriber stack; activation time dropped from 36 hours to 9.",
+                  "Retired two shadow inventories into one service-and-resource model so a service order, a license, and a live circuit were the same object. Order fallout fell from 11% to 2.4% on a 180k-subscriber stack; activation time dropped from 36 hours to 9 once the nightly batch stopped being a delayed rumor.",
                 skills: ["OSS/BSS", "System Design", "Distributed Systems"],
               },
               {
-                name: "Spectrum-adjacent inventory",
+                name: "Modeled licenses and PCI next to RAN inventory so a retune updates the FCC file and neighbor list",
                 description:
-                  "Modeled licenses, channels, and PCI plans next to RAN inventory. A mid-band retune now updates the FCC file and the neighbor list from the same change ticket.",
+                  "Modeled licenses, channels, and PCI plans next to RAN inventory so a retune was not a surprise to the FCC file. A mid-band retune now updates the FCC file and the neighbor list from the same change ticket, which is what spectrum-adjacent actually means.",
                 skills: ["Spectrum Management", "Network Planning", "Requirements Management"],
               },
               {
-                name: "Reconciliation jobs",
+                name: "Shipped inventory-versus-EMS reconciliation that found 6,400 ghost circuits and closed 92% in 10 weeks",
                 description:
-                  "Shipped Python reconciliation of inventory vs. live EMS. First run found 6,400 ghost circuits; 92% were closed or documented in 10 weeks.",
+                  "Shipped Python reconciliation of inventory vs. live EMS after a 'source of truth' with a nightly batch had been lying politely. First run found 6,400 ghost circuits; 92% were closed or documented in 10 weeks, which is how a migration stays honest.",
                 skills: ["Python", "Technical Leadership"],
               },
             ],
@@ -3536,15 +3460,15 @@ export const infrastructureProfiles = [
             endDate: "2020-04-24",
             projects: [
               {
-                name: "Order-to-activate event bus",
+                name: "Replaced nightly batch with evented order-to-activate and cut duplicate port activations from 40 a month to 2",
                 description:
-                  "Replaced a nightly batch with evented order-to-activate. Duplicate port activations went from 40 a month to 2; timeout retries became idempotent.",
+                  "Replaced a nightly batch with evented order-to-activate that could survive a downstream timeout without double-activating a port. Duplicate port activations went from 40 a month to 2; timeout retries became idempotent, which is the part a pretty integration diagram skips.",
                 skills: ["Distributed Systems", "OSS/BSS", "System Design"],
               },
               {
-                name: "Vendor requirements pack",
+                name: "Wrote billing-and-inventory RFP tests that failed two vendors on the license-expiry scenario before we signed",
                 description:
-                  "Wrote the requirements and acceptance tests for a billing-and-inventory RFP. Two vendors failed the license-expiry scenario before we signed the one that passed.",
+                  "Wrote the requirements and acceptance tests for a billing-and-inventory RFP that a vendor and a network engineer could both test. Two vendors failed the license-expiry scenario before we signed the one that passed, which is cheaper than discovering expiry in production.",
                 skills: ["Requirements Management", "Spectrum Management", "Technical Leadership"],
               },
             ],
@@ -3555,15 +3479,15 @@ export const infrastructureProfiles = [
             endDate: "2016-12-30",
             projects: [
               {
-                name: "Planned-vs-live site IDs",
+                name: "Forced planned sites and live cells onto one identifier so RF and the NOC stopped opening triplicate tickets",
                 description:
-                  "Forced planned sites and live cells onto one identifier. RF planning and the NOC stopped opening tickets on the same site under three names.",
+                  "Forced planned sites and live cells onto one identifier so construction and activation shared a name from day one. RF planning and the NOC stopped opening tickets on the same site under three names, which is how a planned site becomes a live cell on purpose.",
                 skills: ["Network Planning", "OSS/BSS"],
               },
               {
-                name: "Inventory exception notebook",
+                name: "Built the first Python exception notebook that compared inventory to EMS dumps every Monday",
                 description:
-                  "Built the first Python exception notebook that compared inventory to EMS dumps every Monday.",
+                  "Built the first Python exception notebook that compared inventory to EMS dumps every Monday. The exception list was the migration; without it, a shadow inventory just grew a new nickname each quarter and called itself the source of truth.",
                 skills: ["Python", "System Design"],
               },
             ],
@@ -3599,13 +3523,9 @@ export const infrastructureProfiles = [
     ],
     featuredProjects: [
       {
-        name: "Inventory consolidation brief",
+        name: "OSS service-and-resource inventory consolidation architecture brief",
         description:
-          "<p>How Hudson OSS Labs retired two shadow inventories: the service-and-resource model, the spectrum-adjacent license object, and the reconciliation that found 6,400 ghost circuits.</p>",
-        links: [
-          { label: "Architecture brief", url: "https://www.example.com/hudson-inventory" },
-          { label: "Reconciliation note", url: "https://www.example.com/hudson-reconcile" },
-        ],
+          "<p>How Hudson OSS Labs retired two shadow inventories: the service-and-resource model, the spectrum-adjacent license object, and the reconciliation that found 6,400 ghost circuits. The brief is the architecture I would hand a vendor before anyone sells another point-to-point integration as a source of truth.</p>",
         skills: ["OSS/BSS", "Spectrum Management", "System Design"],
       },
     ],
