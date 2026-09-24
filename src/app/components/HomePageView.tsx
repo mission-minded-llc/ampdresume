@@ -7,6 +7,7 @@ import { Icon } from "@iconify/react";
 import { MuiLink } from "@/components/MuiLink";
 import { LITERARY_DEMOS } from "@/constants/literaryDemos";
 import { VERTICAL_DEMO_GROUPS } from "@/constants/verticalDemos";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { ThemeAwareLogo } from "./ThemeAwareLogo";
 
 const LITERARY_TAB_ID = "literary";
@@ -22,31 +23,43 @@ const demoCardSx = (theme: Theme) => ({
   },
 });
 
-const DemoResumeCard = ({ slug, name, title }: { slug: string; name: string; title: string }) => (
-  <Box component="li" sx={demoCardSx}>
-    <MuiLink
-      href={`/r/${slug}`}
-      aria-label={name}
-      sx={{
-        display: "block",
-        height: "100%",
-        p: 1.75,
-        fontWeight: 650,
-        textDecoration: "none",
-        "&:hover": { textDecoration: "none" },
-      }}
-    >
-      {name}
-      <Typography
-        component="span"
-        color="text.secondary"
-        sx={{ display: "block", mt: 0.5, fontSize: "0.9rem", lineHeight: 1.45 }}
+const DemoResumeCard = ({ slug, name, title }: { slug: string; name: string; title: string }) => {
+  const isDesktop = useIsDesktop();
+
+  return (
+    <Box component="li" sx={demoCardSx}>
+      <MuiLink
+        href={`/r/${slug}`}
+        aria-label={name}
+        onClick={(event) => {
+          if (!isDesktop || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+            return;
+          }
+
+          event.preventDefault();
+          window.open(`/r/${slug}`, "_blank", "noopener,noreferrer");
+        }}
+        sx={{
+          display: "block",
+          height: "100%",
+          p: 1.75,
+          fontWeight: 650,
+          textDecoration: "none",
+          "&:hover": { textDecoration: "none" },
+        }}
       >
-        {title}
-      </Typography>
-    </MuiLink>
-  </Box>
-);
+        {name}
+        <Typography
+          component="span"
+          color="text.secondary"
+          sx={{ display: "block", mt: 0.5, fontSize: "0.9rem", lineHeight: 1.45 }}
+        >
+          {title}
+        </Typography>
+      </MuiLink>
+    </Box>
+  );
+};
 
 const demoGridSx = {
   m: 0,

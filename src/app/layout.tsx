@@ -40,6 +40,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable}`}
       style={{ colorScheme: initialThemeAppearance ?? "light" }}
     >

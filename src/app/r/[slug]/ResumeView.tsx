@@ -11,7 +11,7 @@ import {
 } from "@/types";
 import { themeDefinitions } from "@/theme";
 import { Session } from "next-auth";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -54,6 +54,10 @@ export const ResumeView = ({
   const { themeAppearance } = useContext(ThemeAppearanceContext);
   const [selectedTheme, setSelectedTheme] = useState<ThemeName>(user?.webThemeName ?? "default");
   const [isSaving, setIsSaving] = useState(false);
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [slug]);
 
   // Used to hide unpublished themes in the theme selector.
   const isProduction = getEnvironmentName() === "production";
