@@ -55,7 +55,8 @@ describe("HomePageView", () => {
       "href",
       "https://github.com/mission-minded-llc/ampdresume/blob/main/src/theme/README.md",
     );
-    expect(container.querySelector("svg[viewBox='0 0 600 400']")).toBeInTheDocument();
+    expect(container.querySelector("svg[viewBox='0 0 615 312']")).toBeInTheDocument();
+    expect(container.querySelector("svg[viewBox='0 0 615 400']")).toBeInTheDocument();
   });
 
   it("welcomes a signed-in user and points them to the editor", () => {

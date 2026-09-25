@@ -18,7 +18,7 @@ describe("ThemeAwareLogo", () => {
     const { container } = renderWithTheme("light");
     const svg = container.querySelector("svg");
     expect(svg).toBeInTheDocument();
-    expect(svg).toHaveAttribute("viewBox", "0 0 600 400");
+    expect(svg).toHaveAttribute("viewBox", "0 0 615 400");
   });
 
   it("applies light theme colors when palette mode is light", () => {
@@ -50,5 +50,21 @@ describe("ThemeAwareLogo", () => {
     expect(box.tagName).toBe("DIV");
     // MUI Box renders as div; sx width/maxWidth are applied via CSS
     expect(box.querySelector("svg")).toBeInTheDocument();
+  });
+
+  it("omits the .com mark and crops the viewBox when hideDomain is set", () => {
+    const full = renderWithTheme("light");
+    const fullPathCount = full.container.querySelectorAll("svg path").length;
+    full.unmount();
+
+    const theme = createTheme({ palette: { mode: "light" } });
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <ThemeAwareLogo hideDomain />
+      </ThemeProvider>,
+    );
+    const svg = container.querySelector("svg");
+    expect(svg).toHaveAttribute("viewBox", "0 0 615 312");
+    expect(container.querySelectorAll("svg path").length).toBe(fullPathCount - 1);
   });
 });
