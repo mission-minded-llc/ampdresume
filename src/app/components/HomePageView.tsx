@@ -3,6 +3,7 @@
 import { useState } from "react";
 import NextLink from "next/link";
 import { Box, Button, Chip, Container, Tab, Tabs, Theme, Typography } from "@mui/material";
+import { visuallyHidden } from "@mui/utils";
 import { Icon } from "@iconify/react";
 import { MuiLink } from "@/components/MuiLink";
 import { LITERARY_DEMOS } from "@/constants/literaryDemos";
@@ -253,12 +254,23 @@ export const HomePageView = ({ userName }: { userName: string | null }) => {
           }}
         />
         <Container maxWidth="md" sx={{ position: "relative" }}>
-          <Box sx={{ display: "flex", justifyContent: "center", mb: 1.5 }}>
-            <Icon icon="fluent-emoji-flat:high-voltage" width={44} height={44} />
+          <Box
+            component="h1"
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              overflow: "visible",
+              m: 0,
+              mx: "auto",
+              pl: 1,
+              maxWidth: { xs: 280, sm: 360 },
+            }}
+          >
+            <Box component="span" sx={visuallyHidden}>
+              Amp&apos;d Resume
+            </Box>
+            <ThemeAwareLogo hideDomain maxWidth="100%" />
           </Box>
-          <Typography component="h1" variant="h3" sx={{ typography: { xs: "h4", sm: "h3" } }}>
-            Amp&apos;d Resume
-          </Typography>
           <Typography
             component="p"
             sx={{
