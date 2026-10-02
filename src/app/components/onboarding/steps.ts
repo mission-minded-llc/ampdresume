@@ -161,7 +161,7 @@ export const RECRUITER_ONBOARDING_STEPS: OnboardingStep[] = [
     id: "recruiter-pool",
     kind: "modal",
     title: "Who can appear",
-    body: 'Only people who turn on "Allow recruiters to find me" are searchable. A match links to their public resume.',
+    body: 'Only people who turn on "Recruiter search" are searchable. A match links to their public resume.',
     primaryLabel: "Next",
   },
   {

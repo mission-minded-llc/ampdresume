@@ -51,14 +51,7 @@ export function DiscoverableToggle({ enabled }: { enabled: boolean }) {
         flexShrink: 0,
       })}
     >
-      <Typography variant="h6" component="h2" sx={{ mb: 0.5 }}>
-        Recruiter search
-      </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 1, lineHeight: 1.6 }}>
-        Your public resume link works either way. This only controls whether you show up in search.
-        Any signed-in user with a recruiter desk can search the pool. It stays off until you turn it
-        on.
-      </Typography>
+
       <FormControlLabel
         control={
           <Switch
@@ -70,8 +63,11 @@ export function DiscoverableToggle({ enabled }: { enabled: boolean }) {
             }}
           />
         }
-        label="Allow recruiters to find me"
+        label="Recruiter search"
       />
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 1, lineHeight: 1.6 }}>
+        Control whether you show up in recruiter searches.
+      </Typography>
       {error ? (
         <Typography color="error" variant="body2" role="alert">
           {error}

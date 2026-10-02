@@ -23,16 +23,6 @@ exports[`Page renders correctly for authenticated users 1`] = `
       <div
         class="MuiBox-root css-3vaezx"
       >
-        <h2
-          class="MuiTypography-root MuiTypography-h6 css-15ipuy0-MuiTypography-root"
-        >
-          Recruiter search
-        </h2>
-        <p
-          class="MuiTypography-root MuiTypography-body2 css-xwbu5n-MuiTypography-root"
-        >
-          Your public resume link works either way. This only controls whether you show up in search. Any signed-in user with a recruiter desk can search the pool. It stays off until you turn it on.
-        </p>
         <label
           class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
         >
@@ -58,9 +48,14 @@ exports[`Page renders correctly for authenticated users 1`] = `
           <span
             class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-rizt0-MuiTypography-root"
           >
-            Allow recruiters to find me
+            Recruiter search
           </span>
         </label>
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-xwbu5n-MuiTypography-root"
+        >
+          Control whether you show up in recruiter searches.
+        </p>
       </div>
     </div>
     <div

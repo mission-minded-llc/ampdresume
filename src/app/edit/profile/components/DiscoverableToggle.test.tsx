@@ -16,7 +16,7 @@ describe("DiscoverableToggle", () => {
 
     render(<DiscoverableToggle enabled={false} />);
 
-    fireEvent.click(screen.getByRole("switch", { name: "Allow recruiters to find me" }));
+    fireEvent.click(screen.getByRole("switch", { name: "Recruiter search" }));
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
@@ -27,6 +27,6 @@ describe("DiscoverableToggle", () => {
         }),
       );
     });
-    expect(screen.getByRole("switch", { name: "Allow recruiters to find me" })).toBeChecked();
+    expect(screen.getByRole("switch", { name: "Recruiter search" })).toBeChecked();
   });
 });
