@@ -18,14 +18,14 @@ export type ThemeAppearance = "dark" | "light";
  * dashes instead of spaces. This value is used to determine which theme gets rendered
  * on the Amp'd Resume site, and should be unique to each theme.
  */
-export type ThemeName = "default" | "davids" | "retro-80s"; // Add more themes here, e.g. "default" | "my-theme" | "another-theme"
+export type ThemeName = "default" | "davids" | "retro-80s" | "legal"; // Add more themes here, e.g. "default" | "my-theme" | "another-theme"
 
 /**
  * The name of a PDF view, which is independent from the interactive web theme.
  * Resume owners pick a PDF view for job-application exports; visitors see that
  * same selection. Add more PDF views here as they are published.
  */
-export type PdfThemeName = "default" | "times";
+export type PdfThemeName = "default" | "times" | "legal";
 
 /**
  * The ThemeAuthor interface is used to define the author of a theme

@@ -60,7 +60,7 @@ export const PDFView = ({
 
   const isProduction = getEnvironmentName() === "production";
   const isOwner = Boolean(session?.user?.slug && slug && session.user.slug === slug);
-  const showPdfThemePicker = isOwner || themePreview;
+  const showPdfThemePicker = isOwner || themePreview || isDemoResume(user);
 
   useEffect(() => {
     const themePreviewCookie = document.cookie
@@ -117,17 +117,19 @@ export const PDFView = ({
               })}
             </Select>
           </FormControl>
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={handleSavePdfTheme}
-            disabled={isSaving || !session?.user?.id}
-            sx={{ mt: 0.75 }}
-            fullWidth
-          >
-            {isSaving ? "Saving..." : "Save"}
-          </Button>
+          {isOwner ? (
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={handleSavePdfTheme}
+              disabled={isSaving || !session?.user?.id}
+              sx={{ mt: 0.75 }}
+              fullWidth
+            >
+              {isSaving ? "Saving..." : "Save"}
+            </Button>
+          ) : null}
         </FloatingThemePicker>
       ) : null}
       <PdfDocumentFrame showDemoTag={isDemoResume(user)}>

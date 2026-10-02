@@ -28,6 +28,7 @@ import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
 import { UserWithTheme } from "@/graphql/getResume";
 import { updateUser } from "@/graphql/updateUser";
 import { resolveThemeSocials } from "@/lib/demoSocials";
+import { isDemoResume } from "@/lib/demoResume";
 import { getEnvironmentName } from "@/util/url";
 
 export const ResumeView = ({
@@ -75,6 +76,9 @@ export const ResumeView = ({
     setSelectedTheme(event.target.value as ThemeName);
   };
 
+  const isOwner = Boolean(session?.user && session.user.slug === slug);
+  const showThemePicker = isOwner || themePreview || isDemoResume(user);
+
   const handleSaveTheme = async () => {
     if (!session?.user?.id) return;
 
@@ -117,7 +121,7 @@ export const ResumeView = ({
 
   return (
     <>
-      {(session?.user && session.user.slug === slug) || themePreview ? (
+      {showThemePicker ? (
         <FloatingThemePicker>
           <FormControl fullWidth size="small">
             <InputLabel id="theme-select-label">Theme</InputLabel>
@@ -141,17 +145,19 @@ export const ResumeView = ({
               })}
             </Select>
           </FormControl>
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={handleSaveTheme}
-            disabled={isSaving || !session?.user?.id}
-            sx={{ mt: 0.75 }}
-            fullWidth
-          >
-            {isSaving ? "Saving..." : "Save"}
-          </Button>
+          {isOwner ? (
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={handleSaveTheme}
+              disabled={isSaving || !session?.user?.id}
+              sx={{ mt: 0.75 }}
+              fullWidth
+            >
+              {isSaving ? "Saving..." : "Save"}
+            </Button>
+          ) : null}
         </FloatingThemePicker>
       ) : null}
       {renderTheme()}

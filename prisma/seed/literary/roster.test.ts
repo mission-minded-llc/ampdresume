@@ -13,6 +13,12 @@ describe("literary seed roster", () => {
 
   it("tags every profile as a demo resume without social or featured-project links", () => {
     expect(literaryCharacters.every((character) => character.isDemo)).toBe(true);
+    expect(literaryCharacters.every((character) => character.webThemeName === "default")).toBe(
+      true,
+    );
+    expect(literaryCharacters.every((character) => character.pdfThemeName === "default")).toBe(
+      true,
+    );
     expect(literaryCharacters.every((character) => character.socials.length === 0)).toBe(true);
     expect(
       literaryCharacters.every((character) =>
