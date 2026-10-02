@@ -96,4 +96,51 @@ describe("Import Section", () => {
     cy.contains("strong", "Imported Labs").filter(":visible").should("be.visible");
     cy.contains("Add New Company").should("be.visible");
   });
+
+  it("should reject a file that is not a PDF and a PDF that cannot be read", () => {
+    cy.get('input[type="file"]:enabled', { timeout: 10000 }).selectFile({
+      contents: Cypress.Buffer.from("not a pdf"),
+      fileName: "notes.txt",
+      mimeType: "text/plain",
+    });
+    cy.contains("Please upload a valid PDF file.").should("be.visible");
+
+    cy.get('input[type="file"]:enabled').selectFile({
+      contents: Cypress.Buffer.from("this is not a real pdf"),
+      fileName: "bad.pdf",
+      mimeType: "application/pdf",
+    });
+    cy.contains("Error extracting text from PDF. Please try again or use a different file.").should(
+      "be.visible",
+    );
+  });
+
+  it("should save an edited name from the extracted resume", () => {
+    cy.intercept("POST", "/api/graphql", (req) => {
+      if (req.body.operationName === "getParsedResumeAi") {
+        req.reply(getParsedResumeAiSaveResponse);
+        req.alias = "getParsedResumeAi";
+      }
+      if (req.body.operationName === "saveExtractedResumeData") {
+        expect(req.body.variables.user.name).to.eq("Jordan Edited");
+        req.alias = "saveExtractedResumeData";
+      }
+    });
+
+    cy.get('input[type="file"]:enabled', { timeout: 10000 }).selectFile(
+      "cypress/fixtures/test-resume-1.pdf",
+    );
+    cy.wait("@getParsedResumeAi", { timeout: 10000 });
+
+    cy.get('input[name="name"]').clear().type("Jordan Edited");
+
+    cy.contains("button", "Save All").click();
+    cy.contains("button", "Yes, Update").click();
+    cy.wait("@saveExtractedResumeData");
+
+    cy.visit("/edit/profile");
+    cy.skipOnboardingIfPresent();
+    cy.closeMessageDialog();
+    cy.get("input[name='name']").should("have.value", "Jordan Edited");
+  });
 });

@@ -5,8 +5,9 @@ import { getExperience } from "@/graphql/getExperience";
 import { getUser } from "@/graphql/getUser";
 import { removeHiddenFields } from "@/util/userData";
 
-export async function GET(request: Request, { params }: { params: { slug: string } }) {
-  const user = await getUser(params.slug);
+export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const user = await getUser(slug);
 
   if (!user) return notFound();
 

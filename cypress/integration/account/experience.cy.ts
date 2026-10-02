@@ -124,4 +124,18 @@ describe("Experience Section", () => {
 
     cy.contains(companyName).should("not.exist");
   });
+
+  it("should treat a blank end date as the current role", () => {
+    const companyName = "Current Corp";
+
+    cy.get("button").contains("Add New Company").click();
+    cy.get(".MuiDialog-container input[name='companyName']").type(companyName);
+    cy.get(".MuiDialog-container input[name='location']").type("Remote");
+    cy.fillMonthYear(".MuiDialog-container", "dateStarted", "January", "2024");
+    cy.get(".MuiDialog-container").contains("Leave blank if current.").should("be.visible");
+    cy.get(".MuiDialog-container button").contains("Save Company").click();
+
+    cy.get("h3").contains(companyName).should("be.visible");
+    cy.contains("January 2024 to present").should("be.visible");
+  });
 });
