@@ -627,9 +627,14 @@ describe("auth", () => {
         user: { id: "user-1", email: "new@example.com" },
       } as never);
 
-      expect(mockUpsert).toHaveBeenCalledWith({
+      expect(mockUpsert).toHaveBeenNthCalledWith(1, {
         where: { userId_name: { userId: "user-1", name: "onboarding_pending" } },
         create: { userId: "user-1", name: "onboarding_pending", enabled: true },
+        update: { enabled: true },
+      });
+      expect(mockUpsert).toHaveBeenNthCalledWith(2, {
+        where: { userId_name: { userId: "user-1", name: "recruiter_onboarding_pending" } },
+        create: { userId: "user-1", name: "recruiter_onboarding_pending", enabled: true },
         update: { enabled: true },
       });
     });

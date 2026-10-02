@@ -13,6 +13,10 @@ export type OnboardingStepId =
   | "tools"
   | "import"
   | "import-location"
+  | "recruiter-workspace"
+  | "recruiter-desk"
+  | "recruiter-pool"
+  | "recruiter-replay"
   | "tips";
 
 export type OnboardingStep = {
@@ -112,6 +116,59 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
     kind: "modal",
     title: "Tips for a stronger resume",
     body: "A few habits that make Amp'd Resume work best — then you're ready to build.",
+    primaryLabel: "Done",
+  },
+];
+
+export const RECRUITER_ONBOARDING_STEPS: OnboardingStep[] = [
+  {
+    id: "welcome",
+    kind: "modal",
+    title: "Welcome to the recruiter desk",
+    body: "Search people who opted in to be found. This desk is separate from your resume, and the same account can do both.",
+    primaryLabel: "Start tour",
+    secondaryLabel: "Skip tutorial",
+  },
+  {
+    id: "menu",
+    kind: "spotlight",
+    title: "Your main menu",
+    body: "This button opens the app menu. Use it to move between your resume and this hiring desk.",
+    target: "nav-menu-button",
+    placement: "right-start",
+    primaryLabel: "Next",
+  },
+  {
+    id: "recruiter-workspace",
+    kind: "spotlight",
+    title: "Two workspaces",
+    body: "My resume edits your public page. Recruiter searches the opt-in pool.",
+    target: "recruiter-workspace",
+    placement: "right-start",
+    openNav: true,
+    primaryLabel: "Next",
+  },
+  {
+    id: "recruiter-desk",
+    kind: "spotlight",
+    title: "Your hiring desk",
+    body: "Add a company or desk name, then search by name, title, location, or skill.",
+    target: "recruiter-desk",
+    placement: "bottom-start",
+    primaryLabel: "Next",
+  },
+  {
+    id: "recruiter-pool",
+    kind: "modal",
+    title: "Who can appear",
+    body: 'Only people who turn on "Recruiter search" are searchable. A match links to their public resume.',
+    primaryLabel: "Next",
+  },
+  {
+    id: "recruiter-replay",
+    kind: "modal",
+    title: "Replay this tour",
+    body: "Restart it from this page, or from Account → Restart tutorial while you are on the recruiter desk.",
     primaryLabel: "Done",
   },
 ];

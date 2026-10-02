@@ -121,28 +121,43 @@ const comingSoon = [
   },
 ];
 
-const HeroCtas = ({ userName }: { userName: string | null }) => {
-  if (userName) {
-    return (
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, justifyContent: "center" }}>
-        <Button component={NextLink} href="/edit/profile" variant="contained" color="secondary">
-          Edit your resume
-        </Button>
-        <Button component={NextLink} href="#example-resumes" variant="outlined" color="secondary">
-          See example resumes
-        </Button>
-      </Box>
-    );
-  }
-
-  return (
-    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, justifyContent: "center" }}>
+const HeroCtas = ({
+  userName,
+  showRecruiterLink = false,
+}: {
+  userName: string | null;
+  showRecruiterLink?: boolean;
+}) => {
+  const actions = userName ? (
+    <>
+      <Button component={NextLink} href="/edit/profile" variant="contained" color="secondary">
+        Edit your resume
+      </Button>
+      <Button component={NextLink} href="#example-resumes" variant="outlined" color="secondary">
+        See example resumes
+      </Button>
+    </>
+  ) : (
+    <>
       <Button component={NextLink} href="/login" variant="contained" color="secondary">
         Start building free
       </Button>
       <Button component={NextLink} href="#example-resumes" variant="outlined" color="secondary">
         See example resumes
       </Button>
+    </>
+  );
+
+  return (
+    <Box>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, justifyContent: "center" }}>
+        {actions}
+      </Box>
+      {showRecruiterLink ? (
+        <Typography sx={{ mt: 2 }}>
+          <MuiLink href="/recruit">Hiring? Search the resume pool</MuiLink>
+        </Typography>
+      ) : null}
     </Box>
   );
 };
@@ -289,14 +304,8 @@ export const HomePageView = ({ userName }: { userName: string | null }) => {
             A free interactive resume you can share in any application — plus a PDF when you need a
             file. No website to maintain.
           </Typography>
-          {userName ? (
-            <Typography sx={{ mt: 3, mb: 2, fontWeight: 650 }}>
-              Welcome back, {userName}!
-            </Typography>
-          ) : (
-            <Box sx={{ mt: 3 }} />
-          )}
-          <HeroCtas userName={userName} />
+          <Box sx={{ mt: 3 }} />
+          <HeroCtas userName={userName} showRecruiterLink />
           <Box
             sx={{
               mt: 3,

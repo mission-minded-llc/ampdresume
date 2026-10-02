@@ -4,6 +4,7 @@ import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { SectionTitle } from "../components/SectionTitle";
 import { AccountForm } from "./components/AccountForm";
+import { DiscoverableToggle } from "./components/DiscoverableToggle";
 
 export function generateMetadata() {
   return {
@@ -32,7 +33,18 @@ const Page = async () => {
         width: "100%",
       }}
     >
-      <SectionTitle title="Profile" />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          justifyContent: "space-between",
+          alignItems: { xs: "stretch", sm: "flex-start" },
+          gap: 2,
+        }}
+      >
+        <SectionTitle title="Profile" />
+        <DiscoverableToggle enabled={user?.recruiterDiscoverable ?? false} />
+      </Box>
       <AccountForm
         name={user?.name || ""}
         slug={user?.slug || ""}

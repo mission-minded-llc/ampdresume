@@ -13,6 +13,17 @@ type CoachActionsProps = {
   showBack: boolean;
 };
 
+/**
+ * Renders back, skip, and the primary action for one tutorial step.
+ *
+ * @param step The step whose labels and finished state drive the buttons.
+ * @param onPrimary Advances or finishes the tutorial.
+ * @param onSecondary Handles a step-specific secondary action, such as skipping from welcome.
+ * @param onSkipTour Closes the tutorial from a middle step.
+ * @param onBack Returns to the previous step.
+ * @param showBack Whether the back button is available.
+ * @returns The tutorial action row.
+ */
 export const OnboardingCoachActions = ({
   step,
   onPrimary,
@@ -21,15 +32,9 @@ export const OnboardingCoachActions = ({
   onBack,
   showBack,
 }: CoachActionsProps) => {
-  const secondaryAction = step.secondaryLabel
-    ? onSecondary
-    : step.id === "welcome" || step.id === "tips"
-      ? undefined
-      : onSkipTour;
-  const secondaryLabel =
-    step.secondaryLabel ??
-    (step.id === "welcome" || step.id === "tips" ? undefined : "Skip tutorial");
-  const isDone = step.id === "tips";
+  const isDone = step.primaryLabel === "Done";
+  const secondaryAction = step.secondaryLabel ? onSecondary : isDone ? undefined : onSkipTour;
+  const secondaryLabel = step.secondaryLabel ?? (isDone ? undefined : "Skip tutorial");
 
   return (
     <Box

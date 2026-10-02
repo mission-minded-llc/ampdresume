@@ -73,6 +73,9 @@ model User {
   /// True for literary and industry-vertical seed profiles. Real accounts stay false.
   isDemo Boolean @default(false)
 
+  /// Opt-in for recruiter search. A public resume URL does not imply this.
+  recruiterDiscoverable Boolean @default(false)
+
   /// All the relations to the user:
   accounts          Account[]
   company           Company[]
@@ -84,6 +87,21 @@ model User {
   Certification     Certification[]
   SkillContribution SkillContribution[]
   features          Feature[]
+  recruiterProfile  RecruiterProfile?
+
+  @@index([recruiterDiscoverable])
+  @@schema("ampdresume")
+}
+
+/// Hiring-desk profile for the same User. Login stays one account; this is a second workspace.
+model RecruiterProfile {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  companyName String
+  title       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@schema("ampdresume")
 }

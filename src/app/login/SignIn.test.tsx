@@ -16,6 +16,7 @@ jest.mock("@sentry/react", () => ({
 describe("SignIn", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    window.history.pushState({}, "", "/");
   });
 
   it("renders correctly", () => {
@@ -57,6 +58,27 @@ describe("SignIn", () => {
     await findByText("An error occurred. Please try again later.");
 
     expect(Sentry.captureException).toHaveBeenCalledWith(new Error("Sign in failed"));
+  });
+
+  it("keeps a same-site callback from the query string", async () => {
+    window.history.pushState({}, "", "/login?callbackUrl=/recruit");
+    (signIn as jest.Mock).mockResolvedValueOnce({});
+
+    const { getByText, getByLabelText } = render(<SignIn />);
+
+    fireEvent.change(getByLabelText("Email Address *"), {
+      target: { value: "test@example.com" },
+    });
+    fireEvent.click(getByText("Sign in with Email"));
+
+    await waitFor(() => {
+      expect(signIn).toHaveBeenCalledWith("email", {
+        email: "test@example.com",
+        callbackUrl: "/recruit",
+      });
+    });
+
+    window.history.pushState({}, "", "/");
   });
 
   it("handles social sign-in with Google", async () => {

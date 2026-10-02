@@ -3,7 +3,11 @@
 import { createContext, useContext, useMemo, useState } from "react";
 
 export type NavTourId =
-  "nav-menu-button" | "edit-resume-section" | "import-pdf" | "restart-tutorial";
+  | "nav-menu-button"
+  | "edit-resume-section"
+  | "import-pdf"
+  | "restart-tutorial"
+  | "recruiter-workspace";
 
 export type NavPrimaryContextValue = {
   isOpen: boolean;

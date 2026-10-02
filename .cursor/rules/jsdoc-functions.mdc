@@ -1,0 +1,58 @@
+---
+description: Require JSDoc purpose, @param, and @returns on every function in src TypeScript
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# JSDoc on every function
+
+Every function in `src/**/*.{ts,tsx}` needs a JSDoc block immediately above it. The block must describe the function's purpose: what it does and why it exists. Do not restate the function name.
+
+Document every parameter with a `@param` tag. Describe what the argument is used for. TypeScript already carries the type, so do not repeat it. For a destructured parameter, document each property. Omit `@param` only when the function takes no arguments.
+
+Leave one blank line between the purpose description and the tag list. The list starts with `@param` tags, then `@returns`. When the function takes no arguments, the blank line still separates the description from `@returns`. Describe what the caller receives. Omit `@returns` only when the function returns nothing.
+
+Apply this to:
+
+- Function declarations and function expressions
+- Arrow functions bound to a variable, export, or property
+- Class and object methods
+- React function components and custom hooks
+
+Skip one-line callbacks passed inline (for example `.map((item) => item.id)`) unless the callback is extracted into a named function.
+
+```tsx
+// ❌ BAD — missing JSDoc
+export function searchCandidates(query: string) {
+  return db.candidate.findMany({ where: { name: { contains: query } } });
+}
+
+// ❌ BAD — no blank line, parameters and return undocumented
+/**
+ * Finds discoverable candidates whose name matches the recruiter's query.
+ * @param query Text to match against the candidate's name.
+ */
+export function searchCandidates(query: string, limit: number) {
+  return db.candidate.findMany({
+    where: { name: { contains: query } },
+    take: limit,
+  });
+}
+
+// ✅ GOOD
+/**
+ * Finds discoverable candidates whose name matches the recruiter's query.
+ *
+ * @param query Text to match against the candidate's name.
+ * @param limit Maximum number of candidates to return.
+ * @returns Matching candidates, capped at limit.
+ */
+export function searchCandidates(query: string, limit: number) {
+  return db.candidate.findMany({
+    where: { name: { contains: query } },
+    take: limit,
+  });
+}
+```
+
+When writing or editing a function, add or update the JSDoc in the same change. If behavior, parameters, or the return value change, update the purpose description, `@param` tags, and `@returns` tag so they stay accurate.

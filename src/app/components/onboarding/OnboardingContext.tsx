@@ -1,12 +1,13 @@
 "use client";
 
 import { createContext, useContext } from "react";
+import { OnboardingTutorial } from "@/lib/onboardingTutorial";
 
 export type OnboardingContextValue = {
   isOnboardingActive: boolean;
   isOnboardingStatusResolved: boolean;
   didImport: boolean;
-  restartOnboarding: () => Promise<void>;
+  restartOnboarding: (tutorial?: OnboardingTutorial) => Promise<void>;
   completeOnboarding: () => Promise<void>;
   notifyImported: () => void;
 };

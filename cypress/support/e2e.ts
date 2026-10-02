@@ -11,7 +11,7 @@ Cypress.Commands.add("skipOnboardingIfPresent", () => {
   cy.request({
     method: "POST",
     url: "/api/onboarding",
-    body: { pending: false },
+    body: { pending: false, recruiterPending: false },
     failOnStatusCode: false,
   });
 });
@@ -28,7 +28,7 @@ Cypress.Commands.add("loginWithMagicLink", ({ skipOnboarding = true } = {}) => {
 
       cy.task("getMagicLink", { email }).then((magicLink) => {
         if (skipOnboarding) {
-          cy.intercept("GET", "/api/onboarding", { pending: false });
+          cy.intercept("GET", "/api/onboarding", { pending: false, recruiterPending: false });
         }
 
         cy.visit(magicLink as string);
@@ -38,7 +38,7 @@ Cypress.Commands.add("loginWithMagicLink", ({ skipOnboarding = true } = {}) => {
           cy.request({
             method: "POST",
             url: "/api/onboarding",
-            body: { pending: false },
+            body: { pending: false, recruiterPending: false },
             failOnStatusCode: false,
           });
         }
@@ -53,7 +53,7 @@ Cypress.Commands.add("loginWithMagicLink", ({ skipOnboarding = true } = {}) => {
 
   // Intercepts inside cy.session do not persist after restore.
   if (skipOnboarding) {
-    cy.intercept("GET", "/api/onboarding", { pending: false });
+    cy.intercept("GET", "/api/onboarding", { pending: false, recruiterPending: false });
   }
 });
 

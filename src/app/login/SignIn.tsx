@@ -6,6 +6,7 @@ import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
 import * as Sentry from "@sentry/react";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { safeCallbackUrl } from "@/lib/safeCallbackUrl";
 
 export function SignIn() {
   const [email, setEmail] = useState("");
@@ -20,12 +21,18 @@ export function SignIn() {
     if (errParam) setError(errParam);
   }, []);
 
+  const callbackUrl = () => {
+    if (!window?.location) return "/edit/profile";
+
+    return safeCallbackUrl(new URLSearchParams(window.location.search).get("callbackUrl"));
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true);
 
     e.preventDefault();
 
-    await signIn("email", { email, callbackUrl: "/edit/profile" }).catch((error) => {
+    await signIn("email", { email, callbackUrl: callbackUrl() }).catch((error) => {
       Sentry.captureException(error);
       setError(error.message);
       setIsSubmitting(false);
@@ -100,7 +107,7 @@ export function SignIn() {
             variant="outlined"
             color="secondary"
             fullWidth
-            onClick={() => signIn("google", { callbackUrl: "/edit/profile" })}
+            onClick={() => signIn("google", { callbackUrl: callbackUrl() })}
           >
             <Icon
               icon="flat-color-icons:google"
@@ -114,7 +121,7 @@ export function SignIn() {
             variant="outlined"
             color="secondary"
             fullWidth
-            onClick={() => signIn("linkedin", { callbackUrl: "/edit/profile" })}
+            onClick={() => signIn("linkedin", { callbackUrl: callbackUrl() })}
           >
             <Icon icon="devicon:linkedin" width={24} height={24} style={{ marginRight: 8 }} />
             LinkedIn

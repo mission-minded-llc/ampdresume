@@ -222,28 +222,47 @@ export const authOptions: NextAuthOptions = {
   },
 
   events: {
+    /**
+     * Marks both first-run tutorials unfinished. The first page they open keeps one and clears the other.
+     *
+     * @param user Account that was just created.
+     */
     async createUser({ user }) {
       if (!user.id) return;
 
-      await prisma.feature.upsert({
-        where: {
-          userId_name: {
-            userId: user.id,
-            name: "onboarding_pending",
-          },
-        },
-        create: {
-          userId: user.id,
-          name: "onboarding_pending",
-          enabled: true,
-        },
-        update: {
-          enabled: true,
-        },
-      });
+      await enablePendingTutorial(user.id, "onboarding_pending");
+      await enablePendingTutorial(user.id, "recruiter_onboarding_pending");
     },
   },
 };
+
+/**
+ * Marks a first-run tutorial unfinished for a new account.
+ *
+ * @param userId Account that should be able to see a tutorial.
+ * @param name Tutorial flag to enable.
+ */
+async function enablePendingTutorial(
+  userId: string,
+  name: "onboarding_pending" | "recruiter_onboarding_pending",
+) {
+  await prisma.feature.upsert({
+    where: {
+      userId_name: {
+        userId,
+        name,
+      },
+    },
+    create: {
+      userId,
+      name,
+      enabled: true,
+    },
+    update: {
+      enabled: true,
+    },
+  });
+}
 
 /**
  * Helper function to get the current session server-side.
