@@ -1,11 +1,17 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { selectSurfacedSkills, type CandidateSearchInput } from "@/lib/candidateSearch";
+import {
+  matchesSkillTerm,
+  rankCandidatesBySkills,
+  selectSurfacedSkills,
+  type CandidateSearchInput,
+} from "@/lib/candidateSearch";
 import { prisma } from "@/lib/prisma";
 
 const MAX_PROFILE_FIELD = 120;
 const MAX_RESULTS = 25;
 const MAX_SKILLS = 8;
+const SKILL_MATCH_SCAN = 200;
 const SEARCH_LIMIT = 20;
 const SEARCH_WINDOW_MS = 60_000;
 
@@ -136,10 +142,35 @@ export function consumeRecruiterSearch(
 }
 
 /**
+ * Builds a filter that keeps resumes containing any of the searched skills.
+ *
+ * @param terms Skills the recruiter listed. An empty list matches no skill filter.
+ * @returns A Prisma OR filter, or null when the recruiter did not search by skill.
+ */
+function skillMatchFilter(terms: string[]) {
+  if (terms.length === 0) return null;
+
+  return {
+    OR: terms.map((term) => ({
+      skillForUser: {
+        some: {
+          skill: { name: { contains: term, mode: "insensitive" as const } },
+        },
+      },
+    })),
+  };
+}
+
+/**
  * Opted-in, non-demo resumes only. Login email and display email are never selected.
+ * Comma-separated skills match any listed skill, and resumes that cover more of them are returned first.
+ *
+ * @param input Parsed name, location, and skill terms from the recruiter search form.
+ * @returns Up to 25 candidates, with broader skill matches ahead of narrower ones.
  */
 export async function searchCandidates(input: CandidateSearchInput): Promise<CandidateResult[]> {
   const filters = [];
+  const skillFilter = skillMatchFilter(input.skills);
 
   if (input.query) {
     filters.push({
@@ -154,15 +185,7 @@ export async function searchCandidates(input: CandidateSearchInput): Promise<Can
     filters.push({ location: { contains: input.location, mode: "insensitive" as const } });
   }
 
-  if (input.skill) {
-    filters.push({
-      skillForUser: {
-        some: {
-          skill: { name: { contains: input.skill, mode: "insensitive" as const } },
-        },
-      },
-    });
-  }
+  if (skillFilter) filters.push(skillFilter);
 
   const users = await prisma.user.findMany({
     where: {
@@ -176,15 +199,30 @@ export async function searchCandidates(input: CandidateSearchInput): Promise<Can
       name: true,
       title: true,
       location: true,
+      updatedAt: true,
       skillForUser: {
         select: { skill: { select: { name: true } } },
       },
     },
     orderBy: { updatedAt: "desc" },
-    take: MAX_RESULTS,
+    take: input.skills.length > 0 ? SKILL_MATCH_SCAN : MAX_RESULTS,
   });
 
-  return users.flatMap((user) => {
+  const ranked = rankCandidatesBySkills(
+    users.map((user) => ({
+      ...user,
+      skillNames: user.skillForUser.map((row) => row.skill.name),
+    })),
+    input.skills,
+  )
+    .filter(
+      (user) =>
+        input.skills.length === 0 ||
+        input.skills.some((term) => user.skillNames.some((name) => matchesSkillTerm(name, term))),
+    )
+    .slice(0, MAX_RESULTS);
+
+  return ranked.flatMap((user) => {
     if (!user.slug) return [];
 
     return [
@@ -193,11 +231,7 @@ export async function searchCandidates(input: CandidateSearchInput): Promise<Can
         name: user.name?.trim() || "Untitled resume",
         title: user.title,
         location: user.location,
-        skills: selectSurfacedSkills(
-          user.skillForUser.map((row) => row.skill.name),
-          input.skill,
-          MAX_SKILLS,
-        ),
+        skills: selectSurfacedSkills(user.skillNames, input.skills, MAX_SKILLS),
       },
     ];
   });

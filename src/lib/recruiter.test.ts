@@ -125,6 +125,32 @@ describe("recruiter", () => {
         query: "Ada",
         location: "",
         skill: "",
+        skills: [],
+      });
+    });
+
+    it("splits skills on commas and drops blanks and repeats", () => {
+      expect(parseCandidateSearchInput({ skill: " TypeScript, React, typescript, " })).toEqual({
+        query: "",
+        location: "",
+        skill: "TypeScript, React, typescript,",
+        skills: ["TypeScript", "React"],
+      });
+    });
+
+    it("rejects a short skill inside a comma-separated list", () => {
+      expect(parseCandidateSearchInput({ skill: "React, JS" })).toEqual({
+        error: "Use at least 3 characters in each search field",
+      });
+    });
+
+    it("rejects more than 8 skills", () => {
+      expect(
+        parseCandidateSearchInput({
+          skill: "One, Two, Three, Four, Five, Six, Seven, Eight, Nine",
+        }),
+      ).toEqual({
+        error: "Search up to 8 skills at a time",
       });
     });
   });
@@ -156,6 +182,7 @@ describe("recruiter", () => {
           name: "Ada Lovelace",
           title: "Engineer",
           location: "London",
+          updatedAt: new Date("2026-01-01"),
           skillForUser: [{ skill: { name: "Mathematics" } }],
         },
         {
@@ -163,6 +190,7 @@ describe("recruiter", () => {
           name: "No slug",
           title: null,
           location: null,
+          updatedAt: new Date("2026-01-02"),
           skillForUser: [],
         },
       ]);
@@ -201,9 +229,13 @@ describe("recruiter", () => {
               },
               { location: { contains: "London", mode: "insensitive" } },
               {
-                skillForUser: {
-                  some: { skill: { name: { contains: "Math", mode: "insensitive" } } },
-                },
+                OR: [
+                  {
+                    skillForUser: {
+                      some: { skill: { name: { contains: "Math", mode: "insensitive" } } },
+                    },
+                  },
+                ],
               },
             ],
           },
@@ -212,6 +244,7 @@ describe("recruiter", () => {
             name: true,
             title: true,
             location: true,
+            updatedAt: true,
             skillForUser: {
               select: { skill: { select: { name: true } } },
             },
@@ -227,6 +260,7 @@ describe("recruiter", () => {
           name: "Ada Lovelace",
           title: "Engineer",
           location: "London",
+          updatedAt: new Date("2026-01-01"),
           skillForUser: [
             ...Array.from({ length: 8 }, (_, index) => ({ skill: { name: `Skill ${index}` } })),
             { skill: { name: "TypeScript" } },
@@ -234,11 +268,67 @@ describe("recruiter", () => {
         },
       ]);
 
-      const results = await searchCandidates({ query: "", location: "", skill: "Type" });
+      const results = await searchCandidates({
+        query: "",
+        location: "",
+        skill: "Type",
+        skills: ["Type"],
+      });
 
       expect(results[0]?.skills[0]).toBe("TypeScript");
       expect(results[0]?.skills).toHaveLength(8);
       expect(results[0]?.skills).not.toContain("Skill 7");
+    });
+
+    it("returns candidates who match more of the comma-separated skills first", async () => {
+      (prisma.user.findMany as jest.Mock).mockResolvedValue([
+        {
+          slug: "newer",
+          name: "Newer Match",
+          title: null,
+          location: null,
+          updatedAt: new Date("2026-04-01"),
+          skillForUser: [{ skill: { name: "Bioreactor Design" } }],
+        },
+        {
+          slug: "partial",
+          name: "Partial Match",
+          title: null,
+          location: null,
+          updatedAt: new Date("2026-03-01"),
+          skillForUser: [{ skill: { name: "TypeScript" } }],
+        },
+        {
+          slug: "closer",
+          name: "Closer Match",
+          title: null,
+          location: null,
+          updatedAt: new Date("2026-02-01"),
+          skillForUser: [{ skill: { name: "React Native" } }, { skill: { name: "TypeScript" } }],
+        },
+        {
+          slug: "broader",
+          name: "Broader Match",
+          title: null,
+          location: null,
+          updatedAt: new Date("2026-01-01"),
+          skillForUser: [
+            { skill: { name: "Writing" } },
+            { skill: { name: "React" } },
+            { skill: { name: "TypeScript" } },
+          ],
+        },
+      ]);
+
+      const results = await searchCandidates({
+        query: "",
+        location: "",
+        skill: "React, TypeScript",
+        skills: ["React", "TypeScript"],
+      });
+
+      expect(results.map((result) => result.slug)).toEqual(["broader", "closer", "partial"]);
+      expect(results[0]?.skills.slice(0, 2)).toEqual(["React", "TypeScript"]);
     });
   });
 });
