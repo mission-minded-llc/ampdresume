@@ -54,6 +54,41 @@ const filePlugin = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOption
       await prisma.social.deleteMany({ where: { userId: user.id } });
       return null;
     },
+    async resetRecruiterCandidate({
+      email,
+      name,
+      title,
+      location,
+      slug,
+      discoverable,
+    }: {
+      email: string;
+      name: string;
+      title: string;
+      location: string;
+      slug: string;
+      discoverable: boolean;
+    }) {
+      const dotenv = await import("dotenv");
+      dotenv.config();
+      const { prisma } = await import("./src/lib/prisma");
+      const user = await prisma.user.findUnique({ where: { email } });
+      if (!user) {
+        throw new Error(`Cannot reset recruiter candidate: no user for ${email}`);
+      }
+      await prisma.recruiterProfile.deleteMany({ where: { userId: user.id } });
+      await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          name,
+          title,
+          location,
+          slug,
+          recruiterDiscoverable: discoverable,
+        },
+      });
+      return null;
+    },
     async disableFeatureFlag({ email, name }: { email: string; name: string }) {
       const dotenv = await import("dotenv");
       dotenv.config();

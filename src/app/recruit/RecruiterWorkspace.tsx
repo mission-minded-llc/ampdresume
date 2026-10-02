@@ -10,6 +10,12 @@ type Props = {
   profile: RecruiterProfileSummary | null;
 };
 
+/**
+ * Hiring desk for a signed-in user: save a company name, then search opted-in resumes.
+ *
+ * @param profile Saved desk, or null when the user has not created one yet.
+ * @returns The recruiter onboarding form or the candidate search form.
+ */
 export function RecruiterWorkspace({ profile: initialProfile }: Props) {
   const [profile, setProfile] = useState(initialProfile);
   const [editing, setEditing] = useState(!initialProfile);
@@ -112,12 +118,14 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
             onChange={(event) => setCompanyName(event.target.value)}
             required
             fullWidth
+            slotProps={{ htmlInput: { "data-testid": "recruiter-company" } }}
           />
           <TextField
             label="Your title"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
             fullWidth
+            slotProps={{ htmlInput: { "data-testid": "recruiter-title" } }}
           />
           <Box sx={{ display: "flex", gap: 1.5 }}>
             <Button type="submit" variant="contained" color="secondary" disabled={saving}>
@@ -174,16 +182,19 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
               label="Name or title"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
+              slotProps={{ htmlInput: { "data-testid": "recruiter-query" } }}
             />
             <TextField
               label="Location"
               value={location}
               onChange={(event) => setLocation(event.target.value)}
+              slotProps={{ htmlInput: { "data-testid": "recruiter-location" } }}
             />
             <TextField
               label="Skill"
               value={skill}
               onChange={(event) => setSkill(event.target.value)}
+              slotProps={{ htmlInput: { "data-testid": "recruiter-skill" } }}
             />
             <Button
               type="submit"
