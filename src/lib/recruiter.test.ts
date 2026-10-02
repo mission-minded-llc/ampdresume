@@ -1,12 +1,13 @@
 import { getServerSession } from "next-auth";
 import { expect } from "@jest/globals";
-import { isFeatureEnabledForUserId } from "@/lib/featureFlags";
 import { prisma } from "@/lib/prisma";
 import {
+  consumeRecruiterSearch,
   getRecruiterAccess,
   parseCandidateSearchInput,
   parseDiscoverableInput,
   parseRecruiterProfileInput,
+  resetRecruiterSearchLimit,
   saveRecruiterProfile,
   searchCandidates,
 } from "./recruiter";
@@ -17,10 +18,6 @@ jest.mock("next-auth", () => ({
 
 jest.mock("@/lib/auth", () => ({
   authOptions: {},
-}));
-
-jest.mock("@/lib/featureFlags", () => ({
-  isFeatureEnabledForUserId: jest.fn(),
 }));
 
 jest.mock("@/lib/prisma", () => ({
@@ -38,7 +35,6 @@ jest.mock("@/lib/prisma", () => ({
 
 describe("recruiter", () => {
   const mockGetServerSession = getServerSession as jest.Mock;
-  const mockFlag = isFeatureEnabledForUserId as jest.Mock;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -55,21 +51,8 @@ describe("recruiter", () => {
       });
     });
 
-    it("rejects a user without the recruiter flag", async () => {
-      mockGetServerSession.mockResolvedValue({ user: { id: "user-1" } });
-      mockFlag.mockResolvedValue(false);
-
-      await expect(getRecruiterAccess()).resolves.toEqual({
-        ok: false,
-        status: 403,
-        error: "Recruiter access is not enabled",
-      });
-      expect(prisma.recruiterProfile.findUnique).not.toHaveBeenCalled();
-    });
-
     it("returns the user and an empty profile before onboarding", async () => {
       mockGetServerSession.mockResolvedValue({ user: { id: "user-1" } });
-      mockFlag.mockResolvedValue(true);
       (prisma.recruiterProfile.findUnique as jest.Mock).mockResolvedValue(null);
 
       await expect(getRecruiterAccess()).resolves.toEqual({
@@ -121,6 +104,36 @@ describe("recruiter", () => {
     });
   });
 
+  describe("parseCandidateSearchInput", () => {
+    it("rejects a search with no fields", () => {
+      expect(parseCandidateSearchInput({})).toEqual({
+        error: "Enter a name, title, location, or skill",
+      });
+      expect(parseCandidateSearchInput({ query: "  ", location: "", skill: "" })).toEqual({
+        error: "Enter a name, title, location, or skill",
+      });
+    });
+  });
+
+  describe("consumeRecruiterSearch", () => {
+    beforeEach(() => {
+      resetRecruiterSearchLimit();
+    });
+
+    it("allows a burst and then asks the user to wait", () => {
+      for (let attempt = 0; attempt < 20; attempt += 1) {
+        expect(consumeRecruiterSearch("user-1", 1_000)).toEqual({ ok: true });
+      }
+
+      expect(consumeRecruiterSearch("user-1", 1_000)).toEqual({
+        ok: false,
+        error: "Too many searches. Wait a minute and try again.",
+      });
+      expect(consumeRecruiterSearch("user-2", 1_000)).toEqual({ ok: true });
+      expect(consumeRecruiterSearch("user-1", 1_000 + 60_000)).toEqual({ ok: true });
+    });
+  });
+
   describe("searchCandidates", () => {
     it("limits the pool to opted-in, non-demo resumes and omits emails", async () => {
       (prisma.user.findMany as jest.Mock).mockResolvedValue([
@@ -140,9 +153,15 @@ describe("recruiter", () => {
         },
       ]);
 
-      const results = await searchCandidates(
-        parseCandidateSearchInput({ query: "Engineer", location: "London", skill: "Math" }),
-      );
+      const parsed = parseCandidateSearchInput({
+        query: "Engineer",
+        location: "London",
+        skill: "Math",
+      });
+
+      if ("error" in parsed) throw new Error(parsed.error);
+
+      const results = await searchCandidates(parsed);
 
       expect(results).toEqual([
         {

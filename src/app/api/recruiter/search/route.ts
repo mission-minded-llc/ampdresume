@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as Sentry from "@sentry/node";
-import { getRecruiterAccess, parseCandidateSearchInput, searchCandidates } from "@/lib/recruiter";
+import {
+  consumeRecruiterSearch,
+  getRecruiterAccess,
+  parseCandidateSearchInput,
+  searchCandidates,
+} from "@/lib/recruiter";
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,7 +30,19 @@ export async function POST(req: NextRequest) {
       body = {};
     }
 
-    const candidates = await searchCandidates(parseCandidateSearchInput(body));
+    const parsed = parseCandidateSearchInput(body);
+
+    if ("error" in parsed) {
+      return NextResponse.json({ error: parsed.error }, { status: 400 });
+    }
+
+    const limit = consumeRecruiterSearch(access.userId);
+
+    if (!limit.ok) {
+      return NextResponse.json({ error: limit.error }, { status: 429 });
+    }
+
+    const candidates = await searchCandidates(parsed);
 
     return NextResponse.json({ candidates });
   } catch (error) {

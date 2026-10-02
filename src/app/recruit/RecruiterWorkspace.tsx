@@ -57,8 +57,14 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
 
   const search = async (event: FormEvent) => {
     event.preventDefault();
-    setSearching(true);
     setError("");
+
+    if (!query.trim() && !location.trim() && !skill.trim()) {
+      setError("Enter a name, title, location, or skill");
+      return;
+    }
+
+    setSearching(true);
 
     try {
       const response = await fetch("/api/recruiter/search", {

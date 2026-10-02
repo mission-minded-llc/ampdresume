@@ -1,7 +1,7 @@
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
-export type FeatureFlagName = "ai_assist" | "onboarding_pending" | "recruiter_beta";
+export type FeatureFlagName = "ai_assist" | "onboarding_pending";
 
 /**
  * Check if a feature flag is enabled for the current user.

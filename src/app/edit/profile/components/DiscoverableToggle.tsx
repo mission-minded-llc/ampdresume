@@ -4,6 +4,12 @@ import { useState } from "react";
 import { Box, FormControlLabel, Switch, Typography } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 
+/**
+ * A toggle that allows recruiters to find the user in the talent pool.
+ *
+ * @param enabled Whether the user is discoverable.
+ * @returns A toggle that allows recruiters to find the user in the talent pool.
+ */
 export function DiscoverableToggle({ enabled }: { enabled: boolean }) {
   const [checked, setChecked] = useState(enabled);
   const [saving, setSaving] = useState(false);
@@ -49,8 +55,9 @@ export function DiscoverableToggle({ enabled }: { enabled: boolean }) {
         Recruiter search
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 1, lineHeight: 1.6 }}>
-        Your public resume link works either way. This only controls whether you appear when a
-        recruiter searches the pool. It is off until you turn it on.
+        Your public resume link works either way. This only controls whether you show up in search.
+        Any signed-in user with a recruiter desk can search the pool. It stays off until you turn it
+        on.
       </Typography>
       <FormControlLabel
         control={

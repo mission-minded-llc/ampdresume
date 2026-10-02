@@ -1,12 +1,18 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { isFeatureEnabledForUserId } from "@/lib/featureFlags";
 import { prisma } from "@/lib/prisma";
 
 const MAX_PROFILE_FIELD = 120;
 const MAX_SEARCH_FIELD = 80;
 const MAX_RESULTS = 25;
 const MAX_SKILLS = 8;
+const SEARCH_LIMIT = 20;
+const SEARCH_WINDOW_MS = 60_000;
+
+const searchHits = new Map<string, number[]>();
+
+export const EMPTY_CANDIDATE_SEARCH_ERROR = "Enter a name, title, location, or skill";
+export const RECRUITER_SEARCH_LIMIT_ERROR = "Too many searches. Wait a minute and try again.";
 
 export type RecruiterProfileSummary = {
   companyName: string;
@@ -36,20 +42,14 @@ export type RecruiterAccess =
 type FieldError = { error: string };
 
 /**
- * Signed-in user with the recruiter beta flag. A profile is optional here so
- * onboarding can create one; search checks for the profile separately.
+ * Signed-in user. A profile is optional here so onboarding can create one;
+ * search checks for the profile separately.
  */
 export async function getRecruiterAccess(): Promise<RecruiterAccess> {
   const session = await getServerSession(authOptions);
   const userId = session?.user?.id;
 
   if (!userId) return { ok: false, status: 401, error: "Unauthorized" };
-
-  const enabled = await isFeatureEnabledForUserId(userId, "recruiter_beta");
-
-  if (!enabled) {
-    return { ok: false, status: 403, error: "Recruiter access is not enabled" };
-  }
 
   const profile = await prisma.recruiterProfile.findUnique({
     where: { userId },
@@ -116,12 +116,48 @@ function readSearchField(body: unknown, key: string) {
   return typeof value === "string" ? value.trim().slice(0, MAX_SEARCH_FIELD) : "";
 }
 
-export function parseCandidateSearchInput(body: unknown): CandidateSearchInput {
-  return {
+/**
+ * Reads a candidate search and rejects an empty one so the pool cannot be listed in full.
+ */
+export function parseCandidateSearchInput(body: unknown): CandidateSearchInput | FieldError {
+  const input = {
     query: readSearchField(body, "query"),
     location: readSearchField(body, "location"),
     skill: readSearchField(body, "skill"),
   };
+
+  if (!input.query && !input.location && !input.skill) {
+    return { error: EMPTY_CANDIDATE_SEARCH_ERROR };
+  }
+
+  return input;
+}
+
+/**
+ * Forgets in-memory search hits. Tests call this so cases do not share a window.
+ */
+export function resetRecruiterSearchLimit() {
+  searchHits.clear();
+}
+
+/**
+ * Allows a short burst of candidate searches per user, then asks them to wait.
+ */
+export function consumeRecruiterSearch(
+  userId: string,
+  now = Date.now(),
+): { ok: true } | { ok: false; error: string } {
+  const windowStart = now - SEARCH_WINDOW_MS;
+  const hits = (searchHits.get(userId) ?? []).filter((time) => time > windowStart);
+
+  if (hits.length >= SEARCH_LIMIT) {
+    searchHits.set(userId, hits);
+    return { ok: false, error: RECRUITER_SEARCH_LIMIT_ERROR };
+  }
+
+  hits.push(now);
+  searchHits.set(userId, hits);
+  return { ok: true };
 }
 
 /**

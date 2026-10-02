@@ -33,6 +33,7 @@ describe("RecruiterWorkspace", () => {
 
     render(<RecruiterWorkspace profile={{ companyName: "Northwind", title: "Recruiter" }} />);
 
+    fireEvent.change(screen.getByLabelText("Name or title"), { target: { value: "Engineer" } });
     fireEvent.click(screen.getByRole("button", { name: "Search candidates" }));
 
     expect(await screen.findByRole("link", { name: "Ada Lovelace" })).toHaveAttribute(
@@ -45,8 +46,22 @@ describe("RecruiterWorkspace", () => {
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
         "/api/recruiter/search",
-        expect.objectContaining({ method: "POST" }),
+        expect.objectContaining({
+          method: "POST",
+          body: JSON.stringify({ query: "Engineer", location: "", skill: "" }),
+        }),
       );
     });
+  });
+
+  it("asks for a search term before calling the API", () => {
+    global.fetch = jest.fn() as jest.Mock;
+
+    render(<RecruiterWorkspace profile={{ companyName: "Northwind", title: "Recruiter" }} />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Search candidates" }));
+
+    expect(screen.getByRole("alert")).toHaveTextContent("Enter a name, title, location, or skill");
+    expect(global.fetch).not.toHaveBeenCalled();
   });
 });

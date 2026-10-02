@@ -31,7 +31,7 @@ exports[`Page renders correctly for authenticated users 1`] = `
         <p
           class="MuiTypography-root MuiTypography-body2 css-xwbu5n-MuiTypography-root"
         >
-          Your public resume link works either way. This only controls whether you appear when a recruiter searches the pool. It is off until you turn it on.
+          Your public resume link works either way. This only controls whether you show up in search. Any signed-in user with a recruiter desk can search the pool. It stays off until you turn it on.
         </p>
         <label
           class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
