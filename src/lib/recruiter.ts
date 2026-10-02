@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { selectSurfacedSkills, type CandidateSearchInput } from "@/lib/candidateSearch";
 import { prisma } from "@/lib/prisma";
 
 const MAX_PROFILE_FIELD = 120;
-const MAX_SEARCH_FIELD = 80;
 const MAX_RESULTS = 25;
 const MAX_SKILLS = 8;
 const SEARCH_LIMIT = 20;
@@ -11,7 +11,13 @@ const SEARCH_WINDOW_MS = 60_000;
 
 const searchHits = new Map<string, number[]>();
 
-export const EMPTY_CANDIDATE_SEARCH_ERROR = "Enter a name, title, location, or skill";
+export {
+  CANDIDATE_SEARCH_TOO_SHORT_ERROR,
+  EMPTY_CANDIDATE_SEARCH_ERROR,
+  parseCandidateSearchInput,
+} from "@/lib/candidateSearch";
+export type { CandidateSearchInput } from "@/lib/candidateSearch";
+
 export const RECRUITER_SEARCH_LIMIT_ERROR = "Too many searches. Wait a minute and try again.";
 
 export type RecruiterProfileSummary = {
@@ -20,12 +26,6 @@ export type RecruiterProfileSummary = {
 };
 
 export type RecruiterProfileInput = RecruiterProfileSummary;
-
-export type CandidateSearchInput = {
-  query: string;
-  location: string;
-  skill: string;
-};
 
 export type CandidateResult = {
   slug: string;
@@ -108,31 +108,6 @@ export async function setRecruiterDiscoverable(userId: string, enabled: boolean)
   });
 }
 
-function readSearchField(body: unknown, key: string) {
-  if (!body || typeof body !== "object" || !(key in body)) return "";
-
-  const value = (body as Record<string, unknown>)[key];
-
-  return typeof value === "string" ? value.trim().slice(0, MAX_SEARCH_FIELD) : "";
-}
-
-/**
- * Reads a candidate search and rejects an empty one so the pool cannot be listed in full.
- */
-export function parseCandidateSearchInput(body: unknown): CandidateSearchInput | FieldError {
-  const input = {
-    query: readSearchField(body, "query"),
-    location: readSearchField(body, "location"),
-    skill: readSearchField(body, "skill"),
-  };
-
-  if (!input.query && !input.location && !input.skill) {
-    return { error: EMPTY_CANDIDATE_SEARCH_ERROR };
-  }
-
-  return input;
-}
-
 /**
  * Forgets in-memory search hits. Tests call this so cases do not share a window.
  */
@@ -202,7 +177,6 @@ export async function searchCandidates(input: CandidateSearchInput): Promise<Can
       title: true,
       location: true,
       skillForUser: {
-        take: MAX_SKILLS,
         select: { skill: { select: { name: true } } },
       },
     },
@@ -219,7 +193,11 @@ export async function searchCandidates(input: CandidateSearchInput): Promise<Can
         name: user.name?.trim() || "Untitled resume",
         title: user.title,
         location: user.location,
-        skills: user.skillForUser.map((row) => row.skill.name),
+        skills: selectSurfacedSkills(
+          user.skillForUser.map((row) => row.skill.name),
+          input.skill,
+          MAX_SKILLS,
+        ),
       },
     ];
   });

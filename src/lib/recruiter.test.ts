@@ -113,6 +113,20 @@ describe("recruiter", () => {
         error: "Enter a name, title, location, or skill",
       });
     });
+
+    it("rejects a filled field shorter than 3 characters", () => {
+      expect(parseCandidateSearchInput({ query: "En" })).toEqual({
+        error: "Use at least 3 characters in each search field",
+      });
+      expect(parseCandidateSearchInput({ query: "Engineer", skill: "JS" })).toEqual({
+        error: "Use at least 3 characters in each search field",
+      });
+      expect(parseCandidateSearchInput({ query: "  Ada " })).toEqual({
+        query: "Ada",
+        location: "",
+        skill: "",
+      });
+    });
   });
 
   describe("consumeRecruiterSearch", () => {
@@ -199,12 +213,32 @@ describe("recruiter", () => {
             title: true,
             location: true,
             skillForUser: {
-              take: 8,
               select: { skill: { select: { name: true } } },
             },
           },
         }),
       );
+    });
+
+    it("keeps a matching skill on the card when it sits past the first eight", async () => {
+      (prisma.user.findMany as jest.Mock).mockResolvedValue([
+        {
+          slug: "ada",
+          name: "Ada Lovelace",
+          title: "Engineer",
+          location: "London",
+          skillForUser: [
+            ...Array.from({ length: 8 }, (_, index) => ({ skill: { name: `Skill ${index}` } })),
+            { skill: { name: "TypeScript" } },
+          ],
+        },
+      ]);
+
+      const results = await searchCandidates({ query: "", location: "", skill: "Type" });
+
+      expect(results[0]?.skills[0]).toBe("TypeScript");
+      expect(results[0]?.skills).toHaveLength(8);
+      expect(results[0]?.skills).not.toContain("Skill 7");
     });
   });
 });

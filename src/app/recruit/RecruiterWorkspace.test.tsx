@@ -41,6 +41,8 @@ describe("RecruiterWorkspace", () => {
       "/r/ada",
     );
     expect(screen.getByText("Mathematics")).toBeInTheDocument();
+    expect(screen.getByText("Engineer").tagName).toBe("MARK");
+    expect(screen.getByText("Engineer")).toHaveStyle({ margin: "0px", padding: "0px" });
     expect(screen.queryByText(/@/)).not.toBeInTheDocument();
 
     await waitFor(() => {
@@ -63,5 +65,79 @@ describe("RecruiterWorkspace", () => {
 
     expect(screen.getByRole("alert")).toHaveTextContent("Enter a name, title, location, or skill");
     expect(global.fetch).not.toHaveBeenCalled();
+  });
+
+  it("rejects a search shorter than 3 characters", () => {
+    global.fetch = jest.fn() as jest.Mock;
+
+    render(<RecruiterWorkspace profile={{ companyName: "Northwind", title: "Recruiter" }} />);
+
+    fireEvent.change(screen.getByLabelText("Skill"), { target: { value: "JS" } });
+    fireEvent.click(screen.getByRole("button", { name: "Search candidates" }));
+
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Use at least 3 characters in each search field",
+    );
+    expect(global.fetch).not.toHaveBeenCalled();
+  });
+
+  it("highlights the skill that matched the search", async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        candidates: [
+          {
+            slug: "ada",
+            name: "Ada Lovelace",
+            title: "Engineer",
+            location: "London",
+            skills: ["Mathematics", "Writing"],
+          },
+        ],
+      }),
+    }) as jest.Mock;
+
+    render(<RecruiterWorkspace profile={{ companyName: "Northwind", title: "Recruiter" }} />);
+
+    fireEvent.change(screen.getByLabelText("Skill"), { target: { value: "math" } });
+    fireEvent.click(screen.getByRole("button", { name: "Search candidates" }));
+
+    expect(await screen.findByText("Math")).toHaveProperty("tagName", "MARK");
+    expect(screen.getByText("ematics")).toBeInTheDocument();
+    expect(screen.getByText("Writing").closest(".MuiChip-root")).not.toHaveClass(
+      "MuiChip-colorSecondary",
+    );
+    expect(screen.getByText("Math").closest(".MuiChip-root")).toHaveClass("MuiChip-colorSecondary");
+    expect(screen.getByText("Math")).toHaveStyle({ margin: "0px", padding: "0px" });
+  });
+
+  it("does not restyle visible results when the form changes before the next search", async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        candidates: [
+          {
+            slug: "ada",
+            name: "Ada Lovelace",
+            title: "Engineer",
+            location: "London",
+            skills: ["Mathematics", "Writing"],
+          },
+        ],
+      }),
+    }) as jest.Mock;
+
+    render(<RecruiterWorkspace profile={{ companyName: "Northwind", title: "Recruiter" }} />);
+
+    fireEvent.change(screen.getByLabelText("Skill"), { target: { value: "math" } });
+    fireEvent.click(screen.getByRole("button", { name: "Search candidates" }));
+
+    expect(await screen.findByText("Math")).toHaveProperty("tagName", "MARK");
+
+    fireEvent.change(screen.getByLabelText("Skill"), { target: { value: "Writ" } });
+
+    expect(screen.getByText("Math").tagName).toBe("MARK");
+    expect(screen.getByText("Writing").tagName).not.toBe("MARK");
+    expect(screen.queryByText("Writ")).not.toBeInTheDocument();
   });
 });

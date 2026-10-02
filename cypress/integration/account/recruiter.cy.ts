@@ -82,6 +82,7 @@ describe("Recruiter workspace", () => {
     cy.get("[data-testid=candidate-result] a")
       .should("have.attr", "href", `/r/${testSlug}`)
       .and("contain", candidateName);
+    cy.get("[data-testid=candidate-result] mark").should("contain", candidateName);
     cy.get("[data-testid=candidate-result]").should("contain", candidateTitle);
     cy.get("[data-testid=candidate-result]").should("contain", candidateLocation);
   });

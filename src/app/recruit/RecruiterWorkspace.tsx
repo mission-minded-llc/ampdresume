@@ -2,13 +2,56 @@
 
 import { FormEvent, useState } from "react";
 import { Box, Button, Chip, TextField, Typography } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 import { MuiLink } from "@/components/MuiLink";
 import { SectionTitle } from "@/app/edit/components/SectionTitle";
+import {
+  parseCandidateSearchInput,
+  splitSearchMatch,
+  type CandidateSearchInput,
+} from "@/lib/candidateSearch";
 import type { CandidateResult, RecruiterProfileSummary } from "@/lib/recruiter";
 
 type Props = {
   profile: RecruiterProfileSummary | null;
 };
+
+type ShownResults = {
+  candidates: CandidateResult[];
+  search: CandidateSearchInput;
+};
+
+/**
+ * Marks the slice of a result that matched the search which produced that result.
+ *
+ * @param text Visible resume text, such as a name, title, location, or skill.
+ * @param query Term from the search that returned this result. A blank term leaves the text unchanged.
+ * @returns The text with each matching slice wrapped in a highlight that does not add space.
+ */
+function HighlightedMatch({ text, query }: { text: string; query: string }) {
+  return splitSearchMatch(text, query).map((part, index) =>
+    part.match ? (
+      <Box
+        key={`${part.text}-${index}`}
+        component="mark"
+        style={{ margin: 0, padding: 0 }}
+        sx={(theme) => ({
+          color: "inherit",
+          backgroundColor: alpha(
+            theme.palette.secondary.main,
+            theme.palette.mode === "dark" ? 0.45 : 0.22,
+          ),
+        })}
+      >
+        {part.text}
+      </Box>
+    ) : (
+      <Box key={`${part.text}-${index}`} component="span">
+        {part.text}
+      </Box>
+    ),
+  );
+}
 
 /**
  * Hiring desk for a signed-in user: save a company name, then search opted-in resumes.
@@ -24,7 +67,7 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
   const [skill, setSkill] = useState("");
-  const [candidates, setCandidates] = useState<CandidateResult[] | null>(null);
+  const [results, setResults] = useState<ShownResults | null>(null);
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
   const [searching, setSearching] = useState(false);
@@ -65,8 +108,10 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
     event.preventDefault();
     setError("");
 
-    if (!query.trim() && !location.trim() && !skill.trim()) {
-      setError("Enter a name, title, location, or skill");
+    const parsed = parseCandidateSearchInput({ query, location, skill });
+
+    if ("error" in parsed) {
+      setError(parsed.error);
       return;
     }
 
@@ -76,7 +121,7 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
       const response = await fetch("/api/recruiter/search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query, location, skill }),
+        body: JSON.stringify(parsed),
       });
       const body = (await response.json()) as { error?: string; candidates?: CandidateResult[] };
 
@@ -85,7 +130,7 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
         return;
       }
 
-      setCandidates(body.candidates);
+      setResults({ candidates: body.candidates, search: parsed });
     } catch {
       setError("Could not search candidates");
     } finally {
@@ -205,17 +250,28 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
             >
               Search candidates
             </Button>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ gridColumn: { sm: "1 / -1" }, mt: -0.5 }}
+            >
+              Use at least 3 characters in each field you fill in.
+            </Typography>
           </Box>
 
-          {candidates ? (
-            <Box component="ul" sx={{ listStyle: "none", p: 0, m: 0, mt: 3 }}>
-              {candidates.length === 0 ? (
+          {results ? (
+            <Box
+              key={`${results.search.query}|${results.search.location}|${results.search.skill}`}
+              component="ul"
+              sx={{ listStyle: "none", p: 0, m: 0, mt: 3 }}
+            >
+              {results.candidates.length === 0 ? (
                 <Typography component="li" color="text.secondary">
                   No opted-in candidates match. People appear here only after they allow recruiters
                   to find them.
                 </Typography>
               ) : (
-                candidates.map((candidate) => (
+                results.candidates.map((candidate) => (
                   <Box
                     component="li"
                     key={candidate.slug}
@@ -227,16 +283,44 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
                       border: `1px solid ${theme.palette.divider}`,
                     })}
                   >
-                    <MuiLink href={`/r/${candidate.slug}`}>{candidate.name}</MuiLink>
+                    <MuiLink href={`/r/${candidate.slug}`}>
+                      <HighlightedMatch text={candidate.name} query={results.search.query} />
+                    </MuiLink>
                     <Typography color="text.secondary" sx={{ mt: 0.5 }}>
-                      {[candidate.title, candidate.location].filter(Boolean).join(" · ") ||
-                        "No title yet"}
+                      {candidate.title || candidate.location ? (
+                        <>
+                          {candidate.title ? (
+                            <HighlightedMatch text={candidate.title} query={results.search.query} />
+                          ) : null}
+                          {candidate.title && candidate.location ? " · " : null}
+                          {candidate.location ? (
+                            <HighlightedMatch
+                              text={candidate.location}
+                              query={results.search.location}
+                            />
+                          ) : null}
+                        </>
+                      ) : (
+                        "No title yet"
+                      )}
                     </Typography>
                     {candidate.skills.length > 0 ? (
                       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.75, mt: 1.25 }}>
-                        {candidate.skills.map((name, index) => (
-                          <Chip key={`${name}-${index}`} size="small" label={name} />
-                        ))}
+                        {candidate.skills.map((name, index) => {
+                          const matched = splitSearchMatch(name, results.search.skill).some(
+                            (part) => part.match,
+                          );
+
+                          return (
+                            <Chip
+                              key={`${name}-${index}`}
+                              size="small"
+                              color={matched ? "secondary" : "default"}
+                              variant={matched ? "filled" : "outlined"}
+                              label={<HighlightedMatch text={name} query={results.search.skill} />}
+                            />
+                          );
+                        })}
                       </Box>
                     ) : null}
                   </Box>
