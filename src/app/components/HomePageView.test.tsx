@@ -59,10 +59,10 @@ describe("HomePageView", () => {
     expect(container.querySelector("svg[viewBox='0 0 615 400']")).toBeInTheDocument();
   });
 
-  it("welcomes a signed-in user and points them to the editor", () => {
-    const { getByText, getAllByRole, queryByRole } = renderHome("Ada Lovelace");
+  it("points a signed-in user to the editor", () => {
+    const { queryByText, getAllByRole, queryByRole } = renderHome("Ada Lovelace");
 
-    expect(getByText("Welcome back, Ada Lovelace!")).toBeInTheDocument();
+    expect(queryByText(/Welcome back/)).not.toBeInTheDocument();
     expect(getAllByRole("link", { name: "Edit your resume" }).length).toBeGreaterThan(0);
     expect(queryByRole("link", { name: "Start building free" })).not.toBeInTheDocument();
   });

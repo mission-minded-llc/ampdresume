@@ -6,16 +6,62 @@ exports[`Page renders correctly for authenticated users 1`] = `
     class="MuiBox-root css-6bsmlk"
   >
     <div
-      class="MuiBox-root css-58tiu3"
+      class="MuiBox-root css-1pmkawn"
     >
-      <h1
-        class="MuiTypography-root MuiTypography-h5 css-1h7drvl-MuiTypography-root"
-      >
-        Profile
-      </h1>
       <div
-        class="MuiBox-root css-8mecpk"
-      />
+        class="MuiBox-root css-58tiu3"
+      >
+        <h1
+          class="MuiTypography-root MuiTypography-h5 css-1h7drvl-MuiTypography-root"
+        >
+          Profile
+        </h1>
+        <div
+          class="MuiBox-root css-8mecpk"
+        />
+      </div>
+      <div
+        class="MuiBox-root css-3vaezx"
+      >
+        <h2
+          class="MuiTypography-root MuiTypography-h6 css-15ipuy0-MuiTypography-root"
+        >
+          Recruiter search
+        </h2>
+        <p
+          class="MuiTypography-root MuiTypography-body2 css-xwbu5n-MuiTypography-root"
+        >
+          Your public resume link works either way. This only controls whether you appear when a recruiter searches the pool. It is off until you turn it on.
+        </p>
+        <label
+          class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-19opgx6-MuiFormControlLabel-root"
+        >
+          <span
+            class="MuiSwitch-root MuiSwitch-sizeMedium css-rehya9-MuiSwitch-root"
+          >
+            <span
+              class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorSuccess PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorSuccess css-d8phek-MuiButtonBase-root-MuiSwitchBase-root-MuiSwitch-switchBase"
+            >
+              <input
+                class="PrivateSwitchBase-input MuiSwitch-input css-12xagqm-MuiSwitchBase-root"
+                role="switch"
+                type="checkbox"
+              />
+              <span
+                class="MuiSwitch-thumb css-1mw77bv-MuiSwitch-thumb"
+              />
+            </span>
+            <span
+              class="MuiSwitch-track css-pm6g3f-MuiSwitch-track"
+            />
+          </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-rizt0-MuiTypography-root"
+          >
+            Allow recruiters to find me
+          </span>
+        </label>
+      </div>
     </div>
     <div
       class="MuiBox-root css-j7qwjs"

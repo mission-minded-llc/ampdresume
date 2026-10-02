@@ -1,4 +1,5 @@
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -27,6 +28,8 @@ import { useNavPrimary } from "./onboarding/NavPrimaryContext";
  */
 export const NavPrimary = () => {
   const session = useSession();
+  const pathname = usePathname();
+  const inRecruiter = pathname?.startsWith("/recruit") ?? false;
   const isLoggedIn = useIsLoggedIn();
   const nav = useNavPrimary();
   const { restartOnboarding } = useOnboarding();
@@ -82,12 +85,14 @@ export const NavPrimary = () => {
     href,
     target = "_self",
     dataTestId = "",
+    selected = false,
   }: {
     text: string;
     icon: string;
     href: string;
     target?: "_self" | "_blank";
     dataTestId?: string;
+    selected?: boolean;
   }) => (
     <MuiLink
       href={href}
@@ -105,8 +110,14 @@ export const NavPrimary = () => {
         onClick={() => {
           if (!lockOpen) setIsOpen(false);
         }}
+        aria-current={selected ? "page" : undefined}
         sx={(theme) => ({
           color: "inherit",
+          backgroundColor: selected
+            ? theme.palette.mode === "dark"
+              ? "rgba(174, 0, 255, 0.18)"
+              : "rgba(174, 0, 255, 0.08)"
+            : undefined,
           "&:hover": {
             backgroundColor:
               theme.palette.mode === "dark" ? "rgba(174, 0, 255, 0.18)" : "rgba(174, 0, 255, 0.08)",
@@ -294,93 +305,117 @@ export const NavPrimary = () => {
             </Collapse>
             {isLoggedIn ? (
               <>
-                {session?.data?.user?.slug ? (
-                  <NavItem
-                    text="View Resume"
-                    icon="fluent-color:person-16"
-                    href={`/r/${session.data.user.slug}`}
-                    dataTestId="NavPrimaryMenuViewResume"
-                  />
-                ) : null}
-                <Box data-tour-id="edit-resume-section" sx={highlightFillSx("edit-resume-section")}>
-                  <NavItemTitle text="Edit Resume" />
-                  <NavItem
-                    text="Resume Profile"
-                    icon="fluent-color:scan-person-48"
-                    href="/edit/profile"
-                    dataTestId="NavPrimaryMenuEditResume"
-                  />
-                  <NavItem
-                    text="Your Skills"
-                    icon="fluent-color:data-pie-20"
-                    href="/edit/skills"
-                    dataTestId="NavPrimaryMenuEditSkills"
-                  />
-                  <NavItem
-                    text="Work Experience"
-                    icon="fluent-color:data-bar-vertical-ascending-16"
-                    href="/edit/experience"
-                    dataTestId="NavPrimaryMenuEditExperience"
-                  />
-                  <NavItem
-                    text="Featured Projects"
-                    icon="fluent-color:code-16"
-                    href="/edit/featured-projects"
-                    dataTestId="NavPrimaryMenuEditFeaturedProjects"
-                  />
-                  <NavItem
-                    text="Education"
-                    icon="fluent-color:certificate-16"
-                    href="/edit/education"
-                    dataTestId="NavPrimaryMenuEditEducation"
-                  />
-                  <NavItem
-                    text="Certifications"
-                    icon="flat-color-icons:diploma-1"
-                    href="/edit/certifications"
-                    dataTestId="NavPrimaryMenuEditCertifications"
-                  />
-                </Box>
-                <NavItemTitle text="Tools" />
+                <NavItemTitle text="Workspace" />
                 <NavItem
-                  text="AI Assist"
-                  icon="fluent-color:bot-sparkle-16"
-                  href="/edit/ai"
-                  dataTestId="NavPrimaryMenuEditAI"
+                  text="My resume"
+                  icon="fluent-color:person-16"
+                  href="/edit/profile"
+                  selected={!inRecruiter}
+                  dataTestId="NavPrimaryMenuMyResume"
                 />
-                <Box data-tour-id="import-pdf" sx={highlightFillSx("import-pdf")}>
-                  <NavItem
-                    text="Import PDF"
-                    icon="fluent-color:slide-text-sparkle-48"
-                    href="/edit/import"
-                    dataTestId="NavPrimaryMenuEditImport"
-                  />
-                </Box>
+                <NavItem
+                  text="Recruiter"
+                  icon="fluent-color:people-community-16"
+                  href="/recruit"
+                  selected={inRecruiter}
+                  dataTestId="NavPrimaryMenuRecruiter"
+                />
+                {inRecruiter ? null : (
+                  <>
+                    {session?.data?.user?.slug ? (
+                      <NavItem
+                        text="View Resume"
+                        icon="fluent-color:person-16"
+                        href={`/r/${session.data.user.slug}`}
+                        dataTestId="NavPrimaryMenuViewResume"
+                      />
+                    ) : null}
+                    <Box
+                      data-tour-id="edit-resume-section"
+                      sx={highlightFillSx("edit-resume-section")}
+                    >
+                      <NavItemTitle text="Edit Resume" />
+                      <NavItem
+                        text="Resume Profile"
+                        icon="fluent-color:scan-person-48"
+                        href="/edit/profile"
+                        dataTestId="NavPrimaryMenuEditResume"
+                      />
+                      <NavItem
+                        text="Your Skills"
+                        icon="fluent-color:data-pie-20"
+                        href="/edit/skills"
+                        dataTestId="NavPrimaryMenuEditSkills"
+                      />
+                      <NavItem
+                        text="Work Experience"
+                        icon="fluent-color:data-bar-vertical-ascending-16"
+                        href="/edit/experience"
+                        dataTestId="NavPrimaryMenuEditExperience"
+                      />
+                      <NavItem
+                        text="Featured Projects"
+                        icon="fluent-color:code-16"
+                        href="/edit/featured-projects"
+                        dataTestId="NavPrimaryMenuEditFeaturedProjects"
+                      />
+                      <NavItem
+                        text="Education"
+                        icon="fluent-color:certificate-16"
+                        href="/edit/education"
+                        dataTestId="NavPrimaryMenuEditEducation"
+                      />
+                      <NavItem
+                        text="Certifications"
+                        icon="flat-color-icons:diploma-1"
+                        href="/edit/certifications"
+                        dataTestId="NavPrimaryMenuEditCertifications"
+                      />
+                    </Box>
+                    <NavItemTitle text="Tools" />
+                    <NavItem
+                      text="AI Assist"
+                      icon="fluent-color:bot-sparkle-16"
+                      href="/edit/ai"
+                      dataTestId="NavPrimaryMenuEditAI"
+                    />
+                    <Box data-tour-id="import-pdf" sx={highlightFillSx("import-pdf")}>
+                      <NavItem
+                        text="Import PDF"
+                        icon="fluent-color:slide-text-sparkle-48"
+                        href="/edit/import"
+                        dataTestId="NavPrimaryMenuEditImport"
+                      />
+                    </Box>
+                  </>
+                )}
                 <NavItemTitle text="Account" />
-                <ListItem
-                  component="div"
-                  onClick={() => {
-                    if (!lockOpen) setIsOpen(false);
-                    void restartOnboarding();
-                  }}
-                  sx={(theme) => ({
-                    cursor: "pointer",
-                    "&:hover": {
-                      backgroundColor:
-                        theme.palette.mode === "dark"
-                          ? "rgba(174, 0, 255, 0.18)"
-                          : "rgba(174, 0, 255, 0.08)",
-                      borderRight: `4px solid ${theme.palette.secondary.main}`,
-                    },
-                  })}
-                  data-testid="NavPrimaryMenuRestartTutorial"
-                  data-tour-id="restart-tutorial"
-                >
-                  <ListItemIcon>
-                    <Icon icon="fluent-color:book-open-lightbulb-20" width={36} height={36} />
-                  </ListItemIcon>
-                  <ListItemText primary="Restart tutorial" />
-                </ListItem>
+                {inRecruiter ? null : (
+                  <ListItem
+                    component="div"
+                    onClick={() => {
+                      if (!lockOpen) setIsOpen(false);
+                      void restartOnboarding();
+                    }}
+                    sx={(theme) => ({
+                      cursor: "pointer",
+                      "&:hover": {
+                        backgroundColor:
+                          theme.palette.mode === "dark"
+                            ? "rgba(174, 0, 255, 0.18)"
+                            : "rgba(174, 0, 255, 0.08)",
+                        borderRight: `4px solid ${theme.palette.secondary.main}`,
+                      },
+                    })}
+                    data-testid="NavPrimaryMenuRestartTutorial"
+                    data-tour-id="restart-tutorial"
+                  >
+                    <ListItemIcon>
+                      <Icon icon="fluent-color:book-open-lightbulb-20" width={36} height={36} />
+                    </ListItemIcon>
+                    <ListItemText primary="Restart tutorial" />
+                  </ListItem>
+                )}
                 <NavItem
                   text="Logout"
                   icon="flat-color-icons:export"
@@ -389,12 +424,20 @@ export const NavPrimary = () => {
                 />
               </>
             ) : (
-              <NavItem
-                text="Login"
-                icon="fluent-color:shield-checkmark-16"
-                href="/login"
-                dataTestId="NavPrimaryMenuLogin"
-              />
+              <>
+                <NavItem
+                  text="Recruiter"
+                  icon="fluent-color:people-team-16"
+                  href="/recruit"
+                  dataTestId="NavPrimaryMenuRecruiter"
+                />
+                <NavItem
+                  text="Login"
+                  icon="fluent-color:shield-checkmark-16"
+                  href="/login"
+                  dataTestId="NavPrimaryMenuLogin"
+                />
+              </>
             )}
           </List>
           <Box
