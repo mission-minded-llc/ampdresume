@@ -56,7 +56,7 @@ describe("RecruiterWorkspace", () => {
         "/api/recruiter/search",
         expect.objectContaining({
           method: "POST",
-          body: JSON.stringify({ query: "Engineer", location: "", skill: "" }),
+          body: JSON.stringify({ query: "Engineer", location: "", skill: "", skills: [] }),
         }),
       );
     });
@@ -78,7 +78,7 @@ describe("RecruiterWorkspace", () => {
 
     render(<RecruiterWorkspace profile={{ companyName: "Northwind", title: "Recruiter" }} />);
 
-    fireEvent.change(screen.getByLabelText("Skill"), { target: { value: "JS" } });
+    fireEvent.change(screen.getByLabelText("Skills"), { target: { value: "JS" } });
     fireEvent.click(screen.getByRole("button", { name: "Search candidates" }));
 
     expect(screen.getByRole("alert")).toHaveTextContent(
@@ -105,7 +105,7 @@ describe("RecruiterWorkspace", () => {
 
     render(<RecruiterWorkspace profile={{ companyName: "Northwind", title: "Recruiter" }} />);
 
-    fireEvent.change(screen.getByLabelText("Skill"), { target: { value: "math" } });
+    fireEvent.change(screen.getByLabelText("Skills"), { target: { value: "math" } });
     fireEvent.click(screen.getByRole("button", { name: "Search candidates" }));
 
     expect(await screen.findByText("Math")).toHaveProperty("tagName", "MARK");
@@ -115,6 +115,48 @@ describe("RecruiterWorkspace", () => {
     );
     expect(screen.getByText("Math").closest(".MuiChip-root")).toHaveClass("MuiChip-colorSecondary");
     expect(screen.getByText("Math")).toHaveStyle({ margin: "0px", padding: "0px" });
+  });
+
+  it("highlights each comma-separated skill", async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        candidates: [
+          {
+            slug: "ada",
+            name: "Ada Lovelace",
+            title: "Engineer",
+            location: "London",
+            skills: ["Mathematics", "Writing"],
+          },
+        ],
+      }),
+    }) as jest.Mock;
+
+    render(<RecruiterWorkspace profile={{ companyName: "Northwind", title: "Recruiter" }} />);
+
+    fireEvent.change(screen.getByLabelText("Skills"), { target: { value: "math, writ" } });
+    fireEvent.click(screen.getByRole("button", { name: "Search candidates" }));
+
+    expect(await screen.findByText("Math")).toHaveProperty("tagName", "MARK");
+    expect(screen.getByText("Writ")).toHaveProperty("tagName", "MARK");
+    expect(screen.getByText("Math").closest(".MuiChip-root")).toHaveClass("MuiChip-colorSecondary");
+    expect(screen.getByText("Writ").closest(".MuiChip-root")).toHaveClass("MuiChip-colorSecondary");
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith(
+        "/api/recruiter/search",
+        expect.objectContaining({
+          method: "POST",
+          body: JSON.stringify({
+            query: "",
+            location: "",
+            skill: "math, writ",
+            skills: ["math", "writ"],
+          }),
+        }),
+      );
+    });
   });
 
   it("does not restyle visible results when the form changes before the next search", async () => {
@@ -135,12 +177,12 @@ describe("RecruiterWorkspace", () => {
 
     render(<RecruiterWorkspace profile={{ companyName: "Northwind", title: "Recruiter" }} />);
 
-    fireEvent.change(screen.getByLabelText("Skill"), { target: { value: "math" } });
+    fireEvent.change(screen.getByLabelText("Skills"), { target: { value: "math" } });
     fireEvent.click(screen.getByRole("button", { name: "Search candidates" }));
 
     expect(await screen.findByText("Math")).toHaveProperty("tagName", "MARK");
 
-    fireEvent.change(screen.getByLabelText("Skill"), { target: { value: "Writ" } });
+    fireEvent.change(screen.getByLabelText("Skills"), { target: { value: "Writ" } });
 
     expect(screen.getByText("Math").tagName).toBe("MARK");
     expect(screen.getByText("Writing").tagName).not.toBe("MARK");

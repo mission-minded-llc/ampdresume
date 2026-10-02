@@ -6,6 +6,7 @@ import { alpha } from "@mui/material/styles";
 import { MuiLink } from "@/components/MuiLink";
 import { SectionTitle } from "@/app/edit/components/SectionTitle";
 import {
+  matchesSkillTerm,
   parseCandidateSearchInput,
   splitSearchMatch,
   type CandidateSearchInput,
@@ -26,10 +27,10 @@ type ShownResults = {
  * Marks the slice of a result that matched the search which produced that result.
  *
  * @param text Visible resume text, such as a name, title, location, or skill.
- * @param query Term from the search that returned this result. A blank term leaves the text unchanged.
+ * @param query Term or skill terms from the search that returned this result. A blank term leaves the text unchanged.
  * @returns The text with each matching slice wrapped in a highlight that does not add space.
  */
-function HighlightedMatch({ text, query }: { text: string; query: string }) {
+function HighlightedMatch({ text, query }: { text: string; query: string | readonly string[] }) {
   return splitSearchMatch(text, query).map((part, index) =>
     part.match ? (
       <Box
@@ -243,7 +244,8 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
                 slotProps={{ htmlInput: { "data-testid": "recruiter-location" } }}
               />
               <TextField
-                label="Skill"
+                label="Skills"
+                placeholder="Writing, Spanish"
                 value={skill}
                 onChange={(event) => setSkill(event.target.value)}
                 slotProps={{ htmlInput: { "data-testid": "recruiter-skill" } }}
@@ -262,7 +264,8 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
                 color="text.secondary"
                 sx={{ gridColumn: { sm: "1 / -1" }, mt: -0.5 }}
               >
-                Use at least 3 characters in each field you fill in.
+                Separate skills with commas. People who match more of them appear first. Use at
+                least 3 characters in each field you fill in.
               </Typography>
             </Box>
 
@@ -317,9 +320,10 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
                       {candidate.skills.length > 0 ? (
                         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.75, mt: 1.25 }}>
                           {candidate.skills.map((name, index) => {
-                            const matched = splitSearchMatch(name, results.search.skill).some(
-                              (part) => part.match,
+                            const matchedTerms = results.search.skills.filter((term) =>
+                              matchesSkillTerm(name, term),
                             );
+                            const matched = matchedTerms.length > 0;
 
                             return (
                               <Chip
@@ -327,9 +331,7 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
                                 size="small"
                                 color={matched ? "secondary" : "default"}
                                 variant={matched ? "filled" : "outlined"}
-                                label={
-                                  <HighlightedMatch text={name} query={results.search.skill} />
-                                }
+                                label={<HighlightedMatch text={name} query={matchedTerms} />}
                               />
                             );
                           })}
