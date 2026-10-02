@@ -12,7 +12,7 @@ jest.mock("html2pdf.js", () => ({
   })),
 }));
 
-const renderPDFView = async (themeName: "default" | "davids" | "times" = "default") => {
+const renderPDFView = async (themeName: "default" | "davids" | "times" | "legal" = "default") => {
   render(<PDFView themeName={themeName} />);
   await waitFor(() => expect(screen.getByRole("button", { name: "Generate PDF" })).toBeEnabled());
 };
@@ -45,6 +45,13 @@ describe("PDFView", () => {
   it("renders the Times PDF view when requested", async () => {
     await renderPDFView("times");
     expect(screen.getByTestId("pdf-theme-times")).toBeInTheDocument();
+    expect(screen.getByText(themeDefaultSampleData.data.resume.user.name!)).toBeInTheDocument();
+  });
+
+  it("renders the Legal PDF view when requested", async () => {
+    await renderPDFView("legal");
+    expect(screen.getByTestId("pdf-theme-legal")).toBeInTheDocument();
+    expect(screen.getByText("Curriculum Vitae")).toBeInTheDocument();
     expect(screen.getByText(themeDefaultSampleData.data.resume.user.name!)).toBeInTheDocument();
   });
 });

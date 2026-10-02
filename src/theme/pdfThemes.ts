@@ -1,5 +1,6 @@
 import { PdfThemeDefinition, PdfThemeName } from "@/types";
 import { ThemeDefaultPDF } from "./default/ThemeDefaultPDF";
+import { ThemeLegalPDF } from "./legal/ThemeLegalPDF";
 import { ThemeTimesPDF } from "./times/ThemeTimesPDF";
 
 export const DEFAULT_PDF_THEME_NAME: PdfThemeName = "default";
@@ -17,6 +18,21 @@ export const pdfThemeDefinitions: Record<PdfThemeName, PdfThemeDefinition> = {
     description:
       "A print-optimized single-column resume for job applications. Independent from the interactive web theme.",
     iconifyIcon: "fluent-emoji-flat:high-voltage",
+    authors: [
+      {
+        name: "Michael R. Dinerstein",
+        gitHubUrl: "https://github.com/missionmike",
+        linkedInUrl: "https://www.linkedin.com/in/michaeldinerstein/",
+      },
+    ],
+  },
+  legal: {
+    name: "Legal",
+    published: true,
+    component: ThemeLegalPDF,
+    description:
+      "A black-letter print resume for counsel and legal staff, with a centered letterhead and a two-column docket.",
+    iconifyIcon: "fluent-emoji-flat:balance-scale",
     authors: [
       {
         name: "Michael R. Dinerstein",

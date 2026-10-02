@@ -47,5 +47,14 @@ describe("PDF Theme Page", () => {
       expect(metadata.title).toBe(`PDF Theme: Times ${titleSuffix}`);
       expect(metadata.description).toContain("Times serif");
     });
+
+    it("generates metadata for the Legal PDF theme", async () => {
+      const metadata = await generateMetadata({
+        params: Promise.resolve({ themeName: "legal" }),
+      });
+
+      expect(metadata.title).toBe(`PDF Theme: Legal ${titleSuffix}`);
+      expect(metadata.description).toContain("black-letter");
+    });
   });
 });

@@ -2,11 +2,21 @@ import { ThemeDefinition, ThemeName } from "@/types";
 import { ThemeDavids } from "./davids/ThemeDavids";
 import { ThemeDefault } from "./default/ThemeDefault";
 import { ThemeDefaultPDF } from "./default/ThemeDefaultPDF";
+import { ThemeLegal } from "./legal/ThemeLegal";
+import { ThemeLegalPDF } from "./legal/ThemeLegalPDF";
 import { ThemeRetro80s } from "./retro-80s/ThemeRetro80s";
 import { ThemeTimesPDF } from "./times/ThemeTimesPDF";
 
 // Using named exports here, because we want to be able to import the themes directly.
-export { ThemeDavids, ThemeDefault, ThemeDefaultPDF, ThemeRetro80s, ThemeTimesPDF };
+export {
+  ThemeDavids,
+  ThemeDefault,
+  ThemeDefaultPDF,
+  ThemeLegal,
+  ThemeLegalPDF,
+  ThemeRetro80s,
+  ThemeTimesPDF,
+};
 export {
   DEFAULT_PDF_THEME_NAME,
   getPdfThemeDefinition,
@@ -41,6 +51,21 @@ export const themeDefinitions: Record<ThemeName, ThemeDefinition> = {
         name: "David Schurer",
         gitHubUrl: "https://github.com/davidschurer",
         linkedInUrl: "https://www.linkedin.com/in/david-schurer/",
+      },
+    ],
+  },
+  legal: {
+    name: "Legal",
+    published: true,
+    webComponent: ThemeLegal,
+    description:
+      "A chambers layout for lawyers and legal staff: serif letterhead, oxford rules, and credentials before experience.",
+    iconifyIcon: "fluent-emoji-flat:balance-scale",
+    authors: [
+      {
+        name: "Michael R. Dinerstein",
+        gitHubUrl: "https://github.com/missionmike",
+        linkedInUrl: "https://www.linkedin.com/in/michaeldinerstein/",
       },
     ],
   },

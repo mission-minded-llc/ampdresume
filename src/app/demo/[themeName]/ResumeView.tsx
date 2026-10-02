@@ -3,7 +3,7 @@
 import { useContext } from "react";
 import { ThemeAppearanceContext } from "@/app/components/ThemeContext";
 import { getDemoPlaceholderSocials } from "@/lib/demoSocials";
-import { ThemeDavids, ThemeDefault, ThemeRetro80s } from "@/theme";
+import { ThemeDavids, ThemeDefault, ThemeLegal, ThemeRetro80s } from "@/theme";
 import { themeDavidsSampleData } from "@/theme/davids/sampleData";
 import { themeDefaultSampleData } from "@/theme/sampleData";
 import { ThemeName } from "@/types";
@@ -23,6 +23,19 @@ export const ResumeView = ({ themeName }: { themeName: ThemeName }) => {
           education={themeDavidsSampleData.data.resume.education}
           certifications={themeDavidsSampleData.data.resume.certifications || []}
           featuredProjects={themeDavidsSampleData.data.resume.featuredProjects || []}
+        />
+      );
+    case "legal":
+      return (
+        <ThemeLegal
+          themeAppearance={themeAppearance}
+          user={themeDefaultSampleData.data.resume.user}
+          socials={getDemoPlaceholderSocials(themeDefaultSampleData.data.resume.user)}
+          skillsForUser={themeDefaultSampleData.data.resume.skillsForUser}
+          companies={themeDefaultSampleData.data.resume.companies}
+          education={themeDefaultSampleData.data.resume.education}
+          certifications={themeDefaultSampleData.data.resume.certifications || []}
+          featuredProjects={themeDefaultSampleData.data.resume.featuredProjects || []}
         />
       );
     case "retro-80s":
