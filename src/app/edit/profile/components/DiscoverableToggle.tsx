@@ -51,7 +51,6 @@ export function DiscoverableToggle({ enabled }: { enabled: boolean }) {
         flexShrink: 0,
       })}
     >
-
       <FormControlLabel
         control={
           <Switch

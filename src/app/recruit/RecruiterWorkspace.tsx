@@ -353,10 +353,17 @@ export function RecruiterWorkspace({ profile: initialProfile }: Props) {
         }}
       >
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2, maxWidth: 480 }}>
-          <strong>Tip:</strong> Replay the walkthrough of the hiring desk, search, and who can appear. <span style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() => {
-            void restartOnboarding("recruiter");
-          }}
-            data-testid="RestartRecruiterTutorial">Restart tutorial</span>
+          <strong>Tip:</strong> Replay the walkthrough of the hiring desk, search, and who can
+          appear.{" "}
+          <span
+            style={{ textDecoration: "underline", cursor: "pointer" }}
+            onClick={() => {
+              void restartOnboarding("recruiter");
+            }}
+            data-testid="RestartRecruiterTutorial"
+          >
+            Restart tutorial
+          </span>
         </Typography>
       </Box>
 
