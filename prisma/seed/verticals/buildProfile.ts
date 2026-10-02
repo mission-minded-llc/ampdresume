@@ -1,18 +1,50 @@
 import type { VerticalId, VerticalProfile, VerticalProfileInput } from "./types";
 
+const CLASSIC = { webThemeName: "default", pdfThemeName: "default" } as const;
+const LEGAL = { webThemeName: "legal", pdfThemeName: "legal" } as const;
+const FORMAL_PRINT = { webThemeName: "default", pdfThemeName: "times" } as const;
+
 /**
- * Classic is the default example layout. Legal-services profiles open in the
- * Legal theme so the example matches the practice.
+ * Formal industries use the Times print layout. Their public page stays Classic
+ * because Times is a PDF theme. Legal services is the one category with its own
+ * web and PDF theme.
+ */
+const THEME_BY_VERTICAL: Record<VerticalId, { webThemeName: string; pdfThemeName: string }> = {
+  "software-technology": CLASSIC,
+  "investment-banking": FORMAL_PRINT,
+  "management-consulting": FORMAL_PRINT,
+  "commercial-banking": FORMAL_PRINT,
+  healthcare: FORMAL_PRINT,
+  pharmaceuticals: FORMAL_PRINT,
+  "federal-public-sector": FORMAL_PRINT,
+  "aerospace-defense": FORMAL_PRINT,
+  "legal-services": LEGAL,
+  "accounting-audit": FORMAL_PRINT,
+  insurance: FORMAL_PRINT,
+  cybersecurity: CLASSIC,
+  "professional-engineering": FORMAL_PRINT,
+  "energy-utilities": FORMAL_PRINT,
+  telecommunications: CLASSIC,
+  manufacturing: CLASSIC,
+  "supply-chain": CLASSIC,
+  "human-resources": CLASSIC,
+  "corporate-marketing": CLASSIC,
+  "enterprise-sales": CLASSIC,
+  "higher-education": FORMAL_PRINT,
+  architecture: FORMAL_PRINT,
+  "commercial-real-estate": FORMAL_PRINT,
+  nonprofit: FORMAL_PRINT,
+  "airlines-aviation": CLASSIC,
+};
+
+/**
+ * Picks the layout a seeded demo opens on from its industry category.
  *
  * @param vertical Industry the profile belongs to.
  * @returns Web and PDF theme slugs stored on the demo user.
  */
 function themesForVertical(vertical: VerticalId): { webThemeName: string; pdfThemeName: string } {
-  if (vertical === "legal-services") {
-    return { webThemeName: "legal", pdfThemeName: "legal" };
-  }
-
-  return { webThemeName: "default", pdfThemeName: "default" };
+  return THEME_BY_VERTICAL[vertical];
 }
 
 export function slugifyName(name: string): string {
