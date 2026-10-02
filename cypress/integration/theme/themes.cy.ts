@@ -16,4 +16,25 @@ describe("Demo themes", () => {
       cy.url().should("include", `/demo/${theme}`);
     });
   });
+
+  it("should show the route sample and switch layouts from the page", () => {
+    cy.visit("/demo/default");
+    cy.contains("Taylor Everglow").should("be.visible");
+    cy.contains("Insert Coin").should("not.exist");
+
+    cy.get("[data-testid=owner-theme-picker] [role=combobox]").click();
+    cy.get('[role="listbox"]').contains("Retro 80s").click();
+    cy.url().should("include", "/demo/default");
+    cy.contains("Taylor Everglow").should("be.visible");
+    cy.contains("Insert Coin").should("be.visible");
+
+    cy.visit("/demo/legal");
+    cy.get("[data-testid=theme-legal]").should("exist");
+    cy.contains("Danielle Okoye").should("be.visible");
+    cy.contains("Corporate Associate").should("be.visible");
+
+    cy.visit("/demo/retro-80s");
+    cy.contains("Taylor Everglow").should("be.visible");
+    cy.contains("Insert Coin").should("be.visible");
+  });
 });

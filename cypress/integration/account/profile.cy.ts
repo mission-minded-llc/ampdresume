@@ -87,6 +87,20 @@ describe("Profile Section", () => {
     cy.contains("Invalid email address").should("not.exist");
   });
 
+  it("should save bold text in the professional summary", () => {
+    cy.get("[data-testid='ProfessionalSummaryEditor'] [contenteditable='true']").click();
+    cy.get("[data-testid='ProfessionalSummaryEditor'] button[aria-label='Bold']").click();
+    cy.get("[data-testid='ProfessionalSummaryEditor'] [contenteditable='true']").type("Bold claim");
+
+    cy.intercept("POST", "/api/account").as("saveAccount");
+    cy.get(saveButton).click();
+    cy.wait("@saveAccount").its("response.statusCode").should("eq", 200);
+    cy.reload();
+    cy.closeMessageDialog();
+
+    cy.get("[data-testid='ProfessionalSummaryEditor'] strong").should("contain", "Bold claim");
+  });
+
   it("should successfully delete account and redirect to homepage", () => {
     cy.contains("Profile").should("be.visible");
     cy.contains("General Information").should("be.visible");

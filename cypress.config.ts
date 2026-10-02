@@ -8,6 +8,32 @@ function magicLinkPath(email: string) {
   return path.join(process.cwd(), ".cypress-temp", `magic-link-${safeEmail}.txt`);
 }
 
+async function loadPrisma() {
+  const dotenv = await import("dotenv");
+  dotenv.config();
+  const { prisma } = await import("./src/lib/prisma");
+  return prisma;
+}
+
+async function replaceUserSkills(
+  prisma: Awaited<ReturnType<typeof loadPrisma>>,
+  userId: string,
+  skillNames: string[],
+) {
+  await prisma.skillForUser.deleteMany({ where: { userId } });
+
+  for (const name of skillNames) {
+    const skill = await prisma.skill.upsert({
+      where: { name },
+      create: { name, published: true },
+      update: { published: true },
+    });
+    await prisma.skillForUser.create({
+      data: { userId, skillId: skill.id },
+    });
+  }
+}
+
 async function waitForMagicLink(email: string) {
   const filePath = magicLinkPath(email);
   const deadline = Date.now() + 5000;
@@ -29,9 +55,7 @@ const filePlugin = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOption
       return waitForMagicLink(email);
     },
     async enableFeatureFlag({ email, name }: { email: string; name: string }) {
-      const dotenv = await import("dotenv");
-      dotenv.config();
-      const { prisma } = await import("./src/lib/prisma");
+      const prisma = await loadPrisma();
       const user = await prisma.user.findUnique({ where: { email } });
       if (!user) {
         throw new Error(`Cannot enable ${name}: no user for ${email}`);
@@ -44,9 +68,7 @@ const filePlugin = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOption
       return null;
     },
     async clearSocials({ email }: { email: string }) {
-      const dotenv = await import("dotenv");
-      dotenv.config();
-      const { prisma } = await import("./src/lib/prisma");
+      const prisma = await loadPrisma();
       const user = await prisma.user.findUnique({ where: { email } });
       if (!user) {
         return null;
@@ -61,6 +83,7 @@ const filePlugin = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOption
       location,
       slug,
       discoverable,
+      skills,
     }: {
       email: string;
       name: string;
@@ -68,10 +91,9 @@ const filePlugin = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOption
       location: string;
       slug: string;
       discoverable: boolean;
+      skills?: string[];
     }) {
-      const dotenv = await import("dotenv");
-      dotenv.config();
-      const { prisma } = await import("./src/lib/prisma");
+      const prisma = await loadPrisma();
       const user = await prisma.user.findUnique({ where: { email } });
       if (!user) {
         throw new Error(`Cannot reset recruiter candidate: no user for ${email}`);
@@ -87,12 +109,53 @@ const filePlugin = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOption
           recruiterDiscoverable: discoverable,
         },
       });
+      if (skills) {
+        await replaceUserSkills(prisma, user.id, skills);
+      }
+      return null;
+    },
+    async seedDiscoverablePeers({
+      peers,
+    }: {
+      peers: {
+        email: string;
+        name: string;
+        title: string;
+        location: string;
+        slug: string;
+        skills: string[];
+      }[];
+    }) {
+      const prisma = await loadPrisma();
+
+      for (const peer of peers) {
+        const user = await prisma.user.upsert({
+          where: { email: peer.email },
+          create: {
+            email: peer.email,
+            name: peer.name,
+            title: peer.title,
+            location: peer.location,
+            slug: peer.slug,
+            recruiterDiscoverable: true,
+            isDemo: false,
+          },
+          update: {
+            name: peer.name,
+            title: peer.title,
+            location: peer.location,
+            slug: peer.slug,
+            recruiterDiscoverable: true,
+            isDemo: false,
+          },
+        });
+        await replaceUserSkills(prisma, user.id, peer.skills);
+      }
+
       return null;
     },
     async disableFeatureFlag({ email, name }: { email: string; name: string }) {
-      const dotenv = await import("dotenv");
-      dotenv.config();
-      const { prisma } = await import("./src/lib/prisma");
+      const prisma = await loadPrisma();
       const user = await prisma.user.findUnique({ where: { email } });
       if (!user) {
         return null;

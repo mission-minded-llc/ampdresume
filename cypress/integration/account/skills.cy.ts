@@ -73,4 +73,36 @@ describe("Skills Section", () => {
 
     cy.get("button").contains(skill).should("not.exist");
   });
+
+  it("should choose an icon while editing a skill", () => {
+    const skill = "React";
+
+    cy.get("input[name='searchSkills']").type(skill);
+    cy.get("span").contains(skill).click();
+    cy.get("input[name='autoCalculate']").uncheck();
+    cy.get("input[name='totalYears']").clear().type("3");
+    cy.get("button").contains("Add Skill").click();
+    cy.get("button").contains(skill).should("be.visible").click();
+
+    cy.intercept("GET", "/api/icons*", { icons: ["logos:react"] }).as("icons");
+    cy.get("[data-testid=icon-selector-input] input").type("react");
+    cy.wait("@icons");
+    cy.get("[title='logos:react']").click();
+    cy.get("[data-testid=icon-selector-input] input").should(
+      "have.attr",
+      "placeholder",
+      "logos:react",
+    );
+
+    cy.aliasGraphql("updateSkillForUser");
+    cy.get("button").contains("Save & Close").click();
+    cy.wait("@updateSkillForUser");
+
+    cy.get("button").contains(skill).click();
+    cy.get("[data-testid=icon-selector-input] input").should(
+      "have.attr",
+      "placeholder",
+      "logos:react",
+    );
+  });
 });
