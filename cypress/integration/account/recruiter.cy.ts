@@ -2,6 +2,10 @@
 
 import { cypressSpecEmail, cypressSpecSlug } from "../../../src/lib/cypressTestAccount";
 
+const nextStep = () => {
+  cy.get("[data-testid=OnboardingNext]").should("be.visible").click();
+};
+
 /**
  * A signed-in user can open a hiring desk and search resumes that opted in.
  */
@@ -85,5 +89,53 @@ describe("Recruiter workspace", () => {
     cy.get("[data-testid=candidate-result] mark").should("contain", candidateName);
     cy.get("[data-testid=candidate-result]").should("contain", candidateTitle);
     cy.get("[data-testid=candidate-result]").should("contain", candidateLocation);
+  });
+});
+
+/**
+ * A first visit to the hiring desk gets the recruiter tutorial, which can be replayed from this page.
+ */
+describe("Recruiter tutorial", () => {
+  beforeEach(() => {
+    cy.loginWithMagicLink({ skipOnboarding: false });
+  });
+
+  it("walks the recruiter tutorial and restarts it from the page and the menu", () => {
+    cy.visit("/recruit");
+    cy.request("POST", "/api/onboarding", { pending: true, recruiterPending: true });
+    cy.reload();
+
+    cy.contains("Welcome to the recruiter desk").should("be.visible");
+    cy.contains("Welcome to Amp'd Resume").should("not.exist");
+    cy.get("[data-testid=OnboardingSkip]").should("contain", "Skip tutorial");
+    nextStep();
+
+    cy.contains("Your main menu").should("be.visible");
+    cy.get("[data-tour-id=nav-menu-button]").should("exist");
+    nextStep();
+
+    cy.contains("Two workspaces").should("be.visible");
+    cy.get("[data-testid=NavPrimaryMenuRecruiter]").should("be.visible");
+    nextStep();
+
+    cy.contains("Your hiring desk").should("be.visible");
+    cy.get("[data-tour-id=recruiter-desk]").should("exist");
+    nextStep();
+
+    cy.contains("Who can appear").should("be.visible");
+    nextStep();
+
+    cy.contains("Replay this tour").should("be.visible");
+    nextStep();
+    cy.get("[data-testid=OnboardingRoot]").should("not.exist");
+
+    cy.get("[data-testid=RestartRecruiterTutorial]").scrollIntoView().click();
+    cy.contains("Welcome to the recruiter desk").should("be.visible");
+    cy.get("[data-testid=OnboardingSkip]").click();
+    cy.get("[data-testid=OnboardingRoot]").should("not.exist");
+
+    cy.get("[data-testid=NavPrimaryMenuIcon]").click();
+    cy.get("[data-testid=NavPrimaryMenuRestartTutorial]").scrollIntoView().click();
+    cy.contains("Welcome to the recruiter desk").should("be.visible");
   });
 });

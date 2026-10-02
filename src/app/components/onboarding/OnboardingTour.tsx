@@ -11,20 +11,31 @@ import { SkillsDemo } from "./demos/SkillsDemo";
 import { ThemesDemo } from "./demos/ThemesDemo";
 import { TipsSlide } from "./demos/TipsSlide";
 import { NavTourId, useNavPrimary } from "./NavPrimaryContext";
-import { ONBOARDING_STEPS } from "./steps";
+import { ONBOARDING_STEPS, OnboardingStep } from "./steps";
 
 const isNavTourId = (value: string | undefined): value is NavTourId =>
   value === "nav-menu-button" ||
   value === "edit-resume-section" ||
   value === "import-pdf" ||
-  value === "restart-tutorial";
+  value === "restart-tutorial" ||
+  value === "recruiter-workspace";
 
+/**
+ * Walks one tutorial: the resume editors or the recruiter desk.
+ *
+ * @param didImport When true, resume steps that only matter before import are omitted.
+ * @param onComplete Called when the viewer finishes or skips the tutorial.
+ * @param steps Steps to show. Defaults to the resume tutorial.
+ * @returns The current tutorial step.
+ */
 export const OnboardingTour = ({
   didImport,
   onComplete,
+  steps = ONBOARDING_STEPS,
 }: {
   didImport: boolean;
   onComplete: () => void;
+  steps?: OnboardingStep[];
 }) => {
   const nav = useNavPrimary();
   const router = useRouter();
@@ -33,8 +44,8 @@ export const OnboardingTour = ({
   const importNavigated = useRef(false);
 
   const visibleSteps = useMemo(
-    () => ONBOARDING_STEPS.filter((step) => !(step.skipWhenImported && didImport)),
-    [didImport],
+    () => steps.filter((step) => !(step.skipWhenImported && didImport)),
+    [didImport, steps],
   );
 
   const safeIndex = Math.min(stepIndex, visibleSteps.length - 1);
@@ -124,8 +135,10 @@ export const OnboardingTour = ({
           showRing={
             step.target !== "edit-resume-section" &&
             step.target !== "nav-menu-button" &&
-            step.target !== "import-pdf"
+            step.target !== "import-pdf" &&
+            step.target !== "recruiter-workspace"
           }
+          rounded={step.target !== "recruiter-desk"}
         />
       ) : null}
 

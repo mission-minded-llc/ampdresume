@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { NavPrimary } from "./NavPrimary";
 import { expect } from "@jest/globals";
+import { OnboardingContext, OnboardingContextValue } from "./onboarding/OnboardingContext";
 
 jest.mock("next-auth/react", () => ({
   // Preserve other exports
@@ -80,6 +81,34 @@ describe("NavPrimary Component", () => {
     expect(screen.getByRole("link", { name: "Recruiter" })).toHaveAttribute("href", "/recruit");
     expect(screen.queryByText("Search candidates")).not.toBeInTheDocument();
     expect(screen.queryByTestId("NavPrimaryMenuEditExperience")).not.toBeInTheDocument();
-    expect(screen.queryByTestId("NavPrimaryMenuRestartTutorial")).not.toBeInTheDocument();
+    expect(screen.getByTestId("NavPrimaryMenuRestartTutorial")).toBeInTheDocument();
+  });
+
+  it("restarts the recruiter tutorial from the menu on the recruiter page", () => {
+    const restartOnboarding = jest.fn();
+    (usePathname as jest.Mock).mockReturnValue("/recruit");
+    (useSession as jest.Mock).mockReturnValue({
+      data: { user: { slug: "test-user", id: "user-1" } },
+      status: "authenticated",
+    });
+
+    const onboarding: OnboardingContextValue = {
+      isOnboardingActive: false,
+      isOnboardingStatusResolved: true,
+      didImport: false,
+      restartOnboarding,
+      completeOnboarding: async () => {},
+      notifyImported: () => {},
+    };
+
+    render(
+      <OnboardingContext.Provider value={onboarding}>
+        <NavPrimary />
+      </OnboardingContext.Provider>,
+    );
+    fireEvent.click(screen.getByTestId("NavPrimaryMenuIcon"));
+    fireEvent.click(screen.getByTestId("NavPrimaryMenuRestartTutorial"));
+
+    expect(restartOnboarding).toHaveBeenCalledWith("recruiter");
   });
 });

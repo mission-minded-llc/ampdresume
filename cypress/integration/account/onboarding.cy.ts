@@ -109,4 +109,15 @@ describe("Onboarding", () => {
     cy.get("[data-testid=OnboardingNext]").should("be.visible");
     cy.contains("Welcome to Amp'd Resume").should("be.visible");
   });
+
+  it("shows the resume tutorial instead of the recruiter tutorial", () => {
+    cy.request("POST", "/api/onboarding", { pending: true, recruiterPending: true });
+    cy.visit("/edit/profile");
+    cy.contains("Welcome to Amp'd Resume").should("be.visible");
+    cy.contains("Welcome to the recruiter desk").should("not.exist");
+
+    cy.visit("/recruit");
+    cy.contains("Welcome to the recruiter desk").should("not.exist");
+    cy.contains("Welcome to Amp'd Resume").should("not.exist");
+  });
 });

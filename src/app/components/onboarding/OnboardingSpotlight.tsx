@@ -9,15 +9,23 @@ const SPOTLIGHT_PADDING = 4;
 /**
  * Dims the page and rings the element with `data-tour-id={targetId}`.
  * Four blocking panes catch clicks outside the hole.
+ *
+ * @param targetId Tour target to leave uncovered.
+ * @param zIndex Stacking order of the dimmed panes.
+ * @param showRing Draws the outline around the target.
+ * @param rounded Rounds that outline. Square when the target is a full-width block.
+ * @returns The dimmed overlay and optional outline.
  */
 export const OnboardingSpotlight = ({
   targetId,
   zIndex = 1300,
   showRing = true,
+  rounded = true,
 }: {
   targetId: string;
   zIndex?: number;
   showRing?: boolean;
+  rounded?: boolean;
 }) => {
   const raw = useTourTargetRect(targetId);
   const rect = raw
@@ -73,7 +81,7 @@ export const OnboardingSpotlight = ({
             left: rect.left,
             width: rect.width,
             height: rect.height,
-            borderRadius: 3,
+            borderRadius: rounded ? 3 : 0,
             boxShadow: (theme) =>
               `0 0 0 1.5px ${alpha(theme.palette.secondary.main, 0.7)}, 0 0 0 5px ${alpha(theme.palette.secondary.main, 0.16)}`,
             pointerEvents: "none",

@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { expect } from "@jest/globals";
+import { usePathname } from "next/navigation";
 import { OnboardingProvider } from "./OnboardingProvider";
 import { useOnboarding } from "./OnboardingContext";
 import { NavPrimaryProvider } from "./NavPrimaryContext";
@@ -18,7 +19,7 @@ jest.mock("next-auth/react", () => ({
 }));
 
 jest.mock("next/navigation", () => ({
-  usePathname: () => "/edit/profile",
+  usePathname: jest.fn(() => "/edit/profile"),
   useRouter: () => ({ push: mockPush }),
 }));
 
@@ -45,6 +46,7 @@ describe("OnboardingProvider", () => {
     mockPush.mockReset();
     mockSession.data = { user: { id: "user-1" } };
     mockSession.status = "authenticated";
+    (usePathname as jest.Mock).mockReturnValue("/edit/profile");
     global.fetch = jest.fn();
   });
 
@@ -97,7 +99,12 @@ describe("OnboardingProvider", () => {
     );
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith("/api/onboarding");
+      expect(global.fetch).toHaveBeenCalledWith(
+        "/api/onboarding",
+        expect.objectContaining({
+          headers: { "X-Onboarding-Entry": "resume" },
+        }),
+      );
     });
 
     expect(screen.queryByTestId("OnboardingRoot")).not.toBeInTheDocument();
@@ -166,6 +173,69 @@ describe("OnboardingProvider", () => {
 
     expect(screen.getByText("resolved:false")).toBeInTheDocument();
     expect(screen.getByText("active:false")).toBeInTheDocument();
+    expect(screen.queryByTestId("OnboardingRoot")).not.toBeInTheDocument();
+  });
+
+  it("starts the recruiter tutorial instead of the resume tutorial on the hiring desk", async () => {
+    (usePathname as jest.Mock).mockReturnValue("/recruit");
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: async () => ({ pending: false, recruiterPending: true }),
+    });
+
+    const queryClient = new QueryClient({
+      defaultOptions: { queries: { retry: false } },
+    });
+
+    render(
+      <ThemeProvider theme={createTheme()}>
+        <QueryClientProvider client={queryClient}>
+          <NavPrimaryProvider>
+            <OnboardingProvider>
+              <div>App</div>
+            </OnboardingProvider>
+          </NavPrimaryProvider>
+        </QueryClientProvider>
+      </ThemeProvider>,
+    );
+
+    expect(await screen.findByText("Welcome to the recruiter desk")).toBeInTheDocument();
+    expect(screen.queryByText("Welcome to Amp'd Resume")).not.toBeInTheDocument();
+    expect(global.fetch).toHaveBeenCalledWith(
+      "/api/onboarding",
+      expect.objectContaining({
+        headers: { "X-Onboarding-Entry": "recruiter" },
+      }),
+    );
+  });
+
+  it("does not show the recruiter tutorial after a resume-first sign-in", async () => {
+    (usePathname as jest.Mock).mockReturnValue("/recruit");
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: async () => ({ pending: true, recruiterPending: false }),
+    });
+
+    const queryClient = new QueryClient({
+      defaultOptions: { queries: { retry: false } },
+    });
+
+    render(
+      <ThemeProvider theme={createTheme()}>
+        <QueryClientProvider client={queryClient}>
+          <NavPrimaryProvider>
+            <OnboardingProvider>
+              <div>App</div>
+            </OnboardingProvider>
+          </NavPrimaryProvider>
+        </QueryClientProvider>
+      </ThemeProvider>,
+    );
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalled();
+    });
+
     expect(screen.queryByTestId("OnboardingRoot")).not.toBeInTheDocument();
   });
 });

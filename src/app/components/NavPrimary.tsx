@@ -42,7 +42,7 @@ export const NavPrimary = () => {
   const highlightId = nav?.highlightId ?? null;
   const lockOpen = nav?.lockOpen ?? false;
 
-  const highlightFillSx = (id: "edit-resume-section" | "import-pdf") =>
+  const highlightFillSx = (id: "edit-resume-section" | "import-pdf" | "recruiter-workspace") =>
     highlightId === id
       ? {
           bgcolor: (theme: { palette: { mode: string } }) =>
@@ -305,21 +305,23 @@ export const NavPrimary = () => {
             </Collapse>
             {isLoggedIn ? (
               <>
-                <NavItemTitle text="Workspace" />
-                <NavItem
-                  text="My resume"
-                  icon="fluent-color:person-16"
-                  href="/edit/profile"
-                  selected={!inRecruiter}
-                  dataTestId="NavPrimaryMenuMyResume"
-                />
-                <NavItem
-                  text="Recruiter"
-                  icon="fluent-color:people-community-16"
-                  href="/recruit"
-                  selected={inRecruiter}
-                  dataTestId="NavPrimaryMenuRecruiter"
-                />
+                <Box data-tour-id="recruiter-workspace" sx={highlightFillSx("recruiter-workspace")}>
+                  <NavItemTitle text="Workspace" />
+                  <NavItem
+                    text="My resume"
+                    icon="fluent-color:person-16"
+                    href="/edit/profile"
+                    selected={!inRecruiter}
+                    dataTestId="NavPrimaryMenuMyResume"
+                  />
+                  <NavItem
+                    text="Recruiter"
+                    icon="fluent-color:people-community-16"
+                    href="/recruit"
+                    selected={inRecruiter}
+                    dataTestId="NavPrimaryMenuRecruiter"
+                  />
+                </Box>
                 {inRecruiter ? null : (
                   <>
                     {session?.data?.user?.slug ? (
@@ -390,32 +392,30 @@ export const NavPrimary = () => {
                   </>
                 )}
                 <NavItemTitle text="Account" />
-                {inRecruiter ? null : (
-                  <ListItem
-                    component="div"
-                    onClick={() => {
-                      if (!lockOpen) setIsOpen(false);
-                      void restartOnboarding();
-                    }}
-                    sx={(theme) => ({
-                      cursor: "pointer",
-                      "&:hover": {
-                        backgroundColor:
-                          theme.palette.mode === "dark"
-                            ? "rgba(174, 0, 255, 0.18)"
-                            : "rgba(174, 0, 255, 0.08)",
-                        borderRight: `4px solid ${theme.palette.secondary.main}`,
-                      },
-                    })}
-                    data-testid="NavPrimaryMenuRestartTutorial"
-                    data-tour-id="restart-tutorial"
-                  >
-                    <ListItemIcon>
-                      <Icon icon="fluent-color:book-open-lightbulb-20" width={36} height={36} />
-                    </ListItemIcon>
-                    <ListItemText primary="Restart tutorial" />
-                  </ListItem>
-                )}
+                <ListItem
+                  component="div"
+                  onClick={() => {
+                    if (!lockOpen) setIsOpen(false);
+                    void restartOnboarding(inRecruiter ? "recruiter" : "resume");
+                  }}
+                  sx={(theme) => ({
+                    cursor: "pointer",
+                    "&:hover": {
+                      backgroundColor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(174, 0, 255, 0.18)"
+                          : "rgba(174, 0, 255, 0.08)",
+                      borderRight: `4px solid ${theme.palette.secondary.main}`,
+                    },
+                  })}
+                  data-testid="NavPrimaryMenuRestartTutorial"
+                  data-tour-id="restart-tutorial"
+                >
+                  <ListItemIcon>
+                    <Icon icon="fluent-color:book-open-lightbulb-20" width={36} height={36} />
+                  </ListItemIcon>
+                  <ListItemText primary="Restart tutorial" />
+                </ListItem>
                 <NavItem
                   text="Logout"
                   icon="flat-color-icons:export"

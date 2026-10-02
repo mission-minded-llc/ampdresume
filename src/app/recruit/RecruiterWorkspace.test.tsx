@@ -3,6 +3,12 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { expect } from "@jest/globals";
 import { RecruiterWorkspace } from "./RecruiterWorkspace";
 
+const mockRestartOnboarding = jest.fn();
+
+jest.mock("@/app/components/onboarding/OnboardingContext", () => ({
+  useOnboarding: () => ({ restartOnboarding: mockRestartOnboarding }),
+}));
+
 describe("RecruiterWorkspace", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -139,5 +145,13 @@ describe("RecruiterWorkspace", () => {
     expect(screen.getByText("Math").tagName).toBe("MARK");
     expect(screen.getByText("Writing").tagName).not.toBe("MARK");
     expect(screen.queryByText("Writ")).not.toBeInTheDocument();
+  });
+
+  it("restarts the recruiter tutorial from the page", () => {
+    render(<RecruiterWorkspace profile={null} />);
+
+    fireEvent.click(screen.getByTestId("RestartRecruiterTutorial"));
+
+    expect(mockRestartOnboarding).toHaveBeenCalledWith("recruiter");
   });
 });
