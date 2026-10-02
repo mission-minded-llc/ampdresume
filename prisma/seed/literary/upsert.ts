@@ -101,6 +101,10 @@ async function upsertUser(character: SeedResumeProfile): Promise<{
     summaryTitle: character.summaryTitle ?? null,
     isDemo: character.isDemo,
   };
+  const themeUpdate = {
+    ...(character.webThemeName !== undefined ? { webThemeName: character.webThemeName } : {}),
+    ...(character.pdfThemeName !== undefined ? { pdfThemeName: character.pdfThemeName } : {}),
+  };
 
   const existing = await prisma.user.findFirst({
     where: { slug: character.slug },
@@ -110,6 +114,7 @@ async function upsertUser(character: SeedResumeProfile): Promise<{
     const created = await prisma.user.create({
       data: {
         ...desired,
+        ...themeUpdate,
         emailVerified: new Date(),
       },
     });
@@ -128,7 +133,11 @@ async function upsertUser(character: SeedResumeProfile): Promise<{
     stringsEqual(existing.siteDescription, desired.siteDescription) &&
     stringsEqual(existing.summary, desired.summary) &&
     stringsEqual(existing.summaryTitle, desired.summaryTitle) &&
-    existing.isDemo === desired.isDemo;
+    existing.isDemo === desired.isDemo &&
+    (character.webThemeName === undefined ||
+      stringsEqual(existing.webThemeName, character.webThemeName)) &&
+    (character.pdfThemeName === undefined ||
+      stringsEqual(existing.pdfThemeName, character.pdfThemeName));
 
   if (unchanged) {
     bump(counts, "unchanged");
@@ -137,7 +146,7 @@ async function upsertUser(character: SeedResumeProfile): Promise<{
 
   const updated = await prisma.user.update({
     where: { id: existing.id },
-    data: desired,
+    data: { ...desired, ...themeUpdate },
   });
   bump(counts, "updated");
   return { id: updated.id, counts };

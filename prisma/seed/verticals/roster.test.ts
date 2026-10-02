@@ -15,6 +15,18 @@ describe("industry-vertical seed roster", () => {
     expect(verticalProfiles.every((profile) => profile.isDemo)).toBe(true);
   });
 
+  it("opens legal-services profiles in the Legal theme and every other vertical in Classic", () => {
+    for (const profile of verticalProfiles) {
+      if (profile.vertical === "legal-services") {
+        expect(profile.webThemeName).toBe("legal");
+        expect(profile.pdfThemeName).toBe("legal");
+      } else {
+        expect(profile.webThemeName).toBe("default");
+        expect(profile.pdfThemeName).toBe("default");
+      }
+    }
+  });
+
   it("omits social and featured-project links from demo profiles", () => {
     expect(verticalProfiles.every((profile) => profile.socials.length === 0)).toBe(true);
     expect(

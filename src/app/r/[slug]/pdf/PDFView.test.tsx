@@ -142,6 +142,29 @@ describe("public PDFView", () => {
     expect(updateUser).not.toHaveBeenCalled();
   });
 
+  it("shows the PDF theme picker on a demo resume without saving", () => {
+    render(
+      <PDFView
+        user={{ ...user, isDemo: true }}
+        skillsForUser={resume.skillsForUser}
+        companies={resume.companies}
+        education={resume.education}
+        certifications={resume.certifications || []}
+        featuredProjects={resume.featuredProjects || []}
+        pdfThemeName="legal"
+      />,
+    );
+
+    expect(screen.getByLabelText("PDF Theme")).toHaveTextContent("Legal");
+    expect(screen.queryByRole("button", { name: "Save" })).not.toBeInTheDocument();
+
+    fireEvent.mouseDown(screen.getByLabelText("PDF Theme"));
+    fireEvent.click(screen.getByRole("option", { name: /Times/ }));
+
+    expect(screen.getByTestId("pdf-theme-times")).toBeInTheDocument();
+    expect(updateUser).not.toHaveBeenCalled();
+  });
+
   it("hides the picker from a signed-in visitor who does not own the resume", () => {
     renderPDFView({
       session: { user: { id: "other-user", slug: "other" }, expires: "2099-01-01" } as Session,

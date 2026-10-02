@@ -67,6 +67,10 @@ export type SeedResumeProfile = {
   summaryTitle?: string;
   displayEmail?: string | null;
   isDemo: boolean;
+  /** Layout visitors see first. Omitted profiles keep whatever is already stored. */
+  webThemeName?: string;
+  /** Print layout visitors see first. Omitted profiles keep whatever is already stored. */
+  pdfThemeName?: string;
   socials: LiterarySocial[];
   companies: LiteraryCompany[];
   education: LiteraryEducation[];

@@ -172,6 +172,14 @@ describe("public ResumeView", () => {
       placeholders.map((social) => `${social.platform}:${social.ref}`).join(","),
     );
     expect(screen.queryByText(/maya-chen/)).not.toBeInTheDocument();
+    expect(screen.getByLabelText("Theme")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Save" })).not.toBeInTheDocument();
+
+    fireEvent.mouseDown(screen.getByLabelText("Theme"));
+    fireEvent.click(screen.getByRole("option", { name: /David's Theme/ }));
+
+    expect(screen.getByTestId("resume-theme-davids")).toBeInTheDocument();
+    expect(updateUser).not.toHaveBeenCalled();
   });
 
   it("shows the theme picker for the resume owner and saves a theme", async () => {
